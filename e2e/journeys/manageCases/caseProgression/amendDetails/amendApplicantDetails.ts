@@ -18,6 +18,8 @@ interface FL401AmendApplicantDetailsParams {
   changeApplicantAddress: boolean;
   keepDetailsConfidential: boolean;
   solicitorDetailsChange: boolean;
+  snapshotPath: string[];
+  snapshotName: string;
 }
 
 interface C100AmendApplicantDetailsParams {
@@ -33,6 +35,8 @@ interface C100AmendApplicantDetailsParams {
   changeApplicantAddress: boolean;
   keepDetailsConfidential: boolean;
   solicitorDetailsChange: boolean;
+  snapshotPath: string[];
+  snapshotName: string;
 }
 
 export class AmendApplicantDetails {
@@ -47,6 +51,8 @@ export class AmendApplicantDetails {
     changeApplicantAddress,
     keepDetailsConfidential,
     solicitorDetailsChange,
+    snapshotPath,
+    snapshotName,
   }: FL401AmendApplicantDetailsParams): Promise<void> {
     await Helpers.chooseEventFromDropdown(page, "Amend applicant details");
     const [dobChangeDay, dobChangeMonth, dobChangeYear] =
@@ -80,6 +86,8 @@ export class AmendApplicantDetails {
       dobChangeDay,
       dobChangeMonth,
       dobChangeYear,
+      snapshotPath,
+      snapshotName,
     });
   }
 
@@ -95,6 +103,8 @@ export class AmendApplicantDetails {
     changeApplicantAddress,
     keepDetailsConfidential,
     solicitorDetailsChange,
+    snapshotPath,
+    snapshotName,
   }: C100AmendApplicantDetailsParams): Promise<void> {
     await Helpers.chooseEventFromDropdown(page, "Amend applicant details");
     const [dobChangeDay, dobChangeMonth, dobChangeYear] =
@@ -131,6 +141,8 @@ export class AmendApplicantDetails {
         dobChangeDay,
         dobChangeMonth,
         dobChangeYear,
+        snapshotPath,
+        snapshotName,
       },
     );
   }

@@ -44,7 +44,6 @@ export enum AmendApplicantDetails1Content {
   formLabelAddress5 = "County (Optional)",
   formLabelAddress6 = "Postcode/Zipcode (Optional)",
   formLabelAddress7 = "Country (Optional)",
-  formLabelUploadC8Refuge = "*Upload a C8 form with the refuge address",
   a = "I can't enter a UK postcode",
   formHint1 = "For example, 12 11 2007",
   pDownloadC8Form = "You can download the form from www.gov.uk. The address, email address and contact number entered for this party will be kept confidential.",
