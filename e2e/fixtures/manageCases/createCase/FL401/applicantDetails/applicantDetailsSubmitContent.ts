@@ -22,7 +22,6 @@ export enum ApplicantDetailsSubmitContent {
   text1618 = "Address:",
   text1619 = "*Do you need to keep the email address confidential?",
   text1620 = "*Does the applicant currently live in a refuge?",
-  uploadC8Form = "*Upload a C8 form with the refuge address",
   emailAddress = "*Email address",
   addressLine1_2 = "Building and Street",
   addressLine2_2 = "Town or City",

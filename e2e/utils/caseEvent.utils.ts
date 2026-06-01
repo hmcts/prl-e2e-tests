@@ -530,6 +530,8 @@ export class CaseEventUtils {
         await page.waitForTimeout(delay);
       }
     }
-    throw new Error(`${description} failed unexpectedly after ${maxRetries} attempts`);
+    throw new Error(
+      `${description} failed unexpectedly after ${maxRetries} attempts`,
+    );
   }
 }
