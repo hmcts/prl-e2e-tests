@@ -37,6 +37,8 @@ test.describe("Complete amend applicant details event as a court admin for a CA 
       changeApplicantAddress: true,
       keepDetailsConfidential: true,
       solicitorDetailsChange: true,
+      snapshotPath: ["caseProgression", "amendDetails", "C100"],
+      snapshotName: "c100-amend-applicant-details",
     });
   });
 });

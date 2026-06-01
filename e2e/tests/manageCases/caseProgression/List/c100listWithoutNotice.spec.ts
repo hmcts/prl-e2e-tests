@@ -8,6 +8,7 @@ test.use({ storageState: config.sessionStoragePath + "caseWorker.json" });
 
 test.describe("List without notice tests for CA cases", () => {
   let ccdRef: string = "";
+
   test.beforeEach(async ({ page, browser, caseEventUtils }) => {
     ccdRef = await caseEventUtils.createCACaseSendToGatekeeper(browser);
     await Helpers.goToCase(

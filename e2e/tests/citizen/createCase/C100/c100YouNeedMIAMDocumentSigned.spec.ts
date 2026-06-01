@@ -10,6 +10,7 @@ test.describe("Create Citizen Application but you don't have a MIAM document.", 
       "citizen",
     );
   });
+
   test(
     "You need to have a signed document journey signed for you, with the following options:" +
       "No error messaging." +
@@ -22,6 +23,7 @@ test.describe("Create Citizen Application but you don't have a MIAM document.", 
       });
     },
   );
+
   test(
     "You need to have a signed document journey signed for you, with the following options:" +
       "Yes error messaging." +
@@ -34,6 +36,7 @@ test.describe("Create Citizen Application but you don't have a MIAM document.", 
       });
     },
   );
+
   test(
     "You need to have a signed document journey signed for you, with the following options:" +
       "No error messaging." +

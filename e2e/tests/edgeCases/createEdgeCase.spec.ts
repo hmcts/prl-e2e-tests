@@ -7,6 +7,7 @@ test.describe("Create an edge case as a citizen", (): void => {
   test.beforeEach(async ({ page }) => {
     await page.goto(Config.edgeCasesBaseURL);
   });
+
   test("Create an Female Genital Mutilation (FGM) edge case as a citizen. @accessibility", async ({
     page,
   }) => {
@@ -20,6 +21,7 @@ test.describe("Create an edge case as a citizen", (): void => {
       additionalDocuments: true,
     });
   });
+
   test("Create an Forced Marriage Protection Order (FMPO) edge case on behalf of another citizen. @accessibility", async ({
     page,
   }) => {
@@ -33,6 +35,7 @@ test.describe("Create an edge case as a citizen", (): void => {
       additionalDocuments: false,
     });
   });
+
   test("Create a Special Guardianship edge case as a citizen - adding additional documents and HWF applied. @accessibility", async ({
     page,
   }) => {
@@ -46,6 +49,7 @@ test.describe("Create an edge case as a citizen", (): void => {
       helpWithFees: true,
     });
   });
+
   test("Create a Declaration of Parentage edge case as a citizen - no HWF.", async ({
     page,
   }) => {
@@ -59,6 +63,7 @@ test.describe("Create an edge case as a citizen", (): void => {
       helpWithFees: false,
     });
   });
+
   test("Create a Parental Order edge case as a citizen - with HWF", async ({
     page,
   }) => {
@@ -72,6 +77,7 @@ test.describe("Create an edge case as a citizen", (): void => {
       helpWithFees: true,
     });
   });
+
   test("Create a Parental Responsibility edge case as a citizen - with HWF", async ({
     page,
   }) => {
@@ -85,6 +91,7 @@ test.describe("Create an edge case as a citizen", (): void => {
       helpWithFees: true,
     });
   });
+
   test("Create a Parental responsibility (second female parent) edge case as a citizen - with HWF", async ({
     page,
   }) => {
@@ -98,6 +105,7 @@ test.describe("Create an edge case as a citizen", (): void => {
       helpWithFees: true,
     });
   });
+
   test("Create an Appointing a child’s guardian edge case as a citizen", async ({
     page,
   }) => {
@@ -111,6 +119,7 @@ test.describe("Create an edge case as a citizen", (): void => {
       helpWithFees: true,
     });
   });
+
   test("Create a Change of child’s surname or removal from jurisdiction edge case as a citizen", async ({
     page,
   }) => {

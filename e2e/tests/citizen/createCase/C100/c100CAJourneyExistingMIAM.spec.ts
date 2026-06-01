@@ -12,6 +12,7 @@ test.describe("C100 Citizen Application with an existing MIAM document.", (): vo
       "citizen",
     );
   });
+
   test(`C100 Citizen Application with the following options:
   Not Accessibility Testing
   Not Error Messaging
@@ -1585,6 +1586,7 @@ test.describe("C100 Citizen Application accessibility tests on the third row jou
       "citizen",
     );
   });
+
   test(`C100 Citizen Application with the following options:
   Accessibility Testing
   Not Error Messaging

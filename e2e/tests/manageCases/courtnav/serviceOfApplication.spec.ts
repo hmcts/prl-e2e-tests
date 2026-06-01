@@ -13,6 +13,7 @@ test.describe("Service of Application task for DA Citizen case tests.", () => {
   );
 
   let ccdRef: string = "";
+
   test.beforeEach(async ({ page, courtNavUtils }) => {
     ccdRef = await courtNavUtils.createCase(true, false);
     await Helpers.goToCase(

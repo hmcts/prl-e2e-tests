@@ -11,6 +11,7 @@ test.describe("Complete the Restricted Case Access events for CA case.", () => {
   );
 
   let ccdRef: string = "";
+
   test.beforeEach(async ({ browser, caseEventUtils }) => {
     ccdRef = await caseEventUtils.createCACaseSendToGatekeeper(browser);
   });

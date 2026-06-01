@@ -39,6 +39,7 @@ test.describe("Service of Document event for DA Solicitor case tests as court ad
       checkDocuments: true,
     });
   });
+
   test(`Complete 'Service of Documents' with following options: 
   Additional documents added: yes
   Witness statement (case doc) added to event: yes
@@ -58,6 +59,7 @@ test.describe("Service of Document event for DA Solicitor case tests as court ad
       checkDocuments: false,
     });
   });
+
   test(`Complete 'Service of Documents' with following options: 
   Additional documents added: no
   Witness statement (case doc) added to event: no

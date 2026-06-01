@@ -98,6 +98,7 @@ test.describe("C100 Create case MIAM Tests", (): void => {
       subJourney: true,
     });
   });
+
   test(`Accessibility test the C100 Miam event as a solicitor with the following options:
   Accessibility testing,
   Not Error message testing,

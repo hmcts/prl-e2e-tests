@@ -68,11 +68,11 @@ export class ManageDocumentsNew1Page {
         `${Selectors.headingH3}:text-is("${ManageDocumentsNew1Content.headingH3}")`,
         1,
       ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.button}:text-is("${ManageDocumentsNew1Content.buttonText}")`,
-        2,
-      ),
+      // Helpers.checkVisibleAndPresent(
+      //   page,
+      //   `${Selectors.button}:text-is("${ManageDocumentsNew1Content.buttonText}")`,
+      //   2,
+      // ), //exui ticket raised to resolve issue with hidden add new button
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.button}:text-is("${ManageDocumentsNew1Content.buttonText2}")`,

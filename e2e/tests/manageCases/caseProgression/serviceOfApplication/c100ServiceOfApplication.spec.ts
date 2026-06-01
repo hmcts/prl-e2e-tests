@@ -7,6 +7,7 @@ test.use({ storageState: config.sessionStoragePath + "caseWorker.json" });
 
 test.describe("Service of Application task for CA Solicitor case tests.", () => {
   let ccdRef: string = "";
+
   test.beforeEach(async ({ page, browser, caseEventUtils }) => {
     ccdRef = await caseEventUtils.createCACaseSendToGatekeeper(browser);
     await Helpers.goToCase(

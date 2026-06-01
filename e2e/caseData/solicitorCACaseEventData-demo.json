@@ -3926,7 +3926,7 @@
             "isPlaceOfBirthKnown": "No",
             "placeOfBirth": null,
             "isCurrentAddressKnown": "No",
-            "liveInRefuge": null,
+            "liveInRefuge": "No",
             "isAtAddressLessThan5Years": "No",
             "addressLivedLessThan5YearsDetails": null,
             "canYouProvideEmailAddress": "Yes",

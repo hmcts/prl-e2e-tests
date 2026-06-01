@@ -4,7 +4,6 @@ import { Selectors } from "../../../../../common/selectors.ts";
 import { ApplicantGender } from "../../../../../common/types.ts";
 import { CommonStaticText } from "../../../../../common/commonStaticText.ts";
 import { AxeUtils } from "@hmcts/playwright-common";
-import { FileUploadComponent } from "../../../../../pageObjects/components/exui/uploadFile.component.ts";
 import { AmendApplicantDetails1Content } from "../../../../../fixtures/manageCases/caseProgression/amendDetails/amendApplicantDetails/AmendApplicantDetails1Content.js";
 
 interface AmendApplicantDetails1Options {
@@ -422,13 +421,6 @@ export class AmendApplicantDetails1Page {
 
   private static async liveInRefugeFillFields(page: Page): Promise<void> {
     await page.click(uniqueSelectors.applicantInRefugeYes);
-    const fileUpload = new FileUploadComponent(page, {
-      uploadLabelText: AmendApplicantDetails1Content.formLabelUploadC8Refuge,
-      downloadParagraphText: AmendApplicantDetails1Content.pDownloadC8Form,
-      chooseFileLocatorID: uniqueSelectors.c8FormFileUpload,
-      requireDownloadParagraph: true,
-    });
-    await fileUpload.completeUpload();
   }
 
   private static async changeApplicantAddressFillFields(

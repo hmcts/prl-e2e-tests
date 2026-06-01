@@ -46,6 +46,8 @@ test.describe("Confidentiality check task for DA Solicitor case tests.", () => {
       responsibleForServing: "courtBailiff",
       isApplicationServedAfterConfidentialityCheck: true,
       browserName: browserName,
+      snapshotPath: ["caseProgression", "confidentialityCheck", "FL401"],
+      snapshotName: "fl401-confidentiality-check-amend-applicant-details",
     });
   });
 });
