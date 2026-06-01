@@ -11,10 +11,7 @@ export class C100ConfidentialDetailsTabPage {
     accessibilityTest: boolean,
   ): Promise<void> {
     await this.clickTab(page);
-    await this.checkPageLoads(
-      page,
-      accessibilityTest,
-    );
+    await this.checkPageLoads(page, accessibilityTest);
   }
 
   private static async checkPageLoads(
