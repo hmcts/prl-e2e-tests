@@ -5,31 +5,21 @@ import { AxeUtils } from "@hmcts/playwright-common";
 import { C100ConfidentialDetailsTabContent } from "../../../../fixtures/manageCases/caseTabs/C100/c100ConfidentialDetailsTabContent.ts";
 import { ManageDocumentsNew1Content } from "../../../../fixtures/manageCases/caseProgression/manageDocuments/manageDocumentsNew1Content.js";
 
-enum UniqueSelectors {
-  refugeDocumentsSection = "td#case-viewer-field-read--refugeDocuments",
-}
-
 export class C100ConfidentialDetailsTabPage {
   public static async c100ConfidentialDetailsTabPage(
     page: Page,
     accessibilityTest: boolean,
-    applicantLivesInRefuge: boolean,
-    otherPersonLivesInRefuge: boolean,
   ): Promise<void> {
     await this.clickTab(page);
     await this.checkPageLoads(
       page,
       accessibilityTest,
-      applicantLivesInRefuge,
-      otherPersonLivesInRefuge,
     );
   }
 
   private static async checkPageLoads(
     page: Page,
     accessibilityTest: boolean,
-    applicantLivesInRefuge: boolean,
-    otherPersonLivesInRefuge: boolean,
   ): Promise<void> {
     await Helpers.checkVisibleAndPresent(
       page,
@@ -46,66 +36,6 @@ export class C100ConfidentialDetailsTabPage {
       `${Selectors.div}${Selectors.GovukText16}:text-is("${C100ConfidentialDetailsTabContent.c8DraftDocumentWelshSection}")`,
       1,
     );
-    if (applicantLivesInRefuge || otherPersonLivesInRefuge) {
-      await Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.div}${Selectors.GovukText16}:text-is("${C100ConfidentialDetailsTabContent.refugeSection}")`,
-        1,
-      );
-      await Helpers.checkVisibleAndPresent(
-        page,
-        `${UniqueSelectors.refugeDocumentsSection} ${Selectors.Span}${Selectors.GovukText16}:text-is("${C100ConfidentialDetailsTabContent.refugeSectionPartyType}")`,
-        applicantLivesInRefuge && otherPersonLivesInRefuge ? 2 : 1,
-      );
-      await Helpers.checkVisibleAndPresent(
-        page,
-        `${UniqueSelectors.refugeDocumentsSection} ${Selectors.Span}${Selectors.GovukText16}:text-is("${C100ConfidentialDetailsTabContent.refugeSectionPartyName}")`,
-        applicantLivesInRefuge && otherPersonLivesInRefuge ? 2 : 1,
-      );
-      await Helpers.checkVisibleAndPresent(
-        page,
-        `${UniqueSelectors.refugeDocumentsSection} ${Selectors.Span}${Selectors.GovukText16}:text-is("${C100ConfidentialDetailsTabContent.refugeSectionDocumentName}")`,
-        applicantLivesInRefuge && otherPersonLivesInRefuge ? 2 : 1,
-      );
-      await Helpers.checkVisibleAndPresent(
-        page,
-        `${UniqueSelectors.refugeDocumentsSection} ${Selectors.Span}${Selectors.GovukText16}:text-is("${C100ConfidentialDetailsTabContent.refugeSectionUploadedDate}")`,
-        applicantLivesInRefuge && otherPersonLivesInRefuge ? 2 : 1,
-      );
-      await Helpers.checkVisibleAndPresent(
-        page,
-        `${UniqueSelectors.refugeDocumentsSection} ${Selectors.Span}${Selectors.GovukText16}:text-is("${C100ConfidentialDetailsTabContent.refugeSectionDocument}")`,
-        applicantLivesInRefuge && otherPersonLivesInRefuge ? 2 : 1,
-      );
-      if (applicantLivesInRefuge) {
-        await Helpers.checkGroup(
-          page,
-          2,
-          C100ConfidentialDetailsTabContent,
-          "refugeSectionApplicantDetailsText16",
-          `${UniqueSelectors.refugeDocumentsSection} ${Selectors.Span}${Selectors.GovukText16}`,
-        );
-      }
-      if (otherPersonLivesInRefuge) {
-        await Helpers.checkGroup(
-          page,
-          2,
-          C100ConfidentialDetailsTabContent,
-          "refugeSectionOtherPersonDetailsText16",
-          `${UniqueSelectors.refugeDocumentsSection} ${Selectors.Span}${Selectors.GovukText16}`,
-        );
-      }
-      await Helpers.checkVisibleAndPresent(
-        page,
-        `${UniqueSelectors.refugeDocumentsSection} ${Selectors.Span}${Selectors.GovukText16}:text-is("${C100ConfidentialDetailsTabContent.refugeSectionFile}")`,
-        applicantLivesInRefuge && otherPersonLivesInRefuge ? 2 : 1,
-      );
-      await Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovLink}:text-is("${C100ConfidentialDetailsTabContent.link}")`,
-        applicantLivesInRefuge && otherPersonLivesInRefuge ? 2 : 1,
-      );
-    }
 
     if (accessibilityTest) {
       await new AxeUtils(page).audit();

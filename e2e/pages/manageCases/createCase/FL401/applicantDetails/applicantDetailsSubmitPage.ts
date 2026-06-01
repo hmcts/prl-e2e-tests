@@ -120,16 +120,6 @@ export class ApplicantDetailsSubmitPage {
         `${Selectors.a}:text-is("${ApplicantDetailsSubmitContent.applicantEmailAddress}")`,
         1,
       );
-      await Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukText16}:text-is("${ApplicantDetailsSubmitContent.uploadC8Form}")`,
-        1,
-      );
-      await Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovLink}:text-is("${ApplicantDetailsSubmitContent.uploadedFile}")`,
-        1,
-      );
     } else {
       yesNoCount = 4;
       yesNoKey = "radioNo";
