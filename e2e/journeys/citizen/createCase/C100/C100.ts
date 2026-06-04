@@ -562,12 +562,12 @@ export class C100 {
       yesNoInternationalElements: yesNoInternationalElements,
     });
     // THIS WHOLE SECTION WAS REMOVED
-    // await C100ReasonableAdjustments.c100ReasonableAdjustments({
-    //   page: page,
-    //   accessibilityTest: accessibilityTest,
-    //   errorMessaging: errorMessaging,
-    //   yesNoReasonableAdjustments: yesNoReasonableAdjustments,
-    // });
+    await C100ReasonableAdjustments.c100ReasonableAdjustments({
+      page: page,
+      accessibilityTest: accessibilityTest,
+      errorMessaging: errorMessaging,
+      yesNoReasonableAdjustments: yesNoReasonableAdjustments,
+    });
 
 
 
