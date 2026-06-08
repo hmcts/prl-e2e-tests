@@ -8,6 +8,7 @@ import { JudgePagesGroup } from "../pageObjects/roleBasedGroupedPages/judgePages
 import { utilsFixtures, UtilsFixtures } from "../utils/utils.fixtures.ts";
 import Config from "../utils/config.utils.ts";
 import { LegalAdvisorPagesGroup } from "../pageObjects/roleBasedGroupedPages/legalAdvisorPages.js";
+import { LocalAuthorityPagesGroup } from "../pageObjects/roleBasedGroupedPages/localAuthorityPages.ts";
 
 type MyFixtures = UtilsFixtures & {
   nocSolicitor: NocSolicitorPagesGroup;
@@ -17,6 +18,7 @@ type MyFixtures = UtilsFixtures & {
   caseManager: CaseManagerPagesGroup;
   judge: JudgePagesGroup;
   legalAdvisor: LegalAdvisorPagesGroup;
+  localAuthority: LocalAuthorityPagesGroup;
 };
 
 export const test = base.extend<MyFixtures>({
@@ -82,6 +84,15 @@ export const test = base.extend<MyFixtures>({
     });
     const page = await context.newPage();
     await use(new LegalAdvisorPagesGroup(page));
+    await context.close();
+  },
+
+  localAuthority: async ({ browser }, use) => {
+    const context = await browser.newContext({
+      storageState: Config.sessionStoragePath + "localAuthority.json",
+    });
+    const page = await context.newPage();
+    await use(new LocalAuthorityPagesGroup(page));
     await context.close();
   },
 });

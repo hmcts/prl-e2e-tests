@@ -157,4 +157,58 @@ export class ManageDocumentsNew1Page {
       `${Selectors.button}:text-is("${CommonStaticText.continue}")`,
     );
   }
+
+  /**
+   * Public static helper — fills a single document slot by index (0-based).
+   * Used when uploading multiple documents in one Manage Documents event without
+   * going through the full page assertion flow each time.
+   */
+  public static async fillDocumentSlot({
+    page,
+    index,
+    documentParty,
+    documentCategory,
+    confidentialDocument,
+    restrictDocument,
+  }: {
+    page: Page;
+    index: number;
+    documentParty: string;
+    documentCategory: string;
+    confidentialDocument: boolean;
+    restrictDocument: boolean;
+  }): Promise<void> {
+    const idx = index;
+    await page.click(`#manageDocuments_${idx}_documentRelatedToCaseCheckbox-RELATED_TO_CASE`);
+    await page.selectOption(`#manageDocuments_${idx}_documentParty`, { label: documentParty });
+    await page.selectOption(`#manageDocuments_${idx}_documentCategories`, { label: documentCategory });
+
+    const fileInput = page.locator(`#manageDocuments_${idx}_document`);
+    await fileInput.setInputFiles(config.testPdfFile);
+    // wait for upload to complete
+    await page
+      .locator(Selectors.GovukErrorMessage, { hasText: "Uploading..." })
+      .waitFor({ state: "hidden" });
+
+    if (confidentialDocument) {
+      await page.click(`#manageDocuments_${idx}_isConfidential_Yes`);
+    } else {
+      await page.click(`#manageDocuments_${idx}_isConfidential_No`);
+    }
+
+    if (restrictDocument) {
+      await page.click(`#manageDocuments_${idx}_isRestricted_Yes`);
+      await page.fill(
+        `#manageDocuments_${idx}_restrictedDetails`,
+        ManageDocumentsNew1Content.inputText,
+      );
+    } else {
+      await page.click(`#manageDocuments_${idx}_isRestricted_No`);
+    }
+  }
+
+  /** Public wrapper so external callers (e.g. LA journey) can submit the form. */
+  public static async clickContinue(page: Page): Promise<void> {
+    await this.continue(page);
+  }
 }

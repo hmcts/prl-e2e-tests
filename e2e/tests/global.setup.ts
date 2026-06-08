@@ -103,4 +103,12 @@ setup.describe("Setup users and retrieve tokens", () => {
       config.manageCasesBaseURLCase,
     );
   });
+
+  setup("Setup Local Authority user", async ({ page, idamLoginHelper }) => {
+    await idamLoginHelper.signInLongLivedUser(
+      page,
+      "localAuthority",
+      config.manageCasesBaseURLCase,
+    );
+  });
 });

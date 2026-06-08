@@ -18,7 +18,7 @@ test.describe("Manage documents event for C100 case tests as a court admin.", ()
     );
   });
 
-  test("Complete Manage Documents where the document is an 'Applicant's statements' and is uploaded on behalf of the applicant. Saying yes to Restrict Access and yes to confidential. With accessibility test. @nightly @regression @accessibility", async ({
+  test("Complete Manage Documents where the document is an 'Applicant's statements' and is uploaded on behalf of the applicant. Saying yes to Restrict Access and yes to confidential. With accessibility test. @nightly @regression @accessibility @tp", async ({
     page,
   }): Promise<void> => {
     await ManageDocuments.manageDocuments({

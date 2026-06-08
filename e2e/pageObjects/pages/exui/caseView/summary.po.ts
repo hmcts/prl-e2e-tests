@@ -119,4 +119,20 @@ export class SummaryPage extends CaseAccessViewPage {
       this.page.getByRole("heading", { name: fl401newCaseNameRespondent }),
     ).toBeVisible({ timeout: 12000 });
   }
+
+  async assertLocalAuthoritySection(organisationName: string): Promise<void> {
+    await expect(
+      this.page.getByRole("heading", { name: "Local Authority", exact: true }),
+    ).toBeVisible();
+    await expect(
+      this.page.getByText("Local Authority involvement", { exact: true }),
+    ).toBeVisible();
+    await expect(this.page.getByText("Yes", { exact: true })).toBeVisible();
+    await expect(
+      this.page.getByText("Local Authority Organisation Name", { exact: true }),
+    ).toBeVisible();
+    await expect(
+      this.page.getByText(organisationName, { exact: true }),
+    ).toBeVisible();
+  }
 }
