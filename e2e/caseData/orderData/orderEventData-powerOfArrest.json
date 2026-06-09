@@ -34,7 +34,7 @@
       "judgeOrMagistrateTitle": "herHonourJudge",
       "judgeOrMagistratesLastName": "Automated JudgeName",
       "justiceLegalAdviserFullName": "Automated Legal Advisor",
-      "dateOrderMade": "2025-10-06",
+      "dateOrderMade": "2026-06-08",
       "isTheOrderAboutChildren": "No",
       "recitalsOrPreamble": "loremIpsum",
       "orderDirections": "loremIpsum",
@@ -72,7 +72,7 @@
         "fl404bAddAnotherInstructions": null,
         "fl404bIsPowerOfArrest6": null,
         "fl404bDateOrderMade": null,
-        "fl404bDateOrderEnd": "2025-06-10T12:00:00.000",
+        "fl404bDateOrderEnd": "2026-06-30T12:00:00.000",
         "fl404bDateOrderEndTime": null,
         "orderEndDateAndTimeOptions": null,
         "orderSpecifiedDateTime": "",
@@ -142,8 +142,8 @@
         }
       },
       "previewOrderDoc": {
-        "document_url": "http://dm-store-aat.service.core-compute-aat.internal/documents/892e933c-5e51-42ff-a328-ed2548ecd672",
-        "document_binary_url": "http://dm-store-aat.service.core-compute-aat.internal/documents/892e933c-5e51-42ff-a328-ed2548ecd672/binary",
+        "document_url": "http://dm-store-aat.service.core-compute-aat.internal/documents/cde64f7e-507d-4338-b0c4-be8c43c77904",
+        "document_binary_url": "http://dm-store-aat.service.core-compute-aat.internal/documents/cde64f7e-507d-4338-b0c4-be8c43c77904/binary",
         "document_filename": "Power_of_arrest_draft.pdf"
       },
       "judgeDirectionsToAdmin": "Lorem Ipsum",
