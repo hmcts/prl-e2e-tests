@@ -121,18 +121,24 @@ export class SummaryPage extends CaseAccessViewPage {
   }
 
   async assertLocalAuthoritySection(organisationName: string): Promise<void> {
+    const localAuthorityPanel = this.page.locator(
+      "#case-viewer-field-read--localAuthority",
+    );
+
     await expect(
       this.page.getByRole("heading", { name: "Local Authority", exact: true }),
     ).toBeVisible();
     await expect(
-      this.page.getByText("Local Authority involvement", { exact: true }),
-    ).toBeVisible();
-    await expect(this.page.getByText("Yes", { exact: true })).toBeVisible();
-    await expect(
-      this.page.getByText("Local Authority Organisation Name", { exact: true }),
+      localAuthorityPanel.getByText("Local Authority involvement", { exact: true }),
     ).toBeVisible();
     await expect(
-      this.page.getByText(organisationName, { exact: true }),
+      localAuthorityPanel.getByText("Yes", { exact: true }),
+    ).toBeVisible();
+    await expect(
+      localAuthorityPanel.getByText("Local Authority Organisation Name", { exact: true }),
+    ).toBeVisible();
+    await expect(
+      localAuthorityPanel.getByText(organisationName, { exact: true }),
     ).toBeVisible();
   }
 }

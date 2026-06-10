@@ -1,14 +1,10 @@
 import { expect, Locator, Page } from "@playwright/test";
 import { EventPage } from "../eventPage.po.js";
-import { Selectors } from "../../../../common/selectors.js";
 
 export class AdminAddLocalAuthorityConfirmPage extends EventPage {
-  private readonly confirmationHeader: Locator = this.page.locator(
-    "#confirmation-header",
-  );
-
-  private readonly confirmationBody: Locator = this.page.locator(
-    Selectors.GovukPanel,
+  private readonly confirmationBanner: Locator = this.page.locator(
+    ".hmcts-banner--success .alert-message",
+    { hasText: "Add local authority" },
   );
 
   constructor(page: Page) {
@@ -16,11 +12,6 @@ export class AdminAddLocalAuthorityConfirmPage extends EventPage {
   }
 
   async assertPageContents(): Promise<void> {
-    await expect(this.confirmationHeader).toBeVisible();
-    await expect(this.closeAndReturnToCaseDetailsButton).toBeVisible();
-  }
-
-  async closeAndReturn(): Promise<void> {
-    await this.clickCloseAndReturnToCaseDetails();
+    await expect(this.confirmationBanner).toBeVisible();
   }
 }

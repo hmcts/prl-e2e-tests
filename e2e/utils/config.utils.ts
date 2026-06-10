@@ -134,6 +134,28 @@ export class Config {
     "../assets/mockFile.mp3",
   );
 
+  // Named mock PDFs for the LA Manage Documents journey (5 documents)
+  public static readonly testPdfFileCR1: string = path.resolve(
+    import.meta.dirname,
+    "../assets/CR1_Mockfile.pdf",
+  );
+  public static readonly testPdfFileCR2: string = path.resolve(
+    import.meta.dirname,
+    "../assets/CR2_Mockfile.pdf",
+  );
+  public static readonly testPdfFileExtention: string = path.resolve(
+    import.meta.dirname,
+    "../assets/Extention_Mockfile.pdf",
+  );
+  public static readonly testPdfFileRequest: string = path.resolve(
+    import.meta.dirname,
+    "../assets/Request_Mockfile.pdf",
+  );
+  public static readonly testPdfFileSection7: string = path.resolve(
+    import.meta.dirname,
+    "../assets/Section7_Mockfile.pdf",
+  );
+
   public static getUserCredentials(role: UserRole): UserCredentials {
     return this.userCredentials[role];
   }

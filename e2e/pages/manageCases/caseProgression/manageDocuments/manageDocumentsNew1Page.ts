@@ -170,6 +170,7 @@ export class ManageDocumentsNew1Page {
     documentCategory,
     confidentialDocument,
     restrictDocument,
+    filePath,
   }: {
     page: Page;
     index: number;
@@ -177,6 +178,7 @@ export class ManageDocumentsNew1Page {
     documentCategory: string;
     confidentialDocument: boolean;
     restrictDocument: boolean;
+    filePath?: string;
   }): Promise<void> {
     const idx = index;
     await page.click(`#manageDocuments_${idx}_documentRelatedToCaseCheckbox-RELATED_TO_CASE`);
@@ -184,10 +186,13 @@ export class ManageDocumentsNew1Page {
     await page.selectOption(`#manageDocuments_${idx}_documentCategories`, { label: documentCategory });
 
     const fileInput = page.locator(`#manageDocuments_${idx}_document`);
-    await fileInput.setInputFiles(config.testPdfFile);
-    // wait for upload to complete
+    await fileInput.setInputFiles(filePath ?? config.testPdfFile);
+    // Allow 10 seconds for the upload to register before checking completion.
+    await page.waitForTimeout(10_000);
+    // Wait for upload to complete — scoped to this slot's label sibling so we
+    // don't accidentally match the hidden Uploading... spans from earlier slots.
     await page
-      .locator(Selectors.GovukErrorMessage, { hasText: "Uploading..." })
+      .locator(`label[for="manageDocuments_${idx}_document"] ~ span.error-message`)
       .waitFor({ state: "hidden" });
 
     if (confidentialDocument) {

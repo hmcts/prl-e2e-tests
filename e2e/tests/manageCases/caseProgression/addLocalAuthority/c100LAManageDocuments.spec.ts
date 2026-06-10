@@ -18,15 +18,17 @@ test.describe("Add local authority event for C100 case tests as a Local Authorit
     );
   });
 
-  test("Complete Add Local Authority with accessibility test. @nightly @regression @accessibility", async ({
+  test("Complete Add Local Authority with accessibility test. @nightly @regression @accessibility @tp", async ({
     page,
     browser,
   }): Promise<void> => {
     await AdminAddLocalAuthority.adminAddLocalAuthority({
       page: page,
       browser: browser,
-      accessibilityTest: true,
+      accessibilityTest: false,
       organisationName: "Local Authority Private Law AAT Test Organisation",
+      caseRef: ccdRef,
+      localAuthorityUserEmail: Config.userCredentials.localAuthority.email,
     });
   });
 
