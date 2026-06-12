@@ -11,8 +11,8 @@ export default defineConfig({
   workers: 2,
   snapshotPathTemplate: "e2e/snapshots/{arg}{ext}",
   reporter: process.env.CI 
-    ? [['blob'], ['html', { open: 'never' }]] 
-    : [['html', { open: 'never' }]],
+    ? [['list'], ['blob'], ['html', { open: 'never' }]] 
+    : [['list'], ['html', { open: 'never' }]],
   projects: [
     {
       name: "setup",
