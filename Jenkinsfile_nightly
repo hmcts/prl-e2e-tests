@@ -121,7 +121,7 @@ def secrets = [
   ]
 ]
 
-def yarnBuilder = new uk.gov.hmcts.contino.YarnBuilder(this)
+yarnBuilder = new uk.gov.hmcts.contino.YarnBuilder(this)
 
 // Helper function to generate parallel stages
 def generateParallelShards(String scriptName, String reportPrefix, int totalShards) {
