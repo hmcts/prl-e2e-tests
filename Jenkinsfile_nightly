@@ -121,9 +121,10 @@ def secrets = [
   ]
 ]
 
+// Note: Removed 'def' here to fix the Groovy scoping issue in parallel/helper stages
 yarnBuilder = new uk.gov.hmcts.contino.YarnBuilder(this)
 
-// Helper function to generate parallel stages
+// Helper function to generate parallel shards
 def generateParallelShards(String scriptName, String reportPrefix, int totalShards) {
     def parallelStages = [:]
     for (int i = 1; i <= totalShards; i++) {
@@ -171,6 +172,49 @@ def mergeAndPublishReports(String reportPrefix, int totalShards) {
                 reportDir: "playwright-report",
                 reportFiles: 'index.html',
                 reportName: "${reportPrefix} Test Report"
+            ])
+            sh 'rm -rf all-blob-reports blob-report playwright-report || true'
+        }
+    }
+}
+
+// New Helper function to run cross browser tests sequentially without sharding
+def runCrossBrowser(String firefoxCmd, String webkitCmd, String reportName) {
+    stage(reportName) {
+        try {
+            // Clean previous reports
+            sh 'rm -rf blob-report playwright-report all-blob-reports || true'
+            sh 'mkdir -p all-blob-reports'
+            
+            try {
+                yarnBuilder.yarn(firefoxCmd)
+            } catch (Error) {
+                unstable(message: "${reportName} - Firefox tests unstable: " + Error.toString())
+            } finally {
+                // Stash blobs into directory immediately so the next run doesn't risk overwriting
+                sh 'cp -r blob-report/* all-blob-reports/ || true'
+            }
+            
+            try {
+                yarnBuilder.yarn(webkitCmd)
+            } catch (Error) {
+                unstable(message: "${reportName} - Webkit tests unstable: " + Error.toString())
+            } finally {
+                sh 'cp -r blob-report/* all-blob-reports/ || true'
+            }
+            
+            yarnBuilder.yarn("playwright merge-reports --reporter html ./all-blob-reports")
+            
+        } catch (Error) {
+             unstable(message: "Failed to merge reports for ${reportName}: " + Error.toString())
+        } finally {
+             publishHTML([
+                allowMissing: true,
+                alwaysLinkToLastBuild: true,
+                keepAll: true,
+                reportDir: "playwright-report",
+                reportFiles: 'index.html',
+                reportName: "${reportName} Test Report"
             ])
             sh 'rm -rf all-blob-reports blob-report playwright-report || true'
         }
@@ -235,11 +279,7 @@ withNightlyPipeline(type, product, component, 600) {
         parallel generateParallelShards('test:citizenFrontendChrome', 'Citizen Chrome', totalShards)
         mergeAndPublishReports('Citizen Chrome', totalShards)
 
-        parallel generateParallelShards('test:citizenFrontendFirefox', 'Citizen Firefox', totalShards)
-        mergeAndPublishReports('Citizen Firefox', totalShards)
-
-        parallel generateParallelShards('test:citizenFrontendSafari', 'Citizen Webkit', totalShards)
-        mergeAndPublishReports('Citizen Webkit', totalShards)
+        runCrossBrowser('test:citizenFrontendFirefox', 'test:citizenFrontendSafari', 'Citizen cross browser')
         
         steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/CitizenFunctional/*'
       }
@@ -247,11 +287,7 @@ withNightlyPipeline(type, product, component, 600) {
         parallel generateParallelShards('test:manageCasesChrome', 'Manage Cases Chrome', totalShards)
         mergeAndPublishReports('Manage Cases Chrome', totalShards)
 
-        parallel generateParallelShards('test:manageCasesFirefox', 'Manage Cases Firefox', totalShards)
-        mergeAndPublishReports('Manage Cases Firefox', totalShards)
-
-        parallel generateParallelShards('test:manageCasesSafari', 'Manage Cases Webkit', totalShards)
-        mergeAndPublishReports('Manage Cases Webkit', totalShards)
+        runCrossBrowser('test:manageCasesFirefox', 'test:manageCasesSafari', 'Manage Cases cross browser')
         
         steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/ManageCasesFunctional/*'
       }
