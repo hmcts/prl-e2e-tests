@@ -8,7 +8,7 @@ export default defineConfig({
   expect: {
     timeout: 20000,
   },
-  workers: 3,
+  workers: 2,
   snapshotPathTemplate: "e2e/snapshots/{arg}{ext}",
   reporter: process.env.CI 
     ? [['blob'], ['html', { open: 'never' }]] 
