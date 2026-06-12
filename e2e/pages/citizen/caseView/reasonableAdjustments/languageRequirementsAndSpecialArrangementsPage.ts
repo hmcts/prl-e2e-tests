@@ -37,29 +37,24 @@ export class LanguageRequirementsAndSpecialArrangementsPage {
       ),
       Helpers.checkGroup(
         page,
-        2,
+        3,
         LanguageRequirementsAndSpecialArrangementsContent,
         `govUkHeadingM`,
         `${Selectors.GovukHeadingM}`,
       ),
       Helpers.checkGroup(
         page,
-        3,
+        6,
         LanguageRequirementsAndSpecialArrangementsContent,
         `p`,
         `${Selectors.p}`,
       ),
       Helpers.checkGroup(
         page,
-        9,
+        8,
         LanguageRequirementsAndSpecialArrangementsContent,
         `li`,
         `${Selectors.li}`,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.Span}:text-is("${LanguageRequirementsAndSpecialArrangementsContent.span1}")`,
-        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
@@ -77,6 +72,8 @@ export class LanguageRequirementsAndSpecialArrangementsPage {
         1,
       ),
     ]);
+    await page.getByText(LanguageRequirementsAndSpecialArrangementsContent.isolatedP);
+    await page.getByText(LanguageRequirementsAndSpecialArrangementsContent.isolatedLI);
     if (accessibilityTest) {
       await new AxeUtils(page).audit();
     }

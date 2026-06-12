@@ -1,9 +1,9 @@
-//NEEDS UPDATING, dummy content below
-
 export enum ReasonableAdjustmentsIntermediaryContent {
-    pageTitle = "I need help communicating and understanding",
+    pageTitle = "Are you aware of whether an intermediary will be required?",
     GovukCaptionXL = "Reasonable adjustments",
-    govukInsetText = "Think about all communications with the court, as well as what you might need at a hearing. Consider in-person, phone or video, in case your preferred hearing type is not possible",
-    govukHint1 = "Select all that apply to you",
-    govukHint2 = "hearing person who has been trained to be easily lip read",
+    govUkLabel1 = "Yes",
+    govUkLabel2 = "No",
+    textHintAfterYesSelected = "Give details in the box below.",
+    errorMessage = "Provide details for 'Are you aware of whether an intermediary will be required?'",
+    intermediaryDetails = "Intermediary Details Here Test"
 }

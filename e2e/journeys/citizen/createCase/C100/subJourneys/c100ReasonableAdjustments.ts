@@ -8,6 +8,8 @@ import { ReasonableAdjustmentsNeedsInCourtPage } from "../../../../../pages/citi
 import { ReasonableAdjustmentsCommunicationHelpPage } from "../../../../../pages/citizen/createCase/C100/reasonableAdjustments/reasonableAdjustmentsCommunicationHelpPage.ts";
 import { ReasonableAdjustmentsSupportForCourtHearingPage } from "../../../../../pages/citizen/createCase/C100/reasonableAdjustments/ReasonableAdjustmentsSupportForCourtHearingPage.ts";
 import { ReasonableAdjustmentsNeedsDuringCourtHearingPage } from "../../../../../pages/citizen/createCase/C100/reasonableAdjustments/ReasonableAdjustmentsNeedsDuringCourtHearingPage.ts";
+import { ReasonableAjustmentsIntermediaryPage } from "../../../../../pages/citizen/createCase/C100/reasonableAdjustments/reasonableAdjustmentsIntermediaryPage.ts";
+import { ReasonableAjustmentsDisabilityPage } from "../../../../../pages/citizen/createCase/C100/reasonableAdjustments/reasonableAdjustmentsDisabilityPage.ts";
 
 interface C100ReasonableAdjustmentsOptions {
   page: Page;
@@ -48,11 +50,20 @@ export class C100ReasonableAdjustments {
           yesNoReasonableAdjustments: yesNoReasonableAdjustments,
         },
       );
-
-
-      // ADD intermediary screen
-      // ADD if attending the court.... screen
-      //
+      await ReasonableAjustmentsIntermediaryPage.reasonableAjustmentsIntermediaryPage({
+        page: page,
+        accessibilityTest: accessibilityTest,
+        errorMessaging: errorMessaging,
+        yesNoReasonableAdjustments: yesNoReasonableAdjustments,
+      },
+      );
+      await ReasonableAjustmentsDisabilityPage.reasonableAjustmentsDisabilityPage({
+        page: page,
+        accessibilityTest: accessibilityTest,
+        errorMessaging: errorMessaging,
+        yesNoReasonableAdjustments: yesNoReasonableAdjustments,
+      },
+      );
     }
   }
 }

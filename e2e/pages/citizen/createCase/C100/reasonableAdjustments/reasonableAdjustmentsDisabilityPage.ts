@@ -3,9 +3,9 @@ import { AxeUtils } from "@hmcts/playwright-common";
 import { CommonStaticText } from "../../../../../common/commonStaticText.ts";
 import { Helpers } from "../../../../../common/helpers.ts";
 import { Selectors } from "../../../../../common/selectors.ts";
-import { ReasonableAdjustmentsIntermediaryContent } from "../../../../../fixtures/citizen/createCase/C100/reasonableAdjustments/reasonableAdjustmentsIntermediaryContent.ts";
+import { ReasonableAdjustmentsDisabilityContent } from "../../../../../fixtures/citizen/createCase/C100/reasonableAdjustments/reasonableAdjustmentsDisabilityContent.ts";
 
-interface ReasonableAjustmentsIntermediaryPageOptions {
+interface ReasonableAjustmentsDisabilityPageOptions {
   page: Page;
   accessibilityTest: boolean;
   errorMessaging: boolean;
@@ -13,18 +13,18 @@ interface ReasonableAjustmentsIntermediaryPageOptions {
 }
 
 enum UniqueSelectors {
-    yesOption = "#ra_intermediaryRequirements",
-    intermediaryYesSubfieldText = "#ra_intermediaryRequired_subfield",
-    noOption = "#ra_intermediaryRequirements-2",
+    yesOption = "#ra_assistanceRequirements",
+    intermediaryYesSubfieldText = "#ra_assistanceRequirements_subfield",
+    noOption = "#ra_assistanceRequirements-2",
 }
 
-export class ReasonableAjustmentsIntermediaryPage {
-    public static async reasonableAjustmentsIntermediaryPage({
+export class ReasonableAjustmentsDisabilityPage {
+    public static async reasonableAjustmentsDisabilityPage({
     page: page,
     accessibilityTest: accessibilityTest,
     errorMessaging: errorMessaging,
     yesNoReasonableAdjustments: yesNoReasonableAdjustments,
-  }: ReasonableAjustmentsIntermediaryPageOptions): Promise<void> {
+    }: ReasonableAjustmentsDisabilityPageOptions): Promise<void> {
     await this.checkPageLoads({
       page: page,
       accessibilityTest: accessibilityTest,
@@ -41,27 +41,27 @@ export class ReasonableAjustmentsIntermediaryPage {
   private static async checkPageLoads({
     page: page,
     accessibilityTest: accessibilityTest,
-  }: Partial<ReasonableAjustmentsIntermediaryPageOptions>): Promise<void> {
+  }: Partial<ReasonableAjustmentsDisabilityPageOptions>): Promise<void> {
     if (!page) {
       throw new Error();
     }
     await page.waitForSelector(
-      `${Selectors.GovukHeadingXL}:text-is("${ReasonableAdjustmentsIntermediaryContent.pageTitle}")`,
+      `${Selectors.GovukHeadingXL}:text-is("${ReasonableAdjustmentsDisabilityContent.pageTitle}")`,
     );
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukCaptionXL}:text-is("${ReasonableAdjustmentsIntermediaryContent.GovukCaptionXL}")`,
+        `${Selectors.GovukCaptionXL}:text-is("${ReasonableAdjustmentsDisabilityContent.GovukCaptionXL}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukInsetText}:text-is("${ReasonableAdjustmentsIntermediaryContent.govUkLabel1}")`,
+        `${Selectors.GovukInsetText}:text-is("${ReasonableAdjustmentsDisabilityContent.govUkLabel1}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukHint}:text-is("${ReasonableAdjustmentsIntermediaryContent.govUkLabel2}")`,
+        `${Selectors.GovukHint}:text-is("${ReasonableAdjustmentsDisabilityContent.govUkLabel2}")`,
         1,
       ),
     ]);
@@ -72,7 +72,7 @@ export class ReasonableAjustmentsIntermediaryPage {
 
   private static async triggerErrorMessages({
     page: page,
-  }: Partial<ReasonableAjustmentsIntermediaryPageOptions>): Promise<void> {
+  }: Partial<ReasonableAjustmentsDisabilityPageOptions>): Promise<void> {
     if (!page) {
       throw new Error();
     }
@@ -90,7 +90,7 @@ export class ReasonableAjustmentsIntermediaryPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukErrorMessageCitizen}:text-is("${ReasonableAdjustmentsIntermediaryContent.errorMessage}")`,
+        `${Selectors.GovukErrorMessageCitizen}:text-is("${ReasonableAdjustmentsDisabilityContent.errorMessage}")`,
         1,
       ),
     ]);
@@ -99,7 +99,7 @@ export class ReasonableAjustmentsIntermediaryPage {
   private static async fillInFields({
     page: page,
     yesNoReasonableAdjustments: yesNoReasonableAdjustments,
-  }: Partial<ReasonableAjustmentsIntermediaryPageOptions>): Promise<void> {
+  }: Partial<ReasonableAjustmentsDisabilityPageOptions>): Promise<void> {
     if (!page) {
       throw new Error();
     }
@@ -113,11 +113,11 @@ export class ReasonableAjustmentsIntermediaryPage {
       }
       await page.fill(
         UniqueSelectors.intermediaryYesSubfieldText,
-        ReasonableAdjustmentsIntermediaryContent.intermediaryDetails,
+        ReasonableAdjustmentsDisabilityContent.intermediaryDetails,
       );
       await Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukLabel}:text-is("${ReasonableAdjustmentsIntermediaryContent.textHintAfterYesSelected}")`,
+        `${Selectors.GovukLabel}:text-is("${ReasonableAdjustmentsDisabilityContent.textHintAfterYesSelected}")`,
         1,
       );
     } else {
