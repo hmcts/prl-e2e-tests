@@ -5461,16 +5461,6 @@
       "solicitorName": "AAT Solicitor",
       "payAgreeStatement": ["agree"],
       "feeAmount": "£263.00",
-      "submitAndPayDownloadApplicationLink": {
-        "document_url": "http://dm-store-aat.service.core-compute-aat.internal/documents/7795b5fa-abd1-471f-ac20-fd1fca729a1f",
-        "document_binary_url": "http://dm-store-aat.service.core-compute-aat.internal/documents/7795b5fa-abd1-471f-ac20-fd1fca729a1f/binary",
-        "document_filename": "Draft_C100_application.pdf"
-      },
-      "submitAndPayDownloadApplicationWelshLink": {
-        "document_url": "http://dm-store-aat.service.core-compute-aat.internal/documents/1b778df8-14b0-4617-8267-1ec1553c5991",
-        "document_binary_url": "http://dm-store-aat.service.core-compute-aat.internal/documents/1b778df8-14b0-4617-8267-1ec1553c5991/binary",
-        "document_filename": "Draft_C100_application_welsh.pdf"
-      },
       "helpWithFees": "No"
     }
   },

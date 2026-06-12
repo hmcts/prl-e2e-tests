@@ -8,6 +8,7 @@ export default defineConfig({
   expect: {
     timeout: 20000,
   },
+  workers: 3,
   snapshotPathTemplate: "e2e/snapshots/{arg}{ext}",
 
   projects: [

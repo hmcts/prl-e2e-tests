@@ -84,7 +84,7 @@ export class SendAndReplyToMessages5Page extends EventPage {
     Selectors.GovukFormLabel,
     {
       hasText:
-        "Applications -> Applicant documents -> Applicant application -> Draft_C100_application.pdf",
+        "Applications -> Applicant documents -> Applicant application -> C100FinalDocumentWelsh.pdf",
     },
   );
   readonly fl401FormLabel: Locator = this.page.locator(
