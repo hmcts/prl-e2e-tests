@@ -11,10 +11,7 @@ export class FL401ConfidentialDetailsTabPage {
     accessibilityTest: boolean,
   ): Promise<void> {
     await this.clickTab(page);
-    await this.checkPageLoadsC8Refuge(
-      page,
-      accessibilityTest,
-    );
+    await this.checkPageLoadsC8Refuge(page, accessibilityTest);
   }
 
   private static async checkPageLoadsC8Refuge(

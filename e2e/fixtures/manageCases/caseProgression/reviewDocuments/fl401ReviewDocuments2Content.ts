@@ -2,7 +2,7 @@ export enum Fl401ReviewDocuments2Content {
   pageTitle = "Review documents",
   h3_1 = "Review documents for sensitive or confidential information",
   h3_2 = "Submitted by",
-  documentCategoryLabel = "Document Category",  // I think this should be a h3 as it used to be
+  documentCategoryLabel = "Document Category", // I think this should be a h3 as it used to be
   h3_3 = "Confidential information included",
   h3_4 = "Document",
   submittedByCourtNav = "CourtNav",
