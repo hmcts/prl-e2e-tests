@@ -180,26 +180,25 @@ export class ManageDocumentsNewSubmitPage {
           }),
         )
         .toBeVisible(),
+      ...(document.restrictDocument
+        ? [
+            expect
+              .soft(
+                panel.locator(
+                  `${Selectors.GovukText16}:text-is("${ManageDocumentsNewSubmitContent.text16_a}")`,
+                ),
+              )
+              .toHaveCount(1),
+            expect
+              .soft(
+                panel.locator(
+                  `${Selectors.Span}:text-is("${ManageDocumentsNew1Content.inputText}")`,
+                ),
+              )
+              .toBeVisible(),
+          ]
+        : []),
     ];
-
-    if (document.restrictDocument) {
-      assertions.push(
-        expect
-          .soft(
-            panel.locator(
-              `${Selectors.GovukText16}:text-is("${ManageDocumentsNewSubmitContent.text16_a}")`,
-            ),
-          )
-          .toHaveCount(1),
-        expect
-          .soft(
-            panel.locator(
-              `${Selectors.Span}:text-is("${ManageDocumentsNew1Content.inputText}")`,
-            ),
-          )
-          .toBeVisible(),
-      );
-    }
 
     await Promise.all(assertions);
   }

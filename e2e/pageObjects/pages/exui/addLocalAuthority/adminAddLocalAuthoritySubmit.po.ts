@@ -21,7 +21,6 @@ export class AdminAddLocalAuthoritySubmitPage extends CheckYourAnswersPage {
     orgName: string,
     address: string,
   ): Promise<void> {
-    // CYA table uses a standard <table>; Name and Address are separate <td> cells
     await expect(
       this.page.locator("td, dd").filter({ hasText: orgName }).first(),
     ).toBeVisible();

@@ -129,13 +129,17 @@ export class SummaryPage extends CaseAccessViewPage {
       this.page.getByRole("heading", { name: "Local Authority", exact: true }),
     ).toBeVisible();
     await expect(
-      localAuthorityPanel.getByText("Local Authority involvement", { exact: true }),
+      localAuthorityPanel.getByText("Local Authority involvement", {
+        exact: true,
+      }),
     ).toBeVisible();
     await expect(
       localAuthorityPanel.getByText("Yes", { exact: true }),
     ).toBeVisible();
     await expect(
-      localAuthorityPanel.getByText("Local Authority Organisation Name", { exact: true }),
+      localAuthorityPanel.getByText("Local Authority Organisation Name", {
+        exact: true,
+      }),
     ).toBeVisible();
     await expect(
       localAuthorityPanel.getByText(organisationName, { exact: true }),

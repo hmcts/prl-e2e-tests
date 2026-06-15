@@ -3,9 +3,8 @@ import { EventPage } from "../eventPage.po.js";
 import { Selectors } from "../../../../common/selectors.js";
 
 export class AdminAddLocalAuthority1Page extends EventPage {
-  private readonly searchOrgInput: Locator = this.page.locator(
-    "#search-org-text",
-  );
+  private readonly searchOrgInput: Locator =
+    this.page.locator("#search-org-text");
 
   private readonly searchOrgHeading: Locator = this.page.locator(
     Selectors.headingH2,
@@ -51,9 +50,7 @@ export class AdminAddLocalAuthority1Page extends EventPage {
     await this.page
       .locator("#organisation-table")
       .waitFor({ state: "visible" });
-    await this.page
-      .getByTitle(`Select the organisation ${orgName}`)
-      .click();
+    await this.page.getByTitle(`Select the organisation ${orgName}`).click();
   }
 
   async searchSelectAndContinue(orgName: string): Promise<void> {

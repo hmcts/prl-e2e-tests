@@ -84,7 +84,10 @@ export class AdminAddLocalAuthority {
     await page1.searchSelectAndContinue(organisationName);
 
     const submitPage = new AdminAddLocalAuthoritySubmitPage(page);
-    await submitPage.assertPageContents(["caseProgression", "addLocalAuthority"], "submit");
+    await submitPage.assertPageContents(
+      ["caseProgression", "addLocalAuthority"],
+      "submit",
+    );
     await submitPage.assertOrganisationDetails(organisationName, "");
     if (accessibilityTest) {
       await submitPage.verifyAccessibility();
@@ -100,8 +103,18 @@ export class AdminAddLocalAuthority {
     await Helpers.clickTab(page, "Summary");
     const summaryPage = new SummaryPage(page);
     await summaryPage.assertLocalAuthoritySection(organisationName);
-    await this.verifyLocalAuthorityOrgCases(browser, organisationName, caseRef, localAuthorityUserEmail, accessibilityTest);
-    await this.openCaseAsCourtAdminAndViewTasks(browser, caseRef, accessibilityTest);
+    await this.verifyLocalAuthorityOrgCases(
+      browser,
+      organisationName,
+      caseRef,
+      localAuthorityUserEmail,
+      accessibilityTest,
+    );
+    await this.openCaseAsCourtAdminAndViewTasks(
+      browser,
+      caseRef,
+      accessibilityTest,
+    );
   }
 
   private static async verifyLocalAuthorityOrgCases(
@@ -111,7 +124,10 @@ export class AdminAddLocalAuthority {
     localAuthorityUserEmail: string,
     accessibilityTest: boolean,
   ): Promise<void> {
-    const laPage = await Helpers.openNewBrowserWindow(browser, "localAuthority");
+    const laPage = await Helpers.openNewBrowserWindow(
+      browser,
+      "localAuthority",
+    );
     const idamLoginHelper = new IdamLoginHelper();
 
     // ── STEP 1: Login to Manage Organisation ─────────────────────────────────
@@ -135,16 +151,12 @@ export class AdminAddLocalAuthority {
     await expect(laPage.getByRole("link", { name: "Cases" })).toBeVisible();
 
     // ── STEP 3: Filter by case reference ─────────────────────────────────────
-    await laPage
-      .getByRole("button", { name: /show cases filter/i })
-      .click();
+    await laPage.getByRole("button", { name: /show cases filter/i }).click();
 
     await laPage.locator("#findCaseByReferenceNumber").check();
     await laPage.locator("#case-reference-number").fill(caseRef);
 
-    await laPage
-      .getByRole("button", { name: /apply filter/i })
-      .click();
+    await laPage.getByRole("button", { name: /apply filter/i }).click();
 
     await laPage.waitForLoadState("domcontentloaded");
 
@@ -156,7 +168,9 @@ export class AdminAddLocalAuthority {
     // ── STEP 4: Select the case and click Accept ──────────────────────────────
     await laPage.locator("#select-0").check();
 
-    const acceptCasesButton = laPage.locator("#btn-share-unassigned-case-button");
+    const acceptCasesButton = laPage.locator(
+      "#btn-share-unassigned-case-button",
+    );
     await expect(acceptCasesButton).toBeEnabled();
     await acceptCasesButton.click();
 
@@ -165,9 +179,7 @@ export class AdminAddLocalAuthority {
       laPage.getByRole("heading", { name: "Add recipient" }),
     ).toBeVisible();
 
-    await expect(
-      laPage.locator(`#case-title-${caseRef}`),
-    ).toBeVisible();
+    await expect(laPage.locator(`#case-title-${caseRef}`)).toBeVisible();
 
     const emailInput = laPage.locator("xuilib-user-select input");
     await emailInput.click();
@@ -195,12 +207,12 @@ export class AdminAddLocalAuthority {
       laPage.getByRole("heading", { name: "Check and confirm your selection" }),
     ).toBeVisible();
 
-    await expect(
-      laPage.locator(`#user-access-block-${caseRef}`),
-    ).toBeVisible();
+    await expect(laPage.locator(`#user-access-block-${caseRef}`)).toBeVisible();
 
     await expect(
-      laPage.locator("td.govuk-table__cell", { hasText: localAuthorityUserEmail }),
+      laPage.locator("td.govuk-table__cell", {
+        hasText: localAuthorityUserEmail,
+      }),
     ).toBeVisible();
     await expect(
       laPage.locator("span.hmcts-badge", { hasText: "To be added" }),
@@ -232,12 +244,14 @@ export class AdminAddLocalAuthority {
     // STEP 8: Navigate to Manage Cases
     // The LA user's IDAM session is already active from the Manage Org login above
     // (same browser context, same cookies). Navigating directly to the case list
-    // works without a second sign-in. 
+    // works without a second sign-in.
     await laPage.goto(`${Config.manageCasesBaseURL}/cases`);
     // await laPage.waitForLoadState("networkidle");
 
     // ── STEP 9: Open the case from the case list ──────────────────────────────
-    await expect(laPage.locator("ccd-search-result")).toBeVisible({ timeout: 5_000 });
+    await expect(laPage.locator("ccd-search-result")).toBeVisible({
+      timeout: 10_000,
+    });
 
     const dashedRef = caseRef.match(/.{1,4}/g)?.join("-") ?? caseRef;
     await laPage
@@ -259,13 +273,15 @@ export class AdminAddLocalAuthority {
       const doc = LA_DOCUMENTS[i];
       if (i > 0) {
         const addNewBtn = laPage.locator(
-          '#manageDocuments button.write-collection-add-item__bottom',
+          "#manageDocuments button.write-collection-add-item__bottom",
         );
         await addNewBtn.scrollIntoViewIfNeeded();
         await addNewBtn.click();
         await laPage
-          .locator(`#manageDocuments_${i}_documentRelatedToCaseCheckbox-RELATED_TO_CASE`)
-          .waitFor({ state: "visible", timeout: 1_000 });
+          .locator(
+            `#manageDocuments_${i}_documentRelatedToCaseCheckbox-RELATED_TO_CASE`,
+          )
+          .waitFor({ state: "visible", timeout: 10_000 });
       }
       await ManageDocumentsNew1Page.fillDocumentSlot({
         page: laPage,

@@ -28,7 +28,7 @@ const UserRoles = {
   caseManager: "caseManager",
   nocSolicitor: "nocSolicitor",
   legalAdvisor: "legalAdvisor",
-  localAuthority: "localAuthority",  // Added local authority user role
+  localAuthority: "localAuthority", // Added local authority user role
 } as const;
 
 export type UserRole = (typeof UserRoles)[keyof typeof UserRoles];
@@ -285,6 +285,8 @@ export type amendEvents =
   | "Amend court details"
   | "Amend Other proceedings"
   | "Amend Type of application";
+
+export type addLocalAuthorityEvents = "Add local authority";
 
 export type documentCategory = "Applicant's statements" | "Position statements";
 

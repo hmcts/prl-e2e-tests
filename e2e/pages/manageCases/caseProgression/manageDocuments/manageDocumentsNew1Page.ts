@@ -174,17 +174,27 @@ export class ManageDocumentsNew1Page {
     filePath?: string;
   }): Promise<void> {
     const idx = index;
-    await page.click(`#manageDocuments_${idx}_documentRelatedToCaseCheckbox-RELATED_TO_CASE`);
-    await page.selectOption(`#manageDocuments_${idx}_documentParty`, { label: documentParty });
-    await page.selectOption(`#manageDocuments_${idx}_documentCategories`, { label: documentCategory });
+    await page.click(
+      `#manageDocuments_${idx}_documentRelatedToCaseCheckbox-RELATED_TO_CASE`,
+    );
+    await page.selectOption(`#manageDocuments_${idx}_documentParty`, {
+      label: documentParty,
+    });
+    await page.selectOption(`#manageDocuments_${idx}_documentCategories`, {
+      label: documentCategory,
+    });
 
     const fileInput = page.locator(`#manageDocuments_${idx}_document`);
     await fileInput.setInputFiles(filePath ?? config.testPdfFile);
-    // Allow 3 seconds for the upload to register before checking completion.
-    await page.waitForTimeout(3_000);
+    // Allow 10 seconds for the upload to register before checking completion.
+    // NOTE: this spacing also keeps document uploads under the doc-store rate
+    // limit — cutting it shorter causes "Your request was rate limited" errors.
+    await page.waitForTimeout(10_000);
     await page
-      .locator(`label[for="manageDocuments_${idx}_document"] ~ span.error-message`)
-      .waitFor({ state: "hidden" });
+      .locator(
+        `label[for="manageDocuments_${idx}_document"] ~ span.error-message`,
+      )
+      .waitFor({ state: "hidden", timeout: 60_000 });
 
     if (confidentialDocument) {
       await page.click(`#manageDocuments_${idx}_isConfidential_Yes`);

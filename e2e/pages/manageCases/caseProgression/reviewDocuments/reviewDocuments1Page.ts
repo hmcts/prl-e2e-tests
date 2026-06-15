@@ -90,15 +90,15 @@ export class ReviewDocuments1Page {
       .getByLabel(ReviewDocuments1Content.selectLabel)
       .locator("option");
 
-    const assertions: Promise<void>[] = expectedDocuments.map((fileName) =>
-      expect
-        .soft(
-          options.filter({ hasText: fileName }),
-          `Dynamic list should contain "${fileName}" once`,
-        )
-        .toHaveCount(1),
-    );
-    assertions.push(
+    const assertions: Promise<void>[] = [
+      ...expectedDocuments.map((fileName) =>
+        expect
+          .soft(
+            options.filter({ hasText: fileName }),
+            `Dynamic list should contain "${fileName}" once`,
+          )
+          .toHaveCount(1),
+      ),
       ...absentDocuments.map((fileName) =>
         expect
           .soft(
@@ -107,15 +107,18 @@ export class ReviewDocuments1Page {
           )
           .toHaveCount(0),
       ),
-    );
-    if (expectedDocuments.length > 0) {
       // placeholder + one option per reviewable document
-      assertions.push(
-        expect
-          .soft(options, `Dynamic list should have exactly the expected options`)
-          .toHaveCount(expectedDocuments.length + 1),
-      );
-    }
+      ...(expectedDocuments.length > 0
+        ? [
+            expect
+              .soft(
+                options,
+                `Dynamic list should have exactly the expected options`,
+              )
+              .toHaveCount(expectedDocuments.length + 1),
+          ]
+        : []),
+    ];
     await Promise.all(assertions);
   }
 
