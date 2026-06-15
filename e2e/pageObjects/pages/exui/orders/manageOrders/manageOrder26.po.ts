@@ -190,7 +190,8 @@ export class ManageOrder26Page extends EventPage {
         await this.year.fill("2026");
       }
     }
-      // Local Authority section
+
+    // Local Authority section
     await this.page
       .getByRole("group", {
         name: "Does local authority need to provide a report?",
@@ -215,8 +216,9 @@ export class ManageOrder26Page extends EventPage {
       await this.laDay.fill("12");
       await this.laMonth.fill("12");
       await this.laYear.fill("2026");
-      
+    }
 
+    if (caseType === "C100") {
       // Set cafcass involvement last — selecting LA Yes above can trigger
       // an Angular re-render that resets this radio, so it must be set after
       // all other interactions are complete
