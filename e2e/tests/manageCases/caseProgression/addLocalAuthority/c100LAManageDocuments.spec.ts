@@ -6,6 +6,10 @@ import Config from "../../../../utils/config.utils.ts";
 test.use({ storageState: Config.sessionStoragePath + "caseWorker.json" });
 
 test.describe("Add local authority event for C100 case tests as a Local Authority User.", () => {
+  // The full journey (LA doc uploads + court admin task review) exceeds the
+  // default 6-minute timeout, so allow 12 minutes for this spec.
+  test.setTimeout(12 * 60 * 1000);
+
   let ccdRef: string = "";
 
   test.beforeEach(async ({ page, browser, caseEventUtils }) => {

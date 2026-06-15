@@ -68,11 +68,6 @@ export class ManageDocumentsNew1Page {
         `${Selectors.headingH3}:text-is("${ManageDocumentsNew1Content.headingH3}")`,
         1,
       ),
-      // Helpers.checkVisibleAndPresent(
-      //   page,
-      //   `${Selectors.button}:text-is("${ManageDocumentsNew1Content.buttonText}")`,
-      //   2,
-      // ), //exui ticket raised to resolve issue with hidden add new button
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.button}:text-is("${ManageDocumentsNew1Content.buttonText2}")`,
@@ -110,7 +105,6 @@ export class ManageDocumentsNew1Page {
       ),
     ]);
     if (accessibilityTest) {
-      // await new AxeUtils(page).audit();
     }
   }
   private static async fillInFields({
@@ -132,7 +126,6 @@ export class ManageDocumentsNew1Page {
     });
     const fileInput = page.locator(UniqueSelectors.uploadDocument);
     await fileInput.setInputFiles(config.testPdfFile);
-    // wait for upload of document to be complete before continuing
     await page
       .locator(Selectors.GovukErrorMessage, { hasText: "Uploading..." })
       .waitFor({ state: "hidden" });
@@ -187,10 +180,8 @@ export class ManageDocumentsNew1Page {
 
     const fileInput = page.locator(`#manageDocuments_${idx}_document`);
     await fileInput.setInputFiles(filePath ?? config.testPdfFile);
-    // Allow 10 seconds for the upload to register before checking completion.
-    await page.waitForTimeout(10_000);
-    // Wait for upload to complete — scoped to this slot's label sibling so we
-    // don't accidentally match the hidden Uploading... spans from earlier slots.
+    // Allow 3 seconds for the upload to register before checking completion.
+    await page.waitForTimeout(3_000);
     await page
       .locator(`label[for="manageDocuments_${idx}_document"] ~ span.error-message`)
       .waitFor({ state: "hidden" });
@@ -212,7 +203,6 @@ export class ManageDocumentsNew1Page {
     }
   }
 
-  /** Public wrapper so external callers (e.g. LA journey) can submit the form. */
   public static async clickContinue(page: Page): Promise<void> {
     await this.continue(page);
   }
