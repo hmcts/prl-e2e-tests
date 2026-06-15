@@ -13,13 +13,13 @@ interface ReasonableAjustmentsIntermediaryPageOptions {
 }
 
 enum UniqueSelectors {
-    yesOption = "#ra_intermediaryRequirements",
-    intermediaryYesSubfieldText = "#ra_intermediaryRequired_subfield",
-    noOption = "#ra_intermediaryRequirements-2",
+  yesOption = "#ra_intermediaryRequirements",
+  intermediaryYesSubfieldText = "#ra_intermediaryRequired_subfield",
+  noOption = "#ra_intermediaryRequirements-2",
 }
 
 export class ReasonableAjustmentsIntermediaryPage {
-    public static async reasonableAjustmentsIntermediaryPage({
+  public static async reasonableAjustmentsIntermediaryPage({
     page: page,
     accessibilityTest: accessibilityTest,
     errorMessaging: errorMessaging,
@@ -77,7 +77,7 @@ export class ReasonableAjustmentsIntermediaryPage {
       throw new Error();
     }
     await page.click(
-        `${Selectors.GovukRadios}:text-is("${CommonStaticText.yes}")`,
+      `${Selectors.GovukRadios}:text-is("${CommonStaticText.yes}")`,
     );
     await page.click(
       `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,

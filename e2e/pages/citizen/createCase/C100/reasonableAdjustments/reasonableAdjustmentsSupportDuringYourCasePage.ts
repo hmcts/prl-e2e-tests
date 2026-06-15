@@ -5,19 +5,6 @@ import { Helpers } from "../../../../../common/helpers.ts";
 import { Selectors } from "../../../../../common/selectors.ts";
 import { ReasonableAdjustmentsSupportDuringYourCaseContent } from "../../../../../fixtures/citizen/createCase/C100/reasonableAdjustments/reasonableAdjustmentsSupportDuringYourCaseContent.ts";
 
-
-
-
-
-
-// REWORK NEEDED
-
-
-
-
-
-
-
 interface ReasonableAdjustmentsSupportDuringYourCasePageOptions {
   page: Page;
   accessibilityTest: boolean;

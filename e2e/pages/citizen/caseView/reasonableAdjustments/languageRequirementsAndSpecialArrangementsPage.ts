@@ -29,6 +29,18 @@ export class LanguageRequirementsAndSpecialArrangementsPage {
           LanguageRequirementsAndSpecialArrangementsContent.govUkHeadingXl,
       })
       .waitFor();
+    await page
+      .locator(Selectors.p, {
+        hasText:
+          LanguageRequirementsAndSpecialArrangementsContent.isolatedP,
+      })
+      .waitFor();
+    await page
+      .locator(Selectors.li, {
+        hasText:
+          LanguageRequirementsAndSpecialArrangementsContent.isolatedLI,
+      })
+      .waitFor();
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
@@ -72,8 +84,6 @@ export class LanguageRequirementsAndSpecialArrangementsPage {
         1,
       ),
     ]);
-    await page.getByText(LanguageRequirementsAndSpecialArrangementsContent.isolatedP);
-    await page.getByText(LanguageRequirementsAndSpecialArrangementsContent.isolatedLI);
     if (accessibilityTest) {
       await new AxeUtils(page).audit();
     }

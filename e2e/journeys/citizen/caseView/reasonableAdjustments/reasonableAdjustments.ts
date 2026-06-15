@@ -1,11 +1,9 @@
-import { expect, Page } from "@playwright/test";
+import { Page } from "@playwright/test";
 import { IntroPage } from "../../../../pages/citizen/caseView/reasonableAdjustments/introPage.ts";
 import { LanguageRequirementsAndSpecialArrangementsPage } from "../../../../pages/citizen/caseView/reasonableAdjustments/languageRequirementsAndSpecialArrangementsPage.ts";
 import { LanguageRequirementsAndSpecialArrangementsReviewPage } from "../../../../pages/citizen/caseView/reasonableAdjustments/languageRequirementsAndSpecialArrangementsReviewPage.ts";
 import { ConfirmationPage } from "../../../../pages/citizen/caseView/reasonableAdjustments/confirmationPage.ts";
-import {
-  CitizenC100CaseUtils,
-} from "../../../../utils/citizenC100CaseUtils.js";
+import { CitizenC100CaseUtils } from "../../../../utils/citizenC100CaseUtils.js";
 
 interface reasonableAdjustmentsParams {
   page: Page;
@@ -38,7 +36,7 @@ export class ReasonableAdjustments {
       accessibilityTest,
     );
     await ConfirmationPage.confirmationPage(page, accessibilityTest);
-    // There won't be a 'Requested' status flag anymore after the confirmation screen. 
+    // There won't be a 'Requested' status flag anymore after the confirmation screen.
     // Now it will raise a WA task in EXUI called 'Review support request' where the caseworker can create a case flag from it.
   }
 }

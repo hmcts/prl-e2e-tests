@@ -13,18 +13,18 @@ interface ReasonableAjustmentsDisabilityPageOptions {
 }
 
 enum UniqueSelectors {
-    yesOption = "#ra_assistanceRequirements",
-    intermediaryYesSubfieldText = "#ra_assistanceRequirements_subfield",
-    noOption = "#ra_assistanceRequirements-2",
+  yesOption = "#ra_assistanceRequirements",
+  intermediaryYesSubfieldText = "#ra_assistanceRequirements_subfield",
+  noOption = "#ra_assistanceRequirements-2",
 }
 
 export class ReasonableAjustmentsDisabilityPage {
-    public static async reasonableAjustmentsDisabilityPage({
+  public static async reasonableAjustmentsDisabilityPage({
     page: page,
     accessibilityTest: accessibilityTest,
     errorMessaging: errorMessaging,
     yesNoReasonableAdjustments: yesNoReasonableAdjustments,
-    }: ReasonableAjustmentsDisabilityPageOptions): Promise<void> {
+  }: ReasonableAjustmentsDisabilityPageOptions): Promise<void> {
     await this.checkPageLoads({
       page: page,
       accessibilityTest: accessibilityTest,
@@ -77,7 +77,7 @@ export class ReasonableAjustmentsDisabilityPage {
       throw new Error();
     }
     await page.click(
-        `${Selectors.GovukRadios}:text-is("${CommonStaticText.yes}")`,
+      `${Selectors.GovukRadios}:text-is("${CommonStaticText.yes}")`,
     );
     await page.click(
       `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,

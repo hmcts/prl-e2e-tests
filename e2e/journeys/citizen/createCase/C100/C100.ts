@@ -569,11 +569,7 @@ export class C100 {
       yesNoReasonableAdjustments: yesNoReasonableAdjustments,
     });
 
-
-
     //ADD NEW FOR INTERMEDIARY
-
-
 
     await C100HelpWithFees.c100HelpWithFees({
       page: page,

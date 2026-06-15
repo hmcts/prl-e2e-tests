@@ -22,5 +22,5 @@ export enum LanguageRequirementsAndSpecialArrangementsContent {
   govUkHint = "Provide as much detail as possible to help us understand what you need.",
   specialArrangementsInput = "test support you need textbox",
   isolatedP = "Special measures can be put in place to keep you separate from the applicant when you attend court.",
-  isolatedLI = "to be shielded by a privacy screen in the courtroom (a privacy screen would mean the applicant would not be able to see you while in the courtroom)."
+  isolatedLI = "to be shielded by a privacy screen in the courtroom (a privacy screen would mean the applicant would not be able to see you while in the courtroom).",
 }
