@@ -60,7 +60,6 @@ test.describe("Add local authority event for C100 case tests as a Local Authorit
    *              Section 7) with the correct confidential/restricted flags.
    *   - STEP 13: Continue; validate the Manage documents Submit (Check-your-answers)
    *              page per document, then validate the Confirm page.
-   *
    * COURT ADMIN — review the generated tasks (STEPS 14-18):
    *   - STEP 14: Open Manage Cases as court admin; find the case via the 16-digit
    *              reference search; validate ccd-case-header.
