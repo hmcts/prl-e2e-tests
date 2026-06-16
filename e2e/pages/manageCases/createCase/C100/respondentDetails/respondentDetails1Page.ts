@@ -65,6 +65,11 @@ enum uniqueSelectors {
   representativeEmailField = "#respondents_0_solicitorEmail",
   representativeOrgSearchField = "#search-org-text",
   representativeDXNumberField = "#respondents_0_dxNumber",
+  livingInRefugeYes = "#respondents_0_liveInRefuge-Yes",
+  livingInRefugeNo = "#respondents_0_liveInRefuge-No",
+  contactNumberConfidentialYes = "#respondents_0_isPhoneNumberConfidential_Yes",
+  emailAddressConfidentialYes = "#respondents_0_isEmailAddressConfidential_Yes",
+  addressConfidentialYes = "#respondents_0_isAddressConfidential_Yes",
 }
 
 enum RespondentAddressFields {
@@ -126,7 +131,7 @@ export class RespondentDetails1Page {
       ),
       Helpers.checkGroup(
         page,
-        14,
+        15,
         C100RespondentDetails1Content,
         `formLabel`,
         `${Selectors.GovukFormLabel}`,
@@ -186,6 +191,15 @@ export class RespondentDetails1Page {
         `${uniqueSelectors.respondentAddressDropdown}`,
         C100RespondentDetails1Content.address,
       );
+      await expect(
+        page.getByText("*Do you need to keep the address confidential?"),
+      ).toBeVisible();
+      await expect(
+        page.locator('#respondents_0_isAddressConfidential').getByText(
+          "If details need to be kept confidential, a C8 will be generated automatically.",
+        ),
+      ).toBeVisible();
+      await page.locator(uniqueSelectors.addressConfidentialYes).check();
       await page.click(
         `${uniqueSelectors.representativePresent}${respondentLegalRepresentation}`,
       );
@@ -214,11 +228,13 @@ export class RespondentDetails1Page {
     if (yesNoRespondentDetailsC100) {
       await this.handleDateOfBirthYes(page);
       await this.handlePlaceOfBirthYes(page);
+      await this.handleLivingInRefuge(page);
       await this.handleEmailAddressYes(page);
       await this.handleContactNumberYes(page);
     } else {
       await page.click(`${uniqueSelectors.dateOfBirthKnownNo}`);
       await page.click(`${uniqueSelectors.placeOfBirthKnownNo}`);
+      await page.click(`${uniqueSelectors.livingInRefugeNo}`);
       await page.click(`${uniqueSelectors.emailKnownNo}`);
       await page.click(`${uniqueSelectors.numberKnownNo}`);
     }
@@ -295,6 +311,23 @@ export class RespondentDetails1Page {
       `${Selectors.GovukFormLabel}:text-is("${C100RespondentDetails1Content.formLabelYes2}")`,
       1,
     );
+    await expect(
+      page.getByText("*Do you need to keep their email address confidential?"),
+    ).toBeVisible();
+    await expect(
+      page.locator('#respondents_0_isEmailAddressConfidential').getByText(
+        "If there is confidential information, a C8 will be generated automatically.",
+      ),
+    ).toBeVisible();
+    await page.locator(uniqueSelectors.emailAddressConfidentialYes).check();
+    await expect(page.getByText("Contact preference (Optional)")).toBeVisible();
+    await expect(
+      page
+        .locator("#respondents_0_contactPreferences")
+        .getByText(
+          "If you do not select an option, they will be served by post if unrepresented.",
+        ),
+    ).toBeVisible();
     await page.fill(
       `${uniqueSelectors.emailField}`,
       C100RespondentDetails1Content.respondentEmail,
@@ -308,9 +341,27 @@ export class RespondentDetails1Page {
       `${Selectors.GovukFormLabel}:text-is("${C100RespondentDetails1Content.formLabelYes3}")`,
       1,
     );
+    await expect(
+      page.getByText("*Do you need to keep their contact number confidential?"),
+    ).toBeVisible();
+    await expect(
+      page
+        .locator("#respondents_0_isPhoneNumberConfidential")
+        .getByText(
+          "If details need to be kept confidential, a C8 will be generated automatically.",
+        ),
+    ).toBeVisible();
+    await page.locator(uniqueSelectors.contactNumberConfidentialYes).check();
     await page.fill(
       `${uniqueSelectors.numberField}`,
       C100RespondentDetails1Content.phoneNumber,
+    );
+  }
+
+  private static async handleLivingInRefuge(page: Page): Promise<void> {
+    await page.locator(uniqueSelectors.livingInRefugeYes).click();
+    await expect(page.locator("#refugeConfidentialC8Info")).toHaveText(
+      "!All their details will be kept confidential and you do not have to complete a C8.",
     );
   }
 
