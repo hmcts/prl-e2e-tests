@@ -4,7 +4,6 @@ import { RespondentDetailsPage } from "../../../../pages/manageCases/createCase/
 import { Fl401TasksTabPage } from "../../../../pages/manageCases/caseTabs/fl401TasksTabPage.ts";
 import { RespondentDetailsSubmitPage } from "../../../../pages/manageCases/createCase/FL401/respondentDetails/respondentDetailsSubmitPage.ts";
 import { SolicitorCreateInitial } from "../solicitorCreateInitial.ts";
-import { FL401ApplicantDetails } from "../FL401ApplicantDetails/FL401ApplicantDetails.ts";
 
 interface fl401RespondentDetailsOptions {
   page: Page;
@@ -29,14 +28,6 @@ export class FL401RespondentDetails {
         accessibilityTest: false,
         solicitorCaseType: "FL401",
         errorMessaging: false,
-      });
-      await FL401ApplicantDetails.fl401ApplicantDetails({
-        page: page,
-        accessibilityTest: false,
-        errorMessaging: false,
-        yesNoFL401ApplicantDetails: false,
-        applicantGender: "male",
-        subJourney: false,
       });
     }
     await Helpers.handleEventBasedOnEnvironment(page, "Respondent details");
