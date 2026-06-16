@@ -19,47 +19,45 @@ export class C100ReasonableAdjustments {
     errorMessaging: errorMessaging,
     yesNoReasonableAdjustments: yesNoReasonableAdjustments,
   }: C100ReasonableAdjustmentsOptions): Promise<void> {
-    if (yesNoReasonableAdjustments) {
-      await ReasonableAdjustmentsAttendingCourtPage.reasonableAdjustmentsAttendingCourtPage(
-        {
-          page: page,
-          accessibilityTest: accessibilityTest,
-          errorMessaging: errorMessaging,
-          yesNoReasonableAdjustments: yesNoReasonableAdjustments,
-        },
-      );
-      await ReasonableAdjustmentsLanguageRequirementsPage.reasonableAdjustmentsAttendingCourtPage(
-        {
-          page: page,
-          accessibilityTest: accessibilityTest,
-          errorMessaging: errorMessaging,
-          yesNoReasonableAdjustments: yesNoReasonableAdjustments,
-        },
-      );
-      await ReasonableAdjustmentsSpecialArrangementsPage.reasonableAdjustmentsSpecialArrangementsPage(
-        {
-          page: page,
-          accessibilityTest: accessibilityTest,
-          errorMessaging: errorMessaging,
-          yesNoReasonableAdjustments: yesNoReasonableAdjustments,
-        },
-      );
-      await ReasonableAjustmentsIntermediaryPage.reasonableAjustmentsIntermediaryPage(
-        {
-          page: page,
-          accessibilityTest: accessibilityTest,
-          errorMessaging: errorMessaging,
-          yesNoReasonableAdjustments: yesNoReasonableAdjustments,
-        },
-      );
-      await ReasonableAjustmentsDisabilityPage.reasonableAjustmentsDisabilityPage(
-        {
-          page: page,
-          accessibilityTest: accessibilityTest,
-          errorMessaging: errorMessaging,
-          yesNoReasonableAdjustments: yesNoReasonableAdjustments,
-        },
-      );
-    }
+    await ReasonableAdjustmentsAttendingCourtPage.reasonableAdjustmentsAttendingCourtPage(
+      {
+        page: page,
+        accessibilityTest: accessibilityTest,
+        errorMessaging: errorMessaging,
+        yesNoReasonableAdjustments: yesNoReasonableAdjustments,
+      },
+    );
+    await ReasonableAdjustmentsLanguageRequirementsPage.reasonableAdjustmentsAttendingCourtPage(
+      {
+        page: page,
+        accessibilityTest: accessibilityTest,
+        errorMessaging: errorMessaging,
+        yesNoReasonableAdjustments: yesNoReasonableAdjustments,
+      },
+    );
+    await ReasonableAdjustmentsSpecialArrangementsPage.reasonableAdjustmentsSpecialArrangementsPage(
+      {
+        page: page,
+        accessibilityTest: accessibilityTest,
+        errorMessaging: errorMessaging,
+        yesNoReasonableAdjustments: yesNoReasonableAdjustments,
+      },
+    );
+    await ReasonableAjustmentsIntermediaryPage.reasonableAjustmentsIntermediaryPage(
+      {
+        page: page,
+        accessibilityTest: accessibilityTest,
+        errorMessaging: errorMessaging,
+        yesNoReasonableAdjustments: yesNoReasonableAdjustments,
+      },
+    );
+    await ReasonableAjustmentsDisabilityPage.reasonableAjustmentsDisabilityPage(
+      {
+        page: page,
+        accessibilityTest: accessibilityTest,
+        errorMessaging: errorMessaging,
+        yesNoReasonableAdjustments: yesNoReasonableAdjustments,
+      },
+    );
   }
 }

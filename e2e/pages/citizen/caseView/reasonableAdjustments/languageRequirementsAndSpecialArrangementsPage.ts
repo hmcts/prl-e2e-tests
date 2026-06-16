@@ -29,18 +29,6 @@ export class LanguageRequirementsAndSpecialArrangementsPage {
           LanguageRequirementsAndSpecialArrangementsContent.govUkHeadingXl,
       })
       .waitFor();
-    await page
-      .locator(Selectors.p, {
-        hasText:
-          LanguageRequirementsAndSpecialArrangementsContent.isolatedP,
-      })
-      .waitFor();
-    await page
-      .locator(Selectors.li, {
-        hasText:
-          LanguageRequirementsAndSpecialArrangementsContent.isolatedLI,
-      })
-      .waitFor();
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
@@ -56,14 +44,14 @@ export class LanguageRequirementsAndSpecialArrangementsPage {
       ),
       Helpers.checkGroup(
         page,
-        6,
+        7,
         LanguageRequirementsAndSpecialArrangementsContent,
         `p`,
         `${Selectors.p}`,
       ),
       Helpers.checkGroup(
         page,
-        8,
+        9,
         LanguageRequirementsAndSpecialArrangementsContent,
         `li`,
         `${Selectors.li}`,
