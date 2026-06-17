@@ -3,7 +3,6 @@ import { AxeUtils } from "@hmcts/playwright-common";
 import { Helpers } from "../../../../../common/helpers.ts";
 import { Selectors } from "../../../../../common/selectors.ts";
 import { ApplicantGender } from "../../../../../common/types.ts";
-import config from "../../../../../utils/config.utils.ts";
 import { ApplicantDetails1Content } from "../../../../../fixtures/manageCases/createCase/FL401/applicantDetails/applicantDetails1Content.ts";
 
 enum uniqueSelectorPaths {
@@ -171,8 +170,7 @@ export class ApplicantDetails1Page {
     await this.fillInYesNoRadios(page, yesNoFL401ApplicantDetails);
     await this.fillInGenderRadio(page, applicantGender);
     if (yesNoFL401ApplicantDetails) {
-      await this.uploadC8RefugeForm(page);
-      await this.fillInSecondLevelFields(page, applicantGender);
+      await this.fillInSecondLevelFields(page);
       await this.fillInSecondLevelRadios(page, yesNoFL401ApplicantDetails);
     }
     await this.fillAndCheckAddressFields(page);
@@ -299,18 +297,11 @@ export class ApplicantDetails1Page {
 
   private static async fillInSecondLevelFields(
     page: Page,
-    applicantGender: ApplicantGender,
   ): Promise<void> {
     await page.fill(
       applicantInputIDs.applicantEmailAddress,
       ApplicantDetails1Content.applicantEmailAddress,
     );
-    if (applicantGender === "other") {
-      await page.fill(
-        applicantInputIDs.applicantGenderOtherInput,
-        ApplicantDetails1Content.applicantGenderOtherInput,
-      );
-    }
   }
 
   private static async fillInSecondLevelRadios(
@@ -343,27 +334,6 @@ export class ApplicantDetails1Page {
     await this.addressValidation(page);
     await this.applicantAddressValidation(page);
     await this.solicitorAddressValidation(page);
-  }
-
-  private static async uploadC8RefugeForm(page: Page): Promise<void> {
-    await Helpers.checkVisibleAndPresent(
-      page,
-      `${Selectors.GovukFormLabel}:text-is("${ApplicantDetails1Content.formLabelC8FormUpload}"):visible`,
-      1,
-    );
-    await Helpers.checkVisibleAndPresent(
-      page,
-      `${Selectors.p}:text-is("${ApplicantDetails1Content.c8FormUploadP}"):visible`,
-      1,
-    );
-    const fileInput = page.locator(
-      `${applicantInputIDs.c8RefugeFormUploadFileInput}`,
-    );
-    await fileInput.setInputFiles(config.testPdfFile);
-    await page.waitForSelector(
-      `${Selectors.GovukErrorMessage}:text-is("${ApplicantDetails1Content.uploadingFile}")`,
-      { state: "hidden" },
-    );
   }
 
   private static async addressValidation(page: Page): Promise<void> {
@@ -551,11 +521,6 @@ export class ApplicantDetails1Page {
         ApplicantDetails1Content,
         "secondLevelInputErrorMessage",
         `${Selectors.GovukErrorMessage}`,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukErrorValidation}:text-is("${ApplicantDetails1Content.errorMessageC8FormUploadRequired}")`,
-        1,
       ),
     ]);
   }
