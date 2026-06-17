@@ -134,7 +134,7 @@ test.describe("Add/Remove Barrister for CA case", () => {
         ["caseProgression", "addBarrister"],
         data.addBarristerSnapshotName,
       );
-      // await c100AdminAddBarristerSubmit.verifyAccessibility(); Note: to remove this comment once FPVTL-1357 fix is deployed
+      await manageBarristerC100.addBarrister1Page.verifyAccessibility();
       await manageBarristerC100.addBarristerSubmit.clickSubmit();
       await summaryPage.alertBanner.assertEventAlert(
         caseNumber,
@@ -210,7 +210,7 @@ test.describe("Add/Remove Barrister for CA case", () => {
         ["caseProgression", "addBarrister"],
         data.addBarristerSnapshotName,
       );
-      // await manageBarrister.c100AdminAddBarristerSubmit.verifyAccessibility(); Note: to remove this comment once FPVTL-1357 fix is deployed
+      await manageBarristerC100.addBarrister1Page.verifyAccessibility();
       await manageBarristerC100.addBarristerSubmit.clickSubmit();
       await summaryPage.alertBanner.assertEventAlert(
         caseNumber,
