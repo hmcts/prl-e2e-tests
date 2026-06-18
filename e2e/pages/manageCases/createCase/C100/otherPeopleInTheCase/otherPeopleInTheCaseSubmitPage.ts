@@ -215,7 +215,7 @@ export class OtherPeopleInTheCaseSubmitPage {
       await Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukText16}:text-is("${OtherPeopleInTheCase1Content.formLabelNo}")`,
-        otherPersonLivesInRefuge ? 7 : 6,
+        otherPersonLivesInRefuge ? 8 : 7,
       );
     }
   }

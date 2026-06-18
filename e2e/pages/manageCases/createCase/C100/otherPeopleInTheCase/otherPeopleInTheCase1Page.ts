@@ -322,7 +322,10 @@ export class OtherPeopleInTheCase1Page {
       await expect(
         page
           .locator("#otherPartyInTheCaseRevised_0_isPhoneNumberConfidential")
-          .getByText("*Do you need to keep their contact number confidential?", { exact: true }),
+          .getByText(
+            "*Do you need to keep their contact number confidential?",
+            { exact: true },
+          ),
       ).toBeVisible();
       await expect(
         page
@@ -337,6 +340,9 @@ export class OtherPeopleInTheCase1Page {
     } else {
       await page.click(`${UniqueSelectors.applicantBirthDateNo}`);
       await page.click(`${UniqueSelectors.applicantPlaceOfBirthKnownNo}`);
+      await page
+        .locator("#otherPartyInTheCaseRevised_0_liveInRefuge-No")
+        .check();
       await page.click(`${UniqueSelectors.applicantCurrentAddressNo}`);
       await page.click(
         `${UniqueSelectors.applicantLivedAtAddressLessThan5YearsNo}`,
