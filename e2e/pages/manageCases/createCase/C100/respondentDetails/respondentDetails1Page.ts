@@ -195,9 +195,11 @@ export class RespondentDetails1Page {
         page.getByText("*Do you need to keep the address confidential?"),
       ).toBeVisible();
       await expect(
-        page.locator('#respondents_0_isAddressConfidential').getByText(
-          "If details need to be kept confidential, a C8 will be generated automatically.",
-        ),
+        page
+          .locator("#respondents_0_isAddressConfidential")
+          .getByText(
+            "If details need to be kept confidential, a C8 will be generated automatically.",
+          ),
       ).toBeVisible();
       await page.locator(uniqueSelectors.addressConfidentialYes).check();
       await page.click(
@@ -315,9 +317,11 @@ export class RespondentDetails1Page {
       page.getByText("*Do you need to keep their email address confidential?"),
     ).toBeVisible();
     await expect(
-      page.locator('#respondents_0_isEmailAddressConfidential').getByText(
-        "If there is confidential information, a C8 will be generated automatically.",
-      ),
+      page
+        .locator("#respondents_0_isEmailAddressConfidential")
+        .getByText(
+          "If there is confidential information, a C8 will be generated automatically.",
+        ),
     ).toBeVisible();
     await page.locator(uniqueSelectors.emailAddressConfidentialYes).check();
     await expect(page.getByText("Contact preference (Optional)")).toBeVisible();

@@ -295,9 +295,7 @@ export class ApplicantDetails1Page {
     }
   }
 
-  private static async fillInSecondLevelFields(
-    page: Page,
-  ): Promise<void> {
+  private static async fillInSecondLevelFields(page: Page): Promise<void> {
     await page.fill(
       applicantInputIDs.applicantEmailAddress,
       ApplicantDetails1Content.applicantEmailAddress,

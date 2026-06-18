@@ -86,5 +86,5 @@ export enum ApplicantDetails1Content {
   org = "Test",
   select = "Select",
   dxNumber = "1234",
-  applicantGenderLabel="*Applicant gender",
+  applicantGenderLabel = "*Applicant gender",
 }
