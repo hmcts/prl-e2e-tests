@@ -37,14 +37,14 @@ export class LanguageRequirementsAndSpecialArrangementsPage {
       ),
       Helpers.checkGroup(
         page,
-        2,
+        3,
         LanguageRequirementsAndSpecialArrangementsContent,
         `govUkHeadingM`,
         `${Selectors.GovukHeadingM}`,
       ),
       Helpers.checkGroup(
         page,
-        3,
+        7,
         LanguageRequirementsAndSpecialArrangementsContent,
         `p`,
         `${Selectors.p}`,
@@ -55,11 +55,6 @@ export class LanguageRequirementsAndSpecialArrangementsPage {
         LanguageRequirementsAndSpecialArrangementsContent,
         `li`,
         `${Selectors.li}`,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.Span}:text-is("${LanguageRequirementsAndSpecialArrangementsContent.span1}")`,
-        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
