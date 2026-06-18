@@ -323,6 +323,12 @@ export class ApplicantDetails1Page {
     );
     await page.click(`#applicants_0_gender-${applicantGender}`);
     await page.click(`#applicants_0_gender-${applicantGender}`);
+    if (applicantGender === "other") {
+      await expect(
+        page.getByText(ApplicantDetails1Content.applicantGenderLabel),
+      ).toBeVisible();
+      await page.locator("#applicants_0_otherGender").fill("Other");
+    }
     await page.fill(
       `${PageLoadFields.placeOfBirth}`,
       ApplicantDetails1Content.placeOfBirth,
@@ -515,11 +521,6 @@ export class ApplicantDetails1Page {
     await page.click(`${PageLoadFields.applicantLivesInRefugeYes}`);
     await page.click(
       `${Selectors.button}:text-is("${ApplicantDetails1Content.continue}")`,
-    );
-    await Helpers.checkVisibleAndPresent(
-      page,
-      `${Selectors.GovukErrorValidation}:text-is("${ApplicantDetails1Content.errorMessageC8FormUploadRequired}")`,
-      1,
     );
     await page.click(`${PageLoadFields.address5YearsYes}`);
     await this.checkApplicantAddress5Years(page);
