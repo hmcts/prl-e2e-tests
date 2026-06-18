@@ -3,7 +3,7 @@ import { C100OtherPeopleInTheCase } from "../../../../journeys/manageCases/creat
 import Config from "../../../../utils/config.utils.ts";
 
 test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
-
+// TEST COMMENT - TO BE REMOVED
 test.describe("C100 Create case Other people in the case Tests", (): void => {
   test(`Complete the C100 Create case Other people in the case as a solicitor with the following options:
   Not Accessibility testing,
