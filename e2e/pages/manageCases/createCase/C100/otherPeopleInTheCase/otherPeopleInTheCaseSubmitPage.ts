@@ -1,4 +1,4 @@
-import { Page } from "@playwright/test";
+import { expect, Page } from "@playwright/test";
 import { Selectors } from "../../../../../common/selectors.ts";
 import { OtherPeopleInTheCaseSubmitContent } from "../../../../../fixtures/manageCases/createCase/C100/otherPeopleInTheCaseRevised/otherPeopleInTheCaseSubmitContent.ts";
 import { Helpers } from "../../../../../common/helpers.ts";
@@ -65,17 +65,7 @@ export class OtherPeopleInTheCaseSubmitPage {
       `${Selectors.GovukHeadingL}:text-is("${OtherPeopleInTheCaseSubmitContent.pageTitle}")`,
       1,
     );
-    if (
-      (yesNoOtherPeopleInTheCase && applicantGender === "male") ||
-      (yesNoOtherPeopleInTheCase && applicantGender === "female")
-    ) {
-      if (otherPersonLivesInRefuge) {
-        await Helpers.checkVisibleAndPresent(
-          page,
-          `${Selectors.GovukText16}:text-is("${OtherPeopleInTheCaseSubmitContent.uploadForm}")`,
-          1,
-        );
-      }
+    if (yesNoOtherPeopleInTheCase) {
       await Promise.all([
         Helpers.checkGroup(
           page,
@@ -86,7 +76,7 @@ export class OtherPeopleInTheCaseSubmitPage {
         ),
         Helpers.checkGroup(
           page,
-          9,
+          12,
           OtherPeopleInTheCaseSubmitContent,
           "text16A",
           `${Selectors.GovukText16}`,
@@ -94,36 +84,7 @@ export class OtherPeopleInTheCaseSubmitPage {
         Helpers.checkVisibleAndPresent(
           page,
           `${Selectors.GovukText16}:text-is("${OtherPeopleInTheCaseSubmitContent.gender}")`,
-          1,
-        ),
-      ]);
-    } else if (yesNoOtherPeopleInTheCase && applicantGender === "other") {
-      if (otherPersonLivesInRefuge) {
-        await Helpers.checkVisibleAndPresent(
-          page,
-          `${Selectors.GovukText16}:text-is("${OtherPeopleInTheCaseSubmitContent.uploadForm}")`,
-          1,
-        );
-      }
-      await Promise.all([
-        Helpers.checkGroup(
-          page,
-          13,
-          OtherPeopleInTheCaseSubmitContent,
-          "text16",
-          `${Selectors.GovukText16}`,
-        ),
-        Helpers.checkGroup(
-          page,
-          9,
-          OtherPeopleInTheCaseSubmitContent,
-          "text16A",
-          `${Selectors.GovukText16}`,
-        ),
-        Helpers.checkVisibleAndPresent(
-          page,
-          `${Selectors.GovukText16}:text-is("${OtherPeopleInTheCaseSubmitContent.gender}")`,
-          2,
+          applicantGender === "other" ? 2 : 1,
         ),
       ]);
     } else {
@@ -138,7 +99,7 @@ export class OtherPeopleInTheCaseSubmitPage {
         Helpers.checkVisibleAndPresent(
           page,
           `${Selectors.GovukText16}:text-is("${OtherPeopleInTheCaseSubmitContent.gender}")`,
-          1,
+          applicantGender === "other" ? 2 : 1,
         ),
       ]);
     }
@@ -146,6 +107,7 @@ export class OtherPeopleInTheCaseSubmitPage {
       await new AxeUtils(page).audit();
     }
   }
+
   private static async checkFilledData(
     page: Page,
     yesNoOtherPeopleInTheCase: boolean,
@@ -195,19 +157,18 @@ export class OtherPeopleInTheCaseSubmitPage {
       ]);
     }
 
+    if (otherPersonLivesInRefuge) {
+      await expect(
+        page.getByText(OtherPeopleInTheCaseSubmitContent.refugeWarning),
+      ).toBeVisible();
+    }
+
     if (yesNoOtherPeopleInTheCase) {
-      if (otherPersonLivesInRefuge) {
-        await Helpers.checkVisibleAndPresent(
-          page,
-          `${Selectors.GovLink}:text-is("${OtherPeopleInTheCase1Content.uploadedFile}")`,
-          1,
-        );
-      }
       await Promise.all([
         Helpers.checkVisibleAndPresent(
           page,
           `${Selectors.GovukText16}:text-is("${OtherPeopleInTheCase1Content.formLabelYes}")`,
-          otherPersonLivesInRefuge ? 7 : 6,
+          otherPersonLivesInRefuge ? 10 : 9,
         ),
         Helpers.checkVisibleAndPresent(
           page,
