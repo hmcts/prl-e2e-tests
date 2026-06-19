@@ -3,7 +3,7 @@ import Config from "../../../../utils/config.utils.ts";
 import { C100ApplicantDetails } from "../../../../journeys/manageCases/createCase/C100ApplicantDetails/c100ApplicantDetails.ts";
 
 test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
-// TEST COMMENT - TO BE REMOVED
+
 test.describe("C100 Create case - Applicant Details tests", (): void => {
   test(`Complete the C100 applicant details event as a solicitor with the following options:
   Not Accessibility testing,

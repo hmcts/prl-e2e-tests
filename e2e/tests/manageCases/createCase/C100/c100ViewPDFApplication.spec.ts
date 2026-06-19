@@ -2,7 +2,6 @@ import { test } from "../../../fixtures.ts";
 import config from "../../../../utils/config.utils.ts";
 import { C100ViewPDFApplication } from "../../../../journeys/manageCases/createCase/C100ViewPDFApplication/c100ViewPDFApplication.ts";
 
-// TEST COMMENT - TO BE REMOVED
 test.describe("C100 view PDF application tests", (): void => {
   let caseNumber: string;
 

@@ -4,7 +4,7 @@ import { test } from "../../fixtures.ts";
 import { ConfirmApplicantContactInstructions } from "../../../journeys/citizen/caseView/confirmContactDetails/confirmApplicantContactInstructions.ts";
 
 test.use({ storageState: config.sessionStoragePath + "caseWorker.json" });
-// TEST COMMENT - TO BE REMOVED
+
 test.describe("Applicant confirm contact details tests", (): void => {
   test.slow();
   let ccdRef: string;

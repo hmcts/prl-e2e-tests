@@ -25,7 +25,7 @@ export interface DomesticAbuseUploadOrderParams {
   snapshotsPath: string[];
   orderInformation: OrderInformation[];
 }
-// TEST COMMENT - TO BE REMOVED
+
 test.describe("'Upload an order' by Case Worker via the 'Create/upload draft order' event tests", (): void => {
   let caseNumber: string;
 

@@ -3,7 +3,7 @@ import Config from "../../../utils/config.utils.ts";
 import { FL401CaseTabs } from "../../../journeys/manageCases/caseTabs/fl401CaseTabs.ts";
 
 test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
-// TEST COMMENT - TO BE REMOVED
+
 test.describe("FL401 Case tabs", (): void => {
   test(`FL401 Case tabs with the following options:
   Not Accessibility testing,
