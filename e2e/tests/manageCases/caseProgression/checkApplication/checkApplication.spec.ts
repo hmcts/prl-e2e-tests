@@ -4,30 +4,25 @@ import config from "../../../../utils/config.utils.ts";
 test.describe("Check Application task for DA Solicitor case tests.", () => {
   let caseNumber: string;
 
-  test.beforeEach(async ({ browser, caseEventUtils }) => {
-    caseNumber = await caseEventUtils.createDACase(browser);
-  });
+  test.beforeEach(
+    async ({ caseWorker, manageCasesEventUtils, navigationUtils }) => {
+      caseNumber = await manageCasesEventUtils.submitSolicitorCase("FL401");
+      await navigationUtils.goToCase(
+        caseWorker.page,
+        config.manageCasesBaseURLCase,
+        caseNumber,
+        "tasks",
+      );
+    },
+  );
 
   [{ familyManNumber: "1234", snapshotName: "check-application" }].forEach(
     ({ familyManNumber, snapshotName }) => {
       test("Complete Task - Check Application with accessibility test. @nightly @accessibility @regression", async ({
         caseWorker,
-        navigationUtils,
       }): Promise<void> => {
-        const {
-          page,
-          tasksPage,
-          fl401AddCaseNumber,
-          summaryPage,
-          historyPage,
-        } = caseWorker;
-
-        await navigationUtils.goToCase(
-          page, // accessing the destructured page property
-          config.manageCasesBaseURLCase,
-          caseNumber,
-          "tasks",
-        );
+        const { tasksPage, fl401AddCaseNumber, summaryPage, historyPage } =
+          caseWorker;
 
         await tasksPage.assignTaskToMeAndTriggerNextSteps(
           "Check Application",

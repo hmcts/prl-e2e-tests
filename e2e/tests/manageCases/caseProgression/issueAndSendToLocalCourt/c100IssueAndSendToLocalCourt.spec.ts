@@ -5,8 +5,8 @@ test.describe("Issue and send to local court for CA cases", () => {
   let caseNumber: string = "";
 
   test.beforeEach(
-    async ({ courtAdminStoke, browser, caseEventUtils, navigationUtils }) => {
-      caseNumber = await caseEventUtils.createCACase(browser);
+    async ({ courtAdminStoke, manageCasesEventUtils, navigationUtils }) => {
+      caseNumber = await manageCasesEventUtils.submitSolicitorCase("C100");
       await navigationUtils.goToCase(
         courtAdminStoke.page,
         config.manageCasesBaseURLCase,
