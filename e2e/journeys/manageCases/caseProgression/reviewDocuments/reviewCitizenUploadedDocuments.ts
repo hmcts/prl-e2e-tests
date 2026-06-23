@@ -8,7 +8,7 @@ import {
 import { ReviewDocuments } from "./reviewDocuments.ts";
 import { Helpers } from "../../../../common/helpers.ts";
 import Config from "../../../../utils/config.utils.ts";
-import { CitizenC100CaseUtils } from "../../../../utils/citizenC100CaseUtils.ts";
+import { CitizenC100CaseUtils } from "../../../../utils/citizenC100Case.utils.ts";
 
 interface reviewCitizenUploadedDocumentsParams {
   page: Page;

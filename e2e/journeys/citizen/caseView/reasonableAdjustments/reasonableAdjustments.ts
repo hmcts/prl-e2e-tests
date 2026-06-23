@@ -3,7 +3,7 @@ import { IntroPage } from "../../../../pages/citizen/caseView/reasonableAdjustme
 import { LanguageRequirementsAndSpecialArrangementsPage } from "../../../../pages/citizen/caseView/reasonableAdjustments/languageRequirementsAndSpecialArrangementsPage.ts";
 import { LanguageRequirementsAndSpecialArrangementsReviewPage } from "../../../../pages/citizen/caseView/reasonableAdjustments/languageRequirementsAndSpecialArrangementsReviewPage.ts";
 import { ConfirmationPage } from "../../../../pages/citizen/caseView/reasonableAdjustments/confirmationPage.ts";
-import { CitizenC100CaseUtils } from "../../../../utils/citizenC100CaseUtils.js";
+import { CitizenC100CaseUtils } from "../../../../utils/citizenC100Case.utils.ts";
 
 interface reasonableAdjustmentsParams {
   page: Page;

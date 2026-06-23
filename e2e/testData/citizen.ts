@@ -1,4 +1,4 @@
-import { CitizenApplicationInfo } from "../utils/citizenC100CaseUtils.js";
+import { CitizenApplicationInfo } from "../utils/citizenC100Case.utils.ts";
 
 export const issueAndSendToLocalCourtEventData = {
   data: {

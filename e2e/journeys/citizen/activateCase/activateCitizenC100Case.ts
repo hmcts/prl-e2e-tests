@@ -5,7 +5,7 @@ import { CaseActivatedPage } from "../../../pages/citizen/activateCase/caseActiv
 import { Selectors } from "../../../common/selectors.ts";
 import process from "node:process";
 import { CreateUserUtil } from "../../../utils/createUser.utils.ts";
-import { CitizenC100CaseUtils } from "../../../utils/citizenC100CaseUtils.ts";
+import { CitizenC100CaseUtils } from "../../../utils/citizenC100Case.utils.ts";
 import IdamLoginHelper from "../../../utils/idamLoginHelper.utils.ts";
 import { AccessCodeHelper } from "../../../utils/accessCode.utils.ts";
 
