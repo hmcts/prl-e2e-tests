@@ -1,9 +1,8 @@
 import { Page } from "@playwright/test";
-import { CommonStaticText } from "../../../../common/commonStaticText.ts";
-import { CheckYourAnswersPage } from "../checkYourAnswers.po.ts";
+import { EventPage } from "../eventPage.po.ts";
 
-export class C100AdminAddBarristerSubmit extends CheckYourAnswersPage {
+export class C100AdminAddBarristerSubmit extends EventPage {
   constructor(page: Page) {
-    super(page, "Add barrister", CommonStaticText.submit);
+    super(page, "Add barrister");
   }
 }
