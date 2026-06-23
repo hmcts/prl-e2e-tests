@@ -134,6 +134,9 @@ test.describe("Add/Remove Barrister for CA case", () => {
         ["caseProgression", "addBarrister"],
         data.addBarristerSnapshotName,
       );
+      await expect(
+        manageBarristerC100.addBarristerSubmit.pageHeading,
+      ).toBeVisible();
       await manageBarristerC100.addBarristerSubmit.verifyAccessibility();
       await manageBarristerC100.addBarristerSubmit.clickSubmit();
       await summaryPage.alertBanner.assertEventAlert(
@@ -210,6 +213,9 @@ test.describe("Add/Remove Barrister for CA case", () => {
         ["caseProgression", "addBarrister"],
         data.addBarristerSnapshotName,
       );
+      await expect(
+        manageBarristerC100.addBarristerSubmit.pageHeading,
+      ).toBeVisible();
       await manageBarristerC100.addBarristerSubmit.verifyAccessibility();
       await manageBarristerC100.addBarristerSubmit.clickSubmit();
       await summaryPage.alertBanner.assertEventAlert(
