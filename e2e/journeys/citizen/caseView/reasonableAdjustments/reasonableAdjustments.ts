@@ -22,6 +22,7 @@ export class ReasonableAdjustments {
   public static async reasonableAdjustments({
     page,
     accessibilityTest,
+    isApplicant,
   }: reasonableAdjustmentsParams): Promise<void> {
     await page
       .locator(UniqueSelectors.supportYouNeedDuringYourCaseSelector)
@@ -30,6 +31,7 @@ export class ReasonableAdjustments {
     await LanguageRequirementsAndSpecialArrangementsPage.languageRequirementsAndSpecialArrangementsPage(
       page,
       accessibilityTest,
+      isApplicant,
     );
     await LanguageRequirementsAndSpecialArrangementsReviewPage.languageRequirementsAndSpecialArrangementsReviewPage(
       page,
