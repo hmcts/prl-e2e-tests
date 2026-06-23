@@ -13,7 +13,9 @@ import { CaseEventUtils } from "./caseEvent.utils.ts";
 import { DateHelperUtils } from "./dateHelpers.utils.ts";
 import { NavigationUtils } from "./navigation.utils.ts";
 import { PageUtils } from "./page.utils.ts";
-import { CitizenC100CaseUtils } from "./citizenC100CaseUtils.ts";
+import { CitizenC100CaseUtils } from "./citizenC100Case.utils.ts";
+import { CommonCaseEventUtils } from "./commonCaseEvent.utils.ts";
+import { ManageCaseEventUtils } from "./manageCaseEvent.utils.ts";
 
 export interface UtilsFixtures {
   config: Config;
@@ -25,6 +27,7 @@ export interface UtilsFixtures {
   idamLoginHelper: IdamLoginHelper;
   serviceAuthUtils: ServiceAuthUtils;
   citizenC100CaseUtils: CitizenC100CaseUtils;
+  manageCasesEventUtils: ManageCaseEventUtils;
 
   caseEventUtils: CaseEventUtils;
   axeUtils: AxeUtils;
@@ -75,7 +78,16 @@ export const utilsFixtures = {
   },
   citizenC100CaseUtils: async ({}, use) => {
     await use(
-      new CitizenC100CaseUtils(new ServiceAuthUtils(), new IdamUtils()),
+      new CitizenC100CaseUtils(
+        new CommonCaseEventUtils(new ServiceAuthUtils(), new IdamUtils()),
+      ),
+    );
+  },
+  manageCasesEventUtils: async ({}, use) => {
+    await use(
+      new ManageCaseEventUtils(
+        new CommonCaseEventUtils(new ServiceAuthUtils(), new IdamUtils()),
+      ),
     );
   },
 };
