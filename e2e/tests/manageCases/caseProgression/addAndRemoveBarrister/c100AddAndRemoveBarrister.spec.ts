@@ -209,7 +209,7 @@ test.describe("Add/Remove Barrister for CA case", () => {
       await manageBarristerC100.addBarristerSubmit.verifyAccessibility();
       await manageBarristerC100.addBarristerSubmit.assertPageContents(
         ["caseProgression", "addBarrister"],
-        data.addBarristerSnapshotName,
+        "c100-add-barrister-case-worker",
       );
       await manageBarristerC100.addBarristerSubmit.clickSubmit();
       await summaryPage.alertBanner.assertEventAlert(
