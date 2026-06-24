@@ -158,7 +158,7 @@ test.describe("Add/Remove Barrister for CA case", () => {
       await manageBarristerC100.removeBarrister1Page.clickContinue();
       await manageBarristerC100.removeBarristerSubmit.assertPageContents(
         ["caseProgression", "removeBarrister"],
-        data.removeBarristerSnapshotName
+        data.removeBarristerSnapshotName,
       );
       await manageBarristerC100.removeBarristerSubmit.verifyAccessibility();
       await manageBarristerC100.removeBarristerSubmit.clickSubmit();
