@@ -206,6 +206,7 @@ test.describe("Add/Remove Barrister for CA case", () => {
         data.existingRepresentative,
       );
       await manageBarristerC100.addBarrister1Page.clickContinue();
+      await manageBarristerC100.addBarrister1Page.page.waitForTimeout(10_000);
       await manageBarristerC100.addBarristerSubmit.assertPageContents(
         ["caseProgression", "addBarrister"],
         data.addBarristerSnapshotName,
