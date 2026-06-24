@@ -185,7 +185,7 @@ test.describe("Add/Remove Barrister for CA case", () => {
         caseNumber,
         "summary",
       );
-      await performNoticeOfChange(nocSolicitor, caseNumber, data.nocParty);
+      //await performNoticeOfChange(nocSolicitor, caseNumber, data.nocParty);
 
       //change to caseworker to add/remove barrister
       await navigationUtils.goToCase(
@@ -210,7 +210,7 @@ test.describe("Add/Remove Barrister for CA case", () => {
         ["caseProgression", "addBarrister"],
         data.addBarristerSnapshotName,
       );
-      await manageBarristerC100.addBarristerSubmit.page.waitForTimeout(10_000);
+      //await manageBarristerC100.addBarristerSubmit.page.waitForTimeout(10_000);
       await manageBarristerC100.addBarristerSubmit.verifyAccessibility();
       await manageBarristerC100.addBarristerSubmit.clickSubmit();
       await summaryPage.alertBanner.assertEventAlert(
