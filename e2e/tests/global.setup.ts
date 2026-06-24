@@ -56,21 +56,21 @@ setup.describe("Setup users and retrieve tokens", () => {
     }
   });
 
-  setup("Setup judge user", async ({ page, idamLoginHelper }) => {
-    await idamLoginHelper.signInLongLivedUser(
-      page,
-      "judge",
-      config.manageCasesBaseURLCase,
-    );
-  });
+  // setup("Setup judge user", async ({ page, idamLoginHelper }) => {
+  //   await idamLoginHelper.signInLongLivedUser(
+  //     page,
+  //     "judge",
+  //     config.manageCasesBaseURLCase,
+  //   );
+  // });
 
-  setup("Setup case manager user", async ({ page, idamLoginHelper }) => {
-    await idamLoginHelper.signInLongLivedUser(
-      page,
-      "caseManager",
-      config.manageCasesBaseURLCase,
-    );
-  });
+  // setup("Setup case manager user", async ({ page, idamLoginHelper }) => {
+  //   await idamLoginHelper.signInLongLivedUser(
+  //     page,
+  //     "caseManager",
+  //     config.manageCasesBaseURLCase,
+  //   );
+  // });
 
   setup("Setup caseWorker user", async ({ page, idamLoginHelper }) => {
     await idamLoginHelper.signInLongLivedUser(
@@ -96,11 +96,11 @@ setup.describe("Setup users and retrieve tokens", () => {
     );
   });
 
-  setup("Setup Legal Advisor user", async ({ page, idamLoginHelper }) => {
-    await idamLoginHelper.signInLongLivedUser(
-      page,
-      "legalAdvisor",
-      config.manageCasesBaseURLCase,
-    );
-  });
+  // setup("Setup Legal Advisor user", async ({ page, idamLoginHelper }) => {
+  //   await idamLoginHelper.signInLongLivedUser(
+  //     page,
+  //     "legalAdvisor",
+  //     config.manageCasesBaseURLCase,
+  //   );
+  // });
 });
