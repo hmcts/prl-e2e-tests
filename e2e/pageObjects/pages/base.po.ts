@@ -37,6 +37,11 @@ export abstract class Base {
   }
 
   async verifyAccessibility(): Promise<void> {
+    await this.page
+      .locator("button", {
+        hasText: "Submit",
+      })
+      .waitFor();
     await this.axeUtils.audit();
   }
 }

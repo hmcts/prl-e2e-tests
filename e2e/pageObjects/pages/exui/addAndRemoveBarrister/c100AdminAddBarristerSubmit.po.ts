@@ -6,12 +6,4 @@ export class C100AdminAddBarristerSubmit extends CheckYourAnswersPage {
   constructor(page: Page) {
     super(page, "Add barrister", CommonStaticText.submit);
   }
-  async verifyAccessibility(): Promise<void> {
-    await this.page
-      .locator("button", {
-        hasText: "Submit",
-      })
-      .waitFor();
-    await this.axeUtils.audit();
-  }
 }
