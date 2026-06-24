@@ -2,6 +2,11 @@ import { Locator, Page, expect } from "@playwright/test";
 import { Selectors } from "../../../../common/selectors.js";
 import { EventPage } from "../eventPage.po.ts";
 
+export interface nocPartyInfo {
+  firstname: string;
+  surname: string;
+}
+
 export class C100Noc2Page extends EventPage {
   private readonly clientFirstNameField: Locator =
     this.page.locator("#NoCChallengeQ1");

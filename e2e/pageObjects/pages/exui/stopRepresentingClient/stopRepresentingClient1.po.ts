@@ -2,14 +2,7 @@ import { EventPage } from "../eventPage.po.ts";
 import { expect, Locator, Page } from "@playwright/test";
 import { Selectors } from "../../../../common/selectors.ts";
 
-export interface barristerInfo {
-  firstnames: string;
-  lastname: string;
-  email: string;
-  org: string;
-}
-
-export class C100AdminAddBarrister1Page extends EventPage {
+export class StopRepresenting1Page extends EventPage {
   private readonly partyToAddBarristerCheckbox: Locator = this.page.locator(
     "#allocatedBarrister_partyList_",
   );
@@ -18,12 +11,6 @@ export class C100AdminAddBarrister1Page extends EventPage {
     .first();
   private readonly barristerLastName: Locator = this.page
     .locator("#allocatedBarrister_barristerLastName")
-    .first();
-  private readonly barristerEmail: Locator = this.page
-    .locator("#allocatedBarrister_barristerEmail")
-    .first();
-  private readonly barristerOrg: Locator = this.page
-    .locator("#search-org-text")
     .first();
   private readonly selectBarristerOrg: Locator = this.page.getByTitle(
     "Select the organisation PRL Barrister Org2",
@@ -34,16 +21,7 @@ export class C100AdminAddBarrister1Page extends EventPage {
   private readonly textLabel2: Locator = this.page.locator(Selectors.Span, {
     hasText: "First names of the barrister",
   });
-  private readonly textLabel3: Locator = this.page.locator(Selectors.Span, {
-    hasText: "Last name of the barrister",
-  });
-  private readonly textLabel4: Locator = this.page.locator(Selectors.Span, {
-    hasText: "Email address of the barrister",
-  });
-  private readonly govUkHint: Locator = this.page.locator(Selectors.GovukHint, {
-    hasText:
-      " You can only search for organisations already registered with MyHMCTS. For example, you can search by organisation name or address. ",
-  });
+
   private readonly govUKDetails: Locator = this.page.locator(
     Selectors.GovukDetailsText,
     {
@@ -53,35 +31,22 @@ export class C100AdminAddBarrister1Page extends EventPage {
   );
 
   constructor(page: Page) {
-    super(page, "Add barrister");
+    super(page, "Stop representing client");
   }
 
   async assertPageContents(): Promise<void> {
     await this.assertPageHeadings();
-    await expect(this.textLabel1).toBeVisible();
-    await expect(this.textLabel2).toBeVisible();
-    await expect(this.textLabel3).toBeVisible();
-    await expect(this.textLabel4).toBeVisible();
-    await expect(this.govUkHint).toBeVisible();
-    await expect(this.govUKDetails).toBeHidden();
+    await expect(this.textLabel1).toBeVisible(); //to fix
+    await expect(this.partyToAddBarristerCheckbox).toBeVisible();
     await expect(this.continueButton).toBeVisible();
     await expect(this.previousButton).toBeVisible();
   }
 
-  async selectPartyAndFillInBarristerDetails(
-    firstnames,
-    lastname,
-    email,
-    org,
+  async selectParty(
     existingRepresentative: string[],
   ): Promise<void> {
     await this.page
       .getByRole("radio", { name: existingRepresentative[0] })
       .check();
-    await this.barristerFirstName.fill(firstnames);
-    await this.barristerLastName.fill(lastname);
-    await this.barristerEmail.fill(email);
-    await this.barristerOrg.fill(org);
-    await this.selectBarristerOrg.click();
   }
 }
