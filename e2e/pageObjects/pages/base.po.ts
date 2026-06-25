@@ -36,14 +36,7 @@ export abstract class Base {
     await this.submitButton.click();
   }
 
-  async verifyAccessibility(buttonText?: string): Promise<void> {
-    if (buttonText === "Submit") {
-      await this.page
-        .locator("button", {
-          hasText: "Submit",
-        })
-        .waitFor();
-    }
+  async verifyAccessibility(): Promise<void> {
     await this.axeUtils.audit();
   }
 }
