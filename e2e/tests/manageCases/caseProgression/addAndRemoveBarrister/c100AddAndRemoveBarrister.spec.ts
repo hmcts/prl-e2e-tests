@@ -1,6 +1,7 @@
 import config from "../../../../utils/config.utils.ts";
 import { test, expect } from "../../../fixtures.ts";
 import { jsonDatas } from "../../../../common/caseHelpers/jsonDatas.js";
+import { Selectors } from "../../../../common/selectors.ts";
 
 async function performNoticeOfChange(nocSolicitor, caseNumber, nocParty) {
   const { summaryPage, noticeOfChangeC100 } = nocSolicitor;
@@ -210,6 +211,14 @@ test.describe("Add/Remove Barrister for CA case", () => {
         ["caseProgression", "addBarrister"],
         data.addBarristerSnapshotName,
       );
+      await expect(
+        manageBarristerC100.addBarristerSubmit.page.locator(
+          Selectors.headingH2,
+          {
+            hasText: "Check your answers",
+          },
+        ),
+      ).toMatchAriaSnapshot(``);
       await manageBarristerC100.addBarristerSubmit.verifyAccessibility();
       await manageBarristerC100.addBarristerSubmit.clickSubmit();
       await summaryPage.alertBanner.assertEventAlert(
