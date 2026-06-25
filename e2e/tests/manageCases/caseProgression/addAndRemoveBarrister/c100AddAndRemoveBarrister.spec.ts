@@ -218,7 +218,7 @@ test.describe("Add/Remove Barrister for CA case", () => {
             hasText: "Check your answers",
           },
         ),
-      ).toMatchAriaSnapshot(``);
+      ).toBeVisible();
       await manageBarristerC100.addBarristerSubmit.verifyAccessibility();
       await manageBarristerC100.addBarristerSubmit.clickSubmit();
       await summaryPage.alertBanner.assertEventAlert(
