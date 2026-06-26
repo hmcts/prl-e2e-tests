@@ -104,7 +104,7 @@ test.describe("Add/Remove Barrister for CA case", () => {
       },
     },
   ].forEach((data) => {
-    test(`Solicitor adds and removes Barrister for a CA case. @regression @accessibility @nightly`, async ({
+    test(`Solicitor adds and removes Barrister for a CA case. @regression @accessibility @nightly @sunil`, async ({
       nocSolicitor,
       navigationUtils,
     }): Promise<void> => {
@@ -172,7 +172,7 @@ test.describe("Add/Remove Barrister for CA case", () => {
       await partiesPage.assertC100BarristerDetailsRemoved(data.applicants);
     });
 
-    test(`Caseworker adds and removes Barrister for a CA case. @regression @accessibility @nightly`, async ({
+    test(`Caseworker adds and removes Barrister for a CA case. @regression @accessibility @nightly @sunil`, async ({
       nocSolicitor,
       caseWorker,
       navigationUtils,
