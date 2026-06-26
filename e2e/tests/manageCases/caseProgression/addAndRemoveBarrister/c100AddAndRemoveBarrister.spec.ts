@@ -131,10 +131,7 @@ test.describe("Add/Remove Barrister for CA case", () => {
       );
       await manageBarristerC100.addBarrister1Page.clickContinue();
       await manageBarristerC100.addBarristerSubmit.verifyAccessibility();
-      await manageBarristerC100.addBarristerSubmit.assertPageContents(
-        ["caseProgression", "addBarrister"],
-        data.addBarristerSnapshotName,
-      );
+      await manageBarristerC100.addBarristerSubmit.assertPageContents();
       await manageBarristerC100.addBarristerSubmit.clickSubmit();
       await summaryPage.alertBanner.assertEventAlert(
         caseNumber,
@@ -206,6 +203,7 @@ test.describe("Add/Remove Barrister for CA case", () => {
         data.existingRepresentative,
       );
       await manageBarristerC100.addBarrister1Page.clickContinue();
+      await manageBarristerC100.addBarristerSubmit.assertPageContents();
       // await manageBarristerC100.addBarristerSubmit.assertPageContents(
       //   ["caseProgression", "addBarrister"],
       //   data.addBarristerSnapshotName,
