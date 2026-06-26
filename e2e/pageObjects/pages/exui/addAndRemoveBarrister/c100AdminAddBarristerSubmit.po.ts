@@ -1,12 +1,9 @@
-import { expect, Page } from "@playwright/test";
-import { EventPage } from "../eventPage.po.ts";
+import { Page } from "@playwright/test";
+import { CommonStaticText } from "../../../../common/commonStaticText.ts";
+import { CheckYourAnswersPage } from "../checkYourAnswers.po.ts";
 
-export class C100AdminAddBarristerSubmit extends EventPage {
+export class C100AdminAddBarristerSubmit extends CheckYourAnswersPage {
   constructor(page: Page) {
-    super(page, "Add barrister");
-  }
-
-  async assertPageContents(): Promise<void> {
-    await expect(this.submitButton).toBeVisible();
+    super(page, "Add barrister", CommonStaticText.submit);
   }
 }

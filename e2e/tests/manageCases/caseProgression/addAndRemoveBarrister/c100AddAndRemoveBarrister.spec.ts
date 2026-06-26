@@ -103,7 +103,7 @@ test.describe("Add/Remove Barrister for CA case", () => {
       },
     },
   ].forEach((data) => {
-    test(`Solicitor adds and removes Barrister for a CA case. @regression @accessibility @nightly @sunil`, async ({
+    test(`Solicitor adds and removes Barrister for a CA case. @regression @accessibility @nightly`, async ({
       nocSolicitor,
       navigationUtils,
     }): Promise<void> => {
@@ -130,8 +130,11 @@ test.describe("Add/Remove Barrister for CA case", () => {
         data.existingRepresentative,
       );
       await manageBarristerC100.addBarrister1Page.clickContinue();
+      await manageBarristerC100.addBarristerSubmit.assertPageContents(
+        ["caseProgression", "addBarrister"],
+        data.addBarristerSnapshotName,
+      );
       await manageBarristerC100.addBarristerSubmit.verifyAccessibility();
-      await manageBarristerC100.addBarristerSubmit.assertPageContents();
       await manageBarristerC100.addBarristerSubmit.clickSubmit();
       await summaryPage.alertBanner.assertEventAlert(
         caseNumber,
@@ -168,7 +171,7 @@ test.describe("Add/Remove Barrister for CA case", () => {
       await partiesPage.assertC100BarristerDetailsRemoved(data.applicants);
     });
 
-    test(`Caseworker adds and removes Barrister for a CA case. @regression @accessibility @nightly @sunil`, async ({
+    test(`Caseworker adds and removes Barrister for a CA case. @regression @accessibility @nightly`, async ({
       nocSolicitor,
       caseWorker,
       navigationUtils,
@@ -203,11 +206,10 @@ test.describe("Add/Remove Barrister for CA case", () => {
         data.existingRepresentative,
       );
       await manageBarristerC100.addBarrister1Page.clickContinue();
-      await manageBarristerC100.addBarristerSubmit.assertPageContents();
-      // await manageBarristerC100.addBarristerSubmit.assertPageContents(
-      //   ["caseProgression", "addBarrister"],
-      //   data.addBarristerSnapshotName,
-      // );
+      await manageBarristerC100.addBarristerSubmit.assertPageContents(
+        ["caseProgression", "addBarrister"],
+        data.addBarristerSnapshotName,
+      );
       await manageBarristerC100.addBarristerSubmit.verifyAccessibility();
       await manageBarristerC100.addBarristerSubmit.clickSubmit();
       await summaryPage.alertBanner.assertEventAlert(
