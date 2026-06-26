@@ -1,7 +1,6 @@
 import config from "../../../../utils/config.utils.ts";
 import { test, expect } from "../../../fixtures.ts";
 import { jsonDatas } from "../../../../common/caseHelpers/jsonDatas.js";
-import { Selectors } from "../../../../common/selectors.ts";
 
 async function performNoticeOfChange(nocSolicitor, caseNumber, nocParty) {
   const { summaryPage, noticeOfChangeC100 } = nocSolicitor;
