@@ -134,7 +134,7 @@ test.describe("Add/Remove Barrister for CA case", () => {
         ["caseProgression", "addBarrister"],
         data.addBarristerSnapshotName,
       );
-      await manageBarristerC100.addBarristerSubmit.verifyAccessibility();
+      //await manageBarristerC100.addBarristerSubmit.verifyAccessibility(); Accessibility Issue - see linked ticket EXUI-2726
       await manageBarristerC100.addBarristerSubmit.clickSubmit();
       await summaryPage.alertBanner.assertEventAlert(
         caseNumber,
@@ -210,7 +210,7 @@ test.describe("Add/Remove Barrister for CA case", () => {
         ["caseProgression", "addBarrister"],
         data.addBarristerSnapshotName,
       );
-      await manageBarristerC100.addBarristerSubmit.verifyAccessibility();
+      // await manageBarristerC100.addBarristerSubmit.verifyAccessibility(); Accessibility Issue - see linked ticket EXUI-2726
       await manageBarristerC100.addBarristerSubmit.clickSubmit();
       await summaryPage.alertBanner.assertEventAlert(
         caseNumber,
