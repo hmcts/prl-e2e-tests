@@ -8,9 +8,11 @@ export default defineConfig({
   expect: {
     timeout: 20000,
   },
-  workers: 3,
+  workers: 2,
   snapshotPathTemplate: "e2e/snapshots/{arg}{ext}",
-
+  reporter: process.env.CI 
+    ? [['list'], ['blob'], ['html', { open: 'never' }]] 
+    : [['list'], ['html', { open: 'never' }]],
   projects: [
     {
       name: "setup",
