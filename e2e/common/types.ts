@@ -28,6 +28,7 @@ const UserRoles = {
   caseManager: "caseManager",
   nocSolicitor: "nocSolicitor",
   legalAdvisor: "legalAdvisor",
+  localAuthority: "localAuthority", // Added local authority user role
 } as const;
 
 export type UserRole = (typeof UserRoles)[keyof typeof UserRoles];
@@ -94,7 +95,8 @@ export type WACaseWorkerActions =
   | "Return application"
   | "Add barrister"
   | "Remove barrister"
-  | "Review RA Request";
+  | "Review RA Request"
+  | "Add Local Authority";
 
 export type fl401CaseWorkerActions =
   | "Welsh language requirements"
@@ -283,6 +285,8 @@ export type amendEvents =
   | "Amend court details"
   | "Amend Other proceedings"
   | "Amend Type of application";
+
+export type addLocalAuthorityEvents = "Add local authority";
 
 export type documentCategory = "Applicant's statements" | "Position statements";
 

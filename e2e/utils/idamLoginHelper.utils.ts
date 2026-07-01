@@ -21,6 +21,10 @@ export class IdamLoginHelper {
    * @param password The user's password.
    * @param application The URL of the application to sign into.
    * @param userType The type of user (e.g., "citizen", "solicitor").
+   * @param sessionKey Optional override for the cached session file name. Use this
+   *   when the same user logs into multiple distinct applications (e.g. Manage Cases
+   *   vs Manage Organisation) so each gets its own session cache instead of
+   *   colliding on `${userType}.json`. Defaults to `userType`.
    */
   public async signIn(
     page: Page,
@@ -28,8 +32,9 @@ export class IdamLoginHelper {
     password: string,
     application: string,
     userType: string,
+    sessionKey?: string,
   ): Promise<void> {
-    const sessionPath = `${Config.sessionStoragePath}${userType}.json`;
+    const sessionPath = `${Config.sessionStoragePath}${sessionKey ?? userType}.json`;
     if (
       userType !== "citizen" &&
       existsSync(sessionPath) &&
@@ -45,13 +50,12 @@ export class IdamLoginHelper {
           );
         }
       }
-      if (page.url().includes("demo")) {
-        await page.waitForSelector(`#skiplinktarget:text("Sign in")`);
-      } else {
-        await page.waitForSelector(
-          `#skiplinktarget:text("Sign in or create an account")`,
-        );
-      }
+      // Different IDAM clients render different headings under #skiplinktarget —
+      // "Sign in" (e.g. Manage Organisation's xuimowebapp login) vs "Sign in or
+      // create an account" (e.g. Manage Cases / demo). `:text("Sign in")` does a
+      // substring match, so a single wait covers every variant without needing to
+      // special-case each application's copy.
+      await page.waitForSelector(`#skiplinktarget:text("Sign in")`);
       await page.fill(this.fields.username, username);
       await page.fill(this.fields.password, password);
       await page.click(this.submitButton);
@@ -76,11 +80,16 @@ export class IdamLoginHelper {
    * @param page Playwright Page object.
    * @param user Key of the user credentials in Config.
    * @param application The URL of the application.
+   * @param sessionKey Optional override for the cached session file name — see
+   *   {@link signIn} for why you'd want this (e.g. the same `localAuthority`
+   *   user signing into both Manage Cases and Manage Organisation needs two
+   *   separate session caches, not one shared `localAuthority.json`).
    */
   public async signInLongLivedUser(
     page: Page,
     user: keyof typeof Config.userCredentials,
     application: string,
+    sessionKey?: string,
   ): Promise<void> {
     const userCredentials = Config.getUserCredentials(user);
     if (!userCredentials) return;
@@ -91,6 +100,7 @@ export class IdamLoginHelper {
       userCredentials.password,
       application,
       user,
+      sessionKey,
     );
   }
 
