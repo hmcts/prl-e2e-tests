@@ -1,4 +1,4 @@
-import { Page } from "@playwright/test";
+import { expect, Page } from "@playwright/test";
 import { Selectors } from "../../../../common/selectors.ts";
 import { Helpers } from "../../../../common/helpers.ts";
 import { AxeUtils } from "@hmcts/playwright-common";
@@ -142,11 +142,9 @@ export class C100ConfidentialityCheck1Page {
         "caseFieldLabel",
         Selectors.GovukTextFieldLabel,
       ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovLink}:text-is("${C100ConfidentialityCheck1Content.c8DocumentAnchor}")`,
-        1,
-      ),
+      expect(page.locator(Selectors.GovLink).filter({
+        hasText: /Confidential_C8 of.*\.pdf/
+      })).toHaveCount(2),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukFormLabel}:text-is("${C100ConfidentialityCheck1Content.formLabel}")`,
