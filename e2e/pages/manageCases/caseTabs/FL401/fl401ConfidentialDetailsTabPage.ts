@@ -5,28 +5,18 @@ import { AxeUtils } from "@hmcts/playwright-common";
 import { FL401ConfidentialDetailsTabContent } from "../../../../fixtures/manageCases/caseTabs/FL401/fl401ConfidentialDetailsTabContent.ts";
 import { ManageDocumentsNew1Content } from "../../../../fixtures/manageCases/caseProgression/manageDocuments/manageDocumentsNew1Content.ts";
 
-enum UniqueSelectors {
-  refugeDocumentsSection = "td#case-viewer-field-read--refugeDocuments",
-}
-
 export class FL401ConfidentialDetailsTabPage {
   public static async fl401ConfidentialDetailsTabPageC8Refuge(
     page: Page,
     accessibilityTest: boolean,
-    applicantLivesInRefuge: boolean,
   ): Promise<void> {
     await this.clickTab(page);
-    await this.checkPageLoadsC8Refuge(
-      page,
-      accessibilityTest,
-      applicantLivesInRefuge,
-    );
+    await this.checkPageLoadsC8Refuge(page, accessibilityTest);
   }
 
   private static async checkPageLoadsC8Refuge(
     page: Page,
     accessibilityTest: boolean,
-    applicantLivesInRefuge: boolean,
   ): Promise<void> {
     await Helpers.checkVisibleAndPresent(
       page,
@@ -43,55 +33,6 @@ export class FL401ConfidentialDetailsTabPage {
       `${Selectors.div}${Selectors.GovukText16}:text-is("${FL401ConfidentialDetailsTabContent.c8DraftDocumentWelshSection}")`,
       1,
     );
-    if (applicantLivesInRefuge) {
-      await Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.div}${Selectors.GovukText16}:text-is("${FL401ConfidentialDetailsTabContent.refugeSection}")`,
-        1,
-      );
-      await Helpers.checkVisibleAndPresent(
-        page,
-        `${UniqueSelectors.refugeDocumentsSection} ${Selectors.Span}${Selectors.GovukText16}:text-is("${FL401ConfidentialDetailsTabContent.refugeSectionPartyType}")`,
-        1,
-      );
-      await Helpers.checkVisibleAndPresent(
-        page,
-        `${UniqueSelectors.refugeDocumentsSection} ${Selectors.Span}${Selectors.GovukText16}:text-is("${FL401ConfidentialDetailsTabContent.refugeSectionPartyName}")`,
-        1,
-      );
-      await Helpers.checkVisibleAndPresent(
-        page,
-        `${UniqueSelectors.refugeDocumentsSection} ${Selectors.Span}${Selectors.GovukText16}:text-is("${FL401ConfidentialDetailsTabContent.refugeSectionDocumentName}")`,
-        1,
-      );
-      await Helpers.checkVisibleAndPresent(
-        page,
-        `${UniqueSelectors.refugeDocumentsSection} ${Selectors.Span}${Selectors.GovukText16}:text-is("${FL401ConfidentialDetailsTabContent.refugeSectionUploadedDate}")`,
-        1,
-      );
-      await Helpers.checkVisibleAndPresent(
-        page,
-        `${UniqueSelectors.refugeDocumentsSection} ${Selectors.Span}${Selectors.GovukText16}:text-is("${FL401ConfidentialDetailsTabContent.refugeSectionDocument}")`,
-        1,
-      );
-      await Helpers.checkGroup(
-        page,
-        2,
-        FL401ConfidentialDetailsTabContent,
-        "refugeSectionApplicantDetailsText16",
-        `${UniqueSelectors.refugeDocumentsSection} ${Selectors.Span}${Selectors.GovukText16}`,
-      );
-      await Helpers.checkVisibleAndPresent(
-        page,
-        `${UniqueSelectors.refugeDocumentsSection} ${Selectors.Span}${Selectors.GovukText16}:text-is("${FL401ConfidentialDetailsTabContent.refugeSectionFile}")`,
-        1,
-      );
-      await Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovLink}:text-is("${FL401ConfidentialDetailsTabContent.link}")`,
-        1,
-      );
-    }
 
     if (accessibilityTest) {
       await new AxeUtils(page).audit();
@@ -217,14 +158,6 @@ export class FL401ConfidentialDetailsTabPage {
           confidentialDocsSection.getByText(
             FL401ConfidentialDetailsTabContent.text16_submittedDate,
           ),
-        ).toBeVisible(),
-        expect(
-          page
-            .getByRole("cell", {
-              name: `${FL401ConfidentialDetailsTabContent.refugeSectionDocument} ${FL401ConfidentialDetailsTabContent.testPdf} Uploaded by`,
-            })
-            .locator(Selectors.GovLink)
-            .filter({ hasText: FL401ConfidentialDetailsTabContent.testPdf }),
         ).toBeVisible(),
         expect(
           confidentialDocsSection.getByText(

@@ -7,7 +7,6 @@ export enum ConfidentialityCheck1Content {
   powerOfArrestAnchor = "Power_of_arrest.pdf",
   mockFileAnchor = "mockFile.pdf",
   coverLetterAnchor = "cover_letter_re1.pdf",
-  c8DocumentAnchor = "C8_Document.pdf",
   text161 = "Applicants pack",
   text162 = "Local Authority pack",
   text163 = "Others pack",

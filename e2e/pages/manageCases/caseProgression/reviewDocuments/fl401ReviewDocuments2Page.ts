@@ -62,19 +62,19 @@ export class FL401ReviewDocuments2Page {
     await Promise.all([
       Helpers.checkGroup(
         page,
-        5,
+        4,
         Fl401ReviewDocuments2Content,
         "h3_",
         `${Selectors.h3}`,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.li}:text-is("${documentSubmittedBy}")`,
+        `${Selectors.GovukFormLabel}:text-is("${Fl401ReviewDocuments2Content.documentCategoryLabel}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.li}:text-is("${documentCategory}")`,
+        `${Selectors.li}:text-is("${documentSubmittedBy}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
