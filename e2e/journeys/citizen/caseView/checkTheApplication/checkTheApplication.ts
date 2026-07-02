@@ -47,16 +47,16 @@ export class CheckTheApplication {
     // this is a citizen c100 case
     if (isApplicant) {
       await expect(
-        page.getByRole("link", { name: "coversheet.pdf" }),
-      ).toBeVisible();
-      await expect(
-        page.getByRole("link", { name: "coversheet_welsh.pdf" }),
-      ).toBeVisible();
-      await expect(
         page.getByRole("link", { name: "cover_letter_ap6.pdf" }),
       ).toBeVisible();
       await expect(
         page.getByRole("link", { name: "cover_letter_welsh_ap6.pdf" }),
+      ).toBeVisible();
+         await expect(
+        page.getByRole("link", { name: "coversheet.pdf" }),
+      ).toBeVisible();
+      await expect(
+        page.getByRole("link", { name: "coversheet_welsh.pdf" }),
       ).toBeVisible();
       await expect(
         page.getByRole("link", { name: "C100FinalDocument.pdf" }),
@@ -106,6 +106,12 @@ export class CheckTheApplication {
       ).toBeVisible();
       await expect(
         page.getByRole("link", { name: "cover_letter_welsh_re5.pdf" }),
+      ).toBeVisible();
+      await expect(
+        page.getByRole("link", { name: "coversheet.pdf" }),
+      ).toBeVisible();
+      await expect(
+        page.getByRole("link", { name: "coversheet_welsh.pdf" }),
       ).toBeVisible();
       await expect(
         page.getByRole("link", { name: "C100FinalDocument.pdf" }),
@@ -159,6 +165,7 @@ export class CheckTheApplication {
         page.getByRole("link", { name: "C1A_Blank_Welsh.pdf" }),
       ).toBeVisible();
         
+      //Check coversheet contents do not contain any mention of addresses
       const extractedTextFromPdf = await this.getPdfContents(page,'coversheet.pdf');
       expect(extractedTextFromPdf.text).not.toContain("Your address");
 
