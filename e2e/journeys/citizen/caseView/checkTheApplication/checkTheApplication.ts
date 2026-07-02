@@ -1,13 +1,5 @@
 import { expect, Page } from "@playwright/test";
-import { randomUUID } from "crypto";
-import { PDFParse } from "pdf-parse";
-import os from "os";
-import path from "path";
-import sharp from "sharp";
-import Tesseract from "tesseract.js";
-
-// Local fallback type for pdf parsing result
-type TextResult = any;
+import { PDFParse, TextResult } from "pdf-parse";
 
 interface checkTheApplicationParams {
   page: Page;
@@ -54,6 +46,12 @@ export class CheckTheApplication {
     ).toBeVisible();
     // this is a citizen c100 case
     if (isApplicant) {
+      await expect(
+        page.getByRole("link", { name: "coversheet.pdf" }),
+      ).toBeVisible();
+      await expect(
+        page.getByRole("link", { name: "coversheet_welsh.pdf" }),
+      ).toBeVisible();
       await expect(
         page.getByRole("link", { name: "cover_letter_ap6.pdf" }),
       ).toBeVisible();
@@ -103,29 +101,6 @@ export class CheckTheApplication {
         }),
       ).toBeVisible();
     } else {
-      // Snapshot: coversheet.pdf
-      const coversheetHref = await page
-        .getByRole("link", { name: "coversheet.pdf" })
-        .evaluate((element) => (element as HTMLAnchorElement).href);
-      if (!coversheetHref) {
-        throw new Error("coversheet.pdf link does not have an href");
-      }
-
-      const extractedTextFromPdf = await this.getPdfContents(page,'coversheet.pdf');
-      expect(extractedTextFromPdf.text).not.toContain("Your address");
-
-      const coversheetWelshHref = await page
-        .getByRole("link", { name: "coversheet_welsh.pdf" })
-        .evaluate((element) => (element as HTMLAnchorElement).href);
-      if (!coversheetWelshHref) {
-        throw new Error("coversheet_welsh.pdf link does not have an href");
-      }
-
-      await page.waitForTimeout(5000)
-      const extractedWelshText = await this.getPdfContents(page, 'coversheet_welsh.pdf');
-      await expect(extractedWelshText.text).toContain('Eich rhif achos yw:');
-      await expect(extractedWelshText.text).not.toContain('Eich cyfeiriad');
-
       await expect(
         page.getByRole("link", { name: "cover_letter_re5.pdf" }),
       ).toBeVisible();
@@ -183,6 +158,13 @@ export class CheckTheApplication {
       await expect(
         page.getByRole("link", { name: "C1A_Blank_Welsh.pdf" }),
       ).toBeVisible();
+        
+      const extractedTextFromPdf = await this.getPdfContents(page,'coversheet.pdf');
+      expect(extractedTextFromPdf.text).not.toContain("Your address");
+
+      const extractedWelshText = await this.getPdfContents(page, 'coversheet_welsh.pdf');
+      await expect(extractedWelshText.text).toContain('Eich rhif achos yw:');
+      await expect(extractedWelshText.text).not.toContain('Eich cyfeiriad');
     }
   }
 

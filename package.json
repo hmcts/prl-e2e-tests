@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "private": true,
   "engines": {
-    "node": ">=20.20.2"
+    "node": ">=20.11.1"
   },
   "type": "module",
   "devDependencies": {
@@ -17,12 +17,10 @@
     "eslint": "^10.0.0",
     "eslint-plugin-playwright": "^2.1.0",
     "jest": "^30.0.0",
-    "pdf-parse": "^2.4.5",
     "playwright-core": "^1.60.0",
     "prettier": "^3.3.3",
-    "sharp": "^0.34.5",
+    "pdf-parse": "^2.4.5",
     "simple-git": "^3.27.0",
-    "tesseract.js": "^7.0.0",
     "tsx": "^4.19.4",
     "typescript": "^5.5.4",
     "typescript-eslint": "^8.8.0",
