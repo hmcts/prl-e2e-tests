@@ -88,6 +88,7 @@ export type WACaseWorkerActions =
   | "Service of application"
   | "Create a bundle"
   | "Manage documents"
+  | "Rename documents"
   | "Statement of service"
   | "Link cases"
   | "Manage case links"

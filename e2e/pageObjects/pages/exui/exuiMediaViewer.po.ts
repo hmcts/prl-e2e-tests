@@ -42,6 +42,21 @@ export class ExuiMediaViewerPage {
     return parseInt(text.replace("/", ""));
   }
 
+  public async verifyTextPresent(text: string): Promise<void> {
+    // Restrict to visible matches: the PDF's Bookmarks/outline panel contains the
+    // same filenames in hidden <div class="outlineItem"> elements, so an unscoped
+    // getByText().first() resolves to a hidden node on the visible Index page.
+    await expect(
+      this.page.getByText(text).filter({ visible: true }).first(),
+    ).toBeVisible();
+  }
+
+  public async verifyTextNotPresent(text: string): Promise<void> {
+    await expect(
+      this.page.getByText(text).filter({ visible: true }),
+    ).toHaveCount(0);
+  }
+
   public async runVisualTestOnAllPages(
     page: Page,
     screenShotPath: string[],
