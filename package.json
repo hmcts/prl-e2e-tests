@@ -45,5 +45,5 @@
     "test:shard": "playwright test --shard=$SHARD_INDEX/$SHARD_TOTAL",
     "report:merge": "playwright merge-reports --reporter html ./all-blob-reports"
   },
-  "packageManager": "yarn@4.16.0"
+  "packageManager": "yarn@4.17.0"
 }

@@ -1,15 +1,9 @@
-import { expect, Page } from "@playwright/test";
+import { Page } from "@playwright/test";
 import { IntroPage } from "../../../../pages/citizen/caseView/reasonableAdjustments/introPage.ts";
 import { LanguageRequirementsAndSpecialArrangementsPage } from "../../../../pages/citizen/caseView/reasonableAdjustments/languageRequirementsAndSpecialArrangementsPage.ts";
 import { LanguageRequirementsAndSpecialArrangementsReviewPage } from "../../../../pages/citizen/caseView/reasonableAdjustments/languageRequirementsAndSpecialArrangementsReviewPage.ts";
-import { ReasonableAdjustmentsSelectionPage } from "../../../../pages/citizen/caseView/reasonableAdjustments/reasonableAdjustmentsSelectionPage.ts";
-import { HelpCommunicatingAndUnderstandingPage } from "../../../../pages/citizen/caseView/reasonableAdjustments/helpCommunicatingAndUnderstandingPage.ts";
-import { ReasonableAdjustmentsReviewPage } from "../../../../pages/citizen/caseView/reasonableAdjustments/reasonableAdjustmentsReviewPage.ts";
 import { ConfirmationPage } from "../../../../pages/citizen/caseView/reasonableAdjustments/confirmationPage.ts";
-import {
-  CaseFlagInfo,
-  CitizenC100CaseUtils,
-} from "../../../../utils/citizenC100CaseUtils.js";
+import { CitizenC100CaseUtils } from "../../../../utils/citizenC100CaseUtils.js";
 
 interface reasonableAdjustmentsParams {
   page: Page;
@@ -27,11 +21,7 @@ enum UniqueSelectors {
 export class ReasonableAdjustments {
   public static async reasonableAdjustments({
     page,
-    needsReasonableAdjustment,
     accessibilityTest,
-    isApplicant,
-    citizenC100CaseUtils,
-    caseRef,
   }: reasonableAdjustmentsParams): Promise<void> {
     await page
       .locator(UniqueSelectors.supportYouNeedDuringYourCaseSelector)
@@ -45,31 +35,8 @@ export class ReasonableAdjustments {
       page,
       accessibilityTest,
     );
-    await ReasonableAdjustmentsSelectionPage.reasonableAdjustmentsSelectionPage(
-      page,
-      needsReasonableAdjustment,
-    );
-    if (needsReasonableAdjustment) {
-      await HelpCommunicatingAndUnderstandingPage.helpCommunicatingAndUnderstandingPage(
-        page,
-      );
-    }
-    await ReasonableAdjustmentsReviewPage.reasonableAdjustmentsReviewPage(page);
     await ConfirmationPage.confirmationPage(page, accessibilityTest);
-    if (needsReasonableAdjustment) {
-      // check case flags added via API request for case data - no need to actually go to ExUI
-      const caseFlagInfo: CaseFlagInfo =
-        await citizenC100CaseUtils.fetchCitizenCreatedCaseFlags(
-          caseRef,
-          isApplicant,
-        );
-      expect(caseFlagInfo.caseFlagName).toEqual("Lip speaker");
-      expect(caseFlagInfo.status).toEqual("Requested");
-      if (isApplicant) {
-        expect(caseFlagInfo.partyName).toEqual("John Doe");
-      } else {
-        expect(caseFlagInfo.partyName).toEqual("Mary Richards");
-      }
-    }
+    // There won't be a 'Requested' status flag anymore after the confirmation screen.
+    // Now it will raise a WA task in EXUI called 'Review support request' where the caseworker can create a case flag from it.
   }
 }
