@@ -133,7 +133,8 @@ def generateParallelShards(String scriptName, String reportPrefix, int totalShar
             stage("${reportPrefix} - Shard ${shardIndex}/${totalShards}") {
                 try {
                     withEnv(["SHARD_INDEX=${shardIndex}", "SHARD_TOTAL=${totalShards}"]) {
-                        yarnBuilder.yarn("${scriptName} --shard=${shardIndex}/${totalShards}")
+            // setup project is executed in a dedicated stage; skip project dependencies for shard runs
+            yarnBuilder.yarn("${scriptName} --no-deps --shard=${shardIndex}/${totalShards}")
                     }
                 } catch (Error) {
                     unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
@@ -187,7 +188,7 @@ def runCrossBrowser(String firefoxCmd, String webkitCmd, String reportName) {
             sh 'mkdir -p all-blob-reports'
             
             try {
-                yarnBuilder.yarn(firefoxCmd)
+        yarnBuilder.yarn("${firefoxCmd} --no-deps")
             } catch (Error) {
                 unstable(message: "${reportName} - Firefox tests unstable: " + Error.toString())
             } finally {
@@ -196,7 +197,7 @@ def runCrossBrowser(String firefoxCmd, String webkitCmd, String reportName) {
             }
             
             try {
-                yarnBuilder.yarn(webkitCmd)
+        yarnBuilder.yarn("${webkitCmd} --no-deps")
             } catch (Error) {
                 unstable(message: "${reportName} - Webkit tests unstable: " + Error.toString())
             } finally {
@@ -260,7 +261,7 @@ withNightlyPipeline(type, product, component, 600) {
             stage("${params.tag} ${params.tests ? "custom" : ""} tests - ${params.browser} - Shard ${shardIndex}") {
                 try {
                   withEnv(["SHARD_INDEX=${shardIndex}", "SHARD_TOTAL=${totalShards}"]) {
-                      yarnBuilder.yarn("playwright test ${params.tests} ${params.tag ? "--grep ${params.tag}": ""} --project ${params.browser} --shard=${shardIndex}/${totalShards}")
+                      yarnBuilder.yarn("playwright test ${params.tests} ${params.tag ? "--grep ${params.tag}": ""} --project ${params.browser} --no-deps --shard=${shardIndex}/${totalShards}")
                   }
                 } catch (Error) {
                   unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
