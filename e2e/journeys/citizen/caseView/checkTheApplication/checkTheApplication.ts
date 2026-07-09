@@ -1,4 +1,5 @@
 import { expect, Page } from "@playwright/test";
+import { PDFParse, TextResult } from "pdf-parse";
 
 interface checkTheApplicationParams {
   page: Page;
@@ -51,6 +52,12 @@ export class CheckTheApplication {
       await expect(
         page.getByRole("link", { name: "cover_letter_welsh_ap6.pdf" }),
       ).toBeVisible();
+         await expect(
+        page.getByRole("link", { name: "coversheet.pdf" }),
+      ).toBeVisible();
+      await expect(
+        page.getByRole("link", { name: "coversheet_welsh.pdf" }),
+      ).toBeVisible();
       await expect(
         page.getByRole("link", { name: "C100FinalDocument.pdf" }),
       ).toBeVisible();
@@ -95,16 +102,16 @@ export class CheckTheApplication {
       ).toBeVisible();
     } else {
       await expect(
-        page.getByRole("link", { name: "coversheet.pdf" }),
-      ).toBeVisible();
-      await expect(
-        page.getByRole("link", { name: "coversheet_welsh.pdf" }),
-      ).toBeVisible();
-      await expect(
         page.getByRole("link", { name: "cover_letter_re5.pdf" }),
       ).toBeVisible();
       await expect(
         page.getByRole("link", { name: "cover_letter_welsh_re5.pdf" }),
+      ).toBeVisible();
+      await expect(
+        page.getByRole("link", { name: "coversheet.pdf" }),
+      ).toBeVisible();
+      await expect(
+        page.getByRole("link", { name: "coversheet_welsh.pdf" }),
       ).toBeVisible();
       await expect(
         page.getByRole("link", { name: "C100FinalDocument.pdf" }),
@@ -157,6 +164,34 @@ export class CheckTheApplication {
       await expect(
         page.getByRole("link", { name: "C1A_Blank_Welsh.pdf" }),
       ).toBeVisible();
+        
+      //Check coversheet contents do not contain any mention of addresses
+      const extractedTextFromPdf = await this.getPdfContents(page,'coversheet.pdf');
+      expect(extractedTextFromPdf.text).not.toContain("Your address");
+
+      const extractedWelshText = await this.getPdfContents(page, 'coversheet_welsh.pdf');
+      await expect(extractedWelshText.text).toContain('Eich rhif achos yw:');
+      await expect(extractedWelshText.text).not.toContain('Eich cyfeiriad');
     }
+  }
+
+  private static async getPdfContents(
+    page: Page,
+    pdfName: string,
+  ): Promise<TextResult> {
+    // opens pdf in new tab
+    const [newPage] = await Promise.all([
+      page.context().waitForEvent("page"),
+      page.getByText(pdfName).click(),
+    ]);
+
+    const pdfUrl = newPage.url();
+    console.log(`PDF URL for ${pdfName}: ${pdfUrl}`);
+
+    const response = await page.request.get(pdfUrl);
+    const uint8 = new Uint8Array(await response.body());
+
+    const parser = new PDFParse({ data: uint8 });
+    return await parser.getText();
   }
 }
