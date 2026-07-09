@@ -90,6 +90,7 @@ export enum Selectors {
   GovukLegendS = ".govuk-fieldset__legend--s",
   GovukLegendL = ".govuk-fieldset__legend--l",
   GovukWarningText = ".govuk-warning-text__text",
+  GovukTag = ".govuk-tag app-task-list__tag govuk-tag--grey",
   p = "p",
   li = "li",
   ul = "ul",
