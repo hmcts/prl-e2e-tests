@@ -41,10 +41,8 @@ export class Config {
     },
   };
 
-  public static readonly sessionStoragePath: string = path.join(
-    import.meta.dirname,
-    "../.sessions/",
-  );
+  public static readonly sessionStoragePath: string =
+    Config.resolveSessionStoragePath(process.env.SESSION_STORAGE_PATH);
 
   public static readonly citizenFrontendBaseURL: string =
     Config.ensureTrailingSlash(
@@ -77,6 +75,21 @@ export class Config {
 
   private static ensureNoTrailingSlash(url: string): string {
     return url.endsWith("/") ? url.slice(0, -1) : url;
+  }
+
+  private static resolveSessionStoragePath(customPath?: string): string {
+    const defaultPath = path.join(import.meta.dirname, "../.sessions/");
+    if (!customPath) {
+      return defaultPath;
+    }
+
+    const resolvedPath = path.isAbsolute(customPath)
+      ? customPath
+      : path.resolve(import.meta.dirname, customPath);
+
+    return resolvedPath.endsWith(path.sep)
+      ? resolvedPath
+      : `${resolvedPath}${path.sep}`;
   }
 
   public static getEnvironment(url: string): string {

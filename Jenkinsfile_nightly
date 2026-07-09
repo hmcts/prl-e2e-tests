@@ -132,7 +132,11 @@ def generateParallelShards(String scriptName, String reportPrefix, int totalShar
         parallelStages["Shard ${shardIndex}/${totalShards}"] = {
             stage("${reportPrefix} - Shard ${shardIndex}/${totalShards}") {
                 try {
-                    withEnv(["SHARD_INDEX=${shardIndex}", "SHARD_TOTAL=${totalShards}"]) {
+          withEnv([
+            "SHARD_INDEX=${shardIndex}",
+            "SHARD_TOTAL=${totalShards}",
+            "SESSION_STORAGE_PATH=${env.SESSION_STORAGE_PATH}",
+          ]) {
             // setup project is executed in a dedicated stage; skip project dependencies for shard runs
             yarnBuilder.yarn("${scriptName} --no-deps --shard=${shardIndex}/${totalShards}")
                     }
@@ -187,22 +191,24 @@ def runCrossBrowser(String firefoxCmd, String webkitCmd, String reportName) {
             sh 'rm -rf blob-report playwright-report all-blob-reports || true'
             sh 'mkdir -p all-blob-reports'
             
-            try {
-        yarnBuilder.yarn("${firefoxCmd} --no-deps")
-            } catch (Error) {
-                unstable(message: "${reportName} - Firefox tests unstable: " + Error.toString())
-            } finally {
-                // Stash blobs into directory immediately so the next run doesn't risk overwriting
-                sh 'cp -r blob-report/* all-blob-reports/ || true'
-            }
-            
-            try {
-        yarnBuilder.yarn("${webkitCmd} --no-deps")
-            } catch (Error) {
-                unstable(message: "${reportName} - Webkit tests unstable: " + Error.toString())
-            } finally {
-                sh 'cp -r blob-report/* all-blob-reports/ || true'
-            }
+      withEnv(["SESSION_STORAGE_PATH=${env.SESSION_STORAGE_PATH}"]) {
+        try {
+          yarnBuilder.yarn("${firefoxCmd} --no-deps")
+        } catch (Error) {
+          unstable(message: "${reportName} - Firefox tests unstable: " + Error.toString())
+        } finally {
+          // Stash blobs into directory immediately so the next run doesn't risk overwriting
+          sh 'cp -r blob-report/* all-blob-reports/ || true'
+        }
+                
+        try {
+          yarnBuilder.yarn("${webkitCmd} --no-deps")
+        } catch (Error) {
+          unstable(message: "${reportName} - Webkit tests unstable: " + Error.toString())
+        } finally {
+          sh 'cp -r blob-report/* all-blob-reports/ || true'
+        }
+      }
             
             yarnBuilder.yarn("playwright merge-reports --reporter html ./all-blob-reports")
             
@@ -227,6 +233,7 @@ withNightlyPipeline(type, product, component, 600) {
   env.CITIZEN_FRONTEND_BASE_URL = params.CITIZEN_FRONTEND_BASE_URL
   env.MANAGE_CASES_BASE_URL = params.MANAGE_CASES_BASE_URL
   env.FUNCTIONAL_TESTS_WORKERS = params.FUNCTIONAL_TESTS_WORKERS
+  env.SESSION_STORAGE_PATH = "${env.WORKSPACE}/e2e/.sessions/"
   enableSlackNotifications(channel)
   
   int totalShards = params.TOTAL_SHARDS.toInteger()
@@ -247,7 +254,10 @@ withNightlyPipeline(type, product, component, 600) {
     stage('Generate Auth Sessions (Global Setup)') {
         try {
              // Run setup sequentially BEFORE shards start to prevent IDAM rate limits and JSON file-locking
-             yarnBuilder.yarn('playwright test --project setup')
+       sh 'mkdir -p "${SESSION_STORAGE_PATH}"'
+       withEnv(["SESSION_STORAGE_PATH=${env.SESSION_STORAGE_PATH}"]) {
+      yarnBuilder.yarn('playwright test --project setup')
+       }
         } catch (Error) {
              unstable(message: "Global setup failed to generate auth sessions: " + Error.toString())
         }
@@ -260,7 +270,11 @@ withNightlyPipeline(type, product, component, 600) {
         customStages["Custom Shard ${shardIndex}/${totalShards}"] = {
             stage("${params.tag} ${params.tests ? "custom" : ""} tests - ${params.browser} - Shard ${shardIndex}") {
                 try {
-                  withEnv(["SHARD_INDEX=${shardIndex}", "SHARD_TOTAL=${totalShards}"]) {
+                  withEnv([
+                    "SHARD_INDEX=${shardIndex}",
+                    "SHARD_TOTAL=${totalShards}",
+                    "SESSION_STORAGE_PATH=${env.SESSION_STORAGE_PATH}",
+                  ]) {
                       yarnBuilder.yarn("playwright test ${params.tests} ${params.tag ? "--grep ${params.tag}": ""} --project ${params.browser} --no-deps --shard=${shardIndex}/${totalShards}")
                   }
                 } catch (Error) {
