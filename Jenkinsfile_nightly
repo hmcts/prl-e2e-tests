@@ -269,7 +269,7 @@ withNightlyPipeline(type, product, component, 600) {
           echo "SESSION_STORAGE_PATH=${SESSION_STORAGE_PATH}"
           ls -la "${SESSION_STORAGE_PATH}" || true
 
-          required_files="solicitor.json judge.json caseManager.json caseWorker.json courtAdminStoke.json nocSolicitor.json legalAdvisor.json"
+          required_files="solicitor.json judge.json caseManager.json caseWorker.json courtAdminStoke.json nocSolicitor.json legalAdvisor.json setupTokens.json"
           missing=0
 
           for file in ${required_files}; do

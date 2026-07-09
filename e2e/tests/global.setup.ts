@@ -2,8 +2,38 @@ import { test as setup } from "./fixtures.ts";
 import dotenv from "dotenv";
 import config from "../utils/config.utils.ts";
 import process from "node:process";
+import { mkdirSync, readFileSync, writeFileSync } from "fs";
+import path from "path";
 
 dotenv.config();
+
+type SetupTokens = {
+  CREATE_USER_BEARER_TOKEN?: string;
+  COURTNAV_CREATE_CASE_BEARER_TOKEN?: string;
+  S2S_TOKEN?: string;
+};
+
+const setupTokensPath = path.join(
+  config.sessionStoragePath,
+  "setupTokens.json",
+);
+
+const persistSetupTokens = (tokens: SetupTokens): void => {
+  mkdirSync(config.sessionStoragePath, { recursive: true });
+
+  let existingTokens: SetupTokens = {};
+  try {
+    existingTokens = JSON.parse(readFileSync(setupTokensPath, "utf-8"));
+  } catch {
+    existingTokens = {};
+  }
+
+  writeFileSync(
+    setupTokensPath,
+    JSON.stringify({ ...existingTokens, ...tokens }, null, 2),
+    "utf-8",
+  );
+};
 
 setup.describe("Setup users and retrieve tokens", () => {
   setup.beforeEach(async ({ page }) => {
@@ -21,6 +51,7 @@ setup.describe("Setup users and retrieve tokens", () => {
     async ({ tokenUtils }) => {
       const token = await tokenUtils.getAccessToken("citizenCreateUser");
       process.env.CREATE_USER_BEARER_TOKEN = token;
+      persistSetupTokens({ CREATE_USER_BEARER_TOKEN: token });
     },
   );
 
@@ -37,6 +68,7 @@ setup.describe("Setup users and retrieve tokens", () => {
     async ({ tokenUtils }) => {
       const token = await tokenUtils.getAccessToken("daCourtNavCreateCase");
       process.env.COURTNAV_CREATE_CASE_BEARER_TOKEN = token;
+      persistSetupTokens({ COURTNAV_CREATE_CASE_BEARER_TOKEN: token });
     },
   );
 
@@ -46,6 +78,7 @@ setup.describe("Setup users and retrieve tokens", () => {
         microservice: "prl_cos_api",
       });
       process.env.S2S_TOKEN = s2sToken;
+      persistSetupTokens({ S2S_TOKEN: s2sToken });
     } catch (error) {
       if (error.message?.includes("502")) {
         throw new Error(

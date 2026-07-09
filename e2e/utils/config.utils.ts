@@ -1,5 +1,6 @@
 import dotenv from "dotenv";
 import path from "path";
+import { existsSync, readFileSync } from "fs";
 
 import { UserCredentials, UserRole } from "../common/types.ts";
 
@@ -100,6 +101,8 @@ export class Config {
   }
 
   public static setEnvironmentVariables(): void {
+    this.loadPersistedSetupTokens();
+
     process.env.CITIZEN_TEST_ENV = this.getEnvironment(
       this.citizenFrontendBaseURL,
     );
@@ -113,6 +116,43 @@ export class Config {
       const prNumber: string =
         this.manageCasesBaseURL.match(/-pr-(\d+)\b/)?.[1] ?? "unknown";
       process.env.CCD_DATA_STORE_URL = `https://ccd-data-store-api-prl-ccd-definitions-pr-${prNumber}.preview.platform.hmcts.net`;
+    }
+  }
+
+  private static loadPersistedSetupTokens(): void {
+    const setupTokensPath = path.join(this.sessionStoragePath, "setupTokens.json");
+    if (!existsSync(setupTokensPath)) {
+      return;
+    }
+
+    try {
+      const persistedTokens = JSON.parse(readFileSync(setupTokensPath, "utf-8")) as {
+        CREATE_USER_BEARER_TOKEN?: string;
+        COURTNAV_CREATE_CASE_BEARER_TOKEN?: string;
+        S2S_TOKEN?: string;
+      };
+
+      if (
+        !process.env.CREATE_USER_BEARER_TOKEN &&
+        persistedTokens.CREATE_USER_BEARER_TOKEN
+      ) {
+        process.env.CREATE_USER_BEARER_TOKEN =
+          persistedTokens.CREATE_USER_BEARER_TOKEN;
+      }
+
+      if (
+        !process.env.COURTNAV_CREATE_CASE_BEARER_TOKEN &&
+        persistedTokens.COURTNAV_CREATE_CASE_BEARER_TOKEN
+      ) {
+        process.env.COURTNAV_CREATE_CASE_BEARER_TOKEN =
+          persistedTokens.COURTNAV_CREATE_CASE_BEARER_TOKEN;
+      }
+
+      if (!process.env.S2S_TOKEN && persistedTokens.S2S_TOKEN) {
+        process.env.S2S_TOKEN = persistedTokens.S2S_TOKEN;
+      }
+    } catch (error) {
+      console.warn("Failed to load persisted setup tokens:", error);
     }
   }
 
