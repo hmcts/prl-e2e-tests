@@ -233,7 +233,6 @@ withNightlyPipeline(type, product, component, 600) {
   env.CITIZEN_FRONTEND_BASE_URL = params.CITIZEN_FRONTEND_BASE_URL
   env.MANAGE_CASES_BASE_URL = params.MANAGE_CASES_BASE_URL
   env.FUNCTIONAL_TESTS_WORKERS = params.FUNCTIONAL_TESTS_WORKERS
-  env.SESSION_STORAGE_PATH = "${env.WORKSPACE}/e2e/.sessions/"
   enableSlackNotifications(channel)
   
   int totalShards = params.TOTAL_SHARDS.toInteger()
@@ -254,6 +253,7 @@ withNightlyPipeline(type, product, component, 600) {
     stage('Generate Auth Sessions (Global Setup)') {
         try {
              // Run setup sequentially BEFORE shards start to prevent IDAM rate limits and JSON file-locking
+             env.SESSION_STORAGE_PATH = "${pwd()}/e2e/.sessions/"
        sh 'mkdir -p "${SESSION_STORAGE_PATH}"'
        withEnv(["SESSION_STORAGE_PATH=${env.SESSION_STORAGE_PATH}"]) {
       yarnBuilder.yarn('playwright test --project setup')
@@ -261,6 +261,30 @@ withNightlyPipeline(type, product, component, 600) {
         } catch (Error) {
              unstable(message: "Global setup failed to generate auth sessions: " + Error.toString())
         }
+    }
+
+    stage('Verify Auth Sessions') {
+      withEnv(["SESSION_STORAGE_PATH=${env.SESSION_STORAGE_PATH}"]) {
+        sh '''
+          echo "SESSION_STORAGE_PATH=${SESSION_STORAGE_PATH}"
+          ls -la "${SESSION_STORAGE_PATH}" || true
+
+          required_files="solicitor.json judge.json caseManager.json caseWorker.json courtAdminStoke.json nocSolicitor.json legalAdvisor.json"
+          missing=0
+
+          for file in ${required_files}; do
+            if [ ! -f "${SESSION_STORAGE_PATH}${file}" ]; then
+              echo "Missing session file: ${SESSION_STORAGE_PATH}${file}"
+              missing=1
+            fi
+          done
+
+          if [ "${missing}" -ne 0 ]; then
+            echo "One or more required auth sessions are missing. Failing before test shards start."
+            exit 1
+          fi
+        '''
+      }
     }
 
     if(params.tests || params.tag) {
