@@ -5,10 +5,6 @@ import { AxeUtils } from "@hmcts/playwright-common";
 import { Helpers } from "../../../../common/helpers.ts";
 import { LegalRepresentationC7Content } from "../../../../fixtures/citizen/caseView/respondToTheApplicationC7/legalRepresentationContent.ts";
 
-enum UniqueSelectors {
-  optionRadio = "#legalRepresentation-2",
-}
-
 export class LegalRepresentationConfirmationPage {
   public static async legalRepresentationConfirmationPage(
     page: Page,

@@ -1,7 +1,6 @@
 import { Page } from "@playwright/test";
 import { Selectors } from "../../../../common/selectors.ts";
 import { CommonStaticText } from "../../../../common/commonStaticText.ts";
-import { AxeUtils } from "@hmcts/playwright-common";
 import { Helpers } from "../../../../common/helpers.ts";
 import { InternationalElementsContent } from "../../../../fixtures/citizen/caseView/respondToTheApplicationC7/internationalElementsContent.ts";
 
@@ -33,7 +32,7 @@ export class InternationalElements2Page {
       1,
     );
     if (accessibilityTest) {
-      //await new AxeUtils(page).audit(); // failing accessibility check, ticket raised for a fix FPVTL-XXXX
+      //await new AxeUtils(page).audit(); // failing accessibility check, ticket raised for a fix FPVTL-3226
     }
   }
 

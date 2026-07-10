@@ -1,7 +1,6 @@
 import { Page } from "@playwright/test";
 import { Selectors } from "../../../../common/selectors.ts";
 import { CommonStaticText } from "../../../../common/commonStaticText.ts";
-import { AxeUtils } from "@hmcts/playwright-common";
 import { Helpers } from "../../../../common/helpers.ts";
 import { TheAllegationsContent } from "../../../../fixtures/citizen/caseView/respondToTheApplicationC7/theAllegationsContent.ts";
 
@@ -36,7 +35,7 @@ export class TheAllegationsConfirmationPage {
       ),
     ]);
     if (accessibilityTest) {
-      // await new AxeUtils(page).audit(); // failing accessibility check, ticket raised for a fix FPVTL-XXXX
+      // await new AxeUtils(page).audit(); // failing accessibility check, ticket raised for a fix FPVTL-3226
     }
   }
 

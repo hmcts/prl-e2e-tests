@@ -1,7 +1,6 @@
 import { Page } from "@playwright/test";
 import { Selectors } from "../../../../common/selectors.ts";
 import { CommonStaticText } from "../../../../common/commonStaticText.ts";
-import { AxeUtils } from "@hmcts/playwright-common";
 import { Helpers } from "../../../../common/helpers.ts";
 import { KeepYourDetailsPrivateContent } from "../../../../fixtures/citizen/caseView/respondToTheApplicationC7/keepYourDetailsPrivateContent.ts";
 
@@ -45,7 +44,7 @@ export class KeepYourDetailsPrivate2Page {
       ),
     ]);
     if (accessibilityTest) {
-      //await new AxeUtils(page).audit(); //failing, ticket raised FPVTL-XXXX
+      //await new AxeUtils(page).audit(); //failing, ticket raised FPVTL-3226
     }
   }
 

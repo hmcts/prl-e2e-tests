@@ -45,7 +45,7 @@ export class RespondentResponseC7 {
     accessibilityTest,
   }: respondentResponseC7Params): Promise<void> {
     // It starts by clicking in each section from the C7 form screen
-    await page.locator('#respondToTheApplication').click();
+    await page.locator("#respondToTheApplication").click();
     await LegalRepresentation1Page.legalRepresentation1Page(
       page,
       accessibilityTest,
@@ -187,7 +187,7 @@ export class RespondentResponseC7 {
       "Ready to view",
     );
     //final check if pdfs were generated
-    await page.locator('#theResponsePDF').click();
+    await page.locator("#theResponsePDF").click();
     await expect(
       page.getByRole("link", {
         name: RespondentResponseC7Content.pdfEnglish,
