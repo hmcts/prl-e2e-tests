@@ -19,7 +19,7 @@ export class SafetyConcernsConfirmationPage {
     accessibilityTest: boolean,
   ): Promise<void> {
     await page
-      .locator(Selectors.headingH1, {
+      .locator(Selectors.GovukHeadingXL, {
         hasText: SafetyConcernsContent.page3h1,
       })
       .waitFor();

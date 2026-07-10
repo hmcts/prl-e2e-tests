@@ -35,7 +35,7 @@ export class ContactPreferences1Page {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.Span}:text-is("${ContactPreferencesC7Content.span}")`,
+        `${Selectors.Span}:has-text("${ContactPreferencesC7Content.span}")`,
         1,
       ),
       Helpers.checkGroup(

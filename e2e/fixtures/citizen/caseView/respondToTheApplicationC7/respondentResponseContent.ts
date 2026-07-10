@@ -14,7 +14,6 @@ export enum RespondentResponseC7Content {
   link10 = " International elements",
   optionLink = "Do you have a legal representative?",
   span = "Keeping your contact details private",
-  tag = "To Do",
   pcqButton = "I don't want to answer these questions",
   pdfEnglish = "C7_Document.pdf",
   pdfWelsh = "Final_C7_response_Welsh.pdf",

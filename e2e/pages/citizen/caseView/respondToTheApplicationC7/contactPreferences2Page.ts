@@ -19,7 +19,7 @@ export class ContactPreferences2Page {
     accessibilityTest: boolean,
   ): Promise<void> {
     await page
-      .locator(Selectors.headingH1, {
+      .locator(Selectors.GovukHeadingXL, {
         hasText: ContactPreferencesC7Content.page2h1,
       })
       .waitFor();
@@ -38,7 +38,7 @@ export class ContactPreferences2Page {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.headingH2}:text-is("${ContactPreferencesC7Content.h2}")`,
+        `${Selectors.GovukHeadingL}:text-is("${ContactPreferencesC7Content.h2}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(

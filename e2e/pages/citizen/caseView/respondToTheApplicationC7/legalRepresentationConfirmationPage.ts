@@ -23,32 +23,32 @@ export class LegalRepresentationConfirmationPage {
     accessibilityTest: boolean,
   ): Promise<void> {
     await page
-      .locator(Selectors.headingH1, {
-        hasText: LegalRepresentationC7Content.heading1,
+      .locator(Selectors.GovukHeadingL, {
+        hasText: LegalRepresentationC7Content.h1,
       })
       .waitFor();
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukInsetText}:text-is("${LegalRepresentationC7Content.insetText}")`,
+        `${Selectors.li}:has-text("${LegalRepresentationC7Content.li}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukRadios}:text-is("${LegalRepresentationC7Content.radioNo}")`,
+        `${Selectors.GovukHeadingM}:text-is("${LegalRepresentationC7Content.h2}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukRadios}:text-is("${LegalRepresentationC7Content.radioYes}")`,
+        `${Selectors.GovukWarningText}:text-is("${LegalRepresentationC7Content.strong}")`,
         1,
       ),
       await Helpers.checkGroup(
         page,
-        2,
+        4,
         LegalRepresentationC7Content,
-        "link",
-        Selectors.GovukLink,
+        "p",
+        Selectors.p,
       ),
     ]);
     if (accessibilityTest) {
@@ -57,9 +57,8 @@ export class LegalRepresentationConfirmationPage {
   }
 
   private static async fillInFields(page: Page): Promise<void> {
-    await page.click(UniqueSelectors.optionRadio);
     await page.click(
-      `${Selectors.GovukButton}:text-is("${CommonStaticText.saveAndContinue}")`,
+      `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
     );
   }
 }

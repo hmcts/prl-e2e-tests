@@ -23,7 +23,7 @@ export class ConfirmContactDetails2Page {
     accessibilityTest: boolean,
   ): Promise<void> {
     await page
-      .locator(Selectors.headingH1, {
+      .locator(Selectors.GovukHeadingXL, {
         hasText: ConfirmContactDetailsContent.page2h1,
       })
       .waitFor();
@@ -33,7 +33,7 @@ export class ConfirmContactDetails2Page {
         2,
         ConfirmContactDetailsContent,
         "p",
-        Selectors.p,
+        Selectors.GovukBody,
       ),
       Helpers.checkVisibleAndPresent(
         page,
@@ -42,12 +42,12 @@ export class ConfirmContactDetails2Page {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukRadios}:text-is("${ConfirmContactDetailsContent.radioNo}")`,
+        `${Selectors.GovukLabel}:text-is("${ConfirmContactDetailsContent.radioNo}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukRadios}:text-is("${ConfirmContactDetailsContent.radioYes}")`,
+        `${Selectors.GovukLabel}:text-is("${ConfirmContactDetailsContent.radioYes}")`,
         1,
       ),
     ]);

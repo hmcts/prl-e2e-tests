@@ -23,7 +23,7 @@ export class KeepYourDetailsPrivate1Page {
     accessibilityTest: boolean,
   ): Promise<void> {
     await page
-      .locator(Selectors.headingH1, {
+      .locator(Selectors.GovukHeadingL, {
         hasText: KeepYourDetailsPrivateContent.h1,
       })
       .waitFor();
@@ -35,17 +35,17 @@ export class KeepYourDetailsPrivate1Page {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukRadios}:text-is("${KeepYourDetailsPrivateContent.radioNo}")`,
+        `${Selectors.GovukLabel}:text-is("${KeepYourDetailsPrivateContent.radioNo}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukRadios}:text-is("${KeepYourDetailsPrivateContent.radioYes}")`,
+        `${Selectors.GovukLabel}:text-is("${KeepYourDetailsPrivateContent.radioYes}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukRadios}:text-is("${KeepYourDetailsPrivateContent.radioIdk}")`,
+        `${Selectors.GovukLabel}:text-is("${KeepYourDetailsPrivateContent.radioIdk}")`,
         1,
       ),
     ]);

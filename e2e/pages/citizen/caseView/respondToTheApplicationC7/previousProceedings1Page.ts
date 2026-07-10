@@ -24,7 +24,7 @@ export class PreviousProceedings1Page {
     accessibilityTest: boolean,
   ): Promise<void> {
     await page
-      .locator(Selectors.headingH1, {
+      .locator(Selectors.GovukHeadingL, {
         hasText: PreviousProceedingsContent.h1,
       })
       .waitFor();
@@ -38,12 +38,12 @@ export class PreviousProceedings1Page {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukRadios}:text-is("${PreviousProceedingsContent.radioYes}")`,
+        `${Selectors.GovukLabel}:text-is("${PreviousProceedingsContent.radioYes}")`,
         2,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukRadios}:text-is("${PreviousProceedingsContent.radioNo}")`,
+        `${Selectors.GovukLabel}:text-is("${PreviousProceedingsContent.radioNo}")`,
         2,
       ),
     ]);

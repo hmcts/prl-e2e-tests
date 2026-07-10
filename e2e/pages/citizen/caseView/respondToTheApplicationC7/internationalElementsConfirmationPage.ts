@@ -19,7 +19,7 @@ export class InternationalElementsConfirmationPage {
     accessibilityTest: boolean,
   ): Promise<void> {
     await page
-      .locator(Selectors.headingH1, {
+      .locator(Selectors.GovukHeadingXL, {
         hasText: InternationalElementsContent.page5h1,
       })
       .waitFor();
@@ -30,7 +30,7 @@ export class InternationalElementsConfirmationPage {
     );
     await Helpers.checkVisibleAndPresent(
       page,
-      `${Selectors.headingH2}:text-is("${InternationalElementsContent.page5h2}")`,
+      `${Selectors.GovukHeadingM}:text-is("${InternationalElementsContent.page5h2}")`,
       1,
     );
     if (accessibilityTest) {

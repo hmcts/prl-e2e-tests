@@ -23,7 +23,7 @@ export class Miam1Page {
     accessibilityTest: boolean,
   ): Promise<void> {
     await page
-      .locator(Selectors.headingH1, {
+      .locator(Selectors.GovukHeadingXL, {
         hasText: MiamContent.h1,
       })
       .waitFor();

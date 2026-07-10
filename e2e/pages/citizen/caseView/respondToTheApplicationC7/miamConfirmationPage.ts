@@ -19,13 +19,13 @@ export class MiamConfirmationPage {
     accessibilityTest: boolean,
   ): Promise<void> {
     await page
-      .locator(Selectors.headingH1, {
+      .locator(Selectors.GovukHeadingXL, {
         hasText: MiamContent.page2h1,
       })
       .waitFor();
     await Helpers.checkVisibleAndPresent(
       page,
-      `${Selectors.headingH2}:text-is("${MiamContent.page2h2}")`,
+      `${Selectors.GovukHeadingL}:text-is("${MiamContent.page2h2}")`,
       1,
     );
     await Helpers.checkVisibleAndPresent(

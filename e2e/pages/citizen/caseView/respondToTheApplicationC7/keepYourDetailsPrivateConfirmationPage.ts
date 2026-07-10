@@ -19,7 +19,7 @@ export class KeepYourDetailsPrivateConfirmationPage {
     accessibilityTest: boolean,
   ): Promise<void> {
     await page
-      .locator(Selectors.headingH1, {
+      .locator(Selectors.GovukFieldsetHeading, {
         hasText: KeepYourDetailsPrivateContent.page3h1,
       })
       .waitFor();

@@ -23,7 +23,7 @@ export class ResponseCYAsPage {
     accessibilityTest: boolean,
   ): Promise<void> {
     await page
-      .locator(Selectors.headingH1, {
+      .locator(Selectors.GovukHeadingXL, {
         hasText: ResponseCYAsContent.h1,
       })
       .waitFor();
@@ -45,14 +45,19 @@ export class ResponseCYAsPage {
         7,
         ResponseCYAsContent,
         "h2_",
-        Selectors.headingH2,
+        Selectors.GovukHeadingAppTask,
       ),
       await Helpers.checkGroup(
         page,
-        5,
+        4,
         ResponseCYAsContent,
         "h3_",
-        Selectors.headingH3,
+        Selectors.GovukHeadingAppTask,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukHeadingM}:text-is("${ResponseCYAsContent.h3govukHeadingM}")`,
+        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,

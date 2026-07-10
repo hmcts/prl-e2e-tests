@@ -23,7 +23,7 @@ export class TheAllegations1Page {
     accessibilityTest: boolean,
   ): Promise<void> {
     await page
-      .locator(Selectors.headingH1, {
+      .locator(Selectors.GovukHeadingL, {
         hasText: TheAllegationsContent.h1,
       })
       .waitFor();
@@ -52,12 +52,12 @@ export class TheAllegations1Page {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukRadios}:text-is("${TheAllegationsContent.radioYes}")`,
+        `${Selectors.GovukLabel}:text-is("${TheAllegationsContent.radioYes}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukRadios}:text-is("${TheAllegationsContent.radioNo}")`,
+        `${Selectors.GovukLabel}:text-is("${TheAllegationsContent.radioNo}")`,
         1,
       ),
     ]);

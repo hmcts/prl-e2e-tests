@@ -22,14 +22,14 @@ export class ConfirmContactDetails1Page {
     accessibilityTest: boolean,
   ): Promise<void> {
     await page
-      .locator(Selectors.headingH1, {
+      .locator(Selectors.GovukHeadingXL, {
         hasText: ConfirmContactDetailsContent.h1,
       })
       .waitFor();
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukWarningText}:text-is("${ConfirmContactDetailsContent.linkEdit}")`,
+        `${Selectors.GovukLink}:text-is("${ConfirmContactDetailsContent.linkEdit}")`,
         8,
       ),
       Helpers.checkVisibleAndPresent(

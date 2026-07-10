@@ -18,7 +18,7 @@ export class ConfirmContactDetailsConfirmationPage {
     accessibilityTest: boolean,
   ): Promise<void> {
     await page
-      .locator(Selectors.headingH1, {
+      .locator(Selectors.GovukHeadingL, {
         hasText: ConfirmContactDetailsContent.page3h1,
       })
       .waitFor();

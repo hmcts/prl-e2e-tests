@@ -5,6 +5,10 @@ import { AxeUtils } from "@hmcts/playwright-common";
 import { Helpers } from "../../../../common/helpers.ts";
 import { LegalRepresentationC7Content } from "../../../../fixtures/citizen/caseView/respondToTheApplicationC7/legalRepresentationContent.ts";
 
+enum UniqueSelectors {
+  optionLink = "#legalRepresentation-2",
+}
+
 export class LegalRepresentation2Page {
   public static async legalRepresentation2Page(
     page: Page,
@@ -19,32 +23,32 @@ export class LegalRepresentation2Page {
     accessibilityTest: boolean,
   ): Promise<void> {
     await page
-      .locator(Selectors.h1, {
-        hasText: LegalRepresentationC7Content.h1,
+      .locator(Selectors.GovukHeadingL, {
+        hasText: LegalRepresentationC7Content.heading1,
       })
       .waitFor();
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.li}:text-is("${LegalRepresentationC7Content.li}")`,
+        `${Selectors.GovukInsetText}:text-is("${LegalRepresentationC7Content.insetText}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.h2}:text-is("${LegalRepresentationC7Content.h2}")`,
+        `${Selectors.GovukLabel}:text-is("${LegalRepresentationC7Content.radioNo}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukWarningText}:text-is("${LegalRepresentationC7Content.strong}")`,
+        `${Selectors.GovukLabel}:text-is("${LegalRepresentationC7Content.radioYes}")`,
         1,
       ),
       await Helpers.checkGroup(
         page,
-        4,
+        2,
         LegalRepresentationC7Content,
-        "p",
-        Selectors.p,
+        "link",
+        Selectors.GovukLink,
       ),
     ]);
     if (accessibilityTest) {
@@ -53,8 +57,9 @@ export class LegalRepresentation2Page {
   }
 
   private static async fillInFields(page: Page): Promise<void> {
+    await page.click(UniqueSelectors.optionLink);
     await page.click(
-      `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
+      `${Selectors.GovukButton}:text-is("${CommonStaticText.saveAndContinue}")`,
     );
   }
 }

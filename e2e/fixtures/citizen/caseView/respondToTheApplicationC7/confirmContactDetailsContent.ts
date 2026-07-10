@@ -6,7 +6,7 @@ export enum ConfirmContactDetailsContent {
   //page2
   page2h1 = "Staying in a refuge",
   p1 = "A refuge is a secure place for people and their children to stay when they are escaping domestic abuse. It provides a space to feel safe and supported.",
-  p2 = "Find out more about refuges at Citizen's Advice (opens in a new tab).",
+  p2 = "Find out more about refuges at ",
   fieldSetLegend = "Do you currently live in a refuge?",
   radioYes = "Yes",
   radioNo = "No",

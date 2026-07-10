@@ -19,7 +19,7 @@ export class SafetyConcerns1Page {
     accessibilityTest: boolean,
   ): Promise<void> {
     await page
-      .locator(Selectors.headingH1, {
+      .locator(Selectors.GovukHeadingXL, {
         hasText: SafetyConcernsContent.h1,
       })
       .waitFor();
@@ -29,7 +29,7 @@ export class SafetyConcerns1Page {
         2,
         SafetyConcernsContent,
         "h2_",
-        Selectors.headingH2,
+        Selectors.GovukHeadingM,
       ),
       Helpers.checkVisibleAndPresent(
         page,
@@ -41,7 +41,7 @@ export class SafetyConcerns1Page {
         13,
         SafetyConcernsContent,
         "p",
-        Selectors.p,
+        Selectors.GovukBody,
       ),
       Helpers.checkVisibleAndPresent(
         page,

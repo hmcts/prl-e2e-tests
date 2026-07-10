@@ -19,14 +19,14 @@ export class ContactPreferencesConfirmationPage {
     accessibilityTest: boolean,
   ): Promise<void> {
     await page
-      .locator(Selectors.headingH1, {
+      .locator(Selectors.GovukHeadingL, {
         hasText: ContactPreferencesC7Content.page3h1,
       })
       .waitFor();
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukWarningText}:text-is("${ContactPreferencesC7Content.page3p1}")`,
+        `${Selectors.GovukBodyM}:text-is("${ContactPreferencesC7Content.page3p1}")`,
         1,
       ),
     ]);

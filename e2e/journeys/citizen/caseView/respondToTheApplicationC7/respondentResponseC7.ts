@@ -45,9 +45,7 @@ export class RespondentResponseC7 {
     accessibilityTest,
   }: respondentResponseC7Params): Promise<void> {
     // It starts by clicking in each section from the C7 form screen
-    await page
-      .getByRole("link", { name: RespondentResponseC7Content.link1 })
-      .click();
+    await page.locator('#respondToTheApplication').click();
     await LegalRepresentation1Page.legalRepresentation1Page(
       page,
       accessibilityTest,
@@ -185,13 +183,11 @@ export class RespondentResponseC7 {
     //confirmation
     await page.getByRole("button", { name: CommonStaticText.continue }).click();
     //back to respondent dashboard
-    await expect(page.locator(".theResponsePDF-status")).toHaveText(
+    await expect(page.locator("#theResponsePDF-status")).toHaveText(
       "Ready to view",
     );
     //final check if pdfs were generated
-    await page
-      .getByRole("link", { name: RespondentResponseC7Content.link1 })
-      .click();
+    await page.locator('#theResponsePDF').click();
     await expect(
       page.getByRole("link", {
         name: RespondentResponseC7Content.pdfEnglish,

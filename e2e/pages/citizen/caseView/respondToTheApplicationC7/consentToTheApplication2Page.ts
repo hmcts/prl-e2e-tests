@@ -19,7 +19,7 @@ export class ConsentToTheApplication2Page {
     accessibilityTest: boolean,
   ): Promise<void> {
     await page
-      .locator(Selectors.headingH1, {
+      .locator(Selectors.GovukHeadingL, {
         hasText: ConsentToTheApplicationC7Content.heading1,
       })
       .waitFor();

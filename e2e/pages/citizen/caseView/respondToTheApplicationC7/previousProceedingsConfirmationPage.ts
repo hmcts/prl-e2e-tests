@@ -19,14 +19,14 @@ export class PreviousProceedingsConfirmationPage {
     accessibilityTest: boolean,
   ): Promise<void> {
     await page
-      .locator(Selectors.headingH1, {
+      .locator(Selectors.GovukHeadingXL, {
         hasText: PreviousProceedingsContent.page2h1,
       })
       .waitFor();
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.h2}:text-is("${PreviousProceedingsContent.page2h2}")`,
+        `${Selectors.GovukHeadingM}:text-is("${PreviousProceedingsContent.page2h2}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(

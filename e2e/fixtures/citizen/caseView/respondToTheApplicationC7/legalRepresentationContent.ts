@@ -12,7 +12,7 @@ export enum LegalRepresentationC7Content {
   p2 = "Once you have completed all of the main sections, you will be able to review and submit your answers.",
   p3 = "Once you have submitted your response, you have the option to pass your case over to a legal representative.",
   p4 = "You will need to provide them with your Case number. Once the case is transferred, you won't be able to edit your response.",
-  li = "Your Case number is: 1783509910097253",
+  li = "Your Case number is: ",
   h2 = "Transfer your case to your legal representative",
   strong = "Do not respond to the application yourself, if you plan to have a legal representative complete the response.",
 }

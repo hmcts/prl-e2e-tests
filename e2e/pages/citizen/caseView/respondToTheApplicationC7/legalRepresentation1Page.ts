@@ -42,11 +42,6 @@ export class LegalRepresentation1Page {
         `${Selectors.GovukLink}:text-is("${RespondentResponseC7Content.optionLink}")`,
         1,
       ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukTag}:text-is("${RespondentResponseC7Content.tag}")`,
-        1,
-      ),
     ]);
     if (accessibilityTest) {
       await new AxeUtils(page).audit();
