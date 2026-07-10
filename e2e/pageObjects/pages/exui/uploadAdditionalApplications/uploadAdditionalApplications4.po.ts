@@ -2,6 +2,7 @@ import { EventPage } from "../eventPage.po.js";
 import { expect, Locator, Page } from "@playwright/test";
 import { PageUtils } from "../../../../utils/page.utils.js";
 import { Selectors } from "../../../../common/selectors.js";
+import { CommonContent } from "../../../../fixtures/manageCases/commonContent.js";
 
 export class UploadAdditionalApplications4Page extends EventPage {
   readonly nextStepH3: Locator = this.page.locator(Selectors.h3, {
@@ -12,13 +13,13 @@ export class UploadAdditionalApplications4Page extends EventPage {
       " After you have submitted your application, you will be asked to pay the application fee.",
   });
   readonly withNoticeFeeP: Locator = this.page.locator(Selectors.p, {
-    hasText: "£190.00",
+    hasText: "£195.00",
   });
   readonly withoutNoticeFeeP: Locator = this.page.locator(Selectors.p, {
-    hasText: "£60.00",
+    hasText: "£62.00",
   });
   readonly c100FeeP: Locator = this.page.locator(Selectors.p, {
-    hasText: "£263.00",
+    hasText: CommonContent.c100Fee,
   });
 
   readonly noHelpWithFeesRadio: Locator = this.page.locator(
