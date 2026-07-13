@@ -27,13 +27,13 @@ export class CommonCaseEventUtils {
   }: EventRequestParams): Promise<void> {
     const bearerToken: string = await this.getBearerToken(userInfo);
     const serviceToken: string = await this.getServiceToken();
-    const userId: string = await this.getUserId(userInfo.email);
+    const userDetails = await this.getUserDetails(userInfo.email);
     const eventToken: string = await this.getEventToken(
       caseId,
       eventId,
       bearerToken,
       serviceToken,
-      userId,
+      userDetails.id,
     );
 
     // append the end of the event json because it is always the same apart from the eventId and eventToken
@@ -52,7 +52,7 @@ export class CommonCaseEventUtils {
       JSON.stringify({ ...eventData, ...eventJson }),
       bearerToken,
       serviceToken,
-      userId,
+      userDetails.id,
     );
   }
 
@@ -123,7 +123,7 @@ export class CommonCaseEventUtils {
     });
   }
 
-  private async getUserId(email: string): Promise<string> {
+  async getUserDetails(email: string) {
     const bearerToken = await this.getBearerToken({
       email: process.env.CCD_DATA_STORE_CLIENT_USERNAME,
       password: process.env.CCD_DATA_STORE_CLIENT_PASSWORD,
@@ -144,8 +144,7 @@ export class CommonCaseEventUtils {
       );
     }
 
-    const responseJson = await response.json();
-    return responseJson.id;
+    return await response.json();
   }
 
   async getServiceToken(microservice: string = "ccd_data"): Promise<string> {

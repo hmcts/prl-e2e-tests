@@ -3,10 +3,20 @@ import { APIResponse } from "@playwright/test";
 import { CommonCaseEventUtils, UserInfo } from "./commonCaseEvent.utils.js";
 import { jsonDatas, JsonDatas } from "../common/caseHelpers/jsonDatas.js";
 
+interface SendToGatekeeperParams {
+  isSpecificGatekeeper: boolean;
+  isJudge?: boolean; // else legal adviser
+}
+
+interface LocalCourtInfo {
+  code: string;
+  label: string;
+}
+
 export class ManageCaseEventUtils {
   constructor(private commonCaseEventsUtils: CommonCaseEventUtils) {}
 
-  public async submitSolicitorCase(
+  public async submitTSSolicitorCase(
     caseType: solicitorCaseCreateType,
   ): Promise<string> {
     const userInfo: UserInfo = {
@@ -84,7 +94,7 @@ export class ManageCaseEventUtils {
         data: {
           caseTypeOfApplication: caseType,
           applicantOrganisationPolicy: null,
-          applicantCaseName: "TEST",
+          applicantCaseName: "TEST", // TODO: make this some random string so it is easier to track
         },
         draft_id: null,
         event: {
@@ -114,5 +124,115 @@ export class ManageCaseEventUtils {
 
     const responseJson = await submitEventResponse.json();
     return String(responseJson.id);
+  }
+
+  // default to Aberystwyth court
+  async issueAndSendToLocalCourt(
+    caseId: string,
+    localCourtInfo: LocalCourtInfo = {
+      code: "827534:",
+      label: "Aberystwyth Justice Centre - Trefechan - SY23 1AS",
+    },
+  ): Promise<void> {
+    await this.commonCaseEventsUtils.completeEvent({
+      caseId: caseId,
+      eventId: "issueAndSendToLocalCourtCallback",
+      eventData: {
+        data: {
+          courtList: {
+            value: {
+              code: localCourtInfo.code,
+              label: localCourtInfo.label,
+            },
+          },
+        },
+      },
+      userInfo: {
+        email: process.env.COURT_ADMIN_STOKE_USERNAME as string,
+        password: process.env.COURT_ADMIN_STOKE_PASSWORD as string,
+      },
+    });
+  }
+
+  async addCaseNumber(caseId: string, familyManNumber?: string): Promise<void> {
+    await this.commonCaseEventsUtils.completeEvent({
+      caseId: caseId,
+      eventId: "fl401AddCaseNumber",
+      eventData: {
+        data: {
+          familymanCaseNumber: familyManNumber ?? "123",
+        },
+      },
+      userInfo: {
+        email: process.env.CASEWORKER_USERNAME as string,
+        password: process.env.CASEWORKER_PASSWORD as string,
+      },
+    });
+  }
+
+  // currently this method is setup for the static users - it would need to be adapted if we want to use ad-hoc gatekeepers
+  // TODO: for some reason the legal adviser request succeeds but the role doesn't get added correctly
+  async sendToGatekeeper(
+    caseId: string,
+    caseType: solicitorCaseCreateType,
+    sendToGatekeeperParams: SendToGatekeeperParams = {
+      isSpecificGatekeeper: false,
+      isJudge: false,
+    },
+  ): Promise<void> {
+    let eventData;
+    if (sendToGatekeeperParams.isSpecificGatekeeper) {
+      if (sendToGatekeeperParams.isJudge) {
+        const judgeUserDetails =
+          await this.commonCaseEventsUtils.getUserDetails(
+            process.env.JUDGE_USERNAME,
+          );
+
+        eventData = {
+          data: {
+            isJudgeOrLegalAdviserGatekeeping: "judge",
+            isSpecificGateKeeperNeeded: "Yes",
+            judgeName: {
+              idamId: judgeUserDetails.id as string,
+              personalCode: "4923961", // this is the same for the static judge across AAT and DEMO
+            },
+          },
+        };
+      } else {
+        const laUserDetails = await this.commonCaseEventsUtils.getUserDetails(
+          process.env.LEGALADVISOR_USERNAME,
+        );
+
+        eventData = {
+          data: {
+            isJudgeOrLegalAdviserGatekeeping: "legalAdviser",
+            isSpecificGateKeeperNeeded: "Yes",
+            legalAdviserList: {
+              value: {
+                code: `${laUserDetails.surname}(${laUserDetails.email})`,
+                label: `${laUserDetails.surname}(${laUserDetails.email})`,
+              },
+            },
+          },
+        };
+      }
+    } else {
+      eventData = {
+        data: {
+          isSpecificGateKeeperNeeded: "No",
+        },
+      };
+    }
+
+    await this.commonCaseEventsUtils.completeEvent({
+      caseId: caseId,
+      eventId:
+        caseType === "C100" ? "sendToGateKeeper" : "fl401SendToGateKeeper",
+      eventData: eventData,
+      userInfo: {
+        email: process.env.CASEWORKER_USERNAME as string,
+        password: process.env.CASEWORKER_PASSWORD as string,
+      },
+    });
   }
 }
