@@ -5,9 +5,10 @@ test.describe("Validating auto-generated case names for CA case", () => {
   let caseNumber: string;
 
   test.beforeEach(
-    async ({ caseWorker, browser, caseEventUtils, navigationUtils }) => {
-      caseNumber =
-        await caseEventUtils.createCACaseIssueAndSendToLocalCourt(browser);
+    async ({ caseWorker, manageCasesEventUtils, navigationUtils }) => {
+      caseNumber = await manageCasesEventUtils.submitTSSolicitorCase("C100");
+      await manageCasesEventUtils.issueAndSendToLocalCourt(caseNumber);
+      await manageCasesEventUtils.sendToGatekeeper(caseNumber, "C100");
       await navigationUtils.goToCase(
         caseWorker.page,
         config.manageCasesBaseURLCase,

@@ -10,8 +10,10 @@ test.describe("Allocate a judge to the case", () => {
   let caseNumber: string = "";
 
   test.beforeEach(
-    async ({ caseWorker, browser, caseEventUtils, navigationUtils }) => {
-      caseNumber = await caseEventUtils.createDACaseSendToGatekeeper(browser);
+    async ({ caseWorker, navigationUtils, manageCasesEventUtils }) => {
+      caseNumber = await manageCasesEventUtils.submitTSSolicitorCase("FL401");
+      await manageCasesEventUtils.addCaseNumber(caseNumber);
+      await manageCasesEventUtils.sendToGatekeeper(caseNumber, "FL401");
       await navigationUtils.goToCase(
         caseWorker.page,
         config.manageCasesBaseURLCase,

@@ -5,8 +5,10 @@ test.describe("Validating auto-generated case names for DA case", () => {
   let caseNumber: string;
 
   test.beforeEach(
-    async ({ caseWorker, browser, caseEventUtils, navigationUtils }) => {
-      caseNumber = await caseEventUtils.createDACaseSendToGatekeeper(browser);
+    async ({ caseWorker, manageCasesEventUtils, navigationUtils }) => {
+      caseNumber = await manageCasesEventUtils.submitTSSolicitorCase("FL401");
+      await manageCasesEventUtils.addCaseNumber(caseNumber);
+      await manageCasesEventUtils.sendToGatekeeper(caseNumber, "FL401");
       await navigationUtils.goToCase(
         caseWorker.page,
         config.manageCasesBaseURLCase,

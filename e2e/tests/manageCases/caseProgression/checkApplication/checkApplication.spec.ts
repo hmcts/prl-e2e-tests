@@ -6,7 +6,7 @@ test.describe("Check Application task for DA Solicitor case tests.", () => {
 
   test.beforeEach(
     async ({ caseWorker, manageCasesEventUtils, navigationUtils }) => {
-      caseNumber = await manageCasesEventUtils.submitSolicitorCase("FL401");
+      caseNumber = await manageCasesEventUtils.submitTSSolicitorCase("FL401");
       await navigationUtils.goToCase(
         caseWorker.page,
         config.manageCasesBaseURLCase,
