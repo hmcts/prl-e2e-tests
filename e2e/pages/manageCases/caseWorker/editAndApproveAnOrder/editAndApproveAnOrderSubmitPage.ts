@@ -1,4 +1,4 @@
-import { Page } from "@playwright/test";
+import { expect, Page } from "@playwright/test";
 import { Selectors } from "../../../../common/selectors.ts";
 import { CommonStaticText } from "../../../../common/commonStaticText.ts";
 import { JudgeOrderAction, OrderType } from "../../../../common/types.ts";
@@ -8,11 +8,6 @@ import { Helpers } from "../../../../common/helpers.ts";
 import { EditAndApproveAnOrder2Page } from "./editAndApproveAnOrder2Page.ts";
 import { orderTypesMap } from "../../../../journeys/manageCases/caseWorker/draftAnOrder/draftAnOrder.ts";
 import { EditAndApproveAnOrder21Content } from "../../../../fixtures/manageCases/caseWorker/editAndApproveAnOrder/editAndApproveAnOrder21Content.ts";
-
-enum UniqueSelectors {
-  welshPdfAnchor = "body > exui-root > exui-case-home > div > exui-case-details-home > ccd-case-event-trigger > div > ccd-case-edit > ccd-case-edit-submit > div > form > div:nth-child(1) > table.form-table > tbody > tr:nth-child(3) > td.form-cell.case-field-content > ccd-field-read > div > ccd-field-read-label > div > ccd-read-document-field > .govuk-js-link",
-  englishPdfAnchor = "body > exui-root > exui-case-home > div > exui-case-details-home > ccd-case-event-trigger > div > ccd-case-edit > ccd-case-edit-submit > div > form > div:nth-child(1) > table.form-table > tbody > tr:nth-child(4) > td.form-cell.case-field-content > ccd-field-read > div > ccd-field-read-label > div > ccd-read-document-field > .govuk-js-link",
-}
 
 export class EditAndApproveAnOrderSubmitPage {
   public static async editAndApproveAnOrderSubmitPage(
@@ -54,16 +49,18 @@ export class EditAndApproveAnOrderSubmitPage {
         `${Selectors.h3}:text-is("${EditAndApproveAnOrderSubmitContent.h3}")`,
         1,
       ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${UniqueSelectors.welshPdfAnchor}:text-is("${anchorStrings?.welshPdfAnchor}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${UniqueSelectors.englishPdfAnchor}:text-is("${anchorStrings?.englishPdfAnchor}")`,
-        1,
-      ),
+      expect(
+        page.getByRole("button", {
+          name: anchorStrings?.welshPdfAnchor,
+          exact: true,
+        }),
+      ).toBeVisible(),
+      expect(
+        page.getByRole("button", {
+          name: anchorStrings?.englishPdfAnchor,
+          exact: true,
+        }),
+      ).toBeVisible(),
       Helpers.checkGroup(
         page,
         2,

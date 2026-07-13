@@ -172,6 +172,7 @@ export class CustomOrdersManageOrder5Page extends EventPage {
     const todayDate: string[] = this.dateUtils.todayDate(
       false,
       true,
+      true
     ) as string[];
     await expect(this.dayInput).toHaveValue(todayDate[0]);
     await expect(this.monthInput).toHaveValue(todayDate[1]);

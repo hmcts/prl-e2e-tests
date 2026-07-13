@@ -12,5 +12,5 @@ export enum CommonContent {
   judgeNameNoPrefix = "Elizabeth Williams",
   judgeEmail = "HHJ.Elizabeth.Williams@ejudiciary.net",
   judgeNameAndEmail = "Ms Elizabeth Williams (HHJ.Elizabeth.Williams@ejudiciary.net)",
-  c100Fee = "£263.00",
+  c100Fee = "£270.00",
 }

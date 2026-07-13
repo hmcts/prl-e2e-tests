@@ -17,6 +17,7 @@
     "eslint": "^10.0.0",
     "eslint-plugin-playwright": "^2.1.0",
     "jest": "^30.0.0",
+    "pdf-parse": "^2.4.5",
     "playwright-core": "^1.60.0",
     "prettier": "^3.3.3",
     "simple-git": "^3.27.0",
@@ -43,5 +44,5 @@
     "test:citizenFrontendAccessibility": "yarn pwinstall && yarn playwright test e2e/tests/citizen --project chromium --grep @accessibility",
     "start-visual-container": "docker compose run --rm playwright"
   },
-  "packageManager": "yarn@4.17.0"
+  "packageManager": "yarn@4.17.1"
 }
