@@ -77,7 +77,7 @@ export class ReasonableAjustmentsDisabilityPage {
       throw new Error();
     }
     await page.click(
-      `${Selectors.GovukRadios}:text-is("${CommonStaticText.yes}")`,
+      `${Selectors.GovukLabel}:text-is("${CommonStaticText.yes}")`,
     );
     await page.click(
       `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
