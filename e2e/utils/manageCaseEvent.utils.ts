@@ -1,7 +1,13 @@
-import { solicitorCaseCreateType } from "../common/types.js";
+import { OrderTypes, solicitorCaseCreateType } from "../common/types.js";
 import { APIResponse } from "@playwright/test";
 import { CommonCaseEventUtils, UserInfo } from "./commonCaseEvent.utils.js";
 import { jsonDatas, JsonDatas } from "../common/caseHelpers/jsonDatas.js";
+import {
+  AmendDischargedVariedOrderActionData,
+  ChildArrangementsOrderActionData,
+  OrderActionData,
+  PowerOfArrestOrderActionData,
+} from "../testData/orderActionData.js";
 
 interface SendToGatekeeperParams {
   isSpecificGatekeeper: boolean;
@@ -11,6 +17,13 @@ interface SendToGatekeeperParams {
 interface LocalCourtInfo {
   code: string;
   label: string;
+}
+
+interface OrderOptions {
+  caseId: string;
+  orderType: OrderTypes;
+  isDraft: boolean; // if not final
+  doServe: boolean;
 }
 
 export class ManageCaseEventUtils {
@@ -234,5 +247,53 @@ export class ManageCaseEventUtils {
         password: process.env.CASEWORKER_PASSWORD as string,
       },
     });
+  }
+
+  async createOrder({
+    caseId,
+    orderType,
+    isDraft,
+    doServe,
+  }: OrderOptions): Promise<void> {
+    let orderActionData: OrderActionData;
+    switch (orderType) {
+      case "Power of arrest (FL406)":
+        orderActionData = PowerOfArrestOrderActionData;
+        break;
+      case "Amended, discharged or varied order (FL404B)":
+        orderActionData = AmendDischargedVariedOrderActionData;
+        break;
+      case "Child arrangements, specific issue or prohibited steps order (C43)":
+        orderActionData = ChildArrangementsOrderActionData;
+        break;
+      default:
+        throw new Error(
+          `Unexpected order type when fetching order data: ${orderType}`,
+        );
+    }
+
+    await this.commonCaseEventsUtils.completeEvent({
+      caseId: caseId,
+      eventId: "manageOrders",
+      eventData: this.getOrderData(orderActionData, isDraft, doServe),
+      userInfo: {
+        email: process.env.CASEWORKER_USERNAME as string,
+        password: process.env.CASEWORKER_PASSWORD as string,
+      },
+    });
+  }
+
+  private getOrderData(
+    orderData: OrderActionData,
+    isDraft: boolean,
+    doServe: boolean,
+  ) {
+    if (isDraft) {
+      return orderData.draftOrderData;
+    } else if (!isDraft && !doServe) {
+      return orderData.finalOrderData;
+    } else {
+      return orderData.createAndServeOrderData;
+    }
   }
 }
