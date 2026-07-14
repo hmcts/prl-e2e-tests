@@ -107,7 +107,7 @@ export class ReasonableAjustmentsDisabilityPage {
       await page.click(UniqueSelectors.yesOption);
       await page.fill(
         UniqueSelectors.intermediaryYesSubfieldText,
-        ReasonableAdjustmentsDisabilityContent.intermediaryDetails,
+        ReasonableAdjustmentsDisabilityContent.disabilityRequestDetails,
       );
       await Helpers.checkVisibleAndPresent(
         page,

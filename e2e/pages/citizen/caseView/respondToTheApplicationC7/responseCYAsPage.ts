@@ -62,7 +62,7 @@ export class ResponseCYAsPage {
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukLink}:text-is("${ResponseCYAsContent.editLink}")`,
-        23,
+        27,
       ),
       Helpers.checkVisibleAndPresent(
         page,

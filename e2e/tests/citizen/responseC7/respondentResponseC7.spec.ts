@@ -34,6 +34,9 @@ test.describe("Respondent completes the C7 response from the citizen UI tests", 
       accessibilityTest: true,
       citizenC100CaseUtils,
       caseRef,
+      errorMessaging: false,
+      yesNoReasonableAdjustments: true,
+      isApplicant: false,
     });
   });
 });

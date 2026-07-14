@@ -52,7 +52,7 @@ export class CheckTheApplication {
       await expect(
         page.getByRole("link", { name: "cover_letter_welsh_ap6.pdf" }),
       ).toBeVisible();
-         await expect(
+      await expect(
         page.getByRole("link", { name: "coversheet.pdf" }),
       ).toBeVisible();
       await expect(
@@ -164,14 +164,20 @@ export class CheckTheApplication {
       await expect(
         page.getByRole("link", { name: "C1A_Blank_Welsh.pdf" }),
       ).toBeVisible();
-        
+
       //Check coversheet contents do not contain any mention of addresses
-      const extractedTextFromPdf = await this.getPdfContents(page,'coversheet.pdf');
+      const extractedTextFromPdf = await this.getPdfContents(
+        page,
+        "coversheet.pdf",
+      );
       expect(extractedTextFromPdf.text).not.toContain("Your address");
 
-      const extractedWelshText = await this.getPdfContents(page, 'coversheet_welsh.pdf');
-      await expect(extractedWelshText.text).toContain('Eich rhif achos yw:');
-      await expect(extractedWelshText.text).not.toContain('Eich cyfeiriad');
+      const extractedWelshText = await this.getPdfContents(
+        page,
+        "coversheet_welsh.pdf",
+      );
+      await expect(extractedWelshText.text).toContain("Eich rhif achos yw:");
+      await expect(extractedWelshText.text).not.toContain("Eich cyfeiriad");
     }
   }
 

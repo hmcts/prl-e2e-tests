@@ -31,18 +31,30 @@ import { InternationalElements4Page } from "../../../../pages/citizen/caseView/r
 import { InternationalElementsConfirmationPage } from "../../../../pages/citizen/caseView/respondToTheApplicationC7/internationalElementsConfirmationPage.ts";
 import { ResponseCYAsPage } from "../../../../pages/citizen/caseView/respondToTheApplicationC7/responseCYAsPage.ts";
 import { CommonStaticText } from "../../../../common/commonStaticText.ts";
+import { ReasonableAdjustmentsAttendingCourtPage } from "../../../../pages/citizen/createCase/C100/reasonableAdjustments/reasonableAdjustmentsAttendingCourtPage.ts";
+import { ReasonableAdjustmentsLanguageRequirementsPage } from "../../../../pages/citizen/createCase/C100/reasonableAdjustments/reasonableAdjustmentsLanguageRequirementsPage.ts";
+import { ReasonableAdjustmentsSpecialArrangementsPage } from "../../../../pages/citizen/createCase/C100/reasonableAdjustments/reasonableAdjustmentsSpecialArrangementsPage.ts";
+import { ReasonableAjustmentsIntermediaryPage } from "../../../../pages/citizen/createCase/C100/reasonableAdjustments/reasonableAdjustmentsIntermediaryPage.ts";
+import { ReasonableAjustmentsDisabilityPage } from "../../../../pages/citizen/createCase/C100/reasonableAdjustments/reasonableAdjustmentsDisabilityPage.ts";
+import { SupportYouNeedReviewPage } from "../../../../pages/citizen/caseView/respondToTheApplicationC7/supportYouNeedReviewPage.ts";
 
 interface respondentResponseC7Params {
   page: Page;
   accessibilityTest: boolean;
   citizenC100CaseUtils: CitizenC100CaseUtils;
   caseRef: string;
+  errorMessaging: boolean;
+  yesNoReasonableAdjustments: boolean;
+  isApplicant: boolean;
 }
 
 export class RespondentResponseC7 {
   public static async respondentResponseC7({
     page,
     accessibilityTest,
+    errorMessaging,
+    yesNoReasonableAdjustments,
+    isApplicant,
   }: respondentResponseC7Params): Promise<void> {
     // It starts by clicking in each section from the C7 form screen
     await page.locator("#respondToTheApplication").click();
@@ -111,6 +123,54 @@ export class RespondentResponseC7 {
       accessibilityTest,
     );
     await ConfirmContactDetailsConfirmationPage.confirmContactDetailsConfirmationPage(
+      page,
+      accessibilityTest,
+    );
+    await page
+      .getByRole("link", { name: RespondentResponseC7Content.supportYouNeed })
+      .click();
+    await ReasonableAdjustmentsAttendingCourtPage.reasonableAdjustmentsAttendingCourtPage(
+      {
+        page: page,
+        accessibilityTest: accessibilityTest,
+        errorMessaging: errorMessaging,
+        yesNoReasonableAdjustments: yesNoReasonableAdjustments,
+      },
+    );
+    await ReasonableAdjustmentsLanguageRequirementsPage.reasonableAdjustmentsAttendingCourtPage(
+      {
+        page: page,
+        accessibilityTest: accessibilityTest,
+        errorMessaging: errorMessaging,
+        yesNoReasonableAdjustments: yesNoReasonableAdjustments,
+      },
+    );
+    await ReasonableAdjustmentsSpecialArrangementsPage.reasonableAdjustmentsSpecialArrangementsPage(
+      {
+        page: page,
+        accessibilityTest: accessibilityTest,
+        errorMessaging: errorMessaging,
+        yesNoReasonableAdjustments: yesNoReasonableAdjustments,
+        isApplicant: isApplicant,
+      },
+    );
+    await ReasonableAjustmentsIntermediaryPage.reasonableAjustmentsIntermediaryPage(
+      {
+        page: page,
+        accessibilityTest: accessibilityTest,
+        errorMessaging: errorMessaging,
+        yesNoReasonableAdjustments: yesNoReasonableAdjustments,
+      },
+    );
+    await ReasonableAjustmentsDisabilityPage.reasonableAjustmentsDisabilityPage(
+      {
+        page: page,
+        accessibilityTest: accessibilityTest,
+        errorMessaging: errorMessaging,
+        yesNoReasonableAdjustments: yesNoReasonableAdjustments,
+      },
+    );
+    await SupportYouNeedReviewPage.supportYouNeedReviewPage(
       page,
       accessibilityTest,
     );

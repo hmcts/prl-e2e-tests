@@ -114,6 +114,7 @@ interface C100TopMiroJourneyOptions {
   reviewPageTopJourneyMotherFather: reviewPageTopJourneyMotherFather;
   relationshipType: Relationship;
   respondentStayingInRefuge: boolean;
+  isApplicant: boolean;
 }
 
 interface C100EmergencyProtectionJourneyOptions {
@@ -168,6 +169,7 @@ interface C100EmergencyProtectionJourneyOptions {
   c100YesNoFeesApplied: boolean;
   relationshipType: CapitalizedRelationship;
   respondentStayingInRefuge: boolean;
+  isApplicant: boolean;
 }
 
 interface C100ExistingMIAMDocumentOptions {
@@ -234,6 +236,7 @@ interface C100ExistingMIAMDocumentOptions {
   yesNoReasonableAdjustments: boolean;
   c100YesNoNeedHelpWithFees: boolean;
   c100YesNoFeesApplied: boolean;
+  isApplicant: boolean;
 }
 
 interface C100FourthRowMiroJourneyOptions {
@@ -299,6 +302,7 @@ interface C100FourthRowMiroJourneyOptions {
   yesNoReasonableAdjustments: boolean;
   c100YesNoNeedHelpWithFees: boolean;
   c100YesNoFeesApplied: boolean;
+  isApplicant: boolean;
 }
 
 export class C100 {
@@ -451,6 +455,7 @@ export class C100 {
     reviewPageTopJourneyMotherFather,
     relationshipType,
     respondentStayingInRefuge,
+    isApplicant,
   }: C100TopMiroJourneyOptions): Promise<void> {
     await CitizenCreateInitial.citizenCreateInitial({
       page: page,
@@ -566,6 +571,7 @@ export class C100 {
       accessibilityTest: accessibilityTest,
       errorMessaging: errorMessaging,
       yesNoReasonableAdjustments: yesNoReasonableAdjustments,
+      isApplicant: isApplicant,
     });
     await C100HelpWithFees.c100HelpWithFees({
       page: page,
@@ -650,6 +656,7 @@ export class C100 {
     c100YesNoNeedHelpWithFees,
     c100YesNoFeesApplied,
     relationshipType,
+    isApplicant,
   }: C100EmergencyProtectionJourneyOptions): Promise<void> {
     await CitizenCreateInitial.citizenCreateInitial({
       page: page,
@@ -778,6 +785,7 @@ export class C100 {
       accessibilityTest: accessibilityTest,
       errorMessaging: errorMessaging,
       yesNoReasonableAdjustments: yesNoReasonableAdjustments,
+      isApplicant: isApplicant,
     });
     await C100HelpWithFees.c100HelpWithFees({
       page: page,
@@ -872,6 +880,7 @@ export class C100 {
     yesNoReasonableAdjustments,
     c100YesNoNeedHelpWithFees,
     c100YesNoFeesApplied,
+    isApplicant,
   }: C100ExistingMIAMDocumentOptions): Promise<void> {
     await CitizenCreateInitial.citizenCreateInitial({
       page: page,
@@ -1001,6 +1010,7 @@ export class C100 {
       accessibilityTest: accessibilityTest,
       errorMessaging: errorMessaging,
       yesNoReasonableAdjustments: yesNoReasonableAdjustments,
+      isApplicant: isApplicant,
     });
     await C100HelpWithFees.c100HelpWithFees({
       page: page,
@@ -1096,6 +1106,7 @@ export class C100 {
     yesNoReasonableAdjustments,
     c100YesNoNeedHelpWithFees,
     c100YesNoFeesApplied,
+    isApplicant,
   }: C100FourthRowMiroJourneyOptions): Promise<void> {
     await CitizenCreateInitial.citizenCreateInitial({
       page: page,
@@ -1225,6 +1236,7 @@ export class C100 {
       accessibilityTest: accessibilityTest,
       errorMessaging: errorMessaging,
       yesNoReasonableAdjustments: yesNoReasonableAdjustments,
+      isApplicant: isApplicant,
     });
     await C100HelpWithFees.c100HelpWithFees({
       page: page,
