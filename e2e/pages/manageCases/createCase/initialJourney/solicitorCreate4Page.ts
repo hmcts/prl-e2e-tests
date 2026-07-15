@@ -3,6 +3,7 @@ import { Selectors } from "../../../../common/selectors.ts";
 import { Helpers } from "../../../../common/helpers.ts";
 import { AxeUtils } from "@hmcts/playwright-common";
 import { SolicitorCreate4Content } from "../../../../fixtures/manageCases/createCase/initialJourney/solicitorCreate4Content.ts";
+import { CommonStaticText } from "../../../../common/commonStaticText.ts";
 
 enum caseName {
   fieldID = "#applicantCaseName",
@@ -95,7 +96,7 @@ export class SolicitorCreate4Page {
       return generatedName;
     }
     await page.click(
-      `${Selectors.button}:text-is("${SolicitorCreate4Content.submit}")`,
+      `${Selectors.button}:text-is("${CommonStaticText.saveAndContinue}")`,
     );
     return;
   }

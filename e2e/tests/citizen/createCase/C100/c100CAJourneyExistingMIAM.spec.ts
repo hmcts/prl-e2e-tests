@@ -127,6 +127,7 @@ test.describe("C100 Citizen Application with an existing MIAM document.", (): vo
       yesNoReasonableAdjustments: true,
       c100YesNoNeedHelpWithFees: false,
       c100YesNoFeesApplied: false,
+      isApplicant: true,
     });
   });
 
@@ -248,6 +249,7 @@ test.describe("C100 Citizen Application with an existing MIAM document.", (): vo
       yesNoReasonableAdjustments: true,
       c100YesNoNeedHelpWithFees: false,
       c100YesNoFeesApplied: false,
+      isApplicant: true,
     });
   });
 
@@ -369,6 +371,7 @@ test.describe("C100 Citizen Application with an existing MIAM document.", (): vo
       yesNoReasonableAdjustments: true,
       c100YesNoNeedHelpWithFees: false,
       c100YesNoFeesApplied: false,
+      isApplicant: true,
     });
   });
 
@@ -489,6 +492,7 @@ test.describe("C100 Citizen Application with an existing MIAM document.", (): vo
       yesNoReasonableAdjustments: true,
       c100YesNoNeedHelpWithFees: false,
       c100YesNoFeesApplied: false,
+      isApplicant: true,
     });
   });
 
@@ -609,6 +613,7 @@ test.describe("C100 Citizen Application with an existing MIAM document.", (): vo
       yesNoReasonableAdjustments: true,
       c100YesNoNeedHelpWithFees: false,
       c100YesNoFeesApplied: false,
+      isApplicant: true,
     });
   });
 
@@ -730,6 +735,7 @@ test.describe("C100 Citizen Application with an existing MIAM document.", (): vo
       yesNoReasonableAdjustments: true,
       c100YesNoNeedHelpWithFees: false,
       c100YesNoFeesApplied: false,
+      isApplicant: true,
     });
   });
 
@@ -851,6 +857,7 @@ test.describe("C100 Citizen Application with an existing MIAM document.", (): vo
       yesNoReasonableAdjustments: true,
       c100YesNoNeedHelpWithFees: false,
       c100YesNoFeesApplied: false,
+      isApplicant: true,
     });
   });
 
@@ -972,6 +979,7 @@ test.describe("C100 Citizen Application with an existing MIAM document.", (): vo
       yesNoReasonableAdjustments: true,
       c100YesNoNeedHelpWithFees: false,
       c100YesNoFeesApplied: false,
+      isApplicant: true,
     });
   });
 
@@ -1093,6 +1101,7 @@ test.describe("C100 Citizen Application with an existing MIAM document.", (): vo
       yesNoReasonableAdjustments: true,
       c100YesNoNeedHelpWithFees: false,
       c100YesNoFeesApplied: false,
+      isApplicant: true,
     });
   });
 
@@ -1214,6 +1223,7 @@ test.describe("C100 Citizen Application with an existing MIAM document.", (): vo
       yesNoReasonableAdjustments: true,
       c100YesNoNeedHelpWithFees: false,
       c100YesNoFeesApplied: false,
+      isApplicant: true,
     });
   });
 
@@ -1336,6 +1346,7 @@ test.describe("C100 Citizen Application with an existing MIAM document.", (): vo
       yesNoReasonableAdjustments: true,
       c100YesNoNeedHelpWithFees: false,
       c100YesNoFeesApplied: false,
+      isApplicant: true,
     });
   });
 
@@ -1453,6 +1464,7 @@ test.describe("C100 Citizen Application with an existing MIAM document.", (): vo
       yesNoReasonableAdjustments: true,
       c100YesNoNeedHelpWithFees: false,
       c100YesNoFeesApplied: false,
+      isApplicant: true,
     });
   });
 
@@ -1574,6 +1586,7 @@ test.describe("C100 Citizen Application with an existing MIAM document.", (): vo
       yesNoReasonableAdjustments: true,
       c100YesNoNeedHelpWithFees: false,
       c100YesNoFeesApplied: false,
+      isApplicant: true,
     });
   });
 });
@@ -1701,6 +1714,7 @@ test.describe("C100 Citizen Application accessibility tests on the third row jou
       yesNoReasonableAdjustments: true,
       c100YesNoNeedHelpWithFees: false,
       c100YesNoFeesApplied: false,
+      isApplicant: true,
     });
   });
 
@@ -1824,6 +1838,7 @@ test.describe("C100 Citizen Application accessibility tests on the third row jou
       yesNoReasonableAdjustments: true,
       c100YesNoNeedHelpWithFees: false,
       c100YesNoFeesApplied: false,
+      isApplicant: true,
     });
   });
 });
