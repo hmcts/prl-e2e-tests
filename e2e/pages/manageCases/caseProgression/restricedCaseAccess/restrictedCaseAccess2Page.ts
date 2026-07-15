@@ -1,8 +1,6 @@
 import { Page } from "@playwright/test";
-// import { AxeUtils } from "@hmcts/playwright-common";
 import { Selectors } from "../../../../common/selectors.ts";
 import { Helpers } from "../../../../common/helpers.ts";
-import { CommonStaticText } from "../../../../common/commonStaticText.ts";
 import { RestrictedCaseAccess2Content } from "../../../../fixtures/manageCases/caseProgression/restrictedCaseAccess/restrictedCaseAccess2Content.ts";
 
 interface RestrictedCaseAccess2Options {
@@ -13,6 +11,7 @@ interface RestrictedCaseAccess2Options {
 enum UniqueSelectors {
   restrictCaseReasonInput = "#markAsRestrictedReason",
 }
+
 export class RestrictedCaseAccess2Page {
   public static async restrictedCaseAccess2Page({
     page,
@@ -47,15 +46,17 @@ export class RestrictedCaseAccess2Page {
       // await new AxeUtils(page).audit(); //turn back on once EXUI-3016 is resolved.
     }
   }
+
   private static async fillInFields(page: Page) {
     await page.fill(
       UniqueSelectors.restrictCaseReasonInput,
       RestrictedCaseAccess2Content.inputText,
     );
   }
+
   private static async submit(page: Page) {
     await page.click(
-      `${Selectors.button}:text-is("${CommonStaticText.submit}")`,
+      `${Selectors.button}:text-is("${RestrictedCaseAccess2Content.markCaseAsRestrictedSubmitButton}")`,
     );
   }
 }
