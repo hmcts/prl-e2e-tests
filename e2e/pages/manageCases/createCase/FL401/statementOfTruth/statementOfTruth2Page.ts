@@ -3,6 +3,7 @@ import { Selectors } from "../../../../../common/selectors.ts";
 import { StatementOfTruth2Content } from "../../../../../fixtures/manageCases/createCase/FL401/statementOfTruth/statementOfTruth2Content.ts";
 import { AxeUtils } from "@hmcts/playwright-common";
 import { Helpers } from "../../../../../common/helpers.ts";
+import { CommonStaticText } from "../../../../../common/commonStaticText.ts";
 
 interface StatementOfTruth2PageOptions {
   page: Page;
@@ -95,7 +96,7 @@ export class StatementOfTruth2Page {
   ): Promise<void> {
     await page.check(isResubmit ? inputIDs.consentResubmit : inputIDs.consent);
     await page.click(
-      `${Selectors.button}:text-is("${isResubmit ? StatementOfTruth2Content.submit : StatementOfTruth2Content.continue}")`,
+      `${Selectors.button}:text-is("${isResubmit ? CommonStaticText.saveAndContinue : StatementOfTruth2Content.continue}")`,
     );
   }
 }
