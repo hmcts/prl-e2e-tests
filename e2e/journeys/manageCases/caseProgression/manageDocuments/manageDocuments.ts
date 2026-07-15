@@ -17,6 +17,8 @@ interface ManageDocumentsParams {
   documentCategory: string;
   restrictDocument: boolean;
   confidentialDocument: boolean;
+  verifyDocumentInTab?: boolean;
+  verifyPageContent?: boolean;
 }
 
 export class ManageDocuments {
@@ -28,6 +30,8 @@ export class ManageDocuments {
     documentCategory,
     restrictDocument,
     confidentialDocument,
+    verifyDocumentInTab = true,
+    verifyPageContent = true,
   }: ManageDocumentsParams): Promise<void> {
     await Helpers.chooseEventFromDropdown(page, "Manage documents");
     await ManageDocumentsNew1Page.manageDocumentsNew1Page({
@@ -37,6 +41,7 @@ export class ManageDocuments {
       documentCategory,
       restrictDocument,
       confidentialDocument,
+      verifyPageContent,
     });
     await ManageDocumentsNewSubmitPage.manageDocumentsNewSubmitPage({
       page,
@@ -50,6 +55,9 @@ export class ManageDocuments {
       page,
       accessibilityTest,
     });
+    if (!verifyDocumentInTab) {
+      return;
+    }
     if (restrictDocument || confidentialDocument) {
       await Helpers.clickTab(page, "Confidential details");
       if (caseType === "C100") {

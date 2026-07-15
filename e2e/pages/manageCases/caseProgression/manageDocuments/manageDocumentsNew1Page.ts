@@ -12,6 +12,7 @@ interface ManageDocumentsNew1PageParams {
   documentCategory: string;
   restrictDocument: boolean;
   confidentialDocument: boolean;
+  verifyPageContent?: boolean;
 }
 
 enum UniqueSelectors {
@@ -34,8 +35,9 @@ export class ManageDocumentsNew1Page {
     documentCategory,
     restrictDocument,
     confidentialDocument,
+    verifyPageContent = true,
   }: ManageDocumentsNew1PageParams): Promise<void> {
-    await this.checkPageLoads({ page, accessibilityTest });
+    await this.checkPageLoads({ page, accessibilityTest, verifyPageContent });
     await this.fillInFields({
       page,
       documentParty,
@@ -49,6 +51,7 @@ export class ManageDocumentsNew1Page {
   private static async checkPageLoads({
     page,
     accessibilityTest,
+    verifyPageContent = true,
   }: Partial<ManageDocumentsNew1PageParams>) {
     if (!page) {
       throw new Error("No page found");
@@ -56,7 +59,14 @@ export class ManageDocumentsNew1Page {
     const pageTitle = page.locator(
       `${Selectors.GovukHeadingL}:text-is("${ManageDocumentsNew1Content.pageTitle}")`,
     );
+    // Always wait for the page to load before filling fields. The detailed
+    // content assertions below are skipped when verifyPageContent is false
+    // (e.g. bundle uploads, where the case's confidential state legitimately
+    // hides some of the statically-asserted content).
     await pageTitle.waitFor();
+    if (!verifyPageContent) {
+      return;
+    }
     await Promise.all([
       Helpers.checkVisibleAndPresent(
         page,
