@@ -1,13 +1,17 @@
-import { OrderTypes, solicitorCaseCreateType } from "../common/types.js";
+import { OrderTypes, solicitorCaseCreateType } from "../common/types.ts";
 import { APIResponse } from "@playwright/test";
-import { CommonCaseEventUtils, UserInfo } from "./commonCaseEvent.utils.js";
-import { jsonDatas, JsonDatas } from "../common/caseHelpers/jsonDatas.js";
+import { CommonCaseEventUtils, UserInfo } from "./commonCaseEvent.utils.ts";
+import { jsonDatas, JsonDatas } from "../common/caseHelpers/jsonDatas.ts";
 import {
   AmendDischargedVariedOrderActionData,
   ChildArrangementsOrderActionData,
-  OrderActionData,
+  OrderActionRequestData,
   PowerOfArrestOrderActionData,
-} from "../testData/orderActionData.js";
+} from "../testData/jsonRequestData/orderActionRequestData.ts";
+import {
+  C100SoaWithoutOrderRequestData,
+  Fl401SoaWithoutOrderRequestData,
+} from "../testData/jsonRequestData/soaRequestData.ts";
 
 interface SendToGatekeeperParams {
   isSpecificGatekeeper: boolean;
@@ -249,13 +253,14 @@ export class ManageCaseEventUtils {
     });
   }
 
+  // could take this further to enable sending to judge or legal adviser to check
   async createOrder({
     caseId,
     orderType,
     isDraft,
     doServe,
   }: OrderOptions): Promise<void> {
-    let orderActionData: OrderActionData;
+    let orderActionData: OrderActionRequestData;
     switch (orderType) {
       case "Power of arrest (FL406)":
         orderActionData = PowerOfArrestOrderActionData;
@@ -284,7 +289,7 @@ export class ManageCaseEventUtils {
   }
 
   private getOrderData(
-    orderData: OrderActionData,
+    orderData: OrderActionRequestData,
     isDraft: boolean,
     doServe: boolean,
   ) {
@@ -295,5 +300,80 @@ export class ManageCaseEventUtils {
     } else {
       return orderData.createAndServeOrderData;
     }
+  }
+
+  async serviceOfApplication(
+    caseId: string,
+    caseType: solicitorCaseCreateType,
+    orderType?: OrderTypes,
+  ): Promise<void> {
+    let eventData;
+
+    if (caseType === "C100") {
+      eventData = C100SoaWithoutOrderRequestData;
+    } else {
+      eventData = Fl401SoaWithoutOrderRequestData;
+    }
+
+    if (orderType) {
+      const caseInfo = await this.commonCaseEventsUtils.getCaseInfo(caseId);
+      const orderId: string = caseInfo.data.orderCollection[0].id;
+      eventData = {
+        data: {
+          ...eventData.data,
+          serviceOfApplicationScreen1: {
+            value: [
+              {
+                code: orderId,
+                label: orderType,
+              },
+            ],
+          },
+          soaIsOrderListEmpty: "No",
+        },
+      };
+    }
+
+    await this.commonCaseEventsUtils.completeEvent({
+      caseId: caseId,
+      eventId: "serviceOfApplication",
+      eventData: eventData,
+      userInfo: {
+        email: process.env.CASEWORKER_USERNAME as string,
+        password: process.env.CASEWORKER_PASSWORD as string,
+      },
+    });
+  }
+
+  async confidentialityCheck(
+    caseId: string,
+    isRejected: boolean = false,
+  ): Promise<void> {
+    let eventData;
+    if (isRejected) {
+      eventData = {
+        data: {
+          applicationServedYesNo: "No",
+          rejectionReason: "Test rejection reason",
+        },
+      };
+    } else {
+      eventData = {
+        data: {
+          applicationServedYesNo: "Yes",
+          responsibleForService: "courtAdmin",
+        },
+      };
+    }
+
+    await this.commonCaseEventsUtils.completeEvent({
+      caseId: caseId,
+      eventId: "confidentialityCheck",
+      eventData: eventData,
+      userInfo: {
+        email: process.env.CASEMANAGER_USERNAME as string,
+        password: process.env.CASEMANAGER_PASSWORD as string,
+      },
+    });
   }
 }

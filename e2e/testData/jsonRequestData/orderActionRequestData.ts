@@ -1,12 +1,12 @@
 // TODO: order data needs to handle demo as well as AAT
 
-export interface OrderActionData {
+export interface OrderActionRequestData {
   draftOrderData;
   finalOrderData;
   createAndServeOrderData;
 }
 
-export const PowerOfArrestOrderActionData: OrderActionData = {
+export const PowerOfArrestOrderActionData: OrderActionRequestData = {
   draftOrderData: {
     data: {
       caseTypeOfApplication: "FL401",
@@ -113,7 +113,7 @@ export const PowerOfArrestOrderActionData: OrderActionData = {
   },
 };
 
-export const AmendDischargedVariedOrderActionData: OrderActionData = {
+export const AmendDischargedVariedOrderActionData: OrderActionRequestData = {
   draftOrderData: {
     data: {
       caseTypeOfApplication: "FL401",
@@ -220,7 +220,7 @@ export const AmendDischargedVariedOrderActionData: OrderActionData = {
   },
 };
 
-export const ChildArrangementsOrderActionData: OrderActionData = {
+export const ChildArrangementsOrderActionData: OrderActionRequestData = {
   draftOrderData: {
     data: {
       caseTypeOfApplication: "C100",
