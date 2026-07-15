@@ -7,6 +7,7 @@ import { SpecialGuardianshipCreateOrderParams } from "../tests/manageCases/caseP
 import { C21CreateOrderParams } from "../tests/manageCases/caseProgression/orders/C100/createAnOrder/judge/createBlankOrderOrDirectionsOrder.spec.js";
 import { C43UploadOrderParams } from "../tests/manageCases/caseProgression/orders/C100/uploadAnOrder/uploadChildArrangementsOrderJudge.spec.js";
 import { FL404B2FL406CreateOrderParams } from "../tests/manageCases/caseProgression/orders/FL401/createAnOrder/judge/createDomesticAbuseOrderJudge.spec.js";
+import { FL404B2UploadOrderParams } from "../tests/manageCases/caseProgression/orders/FL401/uploadAnOrder/uploadDomesticAbuseOrderJudge.spec.js";
 
 export const ChildArrangementsCreateOrderScenarios: ChildArrangementsCreateOrderParams[] =
   [
@@ -1153,6 +1154,85 @@ export const FL404B2Fl406OrderScenarios: FL404B2FL406CreateOrderParams[] = [
         typeOfOrder: "Power of arrest (FL406)",
         welshDocument: "Welsh_Power_of_arrest_draft.pdf",
         englishDocument: "Power_of_arrest_draft.pdf",
+        otherDetails: {
+          orderMadeBy: "Elizabeth Williams",
+          orderCreatedBy: "Elizabeth Williams",
+          status: "Created by Judge",
+        },
+        childrenList: ["Joe Doe", "Simon Anderson"],
+        isOrderAboutChildren: true,
+      },
+    ],
+  },
+];
+
+export const FL404B2UploadOrderScenarios: FL404B2UploadOrderParams[] = [
+  {
+    name: "No to all",
+    caseType: "FL401",
+    orderType: "Blank order (FL404B)",
+    orderOption: "upload order",
+    isUploadAnOrder: true,
+    isOrderByConsent: false,
+    manageOrder5Params: {
+      orderType: "Blank order (FL404B)",
+      isOrderByConsent: undefined,
+      wasOrderApprovedAtAHearing: false,
+      hearing: undefined,
+      judgeOrMagistratesTitle: undefined,
+      judgeFullName: undefined,
+      justicesLegalAdviserFullName: undefined,
+      dateOrderMade: undefined, // already pre-populated
+      isOrderAboutTheChildren: false,
+      recitalsAndPreamble: undefined,
+      directions: undefined,
+    },
+    manageOrder30Params: {
+      serveApplication: false,
+    },
+    snapshotName: "FL404B2-blank-upload-order-no-to-all",
+    snapshotsPath: ["caseProgression", "orders", "domesticAbuseUploadOrders"],
+    orderInformation: [
+      {
+        typeOfOrder: "Blank order (FL404B)",
+        englishDocument: "mockFile.pdf",
+        otherDetails: {
+          orderMadeBy: "Elizabeth Williams",
+          orderCreatedBy: "Elizabeth Williams",
+          status: "Created by Judge",
+        },
+        isOrderAboutChildren: false,
+      },
+    ],
+  },
+  {
+    name: "Yes to all",
+    caseType: "FL401",
+    orderType: "Blank order (FL404B)",
+    orderOption: "upload order",
+    isUploadAnOrder: true,
+    isOrderByConsent: true,
+    manageOrder5Params: {
+      orderType: "Blank order (FL404B)",
+      isOrderByConsent: undefined,
+      wasOrderApprovedAtAHearing: true,
+      hearing: "No hearings available",
+      judgeOrMagistratesTitle: "His Honour Judge",
+      judgeFullName: "Test judge name",
+      justicesLegalAdviserFullName: "Test legal adviser",
+      dateOrderMade: undefined, // already pre-populated
+      isOrderAboutTheChildren: true,
+      allChildrenInOrder: ["Joe Doe", "Simon Anderson"],
+    },
+    manageOrder30Params: {
+      serveApplication: true,
+    },
+    snapshotName: "FL404B2-blank-upload-order-yes-to-all",
+    snapshotsPath: ["caseProgression", "orders", "domesticAbuseUploadOrders"],
+    orderInformation: [
+      {
+        typeOfOrder: "Blank order (FL404B)",
+        englishDocument: "mockFile.pdf",
         otherDetails: {
           orderMadeBy: "Elizabeth Williams",
           orderCreatedBy: "Elizabeth Williams",

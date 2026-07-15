@@ -21,17 +21,10 @@ export interface PartyHearingAttendance {
 }
 
 export type HowHearingTakesPlaceOptions =
-  | "In Person"
-  | "Telephone"
-  | "Video"
-  | "On the Papers"
-  | "Not in Attendance";
+  "In Person" | "Telephone" | "Video" | "On the Papers" | "Not in Attendance";
 
 type HearingWillBeBeforeOptions =
-  | "Legal adviser"
-  | "Magistrates"
-  | "District judge"
-  | "Circuit judge";
+  "Legal adviser" | "Magistrates" | "District judge" | "Circuit judge";
 
 type HearingType =
   | "2nd Gatekeeping Appointment"

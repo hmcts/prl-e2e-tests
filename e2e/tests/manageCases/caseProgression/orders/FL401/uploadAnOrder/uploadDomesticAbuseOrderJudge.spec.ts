@@ -7,11 +7,10 @@ import {
 } from "../../../../../../common/types.js";
 import { OrderInformation } from "../../../../../../pageObjects/pages/exui/caseView/draftOrders.po.js";
 import { ManageOrder5Params } from "../../../../../../pageObjects/pages/exui/orders/manageOrders/manageOrder5.po.js";
-import { ManageOrder24Params } from "../../../../../../pageObjects/pages/exui/orders/manageOrders/manageOrder24.po.js";
-import { FL404AFL406UploadOrderScenarios } from "../../../../../../testData/manageOrders.js";
-import { ManageOrder26Params } from "../../../../../../pageObjects/pages/exui/orders/manageOrders/manageOrder26.po.js";
+import { FL404B2UploadOrderScenarios } from "../../../../../../testData/manageOrders.js";
+import { ManageOrder30Params } from "../../../../../../pageObjects/pages/exui/orders/manageOrders/manageOrder30.po.js";
 
-export interface DomesticAbuseUploadOrderParams {
+export interface FL404B2UploadOrderParams {
   name: string;
   caseType: solicitorCaseCreateType;
   orderType: OrderTypes;
@@ -19,34 +18,33 @@ export interface DomesticAbuseUploadOrderParams {
   isUploadAnOrder: boolean;
   isOrderByConsent: boolean;
   manageOrder5Params: ManageOrder5Params;
-  manageOrder24Params: ManageOrder24Params;
-  manageOrder26Params: ManageOrder26Params;
+  manageOrder30Params: ManageOrder30Params;
   snapshotName: string;
   snapshotsPath: string[];
   orderInformation: OrderInformation[];
 }
 
-test.describe("'Upload an order' by Case Worker via the 'Manage order' event tests", (): void => {
+test.describe("'Upload an order' by Judge via the 'Manage order' event tests", (): void => {
   let caseNumber: string;
 
   test.beforeEach(
-    async ({ caseWorker, browser, caseEventUtils, navigationUtils }) => {
+    async ({ judge, browser, caseEventUtils, navigationUtils }) => {
       caseNumber = await caseEventUtils.createDACaseAddCaseNumber(browser);
       await navigationUtils.goToCase(
-        caseWorker.page,
+        judge.page,
         config.manageCasesBaseURLCase,
         caseNumber,
       );
     },
   );
 
-  //FL404A+FL406 upload order
-  FL404AFL406UploadOrderScenarios.forEach(
-    (uploadOrderParams: DomesticAbuseUploadOrderParams) => {
-      test(`DA 'Upload an  order - ' : ${uploadOrderParams.orderType} as a Case Worker with the following options:${uploadOrderParams.name} @regression @nightly @visual`, async ({
-        caseWorker,
+  //FL404B blank upload order
+  FL404B2UploadOrderScenarios.forEach(
+    (uploadOrderParams: FL404B2UploadOrderParams) => {
+      test(`DA 'Upload an  order - ' : ${uploadOrderParams.orderType} as a Judge with the following options:${uploadOrderParams.name} @regression @nightly @visual`, async ({
+        judge,
       }): Promise<void> => {
-        const { manageOrders, summaryPage, draftedOrders } = caseWorker;
+        const { manageOrders, summaryPage, draftedOrders } = judge;
 
         await summaryPage.chooseEventFromDropdown("Manage orders");
         await manageOrders.manageOrder1Page.assertPageContents();
@@ -75,22 +73,13 @@ test.describe("'Upload an order' by Case Worker via the 'Manage order' event tes
         );
         await manageOrders.manageOrder5Page.clickContinue();
 
-        await manageOrders.manageOrder24Page.assertPageContents();
-        await manageOrders.manageOrder24Page.verifyAccessibility();
-        await manageOrders.manageOrder24Page.selectCheckOrder(
-          uploadOrderParams.manageOrder24Params,
+        await manageOrders.manageOrder30Page.assertPageContents();
+        await manageOrders.manageOrder30Page.verifyAccessibility();
+        await manageOrders.manageOrder30Page.fillAdminDirectionDetails(
+          uploadOrderParams.manageOrder30Params.serveApplication,
         );
-        await manageOrders.manageOrder24Page.clickContinue();
+        await manageOrders.manageOrder30Page.clickContinue();
 
-        if (uploadOrderParams.manageOrder24Params.checkOption === "noCheck") {
-          await manageOrders.manageOrder26Page.assertPageContents("FL401");
-          await manageOrders.manageOrder26Page.verifyAccessibility();
-          await manageOrders.manageOrder26Page.selectServeOrderOptions(
-            "FL401",
-            uploadOrderParams.manageOrder26Params,
-          );
-          await manageOrders.manageOrder26Page.clickContinue();
-        }
         await manageOrders.manageOrderSubmitPage.assertPageContents(
           uploadOrderParams.snapshotsPath,
           uploadOrderParams.snapshotName,
@@ -102,7 +91,7 @@ test.describe("'Upload an order' by Case Worker via the 'Manage order' event tes
           "Manage orders",
         );
 
-        // check the draft orders tab as court admin
+        // check the draft orders tab as judge
         await draftedOrders.draftOrdersPage.goToPage();
         await draftedOrders.draftOrdersPage.assertDraftOrders(
           uploadOrderParams.orderInformation,
