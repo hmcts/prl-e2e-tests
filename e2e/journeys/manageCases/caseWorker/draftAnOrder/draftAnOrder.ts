@@ -27,9 +27,7 @@ interface DraftAnOrderParams {
 }
 
 export type HowLongWillTheOrderBeInForce =
-  | "noEndDate"
-  | "untilNextHearing"
-  | "specifiedDateAndTime";
+  "noEndDate" | "untilNextHearing" | "specifiedDateAndTime";
 
 export const orderTypesMap: Map<OrderType, string> = new Map([
   ["parentalResponsibility", "Parental responsibility order (C45A)"],

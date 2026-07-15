@@ -10,6 +10,7 @@ interface C100ReasonableAdjustmentsOptions {
   accessibilityTest: boolean;
   errorMessaging: boolean;
   yesNoReasonableAdjustments: boolean;
+  isApplicant: boolean;
 }
 
 export class C100ReasonableAdjustments {
@@ -18,6 +19,7 @@ export class C100ReasonableAdjustments {
     accessibilityTest: accessibilityTest,
     errorMessaging: errorMessaging,
     yesNoReasonableAdjustments: yesNoReasonableAdjustments,
+    isApplicant: isApplicant,
   }: C100ReasonableAdjustmentsOptions): Promise<void> {
     await ReasonableAdjustmentsAttendingCourtPage.reasonableAdjustmentsAttendingCourtPage(
       {
@@ -41,6 +43,7 @@ export class C100ReasonableAdjustments {
         accessibilityTest: accessibilityTest,
         errorMessaging: errorMessaging,
         yesNoReasonableAdjustments: yesNoReasonableAdjustments,
+        isApplicant: isApplicant,
       },
     );
     await ReasonableAjustmentsIntermediaryPage.reasonableAjustmentsIntermediaryPage(

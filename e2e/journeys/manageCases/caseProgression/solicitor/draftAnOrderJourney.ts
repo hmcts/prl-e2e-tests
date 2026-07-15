@@ -18,8 +18,7 @@ import { DraftAnOrder17Page } from "../../../../pageObjects/pages/exui/orders/dr
 import { DraftAnOrder9Page } from "../../../../pageObjects/pages/exui/orders/draftOrders/draftAnOrder9.po.js";
 
 type OrderDetails =
-  | NonMolestationDraftOrderParams
-  | ParentalResponsibilityDraftOrderParams;
+  NonMolestationDraftOrderParams | ParentalResponsibilityDraftOrderParams;
 
 // class to handle draft order journeys - required because this journey is large and re-used
 export class DraftAnOrderJourney {

@@ -21,9 +21,7 @@ interface fillinFieldsOptions {
 }
 
 export type C100MiamPolicyUpgrade1PageType =
-  | "yes"
-  | "yesAttendedMiam"
-  | "yesExemption";
+  "yes" | "yesAttendedMiam" | "yesExemption";
 
 enum UniqueSelectors {
   invovledInEmergencyProtectionYes = "#mpuChildInvolvedInMiam_Yes",

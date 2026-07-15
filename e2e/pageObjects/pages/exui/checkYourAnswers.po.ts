@@ -5,8 +5,7 @@ import { CheckYourAnswersTableComponent } from "../../components/exui/checkYourA
 import { CommonStaticText } from "../../../common/commonStaticText.js";
 
 type CyaSubmitButton =
-  | CommonStaticText.submit
-  | CommonStaticText.saveAndContinue;
+  CommonStaticText.submit | CommonStaticText.saveAndContinue;
 
 export class CheckYourAnswersPage extends EventPage {
   private readonly headingH2: Locator = this.page.locator(Selectors.headingH2, {

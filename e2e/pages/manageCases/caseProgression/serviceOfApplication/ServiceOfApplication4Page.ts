@@ -14,9 +14,7 @@ interface ServiceOfApplication4Options {
 }
 
 export type responsibleForServing =
-  | "courtBailiff"
-  | "unrepresentedApplication"
-  | "courtAdmin";
+  "courtBailiff" | "unrepresentedApplication" | "courtAdmin";
 
 enum UniqueSelectors {
   yes = "#soaServeToRespondentOptions-Yes",
