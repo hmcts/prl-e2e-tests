@@ -6,14 +6,15 @@ import { AmendApplicantDetails } from "../../../../journeys/manageCases/caseProg
 test.use({ storageState: Config.sessionStoragePath + "courtAdminStoke.json" });
 
 test.describe("Complete amend applicant details event as a court admin for a CA case", () => {
-  let ccdRef: string = "";
+  let caseRef: string = "";
 
-  test.beforeEach(async ({ page, browser, caseEventUtils }) => {
-    ccdRef = await caseEventUtils.createCACase(browser);
+  test.beforeEach(async ({ page, manageCasesEventUtils }) => {
+    caseRef = (await manageCasesEventUtils.submitTSSolicitorCase("C100"))
+      .caseRef;
     await Helpers.goToCase(
       page,
       Config.manageCasesBaseURLCase,
-      ccdRef,
+      caseRef,
       "tasks",
     );
   });
@@ -27,7 +28,7 @@ test.describe("Complete amend applicant details event as a court admin for a CA 
     await AmendApplicantDetails.c100AmendApplicantDetails({
       page,
       accessibilityTest: true,
-      ccdRef: ccdRef,
+      ccdRef: caseRef,
       nameChange: true,
       dobChange: true,
       pobChange: true,

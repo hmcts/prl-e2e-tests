@@ -7,7 +7,7 @@ import { UserCredentials } from "../common/types.ts";
  */
 interface EventRequestParams {
   /** The case reference of the case. */
-  caseId: string;
+  caseRef: string;
   /** The name of the event to be completed. */
   eventId: string;
   /** The JSON event request data. */
@@ -28,7 +28,7 @@ export class CommonCaseEventUtils {
    * @param EventRequestParams the parameters of the event request.
    */
   async completeEvent({
-    caseId,
+    caseRef,
     eventId,
     eventData,
     userCredentials,
@@ -37,7 +37,7 @@ export class CommonCaseEventUtils {
     const serviceToken: string = await this.getServiceToken();
     const userDetails = await this.getUserDetails(userCredentials.email);
     const eventToken: string = await this.getEventToken(
-      caseId,
+      caseRef,
       eventId,
       bearerToken,
       serviceToken,
@@ -56,7 +56,7 @@ export class CommonCaseEventUtils {
     };
 
     await this.submitEvent(
-      caseId,
+      caseRef,
       JSON.stringify({ ...eventData, ...eventJson }),
       bearerToken,
       serviceToken,
@@ -67,14 +67,14 @@ export class CommonCaseEventUtils {
   /**
    * Creates and submits an FL401 or C100 testing support solicitor case via API requests.
    *
-   * @param caseId the case reference.
+   * @param caseRef the case reference.
    * @param eventData The JSON event request data.
    * @param bearerToken the Authorization token for the user completing the event.
    * @param serviceToken the ServiceAuthorization token for the service the event is completing against.
    * @param userId the IDAM id of the user completing the event.
    */
   private async submitEvent(
-    caseId: string,
+    caseRef: string,
     eventData: string,
     bearerToken: string,
     serviceToken: string,
@@ -82,7 +82,7 @@ export class CommonCaseEventUtils {
   ): Promise<void> {
     await this.retry(async () => {
       const apiContext = await this.createApiContext();
-      const submitEventUrl = `${process.env.CCD_DATA_STORE_URL as string}/caseworkers/${userId}/jurisdictions/PRIVATELAW/case-types/PRLAPPS/cases/${caseId}/events`;
+      const submitEventUrl = `${process.env.CCD_DATA_STORE_URL as string}/caseworkers/${userId}/jurisdictions/PRIVATELAW/case-types/PRLAPPS/cases/${caseRef}/events`;
       const response = await apiContext.post(submitEventUrl, {
         headers: {
           Authorization: `Bearer ${bearerToken}`,
@@ -104,7 +104,7 @@ export class CommonCaseEventUtils {
   /**
    * Gets the event token required to complete an event via API requests.
    *
-   * @param caseId the case reference.
+   * @param caseRef the case reference.
    * @param eventId the name of the event to be completed.
    * @param bearerToken the Authorization token for the user completing the event.
    * @param serviceToken the ServiceAuthorization token for the service the event is completing against.
@@ -112,14 +112,14 @@ export class CommonCaseEventUtils {
    * @returns the event token.
    */
   async getEventToken(
-    caseId: string,
+    caseRef: string,
     eventId: string,
     bearerToken: string,
     serviceToken: string,
     userId: string,
   ): Promise<string> {
     const apiContext = await this.createApiContext();
-    const eventTokenUrl = `${process.env.CCD_DATA_STORE_URL as string}/caseworkers/${userId}/jurisdictions/PRIVATELAW/case-types/PRLAPPS/cases/${caseId}/event-triggers/${eventId}/token`;
+    const eventTokenUrl = `${process.env.CCD_DATA_STORE_URL as string}/caseworkers/${userId}/jurisdictions/PRIVATELAW/case-types/PRLAPPS/cases/${caseRef}/event-triggers/${eventId}/token`;
     const response = await apiContext.get(eventTokenUrl, {
       headers: {
         Authorization: `Bearer ${bearerToken}`,
@@ -208,10 +208,10 @@ export class CommonCaseEventUtils {
   /**
    * Gets the case data for a given case reference via API requests.
    *
-   * @param caseId the case reference.
+   * @param caseRef the case reference.
    * @returns a JSON object of the case data.
    */
-  async getCaseInfo(caseId: string) {
+  async getCaseInfo(caseRef: string) {
     const bearerToken: string = await this.getBearerToken({
       email: process.env.CCD_DATA_STORE_CLIENT_USERNAME as string,
       password: process.env.CCD_DATA_STORE_CLIENT_PASSWORD as string,
@@ -222,7 +222,7 @@ export class CommonCaseEventUtils {
       const serviceToken: string = await this.getServiceToken("prl_cos_api");
 
       const apiContext = await this.createApiContext();
-      const url = `${process.env.CCD_DATA_STORE_URL as string}/cases/${caseId}`;
+      const url = `${process.env.CCD_DATA_STORE_URL as string}/cases/${caseRef}`;
       response = await apiContext.get(url, {
         headers: {
           Authorization: `Bearer ${bearerToken}`,

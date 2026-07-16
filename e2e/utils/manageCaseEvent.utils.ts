@@ -34,13 +34,18 @@ interface SendToGatekeeperParams {
  */
 interface OrderOptions {
   /** The case reference of the case. */
-  caseId: string;
+  caseRef: string;
   /** The order type. */
   orderType: OrderTypes;
   /** If the order to be created should be a draft order. If false then the order will be final. */
   isDraft: boolean;
   /** If the order should be served as part of the manage orders event. If false the order will be saved instead. */
   doServe: boolean;
+}
+
+export interface BasicCaseData {
+  caseRef: string;
+  caseName: string;
 }
 
 export class ManageCaseEventUtils {
@@ -50,17 +55,17 @@ export class ManageCaseEventUtils {
    * Creates and submits an FL401 or C100 testing support solicitor case via API requests.
    *
    * @param caseType the type of case either C100 or Fl401.
-   * @returns the case reference of the created testing support Solicitor case.
+   * @returns the case reference and case name of the created testing support Solicitor case.
    */
   public async submitTSSolicitorCase(
     caseType: solicitorCaseCreateType,
-  ): Promise<string> {
+  ): Promise<BasicCaseData> {
     const userCredentials: UserCredentials = {
       email: process.env.SOLICITOR_USERNAME,
       password: process.env.SOLICITOR_PASSWORD,
     };
 
-    const caseId: string = await this.createTSSolicitorCase(
+    const caseData: BasicCaseData = await this.createTSSolicitorCase(
       caseType,
       userCredentials,
     );
@@ -68,13 +73,13 @@ export class ManageCaseEventUtils {
     if (caseType === "C100") {
       const eventData: JsonDatas = jsonDatas.solicitorCACaseData;
       await this.commonCaseEventsUtils.completeEvent({
-        caseId: caseId,
+        caseRef: caseData.caseRef,
         eventId: "submitAndPay",
         eventData: eventData.submitAndPay,
         userCredentials: userCredentials,
       });
       await this.commonCaseEventsUtils.completeEvent({
-        caseId: caseId,
+        caseRef: caseData.caseRef,
         eventId: "testingSupportPaymentSuccessCallback",
         eventData: eventData.testingSupportPaymentSuccessCallback,
         userCredentials: userCredentials,
@@ -82,14 +87,14 @@ export class ManageCaseEventUtils {
     } else {
       const eventData: JsonDatas = jsonDatas.solicitorDACaseData;
       await this.commonCaseEventsUtils.completeEvent({
-        caseId: caseId,
+        caseRef: caseData.caseRef,
         eventId: "fl401StatementOfTruthAndSubmit",
         eventData: eventData.fl401StatementOfTruthAndSubmit,
         userCredentials: userCredentials,
       });
     }
 
-    return caseId;
+    return caseData;
   }
 
   /**
@@ -97,12 +102,12 @@ export class ManageCaseEventUtils {
    *
    * @param caseType the type of case either C100 or Fl401.
    * @param userCredentials the user information (email and password) of the user submitting the request.
-   * @returns the case reference of the created testing support Solicitor case.
+   * @returns the case reference and case name of the created testing support Solicitor case.
    */
   private async createTSSolicitorCase(
     caseType: solicitorCaseCreateType,
     userCredentials: UserCredentials,
-  ): Promise<string> {
+  ): Promise<BasicCaseData> {
     const bearerToken: string =
       await this.commonCaseEventsUtils.getBearerToken(userCredentials);
 
@@ -138,13 +143,14 @@ export class ManageCaseEventUtils {
     const randomNumber = Math.floor(Math.random() * 1000)
       .toString()
       .padStart(3, "0");
+    const caseName = `TEST-${timestamp}${randomNumber}`;
     await this.commonCaseEventsUtils.retry(async () => {
       const apiContext = await this.commonCaseEventsUtils.createApiContext();
       const caseData = {
         data: {
           caseTypeOfApplication: caseType,
           applicantOrganisationPolicy: null,
-          applicantCaseName: `TEST-${timestamp}${randomNumber}`,
+          applicantCaseName: caseName,
         },
         draft_id: null,
         event: {
@@ -173,21 +179,21 @@ export class ManageCaseEventUtils {
     });
 
     const responseJson = await submitEventResponse.json();
-    return String(responseJson.id);
+    return { caseRef: String(responseJson.id), caseName: caseName };
   }
 
   /**
    * Complete issue and send to local court event for a C100 case via API request.
    *
-   * @param caseId the case reference.
-   * @param localCourtInfo the court information of the court where the case will be issued - uses a static list LOCAL_COURTS. Defaults to `LOCAL_COURTS.aberystwyth`.
+   * @param caseRef the case reference.
+   * @param localCourtInfo the court information of the court where the case will be issued - uses a static list LOCAL_COURTS. Defaults to `LOCAL_COURTS.swansea`.
    */
   async issueAndSendToLocalCourt(
-    caseId: string,
-    localCourtInfo: LocalCourtInfo = LOCAL_COURTS.aberystwyth,
+    caseRef: string,
+    localCourtInfo: LocalCourtInfo = LOCAL_COURTS.swansea,
   ): Promise<void> {
     await this.commonCaseEventsUtils.completeEvent({
-      caseId: caseId,
+      caseRef: caseRef,
       eventId: "issueAndSendToLocalCourtCallback",
       eventData: {
         data: {
@@ -209,15 +215,15 @@ export class ManageCaseEventUtils {
   /**
    * Complete add case number event for an FL401 case via API request.
    *
-   * @param caseId the case reference.
+   * @param caseRef the case reference.
    * @param familyManNumber the family man number for the case. Defaults to `"1234"`.
    */
   async addFamilyManNumber(
-    caseId: string,
+    caseRef: string,
     familyManNumber: string = "1234",
   ): Promise<void> {
     await this.commonCaseEventsUtils.completeEvent({
-      caseId: caseId,
+      caseRef: caseRef,
       eventId: "fl401AddCaseNumber",
       eventData: {
         data: {
@@ -234,12 +240,12 @@ export class ManageCaseEventUtils {
   /**
    * Complete send to gatekeeper event for an FL401 or C100 case via API request.
    *
-   * @param caseId the case reference.
+   * @param caseRef the case reference.
    * @param caseType the type of case either C100 or Fl401.
    * @param sendToGatekeeperParams the parameters for the gatekeeping event - determines if the case is sent to a specific user and if so which user.
    */
   async sendToGatekeeper(
-    caseId: string,
+    caseRef: string,
     caseType: solicitorCaseCreateType,
     sendToGatekeeperParams: SendToGatekeeperParams = {
       isSpecificGatekeeper: false,
@@ -292,7 +298,7 @@ export class ManageCaseEventUtils {
     }
 
     await this.commonCaseEventsUtils.completeEvent({
-      caseId: caseId,
+      caseRef: caseRef,
       eventId:
         caseType === "C100" ? "sendToGateKeeper" : "fl401SendToGateKeeper",
       eventData: eventData,
@@ -310,7 +316,7 @@ export class ManageCaseEventUtils {
    * @param options the options used to create the order.
    */
   async createOrder({
-    caseId,
+    caseRef,
     orderType,
     isDraft,
     doServe,
@@ -333,7 +339,7 @@ export class ManageCaseEventUtils {
     }
 
     await this.commonCaseEventsUtils.completeEvent({
-      caseId: caseId,
+      caseRef: caseRef,
       eventId: "manageOrders",
       eventData: this.getOrderData(orderActionData, isDraft, doServe),
       userCredentials: {
@@ -360,12 +366,12 @@ export class ManageCaseEventUtils {
   /**
    * Complete the service of application event for an FL401 or C100 case via API request.
    *
-   * @param caseId the case reference.
+   * @param caseRef the case reference.
    * @param caseType the type of case either C100 or Fl401.
    * @param orderType the type of order to be created. If omitted the event is completed without an order attached.
    */
   async serviceOfApplication(
-    caseId: string,
+    caseRef: string,
     caseType: solicitorCaseCreateType,
     orderType?: OrderTypes,
   ): Promise<void> {
@@ -378,7 +384,7 @@ export class ManageCaseEventUtils {
     }
 
     if (orderType) {
-      const caseInfo = await this.commonCaseEventsUtils.getCaseInfo(caseId);
+      const caseInfo = await this.commonCaseEventsUtils.getCaseInfo(caseRef);
       const orderId: string = caseInfo.data.orderCollection[0].id;
       eventData = {
         data: {
@@ -397,7 +403,7 @@ export class ManageCaseEventUtils {
     }
 
     await this.commonCaseEventsUtils.completeEvent({
-      caseId: caseId,
+      caseRef: caseRef,
       eventId: "serviceOfApplication",
       eventData: eventData,
       userCredentials: {
@@ -410,11 +416,11 @@ export class ManageCaseEventUtils {
   /**
    * Complete the confidentiality check event for an FL401 or C100 case via API request.
    *
-   * @param caseId the case reference.
+   * @param caseRef the case reference.
    * @param isRejected if the check is accepted or rejected. Defaults to `false`.
    */
   async confidentialityCheck(
-    caseId: string,
+    caseRef: string,
     isRejected: boolean = false,
   ): Promise<void> {
     let eventData;
@@ -435,7 +441,7 @@ export class ManageCaseEventUtils {
     }
 
     await this.commonCaseEventsUtils.completeEvent({
-      caseId: caseId,
+      caseRef: caseRef,
       eventId: "confidentialityCheck",
       eventData: eventData,
       userCredentials: {

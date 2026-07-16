@@ -1,6 +1,5 @@
 import config from "../../../../utils/config.utils.ts";
 import { test, expect } from "../../../fixtures.ts";
-import { jsonDatas } from "../../../../common/caseHelpers/jsonDatas.js";
 
 async function performNoticeOfChange(nocSolicitor, caseNumber, nocParty) {
   const { summaryPage, noticeOfChangeC100 } = nocSolicitor;
@@ -27,7 +26,7 @@ async function performNoticeOfChange(nocSolicitor, caseNumber, nocParty) {
 }
 
 test.describe("Add/Remove Barrister for CA case", () => {
-  let caseNumber: string;
+  let caseRef: string;
 
   test.beforeEach(
     async ({
@@ -36,33 +35,29 @@ test.describe("Add/Remove Barrister for CA case", () => {
       solicitor,
       caseWorker,
       courtAdminStoke,
+      manageCasesEventUtils,
     }) => {
       /*
       create case via individual events so that we can control the solicitor organisation between AAT and Demo
       to enable notice of change to work
       */
-      caseNumber =
+      caseRef =
         await caseEventUtils.createCACaseSubmitAndPayIndividualEvents(
           solicitor.page,
         );
       await navigationUtils.goToCase(
         courtAdminStoke.page,
         config.manageCasesBaseURLCase,
-        caseNumber,
+        caseRef,
       );
-      await caseEventUtils.submitEvent(
-        courtAdminStoke.page,
-        caseNumber,
-        "issueAndSendToLocalCourtCallback",
-        jsonDatas.solicitorCACaseData,
-      );
+      await manageCasesEventUtils.issueAndSendToLocalCourt(caseRef);
 
       const { page, summaryPage, amendDetails } = caseWorker;
       // running Amend appl details event to allow Noc (if Noc gets fixed in the future, this bit can be removed)
       await navigationUtils.goToCase(
         page,
         config.manageCasesBaseURLCase,
-        caseNumber,
+        caseRef,
       );
       await summaryPage.chooseEventFromDropdown("Amend applicant details");
       await expect(
@@ -114,10 +109,10 @@ test.describe("Add/Remove Barrister for CA case", () => {
       await navigationUtils.goToCase(
         page,
         config.manageCasesBaseURLCase,
-        caseNumber,
+        caseRef,
         "summary",
       );
-      await performNoticeOfChange(nocSolicitor, caseNumber, data.nocParty);
+      await performNoticeOfChange(nocSolicitor, caseRef, data.nocParty);
       // adding barrister
       await summaryPage.chooseEventFromDropdown("Add barrister");
       await manageBarristerC100.addBarrister1Page.assertPageContents();
@@ -137,7 +132,7 @@ test.describe("Add/Remove Barrister for CA case", () => {
       //await manageBarristerC100.addBarristerSubmit.verifyAccessibility(); Accessibility Issue - see linked ticket EXUI-2726
       await manageBarristerC100.addBarristerSubmit.clickSubmit();
       await summaryPage.alertBanner.assertEventAlert(
-        caseNumber,
+        caseRef,
         "Add barrister",
       );
       // asserting barrister is added on Parties tab
@@ -163,7 +158,7 @@ test.describe("Add/Remove Barrister for CA case", () => {
       await manageBarristerC100.removeBarristerSubmit.verifyAccessibility();
       await manageBarristerC100.removeBarristerSubmit.clickSubmit();
       await summaryPage.alertBanner.assertEventAlert(
-        caseNumber,
+        caseRef,
         "Remove barrister",
       );
       // asserting barrister is removed on Parties tab
@@ -182,16 +177,16 @@ test.describe("Add/Remove Barrister for CA case", () => {
       await navigationUtils.goToCase(
         nocSolicitor.page,
         config.manageCasesBaseURLCase,
-        caseNumber,
+        caseRef,
         "summary",
       );
-      await performNoticeOfChange(nocSolicitor, caseNumber, data.nocParty);
+      await performNoticeOfChange(nocSolicitor, caseRef, data.nocParty);
 
       //change to caseworker to add/remove barrister
       await navigationUtils.goToCase(
         caseWorker.page,
         config.manageCasesBaseURLCase,
-        caseNumber,
+        caseRef,
         "summary",
       );
       // adding barrister as a caseworker
@@ -213,7 +208,7 @@ test.describe("Add/Remove Barrister for CA case", () => {
       // await manageBarristerC100.addBarristerSubmit.verifyAccessibility(); Accessibility Issue - see linked ticket EXUI-2726
       await manageBarristerC100.addBarristerSubmit.clickSubmit();
       await summaryPage.alertBanner.assertEventAlert(
-        caseNumber,
+        caseRef,
         "Add barrister",
       );
       await partiesPage.goToPage();
@@ -241,7 +236,7 @@ test.describe("Add/Remove Barrister for CA case", () => {
       await manageBarristerC100.removeBarristerSubmit.verifyAccessibility();
       await manageBarristerC100.removeBarristerSubmit.clickSubmit();
       await summaryPage.alertBanner.assertEventAlert(
-        caseNumber,
+        caseRef,
         "Remove barrister",
       );
       // asserting barrister is removed on Parties tab

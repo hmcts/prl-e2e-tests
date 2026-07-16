@@ -2,15 +2,16 @@ import { test, expect } from "../../../fixtures.ts";
 import config from "../../../../utils/config.utils.ts";
 
 test.describe("Check Application task for DA Solicitor case tests.", () => {
-  let caseNumber: string;
+  let caseRef: string;
 
   test.beforeEach(
     async ({ caseWorker, manageCasesEventUtils, navigationUtils }) => {
-      caseNumber = await manageCasesEventUtils.submitTSSolicitorCase("FL401");
+      caseRef = (await manageCasesEventUtils.submitTSSolicitorCase("FL401"))
+        .caseRef;
       await navigationUtils.goToCase(
         caseWorker.page,
         config.manageCasesBaseURLCase,
-        caseNumber,
+        caseRef,
         "tasks",
       );
     },
@@ -43,7 +44,7 @@ test.describe("Check Application task for DA Solicitor case tests.", () => {
         await fl401AddCaseNumber.submitPage.clickSaveAndContinue();
 
         await summaryPage.alertBanner.assertEventAlert(
-          caseNumber,
+          caseRef,
           "Add case number",
         );
         await summaryPage.caseHeader.assertFamilyManNumberIsVisible(

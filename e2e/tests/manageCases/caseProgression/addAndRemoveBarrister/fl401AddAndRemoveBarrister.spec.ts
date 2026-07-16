@@ -7,14 +7,16 @@ import { AddAndRemoveBarrister } from "../../../../journeys/manageCases/caseProg
 test.use({ storageState: Config.sessionStoragePath + "nocSolicitor.json" });
 
 test.describe("Add/Remove Barrister for DA case", () => {
-  let ccdRef: string = "";
+  let caseRef: string = "";
 
-  test.beforeEach(async ({ page, browser, caseEventUtils }) => {
-    ccdRef = await caseEventUtils.createDACaseSendToGatekeeper(browser);
+  test.beforeEach(async ({ page, manageCasesEventUtils }) => {
+    caseRef = (await manageCasesEventUtils.submitTSSolicitorCase("FL401"))
+      .caseRef;
+    await manageCasesEventUtils.sendToGatekeeper(caseRef, "FL401");
     await Helpers.goToCase(
       page,
       config.manageCasesBaseURLCase,
-      ccdRef,
+      caseRef,
       "tasks",
     );
   });
@@ -27,7 +29,7 @@ test.describe("Add/Remove Barrister for DA case", () => {
       page: page,
       browser: browser,
       caseType: "FL401",
-      ccdRef: ccdRef,
+      ccdRef: caseRef,
       isApplicant: false,
       accessibilityTest: true,
       isCaseworker: false,
@@ -42,7 +44,7 @@ test.describe("Add/Remove Barrister for DA case", () => {
       page: page,
       browser: browser,
       caseType: "FL401",
-      ccdRef: ccdRef,
+      ccdRef: caseRef,
       isApplicant: false,
       accessibilityTest: true,
       isCaseworker: true,

@@ -133,7 +133,7 @@ export class CitizenC100CaseUtils {
 
   public async issueAndSendToLocalCourt(caseId: string): Promise<void> {
     await this.commonCaseEventsUtils.completeEvent({
-      caseId: caseId,
+      caseRef: caseId,
       eventId: "issueAndSendToLocalCourtCallback",
       eventData: issueAndSendToLocalCourtEventData,
       userCredentials: {
@@ -145,7 +145,7 @@ export class CitizenC100CaseUtils {
 
   public async sendToGatekeeper(caseId: string): Promise<void> {
     await this.commonCaseEventsUtils.completeEvent({
-      caseId: caseId,
+      caseRef: caseId,
       eventId: "sendToGateKeeper",
       eventData: sendToGatekeeperEventData,
       userCredentials: {
@@ -157,7 +157,7 @@ export class CitizenC100CaseUtils {
 
   public async manageOrdersCreateOrder(caseId: string): Promise<void> {
     await this.commonCaseEventsUtils.completeEvent({
-      caseId: caseId,
+      caseRef: caseId,
       eventId: "manageOrders",
       eventData: manageOrdersEventData,
       userCredentials: {
@@ -180,7 +180,7 @@ export class CitizenC100CaseUtils {
     };
     const eventData = buildSOAEventData(citizenSOACaseInfo);
     await this.commonCaseEventsUtils.completeEvent({
-      caseId: caseId,
+      caseRef: caseId,
       eventId: "serviceOfApplication",
       eventData: eventData,
       userCredentials: {

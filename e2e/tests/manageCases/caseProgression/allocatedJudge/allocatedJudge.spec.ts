@@ -7,17 +7,18 @@ test.describe("Allocate a judge to the case", () => {
     "Doesn't work on preview env - roles and access doesn't work",
   );
 
-  let caseNumber: string = "";
+  let caseRef: string = "";
 
   test.beforeEach(
     async ({ caseWorker, navigationUtils, manageCasesEventUtils }) => {
-      caseNumber = await manageCasesEventUtils.submitTSSolicitorCase("FL401");
-      await manageCasesEventUtils.addFamilyManNumber(caseNumber);
-      await manageCasesEventUtils.sendToGatekeeper(caseNumber, "FL401");
+      caseRef = (await manageCasesEventUtils.submitTSSolicitorCase("FL401"))
+        .caseRef;
+      await manageCasesEventUtils.addFamilyManNumber(caseRef);
+      await manageCasesEventUtils.sendToGatekeeper(caseRef, "FL401");
       await navigationUtils.goToCase(
         caseWorker.page,
         config.manageCasesBaseURLCase,
-        caseNumber,
+        caseRef,
       );
     },
   );
@@ -70,7 +71,7 @@ test.describe("Allocate a judge to the case", () => {
         await allocatedJudge.submitPage.clickSubmit();
 
         await summaryPage.alertBanner.assertEventAlert(
-          caseNumber,
+          caseRef,
           "Allocated judge",
         );
         await summaryPage.assertAllocatedJudgeSection({
@@ -133,7 +134,7 @@ test.describe("Allocate a judge to the case", () => {
         await allocatedJudge.submitPage.clickSubmit();
 
         await summaryPage.alertBanner.assertEventAlert(
-          caseNumber,
+          caseRef,
           "Allocated judge",
         );
         await summaryPage.assertAllocatedJudgeSection({
