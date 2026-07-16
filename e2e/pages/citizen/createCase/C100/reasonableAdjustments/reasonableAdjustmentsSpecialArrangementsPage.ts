@@ -10,6 +10,7 @@ interface ReasonableAdjustmentsSpecialArrangementsPageOptions {
   accessibilityTest: boolean;
   errorMessaging: boolean;
   yesNoReasonableAdjustments: boolean;
+  isApplicant: boolean;
 }
 
 enum safetyRequirementsUniqueSelectors {
@@ -27,10 +28,12 @@ export class ReasonableAdjustmentsSpecialArrangementsPage {
     accessibilityTest: accessibilityTest,
     errorMessaging: errorMessaging,
     yesNoReasonableAdjustments: yesNoReasonableAdjustments,
+    isApplicant: isApplicant,
   }: ReasonableAdjustmentsSpecialArrangementsPageOptions): Promise<void> {
     await this.checkPageLoads({
       page: page,
       accessibilityTest: accessibilityTest,
+      isApplicant: isApplicant,
     });
     if (errorMessaging) {
       await this.triggerErrorMessages({ page: page });
@@ -44,6 +47,7 @@ export class ReasonableAdjustmentsSpecialArrangementsPage {
   private static async checkPageLoads({
     page: page,
     accessibilityTest: accessibilityTest,
+    isApplicant: isApplicant,
   }: Partial<ReasonableAdjustmentsSpecialArrangementsPageOptions>): Promise<void> {
     if (!page) {
       throw new Error();
@@ -69,7 +73,7 @@ export class ReasonableAdjustmentsSpecialArrangementsPage {
       ),
       Helpers.checkGroup(
         page,
-        5,
+        4,
         ReasonableAdjustmentsSpecialArrangementsContent,
         "govukLabel",
         Selectors.GovukLabel,
@@ -85,6 +89,19 @@ export class ReasonableAdjustmentsSpecialArrangementsPage {
         1,
       ),
     ]);
+    if (isApplicant) {
+      await Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukLabel}:text-is("${ReasonableAdjustmentsSpecialArrangementsContent.labelIfApplicant}")`,
+        1,
+      );
+    } else {
+      await Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukLabel}:text-is("${ReasonableAdjustmentsSpecialArrangementsContent.labelIfRespondent}")`,
+        1,
+      );
+    }
     if (accessibilityTest) {
       await new AxeUtils(page).audit();
     }

@@ -4,11 +4,7 @@ import { Selectors } from "../../../../common/selectors.js";
 import { DateHelperUtils } from "../../../../utils/dateHelpers.utils.js";
 
 type RolesAndAccessSection =
-  | "Judiciary"
-  | "Legal Ops"
-  | "Admin"
-  | "CTSC"
-  | "Exclusions";
+  "Judiciary" | "Legal Ops" | "Admin" | "CTSC" | "Exclusions";
 
 export class RolesAndAccessPage extends CaseAccessViewPage {
   readonly heading: Locator = this.page.locator(Selectors.GovukHeadingL, {

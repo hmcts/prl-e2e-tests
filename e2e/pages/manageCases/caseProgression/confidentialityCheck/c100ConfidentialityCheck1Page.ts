@@ -142,9 +142,11 @@ export class C100ConfidentialityCheck1Page {
         "caseFieldLabel",
         Selectors.GovukTextFieldLabel,
       ),
-      expect(page.locator(Selectors.GovLink).filter({
-        hasText: /Confidential_C8 of.*\.pdf/
-      })).toHaveCount(2),
+      expect(
+        page.locator(Selectors.GovLink).filter({
+          hasText: /Confidential_C8 of.*\.pdf/,
+        }),
+      ).toHaveCount(2),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukFormLabel}:text-is("${C100ConfidentialityCheck1Content.formLabel}")`,

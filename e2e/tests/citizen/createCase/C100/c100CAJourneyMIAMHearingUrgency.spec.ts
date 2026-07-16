@@ -123,6 +123,7 @@ test.describe("C100 Citizen Application for the MIAM Hearing Urgency journey.", 
       yesNoReasonableAdjustments: false,
       c100YesNoNeedHelpWithFees: true,
       c100YesNoFeesApplied: true,
+      isApplicant: true,
     });
   });
 
@@ -235,6 +236,7 @@ test.describe("C100 Citizen Application for the MIAM Hearing Urgency journey.", 
       yesNoReasonableAdjustments: false,
       c100YesNoNeedHelpWithFees: true,
       c100YesNoFeesApplied: true,
+      isApplicant: true,
     });
   });
 
@@ -347,6 +349,7 @@ test.describe("C100 Citizen Application for the MIAM Hearing Urgency journey.", 
       yesNoReasonableAdjustments: false,
       c100YesNoNeedHelpWithFees: true,
       c100YesNoFeesApplied: true,
+      isApplicant: true,
     });
   });
 
@@ -459,6 +462,7 @@ test.describe("C100 Citizen Application for the MIAM Hearing Urgency journey.", 
       yesNoReasonableAdjustments: false,
       c100YesNoNeedHelpWithFees: true,
       c100YesNoFeesApplied: true,
+      isApplicant: true,
     });
   });
 
@@ -572,6 +576,7 @@ test.describe("C100 Citizen Application for the MIAM Hearing Urgency journey.", 
       yesNoReasonableAdjustments: false,
       c100YesNoNeedHelpWithFees: true,
       c100YesNoFeesApplied: true,
+      isApplicant: true,
     });
   });
 
@@ -684,6 +689,7 @@ test.describe("C100 Citizen Application for the MIAM Hearing Urgency journey.", 
       yesNoReasonableAdjustments: false,
       c100YesNoNeedHelpWithFees: true,
       c100YesNoFeesApplied: true,
+      isApplicant: true,
     });
   });
 
@@ -796,6 +802,7 @@ test.describe("C100 Citizen Application for the MIAM Hearing Urgency journey.", 
       yesNoReasonableAdjustments: false,
       c100YesNoNeedHelpWithFees: true,
       c100YesNoFeesApplied: true,
+      isApplicant: true,
     });
   });
 
@@ -908,6 +915,7 @@ test.describe("C100 Citizen Application for the MIAM Hearing Urgency journey.", 
       yesNoReasonableAdjustments: false,
       c100YesNoNeedHelpWithFees: true,
       c100YesNoFeesApplied: true,
+      isApplicant: true,
     });
   });
 
@@ -1020,6 +1028,7 @@ test.describe("C100 Citizen Application for the MIAM Hearing Urgency journey.", 
       yesNoReasonableAdjustments: false,
       c100YesNoNeedHelpWithFees: true,
       c100YesNoFeesApplied: true,
+      isApplicant: true,
     });
   });
 
@@ -1132,6 +1141,7 @@ test.describe("C100 Citizen Application for the MIAM Hearing Urgency journey.", 
       yesNoReasonableAdjustments: false,
       c100YesNoNeedHelpWithFees: true,
       c100YesNoFeesApplied: true,
+      isApplicant: true,
     });
   });
 
@@ -1244,6 +1254,7 @@ test.describe("C100 Citizen Application for the MIAM Hearing Urgency journey.", 
       yesNoReasonableAdjustments: false,
       c100YesNoNeedHelpWithFees: true,
       c100YesNoFeesApplied: true,
+      isApplicant: true,
     });
   });
 
@@ -1350,6 +1361,7 @@ test.describe("C100 Citizen Application for the MIAM Hearing Urgency journey.", 
       yesNoReasonableAdjustments: false,
       c100YesNoNeedHelpWithFees: true,
       c100YesNoFeesApplied: true,
+      isApplicant: true,
     });
   });
 });
