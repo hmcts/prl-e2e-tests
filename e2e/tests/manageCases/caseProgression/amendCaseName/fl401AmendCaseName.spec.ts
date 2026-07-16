@@ -7,7 +7,7 @@ test.describe("Validating auto-generated case names for DA case", () => {
   test.beforeEach(
     async ({ caseWorker, manageCasesEventUtils, navigationUtils }) => {
       caseNumber = await manageCasesEventUtils.submitTSSolicitorCase("FL401");
-      await manageCasesEventUtils.addCaseNumber(caseNumber);
+      await manageCasesEventUtils.addFamilyManNumber(caseNumber);
       await manageCasesEventUtils.sendToGatekeeper(caseNumber, "FL401");
       await navigationUtils.goToCase(
         caseWorker.page,

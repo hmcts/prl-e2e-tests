@@ -12,7 +12,7 @@ test.describe("Allocate a judge to the case", () => {
   test.beforeEach(
     async ({ caseWorker, navigationUtils, manageCasesEventUtils }) => {
       caseNumber = await manageCasesEventUtils.submitTSSolicitorCase("FL401");
-      await manageCasesEventUtils.addCaseNumber(caseNumber);
+      await manageCasesEventUtils.addFamilyManNumber(caseNumber);
       await manageCasesEventUtils.sendToGatekeeper(caseNumber, "FL401");
       await navigationUtils.goToCase(
         caseWorker.page,

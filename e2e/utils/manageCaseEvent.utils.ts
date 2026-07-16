@@ -1,6 +1,12 @@
-import { OrderTypes, solicitorCaseCreateType } from "../common/types.ts";
+import {
+  LOCAL_COURTS,
+  LocalCourtInfo,
+  OrderTypes,
+  solicitorCaseCreateType,
+  UserCredentials,
+} from "../common/types.ts";
 import { APIResponse } from "@playwright/test";
-import { CommonCaseEventUtils, UserInfo } from "./commonCaseEvent.utils.ts";
+import { CommonCaseEventUtils } from "./commonCaseEvent.utils.ts";
 import { jsonDatas, JsonDatas } from "../common/caseHelpers/jsonDatas.ts";
 import {
   AmendDischargedVariedOrderActionData,
@@ -13,35 +19,51 @@ import {
   Fl401SoaWithoutOrderRequestData,
 } from "../testData/jsonRequestData/soaRequestData.ts";
 
+/**
+ * Send to gatekeeper event parameters.
+ */
 interface SendToGatekeeperParams {
+  /** If the case should be sent to a specific gatekeeper user */
   isSpecificGatekeeper: boolean;
-  isJudge?: boolean; // else legal adviser
+  /** If should the event should be sent to a judge. If false then send to a legal adviser */
+  isJudge?: boolean;
 }
 
-interface LocalCourtInfo {
-  code: string;
-  label: string;
-}
-
+/**
+ * Options for creating an order.
+ */
 interface OrderOptions {
+  /** The case reference of the case. */
   caseId: string;
+  /** The order type. */
   orderType: OrderTypes;
-  isDraft: boolean; // if not final
+  /** If the order to be created should be a draft order. If false then the order will be final. */
+  isDraft: boolean;
+  /** If the order should be served as part of the manage orders event. If false the order will be saved instead. */
   doServe: boolean;
 }
 
 export class ManageCaseEventUtils {
   constructor(private commonCaseEventsUtils: CommonCaseEventUtils) {}
 
+  /**
+   * Creates and submits an FL401 or C100 testing support solicitor case via API requests.
+   *
+   * @param caseType the type of case either C100 or Fl401.
+   * @returns the case reference of the created testing support Solicitor case.
+   */
   public async submitTSSolicitorCase(
     caseType: solicitorCaseCreateType,
   ): Promise<string> {
-    const userInfo: UserInfo = {
+    const userCredentials: UserCredentials = {
       email: process.env.SOLICITOR_USERNAME,
       password: process.env.SOLICITOR_PASSWORD,
     };
 
-    const caseId: string = await this.createTSSolicitorCase(caseType, userInfo);
+    const caseId: string = await this.createTSSolicitorCase(
+      caseType,
+      userCredentials,
+    );
 
     if (caseType === "C100") {
       const eventData: JsonDatas = jsonDatas.solicitorCACaseData;
@@ -49,13 +71,13 @@ export class ManageCaseEventUtils {
         caseId: caseId,
         eventId: "submitAndPay",
         eventData: eventData.submitAndPay,
-        userInfo: userInfo,
+        userCredentials: userCredentials,
       });
       await this.commonCaseEventsUtils.completeEvent({
         caseId: caseId,
         eventId: "testingSupportPaymentSuccessCallback",
         eventData: eventData.testingSupportPaymentSuccessCallback,
-        userInfo: userInfo,
+        userCredentials: userCredentials,
       });
     } else {
       const eventData: JsonDatas = jsonDatas.solicitorDACaseData;
@@ -63,19 +85,26 @@ export class ManageCaseEventUtils {
         caseId: caseId,
         eventId: "fl401StatementOfTruthAndSubmit",
         eventData: eventData.fl401StatementOfTruthAndSubmit,
-        userInfo: userInfo,
+        userCredentials: userCredentials,
       });
     }
 
     return caseId;
   }
 
+  /**
+   * Creates an FL401 or C100 testing support solicitor case via API request.
+   *
+   * @param caseType the type of case either C100 or Fl401.
+   * @param userCredentials the user information (email and password) of the user submitting the request.
+   * @returns the case reference of the created testing support Solicitor case.
+   */
   private async createTSSolicitorCase(
     caseType: solicitorCaseCreateType,
-    userInfo: UserInfo,
+    userCredentials: UserCredentials,
   ): Promise<string> {
     const bearerToken: string =
-      await this.commonCaseEventsUtils.getBearerToken(userInfo);
+      await this.commonCaseEventsUtils.getBearerToken(userCredentials);
 
     const s2sToken: string =
       await this.commonCaseEventsUtils.getServiceToken("prl_cos_api");
@@ -105,13 +134,17 @@ export class ManageCaseEventUtils {
 
     // submit event
     let submitEventResponse: APIResponse;
+    const timestamp = Date.now().toString().slice(-6);
+    const randomNumber = Math.floor(Math.random() * 1000)
+      .toString()
+      .padStart(3, "0");
     await this.commonCaseEventsUtils.retry(async () => {
       const apiContext = await this.commonCaseEventsUtils.createApiContext();
       const caseData = {
         data: {
           caseTypeOfApplication: caseType,
           applicantOrganisationPolicy: null,
-          applicantCaseName: "TEST", // TODO: make this some random string so it is easier to track
+          applicantCaseName: `TEST-${timestamp}${randomNumber}`,
         },
         draft_id: null,
         event: {
@@ -143,13 +176,15 @@ export class ManageCaseEventUtils {
     return String(responseJson.id);
   }
 
-  // default to Aberystwyth court
+  /**
+   * Complete issue and send to local court event for a C100 case via API request.
+   *
+   * @param caseId the case reference.
+   * @param localCourtInfo the court information of the court where the case will be issued - uses a static list LOCAL_COURTS. Defaults to `LOCAL_COURTS.aberystwyth`.
+   */
   async issueAndSendToLocalCourt(
     caseId: string,
-    localCourtInfo: LocalCourtInfo = {
-      code: "827534:",
-      label: "Aberystwyth Justice Centre - Trefechan - SY23 1AS",
-    },
+    localCourtInfo: LocalCourtInfo = LOCAL_COURTS.aberystwyth,
   ): Promise<void> {
     await this.commonCaseEventsUtils.completeEvent({
       caseId: caseId,
@@ -164,31 +199,45 @@ export class ManageCaseEventUtils {
           },
         },
       },
-      userInfo: {
+      userCredentials: {
         email: process.env.COURT_ADMIN_STOKE_USERNAME as string,
         password: process.env.COURT_ADMIN_STOKE_PASSWORD as string,
       },
     });
   }
 
-  async addCaseNumber(caseId: string, familyManNumber?: string): Promise<void> {
+  /**
+   * Complete add case number event for an FL401 case via API request.
+   *
+   * @param caseId the case reference.
+   * @param familyManNumber the family man number for the case. Defaults to `"1234"`.
+   */
+  async addFamilyManNumber(
+    caseId: string,
+    familyManNumber: string = "1234",
+  ): Promise<void> {
     await this.commonCaseEventsUtils.completeEvent({
       caseId: caseId,
       eventId: "fl401AddCaseNumber",
       eventData: {
         data: {
-          familymanCaseNumber: familyManNumber ?? "123",
+          familymanCaseNumber: familyManNumber,
         },
       },
-      userInfo: {
+      userCredentials: {
         email: process.env.CASEWORKER_USERNAME as string,
         password: process.env.CASEWORKER_PASSWORD as string,
       },
     });
   }
 
-  // currently this method is setup for the static users - it would need to be adapted if we want to use ad-hoc gatekeepers
-  // TODO: for some reason the legal adviser request succeeds but the role doesn't get added correctly
+  /**
+   * Complete send to gatekeeper event for an FL401 or C100 case via API request.
+   *
+   * @param caseId the case reference.
+   * @param caseType the type of case either C100 or Fl401.
+   * @param sendToGatekeeperParams the parameters for the gatekeeping event - determines if the case is sent to a specific user and if so which user.
+   */
   async sendToGatekeeper(
     caseId: string,
     caseType: solicitorCaseCreateType,
@@ -216,6 +265,7 @@ export class ManageCaseEventUtils {
           },
         };
       } else {
+        // TODO: for some reason the legal adviser request succeeds but the role doesn't get added correctly
         const laUserDetails = await this.commonCaseEventsUtils.getUserDetails(
           process.env.LEGALADVISOR_USERNAME,
         );
@@ -246,7 +296,7 @@ export class ManageCaseEventUtils {
       eventId:
         caseType === "C100" ? "sendToGateKeeper" : "fl401SendToGateKeeper",
       eventData: eventData,
-      userInfo: {
+      userCredentials: {
         email: process.env.CASEWORKER_USERNAME as string,
         password: process.env.CASEWORKER_PASSWORD as string,
       },
@@ -254,6 +304,11 @@ export class ManageCaseEventUtils {
   }
 
   // could take this further to enable sending to judge or legal adviser to check
+  /**
+   * Complete the manage orders event for an FL401 or C100 case via API request.
+   *
+   * @param options the options used to create the order.
+   */
   async createOrder({
     caseId,
     orderType,
@@ -281,7 +336,7 @@ export class ManageCaseEventUtils {
       caseId: caseId,
       eventId: "manageOrders",
       eventData: this.getOrderData(orderActionData, isDraft, doServe),
-      userInfo: {
+      userCredentials: {
         email: process.env.CASEWORKER_USERNAME as string,
         password: process.env.CASEWORKER_PASSWORD as string,
       },
@@ -302,6 +357,13 @@ export class ManageCaseEventUtils {
     }
   }
 
+  /**
+   * Complete the service of application event for an FL401 or C100 case via API request.
+   *
+   * @param caseId the case reference.
+   * @param caseType the type of case either C100 or Fl401.
+   * @param orderType the type of order to be created. If omitted the event is completed without an order attached.
+   */
   async serviceOfApplication(
     caseId: string,
     caseType: solicitorCaseCreateType,
@@ -338,13 +400,19 @@ export class ManageCaseEventUtils {
       caseId: caseId,
       eventId: "serviceOfApplication",
       eventData: eventData,
-      userInfo: {
+      userCredentials: {
         email: process.env.CASEWORKER_USERNAME as string,
         password: process.env.CASEWORKER_PASSWORD as string,
       },
     });
   }
 
+  /**
+   * Complete the confidentiality check event for an FL401 or C100 case via API request.
+   *
+   * @param caseId the case reference.
+   * @param isRejected if the check is accepted or rejected. Defaults to `false`.
+   */
   async confidentialityCheck(
     caseId: string,
     isRejected: boolean = false,
@@ -370,7 +438,7 @@ export class ManageCaseEventUtils {
       caseId: caseId,
       eventId: "confidentialityCheck",
       eventData: eventData,
-      userInfo: {
+      userCredentials: {
         email: process.env.CASEMANAGER_USERNAME as string,
         password: process.env.CASEMANAGER_PASSWORD as string,
       },

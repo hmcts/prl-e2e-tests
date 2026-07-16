@@ -6,8 +6,9 @@ import {
   issueAndSendToLocalCourtEventData,
   manageOrdersEventData,
   sendToGatekeeperEventData,
-} from "../testData/citizen.js";
-import { CommonCaseEventUtils, UserInfo } from "./commonCaseEvent.utils.js";
+} from "../testData/citizen.ts";
+import { CommonCaseEventUtils } from "./commonCaseEvent.utils.ts";
+import { UserCredentials } from "../common/types.ts";
 
 type JsonObjectWithId = {
   id: string;
@@ -39,9 +40,9 @@ export class CitizenC100CaseUtils {
   constructor(private commonCaseEventsUtils: CommonCaseEventUtils) {}
 
   public async setupCitizenC100Application(
-    userInfo: UserInfo,
+    userCredentials: UserCredentials,
   ): Promise<string> {
-    const caseId = await this.createAndSubmitCitizenCase(userInfo);
+    const caseId = await this.createAndSubmitCitizenCase(userCredentials);
     await this.issueAndSendToLocalCourt(caseId);
     await this.sendToGatekeeper(caseId);
     await this.manageOrdersCreateOrder(caseId);
@@ -49,9 +50,9 @@ export class CitizenC100CaseUtils {
     return caseId;
   }
 
-  public async createAndSubmitCitizenCase(userInfo: UserInfo): Promise<string> {
+  public async createAndSubmitCitizenCase(userCredentials: UserCredentials): Promise<string> {
     const bearerToken: string =
-      await this.commonCaseEventsUtils.getBearerToken(userInfo);
+      await this.commonCaseEventsUtils.getBearerToken(userCredentials);
 
     const s2sToken: string = await this.commonCaseEventsUtils.getServiceToken();
 
@@ -135,7 +136,7 @@ export class CitizenC100CaseUtils {
       caseId: caseId,
       eventId: "issueAndSendToLocalCourtCallback",
       eventData: issueAndSendToLocalCourtEventData,
-      userInfo: {
+      userCredentials: {
         email: process.env.COURT_ADMIN_STOKE_USERNAME as string,
         password: process.env.COURT_ADMIN_STOKE_PASSWORD as string,
       },
@@ -147,7 +148,7 @@ export class CitizenC100CaseUtils {
       caseId: caseId,
       eventId: "sendToGateKeeper",
       eventData: sendToGatekeeperEventData,
-      userInfo: {
+      userCredentials: {
         email: process.env.CASEWORKER_USERNAME as string,
         password: process.env.CASEWORKER_PASSWORD as string,
       },
@@ -159,7 +160,7 @@ export class CitizenC100CaseUtils {
       caseId: caseId,
       eventId: "manageOrders",
       eventData: manageOrdersEventData,
-      userInfo: {
+      userCredentials: {
         email: process.env.CASEWORKER_USERNAME as string,
         password: process.env.CASEWORKER_PASSWORD as string,
       },
@@ -182,7 +183,7 @@ export class CitizenC100CaseUtils {
       caseId: caseId,
       eventId: "serviceOfApplication",
       eventData: eventData,
-      userInfo: {
+      userCredentials: {
         email: process.env.CASEWORKER_USERNAME as string,
         password: process.env.CASEWORKER_PASSWORD as string,
       },

@@ -1,16 +1,19 @@
 import { APIRequestContext, APIResponse, request } from "@playwright/test";
 import { IdamUtils, ServiceAuthUtils } from "@hmcts/playwright-common";
+import { UserCredentials } from "../common/types.ts";
 
+/**
+ * Parameters for an event request.
+ */
 interface EventRequestParams {
+  /** The case reference of the case. */
   caseId: string;
+  /** The name of the event to be completed. */
   eventId: string;
+  /** The JSON event request data. */
   eventData: Record<string, unknown>;
-  userInfo: UserInfo;
-}
-
-export interface UserInfo {
-  email: string;
-  password: string;
+  /** The credentials of the user completing the request. */
+  userCredentials: UserCredentials;
 }
 
 export class CommonCaseEventUtils {
@@ -19,15 +22,20 @@ export class CommonCaseEventUtils {
     private idamUtils: IdamUtils,
   ) {}
 
+  /**
+   * Completes an entire API event.
+   *
+   * @param EventRequestParams the parameters of the event request.
+   */
   async completeEvent({
     caseId,
     eventId,
     eventData,
-    userInfo,
+    userCredentials,
   }: EventRequestParams): Promise<void> {
-    const bearerToken: string = await this.getBearerToken(userInfo);
+    const bearerToken: string = await this.getBearerToken(userCredentials);
     const serviceToken: string = await this.getServiceToken();
-    const userDetails = await this.getUserDetails(userInfo.email);
+    const userDetails = await this.getUserDetails(userCredentials.email);
     const eventToken: string = await this.getEventToken(
       caseId,
       eventId,
@@ -56,6 +64,15 @@ export class CommonCaseEventUtils {
     );
   }
 
+  /**
+   * Creates and submits an FL401 or C100 testing support solicitor case via API requests.
+   *
+   * @param caseId the case reference.
+   * @param eventData The JSON event request data.
+   * @param bearerToken the Authorization token for the user completing the event.
+   * @param serviceToken the ServiceAuthorization token for the service the event is completing against.
+   * @param userId the IDAM id of the user completing the event.
+   */
   private async submitEvent(
     caseId: string,
     eventData: string,
@@ -84,6 +101,16 @@ export class CommonCaseEventUtils {
     });
   }
 
+  /**
+   * Gets the event token required to complete an event via API requests.
+   *
+   * @param caseId the case reference.
+   * @param eventId the name of the event to be completed.
+   * @param bearerToken the Authorization token for the user completing the event.
+   * @param serviceToken the ServiceAuthorization token for the service the event is completing against.
+   * @param userId the IDAM id of the user completing the event.
+   * @returns the event token.
+   */
   async getEventToken(
     caseId: string,
     eventId: string,
@@ -111,11 +138,17 @@ export class CommonCaseEventUtils {
     return responseJson.token;
   }
 
-  async getBearerToken(userInfo: UserInfo): Promise<string> {
+  /**
+   * Gets the IDAM bearer token for a given user via API requests.
+   *
+   * @param userCredentials the credentials of the user requiring the bearer token.
+   * @returns the bearer token.
+   */
+  async getBearerToken(userCredentials: UserCredentials): Promise<string> {
     return await this.idamUtils.generateIdamToken({
       grantType: "password",
-      username: userInfo.email,
-      password: userInfo.password,
+      username: userCredentials.email,
+      password: userCredentials.password,
       scope: "openid profile roles",
       clientId: process.env.CCD_DATA_STORE_CLIENT_ID as string,
       clientSecret: process.env.IDAM_SECRET as string,
@@ -123,6 +156,12 @@ export class CommonCaseEventUtils {
     });
   }
 
+  /**
+   * Gets the user details a given user email address via API requests.
+   *
+   * @param email the email address of the user for which the details will be fetched.
+   * @returns a JSON object of user details.
+   */
   async getUserDetails(email: string) {
     const bearerToken = await this.getBearerToken({
       email: process.env.CCD_DATA_STORE_CLIENT_USERNAME,
@@ -147,16 +186,31 @@ export class CommonCaseEventUtils {
     return await response.json();
   }
 
+  /**
+   * Gets the service token for a given service via API requests.
+   *
+   * @param microservice the name of the microservice for which the token is fetched for. Defaults to `"ccd_data"`.
+   * @returns the service token.
+   */
   async getServiceToken(microservice: string = "ccd_data"): Promise<string> {
     return await this.serviceAuthUtils.retrieveToken({
       microservice: microservice,
     });
   }
 
+  /**
+   * Creates a new API context to be used for making requests.
+   */
   async createApiContext(): Promise<APIRequestContext> {
     return await request.newContext();
   }
 
+  /**
+   * Gets the case data for a given case reference via API requests.
+   *
+   * @param caseId the case reference.
+   * @returns a JSON object of the case data.
+   */
   async getCaseInfo(caseId: string) {
     const bearerToken: string = await this.getBearerToken({
       email: process.env.CCD_DATA_STORE_CLIENT_USERNAME as string,
