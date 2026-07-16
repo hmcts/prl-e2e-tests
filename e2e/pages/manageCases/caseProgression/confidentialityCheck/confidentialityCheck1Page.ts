@@ -97,7 +97,7 @@ export class ConfidentialityCheck1Page {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovLink}:text-is("${ConfidentialityCheck1Content.mockFileAnchor}")`,
+        `${Selectors.GovLink}:text-is("${ConfidentialityCheck1Content.safetyLetterAnchor}")`,
         2,
       ),
       Helpers.checkVisibleAndPresent(
