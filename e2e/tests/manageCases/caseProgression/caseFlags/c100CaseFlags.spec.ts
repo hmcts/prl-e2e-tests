@@ -1,6 +1,5 @@
 import Config from "../../../../utils/config.utils.ts";
 import config from "../../../../utils/config.utils.ts";
-import { Helpers } from "../../../../common/helpers.ts";
 import { CaseFlagsCA } from "../../../../journeys/manageCases/caseProgression/caseFlags/caseFlagsCA.ts";
 import { test } from "../../../fixtures.ts";
 
@@ -10,11 +9,11 @@ test.slow();
 test.describe("Case flags tests for CA case tests.", () => {
   let caseRef: string = "";
 
-  test.beforeEach(async ({ page, manageCasesEventUtils }) => {
+  test.beforeEach(async ({ page, manageCasesEventUtils, navigationUtils }) => {
     caseRef = (await manageCasesEventUtils.submitTSSolicitorCase("C100"))
       .caseRef;
     await manageCasesEventUtils.issueAndSendToLocalCourt(caseRef);
-    await Helpers.goToCase(
+    await navigationUtils.goToCase(
       page,
       config.manageCasesBaseURLCase,
       caseRef,

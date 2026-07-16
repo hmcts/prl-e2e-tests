@@ -1,5 +1,4 @@
 import Config from "../../../../utils/config.utils.ts";
-import { Helpers } from "../../../../common/helpers.ts";
 import config from "../../../../utils/config.utils.ts";
 import { test } from "../../../fixtures.ts";
 import { AddAndRemoveBarrister } from "../../../../journeys/manageCases/caseProgression/addAndRemoveBarrister/addAndRemoveBarrister.ts";
@@ -9,15 +8,14 @@ test.use({ storageState: Config.sessionStoragePath + "nocSolicitor.json" });
 test.describe("Add/Remove Barrister for DA case", () => {
   let caseRef: string = "";
 
-  test.beforeEach(async ({ page, manageCasesEventUtils }) => {
+  test.beforeEach(async ({ page, manageCasesEventUtils, navigationUtils }) => {
     caseRef = (await manageCasesEventUtils.submitTSSolicitorCase("FL401"))
       .caseRef;
     await manageCasesEventUtils.sendToGatekeeper(caseRef, "FL401");
-    await Helpers.goToCase(
+    await navigationUtils.goToCase(
       page,
       config.manageCasesBaseURLCase,
       caseRef,
-      "tasks",
     );
   });
 
