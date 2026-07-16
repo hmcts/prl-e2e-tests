@@ -1,5 +1,5 @@
 import { expect, Page } from "@playwright/test";
-import { CitizenC100CaseUtils } from "../../../../utils/citizenC100CaseUtils.ts";
+import { CitizenC100CaseUtils } from "../../../../utils/citizenC100Case.utils.ts";
 import { RespondentResponseC7Content } from "../../../../fixtures/citizen/caseView/respondToTheApplicationC7/respondentResponseContent.ts";
 import { LegalRepresentation1Page } from "../../../../pages/citizen/caseView/respondToTheApplicationC7/legalRepresentation1Page.ts";
 import { LegalRepresentation2Page } from "../../../../pages/citizen/caseView/respondToTheApplicationC7/legalRepresentation2Page.ts";

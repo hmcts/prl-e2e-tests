@@ -6,7 +6,8 @@ test.describe("Issue and send to local court for CA cases", () => {
 
   test.beforeEach(
     async ({ courtAdminStoke, manageCasesEventUtils, navigationUtils }) => {
-      caseNumber = await manageCasesEventUtils.submitTSSolicitorCase("C100");
+      caseNumber = (await manageCasesEventUtils.submitTSSolicitorCase("C100"))
+        .caseRef;
       await navigationUtils.goToCase(
         courtAdminStoke.page,
         config.manageCasesBaseURLCase,

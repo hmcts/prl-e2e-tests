@@ -41,10 +41,9 @@ test.describe("Add/Remove Barrister for CA case", () => {
       create case via individual events so that we can control the solicitor organisation between AAT and Demo
       to enable notice of change to work
       */
-      caseRef =
-        await caseEventUtils.createCACaseSubmitAndPayIndividualEvents(
-          solicitor.page,
-        );
+      caseRef = await caseEventUtils.createCACaseSubmitAndPayIndividualEvents(
+        solicitor.page,
+      );
       await navigationUtils.goToCase(
         courtAdminStoke.page,
         config.manageCasesBaseURLCase,
@@ -131,10 +130,7 @@ test.describe("Add/Remove Barrister for CA case", () => {
       );
       //await manageBarristerC100.addBarristerSubmit.verifyAccessibility(); Accessibility Issue - see linked ticket EXUI-2726
       await manageBarristerC100.addBarristerSubmit.clickSubmit();
-      await summaryPage.alertBanner.assertEventAlert(
-        caseRef,
-        "Add barrister",
-      );
+      await summaryPage.alertBanner.assertEventAlert(caseRef, "Add barrister");
       // asserting barrister is added on Parties tab
       await partiesPage.goToPage();
       await partiesPage.assertC100BarristerDetailsPresent(
@@ -207,10 +203,7 @@ test.describe("Add/Remove Barrister for CA case", () => {
       );
       // await manageBarristerC100.addBarristerSubmit.verifyAccessibility(); Accessibility Issue - see linked ticket EXUI-2726
       await manageBarristerC100.addBarristerSubmit.clickSubmit();
-      await summaryPage.alertBanner.assertEventAlert(
-        caseRef,
-        "Add barrister",
-      );
+      await summaryPage.alertBanner.assertEventAlert(caseRef, "Add barrister");
       await partiesPage.goToPage();
       await partiesPage.assertC100BarristerDetailsPresent(
         data.barrister.firstnames,

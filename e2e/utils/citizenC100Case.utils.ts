@@ -50,7 +50,9 @@ export class CitizenC100CaseUtils {
     return caseId;
   }
 
-  public async createAndSubmitCitizenCase(userCredentials: UserCredentials): Promise<string> {
+  public async createAndSubmitCitizenCase(
+    userCredentials: UserCredentials,
+  ): Promise<string> {
     const bearerToken: string =
       await this.commonCaseEventsUtils.getBearerToken(userCredentials);
 
