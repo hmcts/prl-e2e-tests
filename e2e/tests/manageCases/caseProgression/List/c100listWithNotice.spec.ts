@@ -1,21 +1,22 @@
 import { test } from "../../../fixtures.ts";
 import config from "../../../../utils/config.utils.ts";
-import { Helpers } from "../../../../common/helpers.ts";
 import { ListWithNotice } from "../../../../journeys/manageCases/caseProgression/List/listWithNotice.ts";
-import Config from "../../../../utils/config.utils.js";
 
-test.use({ storageState: config.sessionStoragePath + "caseWorker.json" });
+test.use({ storageState: config.sessionStoragePath + "judge.json" });
 
 test.describe("List with notice tests for CA cases", () => {
-  let ccdRef: string = "";
+  let caseRef: string = "";
 
-  test.beforeEach(async ({ page, browser, caseEventUtils }) => {
-    ccdRef = await caseEventUtils.createCACaseSendToGatekeeper(browser);
-    await Helpers.goToCase(
+  test.beforeEach(async ({ page, manageCasesEventUtils, navigationUtils }) => {
+    caseRef = (await manageCasesEventUtils.submitTSSolicitorCase("C100"))
+      .caseRef;
+    await manageCasesEventUtils.issueAndSendToLocalCourt(caseRef);
+    await manageCasesEventUtils.sendToGatekeeper(caseRef, "C100");
+    await navigationUtils.goToCase(
       page,
-      Config.manageCasesBaseURLCase,
-      ccdRef,
-      "Summary",
+      config.manageCasesBaseURLCase,
+      caseRef,
+      "tasks"
     );
   });
 
@@ -26,7 +27,7 @@ test.describe("List with notice tests for CA cases", () => {
     await ListWithNotice.listWithNotice({
       page: page,
       browser: browser,
-      ccdRef: ccdRef,
+      ccdRef: caseRef,
       caseType: "C100",
       accessibilityTest: true,
     });

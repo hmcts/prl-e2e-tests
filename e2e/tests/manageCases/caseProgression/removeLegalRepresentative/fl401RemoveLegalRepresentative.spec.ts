@@ -2,15 +2,17 @@ import config from "../../../../utils/config.utils.ts";
 import { test } from "../../../fixtures.ts";
 
 test.describe("Complete Remove legal representative event for FL401 case", () => {
-  let caseNumber: string;
+  let caseRef: string;
 
   test.beforeEach(
-    async ({ courtAdminStoke, browser, caseEventUtils, navigationUtils }) => {
-      caseNumber = await caseEventUtils.createDACase(browser);
+    async ({ courtAdminStoke, manageCasesEventUtils, navigationUtils }) => {
+      caseRef = (
+        await manageCasesEventUtils.submitTSSolicitorCase("FL401")
+      ).caseRef;
       await navigationUtils.goToCase(
         courtAdminStoke.page,
         config.manageCasesBaseURLCase,
-        caseNumber,
+        caseRef,
       );
     },
   );
@@ -50,7 +52,7 @@ test.describe("Complete Remove legal representative event for FL401 case", () =>
       await fl401RemoveLegalRepresentative.confirmPage.clickCloseAndReturnToCaseDetails();
 
       await summaryPage.alertBanner.assertEventAlert(
-        caseNumber,
+        caseRef,
         "Remove legal representative",
       );
 

@@ -63,17 +63,17 @@ async function completeSendToGatekeeperJourney(
 
 // COURT ADMIN (C100 Cases)
 test.describe("Court Admin: Send to Gatekeeper (C100)", () => {
-  let caseNumber: string = "";
+  let caseRef: string = "";
 
   test.beforeEach(
-    async ({ caseWorker, browser, caseEventUtils, navigationUtils }) => {
-      // Note: createCACase... implies C100 setup
-      caseNumber =
-        await caseEventUtils.createCACaseIssueAndSendToLocalCourt(browser);
+    async ({ caseWorker, manageCasesEventUtils, navigationUtils }) => {
+      caseRef = (await manageCasesEventUtils.submitTSSolicitorCase("C100"))
+        .caseRef;
+      await manageCasesEventUtils.issueAndSendToLocalCourt(caseRef);
       await navigationUtils.goToCase(
         caseWorker.page,
         config.manageCasesBaseURLCase,
-        caseNumber,
+        caseRef,
         "tasks",
       );
     },
@@ -89,7 +89,7 @@ test.describe("Court Admin: Send to Gatekeeper (C100)", () => {
     }) => {
       await completeSendToGatekeeperJourney(
         caseWorker,
-        caseNumber,
+        caseRef,
         params,
         "caseWorker",
       );
@@ -99,19 +99,16 @@ test.describe("Court Admin: Send to Gatekeeper (C100)", () => {
 
 // CASE MANAGER (FL401 Cases)
 test.describe("Case Manager: Send to Gatekeeper (FL401)", () => {
-  let caseNumber: string = "";
-
-  // Set the specific storage state for this describe block
-  test.use({ storageState: config.sessionStoragePath + "caseManager.json" });
+  let caseRef: string = "";
 
   test.beforeEach(
-    async ({ caseManager, browser, caseEventUtils, navigationUtils }) => {
-      // Note: createDACase implies FL401 setup
-      caseNumber = await caseEventUtils.createDACase(browser);
+    async ({ caseManager, manageCasesEventUtils, navigationUtils }) => {
+      caseRef = (await manageCasesEventUtils.submitTSSolicitorCase("FL401"))
+        .caseRef;
       await navigationUtils.goToCase(
         caseManager.page,
         config.manageCasesBaseURLCase,
-        caseNumber,
+        caseRef,
         "tasks",
       );
     },
@@ -127,7 +124,7 @@ test.describe("Case Manager: Send to Gatekeeper (FL401)", () => {
     }) => {
       await completeSendToGatekeeperJourney(
         caseManager,
-        caseNumber,
+        caseRef,
         params,
         "caseManager",
       );

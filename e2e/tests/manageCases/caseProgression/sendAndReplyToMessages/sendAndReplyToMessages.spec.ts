@@ -3,25 +3,26 @@ import { test } from "../../../fixtures.ts";
 import {
   C100SendAndReplyToMessagesScenarios,
   FL401SendAndReplyToMessagesScenarios,
-} from "../../../../testData/sendAndReplyToMessages.js";
+} from "../../../../testData/sendAndReplyToMessages.ts";
 import { CaseWorkerPagesGroup } from "../../../../pageObjects/roleBasedGroupedPages/caseWorkerPages.ts";
-import { JudgePagesGroup } from "../../../../pageObjects/roleBasedGroupedPages/judgePages.js";
-import { LegalAdvisorPagesGroup } from "../../../../pageObjects/roleBasedGroupedPages/legalAdvisorPages.js";
+import { JudgePagesGroup } from "../../../../pageObjects/roleBasedGroupedPages/judgePages.ts";
+import { LegalAdvisorPagesGroup } from "../../../../pageObjects/roleBasedGroupedPages/legalAdvisorPages.ts";
 
 // -------------------------------
 // C100 CASE TYPE: Send and reply for judges
 // -------------------------------
 test.describe("C100 Send & Reply to messages scenarios", () => {
-  let caseNumber: string;
+  let caseRef: string;
 
   test.beforeEach(
-    async ({ caseWorker, browser, caseEventUtils, navigationUtils }) => {
-      caseNumber =
-        await caseEventUtils.createCACaseIssueAndSendToLocalCourt(browser);
+    async ({ caseWorker, manageCasesEventUtils, navigationUtils }) => {
+      caseRef = (await manageCasesEventUtils.submitTSSolicitorCase("C100"))
+        .caseRef;
+      await manageCasesEventUtils.issueAndSendToLocalCourt(caseRef);
       await navigationUtils.goToCase(
         caseWorker.page,
         config.manageCasesBaseURLCase,
-        caseNumber,
+        caseRef,
       );
     },
   );
@@ -44,7 +45,7 @@ test.describe("C100 Send & Reply to messages scenarios", () => {
     }) => {
       await sendMessageToJudgeOrLegalAdvisorJourney(
         caseWorker,
-        caseNumber,
+        caseRef,
         isJudge,
         judgeOrLegalAdviserName,
         snapshotPath,
@@ -54,7 +55,7 @@ test.describe("C100 Send & Reply to messages scenarios", () => {
       await navigationUtils.goToCase(
         judge.page,
         config.manageCasesBaseURLCase,
-        caseNumber,
+        caseRef,
         "summary",
       );
 
@@ -62,7 +63,7 @@ test.describe("C100 Send & Reply to messages scenarios", () => {
         "C100",
         isJudge,
         judge,
-        caseNumber,
+        caseRef,
         respondToMessage,
         judgeOrLegalAdviserName,
         snapshotPath,
@@ -76,15 +77,16 @@ test.describe("C100 Send & Reply to messages scenarios", () => {
 // FL401 CASE TYPE:Send and reply for Legal Advisors
 // -------------------------------
 test.describe("FL401 Send & Reply to messages scenarios", () => {
-  let caseNumber: string;
+  let caseRef: string;
 
   test.beforeEach(
-    async ({ caseWorker, browser, caseEventUtils, navigationUtils }) => {
-      caseNumber = await caseEventUtils.createDACase(browser);
+    async ({ caseWorker, manageCasesEventUtils, navigationUtils }) => {
+      caseRef = (await manageCasesEventUtils.submitTSSolicitorCase("FL401"))
+        .caseRef;
       await navigationUtils.goToCase(
         caseWorker.page,
         config.manageCasesBaseURLCase,
-        caseNumber,
+        caseRef,
       );
     },
   );
@@ -107,7 +109,7 @@ test.describe("FL401 Send & Reply to messages scenarios", () => {
     }) => {
       await sendMessageToJudgeOrLegalAdvisorJourney(
         caseWorker,
-        caseNumber,
+        caseRef,
         isJudge,
         judgeOrLegalAdviserName,
         snapshotPath,
@@ -117,7 +119,7 @@ test.describe("FL401 Send & Reply to messages scenarios", () => {
       await navigationUtils.goToCase(
         legalAdvisor.page,
         config.manageCasesBaseURLCase,
-        caseNumber,
+        caseRef,
         "summary",
       );
 
@@ -125,7 +127,7 @@ test.describe("FL401 Send & Reply to messages scenarios", () => {
         "FL401",
         isJudge,
         legalAdvisor,
-        caseNumber,
+        caseRef,
         respondToMessage,
         judgeOrLegalAdviserName,
         snapshotPath,

@@ -65,10 +65,8 @@ export class ManageCaseEventUtils {
       password: process.env.SOLICITOR_PASSWORD,
     };
 
-    const caseData: BasicCaseData = await this.createTSSolicitorCase(
-      caseType,
-      userCredentials,
-    );
+    const caseData: BasicCaseData =
+      await this.createDraftTSSolicitorCase(caseType);
 
     if (caseType === "C100") {
       const eventData: JsonDatas = jsonDatas.solicitorCACaseData;
@@ -101,12 +99,15 @@ export class ManageCaseEventUtils {
    * Creates an FL401 or C100 testing support solicitor case via API request.
    *
    * @param caseType the type of case either C100 or Fl401.
-   * @param userCredentials the user information (email and password) of the user submitting the request.
+   * @param userCredentials the user information (email and password) of the user submitting the request. Defaults to solicitor user credentials.
    * @returns the case reference and case name of the created testing support Solicitor case.
    */
-  private async createTSSolicitorCase(
+  async createDraftTSSolicitorCase(
     caseType: solicitorCaseCreateType,
-    userCredentials: UserCredentials,
+    userCredentials: UserCredentials = {
+      email: process.env.SOLICITOR_USERNAME,
+      password: process.env.SOLICITOR_PASSWORD,
+    },
   ): Promise<BasicCaseData> {
     const bearerToken: string =
       await this.commonCaseEventsUtils.getBearerToken(userCredentials);
