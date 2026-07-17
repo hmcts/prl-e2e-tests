@@ -108,7 +108,7 @@ setup.describe("Setup users and retrieve tokens", () => {
     await idamLoginHelper.signInLongLivedUser(
       page,
       "localAuthority",
-      config.manageCasesBaseURLCase,
+      config.manageOrgBaseURL,
     );
   });
 });
