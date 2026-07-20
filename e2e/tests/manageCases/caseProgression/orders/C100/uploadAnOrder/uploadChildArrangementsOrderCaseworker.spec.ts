@@ -1,14 +1,14 @@
 import { test } from "../../../../../fixtures.ts";
-import config from "../../../../../../utils/config.utils.js";
-import { C43A45AUploadOrderScenarios } from "../../../../../../testData/manageOrders.js";
+import config from "../../../../../../utils/config.utils.ts";
+import { C43A45AUploadOrderScenarios } from "../../../../../../testData/manageOrders.ts";
 import {
   manageOrdersOptions,
   OrderTypes,
   solicitorCaseCreateType,
-} from "../../../../../../common/types.js";
-import { OrderInformation } from "../../../../../../pageObjects/pages/exui/caseView/draftOrders.po.js";
-import { ManageOrder5Params } from "../../../../../../pageObjects/pages/exui/orders/manageOrders/manageOrder5.po.js";
-import { ManageOrder24Params } from "../../../../../../pageObjects/pages/exui/orders/manageOrders/manageOrder24.po.js";
+} from "../../../../../../common/types.ts";
+import { OrderInformation } from "../../../../../../pageObjects/pages/exui/caseView/draftOrders.po.ts";
+import { ManageOrder5Params } from "../../../../../../pageObjects/pages/exui/orders/manageOrders/manageOrder5.po.ts";
+import { ManageOrder24Params } from "../../../../../../pageObjects/pages/exui/orders/manageOrders/manageOrder24.po.ts";
 
 export interface C43A45AUploadOrderParams {
   name: string;
@@ -25,16 +25,17 @@ export interface C43A45AUploadOrderParams {
 }
 
 test.describe("'Upload an C100 order' by Case Worker via the 'Manage order' event tests", (): void => {
-  let caseNumber: string;
+  let caseRef: string;
 
   test.beforeEach(
-    async ({ caseWorker, browser, caseEventUtils, navigationUtils }) => {
-      caseNumber =
-        await caseEventUtils.createCACaseIssueAndSendToLocalCourt(browser);
+    async ({ caseWorker, manageCasesEventUtils, navigationUtils }) => {
+      caseRef = (await manageCasesEventUtils.submitTSSolicitorCase("C100"))
+        .caseRef;
+      await manageCasesEventUtils.issueAndSendToLocalCourt(caseRef);
       await navigationUtils.goToCase(
         caseWorker.page,
         config.manageCasesBaseURLCase,
-        caseNumber,
+        caseRef,
       );
     },
   );
@@ -88,7 +89,7 @@ test.describe("'Upload an C100 order' by Case Worker via the 'Manage order' even
         await manageOrders.manageOrderSubmitPage.verifyAccessibility();
         await manageOrders.manageOrderSubmitPage.clickSubmit();
         await summaryPage.alertBanner.assertEventAlert(
-          caseNumber,
+          caseRef,
           "Manage orders",
         );
 

@@ -1,15 +1,15 @@
 import { test } from "../../../../../fixtures.ts";
-import config from "../../../../../../utils/config.utils.js";
-import { C43UploadOrderScenarios } from "../../../../../../testData/manageOrders.js";
+import config from "../../../../../../utils/config.utils.ts";
+import { C43UploadOrderScenarios } from "../../../../../../testData/manageOrders.ts";
 import {
   manageOrdersOptions,
   OrderTypes,
   solicitorCaseCreateType,
-} from "../../../../../../common/types.js";
-import { OrderInformation } from "../../../../../../pageObjects/pages/exui/caseView/draftOrders.po.js";
-import { ManageOrder5Params } from "../../../../../../pageObjects/pages/exui/orders/manageOrders/manageOrder5.po.js";
-import { ManageOrder10Params } from "../../../../../../pageObjects/pages/exui/orders/manageOrders/manageOrder10.po.js";
-import { ManageOrder30Params } from "../../../../../../pageObjects/pages/exui/orders/manageOrders/manageOrder30.po.js";
+} from "../../../../../../common/types.ts";
+import { OrderInformation } from "../../../../../../pageObjects/pages/exui/caseView/draftOrders.po.ts";
+import { ManageOrder5Params } from "../../../../../../pageObjects/pages/exui/orders/manageOrders/manageOrder5.po.ts";
+import { ManageOrder10Params } from "../../../../../../pageObjects/pages/exui/orders/manageOrders/manageOrder10.po.ts";
+import { ManageOrder30Params } from "../../../../../../pageObjects/pages/exui/orders/manageOrders/manageOrder30.po.ts";
 
 export interface C43UploadOrderParams {
   name: string;
@@ -27,19 +27,18 @@ export interface C43UploadOrderParams {
 }
 
 test.describe("'Upload an C100 order' by Judge via the 'Manage order' event tests", (): void => {
-  let caseNumber: string;
+  let caseRef: string;
 
-  test.beforeEach(
-    async ({ judge, browser, caseEventUtils, navigationUtils }) => {
-      caseNumber =
-        await caseEventUtils.createCACaseIssueAndSendToLocalCourt(browser);
-      await navigationUtils.goToCase(
-        judge.page,
-        config.manageCasesBaseURLCase,
-        caseNumber,
-      );
-    },
-  );
+  test.beforeEach(async ({ judge, manageCasesEventUtils, navigationUtils }) => {
+    caseRef = (await manageCasesEventUtils.submitTSSolicitorCase("C100"))
+      .caseRef;
+    await manageCasesEventUtils.issueAndSendToLocalCourt(caseRef);
+    await navigationUtils.goToCase(
+      judge.page,
+      config.manageCasesBaseURLCase,
+      caseRef,
+    );
+  });
 
   //C43 upload order
   C43UploadOrderScenarios.forEach((uploadOrderParams: C43UploadOrderParams) => {
@@ -100,16 +99,13 @@ test.describe("'Upload an C100 order' by Judge via the 'Manage order' event test
       );
       await manageOrders.manageOrderSubmitPage.verifyAccessibility();
       await manageOrders.manageOrderSubmitPage.clickSubmit();
-      await summaryPage.alertBanner.assertEventAlert(
-        caseNumber,
-        "Manage orders",
-      );
+      await summaryPage.alertBanner.assertEventAlert(caseRef, "Manage orders");
 
       // check the draft orders tab as court admin
       await navigationUtils.goToCase(
         caseWorker.page,
         config.manageCasesBaseURLCase,
-        caseNumber,
+        caseRef,
       );
 
       const { draftedOrders } = caseWorker;

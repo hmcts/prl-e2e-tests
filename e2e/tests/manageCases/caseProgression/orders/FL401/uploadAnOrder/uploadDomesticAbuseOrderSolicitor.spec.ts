@@ -1,12 +1,12 @@
-import { test } from "../../../../../fixtures.js";
-import config from "../../../../../../utils/config.utils.js";
-import { FL404BFL404UploadOrderScenarios } from "../../../../../../testData/draftOrders.js";
+import { test } from "../../../../../fixtures.ts";
+import config from "../../../../../../utils/config.utils.ts";
+import { FL404BFL404UploadOrderScenarios } from "../../../../../../testData/draftOrders.ts";
 import {
   OrderTypes,
   solicitorCaseCreateType,
-} from "../../../../../../common/types.js";
-import { DraftAnOrder5Params } from "../../../../../../pageObjects/pages/exui/orders/draftOrders/draftAnOrder5.po.js";
-import { OrderInformation } from "../../../../../../pageObjects/pages/exui/caseView/draftOrders.po.js";
+} from "../../../../../../common/types.ts";
+import { DraftAnOrder5Params } from "../../../../../../pageObjects/pages/exui/orders/draftOrders/draftAnOrder5.po.ts";
+import { OrderInformation } from "../../../../../../pageObjects/pages/exui/caseView/draftOrders.po.ts";
 
 export interface DomesticAbuseUploadOrderParams {
   name: string;
@@ -21,15 +21,16 @@ export interface DomesticAbuseUploadOrderParams {
 }
 
 test.describe("'Upload an order' by Solicitor via the 'Create/upload draft order' event tests", (): void => {
-  let caseNumber: string;
+  let caseRef: string;
 
   test.beforeEach(
-    async ({ solicitor, browser, caseEventUtils, navigationUtils }) => {
-      caseNumber = await caseEventUtils.createDACase(browser);
+    async ({ solicitor, manageCasesEventUtils, navigationUtils }) => {
+      caseRef = (await manageCasesEventUtils.submitTSSolicitorCase("FL401"))
+        .caseRef;
       await navigationUtils.goToCase(
         solicitor.page,
         config.manageCasesBaseURLCase,
-        caseNumber,
+        caseRef,
       );
     },
   );
@@ -74,14 +75,14 @@ test.describe("'Upload an order' by Solicitor via the 'Create/upload draft order
         await draftOrders.draftAnOrderSubmitPage.verifyAccessibility();
         await draftOrders.draftAnOrderSubmitPage.clickSubmit();
         await summaryPage.alertBanner.assertEventAlert(
-          caseNumber,
+          caseRef,
           "Create/upload draft order",
         );
         // check the draft orders tab as court admin
         await navigationUtils.goToCase(
           courtAdminStoke.page,
           config.manageCasesBaseURLCase,
-          caseNumber,
+          caseRef,
         );
 
         const { draftedOrders } = courtAdminStoke;

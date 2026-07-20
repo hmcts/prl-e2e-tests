@@ -1,14 +1,14 @@
-import { test } from "../../../../../fixtures.js";
-import config from "../../../../../../utils/config.utils.js";
+import { test } from "../../../../../fixtures.ts";
+import config from "../../../../../../utils/config.utils.ts";
 import {
   manageOrdersOptions,
   OrderTypes,
   solicitorCaseCreateType,
-} from "../../../../../../common/types.js";
-import { OrderInformation } from "../../../../../../pageObjects/pages/exui/caseView/draftOrders.po.js";
-import { ManageOrder5Params } from "../../../../../../pageObjects/pages/exui/orders/manageOrders/manageOrder5.po.js";
-import { FL404B2UploadOrderScenarios } from "../../../../../../testData/manageOrders.js";
-import { ManageOrder30Params } from "../../../../../../pageObjects/pages/exui/orders/manageOrders/manageOrder30.po.js";
+} from "../../../../../../common/types.ts";
+import { OrderInformation } from "../../../../../../pageObjects/pages/exui/caseView/draftOrders.po.ts";
+import { ManageOrder5Params } from "../../../../../../pageObjects/pages/exui/orders/manageOrders/manageOrder5.po.ts";
+import { FL404B2UploadOrderScenarios } from "../../../../../../testData/manageOrders.ts";
+import { ManageOrder30Params } from "../../../../../../pageObjects/pages/exui/orders/manageOrders/manageOrder30.po.ts";
 
 export interface FL404B2UploadOrderParams {
   name: string;
@@ -25,18 +25,18 @@ export interface FL404B2UploadOrderParams {
 }
 
 test.describe("'Upload an order' by Judge via the 'Manage order' event tests", (): void => {
-  let caseNumber: string;
+  let caseRef: string;
 
-  test.beforeEach(
-    async ({ judge, browser, caseEventUtils, navigationUtils }) => {
-      caseNumber = await caseEventUtils.createDACaseAddCaseNumber(browser);
-      await navigationUtils.goToCase(
-        judge.page,
-        config.manageCasesBaseURLCase,
-        caseNumber,
-      );
-    },
-  );
+  test.beforeEach(async ({ judge, manageCasesEventUtils, navigationUtils }) => {
+    caseRef = (await manageCasesEventUtils.submitTSSolicitorCase("FL401"))
+      .caseRef;
+    await manageCasesEventUtils.addFamilyManNumber(caseRef);
+    await navigationUtils.goToCase(
+      judge.page,
+      config.manageCasesBaseURLCase,
+      caseRef,
+    );
+  });
 
   //FL404B blank upload order
   FL404B2UploadOrderScenarios.forEach(
@@ -87,7 +87,7 @@ test.describe("'Upload an order' by Judge via the 'Manage order' event tests", (
         await manageOrders.manageOrderSubmitPage.verifyAccessibility();
         await manageOrders.manageOrderSubmitPage.clickSubmit();
         await summaryPage.alertBanner.assertEventAlert(
-          caseNumber,
+          caseRef,
           "Manage orders",
         );
 

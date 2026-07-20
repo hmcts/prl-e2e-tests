@@ -11,13 +11,20 @@ import { jsonDatas, JsonDatas } from "../common/caseHelpers/jsonDatas.ts";
 import {
   AmendDischargedVariedOrderActionData,
   ChildArrangementsOrderActionData,
-  OrderActionRequestData,
+  ManageOrdersRequestData,
   PowerOfArrestOrderActionData,
-} from "../testData/jsonRequestData/orderActionRequestData.ts";
+} from "../testData/jsonRequestData/manageOrdersRequestData.ts";
 import {
   C100SoaWithoutOrderRequestData,
   Fl401SoaWithoutOrderRequestData,
 } from "../testData/jsonRequestData/soaRequestData.ts";
+import {
+  SolicitorDraftNonMolestationOrderData,
+  SolicitorDraftParentalResponsibilityOrderData,
+} from "../testData/jsonRequestData/solicitorDraftOrderRequestData.js";
+import Config from "./config.utils.js";
+
+type OrderCreationUsers = "caseWorker" | "judge";
 
 /**
  * Send to gatekeeper event parameters.
@@ -41,6 +48,8 @@ interface OrderOptions {
   isDraft: boolean;
   /** If the order should be served as part of the manage orders event. If false the order will be saved instead. */
   doServe: boolean;
+  /** The role of the user creating the order*/
+  user?: OrderCreationUsers;
 }
 
 export interface BasicCaseData {
@@ -310,7 +319,6 @@ export class ManageCaseEventUtils {
     });
   }
 
-  // could take this further to enable sending to judge or legal adviser to check
   /**
    * Complete the manage orders event for an FL401 or C100 case via API request.
    *
@@ -321,8 +329,9 @@ export class ManageCaseEventUtils {
     orderType,
     isDraft,
     doServe,
+    user = "caseWorker",
   }: OrderOptions): Promise<void> {
-    let orderActionData: OrderActionRequestData;
+    let orderActionData: ManageOrdersRequestData;
     switch (orderType) {
       case "Power of arrest (FL406)":
         orderActionData = PowerOfArrestOrderActionData;
@@ -339,29 +348,65 @@ export class ManageCaseEventUtils {
         );
     }
 
+    const { email, password } = Config.userCredentials[user];
+
     await this.commonCaseEventsUtils.completeEvent({
       caseRef: caseRef,
       eventId: "manageOrders",
-      eventData: this.getOrderData(orderActionData, isDraft, doServe),
+      eventData: this.getOrderData(orderActionData, isDraft, doServe, user),
       userCredentials: {
-        email: process.env.CASEWORKER_USERNAME as string,
-        password: process.env.CASEWORKER_PASSWORD as string,
+        email: email,
+        password: password,
       },
     });
   }
 
   private getOrderData(
-    orderData: OrderActionRequestData,
+    orderData: ManageOrdersRequestData,
     isDraft: boolean,
     doServe: boolean,
+    user: OrderCreationUsers,
   ) {
     if (isDraft) {
-      return orderData.draftOrderData;
+      if (user === "caseWorker") {
+        return orderData?.caseWorkerDraftOrderData;
+      } else {
+        return orderData?.judgeDraftOrderData;
+      }
     } else if (!isDraft && !doServe) {
-      return orderData.finalOrderData;
+      return orderData?.finalOrderData;
     } else {
-      return orderData.createAndServeOrderData;
+      return orderData?.createAndServeOrderData;
     }
+  }
+
+  async createSolicitorDraftOrder(
+    caseRef: string,
+    orderType: OrderTypes,
+  ): Promise<void> {
+    let eventData;
+    switch (orderType) {
+      case "Parental responsibility order (C45A)":
+        eventData = SolicitorDraftParentalResponsibilityOrderData;
+        break;
+      case "Non-molestation order (FL404A)":
+        eventData = SolicitorDraftNonMolestationOrderData;
+        break;
+      default:
+        throw new Error(
+          `Unexpected order type when fetching solicitor draft order data: ${orderType}`,
+        );
+    }
+
+    await this.commonCaseEventsUtils.completeEvent({
+      caseRef: caseRef,
+      eventId: "draftAnOrder",
+      eventData: eventData,
+      userCredentials: {
+        email: process.env.SOLICITOR_USERNAME as string,
+        password: process.env.SOLICITOR_PASSWORD as string,
+      },
+    });
   }
 
   /**
