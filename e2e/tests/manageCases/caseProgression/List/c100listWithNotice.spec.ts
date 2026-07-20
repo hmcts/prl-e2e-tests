@@ -16,7 +16,7 @@ test.describe("List with notice tests for CA cases", () => {
       page,
       config.manageCasesBaseURLCase,
       caseRef,
-      "tasks"
+      "tasks",
     );
   });
 

@@ -15,7 +15,7 @@ test.describe("List without notice tests for DA cases", () => {
       page,
       config.manageCasesBaseURLCase,
       caseRef,
-      "tasks"
+      "tasks",
     );
   });
 

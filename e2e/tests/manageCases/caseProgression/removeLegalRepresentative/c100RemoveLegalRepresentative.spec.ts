@@ -6,9 +6,8 @@ test.describe("Complete Remove legal representative event for C100 case", () => 
 
   test.beforeEach(
     async ({ courtAdminStoke, manageCasesEventUtils, navigationUtils }) => {
-      caseRef = (
-        await manageCasesEventUtils.submitTSSolicitorCase("C100")
-      ).caseRef;
+      caseRef = (await manageCasesEventUtils.submitTSSolicitorCase("C100"))
+        .caseRef;
       await navigationUtils.goToCase(
         courtAdminStoke.page,
         config.manageCasesBaseURLCase,
