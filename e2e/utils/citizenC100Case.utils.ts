@@ -1,12 +1,7 @@
 import { APIResponse } from "@playwright/test";
 import json from "../caseData/citizenCA/c100-citizen-dummy-case-details.json" with { type: "json" };
 
-import {
-  buildSOAEventData,
-  issueAndSendToLocalCourtEventData,
-  manageOrdersEventData,
-  sendToGatekeeperEventData,
-} from "../testData/citizen.ts";
+import { buildSOAEventData } from "../testData/citizen.ts";
 import { CommonCaseEventUtils } from "./commonCaseEvent.utils.ts";
 import { UserCredentials } from "../common/types.ts";
 
@@ -38,17 +33,6 @@ export interface CitizenUploadedDocument {
 
 export class CitizenC100CaseUtils {
   constructor(private commonCaseEventsUtils: CommonCaseEventUtils) {}
-
-  public async setupCitizenC100Application(
-    userCredentials: UserCredentials,
-  ): Promise<string> {
-    const caseId = await this.createAndSubmitCitizenCase(userCredentials);
-    await this.issueAndSendToLocalCourt(caseId);
-    await this.sendToGatekeeper(caseId);
-    await this.manageOrdersCreateOrder(caseId);
-    await this.serviceOfApplication(caseId);
-    return caseId;
-  }
 
   public async createAndSubmitCitizenCase(
     userCredentials: UserCredentials,
@@ -133,43 +117,7 @@ export class CitizenC100CaseUtils {
     });
   }
 
-  public async issueAndSendToLocalCourt(caseId: string): Promise<void> {
-    await this.commonCaseEventsUtils.completeEvent({
-      caseRef: caseId,
-      eventId: "issueAndSendToLocalCourtCallback",
-      eventData: issueAndSendToLocalCourtEventData,
-      userCredentials: {
-        email: process.env.COURT_ADMIN_STOKE_USERNAME as string,
-        password: process.env.COURT_ADMIN_STOKE_PASSWORD as string,
-      },
-    });
-  }
-
-  public async sendToGatekeeper(caseId: string): Promise<void> {
-    await this.commonCaseEventsUtils.completeEvent({
-      caseRef: caseId,
-      eventId: "sendToGateKeeper",
-      eventData: sendToGatekeeperEventData,
-      userCredentials: {
-        email: process.env.CASEWORKER_USERNAME as string,
-        password: process.env.CASEWORKER_PASSWORD as string,
-      },
-    });
-  }
-
-  public async manageOrdersCreateOrder(caseId: string): Promise<void> {
-    await this.commonCaseEventsUtils.completeEvent({
-      caseRef: caseId,
-      eventId: "manageOrders",
-      eventData: manageOrdersEventData,
-      userCredentials: {
-        email: process.env.CASEWORKER_USERNAME as string,
-        password: process.env.CASEWORKER_PASSWORD as string,
-      },
-    });
-  }
-
-  public async serviceOfApplication(caseId: string): Promise<void> {
+  public async citizenServiceOfApplication(caseId: string): Promise<void> {
     // get order and party ID's from case data and insert into json object
     const jsonCaseData = await this.commonCaseEventsUtils.getCaseInfo(caseId);
     const citizenSOACaseInfo: CitizenApplicationInfo = {

@@ -1134,3 +1134,79 @@ export const ChildArrangementsOrderActionData: ManageOrdersRequestData = {
     },
   },
 };
+
+export const ParentalResponsibilityOrderActionData: ManageOrdersRequestData = {
+  finalOrderData: {
+    data: {
+      manageOrderHeader1: null,
+      caseTypeOfApplication: "C100",
+      manageOrdersOptions: "createAnOrder",
+      performingUser: null,
+      performingAction: null,
+      judgeLaReviewRequired: null,
+      isHearingTaskNeeded: null,
+      hearingOptionSelected: null,
+      isOrderApproved: null,
+      whoApprovedTheOrder: null,
+      isMultipleHearingSelected: null,
+      judgeLaManagerReviewRequired: null,
+      isSdoSelected: "No",
+      sdoPreamblesTempList: null,
+      sdoCafcassOrCymruTempList: null,
+      sdoLocalAuthorityTempList: null,
+      sdoCourtTempList: null,
+      sdoDocumentationAndEvidenceTempList: null,
+      sdoOtherTempList: null,
+      listElementsSetToDefaultValue: null,
+      sdoHearingsAndNextStepsTempList: null,
+      draftOrderCollectionId: null,
+      requestSafeGuardingLetterUpdate: null,
+      safeGuardingLetterUploadDueDate: null,
+      loggedInUserType: "COURT_ADMIN",
+      isInvokedFromTask: "No",
+      createSelectOrderOptions: "parentalResponsibility",
+      selectedOrder:
+        "<span class='heading-h3'>Parental responsibility order (C45A)\n\n</span>",
+      typeOfC21Order: "",
+      daOrderForCaCase: "No",
+      isTheOrderByConsent: "Yes",
+      wasTheOrderApprovedAtHearing: "No",
+      judgeOrMagistrateTitle: "herHonourJudge",
+      judgeOrMagistratesLastName: "Test Judge Name",
+      justiceLegalAdviserFullName: null,
+      dateOrderMade: "2026-02-09",
+      isTheOrderAboutAllChildren: "Yes",
+      recitalsOrPreamble: null,
+      orderDirections: null,
+      parentName: "John Doe",
+      previewOrderDocWelsh: {
+        document_url:
+          process.env.MANAGE_CASES_TEST_ENV === "demo"
+            ? "http://dm-store-demo.service.core-compute-demo.internal/documents/d9ee0fa9-23fc-4ce7-80e9-1f1716fa1550"
+            : "http://dm-store-aat.service.core-compute-aat.internal/documents/e964841f-a497-4f3d-af8c-67ff183f8f18",
+        document_binary_url:
+          process.env.MANAGE_CASES_TEST_ENV === "demo"
+            ? "http://dm-store-demo.service.core-compute-demo.internal/documents/d9ee0fa9-23fc-4ce7-80e9-1f1716fa1550/binary"
+            : "http://dm-store-aat.service.core-compute-aat.internal/documents/e964841f-a497-4f3d-af8c-67ff183f8f18/binary",
+        document_filename: "Welsh_Parental_Responsibility_Order_C45A_draft.pdf",
+      },
+      previewOrderDoc: {
+        document_url:
+          process.env.MANAGE_CASES_TEST_ENV === "demo"
+            ? "http://dm-store-demo.service.core-compute-demo.internal/documents/206b1f5f-1034-4a4c-ac6f-d3862814b36b"
+            : "http://dm-store-aat.service.core-compute-aat.internal/documents/c5a50165-fbfe-4400-9bae-48111b82a75f",
+        document_binary_url:
+          process.env.MANAGE_CASES_TEST_ENV === "demo"
+            ? "http://dm-store-demo.service.core-compute-demo.internal/documents/206b1f5f-1034-4a4c-ac6f-d3862814b36b/binary"
+            : "http://dm-store-aat.service.core-compute-aat.internal/documents/c5a50165-fbfe-4400-9bae-48111b82a75f/binary",
+        document_filename: "Parental_Responsibility_Order_C45A_draft.pdf",
+      },
+      amendOrderSelectCheckOptions: "noCheck",
+      selectTypeOfOrder: "general",
+      cafcassOrCymruNeedToProvideReport: "No",
+      orderEndsInvolvementOfCafcassOrCymru: "No",
+      doYouWantToServeOrder: "No",
+      whatDoWithOrder: "finalizeSaveToServeLater",
+    },
+  },
+};

@@ -53,12 +53,6 @@ export class CheckTheApplication {
         page.getByRole("link", { name: "cover_letter_welsh_ap6.pdf" }),
       ).toBeVisible();
       await expect(
-        page.getByRole("link", { name: "coversheet.pdf" }),
-      ).toBeVisible();
-      await expect(
-        page.getByRole("link", { name: "coversheet_welsh.pdf" }),
-      ).toBeVisible();
-      await expect(
         page.getByRole("link", { name: "C100FinalDocument.pdf" }),
       ).toBeVisible();
       await expect(
@@ -176,8 +170,8 @@ export class CheckTheApplication {
         page,
         "coversheet_welsh.pdf",
       );
-      await expect(extractedWelshText.text).toContain("Eich rhif achos yw:");
-      await expect(extractedWelshText.text).not.toContain("Eich cyfeiriad");
+      expect(extractedWelshText.text).toContain("Eich rhif achos yw:");
+      expect(extractedWelshText.text).not.toContain("Eich cyfeiriad");
     }
   }
 

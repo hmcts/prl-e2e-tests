@@ -10,12 +10,14 @@ test.describe("Applicant keep details private tests", (): void => {
     async ({
       page,
       citizenC100CaseUtils,
+      manageCasesEventUtils,
       idamLoginHelper,
       accessCodeHelper,
     }) => {
       await ActivateCitizenC100Case.activateCase({
         page,
         citizenC100CaseUtils,
+        manageCasesEventUtils,
         idamLoginHelper,
         accessCodeHelper,
         isApplicant: true,

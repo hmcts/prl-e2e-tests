@@ -12,6 +12,7 @@ import {
   AmendDischargedVariedOrderActionData,
   ChildArrangementsOrderActionData,
   ManageOrdersRequestData,
+  ParentalResponsibilityOrderActionData,
   PowerOfArrestOrderActionData,
 } from "../testData/jsonRequestData/manageOrdersRequestData.ts";
 import {
@@ -341,6 +342,9 @@ export class ManageCaseEventUtils {
         break;
       case "Child arrangements, specific issue or prohibited steps order (C43)":
         orderActionData = ChildArrangementsOrderActionData;
+        break;
+      case "Parental responsibility order (C45A)":
+        orderActionData = ParentalResponsibilityOrderActionData;
         break;
       default:
         throw new Error(
