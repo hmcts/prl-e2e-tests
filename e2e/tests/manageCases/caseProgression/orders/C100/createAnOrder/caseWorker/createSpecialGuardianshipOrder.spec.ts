@@ -1,17 +1,17 @@
 import { test } from "../../../../../../fixtures.ts";
-import config from "../../../../../../../utils/config.utils.js";
-import { SpecialGuardianshipCreateOrderScenarios } from "../../../../../../../testData/manageOrders.js";
+import config from "../../../../../../../utils/config.utils.ts";
+import { SpecialGuardianshipCreateOrderScenarios } from "../../../../../../../testData/manageOrders.ts";
 import {
   manageOrdersOptions,
   OrderTypes,
   solicitorCaseCreateType,
-} from "../../../../../../../common/types.js";
+} from "../../../../../../../common/types.ts";
 
-import { OrderInformation } from "../../../../../../../pageObjects/pages/exui/caseView/Orders.po.js";
-import { ManageOrder5Params } from "../../../../../../../pageObjects/pages/exui/orders/manageOrders/manageOrder5.po.js";
-import { ManageOrder24Params } from "../../../../../../../pageObjects/pages/exui/orders/manageOrders/manageOrder24.po.js";
-import { ManageOrder26Params } from "../../../../../../../pageObjects/pages/exui/orders/manageOrders/manageOrder26.po.js";
-import { ManageOrder28Params } from "../../../../../../../pageObjects/pages/exui/orders/manageOrders/manageOrder28.po.js";
+import { OrderInformation } from "../../../../../../../pageObjects/pages/exui/caseView/Orders.po.ts";
+import { ManageOrder5Params } from "../../../../../../../pageObjects/pages/exui/orders/manageOrders/manageOrder5.po.ts";
+import { ManageOrder24Params } from "../../../../../../../pageObjects/pages/exui/orders/manageOrders/manageOrder24.po.ts";
+import { ManageOrder26Params } from "../../../../../../../pageObjects/pages/exui/orders/manageOrders/manageOrder26.po.ts";
+import { ManageOrder28Params } from "../../../../../../../pageObjects/pages/exui/orders/manageOrders/manageOrder28.po.ts";
 
 export interface SpecialGuardianshipCreateOrderParams {
   name: string;
@@ -29,15 +29,18 @@ export interface SpecialGuardianshipCreateOrderParams {
 }
 
 test.describe("Manage Orders - Create a Special Guardianship order tests", () => {
-  let caseNumber: string = "";
+  let caseRef: string = "";
 
   test.beforeEach(
-    async ({ caseWorker, browser, caseEventUtils, navigationUtils }) => {
-      caseNumber = await caseEventUtils.createCACaseSendToGatekeeper(browser);
+    async ({ caseWorker, manageCasesEventUtils, navigationUtils }) => {
+      caseRef = (await manageCasesEventUtils.submitTSSolicitorCase("C100"))
+        .caseRef;
+      await manageCasesEventUtils.issueAndSendToLocalCourt(caseRef);
+      await manageCasesEventUtils.sendToGatekeeper(caseRef, "C100");
       await navigationUtils.goToCase(
         caseWorker.page,
         config.manageCasesBaseURLCase,
-        caseNumber,
+        caseRef,
       );
     },
   );
@@ -86,7 +89,7 @@ test.describe("Manage Orders - Create a Special Guardianship order tests", () =>
 
         await manageOrders.manageOrder20Page.assertPageContents(
           manageOrderParams.orderType,
-          caseNumber,
+          caseRef,
           manageOrderParams.snapshotName,
           manageOrderParams.snapshotsPath,
         );
@@ -128,7 +131,7 @@ test.describe("Manage Orders - Create a Special Guardianship order tests", () =>
         await manageOrders.manageOrderSubmitPage.verifyAccessibility();
         await manageOrders.manageOrderSubmitPage.clickSubmit();
         await summaryPage.alertBanner.assertEventAlert(
-          caseNumber,
+          caseRef,
           "Manage orders",
         );
 

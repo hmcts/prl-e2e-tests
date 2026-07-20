@@ -2,15 +2,15 @@ import {
   manageOrdersOptions,
   OrderTypes,
   solicitorCaseCreateType,
-} from "../../../../../../../common/types.js";
-import { ManageOrder5Params } from "../../../../../../../pageObjects/pages/exui/orders/manageOrders/manageOrder5.po.js";
-import { ManageOrder19Params } from "../../../../../../../pageObjects/pages/exui/orders/manageOrders/manageOrder19.po.js";
+} from "../../../../../../../common/types.ts";
+import { ManageOrder5Params } from "../../../../../../../pageObjects/pages/exui/orders/manageOrders/manageOrder5.po.ts";
+import { ManageOrder19Params } from "../../../../../../../pageObjects/pages/exui/orders/manageOrders/manageOrder19.po.ts";
 import { OrderInformation } from "../../../../../../../pageObjects/pages/exui/caseView/draftOrders.po.ts";
-import { test } from "../../../../../../fixtures.js";
-import config from "../../../../../../../utils/config.utils.js";
-import { FL404B2Fl406OrderScenarios } from "../../../../../../../testData/manageOrders.js";
-import { ManageOrder30Params } from "../../../../../../../pageObjects/pages/exui/orders/manageOrders/manageOrder30.po.js";
-import { ManageOrder12Params } from "../../../../../../../pageObjects/pages/exui/orders/manageOrders/powerOfArrestOrderManageOrder12.po.js";
+import { test } from "../../../../../../fixtures.ts";
+import config from "../../../../../../../utils/config.utils.ts";
+import { FL404B2Fl406OrderScenarios } from "../../../../../../../testData/manageOrders.ts";
+import { ManageOrder30Params } from "../../../../../../../pageObjects/pages/exui/orders/manageOrders/manageOrder30.po.ts";
+import { ManageOrder12Params } from "../../../../../../../pageObjects/pages/exui/orders/manageOrders/powerOfArrestOrderManageOrder12.po.ts";
 
 export interface FL404B2FL406CreateOrderParams {
   name: string;
@@ -28,18 +28,18 @@ export interface FL404B2FL406CreateOrderParams {
 }
 
 test.describe("Manage Orders - Create a Blank order (FL404B) and Power of arrest (FL406) order tests", () => {
-  let caseNumber: string = "";
+  let caseRef: string = "";
 
-  test.beforeEach(
-    async ({ judge, browser, caseEventUtils, navigationUtils }) => {
-      caseNumber = await caseEventUtils.createDACaseSendToGatekeeper(browser);
-      await navigationUtils.goToCase(
-        judge.page,
-        config.manageCasesBaseURLCase,
-        caseNumber,
-      );
-    },
-  );
+  test.beforeEach(async ({ judge, manageCasesEventUtils, navigationUtils }) => {
+    caseRef = (await manageCasesEventUtils.submitTSSolicitorCase("FL401"))
+      .caseRef;
+    await manageCasesEventUtils.sendToGatekeeper(caseRef, "FL401");
+    await navigationUtils.goToCase(
+      judge.page,
+      config.manageCasesBaseURLCase,
+      caseRef,
+    );
+  });
 
   FL404B2Fl406OrderScenarios.forEach(
     (manageOrderParams: FL404B2FL406CreateOrderParams) => {
@@ -104,7 +104,7 @@ test.describe("Manage Orders - Create a Blank order (FL404B) and Power of arrest
 
         await manageOrders.manageOrder20Page.assertPageContents(
           manageOrderParams.orderType,
-          caseNumber,
+          caseRef,
           manageOrderParams.snapshotName,
           manageOrderParams.snapshotsPath,
         );
@@ -125,7 +125,7 @@ test.describe("Manage Orders - Create a Blank order (FL404B) and Power of arrest
         await manageOrders.manageOrderSubmitPage.verifyAccessibility();
         await manageOrders.manageOrderSubmitPage.clickSubmit();
         await summaryPage.alertBanner.assertEventAlert(
-          caseNumber,
+          caseRef,
           "Manage orders",
         );
 

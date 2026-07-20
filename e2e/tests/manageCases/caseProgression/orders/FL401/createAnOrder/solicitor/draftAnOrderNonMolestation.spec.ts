@@ -1,16 +1,16 @@
 import { test } from "../../../../../../fixtures.ts";
 import Config from "../../../../../../../utils/config.utils.ts";
-import { NonMolestationDraftOrderScenarios } from "../../../../../../../testData/draftOrders.js";
+import { NonMolestationDraftOrderScenarios } from "../../../../../../../testData/draftOrders.ts";
 import {
   OrderTypes,
   solicitorCaseCreateType,
-} from "../../../../../../../common/types.js";
-import { DraftAnOrder6Params } from "../../../../../../../pageObjects/pages/exui/orders/draftOrders/draftAnOrder6.po.js";
-import { OrderInformation } from "../../../../../../../pageObjects/pages/exui/caseView/draftOrders.po.js";
-import { DraftAnOrder17Params } from "../../../../../../../pageObjects/pages/exui/orders/draftOrders/draftAnOrder17.po.js";
+} from "../../../../../../../common/types.ts";
+import { DraftAnOrder6Params } from "../../../../../../../pageObjects/pages/exui/orders/draftOrders/draftAnOrder6.po.ts";
+import { OrderInformation } from "../../../../../../../pageObjects/pages/exui/caseView/draftOrders.po.ts";
+import { DraftAnOrder17Params } from "../../../../../../../pageObjects/pages/exui/orders/draftOrders/draftAnOrder17.po.ts";
 
-import config from "../../../../../../../utils/config.utils.js";
-import { DraftAnOrder5Params } from "../../../../../../../pageObjects/pages/exui/orders/draftOrders/draftAnOrder5.po.js";
+import config from "../../../../../../../utils/config.utils.ts";
+import { DraftAnOrder5Params } from "../../../../../../../pageObjects/pages/exui/orders/draftOrders/draftAnOrder5.po.ts";
 
 export interface NonMolestationDraftOrderParams {
   name: string;
@@ -26,16 +26,17 @@ export interface NonMolestationDraftOrderParams {
 }
 
 test.describe("Draft a non molestation order tests", (): void => {
-  let caseNumber: string;
+  let caseRef: string;
 
   test.beforeEach(
-    async ({ solicitor, browser, caseEventUtils, navigationUtils }) => {
-      caseNumber = await caseEventUtils.createDACase(browser);
+    async ({ solicitor, manageCasesEventUtils, navigationUtils }) => {
+      caseRef = (await manageCasesEventUtils.submitTSSolicitorCase("FL401"))
+        .caseRef;
+      await manageCasesEventUtils.sendToGatekeeper(caseRef, "FL401");
       await navigationUtils.goToCase(
         solicitor.page,
         config.manageCasesBaseURLCase,
-        caseNumber,
-        "tasks",
+        caseRef,
       );
     },
   );
@@ -97,7 +98,7 @@ test.describe("Draft a non molestation order tests", (): void => {
 
       await draftOrders.draftAnOrder20Page.assertPageContents(
         draftOrderParams.orderType,
-        caseNumber,
+        caseRef,
         draftOrderParams.snapshotName,
         draftOrderParams.snapshotsPath,
       );
@@ -111,7 +112,7 @@ test.describe("Draft a non molestation order tests", (): void => {
       await draftOrders.draftAnOrderSubmitPage.verifyAccessibility();
       await draftOrders.draftAnOrderSubmitPage.clickSubmit();
       await summaryPage.alertBanner.assertEventAlert(
-        caseNumber,
+        caseRef,
         "Create/upload draft order",
       );
 
@@ -119,7 +120,7 @@ test.describe("Draft a non molestation order tests", (): void => {
       await navigationUtils.goToCase(
         caseWorker.page,
         Config.manageCasesBaseURLCase,
-        caseNumber,
+        caseRef,
       );
 
       const { draftedOrders } = caseWorker;

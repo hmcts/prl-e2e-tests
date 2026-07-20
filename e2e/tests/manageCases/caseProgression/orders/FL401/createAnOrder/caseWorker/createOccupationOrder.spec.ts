@@ -1,16 +1,16 @@
-import { test } from "../../../../../../fixtures.js";
-import config from "../../../../../../../utils/config.utils.js";
+import { test } from "../../../../../../fixtures.ts";
+import config from "../../../../../../../utils/config.utils.ts";
 import {
   manageOrdersOptions,
   OrderTypes,
   solicitorCaseCreateType,
-} from "../../../../../../../common/types.js";
-import { ManageOrder5Params } from "../../../../../../../pageObjects/pages/exui/orders/manageOrders/manageOrder5.po.js";
-import { ManageOrder12Params } from "../../../../../../../pageObjects/pages/exui/orders/manageOrders/occupationOrderManageOrder12.po.js";
-import { ManageOrder19Params } from "../../../../../../../pageObjects/pages/exui/orders/manageOrders/manageOrder19.po.js";
-import { ManageOrder24Params } from "../../../../../../../pageObjects/pages/exui/orders/manageOrders/manageOrder24.po.js";
-import { OrderInformation } from "../../../../../../../pageObjects/pages/exui/caseView/draftOrders.po.js";
-import { OccupationOrderScenarios } from "../../../../../../../testData/manageOrders.js";
+} from "../../../../../../../common/types.ts";
+import { ManageOrder5Params } from "../../../../../../../pageObjects/pages/exui/orders/manageOrders/manageOrder5.po.ts";
+import { ManageOrder12Params } from "../../../../../../../pageObjects/pages/exui/orders/manageOrders/occupationOrderManageOrder12.po.ts";
+import { ManageOrder19Params } from "../../../../../../../pageObjects/pages/exui/orders/manageOrders/manageOrder19.po.ts";
+import { ManageOrder24Params } from "../../../../../../../pageObjects/pages/exui/orders/manageOrders/manageOrder24.po.ts";
+import { OrderInformation } from "../../../../../../../pageObjects/pages/exui/caseView/draftOrders.po.ts";
+import { OccupationOrderScenarios } from "../../../../../../../testData/manageOrders.ts";
 
 export interface OccupationOrderParams {
   name: string;
@@ -28,15 +28,17 @@ export interface OccupationOrderParams {
 }
 
 test.describe("Manage Orders - Create Occupation Order (FL404) order tests", () => {
-  let caseNumber: string = "";
+  let caseRef: string = "";
 
   test.beforeEach(
-    async ({ caseWorker, browser, caseEventUtils, navigationUtils }) => {
-      caseNumber = await caseEventUtils.createDACaseSendToGatekeeper(browser);
+    async ({ caseWorker, manageCasesEventUtils, navigationUtils }) => {
+      caseRef = (await manageCasesEventUtils.submitTSSolicitorCase("FL401"))
+        .caseRef;
+      await manageCasesEventUtils.sendToGatekeeper(caseRef, "FL401");
       await navigationUtils.goToCase(
         caseWorker.page,
         config.manageCasesBaseURLCase,
-        caseNumber,
+        caseRef,
       );
     },
   );
@@ -97,7 +99,7 @@ test.describe("Manage Orders - Create Occupation Order (FL404) order tests", () 
 
         await manageOrders.manageOrder20Page.assertPageContents(
           manageOrderParams.orderType,
-          caseNumber,
+          caseRef,
           manageOrderParams.snapshotName,
           manageOrderParams.snapshotsPath,
         );
@@ -118,7 +120,7 @@ test.describe("Manage Orders - Create Occupation Order (FL404) order tests", () 
         await manageOrders.manageOrderSubmitPage.verifyAccessibility();
         await manageOrders.manageOrderSubmitPage.clickSubmit();
         await summaryPage.alertBanner.assertEventAlert(
-          caseNumber,
+          caseRef,
           "Manage orders",
         );
 
@@ -126,7 +128,7 @@ test.describe("Manage Orders - Create Occupation Order (FL404) order tests", () 
         await navigationUtils.goToCase(
           caseWorker.page,
           config.manageCasesBaseURLCase,
-          caseNumber,
+          caseRef,
         );
 
         const { draftedOrders } = caseWorker;

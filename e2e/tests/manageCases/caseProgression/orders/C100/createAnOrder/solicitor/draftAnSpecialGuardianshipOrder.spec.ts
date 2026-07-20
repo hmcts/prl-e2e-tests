@@ -3,11 +3,11 @@ import { test } from "../../../../../../fixtures.ts";
 import {
   OrderTypes,
   solicitorCaseCreateType,
-} from "../../../../../../../common/types.js";
-import { OrderInformation } from "../../../../../../../pageObjects/pages/exui/caseView/draftOrders.po.js";
-import { DraftAnOrder5Params } from "../../../../../../../pageObjects/pages/exui/orders/draftOrders/draftAnOrder5.po.js";
-import config from "../../../../../../../utils/config.utils.js";
-import { SpecialGuardianshipDraftOrderScenarios } from "../../../../../../../testData/draftOrders.js";
+} from "../../../../../../../common/types.ts";
+import { OrderInformation } from "../../../../../../../pageObjects/pages/exui/caseView/draftOrders.po.ts";
+import { DraftAnOrder5Params } from "../../../../../../../pageObjects/pages/exui/orders/draftOrders/draftAnOrder5.po.ts";
+import config from "../../../../../../../utils/config.utils.ts";
+import { SpecialGuardianshipDraftOrderScenarios } from "../../../../../../../testData/draftOrders.ts";
 
 export interface SpecialGuardianshipDraftOrderParams {
   name: string;
@@ -21,16 +21,17 @@ export interface SpecialGuardianshipDraftOrderParams {
 }
 
 test.describe("Draft a special guardianship order tests", (): void => {
-  let caseNumber: string;
+  let caseRef: string;
 
   test.beforeEach(
-    async ({ solicitor, browser, caseEventUtils, navigationUtils }) => {
-      caseNumber =
-        await caseEventUtils.createCACaseIssueAndSendToLocalCourt(browser);
+    async ({ solicitor, manageCasesEventUtils, navigationUtils }) => {
+      caseRef = (await manageCasesEventUtils.submitTSSolicitorCase("C100"))
+        .caseRef;
+      await manageCasesEventUtils.issueAndSendToLocalCourt(caseRef);
       await navigationUtils.goToCase(
         solicitor.page,
         Config.manageCasesBaseURLCase,
-        caseNumber,
+        caseRef,
       );
     },
   );
@@ -81,7 +82,7 @@ test.describe("Draft a special guardianship order tests", (): void => {
 
       await draftOrders.draftAnOrder20Page.assertPageContents(
         draftOrderParams.orderType,
-        caseNumber,
+        caseRef,
         draftOrderParams.snapshotName,
         draftOrderParams.snapshotsPath,
       );
@@ -95,14 +96,14 @@ test.describe("Draft a special guardianship order tests", (): void => {
       await draftOrders.draftAnOrderSubmitPage.verifyAccessibility();
       await draftOrders.draftAnOrderSubmitPage.clickSubmit();
       await summaryPage.alertBanner.assertEventAlert(
-        caseNumber,
+        caseRef,
         "Create/upload draft order",
       );
       // check the draft orders tab as court admin
       await navigationUtils.goToCase(
         caseWorker.page,
         config.manageCasesBaseURLCase,
-        caseNumber,
+        caseRef,
       );
 
       const { draftedOrders } = caseWorker;
