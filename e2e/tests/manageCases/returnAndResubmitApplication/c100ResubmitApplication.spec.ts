@@ -7,32 +7,33 @@ import { test } from "../../fixtures.ts";
 test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
 
 test.describe("Resubmit returned CA(C100) application tests", (): void => {
-  let ccdRef: string = "";
+  let caseRef: string = "";
 
-  test.beforeEach(async ({ page, browser, caseEventUtils }) => {
-    ccdRef = await caseEventUtils.createCACase(browser);
-    const ctscPage = await Helpers.openNewBrowserWindow(
-      browser,
-      "courtAdminStoke",
-    );
-    await Helpers.goToCase(
-      ctscPage,
-      Config.manageCasesBaseURLCase,
-      ccdRef,
-      "tasks",
-    );
-    await ReturnApplication.returnApplication({
-      page: ctscPage,
-      caseType: "C100",
-      accessibilityTest: false,
-    });
-    await Helpers.goToCase(
-      page,
-      Config.manageCasesBaseURLCase,
-      ccdRef,
-      "tasks",
-    );
-  });
+  test.beforeEach(
+    async ({ page, browser, manageCasesEventUtils, navigationUtils }) => {
+      caseRef = (await manageCasesEventUtils.submitTSSolicitorCase("C100"))
+        .caseRef;
+      const ctscPage = await Helpers.openNewBrowserWindow(
+        browser,
+        "courtAdminStoke",
+      );
+      await navigationUtils.goToCase(
+        ctscPage,
+        Config.manageCasesBaseURLCase,
+        caseRef,
+      );
+      await ReturnApplication.returnApplication({
+        page: ctscPage,
+        caseType: "C100",
+        accessibilityTest: false,
+      });
+      await navigationUtils.goToCase(
+        page,
+        Config.manageCasesBaseURLCase,
+        caseRef,
+      );
+    },
+  );
 
   test.fixme(`Resubmit returned CA(C100) application with the following options:
   Case: C100,

@@ -2,9 +2,6 @@ import { Browser, BrowserContext, Page } from "@playwright/test";
 import { jsonDatas } from "./jsonDatas.ts";
 import Config from "../../utils/config.utils.ts";
 import { Helpers } from "../helpers.ts";
-import { CompleteTheOrder } from "../../journeys/manageCases/caseProgression/completeTheOrder/completeTheOrder.ts";
-import { applicationSubmittedBy, createOrderFL401Options } from "../types.ts";
-import { ConfidentialityCheck } from "../../journeys/manageCases/caseProgression/confidentilityCheck/confidentialityCheck.js";
 import { CaseEventUtils } from "../../utils/caseEvent.utils.js";
 
 // Note: These methods assume the current page context is court admin
@@ -53,70 +50,4 @@ export async function completeCheckApplicationAndSendToGatekeeperAndCreateAnOrde
     "manageOrders",
     manageOrderEventData,
   );
-}
-
-export async function fl401CompleteEventsUpToServiceOfApplication(
-  page: Page,
-  browser: Browser,
-  caseRef: string,
-  manageOrderEventData: typeof jsonDatas,
-  createOrderFL401Options: createOrderFL401Options,
-  applicationSubmittedBy: applicationSubmittedBy,
-): Promise<void> {
-  await CompleteTheOrder.FL401completeTheOrder({
-    page: page,
-    browser: browser,
-    accessibilityTest: false,
-    ccdRef: caseRef,
-    createOrderFL401Options: createOrderFL401Options,
-    personallyServed: true,
-    manageOrderData: manageOrderEventData,
-    applicationSubmittedBy: applicationSubmittedBy,
-  });
-  // wait for response from previous event call before submitting next event
-  await page.waitForResponse(
-    `${Config.manageCasesBaseURL}/data/cases/${caseRef}/events`,
-  );
-  const caseEventUtils = new CaseEventUtils();
-  await caseEventUtils.submitEvent(
-    page,
-    caseRef,
-    "serviceOfApplication",
-    manageOrderEventData,
-  );
-  if (applicationSubmittedBy === "Solicitor") {
-    // this will have to be conditional
-    await ConfidentialityCheck.confidentialityCheckLite(browser, caseRef);
-  }
-}
-
-export async function c100CompleteEventsUpToServiceOfApplication(
-  page: Page,
-  caseRef: string,
-  browser: Browser,
-  manageOrderEventData: typeof jsonDatas,
-  applicationSubmittedBy: applicationSubmittedBy,
-): Promise<void> {
-  await CompleteTheOrder.C100completeTheOrder({
-    page: page,
-    accessibilityTest: false,
-    personallyServed: true,
-    solicitorCaseCreateType: "C100",
-    isUploadOrder: false,
-    checkOption: "noCheck", //options passed could be either noCheck or judgeOrLegalAdvisorCheck or managerCheck
-    serveOrderNow: true, //select to serve order instantly,
-    caseNumber: caseRef,
-  });
-
-  const caseEventUtils = new CaseEventUtils();
-  await caseEventUtils.submitEvent(
-    page,
-    caseRef,
-    "serviceOfApplication",
-    manageOrderEventData,
-  );
-  if (applicationSubmittedBy === "Solicitor") {
-    // this will have to be conditional
-    await ConfidentialityCheck.confidentialityCheckLite(browser, caseRef);
-  }
 }
