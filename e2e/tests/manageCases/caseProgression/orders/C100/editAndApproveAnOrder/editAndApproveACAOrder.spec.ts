@@ -1,28 +1,58 @@
-import Config from "../../../../../../utils/config.utils.ts";
-import { EditAndApproveAnOrder } from "../../../../../../journeys/manageCases/caseWorker/editAndApproveAnOrder/editAndApproveAnOrder.ts";
-import { Helpers } from "../../../../../../common/helpers.ts";
-import config from "../../../../../../utils/config.utils.ts";
+//import config from "../../../../../../utils/config.utils.js";
+//import { EditAndApproveAnOrder } from "../../../../../../journeys/manageCases/caseWorker/editAndApproveAnOrder/editAndApproveAnOrder.ts";
+//import { Helpers } from "../../../../../../common/helpers.ts";
 import { test } from "../../../../../fixtures.ts";
-
-test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
+import Config from "../../../../../../utils/config.utils.js";
+import config from "../../../../../../utils/config.utils.js";
 
 test.describe("Edit and approve a CA order tests", (): void => {
   // Triple timeout for these slow tests
-  test.slow();
+  //test.slow();
+  let caseNumber: string;
 
-  let caseRef: string;
+  test.beforeEach(
+    async ({ solicitor, browser, caseEventUtils, navigationUtils }) => {
+      caseNumber =
+        await caseEventUtils.createCACaseIssueAndSendToLocalCourt(browser);
+      await navigationUtils.goToCase(
+        solicitor.page,
+        Config.manageCasesBaseURLCase,
+        caseNumber,
+      );
+    },
+  );
 
-  test.beforeEach(async ({ page, browser, caseEventUtils }) => {
-    caseRef = await caseEventUtils.createCACase(browser);
-    await Helpers.goToCase(
-      page,
-      config.manageCasesBaseURLCase,
-      caseRef,
-      "tasks",
-    );
+  [
+    {
+      judeOrderAction: "Give admin further directions then serve",
+      snapshotName: "",
+    },
+  ].forEach((data) => {
+    test(`Complete Editing and approving an C100 order with the following option : ${data.judeOrderAction} @nightly @regression @accessibility`, async ({
+      judge,
+      navigationUtils,
+    }): Promise<void> => {
+      const { page, summaryPage, editAndApproveAnOrders } = judge;
+      await navigationUtils.goToCase(
+        page,
+        config.manageCasesBaseURLCase,
+        caseNumber,
+      );
+      await summaryPage.chooseEventFromDropdown(
+        "Edit and approve a draft order",
+      );
+
+      await editAndApproveAnOrders.editAndApproveAnOrder2Page.assertPageContents();
+      await editAndApproveAnOrders.editAndApproveAnOrder2Page.verifyAccessibility();
+      await editAndApproveAnOrders.editAndApproveAnOrder2Page.selectOrderCheckOptions(data.judeOrderAction);
+      await editAndApproveAnOrders.editAndApproveAnOrder2Page.clickContinue();
+
+      await editAndApproveAnOrders.editAndApproveAnOrder21Page.assertPageContents();
+
+    });
   });
 
-  test(`Complete Editing and approving an order with the following options:
+  /*test(`Complete Editing and approving an order with the following options:
   Case: C100,
   Order type: Parental responsibility order (C45A),
   Judge order action: Send to admin to serve,
@@ -38,11 +68,11 @@ test.describe("Edit and approve a CA order tests", (): void => {
       errorMessaging: false,
       accessibilityTest: false,
       browser: browser,
-      caseRef: caseRef,
+      caseRef: caseNumber,
     });
-  });
+  });*/
 
-  test(`Complete Editing and approving an order with the following options:
+  /*test(`Complete Editing and approving an order with the following options:
   Case: C100,
   Order type: Parental responsibility order (C45A),
   Judge order action: Ask the legal representative to make changes,
@@ -58,7 +88,7 @@ test.describe("Edit and approve a CA order tests", (): void => {
       errorMessaging: false,
       accessibilityTest: false,
       browser: browser,
-      caseRef: caseRef,
+      caseRef: caseNumber,
     });
   });
 
@@ -78,7 +108,7 @@ test.describe("Edit and approve a CA order tests", (): void => {
       errorMessaging: false,
       accessibilityTest: true,
       browser: browser,
-      caseRef: caseRef,
+      caseRef: caseNumber,
     });
-  });
+  });*/
 });

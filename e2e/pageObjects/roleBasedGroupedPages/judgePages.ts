@@ -21,6 +21,8 @@ import { ManageOrder12Page } from "../pages/exui/orders/manageOrders/manageOrder
 import { ManageOrder102Page } from "../pages/exui/orders/manageOrders/manageOrder102.po.ts";
 import { CustomOrdersManageOrder5Page } from "../pages/exui/orders/manageOrders/customOrderManageOrder5.po.ts";
 import { CustomOrderManageOrder20Page } from "../pages/exui/orders/manageOrders/customOrderManageOrder20.po.ts";
+import { EditAndApproveAnOrder2Page } from "../pages/exui/orders/editAndApproveAnOrders/editAndApproveAnOrder2.po.js";
+import { EditAndApproveAnOrder21Page } from "../pages/exui/orders/editAndApproveAnOrders/editAndApproveAnOrder21.po.js";
 
 export class JudgePagesGroup {
   constructor(public readonly page: Page) {}
@@ -69,6 +71,13 @@ export class JudgePagesGroup {
   get draftedOrders() {
     return {
       draftOrdersPage: new DraftOrdersPage(this.page),
+    };
+  }
+
+  get editAndApproveAnOrders() {
+    return {
+      editAndApproveAnOrder2Page: new EditAndApproveAnOrder2Page(this.page),
+      editAndApproveAnOrder21Page: new EditAndApproveAnOrder21Page(this.page),
     };
   }
 }
