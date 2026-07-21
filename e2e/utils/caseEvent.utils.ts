@@ -9,6 +9,9 @@ import {
   fl401Events,
 } from "../testData/jsonRequestData/solicitorIndividualEventsData.js";
 
+/**
+ * @deprecated Use the new `manageCaseEvent.utils.ts` class instead.
+ */
 export class CaseEventUtils {
   private readonly contentTypeHeader: string;
   private readonly experimentalHeader: string;

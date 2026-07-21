@@ -1,7 +1,6 @@
 import { APIRequestContext, APIResponse, request } from "@playwright/test";
 import { IdamUtils, ServiceAuthUtils } from "@hmcts/playwright-common";
 import { UserCredentials } from "../common/types.ts";
-import process from "node:process";
 
 /**
  * Parameters for an event request.

@@ -2,19 +2,7 @@ export const SolicitorDraftParentalResponsibilityOrderData = {
   data: {
     draftOrderOptions: "draftAnOrder",
     caseTypeOfApplication: "C100",
-    sdoPreamblesTempList: null,
-    sdoCafcassOrCymruTempList: null,
-    sdoLocalAuthorityTempList: null,
-    sdoCourtTempList: null,
-    sdoDocumentationAndEvidenceTempList: null,
-    sdoOtherTempList: null,
-    sdoHearingsAndNextStepsTempList: null,
-    listElementsSetToDefaultValue: null,
-    draftOrderCollectionId: null,
     createSelectOrderOptions: "parentalResponsibility",
-    selectedOrder:
-      "<span class='heading-h3'>Parental responsibility order (C45A)</span>",
-    typeOfC21Order: null,
     daOrderForCaCase: "No",
     isTheOrderByConsent: "Yes",
     wasTheOrderApprovedAtHearing: "No",
@@ -25,21 +13,41 @@ export const SolicitorDraftParentalResponsibilityOrderData = {
     isTheOrderAboutAllChildren: "Yes",
     recitalsOrPreamble: "Test preamble",
     orderDirections: "Test directions",
-    parentName: "Tet parent name",
-    previewOrderDocWelsh: {
-      document_url:
-        "http://dm-store-aat.service.core-compute-aat.internal/documents/385543f7-1e30-41ec-8b1f-dd7c69a0449f",
-      document_binary_url:
-        "http://dm-store-aat.service.core-compute-aat.internal/documents/385543f7-1e30-41ec-8b1f-dd7c69a0449f/binary",
-      document_filename: "Welsh_Parental_Responsibility_Order_C45A_draft.pdf",
-    },
-    previewOrderDoc: {
-      document_url:
-        "http://dm-store-aat.service.core-compute-aat.internal/documents/7e1e3e31-f8c1-4f4c-851a-0145291b47ac",
-      document_binary_url:
-        "http://dm-store-aat.service.core-compute-aat.internal/documents/7e1e3e31-f8c1-4f4c-851a-0145291b47ac/binary",
-      document_filename: "Parental_Responsibility_Order_C45A_draft.pdf",
-    },
+    parentName: "Test parent name",
+    previewOrderDocWelsh:
+      process.env.MANAGE_CASES_TEST_ENV === "demo"
+        ? {
+            document_url:
+              "http://dm-store-aat.service.core-compute-aat.internal/documents/48f043c8-ec55-4aca-9f46-e37c8342f0b6",
+            document_binary_url:
+              "http://dm-store-aat.service.core-compute-aat.internal/documents/48f043c8-ec55-4aca-9f46-e37c8342f0b6/binary",
+            document_filename:
+              "Welsh_Parental_Responsibility_Order_C45A_draft.pdf",
+          }
+        : {
+            document_url:
+              "http://dm-store-aat.service.core-compute-aat.internal/documents/385543f7-1e30-41ec-8b1f-dd7c69a0449f",
+            document_binary_url:
+              "http://dm-store-aat.service.core-compute-aat.internal/documents/385543f7-1e30-41ec-8b1f-dd7c69a0449f/binary",
+            document_filename:
+              "Welsh_Parental_Responsibility_Order_C45A_draft.pdf",
+          },
+    previewOrderDoc:
+      process.env.MANAGE_CASES_TEST_ENV === "demo"
+        ? {
+            document_url:
+              "http://dm-store-aat.service.core-compute-aat.internal/documents/d450f2d5-dbac-4fe5-8288-5698c68f6166",
+            document_binary_url:
+              "http://dm-store-aat.service.core-compute-aat.internal/documents/d450f2d5-dbac-4fe5-8288-5698c68f6166/binary",
+            document_filename: "Parental_Responsibility_Order_C45A_draft.pdf",
+          }
+        : {
+            document_url:
+              "http://dm-store-aat.service.core-compute-aat.internal/documents/7e1e3e31-f8c1-4f4c-851a-0145291b47ac",
+            document_binary_url:
+              "http://dm-store-aat.service.core-compute-aat.internal/documents/7e1e3e31-f8c1-4f4c-851a-0145291b47ac/binary",
+            document_filename: "Parental_Responsibility_Order_C45A_draft.pdf",
+          },
   },
 };
 
@@ -58,113 +66,46 @@ export const SolicitorDraftNonMolestationOrderData = {
     recitalsOrPreamble: "Test preamble",
     orderDirections: "Test directions",
     fl404CustomFields: {
-      fl404bCourtName: null,
-      fl404bCaseNumber: null,
-      fl404bApplicantName: null,
-      fl404bApplicantReference: null,
-      fl404bRespondentName: null,
-      fl404bRespondentReference: null,
-      fl404bRespondentDob: null,
-      fl404bHearingOutcome: null,
-      fl404bPowerOfArrestParagraph: null,
-      fl404bRiskOfSignificantHarm: null,
       fl404bMentionedProperty: "Yes",
       fl404bAddressOfProperty: "Test property address",
-      fl404bAddMoreDetailsTelephone: null,
-      fl404bAddMoreDetailsProperty: null,
-      fl404bAddMoreDetailsPhoneChild: null,
-      fl404bAddSchool: null,
-      fl404bAddMoreDetailsSchool: null,
       orderEndDateAndTimeOptions: "noEndDate",
-      orderSpecifiedDateTime: "",
-      fl404bApplicantHomeInstruction: null,
-      fl404bApplicantOtherInstruction: null,
-      fl404bIsPowerOfArrest1: null,
-      fl404bOccupationDate1: "",
-      fl404bOccupationTime1: null,
-      fl404bOccupationDate2: "",
-      fl404bOccupationTime2: null,
-      fl404bIsPowerOfArrest2: null,
-      fl404bWhenRespondentShallLeave: null,
-      fl404bIsPowerOfArrest3: null,
-      fl404bAddMoreDetails: null,
-      fl404bIsPowerOfArrest4: null,
-      fl404bIsPowerOfArrest5: null,
-      fl404bAddAnotherInstructions: null,
-      fl404bIsPowerOfArrest6: null,
-      fl404bDateOrderMade: null,
-      fl404bDateOrderEnd: "",
-      fl404bDateOrderEndTime: null,
-      fl404bTimeEstimate: null,
-      fl404bCourtName1: null,
       fl404bCostOfApplication: "Test",
       fl404bIsNoticeGiven: "WithNotice",
       fl404bDateAndTimeOfNextHearing: "",
-      fl404bDateOfNextHearing: null,
-      fl404bTimeOfNextHearing: null,
-      fl404bCourtAddress: {
-        AddressLine1: null,
-        AddressLine2: null,
-        AddressLine3: null,
-        PostTown: null,
-        County: null,
-        PostCode: null,
-        Country: null,
-      },
-      fl404bRespondentAddress: {
-        AddressLine1: null,
-        AddressLine2: null,
-        AddressLine3: null,
-        PostTown: null,
-        County: null,
-        PostCode: null,
-        Country: null,
-      },
-      fl404bAddressAppliedFor: {
-        AddressLine1: null,
-        AddressLine2: null,
-        AddressLine3: null,
-        PostTown: null,
-        County: null,
-        PostCode: null,
-        Country: null,
-      },
       fl404bRespondentNotToThreat: ["respondentNotToThreat"],
-      fl404bRespondentNotIntimidate: [],
-      fl404bRespondentNotToTelephone: [],
-      fl404bRespondentNotToDamageOrThreat: [],
-      fl404bRespondentNotToDamage: [],
-      fl404bRespondentNotToEnterProperty: [],
-      fl404bRespondentNotToThreatChild: [],
-      fl404bRespondentNotHarassOrIntimidate: [],
-      fl404bRespondentNotToTelephoneChild: [],
-      fl404bRespondentNotToEnterSchool: [],
-      addDirections: [],
-      fl404bApplicantIsEntitledToOccupy: [],
-      fl404bApplicantHasHomeRight: [],
-      fl404bApplicantHasRightToEnter: [],
-      fl404bApplicantHasOtherInstruction: [],
-      fl404bApplicantAllowedToOccupy: [],
-      fl404bRespondentMustNotOccupyAddress: [],
-      fl404bRespondentShallLeaveAddress: [],
-      fl404bRespondentMustNotEnterAddress: [],
-      fl404bRespondentObstructOrHarass: [],
-      fl404bRespondentOtherInstructions: [],
     },
     hasJudgeProvidedHearingDetails: "No",
-    previewOrderDocWelsh: {
-      document_url:
-        "http://dm-store-aat.service.core-compute-aat.internal/documents/67733608-919b-40fa-b48c-aef22ede02b3",
-      document_binary_url:
-        "http://dm-store-aat.service.core-compute-aat.internal/documents/67733608-919b-40fa-b48c-aef22ede02b3/binary",
-      document_filename: "welsh_non_molestation_order_fl404a_draft.pdf",
-    },
-    previewOrderDoc: {
-      document_url:
-        "http://dm-store-aat.service.core-compute-aat.internal/documents/f105140a-8a49-420b-820f-e7328a47b008",
-      document_binary_url:
-        "http://dm-store-aat.service.core-compute-aat.internal/documents/f105140a-8a49-420b-820f-e7328a47b008/binary",
-      document_filename: "non_molestation_order_fl404a_draft.pdf",
-    },
+    previewOrderDocWelsh:
+      process.env.MANAGE_CASES_TEST_ENV === "demo"
+        ? {
+            document_url:
+              "http://dm-store-aat.service.core-compute-aat.internal/documents/2bd4d6a5-b304-498a-bab5-ef2e868c1142",
+            document_binary_url:
+              "http://dm-store-aat.service.core-compute-aat.internal/documents/2bd4d6a5-b304-498a-bab5-ef2e868c1142/binary",
+            document_filename: "welsh_non_molestation_order_fl404a_draft.pdf",
+          }
+        : {
+            document_url:
+              "http://dm-store-aat.service.core-compute-aat.internal/documents/67733608-919b-40fa-b48c-aef22ede02b3",
+            document_binary_url:
+              "http://dm-store-aat.service.core-compute-aat.internal/documents/67733608-919b-40fa-b48c-aef22ede02b3/binary",
+            document_filename: "welsh_non_molestation_order_fl404a_draft.pdf",
+          },
+    previewOrderDoc:
+      process.env.MANAGE_CASES_TEST_ENV === "demo"
+        ? {
+            document_url:
+              "http://dm-store-aat.service.core-compute-aat.internal/documents/7f5c19a9-9613-4b84-b6c3-25b3752df5d8",
+            document_binary_url:
+              "http://dm-store-aat.service.core-compute-aat.internal/documents/7f5c19a9-9613-4b84-b6c3-25b3752df5d8/binary",
+            document_filename: "non_molestation_order_fl404a_draft.pdf",
+          }
+        : {
+            document_url:
+              "http://dm-store-aat.service.core-compute-aat.internal/documents/f105140a-8a49-420b-820f-e7328a47b008",
+            document_binary_url:
+              "http://dm-store-aat.service.core-compute-aat.internal/documents/f105140a-8a49-420b-820f-e7328a47b008/binary",
+            document_filename: "non_molestation_order_fl404a_draft.pdf",
+          },
   },
 };

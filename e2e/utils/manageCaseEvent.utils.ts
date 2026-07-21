@@ -90,10 +90,14 @@ export class ManageCaseEventUtils {
             confidentialityDisclaimer: {
               confidentialityChecksChecked: ["confidentialityChecksChecked"],
             },
-            applicantSolicitorEmailAddress: "prl_aat_solicitor@mailinator.com",
-            caseworkerEmailAddress: "aloknath.datta@hmcts.net",
+            applicantSolicitorEmailAddress: process.env
+              .SOLICITOR_USERNAME as string,
+            caseworkerEmailAddress: process.env.CASEWORKER_USERNAME as string,
             courtName: "Central Family Court",
-            solicitorName: "AAT Solicitor",
+            solicitorName:
+              process.env.MANAGE_CASES_TEST_ENV === "demo"
+                ? "PRL DEMO ORG1 Solicitor 2"
+                : "AAT Solicitor",
             payAgreeStatement: ["agree"],
             feeAmount: "£270.00",
             helpWithFees: "No",
@@ -163,12 +167,16 @@ export class ManageCaseEventUtils {
     const s2sToken: string =
       await this.commonCaseEventsUtils.getServiceToken("prl_cos_api");
 
+    const userDetails = await this.commonCaseEventsUtils.getUserDetails(
+      userCredentials.email,
+    );
+
     // get event token
     let eventToken: string;
     await this.commonCaseEventsUtils.retry({
       fn: async () => {
         const apiContext = await this.commonCaseEventsUtils.createApiContext();
-        const urlFetchToken = `${process.env.CCD_DATA_STORE_URL as string}/caseworkers/04cd097c-d159-4c30-9fae-8f6af307cdee/jurisdictions/PRIVATELAW/case-types/PRLAPPS/event-triggers/testingSupportDummySolicitorCreate/token`;
+        const urlFetchToken = `${process.env.CCD_DATA_STORE_URL as string}/caseworkers/${userDetails.id}/jurisdictions/PRIVATELAW/case-types/PRLAPPS/event-triggers/testingSupportDummySolicitorCreate/token`;
         const getTokenResponse = await apiContext.get(urlFetchToken, {
           headers: {
             Authorization: `Bearer ${bearerToken}`,
@@ -214,7 +222,7 @@ export class ManageCaseEventUtils {
           event_token: eventToken,
           ignore_warning: false,
         };
-        const urlCreateCase = `${process.env.CCD_DATA_STORE_URL as string}/caseworkers/04cd097c-d159-4c30-9fae-8f6af307cdee/jurisdictions/PRIVATELAW/case-types/PRLAPPS/cases`;
+        const urlCreateCase = `${process.env.CCD_DATA_STORE_URL as string}/caseworkers/${userDetails.id}/jurisdictions/PRIVATELAW/case-types/PRLAPPS/cases`;
         submitEventResponse = await apiContext.post(urlCreateCase, {
           headers: {
             Authorization: `Bearer ${bearerToken}`,
@@ -331,7 +339,7 @@ export class ManageCaseEventUtils {
           },
         };
       } else {
-        // TODO: for some reason the legal adviser request succeeds but the role doesn't get added correctly
+        // TODO: fix - for some reason the legal adviser request succeeds but the role doesn't get added correctly
         const laUserDetails = await this.commonCaseEventsUtils.getUserDetails(
           process.env.LEGALADVISOR_USERNAME,
         );
