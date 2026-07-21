@@ -114,7 +114,7 @@ export class CommonCaseEventUtils {
 
         if (!response.ok()) {
           throw new Error(
-            `Failed to submit event: ${response.status()} - ${await response.text()}`,
+            `Failed to submit ${eventId} event: ${response.status()} - ${await response.text()}`,
           );
         }
       },

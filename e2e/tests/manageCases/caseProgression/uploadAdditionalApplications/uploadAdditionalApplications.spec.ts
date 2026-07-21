@@ -1,6 +1,6 @@
 import config from "../../../../utils/config.utils.ts";
 import { test } from "../../../fixtures.ts";
-import { SolicitorPagesGroup } from "../../../../pageObjects/roleBasedGroupedPages/solicitorPages.js";
+import { SolicitorPagesGroup } from "../../../../pageObjects/roleBasedGroupedPages/solicitorPages.ts";
 
 // -------------------------------
 // C100 CASE TYPE: Upload additional applications as a solicitor
@@ -10,17 +10,17 @@ import { SolicitorPagesGroup } from "../../../../pageObjects/roleBasedGroupedPag
 test.describe("Upload additional applications for C100 tests", () => {
   let caseRef: string;
 
-  test.beforeEach(
-    async ({ solicitor, manageCasesEventUtils, navigationUtils }) => {
-      caseRef = await manageCasesEventUtils.submitC100CaseViaIndividualEvents();
-      await navigationUtils.goToCase(
-        solicitor.page,
-        config.manageCasesBaseURLCase,
-        caseRef,
-        "tasks",
-      );
-    },
-  );
+  test.beforeEach(async ({ solicitor, caseEventUtils, navigationUtils }) => {
+    caseRef = await caseEventUtils.createCACaseSubmitAndPayIndividualEvents(
+      solicitor.page,
+    );
+    await navigationUtils.goToCase(
+      solicitor.page,
+      config.manageCasesBaseURLCase,
+      caseRef,
+      "tasks",
+    );
+  });
 
   [
     {
@@ -69,18 +69,17 @@ test.describe("Upload additional applications for C100 tests", () => {
 test.describe("Upload additional applications for FL401 tests", () => {
   let caseRef: string;
 
-  test.beforeEach(
-    async ({ solicitor, manageCasesEventUtils, navigationUtils }) => {
-      caseRef =
-        await manageCasesEventUtils.submitFL401CaseViaIndividualEvents();
-      await navigationUtils.goToCase(
-        solicitor.page,
-        config.manageCasesBaseURLCase,
-        caseRef,
-        "tasks",
-      );
-    },
-  );
+  test.beforeEach(async ({ solicitor, caseEventUtils, navigationUtils }) => {
+    caseRef = await caseEventUtils.createDACaseSubmitAndPayIndividualEvents(
+      solicitor.page,
+    );
+    await navigationUtils.goToCase(
+      solicitor.page,
+      config.manageCasesBaseURLCase,
+      caseRef,
+      "tasks",
+    );
+  });
 
   [
     {

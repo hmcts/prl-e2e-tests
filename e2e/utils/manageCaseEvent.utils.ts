@@ -2,9 +2,7 @@ import {
   LOCAL_COURTS,
   LocalCourtInfo,
   OrderTypes,
-  solicitorCACaseAPIEvent,
   solicitorCaseCreateType,
-  solicitorDACaseAPIEvent,
   UserCredentials,
 } from "../common/types.ts";
 import { APIResponse } from "@playwright/test";
@@ -23,14 +21,9 @@ import {
 import {
   SolicitorDraftNonMolestationOrderData,
   SolicitorDraftParentalResponsibilityOrderData,
-} from "../testData/jsonRequestData/solicitorDraftOrderRequestData.js";
-import Config from "./config.utils.js";
-import process from "node:process";
-import { DateHelperUtils } from "./dateHelpers.utils.js";
-import {
-  c100Events,
-  fl401Events,
-} from "../testData/jsonRequestData/solicitorIndividualEventsData.js";
+} from "../testData/jsonRequestData/solicitorDraftOrderRequestData.ts";
+import Config from "./config.utils.ts";
+import { DateHelperUtils } from "./dateHelpers.utils.ts";
 
 type OrderCreationUsers = "caseWorker" | "judge";
 
@@ -555,83 +548,5 @@ export class ManageCaseEventUtils {
         password: process.env.CASEMANAGER_PASSWORD as string,
       },
     });
-  }
-
-  /**
-   * Create and submit a C100 case by completing each individual event - this is required due to enable the additional applications event to be present for a C100 case. The real fix needs to be done in the TS support case data.
-   *
-   * @returns case ref of the created C100 case.
-   */
-  async submitC100CaseViaIndividualEvents(): Promise<string> {
-    const solicitorCaseEvents: solicitorCACaseAPIEvent[] = [
-      "selectApplicationType",
-      "hearingUrgency",
-      "applicantsDetails",
-      "respondentsDetails",
-      "otherPeopleInTheCaseRevised",
-      "childDetailsRevised",
-      "otherChildNotInTheCase",
-      "childrenAndApplicants",
-      "childrenAndRespondents",
-      "childrenAndOtherPeople",
-      "allegationsOfHarmRevised",
-      "miamPolicyUpgrade",
-      "internationalElement",
-      "welshLanguageRequirements",
-      "submitAndPay",
-      "testingSupportPaymentSuccessCallback",
-    ];
-
-    const caseRef: string = (await this.createDraftTSSolicitorCase("C100"))
-      .caseRef;
-
-    for (const event of solicitorCaseEvents) {
-      await this.commonCaseEventsUtils.completeEvent({
-        caseRef: caseRef,
-        eventId: event,
-        eventData: c100Events[event].data,
-        userCredentials: {
-          email: process.env.SOLICITOR_USERNAME,
-          password: process.env.SOLICITOR_PASSWORD,
-        },
-      });
-    }
-    return caseRef;
-  }
-
-  /**
-   * Create and submit a FL401 case by completing each individual event - this is required due to enable the additional applications event to be present for a C100 case. The real fix needs to be done in the TS support case data.
-   *
-   * @returns case ref of the created FL401 case.
-   */
-  async submitFL401CaseViaIndividualEvents(): Promise<string> {
-    const solicitorCaseEvents: solicitorDACaseAPIEvent[] = [
-      "fl401TypeOfApplication",
-      "withoutNoticeOrderDetails",
-      "applicantsDetails",
-      "respondentsDetails",
-      "fl401ApplicantFamilyDetails",
-      "respondentRelationship",
-      "respondentBehaviour",
-      "fl401Home",
-      "welshLanguageRequirements",
-      "fl401StatementOfTruthAndSubmit",
-    ];
-
-    const caseRef: string = (await this.createDraftTSSolicitorCase("FL401"))
-      .caseRef;
-
-    for (const event of solicitorCaseEvents) {
-      await this.commonCaseEventsUtils.completeEvent({
-        caseRef: caseRef,
-        eventId: event,
-        eventData: fl401Events[event].data,
-        userCredentials: {
-          email: process.env.SOLICITOR_USERNAME,
-          password: process.env.SOLICITOR_PASSWORD,
-        },
-      });
-    }
-    return caseRef;
   }
 }
