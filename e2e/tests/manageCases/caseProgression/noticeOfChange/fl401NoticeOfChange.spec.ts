@@ -19,7 +19,6 @@ test.describe("Notice of Change tests for DA case", () => {
       caseRef = (
         await manageCasesEventUtils.createDraftTSSolicitorCase("FL401")
       ).caseRef;
-      console.log(caseRef);
       const applicantSolPage = await Helpers.openNewBrowserWindow(
         browser,
         "solicitor",
@@ -61,13 +60,9 @@ test.describe("Notice of Change tests for DA case", () => {
   );
 
   // to be investigated and fixed as part of FPVTL-773
-  test("NOC applicant. @regression", async ({
-    page,
-    browser,
-  }): Promise<void> => {
+  test("NOC applicant. @regression", async ({ page }): Promise<void> => {
     await NoticeOfChange.noticeOfChange({
       page: page,
-      browser: browser,
       caseType: "FL401",
       caseRef: caseRef,
       isApplicant: true,
@@ -78,11 +73,9 @@ test.describe("Notice of Change tests for DA case", () => {
   // to be investigated and fixed as part of FPVTL-773
   test("NOC respondent. @nightly @accessibility @regression", async ({
     page,
-    browser,
   }): Promise<void> => {
     await NoticeOfChange.noticeOfChange({
       page: page,
-      browser: browser,
       caseType: "FL401",
       caseRef: caseRef,
       isApplicant: false,
