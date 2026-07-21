@@ -1,4 +1,4 @@
-import { expect, Page } from "@playwright/test";
+import { APIResponse, expect, Locator, Page } from "@playwright/test";
 import { PDFParse, TextResult } from "pdf-parse";
 
 interface checkTheApplicationParams {
@@ -179,16 +179,16 @@ export class CheckTheApplication {
     page: Page,
     pdfName: string,
   ): Promise<TextResult> {
-    // opens pdf in new tab
-    const [newPage] = await Promise.all([
-      page.context().waitForEvent("page"),
-      page.getByText(pdfName).click(),
-    ]);
+    const link: Locator = page.getByRole("link", { name: pdfName });
 
-    const pdfUrl = newPage.url();
-    console.log(`PDF URL for ${pdfName}: ${pdfUrl}`);
+    const href: string = await link.getAttribute("href");
+    if (!href) {
+      throw new Error(`No href found for PDF link "${pdfName}"`);
+    }
 
-    const response = await page.request.get(pdfUrl);
+    const pdfUrl: string = new URL(href, page.url()).toString();
+
+    const response: APIResponse = await page.request.get(pdfUrl);
     const uint8 = new Uint8Array(await response.body());
 
     const parser = new PDFParse({ data: uint8 });
