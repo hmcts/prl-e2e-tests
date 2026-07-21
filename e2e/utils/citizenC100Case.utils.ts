@@ -68,24 +68,27 @@ export class CitizenC100CaseUtils {
   ): Promise<JsonObjectWithId> {
     let response: APIResponse;
 
-    await this.commonCaseEventsUtils.retry(async () => {
-      const apiContext = await this.commonCaseEventsUtils.createApiContext();
-      const caseData = json;
-      const urlCreateCase = `${process.env.PRL_COS_API_URL as string}/testing-support/create-dummy-citizen-case-with-body`;
-      response = await apiContext.post(urlCreateCase, {
-        headers: {
-          Authorization: `Bearer ${bearerToken}`,
-          ServiceAuthorization: `Bearer ${s2sToken}`,
-          "Content-Type": "application/json",
-        },
-        data: caseData,
-      });
+    await this.commonCaseEventsUtils.retry({
+      fn: async () => {
+        const apiContext = await this.commonCaseEventsUtils.createApiContext();
+        const caseData = json;
+        const urlCreateCase = `${process.env.PRL_COS_API_URL as string}/testing-support/create-dummy-citizen-case-with-body`;
+        response = await apiContext.post(urlCreateCase, {
+          headers: {
+            Authorization: `Bearer ${bearerToken}`,
+            ServiceAuthorization: `Bearer ${s2sToken}`,
+            "Content-Type": "application/json",
+          },
+          data: caseData,
+        });
 
-      if (!response.ok()) {
-        throw new Error(
-          `Failed to create case: ${response.status()} - ${await response.text()}`,
-        );
-      }
+        if (!response.ok()) {
+          throw new Error(
+            `Failed to create case: ${response.status()} - ${await response.text()}`,
+          );
+        }
+      },
+      description: "Create draft citizen case",
     });
 
     return await response.json();
@@ -97,23 +100,26 @@ export class CitizenC100CaseUtils {
     bearerToken: string,
     s2sToken: string,
   ): Promise<void> {
-    await this.commonCaseEventsUtils.retry(async () => {
-      const apiContext = await this.commonCaseEventsUtils.createApiContext();
-      const urlSubmitCase = `${process.env.PRL_COS_API_URL as string}/citizen/${caseNumber}/citizen-case-submit/submit-c100-application`;
-      const responseCreateCase = await apiContext.post(urlSubmitCase, {
-        headers: {
-          Authorization: `Bearer ${bearerToken}`,
-          ServiceAuthorization: `Bearer ${s2sToken}`,
-          "Content-Type": "application/json",
-        },
-        data: caseData,
-      });
+    await this.commonCaseEventsUtils.retry({
+      fn: async () => {
+        const apiContext = await this.commonCaseEventsUtils.createApiContext();
+        const urlSubmitCase = `${process.env.PRL_COS_API_URL as string}/citizen/${caseNumber}/citizen-case-submit/submit-c100-application`;
+        const responseCreateCase = await apiContext.post(urlSubmitCase, {
+          headers: {
+            Authorization: `Bearer ${bearerToken}`,
+            ServiceAuthorization: `Bearer ${s2sToken}`,
+            "Content-Type": "application/json",
+          },
+          data: caseData,
+        });
 
-      if (!responseCreateCase.ok()) {
-        throw new Error(
-          `Failed to submit case: ${responseCreateCase.status()} - ${await responseCreateCase.text()}`,
-        );
-      }
+        if (!responseCreateCase.ok()) {
+          throw new Error(
+            `Failed to submit case: ${responseCreateCase.status()} - ${await responseCreateCase.text()}`,
+          );
+        }
+      },
+      description: "Submit citizen case",
     });
   }
 

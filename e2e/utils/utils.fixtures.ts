@@ -3,6 +3,7 @@ import {
   IdamUtils,
   ServiceAuthUtils,
   AxeUtils,
+  createLogger,
 } from "@hmcts/playwright-common";
 import { TokenUtils } from "./token.utils.ts";
 import { CourtNavUtils } from "./courtNav.utils.ts";
@@ -35,6 +36,9 @@ export interface UtilsFixtures {
   navigationUtils: NavigationUtils;
   pageUtils: PageUtils;
 }
+
+// used to dictate the log level of the playwright-common utils
+const logLevel = process.env.PWDEBUG ? "info" : "warn";
 
 export const utilsFixtures = {
   config: async ({}, use) => {
@@ -79,14 +83,20 @@ export const utilsFixtures = {
   citizenC100CaseUtils: async ({}, use) => {
     await use(
       new CitizenC100CaseUtils(
-        new CommonCaseEventUtils(new ServiceAuthUtils(), new IdamUtils()),
+        new CommonCaseEventUtils(
+          new ServiceAuthUtils({ logger: createLogger({ level: logLevel }) }),
+          new IdamUtils({ logger: createLogger({ level: logLevel }) }),
+        ),
       ),
     );
   },
   manageCasesEventUtils: async ({}, use) => {
     await use(
       new ManageCaseEventUtils(
-        new CommonCaseEventUtils(new ServiceAuthUtils(), new IdamUtils()),
+        new CommonCaseEventUtils(
+          new ServiceAuthUtils({ logger: createLogger({ level: logLevel }) }),
+          new IdamUtils({ logger: createLogger({ level: logLevel }) }),
+        ),
       ),
     );
   },

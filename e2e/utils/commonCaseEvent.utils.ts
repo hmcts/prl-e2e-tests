@@ -1,6 +1,7 @@
 import { APIRequestContext, APIResponse, request } from "@playwright/test";
 import { IdamUtils, ServiceAuthUtils } from "@hmcts/playwright-common";
 import { UserCredentials } from "../common/types.ts";
+import process from "node:process";
 
 /**
  * Parameters for an event request.
@@ -14,6 +15,13 @@ interface EventRequestParams {
   eventData: Record<string, unknown>;
   /** The credentials of the user completing the request. */
   userCredentials: UserCredentials;
+}
+
+interface RetryOptions<T> {
+  fn: () => Promise<T>;
+  maxRetries?: number;
+  delayMs?: number;
+  description?: string;
 }
 
 export class CommonCaseEventUtils {
@@ -33,6 +41,9 @@ export class CommonCaseEventUtils {
     eventData,
     userCredentials,
   }: EventRequestParams): Promise<void> {
+    if (process.env.PWDEBUG) {
+      console.log("Starting event:", eventId);
+    }
     const bearerToken: string = await this.getBearerToken(userCredentials);
     const serviceToken: string = await this.getServiceToken();
     const userDetails = await this.getUserDetails(userCredentials.email);
@@ -61,7 +72,12 @@ export class CommonCaseEventUtils {
       bearerToken,
       serviceToken,
       userDetails.id,
+      eventId,
     );
+
+    if (process.env.PWDEBUG) {
+      console.log("Completed event", eventId);
+    }
   }
 
   /**
@@ -72,6 +88,7 @@ export class CommonCaseEventUtils {
    * @param bearerToken the Authorization token for the user completing the event.
    * @param serviceToken the ServiceAuthorization token for the service the event is completing against.
    * @param userId the IDAM id of the user completing the event.
+   * @param eventId the ID of the event being submitted.
    */
   private async submitEvent(
     caseRef: string,
@@ -79,25 +96,29 @@ export class CommonCaseEventUtils {
     bearerToken: string,
     serviceToken: string,
     userId: string,
+    eventId: string,
   ): Promise<void> {
-    await this.retry(async () => {
-      const apiContext = await this.createApiContext();
-      const submitEventUrl = `${process.env.CCD_DATA_STORE_URL as string}/caseworkers/${userId}/jurisdictions/PRIVATELAW/case-types/PRLAPPS/cases/${caseRef}/events`;
-      const response = await apiContext.post(submitEventUrl, {
-        headers: {
-          Authorization: `Bearer ${bearerToken}`,
-          ServiceAuthorization: `Bearer ${serviceToken}`,
-          "Content-Type": "application/json; charset=UTF-8",
-          Experimental: "true",
-        },
-        data: eventData,
-      });
+    await this.retry({
+      fn: async () => {
+        const apiContext = await this.createApiContext();
+        const submitEventUrl = `${process.env.CCD_DATA_STORE_URL as string}/caseworkers/${userId}/jurisdictions/PRIVATELAW/case-types/PRLAPPS/cases/${caseRef}/events`;
+        const response = await apiContext.post(submitEventUrl, {
+          headers: {
+            Authorization: `Bearer ${bearerToken}`,
+            ServiceAuthorization: `Bearer ${serviceToken}`,
+            "Content-Type": "application/json; charset=UTF-8",
+            Experimental: "true",
+          },
+          data: eventData,
+        });
 
-      if (!response.ok()) {
-        throw new Error(
-          `Failed to submit event: ${response.status()} - ${await response.text()}`,
-        );
-      }
+        if (!response.ok()) {
+          throw new Error(
+            `Failed to submit event: ${response.status()} - ${await response.text()}`,
+          );
+        }
+      },
+      description: `Submit ${eventId} event`,
     });
   }
 
@@ -218,44 +239,70 @@ export class CommonCaseEventUtils {
     });
     let response: APIResponse;
 
-    await this.retry(async () => {
-      const serviceToken: string = await this.getServiceToken("prl_cos_api");
+    await this.retry({
+      fn: async () => {
+        const serviceToken: string = await this.getServiceToken("prl_cos_api");
 
-      const apiContext = await this.createApiContext();
-      const url = `${process.env.CCD_DATA_STORE_URL as string}/cases/${caseRef}`;
-      response = await apiContext.get(url, {
-        headers: {
-          Authorization: `Bearer ${bearerToken}`,
-          ServiceAuthorization: `Bearer ${serviceToken}`,
-          Experimental: "true",
-        },
-      });
+        const apiContext = await this.createApiContext();
+        const url = `${process.env.CCD_DATA_STORE_URL as string}/cases/${caseRef}`;
+        response = await apiContext.get(url, {
+          headers: {
+            Authorization: `Bearer ${bearerToken}`,
+            ServiceAuthorization: `Bearer ${serviceToken}`,
+            Experimental: "true",
+          },
+        });
 
-      if (!response.ok()) {
-        throw new Error(
-          `Failed to get case info: ${response.status()} - ${await response.text()}`,
-        );
-      }
+        if (!response.ok()) {
+          throw new Error(
+            `Failed to get case info: ${response.status()} - ${await response.text()}`,
+          );
+        }
+      },
+      description: "getCaseInfo",
     });
 
     return await response.json();
   }
 
-  async retry<T>(fn: () => Promise<T>, retries = 3, delayMs = 500): Promise<T> {
-    let lastError: unknown;
-
-    for (let attempt = 1; attempt <= retries; attempt++) {
+  async retry<T>({
+    fn,
+    maxRetries = 3,
+    delayMs = 500,
+    description = "",
+  }: RetryOptions<T>): Promise<T> {
+    for (let attempt = 1; attempt <= maxRetries; attempt++) {
       try {
         return await fn();
-      } catch (err) {
-        lastError = err;
+      } catch (error) {
+        // Immediate failure for non-retryable HTTP errors (4xx except 408/429), including on the first try.
+        const isNonRetryable = /HTTP error 4(?!08|29)\d{2}/.test(error.message);
 
-        if (attempt < retries) {
+        if (isNonRetryable) {
+          const detailedError = `${description} failed with a non-retryable error on attempt ${attempt}: ${error.message}. This is a non-retryable error and likely needs a code/payload fix.`;
+          console.error(detailedError);
+          throw new Error(detailedError);
+        }
+
+        if (attempt === maxRetries) {
+          console.error(
+            `${description} failed on final attempt (attempt ${attempt}): ${error.message}`,
+          );
+          throw error;
+        }
+
+        console.warn(
+          `${description} failed (attempt ${attempt}), with ${error.message}, retrying in ${delayMs}ms`,
+        );
+
+        if (attempt < maxRetries) {
           await new Promise((res) => setTimeout(res, delayMs * attempt));
         }
       }
     }
 
-    throw lastError;
+    throw new Error(
+      `${description} failed unexpectedly after ${maxRetries} attempts`,
+    );
   }
 }

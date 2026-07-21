@@ -24,6 +24,7 @@ import {
   SolicitorDraftParentalResponsibilityOrderData,
 } from "../testData/jsonRequestData/solicitorDraftOrderRequestData.js";
 import Config from "./config.utils.js";
+import process from "node:process";
 
 type OrderCreationUsers = "caseWorker" | "judge";
 
@@ -127,25 +128,28 @@ export class ManageCaseEventUtils {
 
     // get event token
     let eventToken: string;
-    await this.commonCaseEventsUtils.retry(async () => {
-      const apiContext = await this.commonCaseEventsUtils.createApiContext();
-      const urlFetchToken = `${process.env.CCD_DATA_STORE_URL as string}/caseworkers/04cd097c-d159-4c30-9fae-8f6af307cdee/jurisdictions/PRIVATELAW/case-types/PRLAPPS/event-triggers/testingSupportDummySolicitorCreate/token`;
-      const getTokenResponse = await apiContext.get(urlFetchToken, {
-        headers: {
-          Authorization: `Bearer ${bearerToken}`,
-          ServiceAuthorization: `Bearer ${s2sToken}`,
-          "Content-Type": "application/json",
-        },
-      });
+    await this.commonCaseEventsUtils.retry({
+      fn: async () => {
+        const apiContext = await this.commonCaseEventsUtils.createApiContext();
+        const urlFetchToken = `${process.env.CCD_DATA_STORE_URL as string}/caseworkers/04cd097c-d159-4c30-9fae-8f6af307cdee/jurisdictions/PRIVATELAW/case-types/PRLAPPS/event-triggers/testingSupportDummySolicitorCreate/token`;
+        const getTokenResponse = await apiContext.get(urlFetchToken, {
+          headers: {
+            Authorization: `Bearer ${bearerToken}`,
+            ServiceAuthorization: `Bearer ${s2sToken}`,
+            "Content-Type": "application/json",
+          },
+        });
 
-      if (!getTokenResponse.ok()) {
-        throw new Error(
-          `Failed to fetch TS support event token: ${getTokenResponse.status()} - ${await getTokenResponse.text()}`,
-        );
-      }
+        if (!getTokenResponse.ok()) {
+          throw new Error(
+            `Failed to fetch TS support event token: ${getTokenResponse.status()} - ${await getTokenResponse.text()}`,
+          );
+        }
 
-      const responseJson = await getTokenResponse.json();
-      eventToken = responseJson.token;
+        const responseJson = await getTokenResponse.json();
+        eventToken = responseJson.token;
+      },
+      description: `Get event token for creating draft ${caseType} TS case`,
     });
 
     // submit event
@@ -155,41 +159,49 @@ export class ManageCaseEventUtils {
       .toString()
       .padStart(3, "0");
     const caseName = `TEST-${timestamp}${randomNumber}`;
-    await this.commonCaseEventsUtils.retry(async () => {
-      const apiContext = await this.commonCaseEventsUtils.createApiContext();
-      const caseData = {
-        data: {
-          caseTypeOfApplication: caseType,
-          applicantOrganisationPolicy: null,
-          applicantCaseName: caseName,
-        },
-        draft_id: null,
-        event: {
-          id: "testingSupportDummySolicitorCreate",
-          summary: "",
-          description: "",
-        },
-        event_token: eventToken,
-        ignore_warning: false,
-      };
-      const urlCreateCase = `${process.env.CCD_DATA_STORE_URL as string}/caseworkers/04cd097c-d159-4c30-9fae-8f6af307cdee/jurisdictions/PRIVATELAW/case-types/PRLAPPS/cases`;
-      submitEventResponse = await apiContext.post(urlCreateCase, {
-        headers: {
-          Authorization: `Bearer ${bearerToken}`,
-          ServiceAuthorization: `Bearer ${s2sToken}`,
-          "Content-Type": "application/json",
-        },
-        data: caseData,
-      });
+    await this.commonCaseEventsUtils.retry({
+      fn: async () => {
+        const apiContext = await this.commonCaseEventsUtils.createApiContext();
+        const caseData = {
+          data: {
+            caseTypeOfApplication: caseType,
+            applicantOrganisationPolicy: null,
+            applicantCaseName: caseName,
+          },
+          draft_id: null,
+          event: {
+            id: "testingSupportDummySolicitorCreate",
+            summary: "",
+            description: "",
+          },
+          event_token: eventToken,
+          ignore_warning: false,
+        };
+        const urlCreateCase = `${process.env.CCD_DATA_STORE_URL as string}/caseworkers/04cd097c-d159-4c30-9fae-8f6af307cdee/jurisdictions/PRIVATELAW/case-types/PRLAPPS/cases`;
+        submitEventResponse = await apiContext.post(urlCreateCase, {
+          headers: {
+            Authorization: `Bearer ${bearerToken}`,
+            ServiceAuthorization: `Bearer ${s2sToken}`,
+            "Content-Type": "application/json",
+          },
+          data: caseData,
+        });
 
-      if (!submitEventResponse.ok()) {
-        throw new Error(
-          `Failed to create TS support case: ${submitEventResponse.status()} - ${await submitEventResponse.text()}`,
-        );
-      }
+        if (!submitEventResponse.ok()) {
+          throw new Error(
+            `Failed to create TS support case: ${submitEventResponse.status()} - ${await submitEventResponse.text()}`,
+          );
+        }
+      },
+      description: `Submit event create draft ${caseType} TS case`,
     });
 
     const responseJson = await submitEventResponse.json();
+
+    if (process.env.PWDEBUG) {
+      console.log("Finished creating draft case:", responseJson.id);
+    }
+
     return { caseRef: String(responseJson.id), caseName: caseName };
   }
 
