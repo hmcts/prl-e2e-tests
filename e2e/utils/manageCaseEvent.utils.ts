@@ -2,12 +2,13 @@ import {
   LOCAL_COURTS,
   LocalCourtInfo,
   OrderTypes,
+  solicitorCACaseAPIEvent,
   solicitorCaseCreateType,
+  solicitorDACaseAPIEvent,
   UserCredentials,
 } from "../common/types.ts";
 import { APIResponse } from "@playwright/test";
 import { CommonCaseEventUtils } from "./commonCaseEvent.utils.ts";
-import { jsonDatas, JsonDatas } from "../common/caseHelpers/jsonDatas.ts";
 import {
   AmendDischargedVariedOrderActionData,
   ChildArrangementsOrderActionData,
@@ -25,6 +26,11 @@ import {
 } from "../testData/jsonRequestData/solicitorDraftOrderRequestData.js";
 import Config from "./config.utils.js";
 import process from "node:process";
+import { DateHelperUtils } from "./dateHelpers.utils.js";
+import {
+  c100Events,
+  fl401Events,
+} from "../testData/jsonRequestData/solicitorIndividualEventsData.js";
 
 type OrderCreationUsers = "caseWorker" | "judge";
 
@@ -60,7 +66,10 @@ export interface BasicCaseData {
 }
 
 export class ManageCaseEventUtils {
-  constructor(private commonCaseEventsUtils: CommonCaseEventUtils) {}
+  constructor(
+    private commonCaseEventsUtils: CommonCaseEventUtils,
+    private dateHelperUtils: DateHelperUtils,
+  ) {}
 
   /**
    * Creates and submits an FL401 or C100 testing support solicitor case via API requests.
@@ -80,25 +89,60 @@ export class ManageCaseEventUtils {
       await this.createDraftTSSolicitorCase(caseType);
 
     if (caseType === "C100") {
-      const eventData: JsonDatas = jsonDatas.solicitorCACaseData;
       await this.commonCaseEventsUtils.completeEvent({
         caseRef: caseData.caseRef,
         eventId: "submitAndPay",
-        eventData: eventData.submitAndPay,
+        eventData: {
+          data: {
+            confidentialityDisclaimer: {
+              confidentialityChecksChecked: ["confidentialityChecksChecked"],
+            },
+            applicantSolicitorEmailAddress: "prl_aat_solicitor@mailinator.com",
+            caseworkerEmailAddress: "aloknath.datta@hmcts.net",
+            courtName: "Central Family Court",
+            solicitorName: "AAT Solicitor",
+            payAgreeStatement: ["agree"],
+            feeAmount: "£270.00",
+            helpWithFees: "No",
+          },
+        },
         userCredentials: userCredentials,
       });
       await this.commonCaseEventsUtils.completeEvent({
         caseRef: caseData.caseRef,
         eventId: "testingSupportPaymentSuccessCallback",
-        eventData: eventData.testingSupportPaymentSuccessCallback,
+        eventData: {
+          data: {},
+        },
         userCredentials: userCredentials,
       });
     } else {
-      const eventData: JsonDatas = jsonDatas.solicitorDACaseData;
+      const date = this.dateHelperUtils.todayDate(false, true, true);
       await this.commonCaseEventsUtils.completeEvent({
         caseRef: caseData.caseRef,
         eventId: "fl401StatementOfTruthAndSubmit",
-        eventData: eventData.fl401StatementOfTruthAndSubmit,
+        eventData: {
+          data: {
+            fl401StmtOfTruth: {
+              date: `${date[2]}-${date[1]}-${date[0]}`,
+              fullname: "test name",
+              nameOfFirm: "test form",
+              signOnBehalf: "test position",
+              signature: null,
+              applicantConsent: ["fl401Consent"],
+            },
+            fl401ConfidentialityCheck: {
+              confidentialityConsent: ["fl401ConfidentialConsent"],
+            },
+            submitCountyCourtSelection: {
+              value: {
+                code: "234946:",
+                label:
+                  "Swansea Civil Justice Centre - Quay West, Quay Parade - SA1 1SP",
+              },
+            },
+          },
+        },
         userCredentials: userCredentials,
       });
     }
@@ -511,5 +555,83 @@ export class ManageCaseEventUtils {
         password: process.env.CASEMANAGER_PASSWORD as string,
       },
     });
+  }
+
+  /**
+   * Create and submit a C100 case by completing each individual event - this is required due to enable the additional applications event to be present for a C100 case. The real fix needs to be done in the TS support case data.
+   *
+   * @returns case ref of the created C100 case.
+   */
+  async submitC100CaseViaIndividualEvents(): Promise<string> {
+    const solicitorCaseEvents: solicitorCACaseAPIEvent[] = [
+      "selectApplicationType",
+      "hearingUrgency",
+      "applicantsDetails",
+      "respondentsDetails",
+      "otherPeopleInTheCaseRevised",
+      "childDetailsRevised",
+      "otherChildNotInTheCase",
+      "childrenAndApplicants",
+      "childrenAndRespondents",
+      "childrenAndOtherPeople",
+      "allegationsOfHarmRevised",
+      "miamPolicyUpgrade",
+      "internationalElement",
+      "welshLanguageRequirements",
+      "submitAndPay",
+      "testingSupportPaymentSuccessCallback",
+    ];
+
+    const caseRef: string = (await this.createDraftTSSolicitorCase("C100"))
+      .caseRef;
+
+    for (const event of solicitorCaseEvents) {
+      await this.commonCaseEventsUtils.completeEvent({
+        caseRef: caseRef,
+        eventId: event,
+        eventData: c100Events[event].data,
+        userCredentials: {
+          email: process.env.SOLICITOR_USERNAME,
+          password: process.env.SOLICITOR_PASSWORD,
+        },
+      });
+    }
+    return caseRef;
+  }
+
+  /**
+   * Create and submit a FL401 case by completing each individual event - this is required due to enable the additional applications event to be present for a C100 case. The real fix needs to be done in the TS support case data.
+   *
+   * @returns case ref of the created FL401 case.
+   */
+  async submitFL401CaseViaIndividualEvents(): Promise<string> {
+    const solicitorCaseEvents: solicitorDACaseAPIEvent[] = [
+      "fl401TypeOfApplication",
+      "withoutNoticeOrderDetails",
+      "applicantsDetails",
+      "respondentsDetails",
+      "fl401ApplicantFamilyDetails",
+      "respondentRelationship",
+      "respondentBehaviour",
+      "fl401Home",
+      "welshLanguageRequirements",
+      "fl401StatementOfTruthAndSubmit",
+    ];
+
+    const caseRef: string = (await this.createDraftTSSolicitorCase("FL401"))
+      .caseRef;
+
+    for (const event of solicitorCaseEvents) {
+      await this.commonCaseEventsUtils.completeEvent({
+        caseRef: caseRef,
+        eventId: event,
+        eventData: fl401Events[event].data,
+        userCredentials: {
+          email: process.env.SOLICITOR_USERNAME,
+          password: process.env.SOLICITOR_PASSWORD,
+        },
+      });
+    }
+    return caseRef;
   }
 }

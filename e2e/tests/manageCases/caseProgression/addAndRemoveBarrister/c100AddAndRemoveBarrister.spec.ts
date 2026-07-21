@@ -30,9 +30,7 @@ test.describe("Add/Remove Barrister for CA case", () => {
 
   test.beforeEach(
     async ({
-      caseEventUtils,
       navigationUtils,
-      solicitor,
       caseWorker,
       courtAdminStoke,
       manageCasesEventUtils,
@@ -41,9 +39,7 @@ test.describe("Add/Remove Barrister for CA case", () => {
       create case via individual events so that we can control the solicitor organisation between AAT and Demo
       to enable notice of change to work
       */
-      caseRef = await caseEventUtils.createCACaseSubmitAndPayIndividualEvents(
-        solicitor.page,
-      );
+      caseRef = await manageCasesEventUtils.submitC100CaseViaIndividualEvents();
       await navigationUtils.goToCase(
         courtAdminStoke.page,
         config.manageCasesBaseURLCase,

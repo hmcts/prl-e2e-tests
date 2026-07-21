@@ -107,16 +107,17 @@ test.describe("FL401 case support request tests.", () => {
 });
 
 test.describe("C100 case support request tests.", () => {
-  let caseNumber: string = "";
+  let caseRef: string = "";
 
   test.beforeEach(
-    async ({ solicitor, browser, caseEventUtils, navigationUtils }) => {
-      caseNumber =
-        await caseEventUtils.createCACaseIssueAndSendToLocalCourt(browser);
+    async ({ solicitor, manageCasesEventUtils, navigationUtils }) => {
+      caseRef = (await manageCasesEventUtils.submitTSSolicitorCase("C100"))
+        .caseRef;
+      await manageCasesEventUtils.issueAndSendToLocalCourt(caseRef);
       await navigationUtils.goToCase(
         solicitor.page,
         config.manageCasesBaseURLCase,
-        caseNumber,
+        caseRef,
       );
     },
   );
@@ -156,7 +157,7 @@ test.describe("C100 case support request tests.", () => {
           reasonableAdjustment,
           adjustment,
           reason,
-          caseNumber,
+          caseNumber: caseRef,
           caseType: "C100",
         });
 
@@ -164,7 +165,7 @@ test.describe("C100 case support request tests.", () => {
         await reviewSupportRequest({
           caseWorker,
           navigationUtils,
-          caseNumber,
+          caseNumber: caseRef,
           recipient,
           recipientRole,
           supportType,

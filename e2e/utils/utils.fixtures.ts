@@ -10,7 +10,6 @@ import { CourtNavUtils } from "./courtNav.utils.ts";
 import { AccessCodeHelper } from "./accessCode.utils.ts";
 import { CreateUserUtil } from "./createUser.utils.ts";
 import { IdamLoginHelper } from "./idamLoginHelper.utils.ts";
-import { CaseEventUtils } from "./caseEvent.utils.ts";
 import { DateHelperUtils } from "./dateHelpers.utils.ts";
 import { NavigationUtils } from "./navigation.utils.ts";
 import { PageUtils } from "./page.utils.ts";
@@ -30,7 +29,6 @@ export interface UtilsFixtures {
   citizenC100CaseUtils: CitizenC100CaseUtils;
   manageCasesEventUtils: ManageCaseEventUtils;
 
-  caseEventUtils: CaseEventUtils;
   axeUtils: AxeUtils;
   dateHelperUtils: DateHelperUtils;
   navigationUtils: NavigationUtils;
@@ -68,9 +66,6 @@ export const utilsFixtures = {
   idamLoginHelper: async ({}, use) => {
     await use(new IdamLoginHelper());
   },
-  caseEventUtils: async ({}, use) => {
-    await use(new CaseEventUtils());
-  },
   dateHelperUtils: async ({}, use) => {
     await use(new DateHelperUtils());
   },
@@ -97,6 +92,7 @@ export const utilsFixtures = {
           new ServiceAuthUtils({ logger: createLogger({ level: logLevel }) }),
           new IdamUtils({ logger: createLogger({ level: logLevel }) }),
         ),
+        new DateHelperUtils(),
       ),
     );
   },

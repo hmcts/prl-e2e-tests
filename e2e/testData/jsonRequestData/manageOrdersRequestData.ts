@@ -1,5 +1,3 @@
-// TODO: order data needs to handle demo as well as AAT
-
 export interface ManageOrdersRequestData {
   caseWorkerDraftOrderData?;
   finalOrderData?;
