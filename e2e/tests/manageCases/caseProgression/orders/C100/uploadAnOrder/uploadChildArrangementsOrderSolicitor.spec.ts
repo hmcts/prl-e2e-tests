@@ -3,7 +3,7 @@ import { test } from "../../../../../fixtures.ts";
 import {
   C21UploadOrderScenarios,
   ChildArrangementsUploadOrderScenarios,
-} from "../../../../../../testData/draftOrders.ts";
+} from "../../../../../../testData/ui/draftOrders.ts";
 import {
   OrderTypes,
   solicitorCaseCreateType,

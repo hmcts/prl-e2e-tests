@@ -6,7 +6,7 @@ import {
 } from "../../../../../../../common/types.ts";
 import { ManageOrder19Params } from "../../../../../../../pageObjects/pages/exui/orders/manageOrders/manageOrder19.po.ts";
 import { CustomOrdersManageOrder5PageParams } from "../../../../../../../pageObjects/pages/exui/orders/manageOrders/customOrderManageOrder5.po.ts";
-import { CreateParentalResponsibilityCustomOrderScenarios } from "../../../../../../../testData/draftOrders.ts";
+import { CreateParentalResponsibilityCustomOrderScenarios } from "../../../../../../../testData/ui/draftOrders.ts";
 
 export interface CustomOrderParams {
   orderOption: manageOrdersOptions;

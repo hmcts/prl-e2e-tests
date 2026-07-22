@@ -1,14 +1,14 @@
-import { ParentalResponsibilityDraftOrderParams } from "../tests/manageCases/caseProgression/orders/C100/createAnOrder/solicitor/draftAnParentalResponsibilityOrder.spec.ts";
-import { NonMolestationDraftOrderParams } from "../tests/manageCases/caseProgression/orders/FL401/createAnOrder/solicitor/draftAnOrderNonMolestation.spec.ts";
+import { ParentalResponsibilityDraftOrderParams } from "../../tests/manageCases/caseProgression/orders/C100/createAnOrder/solicitor/draftAnParentalResponsibilityOrder.spec.ts";
+import { NonMolestationDraftOrderParams } from "../../tests/manageCases/caseProgression/orders/FL401/createAnOrder/solicitor/draftAnOrderNonMolestation.spec.ts";
 import {
   C21UploadOrderParams,
   ChildArrangementsUploadOrderParams,
-} from "../tests/manageCases/caseProgression/orders/C100/uploadAnOrder/uploadChildArrangementsOrderSolicitor.spec.ts";
-import { DomesticAbuseUploadOrderParams } from "../tests/manageCases/caseProgression/orders/FL401/uploadAnOrder/uploadDomesticAbuseOrderSolicitor.spec.ts";
-import { SpecialGuardianshipDraftOrderParams } from "../tests/manageCases/caseProgression/orders/C100/createAnOrder/solicitor/draftAnSpecialGuardianshipOrder.spec.ts";
-import { CustomOrderParams } from "../tests/manageCases/caseProgression/orders/C100/createACustomOrder/judge/createParentalResponsibilityCustomOrder.spec.ts";
-import { manageOrdersOptions, OrderTypes } from "../common/types.ts";
-import { ManageOrder19Params } from "../pageObjects/pages/exui/orders/manageOrders/manageOrder19.po.ts";
+} from "../../tests/manageCases/caseProgression/orders/C100/uploadAnOrder/uploadChildArrangementsOrderSolicitor.spec.ts";
+import { DomesticAbuseUploadOrderParams } from "../../tests/manageCases/caseProgression/orders/FL401/uploadAnOrder/uploadDomesticAbuseOrderSolicitor.spec.ts";
+import { SpecialGuardianshipDraftOrderParams } from "../../tests/manageCases/caseProgression/orders/C100/createAnOrder/solicitor/draftAnSpecialGuardianshipOrder.spec.ts";
+import { CustomOrderParams } from "../../tests/manageCases/caseProgression/orders/C100/createACustomOrder/judge/createParentalResponsibilityCustomOrder.spec.ts";
+import { manageOrdersOptions, OrderTypes } from "../../common/types.ts";
+import { ManageOrder19Params } from "../../pageObjects/pages/exui/orders/manageOrders/manageOrder19.po.ts";
 
 export const NonMolestationDraftOrderScenarios: NonMolestationDraftOrderParams[] =
   [

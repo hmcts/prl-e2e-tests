@@ -1,6 +1,6 @@
 import { test } from "../../../../../../fixtures.ts";
 import Config from "../../../../../../../utils/config.utils.ts";
-import { NonMolestationDraftOrderScenarios } from "../../../../../../../testData/draftOrders.ts";
+import { NonMolestationDraftOrderScenarios } from "../../../../../../../testData/ui/draftOrders.ts";
 import {
   OrderTypes,
   solicitorCaseCreateType,

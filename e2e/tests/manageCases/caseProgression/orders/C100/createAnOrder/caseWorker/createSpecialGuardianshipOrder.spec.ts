@@ -1,6 +1,6 @@
 import { test } from "../../../../../../fixtures.ts";
 import config from "../../../../../../../utils/config.utils.ts";
-import { SpecialGuardianshipCreateOrderScenarios } from "../../../../../../../testData/manageOrders.ts";
+import { SpecialGuardianshipCreateOrderScenarios } from "../../../../../../../testData/ui/manageOrders.ts";
 import {
   manageOrdersOptions,
   OrderTypes,

@@ -1,6 +1,6 @@
 import json from "../caseData/citizenCA/c100-citizen-dummy-case-details.json" with { type: "json" };
 
-import { buildSOAEventData } from "../testData/citizen.ts";
+import { buildSOAEventData } from "../testData/ui/citizen.ts";
 import { CommonCaseEventUtils } from "./commonCaseEvent.utils.ts";
 import { UserCredentials } from "../common/types.ts";
 

@@ -12,15 +12,15 @@ import {
   ManageOrdersRequestData,
   ParentalResponsibilityOrderActionData,
   PowerOfArrestOrderActionData,
-} from "../testData/jsonRequestData/manageOrdersRequestData.ts";
+} from "../testData/api/manageOrdersRequestData.ts";
 import {
   C100SoaWithoutOrderRequestData,
   Fl401SoaWithoutOrderRequestData,
-} from "../testData/jsonRequestData/soaRequestData.ts";
+} from "../testData/api/soaRequestData.ts";
 import {
   SolicitorDraftNonMolestationOrderData,
   SolicitorDraftParentalResponsibilityOrderData,
-} from "../testData/jsonRequestData/solicitorDraftOrderRequestData.ts";
+} from "../testData/api/solicitorDraftOrderRequestData.ts";
 import Config from "./config.utils.ts";
 import { DateHelperUtils } from "./dateHelpers.utils.ts";
 

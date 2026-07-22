@@ -7,7 +7,7 @@ import {
 import { OrderInformation } from "../../../../../../../pageObjects/pages/exui/caseView/draftOrders.po.ts";
 import { DraftAnOrder5Params } from "../../../../../../../pageObjects/pages/exui/orders/draftOrders/draftAnOrder5.po.ts";
 import config from "../../../../../../../utils/config.utils.ts";
-import { SpecialGuardianshipDraftOrderScenarios } from "../../../../../../../testData/draftOrders.ts";
+import { SpecialGuardianshipDraftOrderScenarios } from "../../../../../../../testData/ui/draftOrders.ts";
 
 export interface SpecialGuardianshipDraftOrderParams {
   name: string;

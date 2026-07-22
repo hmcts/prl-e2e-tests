@@ -7,7 +7,7 @@ import {
 } from "../../../../../../common/types.ts";
 import { OrderInformation } from "../../../../../../pageObjects/pages/exui/caseView/draftOrders.po.ts";
 import { ManageOrder5Params } from "../../../../../../pageObjects/pages/exui/orders/manageOrders/manageOrder5.po.ts";
-import { FL404B2UploadOrderScenarios } from "../../../../../../testData/manageOrders.ts";
+import { FL404B2UploadOrderScenarios } from "../../../../../../testData/ui/manageOrders.ts";
 import { ManageOrder30Params } from "../../../../../../pageObjects/pages/exui/orders/manageOrders/manageOrder30.po.ts";
 
 export interface FL404B2UploadOrderParams {

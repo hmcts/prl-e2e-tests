@@ -7,7 +7,7 @@ import {
 import { OrderInformation } from "../../../../../../../pageObjects/pages/exui/caseView/draftOrders.po.ts";
 import { DraftAnOrder5Params } from "../../../../../../../pageObjects/pages/exui/orders/draftOrders/draftAnOrder5.po.ts";
 import config from "../../../../../../../utils/config.utils.ts";
-import { ParentalResponsibilityOrderScenarios } from "../../../../../../../testData/draftOrders.ts";
+import { ParentalResponsibilityOrderScenarios } from "../../../../../../../testData/ui/draftOrders.ts";
 
 export interface ParentalResponsibilityDraftOrderParams {
   name: string;

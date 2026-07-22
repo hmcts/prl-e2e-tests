@@ -1,13 +1,13 @@
-import { ChildArrangementsCreateOrderParams } from "../tests/manageCases/caseProgression/orders/C100/createAnOrder/caseWorker/createChildArrangementsOrder.spec.js";
-import { AmendedDischargedVariedOrderParams } from "../tests/manageCases/caseProgression/orders/FL401/createAnOrder/caseWorker/createAmendedDischargedOrVariedOrder.spec.js";
-import { OccupationOrderParams } from "../tests/manageCases/caseProgression/orders/FL401/createAnOrder/caseWorker/createOccupationOrder.spec.js";
-import { C43A45AUploadOrderParams } from "../tests/manageCases/caseProgression/orders/C100/uploadAnOrder/uploadChildArrangementsOrderCaseworker.spec.js";
-import { DomesticAbuseUploadOrderParams } from "../tests/manageCases/caseProgression/orders/FL401/uploadAnOrder/uploadDomesticAbuseOrderCaseworker.spec.ts";
-import { SpecialGuardianshipCreateOrderParams } from "../tests/manageCases/caseProgression/orders/C100/createAnOrder/caseWorker/createSpecialGuardianshipOrder.spec.js";
-import { C21CreateOrderParams } from "../tests/manageCases/caseProgression/orders/C100/createAnOrder/judge/createBlankOrderOrDirectionsOrder.spec.js";
-import { C43UploadOrderParams } from "../tests/manageCases/caseProgression/orders/C100/uploadAnOrder/uploadChildArrangementsOrderJudge.spec.js";
-import { FL404B2FL406CreateOrderParams } from "../tests/manageCases/caseProgression/orders/FL401/createAnOrder/judge/createDomesticAbuseOrderJudge.spec.js";
-import { FL404B2UploadOrderParams } from "../tests/manageCases/caseProgression/orders/FL401/uploadAnOrder/uploadDomesticAbuseOrderJudge.spec.js";
+import { ChildArrangementsCreateOrderParams } from "../../tests/manageCases/caseProgression/orders/C100/createAnOrder/caseWorker/createChildArrangementsOrder.spec.js";
+import { AmendedDischargedVariedOrderParams } from "../../tests/manageCases/caseProgression/orders/FL401/createAnOrder/caseWorker/createAmendedDischargedOrVariedOrder.spec.js";
+import { OccupationOrderParams } from "../../tests/manageCases/caseProgression/orders/FL401/createAnOrder/caseWorker/createOccupationOrder.spec.js";
+import { C43A45AUploadOrderParams } from "../../tests/manageCases/caseProgression/orders/C100/uploadAnOrder/uploadChildArrangementsOrderCaseworker.spec.js";
+import { DomesticAbuseUploadOrderParams } from "../../tests/manageCases/caseProgression/orders/FL401/uploadAnOrder/uploadDomesticAbuseOrderCaseworker.spec.ts";
+import { SpecialGuardianshipCreateOrderParams } from "../../tests/manageCases/caseProgression/orders/C100/createAnOrder/caseWorker/createSpecialGuardianshipOrder.spec.js";
+import { C21CreateOrderParams } from "../../tests/manageCases/caseProgression/orders/C100/createAnOrder/judge/createBlankOrderOrDirectionsOrder.spec.js";
+import { C43UploadOrderParams } from "../../tests/manageCases/caseProgression/orders/C100/uploadAnOrder/uploadChildArrangementsOrderJudge.spec.js";
+import { FL404B2FL406CreateOrderParams } from "../../tests/manageCases/caseProgression/orders/FL401/createAnOrder/judge/createDomesticAbuseOrderJudge.spec.js";
+import { FL404B2UploadOrderParams } from "../../tests/manageCases/caseProgression/orders/FL401/uploadAnOrder/uploadDomesticAbuseOrderJudge.spec.js";
 
 export const ChildArrangementsCreateOrderScenarios: ChildArrangementsCreateOrderParams[] =
   [

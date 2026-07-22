@@ -3,7 +3,7 @@ import { test } from "../../../fixtures.ts";
 import {
   C100SendAndReplyToMessagesScenarios,
   FL401SendAndReplyToMessagesScenarios,
-} from "../../../../testData/sendAndReplyToMessages.ts";
+} from "../../../../testData/ui/sendAndReplyToMessages.ts";
 import { CaseWorkerPagesGroup } from "../../../../pageObjects/roleBasedGroupedPages/caseWorkerPages.ts";
 import { JudgePagesGroup } from "../../../../pageObjects/roleBasedGroupedPages/judgePages.ts";
 import { LegalAdvisorPagesGroup } from "../../../../pageObjects/roleBasedGroupedPages/legalAdvisorPages.ts";

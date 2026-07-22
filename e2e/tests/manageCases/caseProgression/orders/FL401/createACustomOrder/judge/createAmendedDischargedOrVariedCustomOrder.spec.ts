@@ -1,6 +1,6 @@
 import { test } from "../../../../../../fixtures.ts";
 import config from "../../../../../../../utils/config.utils.ts";
-import { CreateAmendedDischargedOrVariedCustomOrderScenarios } from "../../../../../../../testData/draftOrders.ts";
+import { CreateAmendedDischargedOrVariedCustomOrderScenarios } from "../../../../../../../testData/ui/draftOrders.ts";
 import { CustomOrderParams } from "../../../C100/createACustomOrder/judge/createParentalResponsibilityCustomOrder.spec.ts";
 
 test.describe("Manage Orders - Create custom amended, discharged or varied custom order tests", () => {

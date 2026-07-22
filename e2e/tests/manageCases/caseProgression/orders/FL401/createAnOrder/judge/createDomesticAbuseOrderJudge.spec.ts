@@ -8,7 +8,7 @@ import { ManageOrder19Params } from "../../../../../../../pageObjects/pages/exui
 import { OrderInformation } from "../../../../../../../pageObjects/pages/exui/caseView/draftOrders.po.ts";
 import { test } from "../../../../../../fixtures.ts";
 import config from "../../../../../../../utils/config.utils.ts";
-import { FL404B2Fl406OrderScenarios } from "../../../../../../../testData/manageOrders.ts";
+import { FL404B2Fl406OrderScenarios } from "../../../../../../../testData/ui/manageOrders.ts";
 import { ManageOrder30Params } from "../../../../../../../pageObjects/pages/exui/orders/manageOrders/manageOrder30.po.ts";
 import { ManageOrder12Params } from "../../../../../../../pageObjects/pages/exui/orders/manageOrders/powerOfArrestOrderManageOrder12.po.ts";
 

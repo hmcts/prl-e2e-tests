@@ -7,7 +7,7 @@ import Config from "./config.utils.js";
 import {
   c100Events,
   fl401Events,
-} from "../testData/jsonRequestData/solicitorIndividualEventsData.js";
+} from "../testData/api/solicitorIndividualEventsData.js";
 
 /**
  * @deprecated Use the new `manageCaseEvent.utils.ts` class instead.

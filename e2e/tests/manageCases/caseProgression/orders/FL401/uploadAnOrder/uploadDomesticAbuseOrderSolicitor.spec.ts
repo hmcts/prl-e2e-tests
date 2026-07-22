@@ -1,6 +1,6 @@
 import { test } from "../../../../../fixtures.ts";
 import config from "../../../../../../utils/config.utils.ts";
-import { FL404BFL404UploadOrderScenarios } from "../../../../../../testData/draftOrders.ts";
+import { FL404BFL404UploadOrderScenarios } from "../../../../../../testData/ui/draftOrders.ts";
 import {
   OrderTypes,
   solicitorCaseCreateType,

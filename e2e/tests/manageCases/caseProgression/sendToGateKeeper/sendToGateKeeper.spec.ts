@@ -1,7 +1,7 @@
 import { test } from "../../../fixtures.ts";
 import config from "../../../../utils/config.utils.ts";
 import { SendToGateKeeperJourneyParams } from "../../../../journeys/manageCases/caseProgression/sendToGateKeeper/sendToGateKeeperJourney.ts";
-import { SendToGateKeeperCourtAdminScenarios as scenarios } from "../../../../testData/sendToGateKeeper.ts";
+import { SendToGateKeeperCourtAdminScenarios as scenarios } from "../../../../testData/ui/sendToGateKeeper.ts";
 import { CaseWorkerPagesGroup } from "../../../../pageObjects/roleBasedGroupedPages/caseWorkerPages.ts";
 import { CaseManagerPagesGroup } from "../../../../pageObjects/roleBasedGroupedPages/caseManagerPages.ts";
 

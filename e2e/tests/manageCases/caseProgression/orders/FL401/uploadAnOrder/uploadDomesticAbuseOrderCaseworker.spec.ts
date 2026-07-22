@@ -8,7 +8,7 @@ import {
 import { OrderInformation } from "../../../../../../pageObjects/pages/exui/caseView/draftOrders.po.ts";
 import { ManageOrder5Params } from "../../../../../../pageObjects/pages/exui/orders/manageOrders/manageOrder5.po.ts";
 import { ManageOrder24Params } from "../../../../../../pageObjects/pages/exui/orders/manageOrders/manageOrder24.po.ts";
-import { FL404AFL406UploadOrderScenarios } from "../../../../../../testData/manageOrders.ts";
+import { FL404AFL406UploadOrderScenarios } from "../../../../../../testData/ui/manageOrders.ts";
 import { ManageOrder26Params } from "../../../../../../pageObjects/pages/exui/orders/manageOrders/manageOrder26.po.ts";
 
 export interface DomesticAbuseUploadOrderParams {
