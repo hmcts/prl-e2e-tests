@@ -11,7 +11,6 @@ export enum C100ConfidentialityCheck1Content {
   C43Anchor = "ChildArrangements_Specific_Prohibited_Steps_C43.pdf",
   mockFileAnchor = "mockFile.pdf",
   coverLetterAnchor = "cover_letter_re5.pdf",
-  c8DocumentAnchor = "C8Document.pdf",
   text161 = "Applicants pack",
   text162 = "Local Authority pack",
   text163 = "Others pack",

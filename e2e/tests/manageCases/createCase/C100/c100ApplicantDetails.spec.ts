@@ -8,26 +8,8 @@ test.describe("C100 Create case - Applicant Details tests", (): void => {
   test(`Complete the C100 applicant details event as a solicitor with the following options:
   Not Accessibility testing,
   Not Error message testing,
-  Saying yes to all options,
-  Setting the applicant Gender to male. @regression`, async ({
-    page,
-  }): Promise<void> => {
-    await C100ApplicantDetails.C100ApplicantDetails({
-      page,
-      user: "solicitor",
-      accessibilityTest: false,
-      errorMessaging: false,
-      yesNoApplicantDetails: true,
-      applicantGender: "male",
-      subJourney: true,
-    });
-  });
-
-  test(`Complete the C100 applicant details event as a solicitor with the following options:
-  Not Accessibility testing,
-  Not Error message testing,
   Saying no to all options,
-  Setting the applicant Gender to female. @nightly @regression`, async ({
+  Setting the applicant Gender to other. @regression`, async ({
     page,
   }): Promise<void> => {
     await C100ApplicantDetails.C100ApplicantDetails({
@@ -36,7 +18,7 @@ test.describe("C100 Create case - Applicant Details tests", (): void => {
       accessibilityTest: false,
       errorMessaging: false,
       yesNoApplicantDetails: false,
-      applicantGender: "female",
+      applicantGender: "other",
       subJourney: true,
     });
   });
@@ -53,7 +35,7 @@ test.describe("C100 Create case - Applicant Details tests", (): void => {
       user: "solicitor",
       accessibilityTest: false,
       errorMessaging: true,
-      yesNoApplicantDetails: false,
+      yesNoApplicantDetails: true,
       applicantGender: "male",
       subJourney: true,
     });
@@ -72,7 +54,7 @@ test(`C100 applicant details event as a solicitor with the following options:
     user: "solicitor",
     accessibilityTest: true,
     errorMessaging: false,
-    yesNoApplicantDetails: false,
+    yesNoApplicantDetails: true,
     applicantGender: "female",
     subJourney: true,
   });

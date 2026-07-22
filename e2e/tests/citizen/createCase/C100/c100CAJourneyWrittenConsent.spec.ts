@@ -106,6 +106,7 @@ test.describe("C100 Citizen Application with Written Consent from other people i
       c100YesNoFeesApplied: true,
       reviewPageTopJourneyMotherFather: "mother",
       relationshipType: "mother",
+      isApplicant: true,
     });
   });
 
@@ -204,6 +205,7 @@ test.describe("C100 Citizen Application with Written Consent from other people i
       c100YesNoFeesApplied: true,
       reviewPageTopJourneyMotherFather: "father",
       relationshipType: "father",
+      isApplicant: true,
     });
   });
 
@@ -302,6 +304,7 @@ test.describe("C100 Citizen Application with Written Consent from other people i
       c100YesNoFeesApplied: true,
       reviewPageTopJourneyMotherFather: "father",
       relationshipType: "father",
+      isApplicant: true,
     });
   });
 });
@@ -412,6 +415,7 @@ test.describe("Test the accessibility of the CA C100 Citizen Journey", (): void 
       c100YesNoFeesApplied: true,
       reviewPageTopJourneyMotherFather: "father",
       relationshipType: "father",
+      isApplicant: true,
     });
   });
 });

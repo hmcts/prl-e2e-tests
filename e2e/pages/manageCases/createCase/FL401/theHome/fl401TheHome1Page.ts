@@ -99,10 +99,7 @@ enum inputIDs {
 }
 
 export type addressRadios =
-  | "yesBothOfThem"
-  | "yesApplicant"
-  | "yesRespondent"
-  | "No";
+  "yesBothOfThem" | "yesApplicant" | "yesRespondent" | "No";
 
 interface FL401TheHome1PageOptions {
   page: Page;

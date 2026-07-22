@@ -4,7 +4,6 @@ import { Helpers } from "../../../../../common/helpers.ts";
 import { Selectors } from "../../../../../common/selectors.ts";
 import { ApplicantGender } from "../../../../../common/types.ts";
 import { OtherPeopleInTheCase1Content } from "../../../../../fixtures/manageCases/createCase/C100/otherPeopleInTheCaseRevised/otherPeopleInTheCaseRevised1Content.js";
-import config from "../../../../../utils/config.utils.ts";
 
 enum UniqueSelectors {
   applicantFirstNameInput = "#otherPartyInTheCaseRevised_0_firstName",
@@ -19,8 +18,8 @@ enum UniqueSelectors {
   applicantPlaceOfBirthKnownNo = "#otherPartyInTheCaseRevised_0_isPlaceOfBirthKnown_No",
   applicantCurrentAddressYes = "#otherPartyInTheCaseRevised_0_isCurrentAddressKnown_Yes",
   applicantCurrentAddressNo = "#otherPartyInTheCaseRevised_0_isCurrentAddressKnown_No",
-  otherPersonLivesInRefugeYes = "#otherPartyInTheCaseRevised_0_liveInRefuge_Yes",
-  otherPersonLivesInRefugeNo = "#otherPartyInTheCaseRevised_0_liveInRefuge_No",
+  otherPersonLivesInRefugeYes = "#otherPartyInTheCaseRevised_0_liveInRefuge-Yes",
+  otherPersonLivesInRefugeNo = "#otherPartyInTheCaseRevised_0_liveInRefuge-No",
   c8RefugeFormUploadFileInput = "#otherPartyInTheCaseRevised_0_refugeConfidentialityC8Form",
   applicantAddressDropdown = "#otherPartyInTheCaseRevised_0_address_address_addressList",
   applicantLivedAtAddressLessThan5YearsYes = "#otherPartyInTheCaseRevised_0_isAtAddressLessThan5Years_Yes",
@@ -235,24 +234,19 @@ export class OtherPeopleInTheCase1Page {
         OtherPeopleInTheCase1Content.townOrCity,
       );
       await this.placeOfBirthValidation(page);
-
-      await page.click(`${UniqueSelectors.applicantCurrentAddressYes}`);
       if (otherPersonLivesInRefuge) {
         await page.click(`${UniqueSelectors.otherPersonLivesInRefugeYes}`);
-        await this.checkFormLabelsWhenOtherPersonLivesInRefugeYesIsClicked(
-          page,
-        );
-        const fileInput = page.locator(
-          `${UniqueSelectors.c8RefugeFormUploadFileInput}`,
-        );
-        await fileInput.setInputFiles(config.testPdfFile);
-        await page.waitForSelector(
-          `${Selectors.GovukErrorMessage}:text-is("${OtherPeopleInTheCase1Content.uploadingFile}")`,
-          { state: "hidden" },
-        );
+        await expect(
+          page
+            .locator("#refugeConfidentialC8Info")
+            .getByText(
+              "All their details will be kept confidential and you do not have to complete a C8.",
+            ),
+        ).toBeVisible();
       } else {
         await page.click(`${UniqueSelectors.otherPersonLivesInRefugeNo}`);
       }
+      await page.click(`${UniqueSelectors.applicantCurrentAddressYes}`);
       await page.fill(
         `${UniqueSelectors.applicantCurrentAddressInput}`,
         OtherPeopleInTheCase1Content.postcode,
@@ -268,6 +262,24 @@ export class OtherPeopleInTheCase1Page {
         OtherPeopleInTheCase1Content.address,
       );
       await this.AddressValidation(page);
+      // Keep address confidential
+      await expect(
+        page
+          .locator("#otherPartyInTheCaseRevised_0_isAddressConfidential")
+          .getByText("*Do you need to keep the address confidential?", {
+            exact: true,
+          }),
+      ).toBeVisible();
+      await expect(
+        page
+          .locator("#otherPartyInTheCaseRevised_0_isAddressConfidential")
+          .getByText(
+            "If details need to be kept confidential, a C8 will be generated automatically.",
+          ),
+      ).toBeVisible();
+      await page
+        .locator("#otherPartyInTheCaseRevised_0_isAddressConfidential_Yes")
+        .check();
       await page.click(
         `${UniqueSelectors.applicantLivedAtAddressLessThan5YearsYes}`,
       );
@@ -282,15 +294,55 @@ export class OtherPeopleInTheCase1Page {
         OtherPeopleInTheCase1Content.applicantEmail,
       );
       await this.checkEmailAddress(page);
+      // Keep email address confidential
+      await expect(
+        page
+          .locator("#otherPartyInTheCaseRevised_0_isEmailAddressConfidential")
+          .getByText("*Do you need to keep their email address confidential?", {
+            exact: true,
+          }),
+      ).toBeVisible();
+      await expect(
+        page
+          .locator("#otherPartyInTheCaseRevised_0_isEmailAddressConfidential")
+          .getByText(
+            "If there is confidential information, a C8 will be generated automatically.",
+          ),
+      ).toBeVisible();
+      await page
+        .locator("#otherPartyInTheCaseRevised_0_isEmailAddressConfidential_Yes")
+        .check();
       await page.click(`${UniqueSelectors.applicantContactNumberYes}`);
       await page.fill(
         `${UniqueSelectors.contactNumberInput}`,
         OtherPeopleInTheCase1Content.phoneNumber,
       );
       await this.checkContactNumber(page);
+      // Keep contact number confidential
+      await expect(
+        page
+          .locator("#otherPartyInTheCaseRevised_0_isPhoneNumberConfidential")
+          .getByText(
+            "*Do you need to keep their contact number confidential?",
+            { exact: true },
+          ),
+      ).toBeVisible();
+      await expect(
+        page
+          .locator("#otherPartyInTheCaseRevised_0_isPhoneNumberConfidential")
+          .getByText(
+            "If details need to be kept confidential, a C8 will be generated automatically.",
+          ),
+      ).toBeVisible();
+      await page
+        .locator("#otherPartyInTheCaseRevised_0_isPhoneNumberConfidential_Yes")
+        .check();
     } else {
       await page.click(`${UniqueSelectors.applicantBirthDateNo}`);
       await page.click(`${UniqueSelectors.applicantPlaceOfBirthKnownNo}`);
+      await page
+        .locator("#otherPartyInTheCaseRevised_0_liveInRefuge-No")
+        .check();
       await page.click(`${UniqueSelectors.applicantCurrentAddressNo}`);
       await page.click(
         `${UniqueSelectors.applicantLivedAtAddressLessThan5YearsNo}`,
@@ -311,19 +363,19 @@ export class OtherPeopleInTheCase1Page {
     await Promise.all([
       Helpers.checkGroup(
         page,
-        11,
+        12,
         OtherPeopleInTheCase1Content,
         "formLabel",
         Selectors.GovukFormLabel,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${HiddenFields.gender} > ${Selectors.GovukFormLabel}:text-is("${OtherPeopleInTheCase1Content.formLabel12}")`,
+        `${HiddenFields.gender} > ${Selectors.GovukFormLabel}:text-is("${OtherPeopleInTheCase1Content.formLabel13}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${HiddenFields.lessThan5Years} > ${Selectors.GovukFormLabel}:text-is("${OtherPeopleInTheCase1Content.formLabel13}")`,
+        `${HiddenFields.lessThan5Years} > ${Selectors.GovukFormLabel}:text-is("${OtherPeopleInTheCase1Content.formLabel14}")`,
         1,
       ),
     ]);
@@ -459,22 +511,5 @@ export class OtherPeopleInTheCase1Page {
       `${Selectors.GovukFormLabel}:text-is("${OtherPeopleInTheCase1Content.formLabelApplicantContactNumber}")`,
       1,
     );
-  }
-
-  private static async checkFormLabelsWhenOtherPersonLivesInRefugeYesIsClicked(
-    page: Page,
-  ): Promise<void> {
-    await Promise.all([
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukFormLabel}:text-is("${OtherPeopleInTheCase1Content.formLabelC8FormUpload}"):visible`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.p}:text-is("${OtherPeopleInTheCase1Content.c8FormUploadP}"):visible`,
-        1,
-      ),
-    ]);
   }
 }

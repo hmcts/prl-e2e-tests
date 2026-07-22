@@ -9,9 +9,7 @@ import {
 import { PageUtils } from "../../../../../utils/page.utils.js";
 
 export type OrderLengthOptions =
-  | "No fixed end date"
-  | "Until the next hearing"
-  | "Specific date and time";
+  "No fixed end date" | "Until the next hearing" | "Specific date and time";
 
 export interface DraftAnOrder6Params {
   doesOrderMentionProperty: boolean;

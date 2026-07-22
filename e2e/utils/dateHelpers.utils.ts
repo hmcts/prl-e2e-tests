@@ -19,12 +19,13 @@ export class DateHelperUtils {
   todayDate(
     longFormat: boolean = false,
     array: boolean = false,
+    isTwoDigitDay = false,
   ): string | string[] {
     const now: Date = new Date();
     const options: Intl.DateTimeFormatOptions = {
       year: "numeric",
       month: "2-digit",
-      day: "numeric",
+      day: isTwoDigitDay ? "2-digit" : "numeric",
     };
     const dateString: string = now.toLocaleDateString("en-US", options);
     const [month, day, year] = dateString.split("/");

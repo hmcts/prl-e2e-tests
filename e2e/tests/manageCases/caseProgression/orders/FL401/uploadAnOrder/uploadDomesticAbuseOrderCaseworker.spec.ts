@@ -26,7 +26,7 @@ export interface DomesticAbuseUploadOrderParams {
   orderInformation: OrderInformation[];
 }
 
-test.describe("'Upload an order' by Case Worker via the 'Create/upload draft order' event tests", (): void => {
+test.describe("'Upload an order' by Case Worker via the 'Manage order' event tests", (): void => {
   let caseNumber: string;
 
   test.beforeEach(

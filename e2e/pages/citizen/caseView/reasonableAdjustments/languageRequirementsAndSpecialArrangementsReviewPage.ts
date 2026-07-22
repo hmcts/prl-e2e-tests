@@ -57,7 +57,7 @@ export class LanguageRequirementsAndSpecialArrangementsReviewPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukButton}:text-is("${CommonStaticText.submitAndContinue}")`,
+        `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
         1,
       ),
     ]);
@@ -68,7 +68,7 @@ export class LanguageRequirementsAndSpecialArrangementsReviewPage {
 
   private static async submitAndContinue(page: Page): Promise<void> {
     await page.click(
-      `${Selectors.GovukButton}:text-is("${CommonStaticText.submitAndContinue}")`,
+      `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
     );
   }
 }

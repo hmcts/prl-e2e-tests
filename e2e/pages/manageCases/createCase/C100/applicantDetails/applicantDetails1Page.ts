@@ -3,7 +3,6 @@ import { AxeUtils } from "@hmcts/playwright-common";
 import { Helpers } from "../../../../../common/helpers.ts";
 import { Selectors } from "../../../../../common/selectors.ts";
 import { ApplicantGender } from "../../../../../common/types.ts";
-import config from "../../../../../utils/config.utils.ts";
 import { ApplicantDetails1Content } from "../../../../../fixtures/manageCases/createCase/C100/applicantDetails/applicantDetails1Content.ts";
 
 enum UniqueSelectors {
@@ -15,7 +14,6 @@ enum UniqueSelectors {
   applicantEmailAddressConfidential = "#applicants_0_isEmailAddressConfidential_Yes",
   addressFields = "div > ccd-field-write > div > ccd-write-complex-type-field > div > fieldset > ccd-field-write > div > ccd-write-address-field > div > ccd-write-complex-type-field > div > fieldset > ccd-field-write > div > ccd-write-text-field > div > label > span.form-label",
   emailAddressFields = "ccd-write-email-field > div > label > span.form-label",
-  c8RefugeFormUploadFileInput = "#applicants_0_refugeConfidentialityC8Form",
 }
 
 enum PageLoadFields {
@@ -104,10 +102,10 @@ export class ApplicantDetails1Page {
       ),
       Helpers.checkGroup(
         page,
-        18,
+        20,
         ApplicantDetails1Content,
         "formLabel",
-        Selectors.GovukFormLabel,
+        `${Selectors.GovukFormLabel}:visible`,
       ),
       Helpers.checkVisibleAndPresent(
         page,
@@ -127,11 +125,6 @@ export class ApplicantDetails1Page {
       Helpers.checkVisibleAndPresent(
         page,
         `${UniqueSelectors.dayMonthYear}:text-is("${ApplicantDetails1Content.formLabelYear}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukFormLabel}:text-is("${ApplicantDetails1Content.formLabelApplicantLivesInRefuge}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
@@ -330,6 +323,12 @@ export class ApplicantDetails1Page {
     );
     await page.click(`#applicants_0_gender-${applicantGender}`);
     await page.click(`#applicants_0_gender-${applicantGender}`);
+    if (applicantGender === "other") {
+      await expect(
+        page.getByText(ApplicantDetails1Content.applicantGenderLabel),
+      ).toBeVisible();
+      await page.locator("#applicants_0_otherGender").fill("Other");
+    }
     await page.fill(
       `${PageLoadFields.placeOfBirth}`,
       ApplicantDetails1Content.placeOfBirth,
@@ -365,24 +364,6 @@ export class ApplicantDetails1Page {
     await this.AddressValidation(page);
     if (yesNoApplicantDetails) {
       await page.click(`${PageLoadFields.applicantLivesInRefugeYes}`);
-      await Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukFormLabel}:text-is("${ApplicantDetails1Content.formLabelC8FormUpload}"):visible`,
-        1,
-      );
-      await Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.p}:text-is("${ApplicantDetails1Content.c8FormUploadP}"):visible`,
-        1,
-      );
-      const fileInput = page.locator(
-        `${UniqueSelectors.c8RefugeFormUploadFileInput}`,
-      );
-      await fileInput.setInputFiles(config.testPdfFile);
-      await page.waitForSelector(
-        `${Selectors.GovukErrorMessage}:text-is("${ApplicantDetails1Content.uploadingFile}")`,
-        { state: "hidden" },
-      );
       await page.click(`${PageLoadFields.addressConfidentialYes}`);
       await page.click(`${PageLoadFields.address5YearsYes}`);
       await this.checkApplicantAddress5Years(page);
@@ -540,11 +521,6 @@ export class ApplicantDetails1Page {
     await page.click(`${PageLoadFields.applicantLivesInRefugeYes}`);
     await page.click(
       `${Selectors.button}:text-is("${ApplicantDetails1Content.continue}")`,
-    );
-    await Helpers.checkVisibleAndPresent(
-      page,
-      `${Selectors.GovukErrorValidation}:text-is("${ApplicantDetails1Content.errorMessageC8FormUploadRequired}")`,
-      1,
     );
     await page.click(`${PageLoadFields.address5YearsYes}`);
     await this.checkApplicantAddress5Years(page);
