@@ -84,7 +84,7 @@ export class CitizenC100CaseUtils {
 
         if (!response.ok()) {
           throw new Error(
-            `Failed to create case: ${response.status()} - ${await response.text()}`,
+            `HTTP ${response.status()} -> Failed to create draft citizen case: ${await response.text()}`,
           );
         }
       },
@@ -115,7 +115,7 @@ export class CitizenC100CaseUtils {
 
         if (!responseCreateCase.ok()) {
           throw new Error(
-            `Failed to submit case: ${responseCreateCase.status()} - ${await responseCreateCase.text()}`,
+            `HTTP ${responseCreateCase.status()} -> Failed to submit citizen case: ${await responseCreateCase.text()}`,
           );
         }
       },

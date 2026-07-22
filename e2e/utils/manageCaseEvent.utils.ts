@@ -187,7 +187,7 @@ export class ManageCaseEventUtils {
 
         if (!getTokenResponse.ok()) {
           throw new Error(
-            `Failed to fetch TS support event token: ${getTokenResponse.status()} - ${await getTokenResponse.text()}`,
+            `HTTP ${getTokenResponse.status()} -> Failed to fetch TS support event token: ${await getTokenResponse.text()}`,
           );
         }
 
@@ -234,7 +234,7 @@ export class ManageCaseEventUtils {
 
         if (!submitEventResponse.ok()) {
           throw new Error(
-            `Failed to create TS support case: ${submitEventResponse.status()} - ${await submitEventResponse.text()}`,
+            `HTTP ${submitEventResponse.status()} -> Failed to create TS support case: ${await submitEventResponse.text()}`,
           );
         }
       },

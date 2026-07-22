@@ -113,7 +113,7 @@ export class CommonCaseEventUtils {
 
         if (!response.ok()) {
           throw new Error(
-            `Failed to submit ${eventId} event: ${response.status()} - ${await response.text()}`,
+            `HTTP ${response.status()} -> Failed to submit ${eventId} event: ${await response.text()}`,
           );
         }
       },
@@ -254,7 +254,7 @@ export class CommonCaseEventUtils {
 
         if (!response.ok()) {
           throw new Error(
-            `Failed to get case info: ${response.status()} - ${await response.text()}`,
+            `HTTP ${response.status()} -> Failed to get case info: ${await response.text()}`,
           );
         }
       },
@@ -274,8 +274,10 @@ export class CommonCaseEventUtils {
       try {
         return await fn();
       } catch (error) {
-        // Immediate failure for non-retryable HTTP errors (4xx except 408/429), including on the first try.
-        const isNonRetryable = /HTTP error 4(?!08|29)\d{2}/.test(error.message);
+        // Immediate failure for non-retryable HTTP errors (4xx except 408/409/429), including on the first try.
+        const isNonRetryable = /HTTP error 4(?!08|29|09)\d{2}/.test(
+          error.message,
+        );
 
         if (isNonRetryable) {
           const detailedError = `${description} failed with a non-retryable error on attempt ${attempt}: ${error.message}. This is a non-retryable error and likely needs a code/payload fix.`;
