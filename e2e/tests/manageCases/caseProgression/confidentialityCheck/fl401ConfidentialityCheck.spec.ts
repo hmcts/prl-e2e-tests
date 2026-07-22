@@ -1,53 +1,44 @@
 import { test } from "../../../fixtures.ts";
 import config from "../../../../utils/config.utils.ts";
-import { Helpers } from "../../../../common/helpers.ts";
-import { jsonDatas } from "../../../../common/caseHelpers/jsonDatas.ts";
 import { ConfidentialityCheck } from "../../../../journeys/manageCases/caseProgression/confidentilityCheck/confidentialityCheck.ts";
 
 test.use({ storageState: config.sessionStoragePath + "caseManager.json" });
 
 test.describe("Confidentiality check task for DA Solicitor case tests.", () => {
-  let ccdRef: string = "";
+  let caseRef: string = "";
 
-  test.beforeEach(async ({ page, browser, caseEventUtils }) => {
-    ccdRef = await caseEventUtils.createDACase(browser);
-    await Helpers.goToCase(
+  test.beforeEach(async ({ page, manageCasesEventUtils, navigationUtils }) => {
+    caseRef = (await manageCasesEventUtils.submitTSSolicitorCase("FL401"))
+      .caseRef;
+    await manageCasesEventUtils.sendToGatekeeper(caseRef, "FL401");
+    await manageCasesEventUtils.createOrder({
+      caseRef: caseRef,
+      orderType: "Power of arrest (FL406)",
+      isDraft: false,
+      doServe: false,
+    });
+    await manageCasesEventUtils.serviceOfApplication(
+      caseRef,
+      "FL401",
+      "Power of arrest (FL406)",
+    );
+    await navigationUtils.goToCase(
       page,
       config.manageCasesBaseURLCase,
-      ccdRef,
+      caseRef,
       "tasks",
     );
   });
 
-  test("Complete Task - Confidentiality check - Power of arrest (FL406) without accessibility test. @nightly @regression @visual", async ({
+  test("Complete Task - Confidentiality check with accessibility test. @nightly @regression @visual", async ({
     page,
-    browser,
     browserName,
   }) => {
     await ConfidentialityCheck.FL401confidentialityCheck({
       page: page,
-      accessibilityTest: false,
-      ccdRef: ccdRef,
-      createOrderFL401Options: "power of arrest",
-      browser: browser,
-      personallyServed: true,
-      manageOrderData: jsonDatas.manageOrderDataPowerOfArrest,
-      applicationSubmittedBy: "Solicitor",
-      nameChange: true,
-      dobChange: true,
-      genderChange: true,
-      gender: "male",
-      liveInRefuge: true,
-      changeApplicantAddress: true,
-      keepDetailsConfidential: true,
-      solicitorDetailsChange: true,
-      yesNoServiceOfApplication4: true,
-      confidentialityCheck: true,
-      responsibleForServing: "courtBailiff",
+      accessibilityTest: true,
       isApplicationServedAfterConfidentialityCheck: true,
       browserName: browserName,
-      snapshotPath: ["caseProgression", "confidentialityCheck", "FL401"],
-      snapshotName: "fl401-confidentiality-check-amend-applicant-details",
     });
   });
 });

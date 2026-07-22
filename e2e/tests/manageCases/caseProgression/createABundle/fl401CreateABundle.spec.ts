@@ -1,52 +1,43 @@
 import { test } from "../../../fixtures.ts";
 import Config from "../../../../utils/config.utils.ts";
 import config from "../../../../utils/config.utils.ts";
-import { Helpers } from "../../../../common/helpers.ts";
 import { CreateABundleJourney } from "../../../../journeys/manageCases/caseProgression/createABundle/createABundle.ts";
-import { jsonDatas } from "../../../../common/caseHelpers/jsonDatas.ts";
 
 test.use({ storageState: Config.sessionStoragePath + "caseWorker.json" });
 
 test.describe("Complete the Order task for DA Solicitor case tests.", () => {
-  let ccdRef: string = "";
+  let caseRef: string = "";
 
-  test.beforeEach(async ({ page, browser, caseEventUtils }) => {
-    ccdRef = await caseEventUtils.createDACase(browser);
-    await Helpers.goToCase(
+  test.beforeEach(async ({ page, manageCasesEventUtils, navigationUtils }) => {
+    caseRef = (await manageCasesEventUtils.submitTSSolicitorCase("FL401"))
+      .caseRef;
+    await manageCasesEventUtils.sendToGatekeeper(caseRef, "FL401");
+    await manageCasesEventUtils.createOrder({
+      caseRef: caseRef,
+      orderType: "Power of arrest (FL406)",
+      isDraft: false,
+      doServe: false,
+    });
+    await manageCasesEventUtils.serviceOfApplication(
+      caseRef,
+      "FL401",
+      "Power of arrest (FL406)",
+    );
+    await manageCasesEventUtils.confidentialityCheck(caseRef);
+    await navigationUtils.goToCase(
       page,
       config.manageCasesBaseURLCase,
-      ccdRef,
+      caseRef,
       "tasks",
     );
   });
 
-  test("Complete Task - Create a Bundle - Power of arrest (FL406) without accessibility test. @nightly @regression", async ({
+  test("Complete Task - Create a Bundle - Power of arrest (FL406) with accessibility test. @nightly @accessibility @regression", async ({
     page,
-    browser,
   }): Promise<void> => {
     await CreateABundleJourney.FL401CreateABundleJourney({
       page: page,
       accessibilityTest: false,
-      ccdRef: ccdRef,
-      browser: browser,
-      manageOrderData: jsonDatas.manageOrderDataPowerOfArrest,
-      createOrderFL401Options: "power of arrest",
-      applicationSubmittedBy: "Solicitor",
-    });
-  });
-
-  test("Complete Task - Create a Bundle - Amended, discharged or varied order (FL404B)  with accessibility test. @regression @accessibility", async ({
-    page,
-    browser,
-  }): Promise<void> => {
-    await CreateABundleJourney.FL401CreateABundleJourney({
-      page: page,
-      accessibilityTest: true,
-      ccdRef: ccdRef,
-      browser: browser,
-      manageOrderData: jsonDatas.manageOrderDataAmendDischargedVaried,
-      createOrderFL401Options: "amend discharge varied order",
-      applicationSubmittedBy: "Solicitor",
     });
   });
 });

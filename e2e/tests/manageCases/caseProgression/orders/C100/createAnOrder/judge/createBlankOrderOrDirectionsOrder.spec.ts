@@ -2,14 +2,14 @@ import {
   manageOrdersOptions,
   OrderTypes,
   solicitorCaseCreateType,
-} from "../../../../../../../common/types.js";
-import { ManageOrder5Params } from "../../../../../../../pageObjects/pages/exui/orders/manageOrders/manageOrder5.po.js";
-import { OrderInformation } from "../../../../../../../pageObjects/pages/exui/caseView/draftOrders.po.js";
-import { test } from "../../../../../../fixtures.js";
-import config from "../../../../../../../utils/config.utils.js";
-import { C21CreateOrderScenarios } from "../../../../../../../testData/manageOrders.js";
-import { ManageOrder4Params } from "../../../../../../../pageObjects/pages/exui/orders/manageOrders/manageOrder4.po.js";
-import { ManageOrder30Params } from "../../../../../../../pageObjects/pages/exui/orders/manageOrders/manageOrder30.po.js";
+} from "../../../../../../../common/types.ts";
+import { ManageOrder5Params } from "../../../../../../../pageObjects/pages/exui/orders/manageOrders/manageOrder5.po.ts";
+import { OrderInformation } from "../../../../../../../pageObjects/pages/exui/caseView/draftOrders.po.ts";
+import { test } from "../../../../../../fixtures.ts";
+import config from "../../../../../../../utils/config.utils.ts";
+import { C21CreateOrderScenarios } from "../../../../../../../testData/ui/manageOrders.ts";
+import { ManageOrder4Params } from "../../../../../../../pageObjects/pages/exui/orders/manageOrders/manageOrder4.po.ts";
+import { ManageOrder30Params } from "../../../../../../../pageObjects/pages/exui/orders/manageOrders/manageOrder30.po.ts";
 
 export interface C21CreateOrderParams {
   name: string;
@@ -26,18 +26,19 @@ export interface C21CreateOrderParams {
 }
 
 test.describe("Manage Orders - Create a Blank order or Directions order (C21) tests", () => {
-  let caseNumber: string = "";
+  let caseRef: string = "";
 
-  test.beforeEach(
-    async ({ judge, browser, caseEventUtils, navigationUtils }) => {
-      caseNumber = await caseEventUtils.createCACaseSendToGatekeeper(browser);
-      await navigationUtils.goToCase(
-        judge.page,
-        config.manageCasesBaseURLCase,
-        caseNumber,
-      );
-    },
-  );
+  test.beforeEach(async ({ judge, manageCasesEventUtils, navigationUtils }) => {
+    caseRef = (await manageCasesEventUtils.submitTSSolicitorCase("C100"))
+      .caseRef;
+    await manageCasesEventUtils.issueAndSendToLocalCourt(caseRef);
+    await manageCasesEventUtils.sendToGatekeeper(caseRef, "C100");
+    await navigationUtils.goToCase(
+      judge.page,
+      config.manageCasesBaseURLCase,
+      caseRef,
+    );
+  });
 
   C21CreateOrderScenarios.forEach((manageOrderParams: C21CreateOrderParams) => {
     test(`Create child a blank order C21 as case worker with the following options:${manageOrderParams.name} @regression @nightly @visual`, async ({
@@ -84,7 +85,7 @@ test.describe("Manage Orders - Create a Blank order or Directions order (C21) te
 
       await manageOrders.manageOrder20Page.assertPageContents(
         manageOrderParams.orderType,
-        caseNumber,
+        caseRef,
         manageOrderParams.snapshotName,
         manageOrderParams.snapshotsPath,
       );
@@ -104,16 +105,13 @@ test.describe("Manage Orders - Create a Blank order or Directions order (C21) te
       );
       await manageOrders.manageOrderSubmitPage.verifyAccessibility();
       await manageOrders.manageOrderSubmitPage.clickSubmit();
-      await summaryPage.alertBanner.assertEventAlert(
-        caseNumber,
-        "Manage orders",
-      );
+      await summaryPage.alertBanner.assertEventAlert(caseRef, "Manage orders");
 
       // check the draft orders tab as court admin
       await navigationUtils.goToCase(
         caseWorker.page,
         config.manageCasesBaseURLCase,
-        caseNumber,
+        caseRef,
       );
 
       const { draftedOrders } = caseWorker;

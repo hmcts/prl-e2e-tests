@@ -4,8 +4,9 @@ import { test } from "../../../fixtures.ts";
 test.describe("Withdraw C100 (Solicitor created) application event as a solicitor", () => {
   let caseRef: string;
 
-  test.beforeEach(async ({ browser, caseEventUtils }) => {
-    caseRef = await caseEventUtils.createCACase(browser);
+  test.beforeEach(async ({ manageCasesEventUtils }) => {
+    caseRef = (await manageCasesEventUtils.submitTSSolicitorCase("C100"))
+      .caseRef;
   });
 
   [

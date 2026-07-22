@@ -1,5 +1,4 @@
 import Config from "../../../../utils/config.utils.ts";
-import { Helpers } from "../../../../common/helpers.ts";
 import config from "../../../../utils/config.utils.ts";
 import { test } from "../../../fixtures.ts";
 import { AddAndRemoveBarrister } from "../../../../journeys/manageCases/caseProgression/addAndRemoveBarrister/addAndRemoveBarrister.ts";
@@ -7,15 +6,16 @@ import { AddAndRemoveBarrister } from "../../../../journeys/manageCases/caseProg
 test.use({ storageState: Config.sessionStoragePath + "nocSolicitor.json" });
 
 test.describe("Add/Remove Barrister for DA case", () => {
-  let ccdRef: string = "";
+  let caseRef: string = "";
 
-  test.beforeEach(async ({ page, browser, caseEventUtils }) => {
-    ccdRef = await caseEventUtils.createDACaseSendToGatekeeper(browser);
-    await Helpers.goToCase(
+  test.beforeEach(async ({ page, manageCasesEventUtils, navigationUtils }) => {
+    caseRef = (await manageCasesEventUtils.submitTSSolicitorCase("FL401"))
+      .caseRef;
+    await manageCasesEventUtils.sendToGatekeeper(caseRef, "FL401");
+    await navigationUtils.goToCase(
       page,
       config.manageCasesBaseURLCase,
-      ccdRef,
-      "tasks",
+      caseRef,
     );
   });
 
@@ -27,7 +27,7 @@ test.describe("Add/Remove Barrister for DA case", () => {
       page: page,
       browser: browser,
       caseType: "FL401",
-      ccdRef: ccdRef,
+      ccdRef: caseRef,
       isApplicant: false,
       accessibilityTest: true,
       isCaseworker: false,
@@ -42,7 +42,7 @@ test.describe("Add/Remove Barrister for DA case", () => {
       page: page,
       browser: browser,
       caseType: "FL401",
-      ccdRef: ccdRef,
+      ccdRef: caseRef,
       isApplicant: false,
       accessibilityTest: true,
       isCaseworker: true,

@@ -7,8 +7,9 @@ test.use({ storageState: Config.sessionStoragePath + "courtAdminStoke.json" });
 test.describe("Complete amend Child details event as a court admin", () => {
   let caseRef: string;
 
-  test.beforeEach(async ({ browser, caseEventUtils }) => {
-    caseRef = await caseEventUtils.createCACase(browser);
+  test.beforeEach(async ({ manageCasesEventUtils }) => {
+    caseRef = (await manageCasesEventUtils.submitTSSolicitorCase("C100"))
+      .caseRef;
   });
 
   test(`Amend the following Child details: firstname, lastname, date of birth, gender @regression`, async ({

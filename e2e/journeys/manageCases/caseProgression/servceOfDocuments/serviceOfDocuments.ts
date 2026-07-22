@@ -63,8 +63,6 @@ export class ServiceOfDocuments {
     accessibilityTest,
     checkDocuments,
   }: ServiceOfDocumentsParams): Promise<void> {
-    await page.reload();
-    await page.waitForTimeout(500);
     await Helpers.chooseEventFromDropdown(page, "Service of documents");
     await ServiceOfDocuments1Page.serviceOfDocuments1Page({
       page,

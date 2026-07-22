@@ -1,21 +1,21 @@
 import { test } from "../../../../../../fixtures.ts";
 import config from "../../../../../../../utils/config.utils.ts";
-import { CreateAmendedDischargedOrVariedCustomOrderScenarios } from "../../../../../../../testData/draftOrders.ts";
+import { CreateAmendedDischargedOrVariedCustomOrderScenarios } from "../../../../../../../testData/ui/draftOrders.ts";
 import { CustomOrderParams } from "../../../C100/createACustomOrder/judge/createParentalResponsibilityCustomOrder.spec.ts";
 
 test.describe("Manage Orders - Create custom amended, discharged or varied custom order tests", () => {
-  let caseNumber: string = "";
+  let caseRef: string = "";
 
-  test.beforeEach(
-    async ({ judge, browser, caseEventUtils, navigationUtils }) => {
-      caseNumber = await caseEventUtils.createDACaseSendToGatekeeper(browser);
-      await navigationUtils.goToCase(
-        judge.page,
-        config.manageCasesBaseURLCase,
-        caseNumber,
-      );
-    },
-  );
+  test.beforeEach(async ({ judge, manageCasesEventUtils, navigationUtils }) => {
+    caseRef = (await manageCasesEventUtils.submitTSSolicitorCase("FL401"))
+      .caseRef;
+    await manageCasesEventUtils.sendToGatekeeper(caseRef, "FL401");
+    await navigationUtils.goToCase(
+      judge.page,
+      config.manageCasesBaseURLCase,
+      caseRef,
+    );
+  });
 
   CreateAmendedDischargedOrVariedCustomOrderScenarios.forEach(
     (customOrderParams: CustomOrderParams) => {
@@ -59,7 +59,7 @@ test.describe("Manage Orders - Create custom amended, discharged or varied custo
         await manageOrders.manageOrder19Page.clickContinue();
 
         await manageOrders.customOrderManageOrder20Page.assertPageContents(
-          caseNumber,
+          caseRef,
           customOrderParams.snapshotsPath,
           customOrderParams.orderType,
         );
@@ -79,7 +79,7 @@ test.describe("Manage Orders - Create custom amended, discharged or varied custo
         await manageOrders.manageOrderSubmitPage.clickSubmit();
 
         await summaryPage.alertBanner.assertEventAlert(
-          caseNumber,
+          caseRef,
           "Manage orders",
         );
 
@@ -88,7 +88,7 @@ test.describe("Manage Orders - Create custom amended, discharged or varied custo
         await draftedOrders.draftOrdersPage.assertDraftOrders([
           {
             typeOfOrder: customOrderParams.orderType,
-            englishDocument: `${customOrderParams.orderType.replace(/[(),]/g, "")}_${caseNumber}.docx`,
+            englishDocument: `${customOrderParams.orderType.replace(/[(),]/g, "")}_${caseRef}.docx`,
             otherDetails: {
               orderMadeBy: "Elizabeth Williams",
               orderCreatedBy: "Elizabeth Williams",
@@ -100,8 +100,8 @@ test.describe("Manage Orders - Create custom amended, discharged or varied custo
         ]);
         await draftedOrders.draftOrdersPage.assertDraftOrderDocument(
           customOrderParams.snapshotsPath,
-          caseNumber,
-          `${customOrderParams.orderType.replace(/[(),]/g, "")}_${caseNumber}.docx`,
+          caseRef,
+          `${customOrderParams.orderType.replace(/[(),]/g, "")}_${caseRef}.docx`,
           customOrderParams.orderSnapshotName,
         );
       });

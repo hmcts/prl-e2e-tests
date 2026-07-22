@@ -1,40 +1,34 @@
-import { Browser, Page } from "@playwright/test";
+import { Page } from "@playwright/test";
 import {
   applicationSubmittedBy,
   createOrderFL401Options,
   solicitorCaseCreateType,
 } from "../../../../common/types.ts";
-import { jsonDatas } from "../../../../common/caseHelpers/jsonDatas.ts";
 import { Helpers } from "../../../../common/helpers.ts";
-import config from "../../../../utils/config.utils.ts";
 import { AdminEditAndApproveAnOrder1Page } from "../../../../pages/manageCases/caseProgression/completeTheOrder/adminEditAndApproveAnOrder1Page.ts";
 import { AdminEditAndApproveAnOrder4Page } from "../../../../pages/manageCases/caseProgression/completeTheOrder/adminEditAndApproveAnOrder4Page.ts";
 import { AdminEditAndApproveAnOrder21Page } from "../../../../pages/manageCases/caseProgression/completeTheOrder/adminEditAndApproveAnOrder21Page.ts";
 import { AdminEditAndApproveAnOrder22Page } from "../../../../pages/manageCases/caseProgression/completeTheOrder/adminEditAndApproveAnOrder22Page.ts";
 import { AdminEditAndApproveAnOrder23Page } from "../../../../pages/manageCases/caseProgression/completeTheOrder/adminEditAndApproveAnOrder23Page.ts";
 import { AdminEditAndApproveAnOrderSubmitPage } from "../../../../pages/manageCases/caseProgression/completeTheOrder/adminEditAndApproveAnOrderSubmitPage.ts";
-import { completeCheckApplicationAndSendToGatekeeperAndCreateAnOrder } from "../../../../common/caseHelpers/caseEventsHelper.ts";
-import { ManageOrders1Page } from "../../../../pages/manageCases/caseWorker/createAnOrder/orderCA/manageOrders1Page.js";
-import { ManageOrders2Page } from "../../../../pages/manageCases/caseWorker/createAnOrder/orderCA/manageOrders2Page.js";
-import { ManageOrders5Page } from "../../../../pages/manageCases/caseWorker/createAnOrder/orderCA/manageOrders5Page.js";
-import { ManageOrders10Page } from "../../../../pages/manageCases/caseWorker/createAnOrder/orderCA/manageOrders10Page.js";
-import { ManageOrders19Page } from "../../../../pages/manageCases/caseWorker/createAnOrder/orderCA/manageOrders19Page.js";
-import { ManageOrders20Page } from "../../../../pages/manageCases/caseWorker/createAnOrder/orderCA/manageOrders20Page.js";
-import { ManageOrders24Page } from "../../../../pages/manageCases/caseWorker/createAnOrder/orderCA/manageOrders24Page.js";
-import { ManageOrders26PageCA } from "../../../../pages/manageCases/caseWorker/uploadAnOrder/manageOrders26PageCA.js";
-import { ManageOrders27Page } from "../../../../pages/manageCases/caseWorker/createAnOrder/orderCA/manageOrders27Page.js";
-import { ManageOrders28Page } from "../../../../pages/manageCases/caseWorker/createAnOrder/orderCA/manageOrders28Page.js";
-import { c100CompleteOrderSubmitPage } from "../../../../pages/manageCases/caseProgression/completeTheOrder/c100CompleteOrderSubmitPage.js";
-import { C100OrdersTabPage } from "../../../../pages/manageCases/caseTabs/C100/c100OrdersTabPage.js";
+import { ManageOrders1Page } from "../../../../pages/manageCases/caseWorker/createAnOrder/orderCA/manageOrders1Page.ts";
+import { ManageOrders2Page } from "../../../../pages/manageCases/caseWorker/createAnOrder/orderCA/manageOrders2Page.ts";
+import { ManageOrders5Page } from "../../../../pages/manageCases/caseWorker/createAnOrder/orderCA/manageOrders5Page.ts";
+import { ManageOrders10Page } from "../../../../pages/manageCases/caseWorker/createAnOrder/orderCA/manageOrders10Page.ts";
+import { ManageOrders19Page } from "../../../../pages/manageCases/caseWorker/createAnOrder/orderCA/manageOrders19Page.ts";
+import { ManageOrders20Page } from "../../../../pages/manageCases/caseWorker/createAnOrder/orderCA/manageOrders20Page.ts";
+import { ManageOrders24Page } from "../../../../pages/manageCases/caseWorker/createAnOrder/orderCA/manageOrders24Page.ts";
+import { ManageOrders26PageCA } from "../../../../pages/manageCases/caseWorker/uploadAnOrder/manageOrders26PageCA.ts";
+import { ManageOrders27Page } from "../../../../pages/manageCases/caseWorker/createAnOrder/orderCA/manageOrders27Page.ts";
+import { ManageOrders28Page } from "../../../../pages/manageCases/caseWorker/createAnOrder/orderCA/manageOrders28Page.ts";
+import { c100CompleteOrderSubmitPage } from "../../../../pages/manageCases/caseProgression/completeTheOrder/c100CompleteOrderSubmitPage.ts";
+import { C100OrdersTabPage } from "../../../../pages/manageCases/caseTabs/C100/c100OrdersTabPage.ts";
 
 interface FL401CompleteTheOrderParams {
   page: Page;
-  browser: Browser;
   accessibilityTest: boolean;
-  ccdRef: string;
   createOrderFL401Options: createOrderFL401Options;
   personallyServed: boolean;
-  manageOrderData: typeof jsonDatas;
   applicationSubmittedBy: applicationSubmittedBy;
 }
 
@@ -55,27 +49,11 @@ interface C100CompleteTheOrderParams {
 export class CompleteTheOrder {
   public static async FL401completeTheOrder({
     page,
-    browser,
     accessibilityTest,
-    ccdRef,
     createOrderFL401Options,
     personallyServed,
-    manageOrderData,
     applicationSubmittedBy,
   }: FL401CompleteTheOrderParams): Promise<void> {
-    await completeCheckApplicationAndSendToGatekeeperAndCreateAnOrder(
-      page,
-      browser,
-      ccdRef,
-      manageOrderData,
-    );
-    await Helpers.goToCase(
-      page,
-      config.manageCasesBaseURLCase,
-      ccdRef,
-      "tasks",
-    );
-    // complete the task Complete the Order
     switch (createOrderFL401Options) {
       case "power of arrest":
         await Helpers.assignTaskToMeAndTriggerNextSteps(

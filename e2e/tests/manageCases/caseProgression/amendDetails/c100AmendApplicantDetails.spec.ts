@@ -1,19 +1,20 @@
 import { test } from "../../../fixtures.ts";
 import Config from "../../../../utils/config.utils.ts";
-import { Helpers } from "../../../../common/helpers.ts";
 import { AmendApplicantDetails } from "../../../../journeys/manageCases/caseProgression/amendDetails/amendApplicantDetails.ts";
+import config from "../../../../utils/config.utils.ts";
 
 test.use({ storageState: Config.sessionStoragePath + "courtAdminStoke.json" });
 
 test.describe("Complete amend applicant details event as a court admin for a CA case", () => {
-  let ccdRef: string = "";
+  let caseRef: string = "";
 
-  test.beforeEach(async ({ page, browser, caseEventUtils }) => {
-    ccdRef = await caseEventUtils.createCACase(browser);
-    await Helpers.goToCase(
+  test.beforeEach(async ({ page, manageCasesEventUtils, navigationUtils }) => {
+    caseRef = (await manageCasesEventUtils.submitTSSolicitorCase("C100"))
+      .caseRef;
+    await navigationUtils.goToCase(
       page,
-      Config.manageCasesBaseURLCase,
-      ccdRef,
+      config.manageCasesBaseURLCase,
+      caseRef,
       "tasks",
     );
   });
@@ -27,7 +28,7 @@ test.describe("Complete amend applicant details event as a court admin for a CA 
     await AmendApplicantDetails.c100AmendApplicantDetails({
       page,
       accessibilityTest: true,
-      ccdRef: ccdRef,
+      ccdRef: caseRef,
       nameChange: true,
       dobChange: true,
       pobChange: true,
