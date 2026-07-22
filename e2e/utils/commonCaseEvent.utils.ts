@@ -1,4 +1,4 @@
-import { APIRequestContext, APIResponse, request } from "@playwright/test";
+import { APIRequestContext, request } from "@playwright/test";
 import { IdamUtils, ServiceAuthUtils } from "@hmcts/playwright-common";
 import { UserCredentials } from "../common/types.ts";
 
@@ -98,25 +98,28 @@ export class CommonCaseEventUtils {
     eventId: string,
   ): Promise<void> {
     await this.retry({
-      fn: async () => {
-        const apiContext = await this.createApiContext();
-        const submitEventUrl = `${process.env.CCD_DATA_STORE_URL as string}/caseworkers/${userId}/jurisdictions/PRIVATELAW/case-types/PRLAPPS/cases/${caseRef}/events`;
-        const response = await apiContext.post(submitEventUrl, {
-          headers: {
-            Authorization: `Bearer ${bearerToken}`,
-            ServiceAuthorization: `Bearer ${serviceToken}`,
-            "Content-Type": "application/json; charset=UTF-8",
-            Experimental: "true",
-          },
-          data: eventData,
-        });
+      fn: async () =>
+        this.withApiContext(async (api) => {
+          const submitEventUrl =
+            `${process.env.CCD_DATA_STORE_URL}/caseworkers/${userId}` +
+            `/jurisdictions/PRIVATELAW/case-types/PRLAPPS/cases/${caseRef}/events`;
 
-        if (!response.ok()) {
-          throw new Error(
-            `HTTP ${response.status()} -> Failed to submit ${eventId} event: ${await response.text()}`,
-          );
-        }
-      },
+          const response = await api.post(submitEventUrl, {
+            headers: {
+              Authorization: `Bearer ${bearerToken}`,
+              ServiceAuthorization: `Bearer ${serviceToken}`,
+              "Content-Type": "application/json; charset=UTF-8",
+              Experimental: "true",
+            },
+            data: eventData,
+          });
+
+          if (!response.ok()) {
+            throw new Error(
+              `HTTP ${response.status()} -> Failed to submit ${eventId} event: ${await response.text()}`,
+            );
+          }
+        }),
       description: `Submit ${eventId} event`,
     });
   }
@@ -138,24 +141,29 @@ export class CommonCaseEventUtils {
     serviceToken: string,
     userId: string,
   ): Promise<string> {
-    const apiContext = await this.createApiContext();
-    const eventTokenUrl = `${process.env.CCD_DATA_STORE_URL as string}/caseworkers/${userId}/jurisdictions/PRIVATELAW/case-types/PRLAPPS/cases/${caseRef}/event-triggers/${eventId}/token`;
-    const response = await apiContext.get(eventTokenUrl, {
-      headers: {
-        Authorization: `Bearer ${bearerToken}`,
-        ServiceAuthorization: `Bearer ${serviceToken}`,
-        "Content-Type": "application/json",
-      },
+    return this.withApiContext(async (api) => {
+      const eventTokenUrl =
+        `${process.env.CCD_DATA_STORE_URL}/caseworkers/${userId}` +
+        `/jurisdictions/PRIVATELAW/case-types/PRLAPPS/cases/${caseRef}` +
+        `/event-triggers/${eventId}/token`;
+
+      const response = await api.get(eventTokenUrl, {
+        headers: {
+          Authorization: `Bearer ${bearerToken}`,
+          ServiceAuthorization: `Bearer ${serviceToken}`,
+          "Content-Type": "application/json",
+        },
+      });
+
+      if (!response.ok()) {
+        throw new Error(
+          `Failed to get event token: ${response.status()} - ${await response.text()}`,
+        );
+      }
+
+      const { token } = await response.json();
+      return token;
     });
-
-    if (!response.ok()) {
-      throw new Error(
-        `Failed to get event token: ${response.status()} - ${await response.text()}`,
-      );
-    }
-
-    const responseJson = await response.json();
-    return responseJson.token;
   }
 
   /**
@@ -188,22 +196,24 @@ export class CommonCaseEventUtils {
       password: process.env.CCD_DATA_STORE_CLIENT_PASSWORD,
     });
 
-    const apiContext = await this.createApiContext();
-    const eventTokenUrl = `${process.env.IDAM_TESTING_SUPPORT_USERS_URL as string}?email=${email}`;
-    const response = await apiContext.get(eventTokenUrl, {
-      headers: {
-        Authorization: `Bearer ${bearerToken}`,
-        "Content-Type": "application/json",
-      },
+    return this.withApiContext(async (api) => {
+      const url = `${process.env.IDAM_TESTING_SUPPORT_USERS_URL}?email=${email}`;
+
+      const response = await api.get(url, {
+        headers: {
+          Authorization: `Bearer ${bearerToken}`,
+          "Content-Type": "application/json",
+        },
+      });
+
+      if (!response.ok()) {
+        throw new Error(
+          `Failed to get user ID: ${response.status()} - ${await response.text()}`,
+        );
+      }
+
+      return response.json();
     });
-
-    if (!response.ok()) {
-      throw new Error(
-        `Failed to get user ID: ${response.status()} - ${await response.text()}`,
-      );
-    }
-
-    return await response.json();
   }
 
   /**
@@ -219,49 +229,43 @@ export class CommonCaseEventUtils {
   }
 
   /**
-   * Creates a new API context to be used for making requests.
-   */
-  async createApiContext(): Promise<APIRequestContext> {
-    return await request.newContext();
-  }
-
-  /**
    * Gets the case data for a given case reference via API requests.
    *
    * @param caseRef the case reference.
    * @returns a JSON object of the case data.
    */
   async getCaseInfo(caseRef: string) {
-    const bearerToken: string = await this.getBearerToken({
-      email: process.env.CCD_DATA_STORE_CLIENT_USERNAME as string,
-      password: process.env.CCD_DATA_STORE_CLIENT_PASSWORD as string,
+    const bearerToken = await this.getBearerToken({
+      email: process.env.CCD_DATA_STORE_CLIENT_USERNAME!,
+      password: process.env.CCD_DATA_STORE_CLIENT_PASSWORD!,
     });
-    let response: APIResponse;
 
-    await this.retry({
-      fn: async () => {
-        const serviceToken: string = await this.getServiceToken("prl_cos_api");
+    return this.retry({
+      fn: async () =>
+        this.withApiContext(async (apiContext) => {
+          const serviceToken = await this.getServiceToken("prl_cos_api");
 
-        const apiContext = await this.createApiContext();
-        const url = `${process.env.CCD_DATA_STORE_URL as string}/cases/${caseRef}`;
-        response = await apiContext.get(url, {
-          headers: {
-            Authorization: `Bearer ${bearerToken}`,
-            ServiceAuthorization: `Bearer ${serviceToken}`,
-            Experimental: "true",
-          },
-        });
-
-        if (!response.ok()) {
-          throw new Error(
-            `HTTP ${response.status()} -> Failed to get case info: ${await response.text()}`,
+          const response = await apiContext.get(
+            `${process.env.CCD_DATA_STORE_URL}/cases/${caseRef}`,
+            {
+              headers: {
+                Authorization: `Bearer ${bearerToken}`,
+                ServiceAuthorization: `Bearer ${serviceToken}`,
+                Experimental: "true",
+              },
+            },
           );
-        }
-      },
+
+          if (!response.ok()) {
+            throw new Error(
+              `HTTP ${response.status()} -> Failed to get case info: ${await response.text()}`,
+            );
+          }
+
+          return response.json();
+        }),
       description: "getCaseInfo",
     });
-
-    return await response.json();
   }
 
   async retry<T>({
@@ -305,5 +309,17 @@ export class CommonCaseEventUtils {
     throw new Error(
       `${description} failed unexpectedly after ${maxRetries} attempts`,
     );
+  }
+
+  async withApiContext<T>(
+    fn: (apiContext: APIRequestContext) => Promise<T>,
+  ): Promise<T> {
+    const apiContext = await request.newContext();
+
+    try {
+      return await fn(apiContext);
+    } finally {
+      await apiContext.dispose();
+    }
   }
 }

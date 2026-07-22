@@ -5,7 +5,6 @@ import {
   solicitorCaseCreateType,
   UserCredentials,
 } from "../common/types.ts";
-import { APIResponse } from "@playwright/test";
 import { CommonCaseEventUtils } from "./commonCaseEvent.utils.ts";
 import {
   AmendDischargedVariedOrderActionData,
@@ -161,93 +160,98 @@ export class ManageCaseEventUtils {
       password: process.env.SOLICITOR_PASSWORD,
     },
   ): Promise<BasicCaseData> {
-    const bearerToken: string =
+    const bearerToken =
       await this.commonCaseEventsUtils.getBearerToken(userCredentials);
 
-    const s2sToken: string =
+    const s2sToken =
       await this.commonCaseEventsUtils.getServiceToken("prl_cos_api");
 
     const userDetails = await this.commonCaseEventsUtils.getUserDetails(
       userCredentials.email,
     );
 
-    // get event token
-    let eventToken: string;
-    await this.commonCaseEventsUtils.retry({
-      fn: async () => {
-        const apiContext = await this.commonCaseEventsUtils.createApiContext();
-        const urlFetchToken = `${process.env.CCD_DATA_STORE_URL as string}/caseworkers/${userDetails.id}/jurisdictions/PRIVATELAW/case-types/PRLAPPS/event-triggers/testingSupportDummySolicitorCreate/token`;
-        const getTokenResponse = await apiContext.get(urlFetchToken, {
-          headers: {
-            Authorization: `Bearer ${bearerToken}`,
-            ServiceAuthorization: `Bearer ${s2sToken}`,
-            "Content-Type": "application/json",
-          },
-        });
+    const eventToken = await this.commonCaseEventsUtils.retry({
+      fn: () =>
+        this.commonCaseEventsUtils.withApiContext(async (api) => {
+          const url =
+            `${process.env.CCD_DATA_STORE_URL}/caseworkers/${userDetails.id}` +
+            `/jurisdictions/PRIVATELAW/case-types/PRLAPPS` +
+            `/event-triggers/testingSupportDummySolicitorCreate/token`;
 
-        if (!getTokenResponse.ok()) {
-          throw new Error(
-            `HTTP ${getTokenResponse.status()} -> Failed to fetch TS support event token: ${await getTokenResponse.text()}`,
-          );
-        }
+          const response = await api.get(url, {
+            headers: {
+              Authorization: `Bearer ${bearerToken}`,
+              ServiceAuthorization: `Bearer ${s2sToken}`,
+              "Content-Type": "application/json",
+            },
+          });
 
-        const responseJson = await getTokenResponse.json();
-        eventToken = responseJson.token;
-      },
+          if (!response.ok()) {
+            throw new Error(
+              `HTTP ${response.status()} -> Failed to fetch TS support event token: ${await response.text()}`,
+            );
+          }
+
+          const { token } = await response.json();
+          return token;
+        }),
       description: `Get event token for creating draft ${caseType} TS case`,
     });
 
-    // submit event
-    let submitEventResponse: APIResponse;
     const timestamp = Date.now().toString().slice(-6);
     const randomNumber = Math.floor(Math.random() * 1000)
       .toString()
       .padStart(3, "0");
     const caseName = `TEST-${timestamp}${randomNumber}`;
-    await this.commonCaseEventsUtils.retry({
-      fn: async () => {
-        const apiContext = await this.commonCaseEventsUtils.createApiContext();
-        const caseData = {
-          data: {
-            caseTypeOfApplication: caseType,
-            applicantOrganisationPolicy: null,
-            applicantCaseName: caseName,
-          },
-          draft_id: null,
-          event: {
-            id: "testingSupportDummySolicitorCreate",
-            summary: "",
-            description: "",
-          },
-          event_token: eventToken,
-          ignore_warning: false,
-        };
-        const urlCreateCase = `${process.env.CCD_DATA_STORE_URL as string}/caseworkers/${userDetails.id}/jurisdictions/PRIVATELAW/case-types/PRLAPPS/cases`;
-        submitEventResponse = await apiContext.post(urlCreateCase, {
-          headers: {
-            Authorization: `Bearer ${bearerToken}`,
-            ServiceAuthorization: `Bearer ${s2sToken}`,
-            "Content-Type": "application/json",
-          },
-          data: caseData,
-        });
 
-        if (!submitEventResponse.ok()) {
-          throw new Error(
-            `HTTP ${submitEventResponse.status()} -> Failed to create TS support case: ${await submitEventResponse.text()}`,
+    const responseJson = await this.commonCaseEventsUtils.retry({
+      fn: () =>
+        this.commonCaseEventsUtils.withApiContext(async (api) => {
+          const response = await api.post(
+            `${process.env.CCD_DATA_STORE_URL}/caseworkers/${userDetails.id}/jurisdictions/PRIVATELAW/case-types/PRLAPPS/cases`,
+            {
+              headers: {
+                Authorization: `Bearer ${bearerToken}`,
+                ServiceAuthorization: `Bearer ${s2sToken}`,
+                "Content-Type": "application/json",
+              },
+              data: {
+                data: {
+                  caseTypeOfApplication: caseType,
+                  applicantOrganisationPolicy: null,
+                  applicantCaseName: caseName,
+                },
+                draft_id: null,
+                event: {
+                  id: "testingSupportDummySolicitorCreate",
+                  summary: "",
+                  description: "",
+                },
+                event_token: eventToken,
+                ignore_warning: false,
+              },
+            },
           );
-        }
-      },
+
+          if (!response.ok()) {
+            throw new Error(
+              `HTTP ${response.status()} -> Failed to create TS support case: ${await response.text()}`,
+            );
+          }
+
+          return response.json();
+        }),
       description: `Submit event create draft ${caseType} TS case`,
     });
-
-    const responseJson = await submitEventResponse.json();
 
     if (process.env.PWDEBUG) {
       console.log("Finished creating draft case:", responseJson.id);
     }
 
-    return { caseRef: String(responseJson.id), caseName: caseName };
+    return {
+      caseRef: String(responseJson.id),
+      caseName,
+    };
   }
 
   /**
