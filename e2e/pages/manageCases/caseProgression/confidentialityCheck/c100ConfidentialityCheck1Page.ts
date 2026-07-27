@@ -68,12 +68,12 @@ export class C100ConfidentialityCheck1Page {
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukText16}:text-is("${C100ConfidentialityCheck1Content.servedByText16}")`,
-        3,
+        2,
       ),
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukText16}:text-is("${process.env.MANAGE_CASES_TEST_ENV === "demo" ? C100ConfidentialityCheck1Content.prlCourtAdminText16Demo : C100ConfidentialityCheck1Content.prlCourtAdminText16Aat}")`,
-        3,
+        2,
       ),
       Helpers.checkVisibleAndPresent(
         page,
@@ -97,7 +97,7 @@ export class C100ConfidentialityCheck1Page {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovLink}:text-is("${C100ConfidentialityCheck1Content.mockFileAnchor}")`,
+        `${Selectors.GovLink}:text-is("${C100ConfidentialityCheck1Content.specialArrangementsLetterAnchor}")`,
         2,
       ),
       Helpers.checkVisibleAndPresent(

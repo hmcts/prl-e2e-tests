@@ -12,7 +12,7 @@ import { DocumentSubmittedPage } from "../../../../../../pages/citizen/caseView/
 import {
   CitizenC100CaseUtils,
   CitizenUploadedDocument,
-} from "../../../../../../utils/citizenC100CaseUtils.ts";
+} from "../../../../../../utils/citizenC100Case.utils.ts";
 
 interface uploadDocumentsWitnessStatementParams {
   page: Page;

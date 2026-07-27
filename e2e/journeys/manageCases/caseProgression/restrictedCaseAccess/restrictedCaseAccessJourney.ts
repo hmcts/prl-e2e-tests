@@ -1,7 +1,6 @@
 import { Page } from "@playwright/test";
 import { Helpers } from "../../../../common/helpers.ts";
 import { RestrictedCaseAccess1Page } from "../../../../pages/manageCases/caseProgression/restricedCaseAccess/restrictedCaseAccess1Page.ts";
-import config from "../../../../utils/config.utils.ts";
 import { RestrictedCaseAccess2Page } from "../../../../pages/manageCases/caseProgression/restricedCaseAccess/restrictedCaseAccess2Page.ts";
 import { RestrictedCaseAccessSubmitPage } from "../../../../pages/manageCases/caseProgression/restricedCaseAccess/restrictedCaseAccessSubmitPage.ts";
 import { FL401SummaryTabPage } from "../../../../pages/manageCases/caseTabs/FL401/fl401SummaryTabPage.ts";
@@ -10,21 +9,13 @@ import { RestrictedCaseAccessConfirmPage } from "../../../../pages/manageCases/c
 interface RestrictedCaseAccessParams {
   page: Page;
   accessibilityTest: boolean;
-  ccdRef: string;
 }
 
 export class RestrictedCaseAccess {
   public static async restrictedCaseAccess({
     page,
     accessibilityTest,
-    ccdRef,
   }: RestrictedCaseAccessParams): Promise<void> {
-    await Helpers.goToCase(
-      page,
-      config.manageCasesBaseURLCase,
-      ccdRef,
-      "tasks",
-    );
     await Helpers.chooseEventFromDropdown(page, "Mark case as restricted");
     await RestrictedCaseAccess1Page.restrictedCaseAccess1Page({
       page,

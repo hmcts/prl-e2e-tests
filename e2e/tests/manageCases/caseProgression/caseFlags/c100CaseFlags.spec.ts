@@ -1,6 +1,5 @@
 import Config from "../../../../utils/config.utils.ts";
 import config from "../../../../utils/config.utils.ts";
-import { Helpers } from "../../../../common/helpers.ts";
 import { CaseFlagsCA } from "../../../../journeys/manageCases/caseProgression/caseFlags/caseFlagsCA.ts";
 import { test } from "../../../fixtures.ts";
 
@@ -8,14 +7,16 @@ test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
 test.slow();
 
 test.describe("Case flags tests for CA case tests.", () => {
-  let ccdRef: string = "";
+  let caseRef: string = "";
 
-  test.beforeEach(async ({ page, browser, caseEventUtils }) => {
-    ccdRef = await caseEventUtils.createCACaseIssueAndSendToLocalCourt(browser);
-    await Helpers.goToCase(
+  test.beforeEach(async ({ page, manageCasesEventUtils, navigationUtils }) => {
+    caseRef = (await manageCasesEventUtils.submitTSSolicitorCase("C100"))
+      .caseRef;
+    await manageCasesEventUtils.issueAndSendToLocalCourt(caseRef);
+    await navigationUtils.goToCase(
       page,
       config.manageCasesBaseURLCase,
-      ccdRef,
+      caseRef,
       "tasks",
     );
   });
@@ -27,7 +28,7 @@ test.describe("Case flags tests for CA case tests.", () => {
     await CaseFlagsCA.caseFlagsCA({
       page: page,
       browser: browser,
-      caseRef: ccdRef,
+      caseRef: caseRef,
       caseType: "C100",
       supportType: "reasonableAdjustment",
       isApproved: true,
@@ -43,7 +44,7 @@ test.describe("Case flags tests for CA case tests.", () => {
     await CaseFlagsCA.caseFlagsCA({
       page: page,
       browser: browser,
-      caseRef: ccdRef,
+      caseRef: caseRef,
       caseType: "C100",
       supportType: "languageInterpreter",
       isApproved: false,
@@ -59,7 +60,7 @@ test.describe("Case flags tests for CA case tests.", () => {
     await CaseFlagsCA.caseFlagsCA({
       page: page,
       browser: browser,
-      caseRef: ccdRef,
+      caseRef: caseRef,
       caseType: "C100",
       supportType: "reasonableAdjustment",
       isApproved: false,
@@ -75,7 +76,7 @@ test.describe("Case flags tests for CA case tests.", () => {
     await CaseFlagsCA.caseFlagsCA({
       page: page,
       browser: browser,
-      caseRef: ccdRef,
+      caseRef: caseRef,
       caseType: "C100",
       supportType: "languageInterpreter",
       isApproved: true,

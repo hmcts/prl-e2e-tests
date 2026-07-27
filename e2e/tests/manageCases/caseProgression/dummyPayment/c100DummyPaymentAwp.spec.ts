@@ -1,20 +1,19 @@
-import { DummyPaymentAwp } from "../../../../../../../../journeys/manageCases/caseWorker/dummyPayment/dummyPaymentAwp.ts";
-import { test } from "../../../../../../../fixtures.js";
-import config from "../../../../../../../../utils/config.utils.js";
-import { Helpers } from "../../../../../../../../common/helpers.js";
+import { DummyPaymentAwp } from "../../../../journeys/manageCases/caseWorker/dummyPayment/dummyPaymentAwp.ts";
+import { test } from "../../../fixtures.ts";
+import config from "../../../../utils/config.utils.ts";
 
 test.use({ storageState: config.sessionStoragePath + "solicitor.json" });
 
 test.describe("C100 Dummy payment for AWP tests", (): void => {
   let caseRef: string;
 
-  test.beforeEach(async ({ page, browser, caseEventUtils }) => {
-    caseRef = await caseEventUtils.createCACase(browser);
-    await Helpers.goToCase(
+  test.beforeEach(async ({ page, manageCasesEventUtils, navigationUtils }) => {
+    caseRef = (await manageCasesEventUtils.submitTSSolicitorCase("C100"))
+      .caseRef;
+    await navigationUtils.goToCase(
       page,
       config.manageCasesBaseURLCase,
       caseRef,
-      "tasks",
     );
   });
 

@@ -2,8 +2,13 @@ import { EventPage } from "../../eventPage.po.js";
 import { expect, Locator, Page } from "@playwright/test";
 import { PageUtils } from "../../../../../utils/page.utils.js";
 import { Selectors } from "../../../../../common/selectors.js";
+import { PreviewOrdersComponent } from "../../../../components/exui/orders/previewOrders.component.js";
+import { OrderTypes } from "../../../../../common/types.js";
 
 export class EditAndApproveAnOrder2Page extends EventPage {
+
+  private readonly previewOrderComponent: PreviewOrdersComponent =
+    new PreviewOrdersComponent(this.page);
 
   readonly heading2: Locator = this.page.locator(Selectors.h2, {
     hasText: "Check the order",
@@ -26,8 +31,22 @@ export class EditAndApproveAnOrder2Page extends EventPage {
 
   private readonly pageUtils: PageUtils = new PageUtils(this.page);
 
-  async assertPageContents(): Promise<void> {
+  async assertPageContents(
+    orderType: OrderTypes,
+  ): Promise<void> {
     await this.assertPageHeadings();
+    await expect(
+      this.page.getByRole("button", {
+        name: this.previewOrderComponent.getOrderNameFromOrderType(orderType, true),
+        exact: true,
+      }),
+    ).toBeVisible();
+    await expect(
+      this.page.getByRole("button", {
+        name: this.previewOrderComponent.getOrderNameFromOrderType(orderType, false),
+        exact: true,
+      }),
+    ).toBeVisible();
     await expect(this.heading2).toBeVisible();
     await expect(this.heading3).toBeVisible();
     await this.pageUtils.assertStrings(this.editOrderOptionsFormLabels);

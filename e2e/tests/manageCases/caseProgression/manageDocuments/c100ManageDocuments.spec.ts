@@ -1,20 +1,22 @@
 import { test } from "../../../fixtures.ts";
-import { Helpers } from "../../../../common/helpers.ts";
 import { ManageDocuments } from "../../../../journeys/manageCases/caseProgression/manageDocuments/manageDocuments.ts";
-import Config from "../../../../utils/config.utils.js";
+import Config from "../../../../utils/config.utils.ts";
+import config from "../../../../utils/config.utils.ts";
 
 test.use({ storageState: Config.sessionStoragePath + "caseWorker.json" });
 
 test.describe("Manage documents event for C100 case tests as a court admin.", () => {
-  let ccdRef: string = "";
+  let caseRef: string = "";
 
-  test.beforeEach(async ({ page, browser, caseEventUtils }) => {
-    ccdRef = await caseEventUtils.createCACaseSendToGatekeeper(browser);
-    await Helpers.goToCase(
+  test.beforeEach(async ({ page, manageCasesEventUtils, navigationUtils }) => {
+    caseRef = (await manageCasesEventUtils.submitTSSolicitorCase("C100"))
+      .caseRef;
+    await manageCasesEventUtils.issueAndSendToLocalCourt(caseRef);
+    await manageCasesEventUtils.sendToGatekeeper(caseRef, "C100");
+    await navigationUtils.goToCase(
       page,
-      Config.manageCasesBaseURLCase,
-      ccdRef,
-      "Summary",
+      config.manageCasesBaseURLCase,
+      caseRef,
     );
   });
 

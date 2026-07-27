@@ -3,17 +3,20 @@ import {
   IdamUtils,
   ServiceAuthUtils,
   AxeUtils,
+  createLogger,
 } from "@hmcts/playwright-common";
 import { TokenUtils } from "./token.utils.ts";
 import { CourtNavUtils } from "./courtNav.utils.ts";
 import { AccessCodeHelper } from "./accessCode.utils.ts";
 import { CreateUserUtil } from "./createUser.utils.ts";
 import { IdamLoginHelper } from "./idamLoginHelper.utils.ts";
-import { CaseEventUtils } from "./caseEvent.utils.ts";
 import { DateHelperUtils } from "./dateHelpers.utils.ts";
 import { NavigationUtils } from "./navigation.utils.ts";
 import { PageUtils } from "./page.utils.ts";
-import { CitizenC100CaseUtils } from "./citizenC100CaseUtils.ts";
+import { CitizenC100CaseUtils } from "./citizenC100Case.utils.ts";
+import { CommonCaseEventUtils } from "./commonCaseEvent.utils.ts";
+import { ManageCaseEventUtils } from "./manageCaseEvent.utils.ts";
+import { CaseEventUtils } from "./caseEvent.utils.ts";
 
 export interface UtilsFixtures {
   config: Config;
@@ -25,6 +28,7 @@ export interface UtilsFixtures {
   idamLoginHelper: IdamLoginHelper;
   serviceAuthUtils: ServiceAuthUtils;
   citizenC100CaseUtils: CitizenC100CaseUtils;
+  manageCasesEventUtils: ManageCaseEventUtils;
 
   caseEventUtils: CaseEventUtils;
   axeUtils: AxeUtils;
@@ -32,6 +36,9 @@ export interface UtilsFixtures {
   navigationUtils: NavigationUtils;
   pageUtils: PageUtils;
 }
+
+// used to dictate the log level of the playwright-common utils
+const logLevel = process.env.PWDEBUG ? "info" : "warn";
 
 export const utilsFixtures = {
   config: async ({}, use) => {
@@ -75,7 +82,23 @@ export const utilsFixtures = {
   },
   citizenC100CaseUtils: async ({}, use) => {
     await use(
-      new CitizenC100CaseUtils(new ServiceAuthUtils(), new IdamUtils()),
+      new CitizenC100CaseUtils(
+        new CommonCaseEventUtils(
+          new ServiceAuthUtils({ logger: createLogger({ level: logLevel }) }),
+          new IdamUtils({ logger: createLogger({ level: logLevel }) }),
+        ),
+      ),
+    );
+  },
+  manageCasesEventUtils: async ({}, use) => {
+    await use(
+      new ManageCaseEventUtils(
+        new CommonCaseEventUtils(
+          new ServiceAuthUtils({ logger: createLogger({ level: logLevel }) }),
+          new IdamUtils({ logger: createLogger({ level: logLevel }) }),
+        ),
+        new DateHelperUtils(),
+      ),
     );
   },
 };

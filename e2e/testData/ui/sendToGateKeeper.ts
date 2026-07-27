@@ -1,4 +1,4 @@
-import { SendToGateKeeperJourneyParams } from "../journeys/manageCases/caseProgression/sendToGateKeeper/sendToGateKeeperJourney.js";
+import { SendToGateKeeperJourneyParams } from "../../journeys/manageCases/caseProgression/sendToGateKeeper/sendToGateKeeperJourney.js";
 
 export const SendToGateKeeperCourtAdminScenarios: SendToGateKeeperJourneyParams[] =
   [

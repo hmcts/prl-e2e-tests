@@ -23,12 +23,22 @@ import { CustomOrdersManageOrder5Page } from "../pages/exui/orders/manageOrders/
 import { CustomOrderManageOrder20Page } from "../pages/exui/orders/manageOrders/customOrderManageOrder20.po.ts";
 import { EditAndApproveAnOrder2Page } from "../pages/exui/orders/editAndApproveAnOrders/editAndApproveAnOrder2.po.js";
 import { EditAndApproveAnOrder21Page } from "../pages/exui/orders/editAndApproveAnOrders/editAndApproveAnOrder21.po.js";
+import { TasksPage } from "../pages/exui/caseView/tasks.po.js";
+import {
+  EditAndApproveAnOrderSubmitPage
+} from "../pages/exui/orders/editAndApproveAnOrders/editAndApproveAnOrderSubmit.po.js";
+import {
+  EditAndApproveAnOrderConfirmPage
+} from "../pages/exui/orders/editAndApproveAnOrders/editAndApproveAnOrderConfirm.po.js";
 
 export class JudgePagesGroup {
   constructor(public readonly page: Page) {}
 
   get summaryPage() {
     return new SummaryPage(this.page);
+  }
+  get tasksPage() {
+    return new TasksPage(this.page);
   }
 
   get sendAndReplyToMessages() {
@@ -78,6 +88,8 @@ export class JudgePagesGroup {
     return {
       editAndApproveAnOrder2Page: new EditAndApproveAnOrder2Page(this.page),
       editAndApproveAnOrder21Page: new EditAndApproveAnOrder21Page(this.page),
+      editAndApproveAnOrderSubmitPage: new EditAndApproveAnOrderSubmitPage(this.page),
+      editAndApproveAnOrderConfirmPage: new EditAndApproveAnOrderConfirmPage(this.page),
     };
   }
 }
