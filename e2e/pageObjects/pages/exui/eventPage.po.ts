@@ -16,7 +16,7 @@ export abstract class EventPage extends Base {
     name: "Submit",
   });
   readonly saveAndContinueButton = this.page.getByRole("button", {
-    name: "Save and continue",
+    name: /save and continue/i,
   });
   readonly closeAndReturnToCaseDetailsButton: Locator = this.page.locator(
     Selectors.button,
