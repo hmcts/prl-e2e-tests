@@ -38,7 +38,7 @@ test.describe("C100 Create case other proceedings tests", (): void => {
   test(`Complete the C100 other proceedings event as a solicitor with the following options:
   Not Accessibility testing,
   Not Error message testing,
-  Saying No to previous or ongoing proceedings for the child(ren)?, 
+  Saying No to previous or ongoing proceedings for the child(ren)?,
    @regression`, async ({ page }): Promise<void> => {
     await C100OtherProceedings.c100OtherProceedings({
       page: page,
