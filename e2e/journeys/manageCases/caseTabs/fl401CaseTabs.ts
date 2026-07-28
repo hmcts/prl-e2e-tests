@@ -48,7 +48,6 @@ export class FL401CaseTabs {
     await FL401ConfidentialDetailsTabPage.fl401ConfidentialDetailsTabPageC8Refuge(
       courtAdminPage,
       accessibilityTest,
-      applicantLivesInRefuge,
     );
   }
 }

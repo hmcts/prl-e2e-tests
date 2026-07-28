@@ -97,9 +97,10 @@ export enum CaJourneyMIAMHearingUrgencyReviewContent {
   dt_70 = "Would you be able to take part in hearings by video and phone?",
   dt_71 = "Do you have any language requirements?",
   dt_72 = "Do you or the children need special arrangements at court?",
-  dt_73 = "Do you have a physical, mental or learning disability or health condition that means you need support during your case?",
-  dt_74 = "Do you need help with paying the fee for this application?",
-  dt_75 = "Enter your help with fees reference number",
+  dt_73 = "If attending the court, do you or any of the parties involved have a disability for which you require special assistance or special facilities?",
+  dt_74 = "Are you aware of whether an intermediary will be required?",
+  dt_75 = "Do you need help with paying the fee for this application?",
+  dt_76 = "Enter your help with fees reference number",
   dt_whatTypeOfBehaviourHaveTheChildrenExperiencedOrAreAtRiskOfExperiencing = "What type of behaviour have the children experienced or are at risk of experiencing?", // 2 occurrences
   dt_relationshipToExampletextExampletext = "Relationship to exampleText exampleText", // 2 occurrences
   dt_livingInRefuge = "Living in refuge",
@@ -216,9 +217,10 @@ export enum CaJourneyMIAMHearingUrgencyReviewContent {
   span_70 = "Would you be able to take part in hearings by video and phone?",
   span_71 = "Do you have any language requirements?",
   span_72 = "Do you or the children need special arrangements at court?",
-  span_73 = "Do you have a physical, mental or learning disability or health condition that means you need support during your case?",
-  span_74 = "Do you need help with paying the fee for this application?",
-  span_75 = "Enter your help with fees reference number",
+  span_73 = "If attending the court, do you or any of the parties involved have a disability for which you require special assistance or special facilities?",
+  span_74 = "Are you aware of whether an intermediary will be required?",
+  span_75 = "Do you need help with paying the fee for this application?",
+  span_76 = "Enter your help with fees reference number",
   span_whatTypeOfBehaviourHaveTheChildrenExperiencedOrAreAtRiskOfExperiencing = "What type of behaviour have the children experienced or are at risk of experiencing?", // 2 occurrences
   span_fullName = "Full name", // 3 occurrences
   span_dateOfBirth = "Date of birth", // 2 occurrences
@@ -262,7 +264,6 @@ export enum CaJourneyMIAMHearingUrgencyReviewContent {
   li_35 = "No, I cannot take part in either video or phone hearings : Lorem ipsum explanation why I cannot take part",
   li_36 = "No, I do not have any language requirements at this time",
   li_37 = "No, I do not have any safety requirements at this time",
-  li_38 = "No, I do not need any support at this time",
   updatedLi = "mockFile.pdf",
   li_livingArrangements = "Jane Doe",
   li_somethingElse = "Something else", // 2 occurrences
@@ -290,7 +291,6 @@ export enum CaJourneyMIAMHearingUrgencyReviewContent {
   ul_1 = "No, I cannot take part in either video or phone hearings : Lorem ipsum explanation why I cannot take part",
   ul_2 = "No, I do not have any language requirements at this time",
   ul_3 = "No, I do not have any safety requirements at this time",
-  ul_4 = "No, I do not need any support at this time",
   updatedUl = "mockFile.pdf",
   h4_1 = "Child 1",
   h4_2 = "Applicant 1 - Your details",

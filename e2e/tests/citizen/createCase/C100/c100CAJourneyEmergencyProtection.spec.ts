@@ -118,6 +118,7 @@ test.describe("C100 Citizen Application tests on the second MIRO set.", (): void
       c100YesNoNeedHelpWithFees: true,
       c100YesNoFeesApplied: true,
       relationshipType: "Grandparent",
+      isApplicant: true,
     });
   });
 
@@ -228,6 +229,7 @@ test.describe("C100 Citizen Application tests on the second MIRO set.", (): void
       c100YesNoNeedHelpWithFees: true,
       c100YesNoFeesApplied: true,
       relationshipType: "Guardian",
+      isApplicant: true,
     });
   });
 
@@ -337,6 +339,7 @@ test.describe("C100 Citizen Application tests on the second MIRO set.", (): void
       c100YesNoNeedHelpWithFees: true,
       c100YesNoFeesApplied: true,
       relationshipType: "Guardian",
+      isApplicant: true,
     });
   });
 });

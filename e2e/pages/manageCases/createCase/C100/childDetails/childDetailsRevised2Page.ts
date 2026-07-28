@@ -21,9 +21,7 @@ interface fillInFieldsOptions {
 }
 
 export type yesNoDontKnowC100ChildDetailsRevisedAdditionalQuestions =
-  | "yes"
-  | "no"
-  | "dontKnow";
+  "yes" | "no" | "dontKnow";
 
 enum uniqueSelectors {
   childrenKnownToAuthorityRadio = "#childrenKnownToLocalAuthority-",

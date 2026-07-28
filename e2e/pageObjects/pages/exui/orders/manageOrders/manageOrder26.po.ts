@@ -162,16 +162,15 @@ export class ManageOrder26Page extends EventPage {
     caseType: solicitorCaseCreateType,
     params: ManageOrder26Params,
   ): Promise<void> {
+    // order type
     await this.page.getByRole("combobox").selectOption(params.orderType);
-    await this.selectRadioById("doYouWantToServeOrder", params.serveOrderNow);
 
+    // cafcass report
     if (caseType === "C100") {
-      await this.page
-        .getByRole("group", {
-          name: "Does Cafcass or Cafcass Cymru need to provide a report?",
-        })
-        .getByLabel(params.cafcassReport ? "Yes" : "No")
-        .check();
+      await this.selectRadioById(
+        "cafcassOrCymruNeedToProvideReport",
+        params.cafcassReport,
+      );
 
       if (params.cafcassReport) {
         const cafcassCymruSection = this.page.locator("#cafcassCymruDocuments");
@@ -183,20 +182,25 @@ export class ManageOrder26Page extends EventPage {
               exact: true,
             },
           );
-          await cafcassReportCheckbox.check();
+          await cafcassReportCheckbox.click();
         }
         await this.day.fill("12");
         await this.month.fill("12");
         await this.year.fill("2026");
       }
+
+      // end cafcass involvement
+      await this.selectRadioById(
+        "orderEndsInvolvementOfCafcassOrCymru",
+        params.cafcassInvolvement,
+      );
     }
-    // Local Authority section
-    await this.page
-      .getByRole("group", {
-        name: "Does local authority need to provide a report?",
-      })
-      .getByLabel(params.localAuthorityReport ? "Yes" : "No")
-      .check();
+
+    // local authority report
+    await this.selectRadioById(
+      "localAuthorityNeedToProvideReport",
+      params.localAuthorityReport,
+    );
 
     if (params.localAuthorityReport) {
       const localAuthoritySection = this.page.locator(
@@ -210,20 +214,15 @@ export class ManageOrder26Page extends EventPage {
             exact: true,
           },
         );
-        await laCheckbox.check();
+        await laCheckbox.click();
       }
       await this.laDay.fill("12");
       await this.laMonth.fill("12");
       await this.laYear.fill("2026");
-
-      // Set cafcass involvement last — selecting LA Yes above can trigger
-      // an Angular re-render that resets this radio, so it must be set after
-      // all other interactions are complete
-      await this.selectRadioById(
-        "orderEndsInvolvementOfCafcassOrCymru",
-        params.cafcassInvolvement,
-      );
     }
+
+    // serve order
+    await this.selectRadioById("doYouWantToServeOrder", params.serveOrderNow);
 
     if (!params.serveOrderNow) {
       await this.pageUtils.assertStrings(this.orderOptionsFormLabels);
@@ -243,7 +242,21 @@ export class ManageOrder26Page extends EventPage {
     await expect(input).toBeVisible();
     await expect(label).toBeVisible();
 
-    // Click label (more reliable than clicking input in your DOM)
-    await label.click();
+    // poll clicking the radio buttons - it seems like there is a strange error linked to the report date input which causes the elements to become briefly unstable
+    await expect
+      .poll(
+        async () => {
+          const inputChecked = await input.isChecked();
+          if (!inputChecked) {
+            await label.click();
+          }
+          return inputChecked;
+        },
+        {
+          intervals: [1_000],
+          timeout: 10_000,
+        },
+      )
+      .toBeTruthy();
   }
 }
