@@ -1,14 +1,17 @@
-import { Browser, Page } from "@playwright/test";
-import { JsonDatas, jsonDatas } from "../common/caseHelpers/jsonDatas.js";
+import { Page } from "@playwright/test";
 import {
   solicitorCACaseAPIEvent,
-  solicitorCaseCreateType,
   solicitorDACaseAPIEvent,
 } from "../common/types.js";
-import { Helpers } from "../common/helpers.js";
-import config from "./config.utils.js";
 import Config from "./config.utils.js";
+import {
+  c100Events,
+  fl401Events,
+} from "../testData/api/solicitorIndividualEventsData.js";
 
+/**
+ * @deprecated Use the new `manageCaseEvent.utils.ts` class instead.
+ */
 export class CaseEventUtils {
   private readonly contentTypeHeader: string;
   private readonly experimentalHeader: string;
@@ -16,146 +19,6 @@ export class CaseEventUtils {
   constructor() {
     this.contentTypeHeader = "application/json; charset=UTF-8";
     this.experimentalHeader = "true";
-  }
-
-  async createDACase(
-    browser: Browser,
-    jsonData: JsonDatas = jsonDatas.solicitorDACaseData,
-    page?: Page,
-  ): Promise<string> {
-    if (!page) {
-      page = await Helpers.openNewBrowserWindow(browser, "solicitor");
-      await page.goto(config.manageCasesBaseURLCase);
-    }
-    const caseRef = await this.createTSSolicitorCase(page, "FL401");
-    await this.submitEvent(
-      page,
-      caseRef,
-      "fl401StatementOfTruthAndSubmit",
-      jsonData,
-    );
-    await page.close();
-    return caseRef;
-  }
-
-  async createCACase(
-    browser: Browser,
-    jsonData: JsonDatas = jsonDatas.solicitorCACaseData,
-    page?: Page,
-  ) {
-    if (!page) {
-      page = await Helpers.openNewBrowserWindow(browser, "solicitor");
-      await page.goto(config.manageCasesBaseURLCase);
-    }
-    const caseRef = await this.createTSSolicitorCase(page, "C100");
-    await this.submitEvent(page, caseRef, "submitAndPay", jsonData);
-    await this.submitEvent(
-      page,
-      caseRef,
-      "testingSupportPaymentSuccessCallback",
-      jsonData,
-    );
-    await page.close();
-    return caseRef;
-  }
-
-  async createDACaseAddCaseNumber(browser: Browser): Promise<string> {
-    const caseRef: string = await this.createDACase(
-      browser,
-      jsonDatas.solicitorDACaseData,
-    );
-    // open new browser and sign in as court admin user
-    const caPage: Page = await Helpers.openNewBrowserWindow(
-      browser,
-      "caseWorker",
-    );
-    await caPage.goto(`${Config.manageCasesBaseURL}/work/my-work/list`);
-    await this.submitEvent(
-      caPage,
-      caseRef,
-      "fl401AddCaseNumber",
-      jsonDatas.solicitorDACaseData,
-    );
-    await caPage.close();
-    return caseRef;
-  }
-
-  async createDACaseSendToGatekeeper(browser: Browser): Promise<string> {
-    const caseRef: string = await this.createDACase(
-      browser,
-      jsonDatas.solicitorDACaseData,
-    );
-    // open new browser and sign in as court admin user
-    const caPage: Page = await Helpers.openNewBrowserWindow(
-      browser,
-      "caseWorker",
-    );
-    await caPage.goto(`${Config.manageCasesBaseURL}/work/my-work/list`);
-    await this.submitEvent(
-      caPage,
-      caseRef,
-      "fl401AddCaseNumber",
-      jsonDatas.solicitorDACaseData,
-    );
-    await this.submitEvent(
-      caPage,
-      caseRef,
-      "fl401SendToGateKeeper",
-      jsonDatas.solicitorDACaseData,
-    );
-    await caPage.close();
-    return caseRef;
-  }
-
-  async createCACaseIssueAndSendToLocalCourt(
-    browser: Browser,
-  ): Promise<string> {
-    const caseRef: string = await this.createCACase(
-      browser,
-      jsonDatas.solicitorCACaseData,
-    );
-    const ctscPage = await Helpers.openNewBrowserWindow(
-      browser,
-      "courtAdminStoke",
-    );
-    await Helpers.goToCase(
-      ctscPage,
-      config.manageCasesBaseURLCase,
-      caseRef,
-      "tasks",
-    );
-    await this.submitEvent(
-      ctscPage,
-      caseRef,
-      "issueAndSendToLocalCourtCallback",
-      jsonDatas.solicitorCACaseData,
-    );
-    await ctscPage.close();
-    return caseRef;
-  }
-
-  async createCACaseSendToGatekeeper(browser: Browser): Promise<string> {
-    const caseRef: string =
-      await this.createCACaseIssueAndSendToLocalCourt(browser);
-    const caPage: Page = await Helpers.openNewBrowserWindow(
-      browser,
-      "caseWorker",
-    );
-    await Helpers.goToCase(
-      caPage,
-      config.manageCasesBaseURLCase,
-      caseRef,
-      "tasks",
-    );
-    //CA json data currently sending to judge - "Elizabeth Williams". Need to rework payload strategy to point to LA or different judge as & when required - FPVTL-995
-    await this.submitEvent(
-      caPage,
-      caseRef,
-      "sendToGateKeeper",
-      jsonDatas.solicitorCACaseData,
-    );
-    await caPage.close();
-    return caseRef;
   }
 
   async createCACaseSubmitAndPayIndividualEvents(page: Page): Promise<string> {
@@ -179,17 +42,9 @@ export class CaseEventUtils {
     ];
 
     await page.goto(Config.manageCasesBaseURL);
-    const caseRef = await this.createBlankCase(
-      page,
-      jsonDatas.solicitorCACaseData,
-    );
+    const caseRef = await this.createBlankCase(page, c100Events);
     for (const event of solicitorCaseEvents) {
-      await this.submitEvent(
-        page,
-        caseRef,
-        event,
-        jsonDatas.solicitorCACaseData,
-      );
+      await this.submitEvent(page, caseRef, event, c100Events);
     }
     return caseRef;
   }
@@ -209,17 +64,9 @@ export class CaseEventUtils {
     ];
 
     await page.goto(Config.manageCasesBaseURL);
-    const caseRef = await this.createBlankCase(
-      page,
-      jsonDatas.solicitorDACaseData,
-    );
+    const caseRef = await this.createBlankCase(page, fl401Events);
     for (const event of solicitorCaseEvents) {
-      await this.submitEvent(
-        page,
-        caseRef,
-        event,
-        jsonDatas.solicitorDACaseData,
-      );
+      await this.submitEvent(page, caseRef, event, fl401Events);
     }
     return caseRef;
   }
@@ -229,13 +76,13 @@ export class CaseEventUtils {
    * @param {Page} page the page to be used - this gives the API call its context
    * @param {string} caseId the ID of the case to perform the event against
    * @param {solicitorDACaseAPIEvent | solicitorCACaseAPIEvent} eventId the ID of the event to be submitted
-   * @param {JsonDatas} jsonData a JSON file stored in an object that contains the event data for the event to be submitted
+   * @param jsonData JSON file stored in an object that contains the event data for the event to be submitted
    */
   async submitEvent(
     page: Page,
     caseId: string,
     eventId: solicitorDACaseAPIEvent | solicitorCACaseAPIEvent,
-    jsonData: JsonDatas,
+    jsonData,
   ): Promise<void> {
     try {
       if (process.env.PWDEBUG) {
@@ -292,10 +139,7 @@ export class CaseEventUtils {
     }
   }
 
-  private async createBlankCase(
-    page: Page,
-    jsonData: JsonDatas,
-  ): Promise<string> {
+  private async createBlankCase(page: Page, jsonData): Promise<string> {
     try {
       const startCaseCreationUrl = `/data/internal/case-types/PRLAPPS/event-triggers/solicitorCreate?ignore-warning=false`;
 
@@ -339,62 +183,6 @@ export class CaseEventUtils {
       );
     } catch (error) {
       throw new Error(`Failed to create blank case: ${error.message}`);
-    }
-  }
-
-  async createTSSolicitorCase(
-    page: Page,
-    caseType: solicitorCaseCreateType,
-  ): Promise<string> {
-    try {
-      const startCaseCreationUrl = `/data/internal/case-types/PRLAPPS/event-triggers/testingSupportDummySolicitorCreate?ignore-warning=false`;
-
-      const startCaseCreationHeaders = {
-        Accept:
-          "application/vnd.uk.gov.hmcts.ccd-data-store-api.ui-start-case-trigger.v2+json;charset=UTF-8",
-        Experimental: this.contentTypeHeader,
-        "Content-type": this.contentTypeHeader,
-      };
-      const eventToken: string = await this.getData(
-        page,
-        startCaseCreationUrl,
-        startCaseCreationHeaders,
-        "getData for event: testingSupportDummySolicitorCreate",
-      );
-
-      const submitCaseUrl = `/data/case-types/PRLAPPS/cases?ignore-warning=false`;
-      const data = {
-        data: {
-          caseTypeOfApplication: caseType,
-          applicantOrganisationPolicy: null,
-          applicantCaseName: "TEST",
-        },
-        draft_id: null,
-        event: {
-          id: "testingSupportDummySolicitorCreate",
-          summary: "",
-          description: "",
-        },
-        event_token: eventToken,
-        ignore_warning: false,
-      };
-      const submitEventHeaders = {
-        Accept:
-          "application/vnd.uk.gov.hmcts.ccd-data-store-api.create-case.v2+json;charset=UTF-8",
-        Experimental: this.contentTypeHeader,
-        "Content-type": this.contentTypeHeader,
-      };
-      return await this.postData(
-        page,
-        submitCaseUrl,
-        submitEventHeaders,
-        JSON.stringify(data),
-        "postData for event: testingSupportDummySolicitorCreate",
-      );
-    } catch (error) {
-      throw new Error(
-        `Failed to create TS solicitor case (${caseType}): ${error.message}`,
-      );
     }
   }
 

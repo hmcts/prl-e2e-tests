@@ -7,32 +7,33 @@ import { test } from "../../fixtures.ts";
 test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
 
 test.describe("Resubmit returned DA(FL401) application tests", (): void => {
-  let ccdRef: string = "";
+  let caseRef: string = "";
 
-  test.beforeEach(async ({ page, browser, caseEventUtils }) => {
-    ccdRef = await caseEventUtils.createDACase(browser);
-    const ctscPage = await Helpers.openNewBrowserWindow(
-      browser,
-      "courtAdminStoke",
-    );
-    await Helpers.goToCase(
-      ctscPage,
-      Config.manageCasesBaseURLCase,
-      ccdRef,
-      "tasks",
-    );
-    await ReturnApplication.returnApplication({
-      page: ctscPage,
-      caseType: "FL401",
-      accessibilityTest: false,
-    });
-    await Helpers.goToCase(
-      page,
-      Config.manageCasesBaseURLCase,
-      ccdRef,
-      "tasks",
-    );
-  });
+  test.beforeEach(
+    async ({ page, browser, manageCasesEventUtils, navigationUtils }) => {
+      caseRef = (await manageCasesEventUtils.submitTSSolicitorCase("FL401"))
+        .caseRef;
+      const ctscPage = await Helpers.openNewBrowserWindow(
+        browser,
+        "courtAdminStoke",
+      );
+      await navigationUtils.goToCase(
+        ctscPage,
+        Config.manageCasesBaseURLCase,
+        caseRef,
+      );
+      await ReturnApplication.returnApplication({
+        page: ctscPage,
+        caseType: "FL401",
+        accessibilityTest: false,
+      });
+      await navigationUtils.goToCase(
+        page,
+        Config.manageCasesBaseURLCase,
+        caseRef,
+      );
+    },
+  );
 
   test(`Resubmit returned DA(FL401) application with the following options:
   Case: FL401,

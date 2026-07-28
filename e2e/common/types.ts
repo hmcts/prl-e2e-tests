@@ -13,6 +13,11 @@ export interface UserCredentialsLong extends UserCredentials {
   readonly surname: string;
 }
 
+export interface LocalCourtInfo {
+  code: string;
+  label: string;
+}
+
 export type solicitorCaseCreateType = "C100" | "FL401";
 
 export type State = "undefined";
@@ -524,3 +529,16 @@ export const FcOrderTypesArray: FcOrderTypes[] = [
 export type AnyOtherOrderTypes = "Other";
 
 export const AnyOtherOrderTypesArray: AnyOtherOrderTypes[] = ["Other"];
+
+type CourtKey = "aberystwyth" | "swansea";
+
+export const LOCAL_COURTS: Record<CourtKey, LocalCourtInfo> = {
+  aberystwyth: {
+    code: "827534:",
+    label: "Aberystwyth Justice Centre - Trefechan - SY23 1AS",
+  },
+  swansea: {
+    code: "234946:",
+    label: "Swansea Civil Justice Centre - Quay West, Quay Parade - SA1 1SP",
+  },
+};

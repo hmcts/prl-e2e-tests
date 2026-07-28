@@ -1,17 +1,17 @@
-import { test } from "../../../../../../fixtures.js";
-import config from "../../../../../../../utils/config.utils.js";
+import { test } from "../../../../../../fixtures.ts";
+import config from "../../../../../../../utils/config.utils.ts";
 import {
   manageOrdersOptions,
   OrderTypes,
   solicitorCaseCreateType,
-} from "../../../../../../../common/types.js";
-import { ManageOrder5Params } from "../../../../../../../pageObjects/pages/exui/orders/manageOrders/manageOrder5.po.js";
-import { ManageOrder19Params } from "../../../../../../../pageObjects/pages/exui/orders/manageOrders/manageOrder19.po.js";
-import { ManageOrder24Params } from "../../../../../../../pageObjects/pages/exui/orders/manageOrders/manageOrder24.po.js";
-import { OrderInformation } from "../../../../../../../pageObjects/pages/exui/caseView/Orders.po.js";
-import { AmendedDischargedVariedOrderScenarios } from "../../../../../../../testData/manageOrders.js";
-import { ManageOrder26Params } from "../../../../../../../pageObjects/pages/exui/orders/manageOrders/manageOrder26.po.js";
-import { ManageOrder28Params } from "../../../../../../../pageObjects/pages/exui/orders/manageOrders/manageOrder28.po.js";
+} from "../../../../../../../common/types.ts";
+import { ManageOrder5Params } from "../../../../../../../pageObjects/pages/exui/orders/manageOrders/manageOrder5.po.ts";
+import { ManageOrder19Params } from "../../../../../../../pageObjects/pages/exui/orders/manageOrders/manageOrder19.po.ts";
+import { ManageOrder24Params } from "../../../../../../../pageObjects/pages/exui/orders/manageOrders/manageOrder24.po.ts";
+import { OrderInformation } from "../../../../../../../pageObjects/pages/exui/caseView/Orders.po.ts";
+import { AmendedDischargedVariedOrderScenarios } from "../../../../../../../testData/ui/manageOrders.ts";
+import { ManageOrder26Params } from "../../../../../../../pageObjects/pages/exui/orders/manageOrders/manageOrder26.po.ts";
+import { ManageOrder28Params } from "../../../../../../../pageObjects/pages/exui/orders/manageOrders/manageOrder28.po.ts";
 
 export interface AmendedDischargedVariedOrderParams {
   name: string;
@@ -30,15 +30,17 @@ export interface AmendedDischargedVariedOrderParams {
 }
 
 test.describe("Manage Orders - Create a Amended, Discharged Or varied order (FL404B) order tests", () => {
-  let caseNumber: string = "";
+  let caseRef: string = "";
 
   test.beforeEach(
-    async ({ caseWorker, browser, caseEventUtils, navigationUtils }) => {
-      caseNumber = await caseEventUtils.createDACaseSendToGatekeeper(browser);
+    async ({ caseWorker, manageCasesEventUtils, navigationUtils }) => {
+      caseRef = (await manageCasesEventUtils.submitTSSolicitorCase("FL401"))
+        .caseRef;
+      await manageCasesEventUtils.sendToGatekeeper(caseRef, "FL401");
       await navigationUtils.goToCase(
         caseWorker.page,
         config.manageCasesBaseURLCase,
-        caseNumber,
+        caseRef,
       );
     },
   );
@@ -96,7 +98,7 @@ test.describe("Manage Orders - Create a Amended, Discharged Or varied order (FL4
 
         await manageOrders.manageOrder20Page.assertPageContents(
           manageOrderParams.orderType,
-          caseNumber,
+          caseRef,
           manageOrderParams.snapshotName,
           manageOrderParams.snapshotsPath,
         );
@@ -137,7 +139,7 @@ test.describe("Manage Orders - Create a Amended, Discharged Or varied order (FL4
         await manageOrders.manageOrderSubmitPage.verifyAccessibility();
         await manageOrders.manageOrderSubmitPage.clickSubmit();
         await summaryPage.alertBanner.assertEventAlert(
-          caseNumber,
+          caseRef,
           "Manage orders",
         );
 

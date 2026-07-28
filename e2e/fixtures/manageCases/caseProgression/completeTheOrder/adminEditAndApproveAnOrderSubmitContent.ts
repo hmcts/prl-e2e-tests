@@ -4,7 +4,7 @@ export enum AdminEditAndApproveAnOrderSubmitContent {
   h21 = "Serve saved orders",
   h22 = "Serve the order",
   p = "Preview the draft order",
-  Span = "Lorem Ipsum",
+  Span = "Test directions to admin",
   Yes = "Yes",
   No = "No",
   previous = "Previous",

@@ -1,15 +1,15 @@
 import fs from "fs";
 import { request } from "@playwright/test";
 import config from "./config.utils.ts";
-import { CitizenC100CaseUtils } from "./citizenC100CaseUtils.ts";
+import { CommonCaseEventUtils } from "./commonCaseEvent.utils.ts";
 
 export class ManageOrgUtils {
-  constructor(private citizenC100CaseUtils: CitizenC100CaseUtils) {}
+  constructor(private commonCaseEventUtils: CommonCaseEventUtils) {}
 
   async assignCaseToUser(caseRef: string, userEmail: string): Promise<void> {
     // fetch user details so that we don't need to hard code anything other than the user's email address
     const userDetails =
-      await this.citizenC100CaseUtils.getUserDetails(userEmail);
+      await this.commonCaseEventUtils.getUserDetails(userEmail);
     console.log(userDetails);
 
     // read storage state from local authority session json file

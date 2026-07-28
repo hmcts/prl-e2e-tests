@@ -1,17 +1,17 @@
 import { test } from "../../../../../../fixtures.ts";
-import config from "../../../../../../../utils/config.utils.js";
-import { ChildArrangementsCreateOrderScenarios } from "../../../../../../../testData/manageOrders.js";
+import config from "../../../../../../../utils/config.utils.ts";
+import { ChildArrangementsCreateOrderScenarios } from "../../../../../../../testData/ui/manageOrders.ts";
 import {
   manageOrdersOptions,
   OrderTypes,
   solicitorCaseCreateType,
-} from "../../../../../../../common/types.js";
+} from "../../../../../../../common/types.ts";
 
-import { OrderInformation } from "../../../../../../../pageObjects/pages/exui/caseView/draftOrders.po.js";
-import { ManageOrder5Params } from "../../../../../../../pageObjects/pages/exui/orders/manageOrders/manageOrder5.po.js";
-import { ManageOrder10Params } from "../../../../../../../pageObjects/pages/exui/orders/manageOrders/manageOrder10.po.js";
-import { ManageOrder19Params } from "../../../../../../../pageObjects/pages/exui/orders/manageOrders/manageOrder19.po.js";
-import { ManageOrder24Params } from "../../../../../../../pageObjects/pages/exui/orders/manageOrders/manageOrder24.po.js";
+import { OrderInformation } from "../../../../../../../pageObjects/pages/exui/caseView/draftOrders.po.ts";
+import { ManageOrder5Params } from "../../../../../../../pageObjects/pages/exui/orders/manageOrders/manageOrder5.po.ts";
+import { ManageOrder10Params } from "../../../../../../../pageObjects/pages/exui/orders/manageOrders/manageOrder10.po.ts";
+import { ManageOrder19Params } from "../../../../../../../pageObjects/pages/exui/orders/manageOrders/manageOrder19.po.ts";
+import { ManageOrder24Params } from "../../../../../../../pageObjects/pages/exui/orders/manageOrders/manageOrder24.po.ts";
 
 export interface ChildArrangementsCreateOrderParams {
   name: string;
@@ -29,15 +29,18 @@ export interface ChildArrangementsCreateOrderParams {
 }
 
 test.describe("Manage Orders - Create a Child arrangements, specific issue or prohibited steps order (C43) order tests", () => {
-  let caseNumber: string = "";
+  let caseRef: string = "";
 
   test.beforeEach(
-    async ({ caseWorker, browser, caseEventUtils, navigationUtils }) => {
-      caseNumber = await caseEventUtils.createCACaseSendToGatekeeper(browser);
+    async ({ caseWorker, manageCasesEventUtils, navigationUtils }) => {
+      caseRef = (await manageCasesEventUtils.submitTSSolicitorCase("C100"))
+        .caseRef;
+      await manageCasesEventUtils.issueAndSendToLocalCourt(caseRef);
+      await manageCasesEventUtils.sendToGatekeeper(caseRef, "C100");
       await navigationUtils.goToCase(
         caseWorker.page,
         config.manageCasesBaseURLCase,
-        caseNumber,
+        caseRef,
       );
     },
   );
@@ -98,7 +101,7 @@ test.describe("Manage Orders - Create a Child arrangements, specific issue or pr
 
         await manageOrders.manageOrder20Page.assertPageContents(
           manageOrderParams.orderType,
-          caseNumber,
+          caseRef,
           manageOrderParams.snapshotName,
           manageOrderParams.snapshotsPath,
         );
@@ -119,7 +122,7 @@ test.describe("Manage Orders - Create a Child arrangements, specific issue or pr
         await manageOrders.manageOrderSubmitPage.verifyAccessibility();
         await manageOrders.manageOrderSubmitPage.clickSubmit();
         await summaryPage.alertBanner.assertEventAlert(
-          caseNumber,
+          caseRef,
           "Manage orders",
         );
 

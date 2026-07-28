@@ -2,15 +2,18 @@ import config from "../../../../utils/config.utils.ts";
 import { test, expect } from "../../../fixtures.ts";
 
 test.describe("Validating auto-generated case names for DA case", () => {
-  let caseNumber: string;
+  let caseRef: string;
 
   test.beforeEach(
-    async ({ caseWorker, browser, caseEventUtils, navigationUtils }) => {
-      caseNumber = await caseEventUtils.createDACaseSendToGatekeeper(browser);
+    async ({ caseWorker, manageCasesEventUtils, navigationUtils }) => {
+      caseRef = (await manageCasesEventUtils.submitTSSolicitorCase("FL401"))
+        .caseRef;
+      await manageCasesEventUtils.addFamilyManNumber(caseRef);
+      await manageCasesEventUtils.sendToGatekeeper(caseRef, "FL401");
       await navigationUtils.goToCase(
         caseWorker.page,
         config.manageCasesBaseURLCase,
-        caseNumber,
+        caseRef,
       );
     },
   );

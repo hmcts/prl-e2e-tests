@@ -8,12 +8,14 @@ test.describe("Activating case tests", (): void => {
   test("Activate case as an applicant. @regression", async ({
     page,
     citizenC100CaseUtils,
+    manageCasesEventUtils,
     idamLoginHelper,
     accessCodeHelper,
   }): Promise<void> => {
     await ActivateCitizenC100Case.activateCase({
       page: page,
       citizenC100CaseUtils: citizenC100CaseUtils,
+      manageCasesEventUtils: manageCasesEventUtils,
       idamLoginHelper: idamLoginHelper,
       accessCodeHelper: accessCodeHelper,
       isApplicant: true,
@@ -23,12 +25,14 @@ test.describe("Activating case tests", (): void => {
   test("Activate case as an respondent. @regression", async ({
     page,
     citizenC100CaseUtils,
+    manageCasesEventUtils,
     idamLoginHelper,
     accessCodeHelper,
   }): Promise<void> => {
     await ActivateCitizenC100Case.activateCase({
       page: page,
       citizenC100CaseUtils: citizenC100CaseUtils,
+      manageCasesEventUtils: manageCasesEventUtils,
       idamLoginHelper: idamLoginHelper,
       accessCodeHelper: accessCodeHelper,
       isApplicant: false,

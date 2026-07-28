@@ -1,19 +1,18 @@
-import Config from "../../../../../../../../utils/config.utils.ts";
-import { DummyPaymentAwp } from "../../../../../../../../journeys/manageCases/caseWorker/dummyPayment/dummyPaymentAwp.ts";
-import { Helpers } from "../../../../../../../../common/helpers.ts";
-import config from "../../../../../../../../utils/config.utils.ts";
-import { test } from "../../../../../../../fixtures.ts";
+import Config from "../../../../utils/config.utils.ts";
+import config from "../../../../utils/config.utils.ts";
+import { DummyPaymentAwp } from "../../../../journeys/manageCases/caseWorker/dummyPayment/dummyPaymentAwp.ts";
+import { test } from "../../../fixtures.ts";
 
 test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
 
 test.describe("FL401 Dummy payment for AWP tests", (): void => {
-  test.beforeEach(async ({ page, browser, caseEventUtils }) => {
-    const caseRef = await caseEventUtils.createDACase(browser);
-    await Helpers.goToCase(
+  test.beforeEach(async ({ page, manageCasesEventUtils, navigationUtils }) => {
+    const caseRef = (await manageCasesEventUtils.submitTSSolicitorCase("FL401"))
+      .caseRef;
+    await navigationUtils.goToCase(
       page,
       config.manageCasesBaseURLCase,
       caseRef,
-      "tasks",
     );
   });
 

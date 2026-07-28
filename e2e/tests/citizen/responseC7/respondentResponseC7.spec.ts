@@ -12,12 +12,14 @@ test.describe("Respondent completes the C7 response from the citizen UI tests", 
     async ({
       page,
       citizenC100CaseUtils,
+      manageCasesEventUtils,
       idamLoginHelper,
       accessCodeHelper,
     }) => {
       caseRef = await ActivateCitizenC100Case.activateCase({
         page,
         citizenC100CaseUtils,
+        manageCasesEventUtils,
         idamLoginHelper,
         accessCodeHelper,
         isApplicant: false,
