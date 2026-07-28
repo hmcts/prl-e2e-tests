@@ -9,12 +9,12 @@ test.describe.configure({ mode: "serial" });
 test.describe("Add local authority event for C100 case tests as a Local Authority User.", () => {
   let caseRef: string = "";
 
-  test.beforeAll(async ({ manageCasesEventUtils}) => {
+  test.beforeAll(async ({ manageCasesEventUtils }) => {
     caseRef = (await manageCasesEventUtils.submitTSSolicitorCase("C100"))
-    .caseRef;
-  await manageCasesEventUtils.issueAndSendToLocalCourt(caseRef);
-  await manageCasesEventUtils.sendToGatekeeper(caseRef, "C100");
-});
+      .caseRef;
+    await manageCasesEventUtils.issueAndSendToLocalCourt(caseRef);
+    await manageCasesEventUtils.sendToGatekeeper(caseRef, "C100");
+  });
 
   test("Complete Add Local Authority with accessibility test. @nightly @regression @accessibility @tp", async ({
     page,

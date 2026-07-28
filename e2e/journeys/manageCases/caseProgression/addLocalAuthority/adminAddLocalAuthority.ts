@@ -7,8 +7,12 @@ import { SummaryPage } from "../../../../pageObjects/pages/exui/caseView/summary
 import Config from "../../../../utils/config.utils.ts";
 import { IdamLoginHelper } from "../../../../utils/idamLoginHelper.utils.ts";
 import { ManageOrgUtils } from "../../../../utils/manageOrg.utils.ts";
-import { CitizenC100CaseUtils } from "../../../../utils/citizenC100CaseUtils.ts";
-import { ServiceAuthUtils, IdamUtils } from "@hmcts/playwright-common";
+import {
+  ServiceAuthUtils,
+  IdamUtils,
+  createLogger,
+} from "@hmcts/playwright-common";
+import { CommonCaseEventUtils } from "../../../../utils/commonCaseEvent.utils.ts";
 
 interface AdminAddLocalAuthorityParams {
   page: Page;
@@ -77,7 +81,10 @@ export class AdminAddLocalAuthority {
 
     // Assign the case to the local authority user via the case-assignments API
     const manageOrgUtils = new ManageOrgUtils(
-      new CitizenC100CaseUtils(new ServiceAuthUtils(), new IdamUtils()),
+      new CommonCaseEventUtils(
+        new ServiceAuthUtils({ logger: createLogger({ level: "info" }) }),
+        new IdamUtils({ logger: createLogger({ level: "info" }) }),
+      ),
     );
     await manageOrgUtils.assignCaseToUser(caseRef, localAuthorityUserEmail);
 
