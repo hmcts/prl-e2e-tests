@@ -18,11 +18,36 @@ const LA_DOCUMENTS: Array<{
   restrictDocument: boolean;
   filePath: string;
 }> = [
-  { documentCategory: "Child Impact Report 1", confidentialDocument: true, restrictDocument: false, filePath: Config.testPdfFileCR1 },
-  { documentCategory: "Child Impact Report 2", confidentialDocument: false, restrictDocument: true, filePath: Config.testPdfFileCR2 },
-  { documentCategory: "CIR extension request", confidentialDocument: false, restrictDocument: false, filePath: Config.testPdfFileExtention },
-  { documentCategory: "CIR transfer request", confidentialDocument: false, restrictDocument: false, filePath: Config.testPdfFileRequest },
-  { documentCategory: "Section 7 report", confidentialDocument: false, restrictDocument: false, filePath: Config.testPdfFileSection7 },
+  {
+    documentCategory: "Child Impact Report 1",
+    confidentialDocument: true,
+    restrictDocument: false,
+    filePath: Config.testPdfFileCR1,
+  },
+  {
+    documentCategory: "Child Impact Report 2",
+    confidentialDocument: false,
+    restrictDocument: true,
+    filePath: Config.testPdfFileCR2,
+  },
+  {
+    documentCategory: "CIR extension request",
+    confidentialDocument: false,
+    restrictDocument: false,
+    filePath: Config.testPdfFileExtention,
+  },
+  {
+    documentCategory: "CIR transfer request",
+    confidentialDocument: false,
+    restrictDocument: false,
+    filePath: Config.testPdfFileRequest,
+  },
+  {
+    documentCategory: "Section 7 report",
+    confidentialDocument: false,
+    restrictDocument: false,
+    filePath: Config.testPdfFileSection7,
+  },
 ];
 
 interface ManageDocumentsParams {
@@ -44,8 +69,16 @@ export class LocalAuthorityManageDocuments {
     caseRef,
     accessibilityTest,
   }: ManageDocumentsParams): Promise<void> {
-    await this.uploadDocumentsAsLocalAuthority(browser, caseRef, accessibilityTest);
-    await this.openCaseAsCourtAdminAndViewTasks(browser, caseRef, accessibilityTest);
+    await this.uploadDocumentsAsLocalAuthority(
+      browser,
+      caseRef,
+      accessibilityTest,
+    );
+    await this.openCaseAsCourtAdminAndViewTasks(
+      browser,
+      caseRef,
+      accessibilityTest,
+    );
   }
 
   private static async uploadDocumentsAsLocalAuthority(
@@ -55,11 +88,17 @@ export class LocalAuthorityManageDocuments {
   ): Promise<void> {
     const newBrowser = await browser.browserType().launch();
     const laContext = await newBrowser.newContext({
-      storageState: Config.sessionStoragePath + "localAuthorityManageCases.json",
+      storageState:
+        Config.sessionStoragePath + "localAuthorityManageCases.json",
     });
     const laPage = await laContext.newPage();
 
-    await Helpers.goToCase(laPage, Config.manageCasesBaseURLCase, caseRef, "Summary");
+    await Helpers.goToCase(
+      laPage,
+      Config.manageCasesBaseURLCase,
+      caseRef,
+      "Summary",
+    );
     await expect(laPage.locator("ccd-case-header")).toBeVisible();
 
     await Helpers.chooseEventFromDropdown(laPage, "Manage documents");
@@ -142,7 +181,12 @@ export class LocalAuthorityManageDocuments {
     await expect(caseHeader).toBeVisible({ timeout: 30_000 });
     await expect(caseHeader).toContainText(dashedRef);
 
-    await Helpers.goToCase(adminPage, Config.manageCasesBaseURLCase, caseRef, "tasks");
+    await Helpers.goToCase(
+      adminPage,
+      Config.manageCasesBaseURLCase,
+      caseRef,
+      "tasks",
+    );
 
     await expect(
       adminPage.locator(Selectors.h2, { hasText: "Active tasks" }),
@@ -150,17 +194,34 @@ export class LocalAuthorityManageDocuments {
 
     await Helpers.waitForTask(adminPage, "Review CIR Extension Request");
     const caseTask = new ExuiCaseTaskComponent(adminPage);
-    await caseTask.assertTaskSummary("Review CIR Extension Request", "urgent", ["Assign to me"], "Unassigned");
-    await caseTask.assertTaskSummary("Review CIR Transfer Request", "urgent", ["Assign to me"], "Unassigned");
-    await caseTask.assertTaskSummary("Review Documents", "low", ["Assign to me"], "Unassigned");
+    await caseTask.assertTaskSummary(
+      "Review CIR Extension Request",
+      "urgent",
+      ["Assign to me"],
+      "Unassigned",
+    );
+    await caseTask.assertTaskSummary(
+      "Review CIR Transfer Request",
+      "urgent",
+      ["Assign to me"],
+      "Unassigned",
+    );
+    await caseTask.assertTaskSummary(
+      "Review Documents",
+      "low",
+      ["Assign to me"],
+      "Unassigned",
+    );
 
     await Helpers.assignTaskToMe(adminPage, "Review Documents");
     await caseTask.triggerNextSteps("Review Documents", "Review Documents");
 
-    const baseName = (filePath: string): string => filePath.split(/[\\/]/).pop() ?? filePath;
+    const baseName = (filePath: string): string =>
+      filePath.split(/[\\/]/).pop() ?? filePath;
     const section7FileName = baseName(Config.testPdfFileSection7);
-    const reviewableFileNames = LA_DOCUMENTS.map((doc) => baseName(doc.filePath))
-      .filter((fileName) => fileName !== section7FileName);
+    const reviewableFileNames = LA_DOCUMENTS.map((doc) =>
+      baseName(doc.filePath),
+    ).filter((fileName) => fileName !== section7FileName);
 
     await ReviewDocuments1Page.reviewDocuments1Page({
       page: adminPage,

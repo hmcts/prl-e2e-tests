@@ -10,7 +10,6 @@ import { ManageOrgUtils } from "../../../../utils/manageOrg.utils.ts";
 import { CitizenC100CaseUtils } from "../../../../utils/citizenC100CaseUtils.ts";
 import { ServiceAuthUtils, IdamUtils } from "@hmcts/playwright-common";
 
-
 interface AdminAddLocalAuthorityParams {
   page: Page;
   browser: Browser;
@@ -92,17 +91,17 @@ export class AdminAddLocalAuthority {
     );
     await laPage.goto(`${Config.manageCasesBaseURL}/cases`);
     await expect
-  .poll(
-    async () => {
-      const visible = await laPage.locator("ccd-search-result").isVisible();
-      if (!visible) {
-        await laPage.reload();
-      }
-      return visible;
-    },
-    { intervals: [5_000], timeout: 60_000 },
-  )
-  .toBeTruthy();
+      .poll(
+        async () => {
+          const visible = await laPage.locator("ccd-search-result").isVisible();
+          if (!visible) {
+            await laPage.reload();
+          }
+          return visible;
+        },
+        { intervals: [5_000], timeout: 60_000 },
+      )
+      .toBeTruthy();
 
     const dashedRef = caseRef.match(/.{1,4}/g)?.join("-") ?? caseRef;
     await laPage
