@@ -16,7 +16,7 @@ test.describe("Add local authority event for C100 case tests as a Local Authorit
     await manageCasesEventUtils.sendToGatekeeper(caseRef, "C100");
   });
 
-  test("Complete Add Local Authority with accessibility test. @nightly @regression @accessibility @tp", async ({
+  test("Complete Add Local Authority with accessibility test. @nightly @regression @accessibility", async ({
     page,
     browser,
     navigationUtils,
@@ -38,7 +38,7 @@ test.describe("Add local authority event for C100 case tests as a Local Authorit
     });
   });
 
-  test("Local authority uploads documents and admin reviews tasks. @nightly @regression @tp", async ({
+  test("Local authority uploads documents and admin reviews tasks. @nightly @regression", async ({
     browser,
   }): Promise<void> => {
     await LocalAuthorityManageDocuments.manageDocuments({
