@@ -22,7 +22,7 @@ test.describe("C100 Create case Submit and Pay tests", (): void => {
     await C100SubmitAndPay.c100SubmitAndPay({
       page: page,
       yesNoWelshLanguage: true,
-      yesNoHelpWithFees: false, // Help with Fees is not yet available in Family Private Law digital service.
+      yesNoHelpWithFees: false, // Help with Fees is not yet available in Family Private Law digital service
       accessibilityTest: true,
     });
   });
