@@ -32,9 +32,7 @@ export class EditAndApproveAnOrder21Page extends EventPage {
     super(page, "Edit and approve a draft order");
   }
 
-  async assertPageContents(
-    orderType: OrderTypes,
-    ): Promise<void> {
+  async assertPageContents(orderType: OrderTypes): Promise<void> {
     await this.assertPageHeadings();
     await expect(this.page.getByText(orderType, { exact: true })).toBeVisible();
     await expect(this.adminFormLabel).toBeVisible();
@@ -47,7 +45,9 @@ export class EditAndApproveAnOrder21Page extends EventPage {
   async fillInFields(serveApplication: boolean): Promise<void> {
     await this.adminDirectionTextArea.fill("Test directions to admin");
     await this.page
-      .getByRole("group", { name: "Once this order is complete, can the application be served?" })
+      .getByRole("group", {
+        name: "Once this order is complete, can the application be served?",
+      })
       .getByLabel(serveApplication ? "Yes" : "No")
       .check();
   }

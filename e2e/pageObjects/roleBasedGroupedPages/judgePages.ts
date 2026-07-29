@@ -24,12 +24,8 @@ import { CustomOrderManageOrder20Page } from "../pages/exui/orders/manageOrders/
 import { EditAndApproveAnOrder2Page } from "../pages/exui/orders/editAndApproveAnOrders/editAndApproveAnOrder2.po.js";
 import { EditAndApproveAnOrder21Page } from "../pages/exui/orders/editAndApproveAnOrders/editAndApproveAnOrder21.po.js";
 import { TasksPage } from "../pages/exui/caseView/tasks.po.js";
-import {
-  EditAndApproveAnOrderSubmitPage
-} from "../pages/exui/orders/editAndApproveAnOrders/editAndApproveAnOrderSubmit.po.js";
-import {
-  EditAndApproveAnOrderConfirmPage
-} from "../pages/exui/orders/editAndApproveAnOrders/editAndApproveAnOrderConfirm.po.js";
+import { EditAndApproveAnOrderSubmitPage } from "../pages/exui/orders/editAndApproveAnOrders/editAndApproveAnOrderSubmit.po.js";
+import { EditAndApproveAnOrderConfirmPage } from "../pages/exui/orders/editAndApproveAnOrders/editAndApproveAnOrderConfirm.po.js";
 
 export class JudgePagesGroup {
   constructor(public readonly page: Page) {}
@@ -88,8 +84,12 @@ export class JudgePagesGroup {
     return {
       editAndApproveAnOrder2Page: new EditAndApproveAnOrder2Page(this.page),
       editAndApproveAnOrder21Page: new EditAndApproveAnOrder21Page(this.page),
-      editAndApproveAnOrderSubmitPage: new EditAndApproveAnOrderSubmitPage(this.page),
-      editAndApproveAnOrderConfirmPage: new EditAndApproveAnOrderConfirmPage(this.page),
+      editAndApproveAnOrderSubmitPage: new EditAndApproveAnOrderSubmitPage(
+        this.page,
+      ),
+      editAndApproveAnOrderConfirmPage: new EditAndApproveAnOrderConfirmPage(
+        this.page,
+      ),
     };
   }
 }
