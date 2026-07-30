@@ -135,7 +135,10 @@ export class DraftOrdersPage extends CaseAccessViewPage {
     orderName: string,
     snapshotName: string,
   ): Promise<void> {
-    const link: Locator = this.page.getByRole("button", { name: orderName });
+    const link: Locator = this.page.getByRole("button", {
+      name: orderName,
+      exact: true,
+    });
     const docPage: Page = await this.navigationUtils.openPdfLink(
       this.page,
       link,
