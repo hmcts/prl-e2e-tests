@@ -25,7 +25,6 @@ export class ManageOrders28Page {
     errorMessaging: boolean,
   ): Promise<void> {
     await this.checkPageLoads(page, accessibilityTest);
-    await page.pause();
     if (errorMessaging) await this.checkErrorMessaging(page);
     await this.fillInFields(page, personallyServed);
     await this.continue(page);
