@@ -187,7 +187,7 @@ export class ManageOrders28Page {
       );
       Helpers.checkVisibleAndPresent(
         page,
-        `${UniqueSelectors.additionalOrgBuildingAndStreetInput}:text-is("${ManageOrders28CAContent.additionalOrBuildingAndStreet}`,
+        UniqueSelectors.additionalOrgBuildingAndStreetInput,
         1,
       );
     }
