@@ -31,14 +31,10 @@ export class UploadAdditionalApplications4Page extends EventPage {
   });
   readonly yesFormLabel = this.page.getByText("Yes", { exact: true }).first();
   readonly noFormLabel = this.page.getByText("No", { exact: true }).first();
-  readonly formHint: Locator = this.page.locator(Selectors.GovukFormHint, {
-    hasText: "You must select 'No' to continue with your application.",
-  });
 
   readonly h3FormLabels: string[] = [
-    "Help with Fees is not yet available in the Family Private Law digital service.",
-    "If the applicant has applied for Help with Fees, you should email or post this application to the court instead.",
-    "If you continue online, you will still have to pay the fee. You can apply for a refund by contacting the court and providing the applicant's Help with Fees reference.",
+    "If the applicant has applied for Help with Fees, you should continue to process their application online.",
+    "You will still have to pay the fee. You can apply for a refund by contacting the court and providing the applicant's Help with Fees reference.",
     "Application fee",
   ];
 
@@ -57,7 +53,6 @@ export class UploadAdditionalApplications4Page extends EventPage {
     await expect(this.nextStepP).toBeVisible();
     await this.pageUtils.assertStrings(this.h3FormLabels);
     await expect(this.formLabel).toBeVisible();
-    await expect(this.formHint).toBeVisible();
     await expect(this.yesFormLabel).toBeVisible();
     await expect(this.noFormLabel).toBeVisible();
 

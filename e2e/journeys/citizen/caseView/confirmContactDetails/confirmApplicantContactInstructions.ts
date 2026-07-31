@@ -77,7 +77,7 @@ export class ConfirmApplicantContactInstructions {
     );
     // verify phone number value is not null or empty
     await Promise.all([
-      expect(phoneNumberValue).not.toBeNull(),
+      await expect(phoneNumberValue).toBeVisible(),
       expect(phoneNumberValue).not.toBe(""),
     ]);
 
