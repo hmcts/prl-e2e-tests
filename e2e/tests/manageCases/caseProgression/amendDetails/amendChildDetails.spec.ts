@@ -6,16 +6,24 @@ test.use({ storageState: config.sessionStoragePath + "courtAdminStoke.json" });
 test.describe("Complete amend Child details event as a court admin", () => {
   let caseRef: string;
 
-  test.beforeEach(async ({ solicitor, courtAdminStoke, browser, caseEventUtils, navigationUtils }) => {
-    caseRef = await caseEventUtils.createCACaseSubmitAndPayIndividualEvents(
-      solicitor.page,
-    );
-    await navigationUtils.goToCase(
-      courtAdminStoke.page,
-      config.manageCasesBaseURLCase,
-      caseRef,
-    );
-  });
+  test.beforeEach(
+    async ({
+      solicitor,
+      courtAdminStoke,
+      browser,
+      caseEventUtils,
+      navigationUtils,
+    }) => {
+      caseRef = await caseEventUtils.createCACaseSubmitAndPayIndividualEvents(
+        solicitor.page,
+      );
+      await navigationUtils.goToCase(
+        courtAdminStoke.page,
+        config.manageCasesBaseURLCase,
+        caseRef,
+      );
+    },
+  );
 
   test(`Amend the following Child details: firstname, lastname, date of birth, gender @regression`, async ({
     courtAdminStoke,

@@ -12,8 +12,6 @@ interface FillInFieldsOptions {
 
 export class AmendChildDetails1Page extends EventPage {
   private readonly pageContent = {
-    // paragraph: "Amend Child details",
-    // heading: "Add new child",
     firstNameLabel: "First name",
     lastNameLabel: "Last name",
     dateOfBirthLabel: "Date of birth",
