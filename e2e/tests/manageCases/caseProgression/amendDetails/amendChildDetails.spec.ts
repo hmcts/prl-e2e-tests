@@ -7,13 +7,7 @@ test.describe("Complete amend Child details event as a court admin", () => {
   let caseRef: string;
 
   test.beforeEach(
-    async ({
-      solicitor,
-      courtAdminStoke,
-      browser,
-      caseEventUtils,
-      navigationUtils,
-    }) => {
+    async ({ solicitor, courtAdminStoke, caseEventUtils, navigationUtils }) => {
       caseRef = await caseEventUtils.createCACaseSubmitAndPayIndividualEvents(
         solicitor.page,
       );
