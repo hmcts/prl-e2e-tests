@@ -10,12 +10,16 @@ interface FillInFieldsOptions {
 
 export class AmendChildDetails2Page extends EventPage {
   private readonly childrenKnownToAuthorityRadio = (value: yesNoDontKnow) =>
-    this.page.locator(`label[for="childrenKnownToLocalAuthority-${value}"]`).first();
+    this.page
+      .locator(`label[for="childrenKnownToLocalAuthority-${value}"]`)
+      .first();
   private readonly childrenKnownToAuthorityField: Locator = this.page.locator(
     "#childrenKnownToLocalAuthorityTextArea",
   );
   private readonly childrenProtectionPlanRadio = (value: yesNoDontKnow) =>
-    this.page.locator(`label[for="childrenSubjectOfChildProtectionPlan-${value}"]`).first();
+    this.page
+      .locator(`label[for="childrenSubjectOfChildProtectionPlan-${value}"]`)
+      .first();
 
   constructor(page: Page) {
     super(page, "Amend Child details");
@@ -29,25 +33,34 @@ export class AmendChildDetails2Page extends EventPage {
       }),
     ).toBeVisible();
     await expect(
-      this.page.locator(Selectors.GovukFormLabel, {
-        hasText: AmendChildDetailsRevised2Content.formLabelYes,
-      }).first()).toBeVisible();
+      this.page
+        .locator(Selectors.GovukFormLabel, {
+          hasText: AmendChildDetailsRevised2Content.formLabelYes,
+        })
+        .first(),
+    ).toBeVisible();
     await expect(
-      this.page.locator(Selectors.GovukFormLabel, {
-        hasText: AmendChildDetailsRevised2Content.formLabelNo,
-      }).first()).toBeVisible();
+      this.page
+        .locator(Selectors.GovukFormLabel, {
+          hasText: AmendChildDetailsRevised2Content.formLabelNo,
+        })
+        .first(),
+    ).toBeVisible();
     await expect(
-      this.page.locator(Selectors.GovukFormLabel, {
-        hasText: AmendChildDetailsRevised2Content.formLabelDontKnow,
-      }).first()).toBeVisible();
+      this.page
+        .locator(Selectors.GovukFormLabel, {
+          hasText: AmendChildDetailsRevised2Content.formLabelDontKnow,
+        })
+        .first(),
+    ).toBeVisible();
   }
 
   async fillInFields({ yesNoDontKnow }: FillInFieldsOptions): Promise<void> {
     await this.childrenKnownToAuthorityRadio(yesNoDontKnow).check();
     if (yesNoDontKnow === "yes") {
-      await this.childrenKnownToAuthorityField.first().fill(
-        AmendChildDetailsRevised2Content.childNameAndLocalAuthority,
-      );
+      await this.childrenKnownToAuthorityField
+        .first()
+        .fill(AmendChildDetailsRevised2Content.childNameAndLocalAuthority);
     }
     await this.childrenProtectionPlanRadio(yesNoDontKnow).check();
     await this.clickContinue();
