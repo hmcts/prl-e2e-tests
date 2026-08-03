@@ -84,7 +84,7 @@ export class c100CompleteOrderSubmitPage {
       ),
       Helpers.checkGroup(
         page,
-        28,
+        42,
         c100CompleteOrderSubmitCAContent,
         "text16_",
         `${Selectors.GovukText16}`,
