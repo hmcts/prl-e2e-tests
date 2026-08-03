@@ -47,7 +47,7 @@ export class c100CompleteOrderSubmitPage {
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukText16}:text-is("${c100CompleteOrderSubmitCAContent.change}"):visible`,
-        22,
+        24,
       ),
       Helpers.checkVisibleAndPresent(
         page,
@@ -84,7 +84,7 @@ export class c100CompleteOrderSubmitPage {
       ),
       Helpers.checkGroup(
         page,
-        28,
+        42,
         c100CompleteOrderSubmitCAContent,
         "text16_",
         `${Selectors.GovukText16}`,
