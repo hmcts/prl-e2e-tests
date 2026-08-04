@@ -97,14 +97,7 @@ export const utilsFixtures = {
   ) => {
     await use(new ManageCaseEventUtils(commonCaseEventsUtils, dateHelperUtils));
   },
-  manageOrgUtils: async ({}, use) => {
-    await use(
-      new ManageOrgUtils(
-        new CommonCaseEventUtils(
-          new ServiceAuthUtils({ logger: createLogger({ level: logLevel }) }),
-          new IdamUtils({ logger: createLogger({ level: logLevel }) }),
-        ),
-      ),
-    );
+  manageOrgUtils: async ({ commonCaseEventsUtils }, use) => {
+    await use(new ManageOrgUtils(commonCaseEventsUtils));
   },
 };
