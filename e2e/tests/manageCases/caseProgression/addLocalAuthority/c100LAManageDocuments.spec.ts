@@ -1,8 +1,8 @@
 import { expect, test } from "../../../fixtures.ts";
 import Config from "../../../../utils/config.utils.ts";
-import { ManageDocumentsNew1Page } from "../../../../pages/manageCases/caseProgression/manageDocuments/manageDocumentsNew1Page.ts";
-import { ManageDocumentsNewSubmitPage } from "../../../../pages/manageCases/caseProgression/manageDocuments/manageDocumentsNewSubmit.ts";
-import { ManageDocumentsNewConfirmPage } from "../../../../pages/manageCases/caseProgression/manageDocuments/manageDocumentsNewConfirmPage.ts";
+import { ManageDocumentsNew1Page } from "../../../../pageObjects/pages/exui/manageDocuments/manageDocumentsNew1Page.ts";
+import { ManageDocumentsNewSubmitPage } from "../../../../pageObjects/pages/exui/manageDocuments/manageDocumentsNewSubmit.ts";
+import { ManageDocumentsNewConfirmPage } from "../../../../pageObjects/pages/exui/manageDocuments/manageDocumentsNewConfirmPage.ts";
 
 test.describe.configure({ mode: "serial" });
 
