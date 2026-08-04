@@ -9,4 +9,14 @@ export enum ManageOrders28CAContent {
   previous = "Previous",
   continue = "Continue",
   noHiddenFormLabel1 = "Confirm Recipients",
+  anotherOrgLabel = "Another organisation (optional)",
+  servedPersonallyErrorMsg = "Does this order need to be personally served on the respondent? is required",
+  cafcassNeedToBeServedErrorMsg = "Does Cafcass Cymru need to be served? is required",
+  additionalOrgNameRquiredErrorMsg = "Name is required",
+  additionalOrgAddressRequiredErrorMsg = "An address is required",
+  additionalOrgPostcodeRequiredErrorMsg = "Enter a Postcode",
+  additionalOrgName = "orgFirstName orgLastName",
+  additionalOrgPostcode = "SW1A 1AA",
+  additionalOrgAddress = "Buckingham Palace, London",
+  additionalOrBuildingAndStreet = "Buckingham Palace"
 }
