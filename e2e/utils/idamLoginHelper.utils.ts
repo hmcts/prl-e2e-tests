@@ -5,7 +5,7 @@ import { CreateUserUtil } from "./createUser.utils.ts";
 import { UserCredentialsLong, UserLoginInfo } from "../common/types.ts";
 import process from "node:process";
 import { IdamUtils } from "@hmcts/playwright-common";
-import { UserInfoParams } from "@hmcts/playwright-common/dist/utils/idam.utils.js";
+import { UserInfoParams } from "@hmcts/playwright-common/dist/utils/idam.utils.ts";
 
 export class IdamLoginHelper {
   constructor(private idamUtils: IdamUtils) {}
@@ -36,7 +36,7 @@ export class IdamLoginHelper {
     userType: string,
     sessionKey?: string,
   ): Promise<void> {
-    const sessionPath = `${Config.sessionStoragePath}${sessionKey ?? userType}.json`;
+    const sessionPath = `${Config.sessionStoragePath}${sessionKey ? sessionKey + userType : userType}.json`;
     if (
       userType !== "citizen" &&
       existsSync(sessionPath) &&

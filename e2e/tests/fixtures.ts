@@ -89,7 +89,8 @@ export const test = base.extend<MyFixtures>({
 
   localAuthority: async ({ browser }, use) => {
     const context = await browser.newContext({
-      storageState: Config.sessionStoragePath + "localAuthority.json",
+      storageState:
+        Config.sessionStoragePath + "manageCases-localAuthority.json",
     });
     const page = await context.newPage();
     await use(new LocalAuthorityPagesGroup(page));

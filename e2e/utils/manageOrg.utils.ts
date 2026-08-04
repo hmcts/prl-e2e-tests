@@ -10,12 +10,11 @@ export class ManageOrgUtils {
     // fetch user details so that we don't need to hard code anything other than the user's email address
     const userDetails =
       await this.commonCaseEventUtils.getUserDetails(userEmail);
-    console.log(userDetails);
 
     // read storage state from local authority session json file
     const storageState = JSON.parse(
       fs.readFileSync(
-        config.sessionStoragePath + "localAuthority.json",
+        config.sessionStoragePath + "manageOrgs-localAuthority.json",
         "utf8",
       ),
     );
