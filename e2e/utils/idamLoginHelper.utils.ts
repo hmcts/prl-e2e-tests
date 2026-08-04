@@ -8,6 +8,8 @@ import { IdamUtils } from "@hmcts/playwright-common";
 import { UserInfoParams } from "@hmcts/playwright-common/dist/utils/idam.utils.js";
 
 export class IdamLoginHelper {
+  constructor(private idamUtils: IdamUtils) {}
+
   private fields: UserLoginInfo = {
     username: "#username",
     password: "#password",
@@ -172,8 +174,7 @@ export class IdamLoginHelper {
       let userId: string;
       if (process.env.MANAGE_CASES_TEST_ENV === "preview") {
         const token = process.env.CREATE_USER_BEARER_TOKEN as string;
-        const idamUtils = new IdamUtils(); // Instantiate IdamUtils
-        const userDetails: UserInfoParams = await idamUtils.getUserInfo({
+        const userDetails: UserInfoParams = await this.idamUtils.getUserInfo({
           email: username,
           bearerToken: token,
         });
