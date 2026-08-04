@@ -5,7 +5,6 @@ import {
   Locator,
   Page,
 } from "@playwright/test";
-import { IdamLoginHelper } from "../utils/idamLoginHelper.utils.ts";
 import { Selectors } from "./selectors.ts";
 import {
   addLocalAuthorityEvents,
@@ -103,28 +102,6 @@ export class Helpers {
       await page.goto(Helpers.generateUrl(baseURL, caseNumber, caseTab));
     } catch (error) {
       console.error("An error occurred while navigating to the case: ", error);
-      throw error;
-    }
-  }
-
-  public static async signOutAndGoToCase(
-    page: Page,
-    baseURL: string,
-    caseNumber: string,
-    caseTab: string,
-    user: UserRole,
-  ): Promise<void> {
-    try {
-      await page.locator(`a:text-is(" Sign out ")`).click();
-      await page.waitForLoadState("domcontentloaded");
-      const idamLoginHelper = await new IdamLoginHelper();
-      await idamLoginHelper.signInLongLivedUser(page, user, baseURL);
-      await Helpers.goToCase(page, baseURL, caseNumber, caseTab);
-    } catch (error) {
-      console.error(
-        "An error occurred while signing out and navigating to the case:",
-        error,
-      );
       throw error;
     }
   }

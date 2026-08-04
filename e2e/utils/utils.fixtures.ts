@@ -31,6 +31,7 @@ export interface UtilsFixtures {
   citizenC100CaseUtils: CitizenC100CaseUtils;
   manageOrgUtils: ManageOrgUtils;
   manageCasesEventUtils: ManageCaseEventUtils;
+  commonCaseEventsUtils: CommonCaseEventUtils;
 
   caseEventUtils: CaseEventUtils;
   axeUtils: AxeUtils;
@@ -42,6 +43,8 @@ export interface UtilsFixtures {
 // used to dictate the log level of the playwright-common utils
 const logLevel = process.env.PWDEBUG ? "info" : "warn";
 
+export const logger = createLogger({ level: logLevel });
+
 export const utilsFixtures = {
   config: async ({}, use) => {
     await use(Config);
@@ -50,10 +53,10 @@ export const utilsFixtures = {
     await use(new AxeUtils(page));
   },
   idamUtils: async ({}, use) => {
-    await use(new IdamUtils());
+    await use(new IdamUtils({ logger }));
   },
   serviceAuthUtils: async ({}, use) => {
-    await use(new ServiceAuthUtils());
+    await use(new ServiceAuthUtils({ logger }));
   },
   tokenUtils: async ({ idamUtils }, use) => {
     await use(new TokenUtils(idamUtils));
@@ -67,8 +70,8 @@ export const utilsFixtures = {
   createUserUtil: async ({}, use) => {
     await use(new CreateUserUtil());
   },
-  idamLoginHelper: async ({}, use) => {
-    await use(new IdamLoginHelper());
+  idamLoginHelper: async ({ idamUtils }, use) => {
+    await use(new IdamLoginHelper(idamUtils));
   },
   caseEventUtils: async ({}, use) => {
     await use(new CaseEventUtils());
@@ -82,26 +85,17 @@ export const utilsFixtures = {
   pageUtils: async ({ page }, use) => {
     await use(new PageUtils(page));
   },
-  citizenC100CaseUtils: async ({}, use) => {
-    await use(
-      new CitizenC100CaseUtils(
-        new CommonCaseEventUtils(
-          new ServiceAuthUtils({ logger: createLogger({ level: logLevel }) }),
-          new IdamUtils({ logger: createLogger({ level: logLevel }) }),
-        ),
-      ),
-    );
+  commonCaseEventsUtils: async ({ serviceAuthUtils, idamUtils }, use) => {
+    await use(new CommonCaseEventUtils(serviceAuthUtils, idamUtils));
   },
-  manageCasesEventUtils: async ({}, use) => {
-    await use(
-      new ManageCaseEventUtils(
-        new CommonCaseEventUtils(
-          new ServiceAuthUtils({ logger: createLogger({ level: logLevel }) }),
-          new IdamUtils({ logger: createLogger({ level: logLevel }) }),
-        ),
-        new DateHelperUtils(),
-      ),
-    );
+  citizenC100CaseUtils: async ({ commonCaseEventsUtils }, use) => {
+    await use(new CitizenC100CaseUtils(commonCaseEventsUtils));
+  },
+  manageCasesEventUtils: async (
+    { commonCaseEventsUtils, dateHelperUtils },
+    use,
+  ) => {
+    await use(new ManageCaseEventUtils(commonCaseEventsUtils, dateHelperUtils));
   },
   manageOrgUtils: async ({}, use) => {
     await use(
