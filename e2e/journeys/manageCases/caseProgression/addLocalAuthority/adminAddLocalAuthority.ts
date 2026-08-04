@@ -80,16 +80,19 @@ export class AdminAddLocalAuthority {
     );
 
     // Assign the case to the local authority user via the case-assignments API
+    const idamUtils = new IdamUtils({
+      logger: createLogger({ level: "info" }),
+    });
     const manageOrgUtils = new ManageOrgUtils(
       new CommonCaseEventUtils(
         new ServiceAuthUtils({ logger: createLogger({ level: "info" }) }),
-        new IdamUtils({ logger: createLogger({ level: "info" }) }),
+        idamUtils,
       ),
     );
     await manageOrgUtils.assignCaseToUser(caseRef, localAuthorityUserEmail);
 
     // LA user signs straight into Manage Cases instead of Manage Organisation.
-    const idamLoginHelper = new IdamLoginHelper();
+    const idamLoginHelper = new IdamLoginHelper(idamUtils);
     await idamLoginHelper.signInLongLivedUser(
       laPage,
       "localAuthority",
