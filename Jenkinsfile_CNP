@@ -21,6 +21,11 @@ properties([
       description: 'The Manage Cases URL to test against'
     ),
     string(
+      name: 'MANAGE_ORGANISATION_BASE_URL',
+      defaultValue: 'https://manage-org.aat.platform.hmcts.net',
+      description: 'The Manage Organisation URL to test against'
+    ),
+    string(
       name: 'FUNCTIONAL_TESTS_WORKERS',
       defaultValue: '4',
       description: 'Number of workers running functional tests'
