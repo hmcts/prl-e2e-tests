@@ -1,8 +1,8 @@
 import { expect, test } from "../../../fixtures.ts";
 import Config from "../../../../utils/config.utils.ts";
-import { ManageDocumentsNew1Page } from "../../../../pageObjects/pages/exui/manageDocuments/manageDocumentsNew1Page.ts";
-import { ManageDocumentsNewSubmitPage } from "../../../../pageObjects/pages/exui/manageDocuments/manageDocumentsNewSubmit.ts";
-import { ManageDocumentsNewConfirmPage } from "../../../../pageObjects/pages/exui/manageDocuments/manageDocumentsNewConfirmPage.ts";
+import { ManageDocumentsNew1Page } from "../../../../pageObjects/pages/exui/manageDocuments/manageDocumentsNew1.po.ts";
+import { ManageDocumentsNewSubmitPage } from "../../../../pageObjects/pages/exui/manageDocuments/manageDocumentsNewSubmit.po.ts";
+import { ManageDocumentsNewConfirmPage } from "../../../../pageObjects/pages/exui/manageDocuments/manageDocumentsNewConfirm.po.ts";
 
 test.describe.configure({ mode: "serial" });
 
@@ -143,23 +143,13 @@ test.describe("Add local authority event for C100 case tests as a Local Authorit
 
     await summaryPage.chooseEventFromDropdown("Manage documents");
 
-    // TODO: These manage documents pages should become page objects and this functionality should be moved into those page objects
+    const manageDocumentsNew1Page = new ManageDocumentsNew1Page(page);
     for (let i = 0; i < LA_DOCUMENTS.length; i++) {
       const doc = LA_DOCUMENTS[i];
       if (i > 0) {
-        const addNewBtn = page.locator(
-          "#manageDocuments button.write-collection-add-item__bottom",
-        );
-        await addNewBtn.scrollIntoViewIfNeeded();
-        await addNewBtn.click();
-        await localAuthority.page
-          .locator(
-            `#manageDocuments_${i}_documentRelatedToCaseCheckbox-RELATED_TO_CASE`,
-          )
-          .waitFor({ state: "visible", timeout: 10_000 });
+        await manageDocumentsNew1Page.addAnotherDocument(i);
       }
-      await ManageDocumentsNew1Page.fillDocumentSlot({
-        page: localAuthority.page,
+      await manageDocumentsNew1Page.fillDocumentSlot({
         index: i,
         documentParty: "Local authority",
         documentCategory: doc.documentCategory,
@@ -168,22 +158,21 @@ test.describe("Add local authority event for C100 case tests as a Local Authorit
         filePath: doc.filePath,
       });
     }
+    await manageDocumentsNew1Page.clickContinue();
 
-    await ManageDocumentsNew1Page.clickContinue(localAuthority.page);
+    const manageDocumentsNewSubmitPage = new ManageDocumentsNewSubmitPage(page);
+    await manageDocumentsNewSubmitPage.assertDocumentsPageContents(
+      "Local authority",
+      LA_DOCUMENTS,
+    );
+    await manageDocumentsNewSubmitPage.verifyAccessibility();
+    await manageDocumentsNewSubmitPage.clickSaveAndContinue();
 
-    await ManageDocumentsNewSubmitPage.manageDocumentsNewSubmitPage({
-      page: localAuthority.page,
-      accessibilityTest: true,
-      documentParty: "Local authority",
-      documentCategory: LA_DOCUMENTS[0].documentCategory,
-      restrictDocument: LA_DOCUMENTS[0].restrictDocument,
-      confidentialDocument: LA_DOCUMENTS[0].confidentialDocument,
-      documents: LA_DOCUMENTS,
-    });
-
-    await ManageDocumentsNewConfirmPage.manageDocumentsNewConfirmPage({
-      page: localAuthority.page,
-      accessibilityTest: true,
-    });
+    const manageDocumentsNewConfirmPage = new ManageDocumentsNewConfirmPage(
+      page,
+    );
+    await manageDocumentsNewConfirmPage.assertPageContents();
+    await manageDocumentsNewConfirmPage.verifyAccessibility();
+    await manageDocumentsNewConfirmPage.clickCloseAndReturnToCaseDetails();
   });
 });
