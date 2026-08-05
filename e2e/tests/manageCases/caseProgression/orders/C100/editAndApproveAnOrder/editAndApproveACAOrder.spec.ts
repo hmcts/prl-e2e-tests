@@ -33,7 +33,7 @@ test.describe("Edit and approve a CA order tests", (): void => {
       snapshotPath: ["caseProgression", "orders", "editAndApproveAnOrders"],
     },
   ].forEach((data) => {
-    test(`Complete Editing and approving an C100 order with the following option : ${data.judeOrderAction} @nightly @regression @accessibility`, async ({
+    test(`Complete Editing and approving an C100 solicitor drafted order as a judge with the following option : ${data.judeOrderAction} @nightly @regression @accessibility`, async ({
       judge,
     }): Promise<void> => {
       await editAndApproveOrder(caseRef, judge, data);
@@ -49,7 +49,7 @@ test.describe("Edit and approve a CA order tests", (): void => {
       snapshotPath: ["caseProgression", "orders", "editAndApproveAnOrders"],
     },
   ].forEach((data) => {
-    test(`Complete Editing and approving an C100 order with the following option : ${data.judeOrderAction} @regression @accessibility`, async ({
+    test(`Complete Editing and approving an C100 solicitor drafted order as a judge with the following option : ${data.judeOrderAction} @regression @accessibility`, async ({
       judge,
     }): Promise<void> => {
       await editAndApproveOrder(caseRef, judge, data);
@@ -65,7 +65,7 @@ test.describe("Edit and approve a CA order tests", (): void => {
       snapshotPath: ["caseProgression", "orders", "editAndApproveAnOrders"],
     },
   ].forEach((data) => {
-    test(`Complete Editing and approving an C100 order with the following option : ${data.judeOrderAction} @regression @accessibility`, async ({
+    test(`Complete Editing and approving an C100 solicitor drafted order as a judge with the following option : ${data.judeOrderAction} @regression @accessibility`, async ({
       judge,
     }): Promise<void> => {
       await editAndApproveOrder(caseRef, judge, data);
