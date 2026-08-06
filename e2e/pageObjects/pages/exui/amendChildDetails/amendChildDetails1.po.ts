@@ -82,7 +82,7 @@ export class AmendChildDetails1Page extends EventPage {
   constructor(page: Page) {
     super(page, "Amend Child details");
   }
-
+//Asserting the page contents to ensure all elements are visible and correct
   async assertPageContents(): Promise<void> {
     await this.assertPageHeadings();
     await expect(this.firstNameLabelLocator).toBeVisible();
