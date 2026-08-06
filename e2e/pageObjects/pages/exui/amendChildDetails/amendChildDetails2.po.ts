@@ -1,7 +1,6 @@
 import { Locator, Page, expect } from "@playwright/test";
 import { EventPage } from "../eventPage.po.ts";
 import { Selectors } from "../../../../common/selectors.ts";
-import { AmendChildDetailsRevised2Content } from "../../../../fixtures/manageCases/caseProgression/amendDetails/amendChildDetails/amendChildDetailsRevised2Content.ts";
 import { yesNoDontKnow } from "../../../../common/types.ts";
 
 interface FillInFieldsOptions {
@@ -9,6 +8,30 @@ interface FillInFieldsOptions {
 }
 
 export class AmendChildDetails2Page extends EventPage {
+  private readonly pageContent = {
+    paragraph: "Amend Child details",
+    yesLabel: "Yes",
+    noLabel: "No",
+    dontKnowLabel: "Don't know",
+    childNameAndLocalAuthority: "Test child",
+  };
+
+  private readonly yesLabelLocator: Locator = this.page
+    .locator(Selectors.GovukFormLabel, {
+      hasText: this.pageContent.yesLabel,
+    })
+    .first();
+  private readonly noLabelLocator: Locator = this.page
+    .locator(Selectors.GovukFormLabel, {
+      hasText: this.pageContent.noLabel,
+    })
+    .first();
+  private readonly dontKnowLabelLocator: Locator = this.page
+    .locator(Selectors.GovukFormLabel, {
+      hasText: this.pageContent.dontKnowLabel,
+    })
+    .first();
+
   private readonly childrenKnownToAuthorityRadio = (value: yesNoDontKnow) =>
     this.page
       .locator(`label[for="childrenKnownToLocalAuthority-${value}"]`)
@@ -27,32 +50,9 @@ export class AmendChildDetails2Page extends EventPage {
 
   async assertPageContents(): Promise<void> {
     await this.assertPageHeadings();
-    await expect(
-      this.page.locator(Selectors.p, {
-        hasText: AmendChildDetailsRevised2Content.p,
-      }),
-    ).toBeVisible();
-    await expect(
-      this.page
-        .locator(Selectors.GovukFormLabel, {
-          hasText: AmendChildDetailsRevised2Content.formLabelYes,
-        })
-        .first(),
-    ).toBeVisible();
-    await expect(
-      this.page
-        .locator(Selectors.GovukFormLabel, {
-          hasText: AmendChildDetailsRevised2Content.formLabelNo,
-        })
-        .first(),
-    ).toBeVisible();
-    await expect(
-      this.page
-        .locator(Selectors.GovukFormLabel, {
-          hasText: AmendChildDetailsRevised2Content.formLabelDontKnow,
-        })
-        .first(),
-    ).toBeVisible();
+    await expect(this.yesLabelLocator).toBeVisible();
+    await expect(this.noLabelLocator).toBeVisible();
+    await expect(this.dontKnowLabelLocator).toBeVisible();
   }
 
   async fillInFields({ yesNoDontKnow }: FillInFieldsOptions): Promise<void> {
@@ -60,7 +60,7 @@ export class AmendChildDetails2Page extends EventPage {
     if (yesNoDontKnow === "yes") {
       await this.childrenKnownToAuthorityField
         .first()
-        .fill(AmendChildDetailsRevised2Content.childNameAndLocalAuthority);
+        .fill(this.pageContent.childNameAndLocalAuthority);
     }
     await this.childrenProtectionPlanRadio(yesNoDontKnow).check();
     await this.clickContinue();
