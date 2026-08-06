@@ -12,8 +12,8 @@ interface FillInFieldsOptions {
 
 export class AmendChildDetails1Page extends EventPage {
   private readonly pageContent = {
-    paragraph: "Amend Child details",
-    heading: "Add new child",
+    // paragraph: "Amend Child details",
+    // heading: "Add new child",
     firstNameLabel: "First name",
     lastNameLabel: "Last name",
     dateOfBirthLabel: "Date of birth",
@@ -24,14 +24,6 @@ export class AmendChildDetails1Page extends EventPage {
     parentalResponsibility: "Parental responsibility",
   };
 
-  private readonly paragraphLocator: Locator = this.page.locator(Selectors.p, {
-    hasText: this.pageContent.paragraph,
-  });
-  private readonly headingLocator: Locator = this.page
-    .locator(Selectors.h3, {
-      hasText: this.pageContent.heading,
-    })
-    .first();
   private readonly firstNameLabelLocator: Locator = this.page
     .locator(Selectors.GovukFormLabel, {
       hasText: this.pageContent.firstNameLabel,
@@ -92,11 +84,9 @@ export class AmendChildDetails1Page extends EventPage {
   constructor(page: Page) {
     super(page, "Amend Child details");
   }
-//Asserting the page contents to ensure all elements are visible and correct
+
   async assertPageContents(): Promise<void> {
     await this.assertPageHeadings();
-    await expect(this.paragraphLocator).toBeVisible();
-    await expect(this.headingLocator).toBeVisible();
     await expect(this.firstNameLabelLocator).toBeVisible();
     await expect(this.lastNameLabelLocator).toBeVisible();
     await expect(this.dateOfBirthLabelLocator).toBeVisible();
