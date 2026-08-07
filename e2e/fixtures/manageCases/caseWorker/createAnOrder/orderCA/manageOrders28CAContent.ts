@@ -18,5 +18,5 @@ export enum ManageOrders28CAContent {
   additionalOrgName = "orgFirstName orgLastName",
   additionalOrgPostcode = "SW1A 1AA",
   additionalOrgAddress = "Buckingham Palace, London",
-  additionalOrBuildingAndStreet = "Buckingham Palace"
+  additionalOrBuildingAndStreet = "Buckingham Palace",
 }

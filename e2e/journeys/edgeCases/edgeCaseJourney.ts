@@ -23,6 +23,8 @@ import { Helpers } from "../../common/helpers.ts";
 import { PayPage } from "../../pages/edgeCases/payment/payPage.ts";
 import { PaymentConfirmationPage } from "../../pages/edgeCases/payment/paymentConfirmationPage.ts";
 import { ApplicationSubmitted } from "../../pages/edgeCases/submission/applicationSubmittedPage.ts";
+import { IdamUtils } from "@hmcts/playwright-common";
+import { logger } from "../../utils/index.ts";
 
 interface EdgeCaseDAParams {
   page: Page;
@@ -204,7 +206,9 @@ export class EdgeCase {
     surname: string;
   }> {
     await StartPage.startPage({ page, accessibilityTest });
-    const newIdamLoginHelper = await new IdamLoginHelper();
+    const newIdamLoginHelper = new IdamLoginHelper(
+      new IdamUtils({ logger: logger }),
+    );
     const userInfo = await newIdamLoginHelper.setupAndSignInUser(
       page,
       page.url(),
