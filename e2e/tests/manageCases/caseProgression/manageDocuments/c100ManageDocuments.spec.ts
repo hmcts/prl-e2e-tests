@@ -42,7 +42,7 @@ test.describe("Manage documents event for C100 case tests as a court admin.", ()
       accessibilityTest: true,
       caseType: "C100",
       documentParty: "Respondent",
-      documentCategory: "Guardian report",
+      documentCategory: "Section 16.4 Guardian Report",
       restrictDocument: false,
       confidentialDocument: false,
     });
