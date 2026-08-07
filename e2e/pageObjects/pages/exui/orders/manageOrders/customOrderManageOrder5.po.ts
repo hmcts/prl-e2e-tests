@@ -27,7 +27,6 @@ export class CustomOrdersManageOrder5Page extends EventPage {
     this.page.getByText("Select order name");
   private readonly orderNames: string[] = [
     "Standard directions order",
-    "Directions on issue",
     "Blank order or directions (C21)",
     "Child arrangements, specific issue or prohibited steps order (C43)",
     "Parental responsibility order (C45A)",
@@ -146,6 +145,12 @@ export class CustomOrdersManageOrder5Page extends EventPage {
     await this.assertPageHeadings();
     await expect(this.selectOrderNameLabel).toBeVisible();
     await this.pageUtils.assertStrings(this.orderNames);
+    await expect(
+      this.page.getByRole("radio", {
+        name: "Directions on issue",
+        exact: true,
+      }),
+    ).toHaveCount(0);
     await expect(this.uploadCustomOrderTemplateLabel).toBeVisible();
     await expect(this.uploadOrderAdviceLabel).toBeVisible();
     await expect(this.cancelUploadButton).toBeVisible();
