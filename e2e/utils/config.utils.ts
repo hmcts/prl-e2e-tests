@@ -39,6 +39,10 @@ export class Config {
       email: process.env.LEGALADVISOR_USERNAME as string,
       password: process.env.LEGALADVISOR_PASSWORD as string,
     },
+    localAuthority: {
+      email: process.env.LOCAL_AUTHORITY_USERNAME as string,
+      password: process.env.LOCAL_AUTHORITY_PASSWORD as string,
+    },
   };
 
   public static readonly sessionStoragePath: string = path.join(
@@ -61,6 +65,12 @@ export class Config {
     process.env.MANAGE_CASES_BASE_URL ||
       "https://manage-case.aat.platform.hmcts.net",
   );
+
+  public static readonly manageOrgBaseURL: string =
+    Config.ensureNoTrailingSlash(
+      process.env.MANAGE_ORG_BASE_URL ||
+        "https://manage-org.aat.platform.hmcts.net",
+    );
 
   public static readonly edgeCasesBaseURL: string =
     process.env.EDGE_CASE_BASE_URL ||
@@ -122,6 +132,28 @@ export class Config {
   public static readonly testMP3File: string = path.resolve(
     import.meta.dirname,
     "../assets/mockFile.mp3",
+  );
+
+  // Named mock PDFs for the LA Manage Documents journey (5 documents)
+  public static readonly testPdfFileCR1: string = path.resolve(
+    import.meta.dirname,
+    "../assets/CR1_Mockfile.pdf",
+  );
+  public static readonly testPdfFileCR2: string = path.resolve(
+    import.meta.dirname,
+    "../assets/CR2_Mockfile.pdf",
+  );
+  public static readonly testPdfFileExtention: string = path.resolve(
+    import.meta.dirname,
+    "../assets/Extention_Mockfile.pdf",
+  );
+  public static readonly testPdfFileRequest: string = path.resolve(
+    import.meta.dirname,
+    "../assets/Request_Mockfile.pdf",
+  );
+  public static readonly testPdfFileSection7: string = path.resolve(
+    import.meta.dirname,
+    "../assets/Section7_Mockfile.pdf",
   );
 
   public static getUserCredentials(role: UserRole): UserCredentials {

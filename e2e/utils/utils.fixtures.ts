@@ -16,6 +16,7 @@ import { PageUtils } from "./page.utils.ts";
 import { CitizenC100CaseUtils } from "./citizenC100Case.utils.ts";
 import { CommonCaseEventUtils } from "./commonCaseEvent.utils.ts";
 import { ManageCaseEventUtils } from "./manageCaseEvent.utils.ts";
+import { ManageOrgUtils } from "./manageOrg.utils.ts";
 import { CaseEventUtils } from "./caseEvent.utils.ts";
 
 export interface UtilsFixtures {
@@ -28,6 +29,7 @@ export interface UtilsFixtures {
   idamLoginHelper: IdamLoginHelper;
   serviceAuthUtils: ServiceAuthUtils;
   citizenC100CaseUtils: CitizenC100CaseUtils;
+  manageOrgUtils: ManageOrgUtils;
   manageCasesEventUtils: ManageCaseEventUtils;
   commonCaseEventsUtils: CommonCaseEventUtils;
 
@@ -94,5 +96,8 @@ export const utilsFixtures = {
     use,
   ) => {
     await use(new ManageCaseEventUtils(commonCaseEventsUtils, dateHelperUtils));
+  },
+  manageOrgUtils: async ({ commonCaseEventsUtils }, use) => {
+    await use(new ManageOrgUtils(commonCaseEventsUtils));
   },
 };

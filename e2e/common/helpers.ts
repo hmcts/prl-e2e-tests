@@ -7,6 +7,7 @@ import {
 } from "@playwright/test";
 import { Selectors } from "./selectors.ts";
 import {
+  addLocalAuthorityEvents,
   amendEvents,
   c100SolicitorEvents,
   courtAdminEvents,
@@ -31,7 +32,8 @@ export class Helpers {
       | fl401CaseWorkerActions
       | courtAdminEvents
       | amendEvents
-      | "Applicant’s family", // this is a temporary fix - the dropdown event needs to be renamed to match "Applicant's family"
+      | "Applicant’s family" // this is a temporary fix - the dropdown event needs to be renamed to match "Applicant's family"
+      | addLocalAuthorityEvents,
   ): Promise<void> {
     await page.waitForLoadState("domcontentloaded");
     await page.waitForSelector("#next-step", { state: "visible" });
