@@ -6,11 +6,8 @@ import { AdminEditAndApproveAnOrder21Page } from "../../../../pages/manageCases/
 import { AdminEditAndApproveAnOrder22Page } from "../../../../pages/manageCases/caseWorker/serveApprovedOrder/adminEditAndApproveAnOrder22Page.ts";
 import { AdminEditAndApproveAnOrder23Page } from "../../../../pages/manageCases/caseWorker/serveApprovedOrder/adminEditAndApproveAnOrder23Page.ts";
 import { AdminEditAndApproveAnOrderSubmitPage } from "../../../../pages/manageCases/caseWorker/serveApprovedOrder/adminEditAndApproveAnOrderSubmitPage.ts";
-import config from "../../../../utils/config.utils.ts";
 import Config from "../../../../utils/config.utils.ts";
 import { EditAndApproveAnOrder } from "../editAndApproveAnOrder/editAndApproveAnOrder.ts";
-import { Fl401AddCaseNumber1Page } from "../../../../pageObjects/pages/exui/checkApplication/fl401AddCaseNumber1.po.js";
-import { Fl401AddCaseNumberSubmitPage } from "../../../../pageObjects/pages/exui/checkApplication/fl401AddCaseNumberSubmit.po.js";
 
 interface AdminEditAndApproveOrderParams {
   page: Page;
@@ -28,54 +25,33 @@ export class AdminEditAndServeAnOrder {
     personallyServed,
     caseRef,
   }: AdminEditAndApproveOrderParams): Promise<void> {
+    // open new browser and sign in as judge user to approve order
+    const newBrowser = await browser.browserType().launch();
+    const newContext: BrowserContext = await newBrowser.newContext({
+      storageState: Config.sessionStoragePath + "judge.json",
+    });
+    const judgePage = await newContext.newPage();
+    await Helpers.goToCase(
+      judgePage,
+      Config.manageCasesBaseURLCase,
+      caseRef,
+      "tasks",
+    );
     await EditAndApproveAnOrder.editAndApproveAnOrder({
-      page: page,
-      caseType: "FL401",
+      page: judgePage,
       orderType: "nonMolestation",
       judeOrderAction: "Send to admin to serve",
       errorMessaging: false,
       accessibilityTest: accessibilityTest,
-      browser: browser,
-      caseRef: caseRef,
     });
-    // open new browser and sign in as court admin user
-    const newBrowser = await browser.browserType().launch();
-    const newContext: BrowserContext = await newBrowser.newContext({
-      storageState: Config.sessionStoragePath + "caseWorker.json",
-    });
-    page = await newContext.newPage();
-    await Helpers.goToCase(
-      page,
-      config.manageCasesBaseURLCase,
-      caseRef,
-      "tasks",
-    );
-    // check application task needs to be completed for the Edit and serve an order event
+    await judgePage.close();
+
     await Helpers.assignTaskToMeAndTriggerNextSteps(
       page,
-      "Check Application",
-      "Add Case Number",
+      "Complete the Order - Non-molestation order (FL404A)",
+      "Complete the Order",
     );
 
-    const fl401AddCaseNumber1Page = new Fl401AddCaseNumber1Page(page);
-    await fl401AddCaseNumber1Page.assertPageContents();
-    if (accessibilityTest) {
-      await fl401AddCaseNumber1Page.verifyAccessibility();
-    }
-    await fl401AddCaseNumber1Page.fillInFields("1234");
-    await fl401AddCaseNumber1Page.continueButton.click();
-
-    const fl401AddCaseNumberSubmitPage = new Fl401AddCaseNumberSubmitPage(page);
-    await fl401AddCaseNumberSubmitPage.assertPageContents(
-      ["caseProgression", "checkApplication"],
-      "check-application",
-    );
-    if (accessibilityTest) {
-      await fl401AddCaseNumberSubmitPage.verifyAccessibility();
-    }
-    await fl401AddCaseNumberSubmitPage.clickSaveAndContinue();
-
-    await Helpers.chooseEventFromDropdown(page, "Edit and serve an order");
     await AdminEditAndApproveAnOrder1Page.adminEditAndApproveAnOrder1Page(
       page,
       accessibilityTest,

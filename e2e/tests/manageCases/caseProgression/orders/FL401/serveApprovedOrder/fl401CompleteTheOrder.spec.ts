@@ -1,55 +1,63 @@
 import { test } from "../../../../../fixtures.ts";
 import Config from "../../../../../../utils/config.utils.ts";
 import config from "../../../../../../utils/config.utils.ts";
-import { Helpers } from "../../../../../../common/helpers.ts";
-import { jsonDatas } from "../../../../../../common/caseHelpers/jsonDatas.ts";
 import { CompleteTheOrder } from "../../../../../../journeys/manageCases/caseProgression/completeTheOrder/completeTheOrder.ts";
 
 test.use({ storageState: Config.sessionStoragePath + "caseWorker.json" });
 
-///if case is in issued state for DA cases, then only order events will appear in next dropdown
-
 test.describe("Complete the Order task for DA Solicitor case tests.", () => {
-  let ccdRef: string = "";
+  let caseRef: string = "";
 
-  test.beforeEach(async ({ page, browser, caseEventUtils }) => {
-    ccdRef = await caseEventUtils.createDACase(browser);
-    await Helpers.goToCase(
+  test.beforeEach(async ({ page, manageCasesEventUtils, navigationUtils }) => {
+    caseRef = (await manageCasesEventUtils.submitTSSolicitorCase("FL401"))
+      .caseRef;
+    await manageCasesEventUtils.sendToGatekeeper(caseRef, "FL401");
+    await navigationUtils.goToCase(
       page,
       config.manageCasesBaseURLCase,
-      ccdRef,
+      caseRef,
       "tasks",
     );
   });
 
   test("Complete Task - Complete the Order - Power of arrest (FL406) without accessibility test. @nightly @regression", async ({
     page,
-    browser,
+    manageCasesEventUtils,
   }) => {
+    await manageCasesEventUtils.createOrder({
+      caseRef,
+      orderType: "Power of arrest (FL406)",
+      isDraft: true,
+      doServe: false,
+      user: "judge",
+    });
+
     await CompleteTheOrder.FL401completeTheOrder({
       page: page,
       accessibilityTest: false,
-      ccdRef: ccdRef,
       createOrderFL401Options: "power of arrest",
-      browser: browser,
       personallyServed: true,
-      manageOrderData: jsonDatas.manageOrderDataPowerOfArrest,
       applicationSubmittedBy: "Solicitor",
     });
   });
 
   test("Complete Task - Complete the Order - Amended, discharged or varied order (FL404B) with accessibility test. @regression @accessibility", async ({
     page,
-    browser,
+    manageCasesEventUtils,
   }) => {
+    await manageCasesEventUtils.createOrder({
+      caseRef,
+      orderType: "Amended, discharged or varied order (FL404B)",
+      isDraft: true,
+      doServe: false,
+      user: "judge",
+    });
+
     await CompleteTheOrder.FL401completeTheOrder({
       page: page,
       accessibilityTest: true,
-      ccdRef: ccdRef,
       createOrderFL401Options: "amend discharge varied order",
-      browser: browser,
       personallyServed: true,
-      manageOrderData: jsonDatas.manageOrderDataAmendDischargedVaried,
       applicationSubmittedBy: "Solicitor",
     });
   });

@@ -10,12 +10,14 @@ test.describe("Applicant Request more time to do what is required by a court ord
     async ({
       page,
       citizenC100CaseUtils,
+      manageCasesEventUtils,
       idamLoginHelper,
       accessCodeHelper,
     }) => {
       await ActivateCitizenC100Case.activateCase({
         page,
         citizenC100CaseUtils,
+        manageCasesEventUtils,
         idamLoginHelper,
         accessCodeHelper,
         isApplicant: true,

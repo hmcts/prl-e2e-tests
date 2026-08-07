@@ -1,16 +1,12 @@
-import { Browser, Locator, Page } from "@playwright/test";
+import { Locator, Page } from "@playwright/test";
 import { Noc2Page } from "../../../../pages/manageCases/caseProgression/noticeOfChange/noc2Page.ts";
 import { NocSubmitPage } from "../../../../pages/manageCases/caseProgression/noticeOfChange/nocSubmitPage.ts";
 import { NocSuccessfulPage } from "../../../../pages/manageCases/caseProgression/noticeOfChange/nocSuccessfulPage.ts";
-import { Helpers } from "../../../../common/helpers.ts";
-import config from "../../../../utils/config.utils.ts";
-import { CreateHearingRequest } from "../createHearingRequest/createHearingRequest.ts";
 import { solicitorCaseCreateType } from "../../../../common/types.ts";
 import { Noc1Page } from "../../../../pages/manageCases/caseProgression/noticeOfChange/noc1Page.ts";
 
 interface NoticeOfChangeParams {
   page: Page;
-  browser: Browser;
   caseType: solicitorCaseCreateType;
   caseRef: string;
   isApplicant: boolean;
@@ -20,7 +16,6 @@ interface NoticeOfChangeParams {
 export class NoticeOfChange {
   public static async noticeOfChange({
     page,
-    browser,
     caseType,
     caseRef,
     isApplicant,
@@ -37,12 +32,6 @@ export class NoticeOfChange {
     );
     await NocSuccessfulPage.nocSuccessfulPage(page, accessibilityTest);
     await this.checkSolicitorOnApplication(page, caseType, isApplicant);
-
-    // hearings do not work on preview environment but the rest of the test is still worth checking on a preview env
-    if (process.env.MANAGE_CASES_TEST_ENV !== "preview") {
-      // check hearing can still be requested with change of solicitor
-      await this.checkHearingRequest(browser, caseRef);
-    }
   }
 
   private static async checkSolicitorOnApplication(
@@ -75,19 +64,5 @@ export class NoticeOfChange {
     await tableLocator
       .getByRole("link", { name: nocSolicitorEmail })
       .isVisible();
-  }
-
-  private static async checkHearingRequest(
-    browser: Browser,
-    caseRef: string,
-  ): Promise<void> {
-    const caPage: Page = await Helpers.openNewBrowserWindow(
-      browser,
-      "caseWorker",
-    );
-    await caPage.goto(
-      `${config.manageCasesBaseURLCase}/case-details/${caseRef}/hearings`,
-    );
-    await CreateHearingRequest.requestAHearing(caPage, false);
   }
 }

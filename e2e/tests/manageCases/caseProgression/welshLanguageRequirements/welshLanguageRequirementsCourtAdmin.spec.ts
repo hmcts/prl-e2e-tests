@@ -1,18 +1,17 @@
 import { test } from "../../../fixtures.ts";
-import { Helpers } from "../../../../common/helpers.ts";
 import config from "../../../../utils/config.utils.ts";
 import { WelshLanguageRequirements } from "../../../../journeys/manageCases/caseProgression/welshLanguageRequirements/welshLanguageRequirements.ts";
 
 test.use({ storageState: config.sessionStoragePath + "caseWorker.json" });
 
 test.describe("Welsh Language Requirements task for DA Solicitor case tests as Court Admin.", () => {
-  test.beforeEach(async ({ page, browser, caseEventUtils }) => {
-    const ccdRef: string = await caseEventUtils.createDACase(browser);
-    await Helpers.goToCase(
+  test.beforeEach(async ({ page, manageCasesEventUtils, navigationUtils }) => {
+    const caseRef = (await manageCasesEventUtils.submitTSSolicitorCase("FL401"))
+      .caseRef;
+    await navigationUtils.goToCase(
       page,
       config.manageCasesBaseURLCase,
-      ccdRef,
-      "tasks",
+      caseRef,
     );
   });
 

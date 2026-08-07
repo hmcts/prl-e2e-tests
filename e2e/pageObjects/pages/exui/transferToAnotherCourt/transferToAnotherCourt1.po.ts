@@ -1,7 +1,7 @@
-import { EventPage } from "../eventPage.po.js";
+import { EventPage } from "../eventPage.po.ts";
 import { expect, Locator, Page } from "@playwright/test";
-import { Selectors } from "../../../../common/selectors.js";
-import { PageUtils } from "../../../../utils/page.utils.js";
+import { Selectors } from "../../../../common/selectors.ts";
+import { PageUtils } from "../../../../utils/page.utils.ts";
 
 export class TransferToAnotherCourt1Page extends EventPage {
   readonly warningText: Locator = this.page.locator(Selectors.strong, {
@@ -126,6 +126,8 @@ export class TransferToAnotherCourt1Page extends EventPage {
   }
 
   async selectCourtWhenNotListed(courtName: string): Promise<void> {
+    // need to essentially unselect the currently selected court for the event to be successful
+    await this.page.locator("#courtList").selectOption("--Select a value--");
     await this.cannotFindCourt.check();
     await expect(this.formLabelCourtName).toBeVisible();
     await expect(this.formLabelCourtEmailAddress).toBeVisible();

@@ -5,9 +5,11 @@ import { CaseActivatedPage } from "../../../pages/citizen/activateCase/caseActiv
 import { Selectors } from "../../../common/selectors.ts";
 import process from "node:process";
 import { CreateUserUtil } from "../../../utils/createUser.utils.ts";
-import { CitizenC100CaseUtils } from "../../../utils/citizenC100CaseUtils.ts";
+import { CitizenC100CaseUtils } from "../../../utils/citizenC100Case.utils.ts";
 import IdamLoginHelper from "../../../utils/idamLoginHelper.utils.ts";
 import { AccessCodeHelper } from "../../../utils/accessCode.utils.ts";
+import { ManageCaseEventUtils } from "../../../utils/manageCaseEvent.utils.js";
+import { LOCAL_COURTS } from "../../../common/types.js";
 
 type UserInfo = {
   email: string;
@@ -17,6 +19,7 @@ type UserInfo = {
 interface Params {
   page: Page;
   citizenC100CaseUtils: CitizenC100CaseUtils;
+  manageCasesEventUtils: ManageCaseEventUtils;
   idamLoginHelper: IdamLoginHelper;
   accessCodeHelper: AccessCodeHelper;
   isApplicant: boolean;
@@ -26,6 +29,7 @@ export class ActivateCitizenC100Case {
   public static async activateCase({
     page,
     citizenC100CaseUtils,
+    manageCasesEventUtils,
     idamLoginHelper,
     accessCodeHelper,
     isApplicant,
@@ -36,8 +40,22 @@ export class ActivateCitizenC100Case {
       token,
       "citizen",
     );
-    const caseNumber =
-      await citizenC100CaseUtils.setupCitizenC100Application(citizenUserInfo);
+
+    // setup citizen case
+    const caseRef =
+      await citizenC100CaseUtils.createAndSubmitCitizenCase(citizenUserInfo);
+    await manageCasesEventUtils.issueAndSendToLocalCourt(
+      caseRef,
+      LOCAL_COURTS.aberystwyth,
+    );
+    await manageCasesEventUtils.sendToGatekeeper(caseRef, "C100");
+    await manageCasesEventUtils.createOrder({
+      caseRef: caseRef,
+      orderType: "Parental responsibility order (C45A)",
+      isDraft: false,
+      doServe: false,
+    });
+    await citizenC100CaseUtils.citizenServiceOfApplication(caseRef);
 
     //activate case
     await idamLoginHelper.signIn(
@@ -53,12 +71,12 @@ export class ActivateCitizenC100Case {
     await activateAccessCodeLocator.click();
     let accessCode: string;
     if (isApplicant) {
-      accessCode = await accessCodeHelper.getApplicantAccessCode(caseNumber);
+      accessCode = await accessCodeHelper.getApplicantAccessCode(caseRef);
     } else {
-      accessCode = await accessCodeHelper.getRespondentAccessCode(caseNumber);
+      accessCode = await accessCodeHelper.getRespondentAccessCode(caseRef);
     }
-    await EnterPinPage.enterPinPage(page, caseNumber, accessCode, false);
-    await CaseActivatedPage.caseActivatedPage(page, caseNumber, false);
+    await EnterPinPage.enterPinPage(page, caseRef, accessCode, false);
+    await CaseActivatedPage.caseActivatedPage(page, caseRef, false);
 
     // check dashboard is correct
     if (isApplicant) {
@@ -165,6 +183,6 @@ export class ActivateCitizenC100Case {
       ).toBeVisible();
     }
 
-    return caseNumber;
+    return caseRef;
   }
 }

@@ -6,19 +6,15 @@ import { EnterPinPage } from "../../../pages/citizen/activateCase/enterPinPage.t
 import { CaseActivatedPage } from "../../../pages/citizen/activateCase/caseActivatedPage.ts";
 import { ApplicantDashboardPage } from "../../../pages/citizen/activateCase/applicantDashboardPage.ts";
 import { RespondentDashboardPage } from "../../../pages/citizen/activateCase/respondentDashboardPage.ts";
-import { jsonDatas } from "../../../common/caseHelpers/jsonDatas.ts";
 import { Selectors } from "../../../common/selectors.ts";
 import { ApplicantDashboardContent } from "../../../fixtures/citizen/activateCase/applicantDashboardContent.ts";
 import { RespondentDashboardContent } from "../../../fixtures/citizen/activateCase/respondentDashboardContent.ts";
-import { ServiceOfApplication } from "../../manageCases/caseProgression/serviceOfApplication/serviceOfApplication.ts";
-import { fl401CompleteEventsUpToServiceOfApplication } from "../../../common/caseHelpers/caseEventsHelper.ts";
 import { applicationSubmittedBy } from "../../../common/types.ts";
-import { ConfidentialityCheck } from "../../manageCases/caseProgression/confidentilityCheck/confidentialityCheck.ts";
 import { IdamUtils, ServiceAuthUtils } from "@hmcts/playwright-common";
 import { TokenUtils } from "../../../utils/token.utils.ts";
+import { logger } from "../../../utils/index.ts";
 
 interface ActiveCaseParams {
-  page: Page;
   browser: Browser;
   caseRef: string;
   caseUser: CaseUser;
@@ -31,7 +27,6 @@ export type CaseUser = "applicant" | "respondent" | "both";
 
 export class ActivateCase {
   public static async activateCase({
-    page,
     browser,
     caseRef,
     caseUser,
@@ -39,39 +34,10 @@ export class ActivateCase {
     accessibilityTest,
     isManualSOA,
   }: ActiveCaseParams): Promise<Page> {
-    let currentPage: Page = page;
-    if (isManualSOA) {
-      await ServiceOfApplication.FL401FullServiceOfApplicationJourney({
-        page: page,
-        accessibilityTest: accessibilityTest,
-        ccdRef: caseRef,
-        createOrderFL401Options: "power of arrest",
-        browser: browser,
-        personallyServed: true,
-        yesNoServiceOfApplication4: false,
-        confidentialityCheck: false,
-        responsibleForServing: "courtBailiff",
-        manageOrderData: jsonDatas.citizenManageOrderDataPowerOfArrest,
-        applicationSubmittedBy: applicationSubmittedBy,
-      });
-      // need to complete C8 confidential details event when it is a solicitor case
-      // this is a cut down version of the confidential details journey
-      if (applicationSubmittedBy == "Solicitor") {
-        await ConfidentialityCheck.confidentialityCheckLite(browser, caseRef);
-      }
-    } else {
-      await fl401CompleteEventsUpToServiceOfApplication(
-        page,
-        browser,
-        caseRef,
-        jsonDatas.citizenManageOrderDataPowerOfArrest,
-        "power of arrest",
-        applicationSubmittedBy,
-      );
-    }
+    let citizenPage: Page;
     switch (caseUser) {
       case "applicant":
-        currentPage = await this.checkApplicantDashboard(
+        citizenPage = await this.checkApplicantDashboard(
           browser,
           caseRef,
           accessibilityTest,
@@ -80,7 +46,7 @@ export class ActivateCase {
         );
         break;
       case "respondent":
-        currentPage = await this.checkRespondentDashboard(
+        citizenPage = await this.checkRespondentDashboard(
           browser,
           caseRef,
           accessibilityTest,
@@ -89,14 +55,14 @@ export class ActivateCase {
         );
         break;
       case "both":
-        await this.checkApplicantDashboard(
+        citizenPage = await this.checkApplicantDashboard(
           browser,
           caseRef,
           accessibilityTest,
           applicationSubmittedBy,
           isManualSOA,
         );
-        await this.checkRespondentDashboard(
+        citizenPage = await this.checkRespondentDashboard(
           browser,
           caseRef,
           accessibilityTest,
@@ -109,7 +75,7 @@ export class ActivateCase {
           `Couldn't check dashboard as supplied argument of ${caseUser} does not match any cases`,
         );
     }
-    return currentPage;
+    return citizenPage;
   }
 
   private static async checkApplicantDashboard(
@@ -122,16 +88,16 @@ export class ActivateCase {
     const newBrowser = await browser.browserType().launch();
     const newContext: BrowserContext = await newBrowser.newContext();
     const page: Page = await newContext.newPage();
-    const newIdamUtil = await new IdamLoginHelper();
+    const newIdamUtil = new IdamLoginHelper(new IdamUtils({ logger: logger }));
     await newIdamUtil.setupAndSignInUser(
       page,
       Config.citizenFrontendBaseURL,
       "citizen",
     );
     await page.click(`a:text-is("Activate access code")`);
-    const newAccessCodeUtil = await new AccessCodeHelper(
-      new ServiceAuthUtils(),
-      new TokenUtils(new IdamUtils()),
+    const newAccessCodeUtil = new AccessCodeHelper(
+      new ServiceAuthUtils({ logger: logger }),
+      new TokenUtils(new IdamUtils({ logger: logger })),
     );
     const accessCode: string =
       await newAccessCodeUtil.getApplicantAccessCode(caseRef);
@@ -144,6 +110,7 @@ export class ActivateCase {
       applicationSubmittedBy,
       isManualSOA,
     );
+
     return page;
   }
 
@@ -157,16 +124,16 @@ export class ActivateCase {
     const newBrowser = await browser.browserType().launch();
     const newContext: BrowserContext = await newBrowser.newContext();
     const page = await newContext.newPage();
-    const newIdamUtil = await new IdamLoginHelper();
+    const newIdamUtil = new IdamLoginHelper(new IdamUtils({ logger: logger }));
     await newIdamUtil.setupAndSignInUser(
       page,
       Config.citizenFrontendBaseURL,
       "citizen",
     );
     await page.click(`a:text-is("Activate access code")`);
-    const newAccessCodeUtil = await new AccessCodeHelper(
-      new ServiceAuthUtils(),
-      new TokenUtils(new IdamUtils()),
+    const newAccessCodeUtil = new AccessCodeHelper(
+      new ServiceAuthUtils({ logger: logger }),
+      new TokenUtils(new IdamUtils({ logger: logger })),
     );
     const accessCode: string =
       await newAccessCodeUtil.getRespondentAccessCode(caseRef);
@@ -216,7 +183,7 @@ export class ActivateCase {
       // just check the page heading
       await page
         .locator(Selectors.GovukHeadingXL, {
-          hasText: ApplicantDashboardContent.govukHeadingXL,
+          hasText: ApplicantDashboardContent.solicitorApplicationGovukHeadingXL,
         })
         .waitFor();
     } else {

@@ -5,8 +5,6 @@ import { DummyCreateInitial } from "./dummyCreateInitial.ts";
 import { DummyC100ApplicantDetails } from "./dummyC100ApplicantDetails.ts";
 import { DummyC100OtherPersonDetails } from "./dummyC100OtherPersonDetails.ts";
 import { Helpers } from "../../../../common/helpers.ts";
-import { jsonDatas } from "../../../../common/caseHelpers/jsonDatas.ts";
-import { CaseEventUtils } from "../../../../utils/caseEvent.utils.js";
 
 interface dummyC100Options {
   page: Page;
@@ -45,13 +43,11 @@ export class DummyC100 {
       yesNoHelpWithFees: false,
       accessibilityTest: false,
     });
-    const caseEventUtils = new CaseEventUtils();
-    await caseEventUtils.submitEvent(
-      page,
-      caseRef,
-      "testingSupportPaymentSuccessCallback",
-      jsonDatas.solicitorCACaseData,
-    );
+
+    // complete dummy payment confirmation
+    await Helpers.chooseEventFromDropdown(page, "Dummy Payment confirmation");
+    await page.getByRole("button", { name: "Make the payment" }).click();
+
     return caseRef;
   }
 }

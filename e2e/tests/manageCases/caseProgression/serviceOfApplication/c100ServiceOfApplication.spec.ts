@@ -1,20 +1,28 @@
-import { test } from "../../../fixtures.js";
-import config from "../../../../utils/config.utils.js";
-import { Helpers } from "../../../../common/helpers.js";
-import { ServiceOfApplication } from "../../../../journeys/manageCases/caseProgression/serviceOfApplication/serviceOfApplication.js";
+import { test } from "../../../fixtures.ts";
+import config from "../../../../utils/config.utils.ts";
+import { ServiceOfApplication } from "../../../../journeys/manageCases/caseProgression/serviceOfApplication/serviceOfApplication.ts";
 
 test.use({ storageState: config.sessionStoragePath + "caseWorker.json" });
 
 test.describe("Service of Application task for CA Solicitor case tests.", () => {
-  let ccdRef: string = "";
+  let caseRef: string = "";
 
-  test.beforeEach(async ({ page, browser, caseEventUtils }) => {
-    ccdRef = await caseEventUtils.createCACaseSendToGatekeeper(browser);
-    await Helpers.goToCase(
+  test.beforeEach(async ({ page, manageCasesEventUtils, navigationUtils }) => {
+    caseRef = (await manageCasesEventUtils.submitTSSolicitorCase("C100"))
+      .caseRef;
+    await manageCasesEventUtils.issueAndSendToLocalCourt(caseRef);
+    await manageCasesEventUtils.sendToGatekeeper(caseRef, "C100");
+    await manageCasesEventUtils.createOrder({
+      caseRef,
+      orderType:
+        "Child arrangements, specific issue or prohibited steps order (C43)",
+      isDraft: false,
+      doServe: false,
+    });
+    await navigationUtils.goToCase(
       page,
       config.manageCasesBaseURLCase,
-      ccdRef,
-      "Summary",
+      caseRef,
     );
   });
 
@@ -24,14 +32,8 @@ test.describe("Service of Application task for CA Solicitor case tests.", () => 
     await ServiceOfApplication.C100FullServiceOfApplicationJourney({
       page: page,
       accessibilityTest: true,
-      ccdRef: ccdRef,
-      personallyServed: true,
-      solicitorCaseCreateType: "C100",
-      isUploadOrder: false,
-      checkOption: "noCheck", //options passed could be either noCheck or judgeOrLegalAdvisorCheck or managerCheck
-      serveOrderNow: true, //select to serve order instantly
       yesNoServiceOfApplication4: false,
-      confidentialityCheck: false,
+      confidentialityCheck: true,
       responsibleForServing: "courtBailiff",
       applicationSubmittedBy: "Solicitor",
     });

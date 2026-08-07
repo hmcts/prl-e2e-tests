@@ -1,23 +1,19 @@
 import Config from "../../../../utils/config.utils.ts";
-import { DeleteApplication } from "../../../../journeys/manageCases/caseProgression/deleteApplication/deleteApplication.ts";
 import config from "../../../../utils/config.utils.ts";
-import { Helpers } from "../../../../common/helpers.js";
+import { DeleteApplication } from "../../../../journeys/manageCases/caseProgression/deleteApplication/deleteApplication.ts";
 import { test } from "../../../fixtures.ts";
 
 test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
 
 test.describe("Delete DA(FL401) application tests in draft state", (): void => {
-  test.beforeEach(async ({ page, caseEventUtils }) => {
-    await page.goto(config.manageCasesBaseURLCase);
-    const caseRef: string = await caseEventUtils.createTSSolicitorCase(
-      page,
-      "FL401",
-    );
-    await Helpers.goToCase(
+  test.beforeEach(async ({ page, manageCasesEventUtils, navigationUtils }) => {
+    const caseRef: string = (
+      await manageCasesEventUtils.createDraftTSSolicitorCase("FL401")
+    ).caseRef;
+    await navigationUtils.goToCase(
       page,
       config.manageCasesBaseURLCase,
       caseRef,
-      "tasks",
     );
   });
 
