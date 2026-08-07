@@ -39,11 +39,13 @@ export class ManageOrder26Page extends EventPage {
     "Safeguarding letter",
     "Section 7 report",
     "S7 addendum report",
-    "16.4 report",
+    "Section 16.4 Guardian Report",
     "Update to safeguarding letter",
-    "S16A risk assessment",
+    "Section 16A Risk Assessment",
     "Child Impact report",
     "Other reports",
+    "Enforcement Order Suitability Report",
+    "Parental Order Reporter Report",
   ];
 
   // Cafcass date fields
