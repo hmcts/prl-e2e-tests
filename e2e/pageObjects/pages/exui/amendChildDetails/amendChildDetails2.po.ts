@@ -63,6 +63,5 @@ export class AmendChildDetails2Page extends EventPage {
         .fill(this.pageContent.childNameAndLocalAuthority);
     }
     await this.childrenProtectionPlanRadio(yesNoDontKnow).check();
-    await this.clickContinue();
   }
 }

@@ -35,10 +35,14 @@ test.describe("Complete amend Child details event as a court admin", () => {
       await summaryPage.chooseEventFromDropdown("Amend Child details");
 
       await amendChildDetails.page1.assertPageContents();
+      await amendChildDetails.page1.verifyAccessibility();
       await amendChildDetails.page1.fillInFields(fillInFieldsOptions);
+      await amendChildDetails.page1.clickContinue();
 
       await amendChildDetails.page2.assertPageContents();
+      await amendChildDetails.page2.verifyAccessibility();
       await amendChildDetails.page2.fillInFields(confirmOptions);
+      await amendChildDetails.page2.clickContinue();
 
       await amendChildDetails.submitPage.assertPageContents(
         ["caseProgression", "amendDetails", "amendChildDetails"],

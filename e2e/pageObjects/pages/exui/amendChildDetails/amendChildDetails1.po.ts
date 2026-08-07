@@ -109,6 +109,5 @@ export class AmendChildDetails1Page extends EventPage {
       this.pageContent.parentalResponsibility,
     );
     await this.parentDropdown.selectOption({ index: 1 });
-    await this.clickContinue();
   }
 }
