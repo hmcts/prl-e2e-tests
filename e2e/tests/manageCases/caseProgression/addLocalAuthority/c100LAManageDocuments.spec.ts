@@ -1,8 +1,5 @@
 import { expect, test } from "../../../fixtures.ts";
 import Config from "../../../../utils/config.utils.ts";
-import { ManageDocumentsNew1Page } from "../../../../pageObjects/pages/exui/manageDocuments/manageDocumentsNew1.po.ts";
-import { ManageDocumentsNewSubmitPage } from "../../../../pageObjects/pages/exui/manageDocuments/manageDocumentsNewSubmit.po.ts";
-import { ManageDocumentsNewConfirmPage } from "../../../../pageObjects/pages/exui/manageDocuments/manageDocumentsNewConfirm.po.ts";
 
 test.describe.configure({ mode: "serial" });
 
@@ -62,6 +59,12 @@ test.describe("Add local authority event for C100 case tests as a Local Authorit
   }): Promise<void> => {
     const organisationName =
       "Local Authority Private Law AAT Test Organisation";
+    const organisationAddress = [
+      "7 Fitzhamon Embankment",
+      "Caerdydd",
+      "United Kingdom",
+      "CF11 6AN",
+    ];
 
     await navigationUtils.goToCase(
       caseWorker.page,
@@ -83,9 +86,8 @@ test.describe("Add local authority event for C100 case tests as a Local Authorit
     );
     await caseWorker.addLocalAuthority.addLocalAuthoritySubmitPage.assertOrganisationDetails(
       organisationName,
-      "",
+      organisationAddress,
     );
-    // await caseWorker.addLocalAuthority.addLocalAuthoritySubmitPage.verifyAccessibility();  // TODO add ticket failing accessibility
     await caseWorker.addLocalAuthority.addLocalAuthoritySubmitPage.submitForm();
 
     await caseWorker.addLocalAuthority.addLocalAuthorityConfirmPage.assertPageContents();
@@ -143,7 +145,12 @@ test.describe("Add local authority event for C100 case tests as a Local Authorit
 
     await summaryPage.chooseEventFromDropdown("Manage documents");
 
-    const manageDocumentsNew1Page = new ManageDocumentsNew1Page(page);
+    const {
+      manageDocumentsNew1Page,
+      manageDocumentsNewSubmitPage,
+      manageDocumentsNewConfirmPage,
+    } = localAuthority.manageDocuments;
+
     for (let i = 0; i < LA_DOCUMENTS.length; i++) {
       const doc = LA_DOCUMENTS[i];
       if (i > 0) {
@@ -160,7 +167,6 @@ test.describe("Add local authority event for C100 case tests as a Local Authorit
     }
     await manageDocumentsNew1Page.clickContinue();
 
-    const manageDocumentsNewSubmitPage = new ManageDocumentsNewSubmitPage(page);
     await manageDocumentsNewSubmitPage.assertDocumentsPageContents(
       "Local authority",
       LA_DOCUMENTS,
@@ -168,9 +174,6 @@ test.describe("Add local authority event for C100 case tests as a Local Authorit
     await manageDocumentsNewSubmitPage.verifyAccessibility();
     await manageDocumentsNewSubmitPage.clickSaveAndContinue();
 
-    const manageDocumentsNewConfirmPage = new ManageDocumentsNewConfirmPage(
-      page,
-    );
     await manageDocumentsNewConfirmPage.assertPageContents();
     await manageDocumentsNewConfirmPage.verifyAccessibility();
     await manageDocumentsNewConfirmPage.clickCloseAndReturnToCaseDetails();

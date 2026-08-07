@@ -8,25 +8,28 @@ export class AdminAddLocalAuthoritySubmitPage extends CheckYourAnswersPage {
   }
 
   /**
-   * Asserts that the CYA table shows the selected organisation name and a
-   * partial address string.
+   * Asserts that the CYA table shows the selected organisation name and each
+   * line of its address.
    *
    * From the DOM the org details render inside a <table> with cells:
    *   th="Organisation" | td.Name | td.Address (multiline)
    *
-   * @param orgName  - exact org name, e.g. "Local Authority Private Law AAT Test Organisation"
-   * @param address  - partial address to verify, e.g. "7 Fitzhamon Embankment"
+   * @param orgName      - exact org name, e.g. "Local Authority Private Law AAT Test Organisation"
+   * @param addressLines - every line of the address to verify, e.g.
+   *                       ["7 Fitzhamon Embankment", "Caerdydd", "United Kingdom", "CF11 6AN"]
    */
   async assertOrganisationDetails(
     orgName: string,
-    address: string,
+    addressLines: string[],
   ): Promise<void> {
     await expect(
       this.page.locator("td, dd").filter({ hasText: orgName }).first(),
     ).toBeVisible();
-    await expect(
-      this.page.locator("td, dd").filter({ hasText: address }).first(),
-    ).toBeVisible();
+    for (const line of addressLines) {
+      await expect(
+        this.page.locator("td, dd").filter({ hasText: line }).first(),
+      ).toBeVisible();
+    }
   }
 
   async submitForm(): Promise<void> {

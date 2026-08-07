@@ -68,6 +68,11 @@ export class ManageDocumentsNew1Page {
         `${Selectors.headingH3}:text-is("${ManageDocumentsNew1Content.headingH3}")`,
         1,
       ),
+      // Helpers.checkVisibleAndPresent(
+      //   page,
+      //   `${Selectors.button}:text-is("${ManageDocumentsNew1Content.buttonText}")`,
+      //   2,
+      // ), //exui ticket raised to resolve issue with hidden add new button
       Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.button}:text-is("${ManageDocumentsNew1Content.buttonText2}")`,
@@ -105,6 +110,7 @@ export class ManageDocumentsNew1Page {
       ),
     ]);
     if (accessibilityTest) {
+      // await new AxeUtils(page).audit();
     }
   }
   private static async fillInFields({
@@ -126,6 +132,7 @@ export class ManageDocumentsNew1Page {
     });
     const fileInput = page.locator(UniqueSelectors.uploadDocument);
     await fileInput.setInputFiles(config.testPdfFile);
+    // wait for upload of document to be complete before continuing
     await page
       .locator(Selectors.GovukErrorMessage, { hasText: "Uploading..." })
       .waitFor({ state: "hidden" });
@@ -149,71 +156,5 @@ export class ManageDocumentsNew1Page {
     await page.click(
       `${Selectors.button}:text-is("${CommonStaticText.continue}")`,
     );
-  }
-
-  /**
-   * Public static helper — fills a single document slot by index (0-based).
-   * Used when uploading multiple documents in one Manage Documents event without
-   * going through the full page assertion flow each time.
-   */
-  public static async fillDocumentSlot({
-    page,
-    index,
-    documentParty,
-    documentCategory,
-    confidentialDocument,
-    restrictDocument,
-    filePath,
-  }: {
-    page: Page;
-    index: number;
-    documentParty: string;
-    documentCategory: string;
-    confidentialDocument: boolean;
-    restrictDocument: boolean;
-    filePath?: string;
-  }): Promise<void> {
-    const idx = index;
-    await page.click(
-      `#manageDocuments_${idx}_documentRelatedToCaseCheckbox-RELATED_TO_CASE`,
-    );
-    await page.selectOption(`#manageDocuments_${idx}_documentParty`, {
-      label: documentParty,
-    });
-    await page.selectOption(`#manageDocuments_${idx}_documentCategories`, {
-      label: documentCategory,
-    });
-
-    const fileInput = page.locator(`#manageDocuments_${idx}_document`);
-    await fileInput.setInputFiles(filePath ?? config.testPdfFile);
-    // Allow 10 seconds for the upload to register before checking completion.
-    // NOTE: this spacing also keeps document uploads under the doc-store rate
-    // limit — cutting it shorter causes "Your request was rate limited" errors.
-    await page.waitForTimeout(10_000);
-    await page
-      .locator(
-        `label[for="manageDocuments_${idx}_document"] ~ span.error-message`,
-      )
-      .waitFor({ state: "hidden", timeout: 60_000 });
-
-    if (confidentialDocument) {
-      await page.click(`#manageDocuments_${idx}_isConfidential_Yes`);
-    } else {
-      await page.click(`#manageDocuments_${idx}_isConfidential_No`);
-    }
-
-    if (restrictDocument) {
-      await page.click(`#manageDocuments_${idx}_isRestricted_Yes`);
-      await page.fill(
-        `#manageDocuments_${idx}_restrictedDetails`,
-        ManageDocumentsNew1Content.inputText,
-      );
-    } else {
-      await page.click(`#manageDocuments_${idx}_isRestricted_No`);
-    }
-  }
-
-  public static async clickContinue(page: Page): Promise<void> {
-    await this.continue(page);
   }
 }
