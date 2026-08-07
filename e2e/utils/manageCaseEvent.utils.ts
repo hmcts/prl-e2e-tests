@@ -689,8 +689,8 @@ export class ManageCaseEventUtils {
     const solicitorC100CaseEvents: solicitorCACaseAPIEvent[] = [
       "selectApplicationType",
       "hearingUrgency",
-      "respondentsDetails",
       "applicantsDetails",
+      "respondentsDetails",
       "otherPeopleInTheCaseRevised",
       "childDetailsRevised",
       "otherChildNotInTheCase",
