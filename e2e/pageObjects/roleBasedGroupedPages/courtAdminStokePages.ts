@@ -14,6 +14,9 @@ import { TransferToAnotherCourt1Page } from "../pages/exui/transferToAnotherCour
 import { TransferToAnotherCourtSubmitPage } from "../pages/exui/transferToAnotherCourt/transferToAnotherCourtSubmit.po.js";
 import { TransferToAnotherCourtConfirmPage } from "../pages/exui/transferToAnotherCourt/transferToAnotherCourtConfirm.po.js";
 import { DraftOrdersPage } from "../pages/exui/caseView/draftOrders.po.js";
+import { AmendChildDetails1Page } from "../pages/exui/amendChildDetails/amendChildDetails1.po.ts";
+import { AmendChildDetails2Page } from "../pages/exui/amendChildDetails/amendChildDetails2.po.ts";
+import { AmendChildDetailsSubmitPage } from "../pages/exui/amendChildDetails/amendChildDetailsSubmit.po.ts";
 
 export class CourtAdminStokePagesGroup {
   constructor(public readonly page: Page) {}
@@ -61,6 +64,14 @@ export class CourtAdminStokePagesGroup {
   get draftedOrders() {
     return {
       draftOrdersPage: new DraftOrdersPage(this.page),
+    };
+  }
+
+  get amendChildDetails() {
+    return {
+      page1: new AmendChildDetails1Page(this.page),
+      page2: new AmendChildDetails2Page(this.page),
+      submitPage: new AmendChildDetailsSubmitPage(this.page),
     };
   }
 }
