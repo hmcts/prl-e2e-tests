@@ -32,6 +32,7 @@ test.describe("Complete the Order task for C100 case tests.", () => {
       serveOrderNow: true, //select to serve order instantly
       personallyServed: true,
       caseNumber: caseRef,
+      errorMessaging: true,
     });
   });
 });

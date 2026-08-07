@@ -12,6 +12,7 @@ import { RespondentDashboardContent } from "../../../fixtures/citizen/activateCa
 import { applicationSubmittedBy } from "../../../common/types.ts";
 import { IdamUtils, ServiceAuthUtils } from "@hmcts/playwright-common";
 import { TokenUtils } from "../../../utils/token.utils.ts";
+import { logger } from "../../../utils/index.ts";
 
 interface ActiveCaseParams {
   browser: Browser;
@@ -87,16 +88,16 @@ export class ActivateCase {
     const newBrowser = await browser.browserType().launch();
     const newContext: BrowserContext = await newBrowser.newContext();
     const page: Page = await newContext.newPage();
-    const newIdamUtil = await new IdamLoginHelper();
+    const newIdamUtil = new IdamLoginHelper(new IdamUtils({ logger: logger }));
     await newIdamUtil.setupAndSignInUser(
       page,
       Config.citizenFrontendBaseURL,
       "citizen",
     );
     await page.click(`a:text-is("Activate access code")`);
-    const newAccessCodeUtil = await new AccessCodeHelper(
-      new ServiceAuthUtils(),
-      new TokenUtils(new IdamUtils()),
+    const newAccessCodeUtil = new AccessCodeHelper(
+      new ServiceAuthUtils({ logger: logger }),
+      new TokenUtils(new IdamUtils({ logger: logger })),
     );
     const accessCode: string =
       await newAccessCodeUtil.getApplicantAccessCode(caseRef);
@@ -123,16 +124,16 @@ export class ActivateCase {
     const newBrowser = await browser.browserType().launch();
     const newContext: BrowserContext = await newBrowser.newContext();
     const page = await newContext.newPage();
-    const newIdamUtil = await new IdamLoginHelper();
+    const newIdamUtil = new IdamLoginHelper(new IdamUtils({ logger: logger }));
     await newIdamUtil.setupAndSignInUser(
       page,
       Config.citizenFrontendBaseURL,
       "citizen",
     );
     await page.click(`a:text-is("Activate access code")`);
-    const newAccessCodeUtil = await new AccessCodeHelper(
-      new ServiceAuthUtils(),
-      new TokenUtils(new IdamUtils()),
+    const newAccessCodeUtil = new AccessCodeHelper(
+      new ServiceAuthUtils({ logger: logger }),
+      new TokenUtils(new IdamUtils({ logger: logger })),
     );
     const accessCode: string =
       await newAccessCodeUtil.getRespondentAccessCode(caseRef);
