@@ -445,6 +445,39 @@ export class ManageCaseEventUtils {
     }
   }
 
+  //WIP - Not working due to header param - client-context which is getting generated from Exui and being passed to task-management.
+  /**
+   * Complete the edit and approve orders event for an FL401 or C100 case via API request.
+   */
+  async editAndApproveOrder(
+    caseRef: string,
+    orderType: OrderTypes,
+    user = "judge",
+  ): Promise<void> {
+    let orderActionData: ManageOrdersRequestData;
+    switch (orderType) {
+      case "Parental responsibility order (C45A)":
+        orderActionData = ParentalResponsibilityOrderActionData;
+        break;
+      default:
+        throw new Error(
+          `Unexpected order type when fetching order data: ${orderType}`,
+        );
+    }
+
+    const { email, password } = Config.userCredentials[user];
+
+    await this.commonCaseEventsUtils.completeEvent({
+      caseRef: caseRef,
+      eventId: "editAndApproveAnOrder",
+      eventData: orderActionData.judgeEditAndApproveDraftedOrderData,
+      userCredentials: {
+        email: email,
+        password: password,
+      },
+    });
+  }
+
   async createSolicitorDraftOrder(
     caseRef: string,
     orderType: OrderTypes,

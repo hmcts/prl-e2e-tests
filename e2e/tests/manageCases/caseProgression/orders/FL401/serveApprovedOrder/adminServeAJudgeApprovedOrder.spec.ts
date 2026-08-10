@@ -18,6 +18,7 @@ test.describe("As a Court admin Serve a judge approved solicitor created DA case
       caseRef,
       "Non-molestation order (FL404A)",
     );
+
     await navigationUtils.goToCase(
       page,
       config.manageCasesBaseURLCase,
