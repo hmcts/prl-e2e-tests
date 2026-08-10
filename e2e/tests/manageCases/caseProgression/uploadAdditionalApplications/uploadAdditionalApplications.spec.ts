@@ -10,17 +10,19 @@ import { SolicitorPagesGroup } from "../../../../pageObjects/roleBasedGroupedPag
 test.describe("Upload additional applications for C100 tests", () => {
   let caseRef: string;
 
-  test.beforeEach(async ({ solicitor, caseEventUtils, navigationUtils }) => {
-    caseRef = await caseEventUtils.createCACaseSubmitAndPayIndividualEvents(
-      solicitor.page,
-    );
-    await navigationUtils.goToCase(
-      solicitor.page,
-      config.manageCasesBaseURLCase,
-      caseRef,
-      "tasks",
-    );
-  });
+  test.beforeEach(
+    async ({ solicitor, manageCasesEventUtils, navigationUtils }) => {
+      caseRef = (
+        await manageCasesEventUtils.createCaseViaIndividualCaseEvents("C100")
+      ).caseRef;
+      await navigationUtils.goToCase(
+        solicitor.page,
+        config.manageCasesBaseURLCase,
+        caseRef,
+        "tasks",
+      );
+    },
+  );
 
   [
     {
@@ -69,17 +71,19 @@ test.describe("Upload additional applications for C100 tests", () => {
 test.describe("Upload additional applications for FL401 tests", () => {
   let caseRef: string;
 
-  test.beforeEach(async ({ solicitor, caseEventUtils, navigationUtils }) => {
-    caseRef = await caseEventUtils.createDACaseSubmitAndPayIndividualEvents(
-      solicitor.page,
-    );
-    await navigationUtils.goToCase(
-      solicitor.page,
-      config.manageCasesBaseURLCase,
-      caseRef,
-      "tasks",
-    );
-  });
+  test.beforeEach(
+    async ({ solicitor, manageCasesEventUtils, navigationUtils }) => {
+      caseRef = (
+        await manageCasesEventUtils.createCaseViaIndividualCaseEvents("FL401")
+      ).caseRef;
+      await navigationUtils.goToCase(
+        solicitor.page,
+        config.manageCasesBaseURLCase,
+        caseRef,
+        "tasks",
+      );
+    },
+  );
 
   [
     {
