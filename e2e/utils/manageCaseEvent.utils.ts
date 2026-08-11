@@ -2,7 +2,9 @@ import {
   LOCAL_COURTS,
   LocalCourtInfo,
   OrderTypes,
+  solicitorCACaseAPIEvent,
   solicitorCaseCreateType,
+  solicitorDACaseAPIEvent,
   UserCredentials,
 } from "../common/types.ts";
 import { CommonCaseEventUtils } from "./commonCaseEvent.utils.ts";
@@ -23,6 +25,10 @@ import {
 } from "../testData/api/solicitorDraftOrderRequestData.ts";
 import Config from "./config.utils.ts";
 import { DateHelperUtils } from "./dateHelpers.utils.ts";
+import {
+  c100Events,
+  fl401Events,
+} from "../testData/api/solicitorIndividualEventsData.ts";
 
 type OrderCreationUsers = "caseWorker" | "judge";
 
@@ -198,11 +204,7 @@ export class ManageCaseEventUtils {
       description: `Get event token for creating draft ${caseType} TS case`,
     });
 
-    const timestamp = Date.now().toString().slice(-6);
-    const randomNumber = Math.floor(Math.random() * 1000)
-      .toString()
-      .padStart(3, "0");
-    const caseName = `TEST-${timestamp}${randomNumber}`;
+    const caseName: string = this.generateCaseName();
 
     const responseJson = await this.commonCaseEventsUtils.retry({
       fn: () =>
@@ -593,5 +595,177 @@ export class ManageCaseEventUtils {
         password: process.env.CASEMANAGER_PASSWORD as string,
       },
     });
+  }
+
+  /**
+   * Creates an FL401 or C100 solicitor case via API request.
+   *
+   * @param caseType the type of case either C100 or Fl401.
+   * @param userCredentials the user information (email and password) of the user submitting the request. Defaults to solicitor user credentials.
+   * @returns the case reference and case name of the created Solicitor case.
+   */
+  async createBlankSolicitorCase(
+    caseType: solicitorCaseCreateType,
+    userCredentials: UserCredentials = {
+      email: process.env.SOLICITOR_USERNAME,
+      password: process.env.SOLICITOR_PASSWORD,
+    },
+  ): Promise<BasicCaseData> {
+    const bearerToken =
+      await this.commonCaseEventsUtils.getBearerToken(userCredentials);
+
+    const s2sToken =
+      await this.commonCaseEventsUtils.getServiceToken("prl_cos_api");
+
+    const userDetails = await this.commonCaseEventsUtils.getUserDetails(
+      userCredentials.email,
+    );
+
+    const eventToken = await this.commonCaseEventsUtils.retry({
+      fn: () =>
+        this.commonCaseEventsUtils.withApiContext(async (api) => {
+          const url =
+            `${process.env.CCD_DATA_STORE_URL}/caseworkers/${userDetails.id}` +
+            `/jurisdictions/PRIVATELAW/case-types/PRLAPPS` +
+            `/event-triggers/solicitorCreate/token`;
+
+          const response = await api.get(url, {
+            headers: {
+              Authorization: `Bearer ${bearerToken}`,
+              ServiceAuthorization: `Bearer ${s2sToken}`,
+              "Content-Type": "application/json",
+            },
+          });
+
+          if (!response.ok()) {
+            throw new Error(
+              `HTTP ${response.status()} -> Failed to fetch solicitor create case event token: ${await response.text()}`,
+            );
+          }
+
+          const { token } = await response.json();
+          return token;
+        }),
+      description: `Get event token for creating draft ${caseType} solicitor case`,
+    });
+
+    const caseName: string = this.generateCaseName();
+
+    const eventData = caseType === "C100" ? c100Events : fl401Events;
+
+    const responseJson = await this.commonCaseEventsUtils.retry({
+      fn: () =>
+        this.commonCaseEventsUtils.withApiContext(async (api) => {
+          const response = await api.post(
+            `${process.env.CCD_DATA_STORE_URL}/caseworkers/${userDetails.id}/jurisdictions/PRIVATELAW/case-types/PRLAPPS/cases`,
+            {
+              headers: {
+                Authorization: `Bearer ${bearerToken}`,
+                ServiceAuthorization: `Bearer ${s2sToken}`,
+                "Content-Type": "application/json",
+              },
+              data: {
+                data: eventData.solicitorCreate.data,
+                event: {
+                  id: "solicitorCreate",
+                  summary: "",
+                  description: "",
+                },
+                event_token: eventToken,
+                ignore_warning: false,
+              },
+            },
+          );
+
+          if (!response.ok()) {
+            throw new Error(
+              `HTTP ${response.status()} -> Failed to create solicitor case: ${await response.text()}`,
+            );
+          }
+
+          return response.json();
+        }),
+      description: `Submit event create draft ${caseType} solicitor case`,
+    });
+
+    if (process.env.PWDEBUG) {
+      console.log("Finished creating draft solicitor case:", responseJson.id);
+    }
+
+    return {
+      caseRef: String(responseJson.id),
+      caseName,
+    };
+  }
+
+  /**
+   * @deprecated Ideally use `createDraftTSSolicitorCase` instead.
+   * Some scenarios require specific setup that can only be achieved by completing the events individually.
+   * We aim to remove this method and move purely to TS cases once the case can be setup properly in these scenarios via TS.
+   */
+  async createCaseViaIndividualCaseEvents(
+    caseType: solicitorCaseCreateType,
+  ): Promise<BasicCaseData> {
+    const solicitorFl401CaseEvents: solicitorDACaseAPIEvent[] = [
+      "fl401TypeOfApplication",
+      "withoutNoticeOrderDetails",
+      "applicantsDetails",
+      "respondentsDetails",
+      "fl401ApplicantFamilyDetails",
+      "respondentRelationship",
+      "respondentBehaviour",
+      "fl401Home",
+      "welshLanguageRequirements",
+      "fl401StatementOfTruthAndSubmit",
+    ];
+
+    const solicitorC100CaseEvents: solicitorCACaseAPIEvent[] = [
+      "selectApplicationType",
+      "hearingUrgency",
+      "applicantsDetails",
+      "respondentsDetails",
+      "otherPeopleInTheCaseRevised",
+      "childDetailsRevised",
+      "otherChildNotInTheCase",
+      "childrenAndApplicants",
+      "childrenAndRespondents",
+      "childrenAndOtherPeople",
+      "allegationsOfHarmRevised",
+      "miamPolicyUpgrade",
+      "internationalElement",
+      "welshLanguageRequirements",
+      "submitAndPay",
+      "testingSupportPaymentSuccessCallback",
+    ];
+
+    const caseData: BasicCaseData =
+      await this.createBlankSolicitorCase(caseType);
+
+    const solicitorCaseEvents =
+      caseType === "C100" ? solicitorC100CaseEvents : solicitorFl401CaseEvents;
+
+    const eventData = caseType === "C100" ? c100Events : fl401Events;
+
+    for (const event of solicitorCaseEvents) {
+      await this.commonCaseEventsUtils.completeEvent({
+        caseRef: caseData.caseRef,
+        eventId: event,
+        eventData: eventData[event],
+        userCredentials: {
+          email: process.env.SOLICITOR_USERNAME as string,
+          password: process.env.SOLICITOR_PASSWORD as string,
+        },
+      });
+    }
+
+    return caseData;
+  }
+
+  private generateCaseName(): string {
+    const timestamp = Date.now().toString().slice(-6);
+    const randomNumber = Math.floor(Math.random() * 1000)
+      .toString()
+      .padStart(3, "0");
+    return `TEST-${timestamp}${randomNumber}`;
   }
 }
