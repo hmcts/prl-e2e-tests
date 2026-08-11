@@ -1,16 +1,10 @@
 import { EventPage } from "../../eventPage.po.js";
 import { expect, Locator, Page } from "@playwright/test";
-import { solicitorCaseCreateType } from "../../../../../common/types.js";
 import { Selectors } from "../../../../../common/selectors.js";
+import { PageUtils } from "../../../../../utils/page.utils.js";
+import { solicitorCaseCreateType } from "../../../../../common/types.js";
 
-export interface ManageOrder28Params {
-  servePersonally: boolean;
-  responsibleToServeRespondent: string;
-  serveCafcass: boolean;
-  recipients?: string[];
-}
-
-export class ManageOrder28Page extends EventPage {
+export class AdminEditAndApproveAnOrder23Page extends EventPage {
   private readonly heading2: Locator = this.page.locator(Selectors.h2, {
     hasText: "Serve the order",
   });
@@ -34,8 +28,6 @@ export class ManageOrder28Page extends EventPage {
   private readonly anotherText = this.page.getByText(
     "Another organisation (optional)",
   );
-  private readonly daAnotherText = this.page.getByText("Other (optional)");
-
   private readonly hiddenWhoResponsibleText = this.page.getByText(
     "Who is responsible for serving the respondent?",
   );
@@ -56,8 +48,10 @@ export class ManageOrder28Page extends EventPage {
     this.page.getByText("Confirm Recipients");
 
   constructor(page: Page) {
-    super(page, "Manage orders");
+    super(page, "Edit and serve an order");
   }
+
+  private readonly pageUtils: PageUtils = new PageUtils(this.page);
 
   async assertPageContents(caseType: solicitorCaseCreateType): Promise<void> {
     await this.assertPageHeadings();
@@ -71,37 +65,38 @@ export class ManageOrder28Page extends EventPage {
       await expect(this.anotherText).toBeVisible();
     } else {
       await expect(this.heading2.nth(1)).toBeVisible();
-      await expect(this.daOtherPartyText).toBeVisible();
-      await expect(this.daAnotherText).toBeVisible();
     }
   }
 
   async serveOrderDetails(
     caseType: solicitorCaseCreateType,
-    params: ManageOrder28Params,
+    personallyServed: boolean,
+    responsibleToServeRespondent: string,
+    recipients: string[],
+    serveCafcass: boolean,
   ): Promise<void> {
     await this.page
       .getByRole("group", {
         name: "Does this order need to be personally served on the respondent?",
       })
       .getByRole("radio", {
-        name: params.servePersonally ? "Yes" : "No",
+        name: personallyServed ? "Yes" : "No",
         exact: true,
       })
       .check();
 
-    if (params.servePersonally) {
+    if (personallyServed) {
       await expect(this.hiddenWhoResponsibleText.first()).toBeVisible();
       await expect(this.hiddenYesResponsibleText1).toBeVisible();
       await expect(this.hiddenYesResponsibleText2.first()).toBeVisible();
       await expect(this.hiddenYesResponsibleText3.first()).toBeVisible();
       await this.page
-        .getByRole("radio", { name: params.responsibleToServeRespondent })
+        .getByRole("radio", { name: responsibleToServeRespondent })
         .check();
       await expect(this.hiddenResponsibleText).toBeVisible();
     } else {
       await expect(this.hiddenConfirmRecipients).toBeVisible();
-      for (const recipient of params.recipients) {
+      for (const recipient of recipients) {
         const recipientCheckbox: Locator = this.page.getByRole("checkbox", {
           name: recipient,
         });
@@ -109,18 +104,45 @@ export class ManageOrder28Page extends EventPage {
         await recipientCheckbox.check();
       }
     }
-
     if (caseType === "C100") {
       await this.page
         .getByRole("group", {
           name: "Does Cafcass Cymru need to be served?",
         })
-        .getByLabel(params.serveCafcass ? "Yes" : "No")
+        .getByLabel(serveCafcass ? "Yes" : "No")
         .check();
 
-      if (params.serveCafcass) {
+      if (serveCafcass) {
         await expect(this.hiddenCafcassYesText).toBeVisible();
       }
     }
+  }
+
+  private async selectRadioById(baseId: string, flag: boolean): Promise<void> {
+    const optionId = `${baseId}_${flag ? "Yes" : "No"}`;
+
+    const input = this.page.locator(`#${optionId}`);
+    const label = this.page.locator(`label[for="${optionId}"]`);
+
+    // Wait for the actual option to exist and be interactable
+    await expect(input).toBeVisible();
+    await expect(label).toBeVisible();
+
+    // poll clicking the radio buttons - it seems like there is a strange error linked to the report date input which causes the elements to become briefly unstable
+    await expect
+      .poll(
+        async () => {
+          const inputChecked = await input.isChecked();
+          if (!inputChecked) {
+            await label.click();
+          }
+          return inputChecked;
+        },
+        {
+          intervals: [1_000],
+          timeout: 10_000,
+        },
+      )
+      .toBeTruthy();
   }
 }
