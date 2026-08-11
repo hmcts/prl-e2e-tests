@@ -17,6 +17,8 @@ import { DraftOrdersPage } from "../pages/exui/caseView/draftOrders.po.js";
 import { AmendChildDetails1Page } from "../pages/exui/amendChildDetails/amendChildDetails1.po.ts";
 import { AmendChildDetails2Page } from "../pages/exui/amendChildDetails/amendChildDetails2.po.ts";
 import { AmendChildDetailsSubmitPage } from "../pages/exui/amendChildDetails/amendChildDetailsSubmit.po.ts";
+import { RequestFurtherInformation1Page } from "../pages/exui/requestFurtherInformation/requestFurtherInformation1.po.ts";
+import { RequestFurtherInformationSubmitPage } from "../pages/exui/requestFurtherInformation/requestFurtherInformationSubmit.po.ts";
 
 export class CourtAdminStokePagesGroup {
   constructor(public readonly page: Page) {}
@@ -74,4 +76,12 @@ export class CourtAdminStokePagesGroup {
       submitPage: new AmendChildDetailsSubmitPage(this.page),
     };
   }
+
+  get requestFurtherInformation() {
+    return {
+      page1: new RequestFurtherInformation1Page(this.page),
+      submitPage: new RequestFurtherInformationSubmitPage(this.page),
+    };
+  }
+
 }
