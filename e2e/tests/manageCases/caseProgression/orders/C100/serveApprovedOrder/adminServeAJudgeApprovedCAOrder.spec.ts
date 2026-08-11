@@ -3,9 +3,7 @@ import { test } from "../../../../../fixtures.ts";
 import { JudgePagesGroup } from "../../../../../../pageObjects/roleBasedGroupedPages/judgePages.js";
 import { OrderTypes } from "../../../../../../common/types.js";
 
-test.use({ storageState: Config.sessionStoragePath + "caseWorker.json" });
-
-test.describe("As a Court admin, serve a judge approved - solicitor created CA case order tests", (): void => {
+test.describe("As a Court admin, serve a judge approved - solicitor drafted CA case order tests", (): void => {
   test.slow();
 
   let caseRef: string;
@@ -55,7 +53,7 @@ test.describe("As a Court admin, serve a judge approved - solicitor created CA c
       snapshotPath: ["caseProgression", "orders", "serveApprovedOrders"],
     },
   ].forEach((data) => {
-    test(`Admin serve an judge approved C100 order that is personally served as : ${data.personallyServed} to : ${data.responsibleToServeRespondent} @regression @accessibility`, async ({
+    test(`Admin serves a judge approved C100 order that is personally served as : ${data.personallyServed} to respondent by : ${data.responsibleToServeRespondent} @regression @accessibility`, async ({
       caseWorker,
       navigationUtils,
     }): Promise<void> => {
