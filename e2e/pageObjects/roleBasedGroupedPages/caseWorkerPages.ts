@@ -60,6 +60,12 @@ import { AdminAddLocalAuthority1Page } from "../pages/exui/addLocalAuthority/adm
 import { AdminAddLocalAuthoritySubmitPage } from "../pages/exui/addLocalAuthority/adminAddLocalAuthoritySubmit.po.ts";
 import { AdminAddLocalAuthorityConfirmPage } from "../pages/exui/addLocalAuthority/adminAddLocalAuthorityConfirm.po.ts";
 import { ReviewDocuments1Page } from "../pages/exui/reviewDocuments/reviewDocuments1.po.ts";
+import { AdminEditAndApproveAnOrder1Page } from "../pages/exui/orders/adminEditAndApproveAnOrders/adminEditAndApproveAnOrder1.po.js";
+import { AdminEditAndApproveAnOrder4Page } from "../pages/exui/orders/adminEditAndApproveAnOrders/adminEditAndApproveAnOrder4.po.js";
+import { AdminEditAndApproveAnOrder21Page } from "../pages/exui/orders/adminEditAndApproveAnOrders/adminEditAndApproveAnOrder21.po.js";
+import { AdminEditAndApproveAnOrder23Page } from "../pages/exui/orders/adminEditAndApproveAnOrders/adminEditAndApproveAnOrder23.po.js";
+import { AdminEditAndApproveAnOrder22Page } from "../pages/exui/orders/adminEditAndApproveAnOrders/adminEditAndApproveAnOrder22.po.js";
+import { AdminEditAndApproveAnOrderSubmitPage } from "../pages/exui/orders/adminEditAndApproveAnOrders/adminEditAndApproveAnOrderSubmit.po.js";
 
 export class CaseWorkerPagesGroup {
   constructor(public readonly page: Page) {}
@@ -207,6 +213,27 @@ export class CaseWorkerPagesGroup {
       manageOrder27Page: new ManageOrder27Page(this.page),
       manageOrder28Page: new ManageOrder28Page(this.page),
       manageOrderSubmitPage: new ManageOrderSubmitPage(this.page),
+    };
+  }
+  get adminEditAndApproveAnOrders() {
+    return {
+      adminEditAndApproveAnOrder1Page: new AdminEditAndApproveAnOrder1Page(
+        this.page,
+      ),
+      adminEditAndApproveAnOrder4Page: new AdminEditAndApproveAnOrder4Page(
+        this.page,
+      ),
+      adminEditAndApproveAnOrder21Page: new AdminEditAndApproveAnOrder21Page(
+        this.page,
+      ),
+      adminEditAndApproveAnOrder22Page: new AdminEditAndApproveAnOrder22Page(
+        this.page,
+      ),
+      adminEditAndApproveAnOrder23Page: new AdminEditAndApproveAnOrder23Page(
+        this.page,
+      ),
+      adminEditAndApproveAnOrderSubmitPage:
+        new AdminEditAndApproveAnOrderSubmitPage(this.page),
     };
   }
 

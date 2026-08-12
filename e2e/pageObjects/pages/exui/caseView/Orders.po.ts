@@ -2,6 +2,8 @@ import { CaseAccessViewPage } from "./caseAccessView.po.js";
 import { expect, Locator, Page } from "@playwright/test";
 import { OrderTypes } from "../../../../common/types.js";
 import { DateHelperUtils } from "../../../../utils/dateHelpers.utils.js";
+import { NavigationUtils } from "../../../../utils/navigation.utils.js";
+import { clippingCoords, ExuiMediaViewerPage } from "../exuiMediaViewer.po.js";
 
 export interface OrderInformation {
   Order: OrderTypes;
@@ -35,6 +37,7 @@ export class OrdersPage extends CaseAccessViewPage {
   );
 
   private dateHelper: DateHelperUtils = new DateHelperUtils();
+  private navigationUtils: NavigationUtils = new NavigationUtils();
 
   constructor(page: Page) {
     super(page);
@@ -172,6 +175,35 @@ export class OrdersPage extends CaseAccessViewPage {
         );
       }
     }
+  }
+
+  // open doc and check contents in media viewer
+  async assertOrderDocument(
+    snapshotsPath: string[],
+    caseNumber: string,
+    orderName: string,
+    snapshotName: string,
+  ): Promise<void> {
+    const link: Locator = this.page.getByRole("button", {
+      name: orderName,
+      exact: true,
+    });
+    const docPage: Page = await this.navigationUtils.openPdfLink(
+      this.page,
+      link,
+    );
+    // locators to mask in screenshot
+    const formattedCaseNumber: string = `${caseNumber.slice(0, 4)}-${caseNumber.slice(4, 8)}-${caseNumber.slice(8, 12)}-${caseNumber.slice(12, 16)}`;
+    const caseNumberLocator: Locator = docPage.getByText(formattedCaseNumber);
+    const snapshotPath: string[] = [...snapshotsPath, snapshotName];
+    const mediaViewerPage = new ExuiMediaViewerPage(docPage);
+    await mediaViewerPage.runVisualTestOnAllPages(
+      docPage,
+      snapshotPath,
+      clippingCoords.centeredPageWithoutToolbar,
+      [caseNumberLocator],
+    );
+    await docPage.close();
   }
 
   private async assertTableRow(
