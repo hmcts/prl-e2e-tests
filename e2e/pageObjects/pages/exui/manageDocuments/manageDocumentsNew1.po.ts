@@ -66,12 +66,12 @@ export class ManageDocumentsNew1Page extends EventPage {
     await this.pageUtils.assertStrings(this.formLabels);
     await expect(
       this.page.locator(Selectors.GovukFormLabel, {
-        hasText: CommonStaticText.yes,
+        hasText: new RegExp(`^${CommonStaticText.yes}$`),
       }),
     ).toHaveCount(2);
     await expect(
       this.page.locator(Selectors.GovukFormLabel, {
-        hasText: CommonStaticText.no,
+        hasText: new RegExp(`^${CommonStaticText.no}$`),
       }),
     ).toHaveCount(2);
   }

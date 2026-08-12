@@ -1,5 +1,8 @@
 import { expect, test } from "../../../fixtures.ts";
 import Config from "../../../../utils/config.utils.ts";
+import { CaseNumberUtils } from "../../../../utils/caseNumber.utils.ts";
+
+const caseNumberUtils = new CaseNumberUtils();
 
 test.describe.configure({ mode: "serial" });
 
@@ -51,20 +54,21 @@ test.describe("Add local authority event for C100 case tests as a Local Authorit
     await manageCasesEventUtils.sendToGatekeeper(caseRef, "C100");
   });
 
-  test("Complete Add Local Authority with accessibility test. @nightly @regression @accessibility", async ({
+  test("Complete Add Local Authority with accessibility test. @nightly @regression @accessibility @tp", async ({
     navigationUtils,
     caseWorker,
     manageOrgUtils,
     localAuthority,
   }): Promise<void> => {
+    const { summaryPage, addLocalAuthority } = caseWorker;
+    const {
+      addLocalAuthority1Page,
+      addLocalAuthoritySubmitPage,
+      addLocalAuthorityConfirmPage,
+    } = addLocalAuthority;
+
     const organisationName =
       "Local Authority Private Law AAT Test Organisation";
-    const organisationAddress = [
-      "7 Fitzhamon Embankment",
-      "Caerdydd",
-      "United Kingdom",
-      "CF11 6AN",
-    ];
 
     await navigationUtils.goToCase(
       caseWorker.page,
@@ -72,29 +76,24 @@ test.describe("Add local authority event for C100 case tests as a Local Authorit
       caseRef,
     );
 
-    await caseWorker.summaryPage.chooseEventFromDropdown("Add local authority");
+    await summaryPage.chooseEventFromDropdown("Add local authority");
 
-    await caseWorker.addLocalAuthority.addLocalAuthority1Page.assertPageContents();
-    await caseWorker.addLocalAuthority.addLocalAuthority1Page.verifyAccessibility();
-    await caseWorker.addLocalAuthority.addLocalAuthority1Page.searchSelectAndContinue(
-      organisationName,
-    );
+    await addLocalAuthority1Page.assertPageContents();
+    await addLocalAuthority1Page.verifyAccessibility();
+    await addLocalAuthority1Page.searchAndSelectOrganisation(organisationName);
+    await addLocalAuthority1Page.clickContinue();
 
-    await caseWorker.addLocalAuthority.addLocalAuthoritySubmitPage.assertPageContents(
+    await addLocalAuthoritySubmitPage.assertPageContents(
       ["caseProgression", "addLocalAuthority"],
       "submit",
     );
-    await caseWorker.addLocalAuthority.addLocalAuthoritySubmitPage.assertOrganisationDetails(
-      organisationName,
-      organisationAddress,
-    );
-    await caseWorker.addLocalAuthority.addLocalAuthoritySubmitPage.submitForm();
+    await addLocalAuthoritySubmitPage.clickSubmit();
 
-    await caseWorker.addLocalAuthority.addLocalAuthorityConfirmPage.assertPageContents();
-    await caseWorker.addLocalAuthority.addLocalAuthorityConfirmPage.verifyAccessibility();
+    await addLocalAuthorityConfirmPage.assertPageContents();
+    await addLocalAuthorityConfirmPage.verifyAccessibility();
 
-    await caseWorker.summaryPage.goToPage();
-    await caseWorker.summaryPage.assertLocalAuthoritySection(organisationName);
+    await summaryPage.goToPage();
+    await summaryPage.assertLocalAuthoritySection(organisationName);
 
     // Assign the case to the local authority user via the case-assignments API
     await manageOrgUtils.assignCaseToUser(
@@ -119,7 +118,7 @@ test.describe("Add local authority event for C100 case tests as a Local Authorit
       )
       .toBeTruthy();
 
-    const dashedRef = caseRef.match(/.{1,4}/g)?.join("-") ?? caseRef;
+    const dashedRef = caseNumberUtils.getHyphenatedCaseReference(caseRef);
     await localAuthority.page
       .locator(`a[aria-label="go to case with Case reference:${dashedRef}"]`)
       .click();
@@ -131,8 +130,9 @@ test.describe("Add local authority event for C100 case tests as a Local Authorit
     );
   });
 
-  test("Local authority uploads documents and admin reviews tasks. @nightly @regression", async ({
+  test("Local authority uploads documents and admin reviews tasks. @nightly @regression @tp", async ({
     localAuthority,
+    caseWorker,
     navigationUtils,
   }): Promise<void> => {
     const { page, summaryPage } = localAuthority;
@@ -150,6 +150,8 @@ test.describe("Add local authority event for C100 case tests as a Local Authorit
       manageDocumentsNewSubmitPage,
       manageDocumentsNewConfirmPage,
     } = localAuthority.manageDocuments;
+
+    await manageDocumentsNew1Page.assertPageContents();
 
     for (let i = 0; i < LA_DOCUMENTS.length; i++) {
       const doc = LA_DOCUMENTS[i];
@@ -177,5 +179,78 @@ test.describe("Add local authority event for C100 case tests as a Local Authorit
     await manageDocumentsNewConfirmPage.assertPageContents();
     await manageDocumentsNewConfirmPage.verifyAccessibility();
     await manageDocumentsNewConfirmPage.clickCloseAndReturnToCaseDetails();
+
+    // Only documents that are neither confidential/restricted nor a
+    // default-confidential category show up here immediately — the rest
+    // stay hidden until the court admin reviews them (see below).
+    const DEFAULT_CONFIDENTIAL_CATEGORIES = [
+      "CIR extension request",
+      "CIR transfer request",
+    ];
+    const caseDocumentsEligibleDocuments = LA_DOCUMENTS.filter(
+      (doc) =>
+        !doc.confidentialDocument &&
+        !doc.restrictDocument &&
+        !DEFAULT_CONFIDENTIAL_CATEGORIES.includes(doc.documentCategory),
+    );
+
+    await navigationUtils.goToCase(
+      caseWorker.page,
+      Config.manageCasesBaseURLCase,
+      caseRef,
+      "Case documents",
+    );
+    await caseWorker.caseDocumentsPage.assertLocalAuthorityUploadedDocuments(
+      caseDocumentsEligibleDocuments,
+    );
+
+    // Court admin reviews the tasks generated by the local authority's upload
+    await navigationUtils.goToCase(
+      caseWorker.page,
+      Config.manageCasesBaseURLCase,
+      caseRef,
+      "tasks",
+    );
+
+    const { tasksPage, reviewDocuments1Page } = caseWorker;
+
+    await tasksPage.waitForTask("Review CIR Extension Request");
+    await tasksPage.task.assertTaskSummary(
+      "Review CIR Extension Request",
+      "urgent",
+      ["Assign to me"],
+      "Unassigned",
+    );
+    await tasksPage.task.assertTaskSummary(
+      "Review CIR Transfer Request",
+      "urgent",
+      ["Assign to me"],
+      "Unassigned",
+    );
+    await tasksPage.task.assertTaskSummary(
+      "Review Documents",
+      "low",
+      ["Assign to me"],
+      "Unassigned",
+    );
+
+    await tasksPage.assignTaskToMeAndTriggerNextSteps(
+      "Review Documents",
+      "Review Documents",
+      "caseWorker",
+    );
+
+    const baseName = (filePath: string): string =>
+      filePath.split(/[\\/]/).pop() ?? filePath;
+    const section7FileName = baseName(Config.testPdfFileSection7);
+    const reviewableFileNames = LA_DOCUMENTS.map((doc) =>
+      baseName(doc.filePath),
+    ).filter((fileName) => fileName !== section7FileName);
+
+    await reviewDocuments1Page.assertPageContents();
+    await reviewDocuments1Page.assertDocumentOptions(reviewableFileNames, [
+      section7FileName,
+    ]);
+    await reviewDocuments1Page.selectDocumentAndContinue();
   });
 });

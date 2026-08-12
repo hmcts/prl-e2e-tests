@@ -38,7 +38,7 @@ export class TasksPage extends CaseAccessViewPage {
     await this.task.triggerNextSteps(taskName, nextStepsActionName);
   }
 
-  private async waitForTask(taskName: string): Promise<void> {
+  async waitForTask(taskName: string): Promise<void> {
     // refresh page until the task shows up - there can be some delay
     await expect
       .poll(

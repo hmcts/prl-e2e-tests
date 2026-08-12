@@ -1,5 +1,6 @@
 import { Page } from "@playwright/test";
 import { TasksPage } from "../pages/exui/caseView/tasks.po.ts";
+import { CaseDocumentsPage } from "../pages/exui/caseView/caseDocuments.po.ts";
 import { SummaryPage } from "../pages/exui/caseView/summary.po.ts";
 import { HistoryPage } from "../pages/exui/caseView/history.po.ts";
 import { AmendApplicantDetails1 } from "../pages/exui/amendApplicantDetails/amendApplicantDetails1.po.ts";
@@ -58,12 +59,21 @@ import { OrdersPage } from "../pages/exui/caseView/Orders.po.ts";
 import { AdminAddLocalAuthority1Page } from "../pages/exui/addLocalAuthority/adminAddLocalAuthority1.po.ts";
 import { AdminAddLocalAuthoritySubmitPage } from "../pages/exui/addLocalAuthority/adminAddLocalAuthoritySubmit.po.ts";
 import { AdminAddLocalAuthorityConfirmPage } from "../pages/exui/addLocalAuthority/adminAddLocalAuthorityConfirm.po.ts";
+import { ReviewDocuments1Page } from "../pages/exui/reviewDocuments/reviewDocuments1.po.ts";
 
 export class CaseWorkerPagesGroup {
   constructor(public readonly page: Page) {}
 
   get tasksPage() {
     return new TasksPage(this.page);
+  }
+
+  get caseDocumentsPage() {
+    return new CaseDocumentsPage(this.page);
+  }
+
+  get reviewDocuments1Page() {
+    return new ReviewDocuments1Page(this.page);
   }
 
   get summaryPage() {

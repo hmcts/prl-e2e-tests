@@ -52,21 +52,4 @@ export class AdminAddLocalAuthority1Page extends EventPage {
       .waitFor({ state: "visible" });
     await this.page.getByTitle(`Select the organisation ${orgName}`).click();
   }
-
-  async searchSelectAndContinue(orgName: string): Promise<void> {
-    await this.searchAndSelectOrganisation(orgName);
-    await this.clickContinue();
-  }
-
-  async clearOrganisation(orgName: string): Promise<void> {
-    await this.page
-      .getByTitle(`Clear organisation selection for ${orgName}`)
-      .click();
-  }
-
-  async assertSelectedOrganisation(orgName: string): Promise<void> {
-    await expect(
-      this.page.locator(".name-header", { hasText: orgName }),
-    ).toBeVisible();
-  }
 }
