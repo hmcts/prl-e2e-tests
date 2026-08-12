@@ -131,7 +131,10 @@ async function editAndApproveOrder(caseRef, judge: JudgePagesGroup, data) {
         .toLowerCase()}_draft.pdf`,
       otherDetails: {
         orderMadeBy: "Test Judge Name",
-        orderCreatedBy: "AAT Solicitor",
+        orderCreatedBy:
+          process.env.MANAGE_CASES_TEST_ENV === "demo"
+            ? "PRL DEMO ORG1 Solicitor 2"
+            : "AAT Solicitor",
         status: data.status,
       },
       isOrderAboutChildren: false,

@@ -131,17 +131,17 @@ export class AdminEditAndApproveAnOrder21Page extends EventPage {
         this.yesAndNoLabels,
         this.page.locator(`#doYouWantToServeOrder ${Selectors.GovukFormLabel}`),
       );
-
-      // Local Authority section assertions — only assert always-visible elements;
-      // the doc list and date fields are hidden until Yes is selected
-      await expect(this.localAuthorityReportText).toBeVisible();
-      await this.pageUtils.assertStrings(
-        this.yesAndNoLabels,
-        this.page.locator(
-          `#localAuthorityNeedToProvideReport ${Selectors.GovukFormLabel}`,
-        ),
-      );
     }
+
+    // Local Authority section assertions — only assert always-visible elements;
+    // the doc list and date fields are hidden until Yes is selected
+    await expect(this.localAuthorityReportText).toBeVisible();
+    await this.pageUtils.assertStrings(
+      this.yesAndNoLabels,
+      this.page.locator(
+        `#localAuthorityNeedToProvideReport ${Selectors.GovukFormLabel}`,
+      ),
+    );
     await expect(this.serveOrderNowText).toBeVisible();
     await expect(this.continueButton).toBeVisible();
     await expect(this.previousButton).toBeVisible();
