@@ -180,11 +180,7 @@ export type JudgeOrderAction =
 export type Language = "English" | "Welsh";
 
 export type manageOrdersOptions =
-  | "create order"
-  | "upload order"
-  | "amend order"
-  | "serve order"
-  | "create custom order";
+  "create order" | "upload order" | "serve order" | "create custom order";
 
 export type createOrderC100Options = "C43 order";
 

@@ -3,6 +3,5 @@ export enum ManageOrders1CAContent {
   label1 = "What do you want to do?",
   label2 = "Create an order",
   label3 = "Upload an order",
-  label4 = "Amend an order",
-  label5 = "Serve saved orders",
+  label4 = "Serve saved orders",
 }
