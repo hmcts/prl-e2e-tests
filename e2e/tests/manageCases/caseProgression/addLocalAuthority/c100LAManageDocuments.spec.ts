@@ -183,7 +183,7 @@ test.describe("Add local authority event for C100 case tests as a Local Authorit
       caseDocumentsEligibleDocuments,
     );
 
-    // Everything awaiting the court admin's review  
+    // Everything awaiting the court admin's review
     const documentsAwaitingReview = LA_DOCUMENTS.filter(
       (doc) => !caseDocumentsEligibleDocuments.includes(doc),
     );
