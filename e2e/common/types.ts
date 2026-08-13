@@ -33,6 +33,7 @@ const UserRoles = {
   caseManager: "caseManager",
   nocSolicitor: "nocSolicitor",
   legalAdvisor: "legalAdvisor",
+  localAuthority: "localAuthority",
 } as const;
 
 export type UserRole = (typeof UserRoles)[keyof typeof UserRoles];
@@ -266,7 +267,8 @@ export type yesNoNA = "Yes" | "No" | "Not applicable";
 export type courtAdminEvents =
   | "Edit and serve an order"
   | "Send to gatekeeper"
-  | "Remove legal representative";
+  | "Remove legal representative"
+  | "Add local authority";
 
 export type contactOption = "Digital" | "Post";
 
