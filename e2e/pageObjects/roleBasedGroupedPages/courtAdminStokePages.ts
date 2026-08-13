@@ -19,6 +19,8 @@ import { AmendChildDetails2Page } from "../pages/exui/amendChildDetails/amendChi
 import { AmendChildDetailsSubmitPage } from "../pages/exui/amendChildDetails/amendChildDetailsSubmit.po.ts";
 import { RequestFurtherInformation1Page } from "../pages/exui/requestFurtherInformation/requestFurtherInformation1.po.ts";
 import { RequestFurtherInformationSubmitPage } from "../pages/exui/requestFurtherInformation/requestFurtherInformationSubmit.po.ts";
+import { AddACaseNoteSubmitPage } from "../pages/exui/addACaseNote/addACaseNoteSubmit.po.ts";
+import { AddACaseNote1Page } from "../pages/exui/addACaseNote/addACaseNote1.po.ts";
 
 export class CourtAdminStokePagesGroup {
   constructor(public readonly page: Page) {}
@@ -79,9 +81,18 @@ export class CourtAdminStokePagesGroup {
 
   get requestFurtherInformation() {
     return {
-      page1: new RequestFurtherInformation1Page(this.page),
-      submitPage: new RequestFurtherInformationSubmitPage(this.page),
+      requestFurtherInformation1Page: new RequestFurtherInformation1Page(
+        this.page,
+      ),
+      requestFurtherInformationSubmitPage:
+        new RequestFurtherInformationSubmitPage(this.page),
     };
   }
 
+  get addACaseNote() {
+    return {
+      addACaseNote1Page: new AddACaseNote1Page(this.page),
+      addACaseNoteSubmitPage: new AddACaseNoteSubmitPage(this.page),
+    };
+  }
 }

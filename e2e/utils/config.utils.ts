@@ -39,6 +39,10 @@ export class Config {
       email: process.env.LEGALADVISOR_USERNAME as string,
       password: process.env.LEGALADVISOR_PASSWORD as string,
     },
+    superuser: {
+      email: process.env.SUPERUSER_USERNAME as string,
+      password: process.env.SUPERUSER_PASSWORD as string,
+    },
   };
 
   public static readonly sessionStoragePath: string = path.join(
