@@ -56,7 +56,14 @@ export class ReviewDocuments1Page extends EventPage {
     }
   }
 
-  async selectDocumentAndContinue(documentToSelect?: string): Promise<void> {
+  /**
+   * Selects a document from the dynamic list.
+   *
+   * @param documentToSelect the file name of the document to select. Matched as
+   *        a substring because options are suffixed with the upload timestamp.
+   *        Defaults to the first selectable option when omitted.
+   */
+  async selectDocument(documentToSelect?: string): Promise<void> {
     if (documentToSelect) {
       // Options are suffixed with the upload timestamp, so resolve the
       // option by file-name substring and select it via its value attribute.
@@ -77,6 +84,5 @@ export class ReviewDocuments1Page extends EventPage {
     } else {
       await this.selectDocumentDropdown.selectOption({ index: 1 });
     }
-    await this.clickContinue();
   }
 }

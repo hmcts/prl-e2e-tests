@@ -143,9 +143,9 @@ export class Config {
     import.meta.dirname,
     "../assets/CR2_Mockfile.pdf",
   );
-  public static readonly testPdfFileExtention: string = path.resolve(
+  public static readonly testPdfFileExtension: string = path.resolve(
     import.meta.dirname,
-    "../assets/Extention_Mockfile.pdf",
+    "../assets/Extension_Mockfile.pdf",
   );
   public static readonly testPdfFileRequest: string = path.resolve(
     import.meta.dirname,

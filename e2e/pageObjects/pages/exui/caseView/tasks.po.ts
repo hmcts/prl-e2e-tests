@@ -15,12 +15,11 @@ export class TasksPage extends CaseAccessViewPage {
   }
 
   async goToPage(): Promise<void> {
-    const leftChevron: Locator = this.page.locator(
-      ".mat-tab-header-pagination-before",
+    const rewind: Locator = this.page.locator(
+      ".mat-tab-header-pagination-before:not(.mat-tab-header-pagination-disabled)",
     );
-    const tab: Locator = this.page.getByRole("tab", { name: "Tasks" });
-    if (await tab.isHidden()) {
-      await leftChevron.click();
+    for (let i = 0; i < 20 && (await rewind.count()); i++) {
+      await rewind.click();
     }
 
     await this.page.getByRole("tab", { name: "Tasks" }).click();

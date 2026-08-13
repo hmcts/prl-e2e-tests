@@ -1,6 +1,7 @@
 import { Page } from "@playwright/test";
 import { TasksPage } from "../pages/exui/caseView/tasks.po.ts";
 import { CaseDocumentsPage } from "../pages/exui/caseView/caseDocuments.po.ts";
+import { DocumentsToBeReviewedPage } from "../pages/exui/caseView/documentsToBeReviewed.po.ts";
 import { SummaryPage } from "../pages/exui/caseView/summary.po.ts";
 import { HistoryPage } from "../pages/exui/caseView/history.po.ts";
 import { AmendApplicantDetails1 } from "../pages/exui/amendApplicantDetails/amendApplicantDetails1.po.ts";
@@ -59,7 +60,6 @@ import { OrdersPage } from "../pages/exui/caseView/Orders.po.ts";
 import { AdminAddLocalAuthority1Page } from "../pages/exui/addLocalAuthority/adminAddLocalAuthority1.po.ts";
 import { AdminAddLocalAuthoritySubmitPage } from "../pages/exui/addLocalAuthority/adminAddLocalAuthoritySubmit.po.ts";
 import { AdminAddLocalAuthorityConfirmPage } from "../pages/exui/addLocalAuthority/adminAddLocalAuthorityConfirm.po.ts";
-import { ReviewDocuments1Page } from "../pages/exui/reviewDocuments/reviewDocuments1.po.ts";
 import { AdminEditAndApproveAnOrder1Page } from "../pages/exui/orders/adminEditAndApproveAnOrders/adminEditAndApproveAnOrder1.po.js";
 import { AdminEditAndApproveAnOrder4Page } from "../pages/exui/orders/adminEditAndApproveAnOrders/adminEditAndApproveAnOrder4.po.js";
 import { AdminEditAndApproveAnOrder21Page } from "../pages/exui/orders/adminEditAndApproveAnOrders/adminEditAndApproveAnOrder21.po.js";
@@ -78,8 +78,8 @@ export class CaseWorkerPagesGroup {
     return new CaseDocumentsPage(this.page);
   }
 
-  get reviewDocuments1Page() {
-    return new ReviewDocuments1Page(this.page);
+  get documentsToBeReviewedPage() {
+    return new DocumentsToBeReviewedPage(this.page);
   }
 
   get summaryPage() {
