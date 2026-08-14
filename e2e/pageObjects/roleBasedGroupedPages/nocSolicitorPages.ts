@@ -10,6 +10,8 @@ import { C100AdminAddBarristerSubmit } from "../pages/exui/addAndRemoveBarrister
 import { C100AdminRemoveBarrister1Page } from "../pages/exui/addAndRemoveBarrister/c100AdminRemoveBarrister1Page.po.ts";
 import { C100AdminRemoveBarristerSubmit } from "../pages/exui/addAndRemoveBarrister/c100AdminRemoveBarristerSubmit.po.ts";
 import { PartiesPage } from "../pages/exui/caseView/parties.po.ts";
+import { RespondentTasksPage } from "../pages/exui/caseView/respondentTasks.po.ts";
+import { ConsentToTheApplicationPage1 } from "../pages/exui/respondToTheApplicationC7/consentToTheApplication1.po.ts";
 
 export class NocSolicitorPagesGroup {
   constructor(public readonly page: Page) {}
@@ -22,6 +24,9 @@ export class NocSolicitorPagesGroup {
   }
   get partiesPage() {
     return new PartiesPage(this.page);
+  }
+  get respondentTasksPage() {
+    return new RespondentTasksPage(this.page);
   }
 
   get noticeOfChangeC100() {
@@ -39,6 +44,57 @@ export class NocSolicitorPagesGroup {
       addBarristerSubmit: new C100AdminAddBarristerSubmit(this.page),
       removeBarrister1Page: new C100AdminRemoveBarrister1Page(this.page),
       removeBarristerSubmit: new C100AdminRemoveBarristerSubmit(this.page),
+    };
+  }
+
+  get consentToTheApplicationC7form() {
+    return {
+      consentToTheApplicationPage1: new ConsentToTheApplicationPage1(this.page),
+    //CYA
+    };
+  }
+
+  get respondentDetailsC7form() {
+    return {
+      page1: new C100Noc1Page(this.page),
+      page2: new C100Noc2Page(this.page),
+      submitPage: new C100NocSubmitPage(this.page),
+      confirmPage: new C100NocConfirmationPage(this.page),
+    };
+  }
+
+  get applicationDetailsC7form() {
+    return {
+      page1: new C100Noc1Page(this.page),
+      page2: new C100Noc2Page(this.page),
+    };
+  }
+
+  get safetyConcernsC7form() {
+    return {
+      page1: new C100Noc1Page(this.page),
+      page2: new C100Noc2Page(this.page),
+    };
+  }
+
+  get additionalInformationC7form() {
+    return {
+      page1: new C100Noc1Page(this.page),
+      page2: new C100Noc2Page(this.page),
+    };
+  }
+
+  get viewPDFresponseC7form() {
+    return {
+      page1: new C100Noc1Page(this.page),
+      page2: new C100Noc2Page(this.page),
+    };
+  }
+
+  get submitC7form() {
+    return {
+      page1: new C100Noc1Page(this.page),
+      confirmPage: new C100NocConfirmationPage(this.page),
     };
   }
 }
