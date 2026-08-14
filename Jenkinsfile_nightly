@@ -113,6 +113,8 @@ def secrets = [
     secret('e2e-tests-github-token', 'GITHUB_TOKEN'),
     secret('legaladvisor-swansea-username', 'LEGALADVISOR_USERNAME'),
     secret('legaladvisor-swansea-password', 'LEGALADVISOR_PASSWORD'),
+    secret('superuser-username', 'SUPERUSER_USERNAME'),
+    secret('superuser-password', 'SUPERUSER_PASSWORD'),
   ]
 ]
 
