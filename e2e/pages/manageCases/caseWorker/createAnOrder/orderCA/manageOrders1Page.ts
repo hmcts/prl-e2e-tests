@@ -40,7 +40,7 @@ export class ManageOrders1Page {
     await pageTitle.waitFor();
     await Helpers.checkGroup(
       page,
-      5,
+      4,
       ManageOrders1CAContent,
       "label",
       `${Selectors.GovukFormLabel}`,

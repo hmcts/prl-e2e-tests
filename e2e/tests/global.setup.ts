@@ -104,6 +104,30 @@ setup.describe("Setup users and retrieve tokens", () => {
     );
   });
 
+  setup(
+    "Setup Manage Cases Local Authority user",
+    async ({ page, idamLoginHelper }) => {
+      await idamLoginHelper.signInLongLivedUser(
+        page,
+        "localAuthority",
+        config.manageCasesBaseURLCase,
+        "manageCases-",
+      );
+    },
+  );
+
+  setup(
+    "Setup Manage Orgs Local Authority user",
+    async ({ page, idamLoginHelper }) => {
+      await idamLoginHelper.signInLongLivedUser(
+        page,
+        "localAuthority",
+        config.manageOrgBaseURL,
+        "manageOrgs-",
+      );
+    },
+  );
+  
   setup("Setup Superuser", async ({ page, idamLoginHelper }) => {
     await idamLoginHelper.signInLongLivedUser(
       page,

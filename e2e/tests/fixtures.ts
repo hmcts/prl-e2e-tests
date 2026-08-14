@@ -5,10 +5,11 @@ import { SolicitorPagesGroup } from "../pageObjects/roleBasedGroupedPages/solici
 import { CourtAdminStokePagesGroup } from "../pageObjects/roleBasedGroupedPages/courtAdminStokePages.ts";
 import { CaseManagerPagesGroup } from "../pageObjects/roleBasedGroupedPages/caseManagerPages.ts";
 import { JudgePagesGroup } from "../pageObjects/roleBasedGroupedPages/judgePages.ts";
-import { utilsFixtures, UtilsFixtures } from "../utils/utils.fixtures.ts";
+import { utilsFixtures, UtilsFixtures } from "../utils/index.ts";
 import Config from "../utils/config.utils.ts";
-import { LegalAdvisorPagesGroup } from "../pageObjects/roleBasedGroupedPages/legalAdvisorPages.js";
-import { SuperUserPagesGroup } from "../pageObjects/roleBasedGroupedPages/superUserPages.js";
+import { LegalAdvisorPagesGroup } from "../pageObjects/roleBasedGroupedPages/legalAdvisorPages.ts";
+import { LocalAuthorityPagesGroup } from "../pageObjects/roleBasedGroupedPages/localAuthorityPages.ts";
+import { SuperUserPagesGroup } from "../pageObjects/roleBasedGroupedPages/superUserPages.ts";
 
 type MyFixtures = UtilsFixtures & {
   nocSolicitor: NocSolicitorPagesGroup;
@@ -18,6 +19,7 @@ type MyFixtures = UtilsFixtures & {
   caseManager: CaseManagerPagesGroup;
   judge: JudgePagesGroup;
   legalAdvisor: LegalAdvisorPagesGroup;
+  localAuthority: LocalAuthorityPagesGroup;
   superUser: SuperUserPagesGroup;
 };
 
@@ -86,7 +88,17 @@ export const test = base.extend<MyFixtures>({
     await use(new LegalAdvisorPagesGroup(page));
     await context.close();
   },
-
+  
+  localAuthority: async ({ browser }, use) => {
+    const context = await browser.newContext({
+      storageState:
+        Config.sessionStoragePath + "manageCases-localAuthority.json",
+    });
+    const page = await context.newPage();
+    await use(new LocalAuthorityPagesGroup(page));
+    await context.close();
+  },
+  
   superUser: async ({ browser }, use) => {
     const context = await browser.newContext({
       storageState: Config.sessionStoragePath + "superuser.json",
