@@ -272,7 +272,7 @@ export type courtAdminEvents =
   | "Edit and serve an order"
   | "Send to gatekeeper"
   | "Remove legal representative"
-  | "Add local authority";
+  | "Add local authority"
   | "Request Further Information";
 
 export type contactOption = "Digital" | "Post";

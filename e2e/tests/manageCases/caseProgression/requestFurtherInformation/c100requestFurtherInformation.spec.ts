@@ -2,7 +2,6 @@ import config from "../../../../utils/config.utils.ts";
 import { test } from "../../../fixtures.ts";
 
 test.describe("C100 - Complete Request further information event", () => {
-
   test.beforeEach(
     async ({
       courtAdminStoke,
@@ -74,7 +73,7 @@ test.describe("C100 - Complete Request further information event", () => {
         data.snapshotsPathRequestFurtherInfo,
         data.snapshotNameRequestFurtherInfo,
       );
-      await requestFurtherInformation.requestFurtherInformationSubmitPage.verifyAccessibility(); 
+      await requestFurtherInformation.requestFurtherInformationSubmitPage.verifyAccessibility();
       await requestFurtherInformation.requestFurtherInformationSubmitPage.clickSaveAndContinue();
       await summaryPageCA.assertCaseStatus("Awaiting information");
 

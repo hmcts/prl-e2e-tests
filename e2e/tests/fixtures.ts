@@ -88,7 +88,7 @@ export const test = base.extend<MyFixtures>({
     await use(new LegalAdvisorPagesGroup(page));
     await context.close();
   },
-  
+
   localAuthority: async ({ browser }, use) => {
     const context = await browser.newContext({
       storageState:
@@ -98,7 +98,7 @@ export const test = base.extend<MyFixtures>({
     await use(new LocalAuthorityPagesGroup(page));
     await context.close();
   },
-  
+
   superUser: async ({ browser }, use) => {
     const context = await browser.newContext({
       storageState: Config.sessionStoragePath + "superuser.json",
