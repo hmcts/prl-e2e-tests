@@ -66,6 +66,8 @@ import { AdminEditAndApproveAnOrder21Page } from "../pages/exui/orders/adminEdit
 import { AdminEditAndApproveAnOrder23Page } from "../pages/exui/orders/adminEditAndApproveAnOrders/adminEditAndApproveAnOrder23.po.js";
 import { AdminEditAndApproveAnOrder22Page } from "../pages/exui/orders/adminEditAndApproveAnOrders/adminEditAndApproveAnOrder22.po.js";
 import { AdminEditAndApproveAnOrderSubmitPage } from "../pages/exui/orders/adminEditAndApproveAnOrders/adminEditAndApproveAnOrderSubmit.po.js";
+import { WelshLanguageRequirements1Page } from "../pages/exui/welshLanguageRequirements/welshLanguageRequirements1.po.ts";
+import { WelshLanguageRequirementsSubmitPage } from "../pages/exui/welshLanguageRequirements/welshLanguageRequirementsSubmit.po.ts";
 
 export class CaseWorkerPagesGroup {
   constructor(public readonly page: Page) {}
@@ -246,6 +248,13 @@ export class CaseWorkerPagesGroup {
       addLocalAuthorityConfirmPage: new AdminAddLocalAuthorityConfirmPage(
         this.page,
       ),
+    };
+  }
+
+  get welshLanguageRequirements() {
+    return {
+      page1: new WelshLanguageRequirements1Page(this.page),
+      submitPage: new WelshLanguageRequirementsSubmitPage(this.page),
     };
   }
 }
