@@ -26,6 +26,7 @@ import { EditAndApproveAnOrder21Page } from "../pages/exui/orders/editAndApprove
 import { TasksPage } from "../pages/exui/caseView/tasks.po.js";
 import { EditAndApproveAnOrderSubmitPage } from "../pages/exui/orders/editAndApproveAnOrders/editAndApproveAnOrderSubmit.po.js";
 import { EditAndApproveAnOrderConfirmPage } from "../pages/exui/orders/editAndApproveAnOrders/editAndApproveAnOrderConfirm.po.js";
+import { HistoryPage } from "../pages/exui/caseView/history.po.js";
 
 export class JudgePagesGroup {
   constructor(public readonly page: Page) {}
@@ -35,6 +36,10 @@ export class JudgePagesGroup {
   }
   get tasksPage() {
     return new TasksPage(this.page);
+  }
+
+  get historyPage() {
+    return new HistoryPage(this.page);
   }
 
   get sendAndReplyToMessages() {
