@@ -127,4 +127,12 @@ setup.describe("Setup users and retrieve tokens", () => {
       );
     },
   );
+
+  setup("Setup Superuser", async ({ page, idamLoginHelper }) => {
+    await idamLoginHelper.signInLongLivedUser(
+      page,
+      "superuser",
+      config.manageCasesBaseURLCase,
+    );
+  });
 });
