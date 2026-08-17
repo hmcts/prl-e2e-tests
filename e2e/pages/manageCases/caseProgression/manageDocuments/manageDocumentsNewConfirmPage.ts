@@ -39,12 +39,12 @@ export class ManageDocumentsNewConfirmPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.h3}:text-is("${ManageDocumentsNewConfirmContent.h3}")`,
+        `${Selectors.h3}:has-text("${ManageDocumentsNewConfirmContent.h3}")`,
         1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.p}:text-is("${ManageDocumentsNewConfirmContent.p}")`,
+        `${Selectors.p}:has-text("${ManageDocumentsNewConfirmContent.p}")`,
         1,
       ),
     ]);

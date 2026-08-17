@@ -1,5 +1,7 @@
 import { Page } from "@playwright/test";
 import { TasksPage } from "../pages/exui/caseView/tasks.po.ts";
+import { CaseDocumentsPage } from "../pages/exui/caseView/caseDocuments.po.ts";
+import { DocumentsToBeReviewedPage } from "../pages/exui/caseView/documentsToBeReviewed.po.ts";
 import { SummaryPage } from "../pages/exui/caseView/summary.po.ts";
 import { HistoryPage } from "../pages/exui/caseView/history.po.ts";
 import { AmendApplicantDetails1 } from "../pages/exui/amendApplicantDetails/amendApplicantDetails1.po.ts";
@@ -29,32 +31,35 @@ import { MaintainCaseLinkSubmitPage } from "../pages/exui/caseLinking/maintainCa
 import { LinkedCasesPage } from "../pages/exui/caseView/linkedCases.po.ts";
 import { SendToGateKeeper1Page } from "../pages/exui/sendToGateKeeper/sendToGateKeeper1.po.ts";
 import { SendToGateKeeperSubmitPage } from "../pages/exui/sendToGateKeeper/sendToGateKeeperSubmit.po.ts";
-import { AmendRespondentDetails1 } from "../pages/exui/amendRespondentDetails/amendRespondentDetails1.po.js";
-import { AmendRespondentDetailsSubmit } from "../pages/exui/amendRespondentDetails/amendRespondentDetailsSubmit.po.js";
-import { SendAndReplyToMessages1Page } from "../pages/exui/sendAndReplyToMessages/sendAndReplyToMessages1.po.js";
-import { SendAndReplyToMessagesSubmitPage } from "../pages/exui/sendAndReplyToMessages/sendAndReplyToMessagesSubmit.po.js";
-import { SendAndReplyToMessages2Page } from "../pages/exui/sendAndReplyToMessages/sendAndReplyToMessages2.po.js";
-import { SendAndReplyToMessages3Page } from "../pages/exui/sendAndReplyToMessages/sendAndReplyToMessages3.po.js";
-import { ReviewRARequest1Page } from "../pages/exui/caseFlags/reviewRARequest/reviewRARequest1.po.js";
-import { ReviewRARequest2Page } from "../pages/exui/caseFlags/reviewRARequest/reviewRARequest2.po.js";
-import { ReviewRARequestSubmitPage } from "../pages/exui/caseFlags/reviewRARequest/reviewRARequestSubmit.po.js";
-import { CaseFlagsPage } from "../pages/exui/caseView/caseFlags.po.js";
-import { ManageOrder1Page } from "../pages/exui/orders/manageOrders/manageOrder1.po.js";
-import { ManageOrder2Page } from "../pages/exui/orders/manageOrders/manageOrder2.po.js";
-import { ManageOrder5Page } from "../pages/exui/orders/manageOrders/manageOrder5.po.js";
-import { ManageOrder10Page } from "../pages/exui/orders/manageOrders/manageOrder10.po.js";
-import { ManageOrder19Page } from "../pages/exui/orders/manageOrders/manageOrder19.po.js";
-import { ManageOrder20Page } from "../pages/exui/orders/manageOrders/manageOrder20.po.js";
-import { ManageOrder24Page } from "../pages/exui/orders/manageOrders/manageOrder24.po.js";
-import { ManageOrderSubmitPage } from "../pages/exui/orders/manageOrders/manageOrderSubmit.po.js";
-import { ManageOrder12Page } from "../pages/exui/orders/manageOrders/manageOrder12.po.js";
-import { OccupationOrderManageOrders12Page } from "../pages/exui/orders/manageOrders/occupationOrderManageOrder12.po.js";
-import { ManageOrder3Page } from "../pages/exui/orders/manageOrders/manageOrder3.po.js";
-import { ManageOrder26Page } from "../pages/exui/orders/manageOrders/manageOrder26.po.js";
-import { ManageOrder11Page } from "../pages/exui/orders/manageOrders/manageOrder11.po.js";
-import { ManageOrder27Page } from "../pages/exui/orders/manageOrders/manageOrder27.po.js";
-import { ManageOrder28Page } from "../pages/exui/orders/manageOrders/manageOrder28.po.js";
-import { OrdersPage } from "../pages/exui/caseView/Orders.po.js";
+import { AmendRespondentDetails1 } from "../pages/exui/amendRespondentDetails/amendRespondentDetails1.po.ts";
+import { AmendRespondentDetailsSubmit } from "../pages/exui/amendRespondentDetails/amendRespondentDetailsSubmit.po.ts";
+import { SendAndReplyToMessages1Page } from "../pages/exui/sendAndReplyToMessages/sendAndReplyToMessages1.po.ts";
+import { SendAndReplyToMessagesSubmitPage } from "../pages/exui/sendAndReplyToMessages/sendAndReplyToMessagesSubmit.po.ts";
+import { SendAndReplyToMessages2Page } from "../pages/exui/sendAndReplyToMessages/sendAndReplyToMessages2.po.ts";
+import { SendAndReplyToMessages3Page } from "../pages/exui/sendAndReplyToMessages/sendAndReplyToMessages3.po.ts";
+import { ReviewRARequest1Page } from "../pages/exui/caseFlags/reviewRARequest/reviewRARequest1.po.ts";
+import { ReviewRARequest2Page } from "../pages/exui/caseFlags/reviewRARequest/reviewRARequest2.po.ts";
+import { ReviewRARequestSubmitPage } from "../pages/exui/caseFlags/reviewRARequest/reviewRARequestSubmit.po.ts";
+import { CaseFlagsPage } from "../pages/exui/caseView/caseFlags.po.ts";
+import { ManageOrder1Page } from "../pages/exui/orders/manageOrders/manageOrder1.po.ts";
+import { ManageOrder2Page } from "../pages/exui/orders/manageOrders/manageOrder2.po.ts";
+import { ManageOrder5Page } from "../pages/exui/orders/manageOrders/manageOrder5.po.ts";
+import { ManageOrder10Page } from "../pages/exui/orders/manageOrders/manageOrder10.po.ts";
+import { ManageOrder19Page } from "../pages/exui/orders/manageOrders/manageOrder19.po.ts";
+import { ManageOrder20Page } from "../pages/exui/orders/manageOrders/manageOrder20.po.ts";
+import { ManageOrder24Page } from "../pages/exui/orders/manageOrders/manageOrder24.po.ts";
+import { ManageOrderSubmitPage } from "../pages/exui/orders/manageOrders/manageOrderSubmit.po.ts";
+import { ManageOrder12Page } from "../pages/exui/orders/manageOrders/manageOrder12.po.ts";
+import { OccupationOrderManageOrders12Page } from "../pages/exui/orders/manageOrders/occupationOrderManageOrder12.po.ts";
+import { ManageOrder3Page } from "../pages/exui/orders/manageOrders/manageOrder3.po.ts";
+import { ManageOrder26Page } from "../pages/exui/orders/manageOrders/manageOrder26.po.ts";
+import { ManageOrder11Page } from "../pages/exui/orders/manageOrders/manageOrder11.po.ts";
+import { ManageOrder27Page } from "../pages/exui/orders/manageOrders/manageOrder27.po.ts";
+import { ManageOrder28Page } from "../pages/exui/orders/manageOrders/manageOrder28.po.ts";
+import { OrdersPage } from "../pages/exui/caseView/Orders.po.ts";
+import { AdminAddLocalAuthority1Page } from "../pages/exui/addLocalAuthority/adminAddLocalAuthority1.po.ts";
+import { AdminAddLocalAuthoritySubmitPage } from "../pages/exui/addLocalAuthority/adminAddLocalAuthoritySubmit.po.ts";
+import { AdminAddLocalAuthorityConfirmPage } from "../pages/exui/addLocalAuthority/adminAddLocalAuthorityConfirm.po.ts";
 import { AdminEditAndApproveAnOrder1Page } from "../pages/exui/orders/adminEditAndApproveAnOrders/adminEditAndApproveAnOrder1.po.js";
 import { AdminEditAndApproveAnOrder4Page } from "../pages/exui/orders/adminEditAndApproveAnOrders/adminEditAndApproveAnOrder4.po.js";
 import { AdminEditAndApproveAnOrder21Page } from "../pages/exui/orders/adminEditAndApproveAnOrders/adminEditAndApproveAnOrder21.po.js";
@@ -67,6 +72,14 @@ export class CaseWorkerPagesGroup {
 
   get tasksPage() {
     return new TasksPage(this.page);
+  }
+
+  get caseDocumentsPage() {
+    return new CaseDocumentsPage(this.page);
+  }
+
+  get documentsToBeReviewedPage() {
+    return new DocumentsToBeReviewedPage(this.page);
   }
 
   get summaryPage() {
@@ -131,6 +144,7 @@ export class CaseWorkerPagesGroup {
       draftOrdersPage: new DraftOrdersPage(this.page),
     };
   }
+
   get Orders() {
     return {
       OrdersPage: new OrdersPage(this.page),
@@ -220,6 +234,18 @@ export class CaseWorkerPagesGroup {
       ),
       adminEditAndApproveAnOrderSubmitPage:
         new AdminEditAndApproveAnOrderSubmitPage(this.page),
+    };
+  }
+
+  get addLocalAuthority() {
+    return {
+      addLocalAuthority1Page: new AdminAddLocalAuthority1Page(this.page),
+      addLocalAuthoritySubmitPage: new AdminAddLocalAuthoritySubmitPage(
+        this.page,
+      ),
+      addLocalAuthorityConfirmPage: new AdminAddLocalAuthorityConfirmPage(
+        this.page,
+      ),
     };
   }
 }
