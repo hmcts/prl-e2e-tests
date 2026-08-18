@@ -43,6 +43,10 @@ export class Config {
       email: process.env.LOCAL_AUTHORITY_USERNAME as string,
       password: process.env.LOCAL_AUTHORITY_PASSWORD as string,
     },
+    superuser: {
+      email: process.env.SUPERUSER_USERNAME as string,
+      password: process.env.SUPERUSER_PASSWORD as string,
+    },
   };
 
   public static readonly sessionStoragePath: string = path.join(

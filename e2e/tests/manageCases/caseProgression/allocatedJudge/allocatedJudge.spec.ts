@@ -30,7 +30,7 @@ test.describe("Allocate a judge to the case", () => {
       judgeOrLegalAdviserName: "Ms Elizabeth Williams",
       judgeTier: "Circuit Judge",
       judgeLastName: "Williams",
-      judgeEmailAddress: "HHJ.Elizabeth.Williams@ejudiciary.net",
+      judgeEmailAddress: "HHJ.Elizabeth.Williams@hmcts.net",
       courtName: "Swansea Civil And Family Justice Centre",
       snapshotName: "allocated-judge-specific-judge",
     },

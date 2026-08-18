@@ -11,6 +11,7 @@ import {
   fl401SolicitorEvents,
   fl401SubmittedSolicitorEvents,
   WACaseWorkerActions,
+  superUserEvents,
 } from "../../../../common/types.js";
 import { MatTabHeaderComponent } from "../../../components/exui/matTabHeader.component.js";
 import { NotificationBannerComponent } from "../../../components/exui/notificationBanner.component.js";
@@ -45,7 +46,8 @@ export abstract class CaseAccessViewPage extends Base {
       | WACaseWorkerActions
       | fl401CaseWorkerActions
       | courtAdminEvents
-      | amendEvents,
+      | amendEvents
+      | superUserEvents,
   ) {
     await expect(
       this.page.locator(Selectors.h2, {
@@ -81,5 +83,40 @@ export abstract class CaseAccessViewPage extends Base {
         },
       )
       .toBeFalsy();
+  }
+
+  async assertEventVisibilityInDropdown(
+    eventShouldBeVisible: boolean,
+    eventToCheck:
+      | c100SolicitorEvents
+      | fl401SolicitorEvents
+      | fl401SubmittedSolicitorEvents
+      | fl401JudiciaryEvents
+      | WACaseWorkerActions
+      | fl401CaseWorkerActions
+      | courtAdminEvents
+      | amendEvents,
+  ) {
+    await expect(
+      this.page.locator(Selectors.h2, {
+        hasText: "FamilyMan ID",
+      }),
+    ).toBeVisible();
+    await expect(
+      this.page.locator(Selectors.h2, {
+        hasText: "Casenumber",
+      }),
+    ).toBeVisible();
+    await expect(this.page.locator("#next-step")).toBeVisible();
+
+    const dropdownOptions = await this.page
+      .locator("#next-step option")
+      .allTextContents();
+
+    if (eventShouldBeVisible) {
+      expect(dropdownOptions).toContain(eventToCheck);
+    } else {
+      expect(dropdownOptions).not.toContain(eventToCheck);
+    }
   }
 }
