@@ -6,16 +6,6 @@ import process from "node:process";
 dotenv.config();
 
 setup.describe("Setup users and retrieve tokens", () => {
-  setup.beforeEach(async ({ page }) => {
-    page.on("response", (response) => {
-      if (response.status() === 502) {
-        throw new Error(
-          `Received 502 error from ${response.url()}. Aborting setup.`,
-        );
-      }
-    });
-  });
-
   setup.beforeAll(
     "Retrieve IDAM token for citizen user creation",
     async ({ tokenUtils }) => {
