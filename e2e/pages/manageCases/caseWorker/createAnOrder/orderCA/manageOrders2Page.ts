@@ -49,7 +49,7 @@ export class ManageOrders2Page {
       ),
       Helpers.checkGroup(
         page,
-        17,
+        16,
         ManageOrders2CAContent,
         "label",
         `${Selectors.GovukFormLabel}`,

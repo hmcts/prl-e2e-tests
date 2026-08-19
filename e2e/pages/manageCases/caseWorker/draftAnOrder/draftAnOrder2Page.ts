@@ -14,7 +14,6 @@ enum UniqueSelectors {
 
 const nonDraftableOrders: OrderType[] = [
   "standardDirectionsOrder",
-  "directionOnIssue",
   "noticeOfProceedingsParties",
   "noticeOfProceedingsNonParties",
   "noticeOfProceedings",
@@ -70,7 +69,7 @@ export class DraftAnOrder2Page {
       ),
       Helpers.checkGroup(
         page,
-        17,
+        16,
         DraftAnOrder2Content,
         `formLabel`,
         `${Selectors.GovukFormLabel}`,

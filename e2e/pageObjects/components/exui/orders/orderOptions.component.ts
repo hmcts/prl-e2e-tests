@@ -13,6 +13,10 @@ export class OrderOptionsComponent {
   private readonly orderTypeLabel: Locator = this.page.getByText(
     "Select the type of order",
   );
+  private readonly directionsOnIssueOption: Locator = this.page.getByRole(
+    "radio",
+    { name: "Directions on issue", exact: true },
+  );
   private readonly childArrangementOrdersLabel: Locator = this.page.getByText(
     "Child arrangement orders (Optional)",
   );
@@ -56,6 +60,7 @@ export class OrderOptionsComponent {
     await expect(this.insetText).toBeVisible();
     await expect(this.orderTypeLabel).toBeVisible();
     await this.pageUtils.assertStrings(OrderTypesArray);
+    await expect(this.directionsOnIssueOption).toHaveCount(0);
   }
 
   async assertUploadOrderPageContents(): Promise<void> {
