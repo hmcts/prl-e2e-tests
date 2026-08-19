@@ -71,10 +71,7 @@ test.describe("As a Court admin Serve a judge approved solicitor created DA case
       serveOrderNow: true,
       personallyServed: false,
       responsibleToServeRespondent: undefined,
-      recipientsToServe: [
-        "John Smith",
-        "Elise Lynn",
-      ],
+      recipientsToServe: ["John Smith", "Elise Lynn"],
       serveCafcass: undefined,
       recipients: ["John Smith", "Elise Lynn"],
       snapshotName: "FL404A-admin-serve-approved-order",

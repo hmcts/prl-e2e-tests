@@ -9,6 +9,9 @@ import { C43UploadOrderParams } from "../../tests/manageCases/caseProgression/or
 import { FL404B2FL406CreateOrderParams } from "../../tests/manageCases/caseProgression/orders/FL401/createAnOrder/judge/createDomesticAbuseOrderJudge.spec.js";
 import { FL404B2UploadOrderParams } from "../../tests/manageCases/caseProgression/orders/FL401/uploadAnOrder/uploadDomesticAbuseOrderJudge.spec.js";
 
+const aatHcaDisplayName: string = "PRL Swansea HCA";
+const demoHcaDisplayName: string = "PRL Demo Swansea HCA";
+
 export const ChildArrangementsCreateOrderScenarios: ChildArrangementsCreateOrderParams[] =
   [
     {
@@ -81,8 +84,8 @@ export const ChildArrangementsCreateOrderScenarios: ChildArrangementsCreateOrder
             orderMadeBy: "Test judge name",
             orderCreatedBy:
               process.env.MANAGE_CASES_TEST_ENV === "demo"
-                ? "PRL Demo Swansea HCA"
-                : "PRL AAT AM Swansea HCA",
+                ? demoHcaDisplayName
+                : aatHcaDisplayName,
             status: "Created by Admin",
           },
           childrenList: [
@@ -160,8 +163,8 @@ export const ChildArrangementsCreateOrderScenarios: ChildArrangementsCreateOrder
             orderMadeBy: "Test judge name",
             orderCreatedBy:
               process.env.MANAGE_CASES_TEST_ENV === "demo"
-                ? "PRL Demo Swansea HCA"
-                : "PRL AAT AM Swansea HCA",
+                ? demoHcaDisplayName
+                : aatHcaDisplayName,
             status: "Created by Admin",
           },
           childrenList: [
@@ -248,8 +251,8 @@ export const AmendedDischargedVariedOrderScenarios: AmendedDischargedVariedOrder
             orderMadeBy: "Test judge name",
             orderCreatedBy:
               process.env.MANAGE_CASES_TEST_ENV === "demo"
-                ? "PRL Demo Swansea HCA"
-                : "PRL AAT AM Swansea HCA",
+                ? demoHcaDisplayName
+                : aatHcaDisplayName,
           },
           serveOrderDetails: {
             recipients: ["John Smith", "Elise Lynn"],
@@ -329,8 +332,8 @@ export const AmendedDischargedVariedOrderScenarios: AmendedDischargedVariedOrder
             orderMadeBy: "Test judge name",
             orderCreatedBy:
               process.env.MANAGE_CASES_TEST_ENV === "demo"
-                ? "PRL Demo Swansea HCA"
-                : "PRL AAT AM Swansea HCA",
+                ? demoHcaDisplayName
+                : aatHcaDisplayName,
           },
           serveOrderDetails: {
             recipients: ["Legal Solicitor (Applicant's legal representative)"],
@@ -401,8 +404,8 @@ export const OccupationOrderScenarios: OccupationOrderParams[] = [
           orderMadeBy: "Test judge name",
           orderCreatedBy:
             process.env.MANAGE_CASES_TEST_ENV === "demo"
-              ? "PRL Demo Swansea HCA"
-              : "PRL AAT AM Swansea HCA",
+              ? demoHcaDisplayName
+              : aatHcaDisplayName,
           status: "Created by Admin",
         },
         isOrderAboutChildren: false,
@@ -468,8 +471,8 @@ export const OccupationOrderScenarios: OccupationOrderParams[] = [
           orderMadeBy: "Test judge name",
           orderCreatedBy:
             process.env.MANAGE_CASES_TEST_ENV === "demo"
-              ? "PRL Demo Swansea HCA"
-              : "PRL AAT AM Swansea HCA",
+              ? demoHcaDisplayName
+              : aatHcaDisplayName,
           status: "Created by Admin",
         },
         childrenList: ["Joe Doe", "Simon Anderson"],
@@ -522,8 +525,8 @@ export const C43A45AUploadOrderScenarios: C43A45AUploadOrderParams[] = [
           orderMadeBy: "Test judge name",
           orderCreatedBy:
             process.env.MANAGE_CASES_TEST_ENV === "demo"
-              ? "PRL Demo Swansea HCA"
-              : "PRL AAT AM Swansea HCA",
+              ? demoHcaDisplayName
+              : aatHcaDisplayName,
           status: "Created by Admin",
         },
         childrenList: [
@@ -570,8 +573,8 @@ export const C43A45AUploadOrderScenarios: C43A45AUploadOrderParams[] = [
           orderMadeBy: "Test judge name",
           orderCreatedBy:
             process.env.MANAGE_CASES_TEST_ENV === "demo"
-              ? "PRL Demo Swansea HCA"
-              : "PRL AAT AM Swansea HCA",
+              ? demoHcaDisplayName
+              : aatHcaDisplayName,
           status: "Created by Admin",
         },
         childrenList: [
@@ -631,8 +634,8 @@ export const FL404AFL406UploadOrderScenarios: DomesticAbuseUploadOrderParams[] =
             orderMadeBy: "Test judge name",
             orderCreatedBy:
               process.env.MANAGE_CASES_TEST_ENV === "demo"
-                ? "PRL Demo Swansea HCA"
-                : "PRL AAT AM Swansea HCA",
+                ? demoHcaDisplayName
+                : aatHcaDisplayName,
             status: "Created by Admin",
           },
           isOrderAboutChildren: false,
@@ -681,8 +684,8 @@ export const FL404AFL406UploadOrderScenarios: DomesticAbuseUploadOrderParams[] =
             orderMadeBy: "Test judge name",
             orderCreatedBy:
               process.env.MANAGE_CASES_TEST_ENV === "demo"
-                ? "PRL Demo Swansea HCA"
-                : "PRL AAT AM Swansea HCA",
+                ? demoHcaDisplayName
+                : aatHcaDisplayName,
             status: "Created by Admin",
           },
           childrenList: ["Joe Doe", "Simon Anderson"],
@@ -758,8 +761,8 @@ export const SpecialGuardianshipCreateOrderScenarios: SpecialGuardianshipCreateO
             orderMadeBy: "Test judge name",
             orderCreatedBy:
               process.env.MANAGE_CASES_TEST_ENV === "demo"
-                ? "PRL Demo Swansea HCA"
-                : "PRL AAT AM Swansea HCA",
+                ? demoHcaDisplayName
+                : aatHcaDisplayName,
           },
           serveOrderDetails: {
             recipients: ["John Doe", "Jeremy Anderson"],
@@ -828,8 +831,8 @@ export const SpecialGuardianshipCreateOrderScenarios: SpecialGuardianshipCreateO
             orderMadeBy: "Test judge name",
             orderCreatedBy:
               process.env.MANAGE_CASES_TEST_ENV === "demo"
-                ? "PRL Demo Swansea HCA"
-                : "PRL AAT AM Swansea HCA",
+                ? demoHcaDisplayName
+                : aatHcaDisplayName,
           },
           serveOrderDetails: {
             recipients: ["Legal Solicitor (Applicant's legal representative)"],

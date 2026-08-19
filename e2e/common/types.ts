@@ -33,11 +33,15 @@ const UserRoles = {
   caseManager: "caseManager",
   nocSolicitor: "nocSolicitor",
   legalAdvisor: "legalAdvisor",
+  localAuthority: "localAuthority",
+  superuser: "superuser",
 } as const;
 
 export type UserRole = (typeof UserRoles)[keyof typeof UserRoles];
 
 export { UserRoles };
+
+export type superUserEvents = "Exit Awaiting Information";
 
 export type c100SolicitorEvents =
   | "Case name"
@@ -121,7 +125,8 @@ export type fl401JudiciaryEvents =
   | "Edit and approve a draft order"
   | "List on notice"
   | "List without notice"
-  | "Mark case as restricted";
+  | "Mark case as restricted"
+  | "Add a case note";
 
 export type ApplicantGender = "female" | "male" | "other";
 
@@ -180,11 +185,7 @@ export type JudgeOrderAction =
 export type Language = "English" | "Welsh";
 
 export type manageOrdersOptions =
-  | "create order"
-  | "upload order"
-  | "amend order"
-  | "serve order"
-  | "create custom order";
+  "create order" | "upload order" | "serve order" | "create custom order";
 
 export type createOrderC100Options = "C43 order";
 
@@ -270,7 +271,9 @@ export type yesNoNA = "Yes" | "No" | "Not applicable";
 export type courtAdminEvents =
   | "Edit and serve an order"
   | "Send to gatekeeper"
-  | "Remove legal representative";
+  | "Remove legal representative"
+  | "Add local authority"
+  | "Request Further Information";
 
 export type contactOption = "Digital" | "Post";
 

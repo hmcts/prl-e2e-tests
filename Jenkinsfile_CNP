@@ -21,6 +21,11 @@ properties([
       description: 'The Manage Cases URL to test against'
     ),
     string(
+      name: 'MANAGE_ORGANISATION_BASE_URL',
+      defaultValue: 'https://manage-org.aat.platform.hmcts.net',
+      description: 'The Manage Organisation URL to test against'
+    ),
+    string(
       name: 'FUNCTIONAL_TESTS_WORKERS',
       defaultValue: '4',
       description: 'Number of workers running functional tests'
@@ -38,7 +43,7 @@ properties([
   ])
 ])
 
-@Library("Infrastructure@2.0.0")
+@Library("Infrastructure@2.5.0")
 
 def type = "nodejs"
 def product = "prl"
@@ -103,6 +108,10 @@ def secrets = [
     secret('prl-noc-solicitor-password', 'NOC_SOLICITOR_PASSWORD'),
     secret('legaladvisor-swansea-username', 'LEGALADVISOR_USERNAME'),
     secret('legaladvisor-swansea-password', 'LEGALADVISOR_PASSWORD'),
+    secret('local-authority-username', 'LOCAL_AUTHORITY_USERNAME'),
+    secret('local-authority-password', 'LOCAL_AUTHORITY_PASSWORD'),
+    secret('superuser-username', 'SUPERUSER_USERNAME'),
+    secret('superuser-password', 'SUPERUSER_PASSWORD'),
   ]
 ]
 
@@ -112,6 +121,7 @@ withNightlyPipeline(type, product, component, 600) {
   loadVaultSecrets(secrets)
   env.CITIZEN_FRONTEND_BASE_URL = params.CITIZEN_FRONTEND_BASE_URL
   env.MANAGE_CASES_BASE_URL = params.MANAGE_CASES_BASE_URL
+  env.MANAGE_ORGANISATION_BASE_URL = params.MANAGE_ORGANISATION_BASE_URL
   env.FUNCTIONAL_TESTS_WORKERS = params.FUNCTIONAL_TESTS_WORKERS
   enableSlackNotifications(channel)
   onPR() {
