@@ -46,25 +46,34 @@ export class IdamLoginHelper {
           );
         }
       }
-      // Different IDAM clients render different headings under #skiplinktarget —
-      // "Sign in" (e.g. Manage Organisation's xuimowebapp login) vs "Sign in or
-      // create an account" (e.g. Manage Cases / demo). `:text("Sign in")` does a
-      // substring match, so a single wait covers every variant without needing to
-      // special-case each application's copy.
-      const continueButton: Locator = page.getByRole("button", {
-        name: "Continue",
-      });
-      await expect(
-        page.getByRole("heading", { name: "Enter your email address" }),
-      ).toBeVisible();
-      await page.locator("#email").fill(username);
-      await continueButton.click();
 
-      await expect(
-        page.getByRole("heading", { name: "Enter your password" }),
-      ).toBeVisible();
-      await page.locator("#password").fill(password);
-      await continueButton.click();
+      // citizen user login is a single page but xui login is a two-page login journey
+      if (userType === "citizen") {
+        await expect(
+          page.getByRole("heading", { name: "Sign in", exact: true }),
+        ).toBeVisible();
+        await page.locator("#username").fill(username);
+        await page.locator("#password").fill(password);
+        await page.getByRole("button", { name: "Sign in" }).click();
+      } else {
+        const continueButton: Locator = page.getByRole("button", {
+          name: "Continue",
+        });
+        await expect(
+          page.getByRole("heading", {
+            name: "Enter your email address",
+            exact: true,
+          }),
+        ).toBeVisible();
+        await page.locator("#email").fill(username);
+        await continueButton.click();
+
+        await expect(
+          page.getByRole("heading", { name: "Enter your password" }),
+        ).toBeVisible();
+        await page.locator("#password").fill(password);
+        await continueButton.click();
+      }
 
       await expect
         .poll(() => !page.url().includes("idam-web-public."), {
