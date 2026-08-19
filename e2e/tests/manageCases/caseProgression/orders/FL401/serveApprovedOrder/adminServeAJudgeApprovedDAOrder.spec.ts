@@ -1,59 +1,59 @@
 import Config from "../../../../../../utils/config.utils.ts";
 import { test } from "../../../../../fixtures.ts";
-import { JudgePagesGroup } from "../../../../../../pageObjects/roleBasedGroupedPages/judgePages.js";
 import { OrderTypes } from "../../../../../../common/types.js";
+import { JudgePagesGroup } from "../../../../../../pageObjects/roleBasedGroupedPages/judgePages.js";
 
-test.describe("As a Court admin, serve a judge approved - solicitor drafted CA case order tests", (): void => {
+test.describe("As a Court admin Serve a judge approved solicitor created DA case order tests", (): void => {
   test.slow();
 
   let caseRef: string;
-  const orderType = "Parental responsibility order (C45A)";
+  const orderType = "Non-molestation order (FL404A)";
 
   test.beforeEach(async ({ judge, manageCasesEventUtils, navigationUtils }) => {
-    caseRef = (await manageCasesEventUtils.submitTSSolicitorCase("C100"))
+    caseRef = (await manageCasesEventUtils.submitTSSolicitorCase("FL401"))
       .caseRef;
-    await manageCasesEventUtils.issueAndSendToLocalCourt(caseRef);
-    await manageCasesEventUtils.sendToGatekeeper(caseRef, "C100");
+    await manageCasesEventUtils.sendToGatekeeper(caseRef, "FL401");
     await manageCasesEventUtils.createSolicitorDraftOrder(
       caseRef,
       orderType as OrderTypes,
     );
+
     await navigationUtils.goToCase(
       judge.page,
       Config.manageCasesBaseURLCase,
       caseRef,
       "tasks",
     );
-
     const judgeData = {
       judeOrderAction: "Send to admin to serve",
       orderType: orderType,
       serveApplication: true,
       status: "Reviewed by Judge",
-      snapshotName: "C45A-judge-review-approve-order-sendAdmin-Serve",
+      snapshotName: "FL404A-judge-review-approve-order-sendAdmin-Serve",
       snapshotPath: ["caseProgression", "orders", "editAndApproveAnOrders"],
     };
 
     await editAndApproveOrder(caseRef, judge, judgeData);
   });
+
   [
     {
       wantToEditOrder: false,
       serveOrderType: "General",
-      cafcassReport: false,
-      cafcassInvolvement: false,
+      cafcassReport: undefined,
+      cafcassInvolvement: undefined,
       localAuthorityReport: false,
       serveOrderNow: true,
       personallyServed: true,
       responsibleToServeRespondent: "Court bailiff",
       recipientsToServe: undefined,
-      serveCafcass: false,
+      serveCafcass: undefined,
       recipients: ["Legal Solicitor (Applicant's legal representative)"],
-      snapshotName: "C45A-admin-personally-serve-approved-order",
+      snapshotName: "FL404A-admin-personally-serve-approved-order",
       snapshotPath: ["caseProgression", "orders", "serveApprovedOrders"],
     },
   ].forEach((data) => {
-    test(`Admin serves a judge approved C100 order that is personally served as : ${data.personallyServed} to respondent by : ${data.responsibleToServeRespondent} @regression @accessibility`, async ({
+    test(`Admin serves a judge approved FL401 order that is personally served as : ${data.personallyServed} to respondent by : ${data.responsibleToServeRespondent} @regression @accessibility`, async ({
       caseWorker,
       navigationUtils,
     }): Promise<void> => {
@@ -65,23 +65,20 @@ test.describe("As a Court admin, serve a judge approved - solicitor drafted CA c
     {
       wantToEditOrder: false,
       serveOrderType: "General",
-      cafcassReport: false,
-      cafcassInvolvement: false,
+      cafcassReport: undefined,
+      cafcassInvolvement: undefined,
       localAuthorityReport: false,
       serveOrderNow: true,
       personallyServed: false,
       responsibleToServeRespondent: undefined,
-      recipientsToServe: [
-        "John Doe (Applicant 1)",
-        "Jeremy Anderson (Applicant 2)",
-      ],
-      serveCafcass: false,
-      recipients: ["John Doe", "Jeremy Anderson"],
-      snapshotName: "C45A-admin-serve-approved-order",
+      recipientsToServe: ["John Smith", "Elise Lynn"],
+      serveCafcass: undefined,
+      recipients: ["John Smith", "Elise Lynn"],
+      snapshotName: "FL404A-admin-serve-approved-order",
       snapshotPath: ["caseProgression", "orders", "serveApprovedOrders"],
     },
   ].forEach((data) => {
-    test(`Admin serve an judge approved C100 order that is personally served as : ${data.personallyServed} to : ${data.recipientsToServe} @nightly @regression @accessibility`, async ({
+    test(`Admin serve an judge approved FL401 order that is personally served as : ${data.personallyServed} to : ${data.recipientsToServe} @nightly @regression @accessibility`, async ({
       caseWorker,
       navigationUtils,
     }): Promise<void> => {
@@ -113,7 +110,7 @@ async function editAndServeOrder(caseRef, caseWorker, data, navigationUtils) {
   await adminEditAndApproveAnOrders.adminEditAndApproveAnOrder1Page.clickContinue();
 
   await adminEditAndApproveAnOrders.adminEditAndApproveAnOrder4Page.assertPageContents(
-    "Parental responsibility order (C45A)",
+    "Non-molestation order (FL404A)",
   );
   await adminEditAndApproveAnOrders.adminEditAndApproveAnOrder4Page.verifyAccessibility();
   await adminEditAndApproveAnOrders.adminEditAndApproveAnOrder4Page.editOrder(
@@ -122,11 +119,11 @@ async function editAndServeOrder(caseRef, caseWorker, data, navigationUtils) {
   await adminEditAndApproveAnOrders.adminEditAndApproveAnOrder4Page.clickContinue();
 
   await adminEditAndApproveAnOrders.adminEditAndApproveAnOrder21Page.assertPageContents(
-    "C100",
+    "FL401",
   );
   await adminEditAndApproveAnOrders.adminEditAndApproveAnOrder21Page.verifyAccessibility();
   await adminEditAndApproveAnOrders.adminEditAndApproveAnOrder21Page.selectServeOrderOptions(
-    "C100",
+    "FL401",
     data.serveOrderType,
     data.cafcassReport,
     data.cafcassInvolvement,
@@ -140,11 +137,11 @@ async function editAndServeOrder(caseRef, caseWorker, data, navigationUtils) {
   await adminEditAndApproveAnOrders.adminEditAndApproveAnOrder22Page.clickContinue();
 
   await adminEditAndApproveAnOrders.adminEditAndApproveAnOrder23Page.assertPageContents(
-    "C100",
+    "FL401",
   );
   await adminEditAndApproveAnOrders.adminEditAndApproveAnOrder23Page.verifyAccessibility();
   await adminEditAndApproveAnOrders.adminEditAndApproveAnOrder23Page.serveOrderDetails(
-    "C100",
+    "FL401",
     data.personallyServed,
     data.responsibleToServeRespondent,
     data.recipientsToServe,
@@ -169,16 +166,9 @@ async function editAndServeOrder(caseRef, caseWorker, data, navigationUtils) {
     {
       Order: data.serveOrderType,
       typeOfOrder: data.orderType,
-      welshDocument: "Welsh_Parental_Responsibility_Order_C45A.pdf",
-      childrenList: [
-        "Joe Doe (Child 1)",
-        "Simon Anderson (Child 2)",
-        "Lilly Anderson (Child 3)",
-        "Charlotte Saxon (Child 4)",
-        "Selena Lees (Child 5)",
-      ],
-      isOrderAboutAllTheChildren: true,
-      englishDocument: "Parental_Responsibility_Order_C45A.pdf",
+      welshDocument: "welsh_non_molestation_order_fl404a_final.pdf",
+      isOrderAboutChildren: false,
+      englishDocument: "non_molestation_order_fl404a_final.pdf",
       otherDetails: {
         orderMadeBy: "Test Judge Name",
         orderCreatedBy:
@@ -188,7 +178,7 @@ async function editAndServeOrder(caseRef, caseWorker, data, navigationUtils) {
       },
       serveOrderDetails: {
         recipients: data.recipients,
-        serveCafcass: false,
+        serveCafcass: undefined,
         responsibleToServe: data.responsibleToServeRespondent,
       },
     },
@@ -196,13 +186,13 @@ async function editAndServeOrder(caseRef, caseWorker, data, navigationUtils) {
   await Orders.OrdersPage.assertOrderDocument(
     data.snapshotPath,
     caseRef,
-    "Welsh_Parental_Responsibility_Order_C45A.pdf",
+    "welsh_non_molestation_order_fl404a_final.pdf",
     data.snapshotName + "-welsh",
   );
   await Orders.OrdersPage.assertOrderDocument(
     data.snapshotPath,
     caseRef,
-    "Parental_Responsibility_Order_C45A.pdf",
+    "non_molestation_order_fl404a_final.pdf",
     data.snapshotName + "-english",
   );
 }
@@ -250,9 +240,9 @@ async function editAndApproveOrder(caseRef, judge: JudgePagesGroup, data) {
       typeOfOrder: data.orderType as OrderTypes,
       englishDocument: `${data.orderType
         .replace(/[(),]/g, "")
-        .split(" ")
-        .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-        .join("_")}_draft.pdf`,
+        .replace(/-/g, "_")
+        .replace(/\s+/g, "_")
+        .toLowerCase()}_draft.pdf`,
       otherDetails: {
         orderMadeBy: "Test Judge Name",
         orderCreatedBy:
@@ -261,14 +251,7 @@ async function editAndApproveOrder(caseRef, judge: JudgePagesGroup, data) {
             : "AAT Solicitor",
         status: data.status,
       },
-      childrenList: [
-        "Joe Doe (Child 1)",
-        "Simon Anderson (Child 2)",
-        "Lilly Anderson (Child 3)",
-        "Charlotte Saxon (Child 4)",
-        "Selena Lees (Child 5)",
-      ],
-      isOrderAboutAllTheChildren: true,
+      isOrderAboutChildren: false,
     },
   ]);
   await draftedOrders.draftOrdersPage.assertDraftOrderDocument(
@@ -276,9 +259,9 @@ async function editAndApproveOrder(caseRef, judge: JudgePagesGroup, data) {
     caseRef,
     `${data.orderType
       .replace(/[(),]/g, "")
-      .split(" ")
-      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-      .join("_")}_draft.pdf`,
+      .replace(/-/g, "_")
+      .replace(/\s+/g, "_")
+      .toLowerCase()}_draft.pdf`,
     data.snapshotName,
   );
 }
