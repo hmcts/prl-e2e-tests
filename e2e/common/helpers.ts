@@ -63,6 +63,7 @@ export class Helpers {
     const eventSelector = `${Selectors.markdown} > ${Selectors.div} > ${Selectors.p} > ${Selectors.a}:has-text("${event}")`;
     await page.waitForSelector(`.mat-tab-label-content:text-is("Tasks")`);
     await page.locator(eventSelector).waitFor();
+    await page.waitForLoadState("networkidle");
     await page.click(eventSelector);
   }
 

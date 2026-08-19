@@ -97,8 +97,8 @@ export class CourtAdminStokePagesGroup {
       addACaseNoteSubmitPage: new AddACaseNoteSubmitPage(this.page),
     };
   }
-      
- get amendApplicantDetails() {
+
+  get amendApplicantDetails() {
     return {
       page1: new AmendApplicantDetails1(this.page),
       submitPage: new AmendApplicantDetailsSubmit(this.page),
