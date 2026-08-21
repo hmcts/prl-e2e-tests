@@ -28,7 +28,6 @@ export interface AmendedDischargedVariedOrderParams {
   snapshotsPath: string[];
   orderInformation: OrderInformation[];
 }
-// TEST COMMENT
 
 test.describe("Manage Orders - Create a Amended, Discharged Or varied order (FL404B) order tests", () => {
   let caseRef: string = "";

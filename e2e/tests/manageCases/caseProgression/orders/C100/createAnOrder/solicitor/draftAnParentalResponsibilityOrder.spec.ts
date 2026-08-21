@@ -20,7 +20,6 @@ export interface ParentalResponsibilityDraftOrderParams {
   snapshotsPath: string[];
   orderInformation: OrderInformation[];
 }
-// TEST COMMENT
 
 test.describe("Draft a parental responsibility order tests", (): void => {
   let caseRef: string;

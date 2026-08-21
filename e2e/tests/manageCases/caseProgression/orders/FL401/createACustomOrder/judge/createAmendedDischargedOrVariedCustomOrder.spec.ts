@@ -3,8 +3,6 @@ import config from "../../../../../../../utils/config.utils.ts";
 import { CreateAmendedDischargedOrVariedCustomOrderScenarios } from "../../../../../../../testData/ui/draftOrders.ts";
 import { CustomOrderParams } from "../../../C100/createACustomOrder/judge/createParentalResponsibilityCustomOrder.spec.ts";
 
-// TEST COMMENT
-
 test.describe("Manage Orders - Create custom amended, discharged or varied custom order tests", () => {
   let caseRef: string = "";
 

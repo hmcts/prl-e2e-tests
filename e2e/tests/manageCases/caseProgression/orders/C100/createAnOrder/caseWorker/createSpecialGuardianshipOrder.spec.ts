@@ -27,7 +27,6 @@ export interface SpecialGuardianshipCreateOrderParams {
   snapshotsPath: string[];
   orderInformation: OrderInformation[];
 }
-// TEST COMMENT
 
 test.describe("Manage Orders - Create a Special Guardianship order tests", () => {
   let caseRef: string = "";

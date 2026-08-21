@@ -18,7 +18,6 @@ export interface CustomOrderParams {
   cyaSnapshotName: string;
   orderSnapshotName: string;
 }
-// TEST COMMENT
 
 test.describe("Manage Orders - Create parental responsibility custom order tests", () => {
   let caseRef: string = "";
