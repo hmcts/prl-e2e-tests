@@ -17,8 +17,8 @@ test.describe("Check Application task for DA Solicitor case tests.", () => {
     },
   );
 
-  [{ familyManNumber: "1234", snapshotName: "check-application" }].forEach(
-    ({ familyManNumber, snapshotName }) => {
+  [{ }].forEach(
+    ({ snapshotName }) => {
       test("Complete Task - Check Application with accessibility test. @nightly @accessibility @regression", async ({
         caseWorker,
       }): Promise<void> => {
