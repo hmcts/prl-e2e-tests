@@ -1,101 +1,68 @@
 import { test } from "../../../fixtures.ts";
 import config from "../../../../utils/config.utils.ts";
-import { WelshLanguageRequirements } from "../../../../journeys/manageCases/caseProgression/welshLanguageRequirements/welshLanguageRequirements.ts";
-
-test.use({ storageState: config.sessionStoragePath + "caseWorker.json" });
+import {
+  WelshLanguageRequirementsCaseWorkerScenarios as scenarios,
+  WelshLanguageRequirementsScenario,
+} from "../../../../testData/ui/welshLanguageRequirements.ts";
 
 test.describe("Welsh Language Requirements task for DA Solicitor case tests as Court Admin.", () => {
-  test.beforeEach(async ({ page, manageCasesEventUtils, navigationUtils }) => {
-    const caseRef = (await manageCasesEventUtils.submitTSSolicitorCase("FL401"))
-      .caseRef;
-    await navigationUtils.goToCase(
-      page,
-      config.manageCasesBaseURLCase,
-      caseRef,
-    );
-  });
+  let caseRef: string = "";
 
-  test(`Complete Welsh Language Requirements with following options: 
-  Does any person in this case need orders or documents in Welsh: No
-  Accessibility testing: No. @regression`, async ({ page }): Promise<void> => {
-    await WelshLanguageRequirements.welshLanguageRequirements({
-      page: page,
-      needDocumentsInWelsh: false,
-      languageToCompleteApplication: "English",
-      doesApplicationNeedTranslating: false,
-      accessibilityTest: false,
-    });
-  });
+  test.beforeEach(
+    async ({ caseWorker, manageCasesEventUtils, navigationUtils }) => {
+      caseRef = (await manageCasesEventUtils.submitTSSolicitorCase("FL401"))
+        .caseRef;
+      await navigationUtils.goToCase(
+        caseWorker.page,
+        config.manageCasesBaseURLCase,
+        caseRef,
+      );
+    },
+  );
 
-  test(`Complete Welsh Language Requirements with following options: 
-  Does any person in this case need orders or documents in Welsh: Yes
-  Which language are you using to complete this application: English
-  Does this application need to be translated: Yes
-  Accessibility testing: No. @regression`, async ({ page }): Promise<void> => {
-    await WelshLanguageRequirements.welshLanguageRequirements({
-      page: page,
-      needDocumentsInWelsh: true,
-      languageToCompleteApplication: "English",
-      doesApplicationNeedTranslating: true,
-      accessibilityTest: false,
-    });
-  });
+  /**
+   * One test per scenario, each on its own freshly created FL401 case:
+   *
+   * 1. Welsh documents not wanted                          -> English only
+   * 2. Wanted, completed in English, translated to Welsh   -> Welsh + English
+   * 3. Wanted, completed in English, not translated        -> English only
+   * 4. Wanted, completed in Welsh, translated to English   -> Welsh + English
+   * 5. Wanted, completed in Welsh, not translated          -> Welsh only
+   */
+  scenarios.forEach((scenario: WelshLanguageRequirementsScenario) => {
+    test(`Complete Welsh Language Requirements with ${scenario.description}. @regression @accessibility @nightly @tp`, async ({
+      caseWorker,
+    }): Promise<void> => {
+      const { summaryPage, caseDocumentsPage, welshLanguageRequirements } =
+        caseWorker;
+      const { page1, submitPage } = welshLanguageRequirements;
 
-  test(`Complete Welsh Language Requirements with following options: 
-  Does any person in this case need orders or documents in Welsh: Yes
-  Which language are you using to complete this application: English
-  Does this application need to be translated: No
-  Accessibility testing: No. @regression`, async ({ page }): Promise<void> => {
-    await WelshLanguageRequirements.welshLanguageRequirements({
-      page: page,
-      needDocumentsInWelsh: true,
-      languageToCompleteApplication: "English",
-      doesApplicationNeedTranslating: false,
-      accessibilityTest: false,
-    });
-  });
+      // answering the Welsh language requirements event
+      await summaryPage.chooseEventFromDropdown("Welsh language requirements");
+      await page1.assertPageContents();
+      await page1.verifyAccessibility();
+      await page1.selectWelshLanguageRequirements(scenario);
+      await page1.clickContinue();
 
-  test(`Complete Welsh Language Requirements with following options: 
-  Does any person in this case need orders or documents in Welsh: Yes
-  Which language are you using to complete this application: Welsh
-  Does this application need to be translated: Yes
-  Accessibility testing: No. @regression`, async ({ page }): Promise<void> => {
-    await WelshLanguageRequirements.welshLanguageRequirements({
-      page: page,
-      needDocumentsInWelsh: true,
-      languageToCompleteApplication: "Welsh",
-      doesApplicationNeedTranslating: true,
-      accessibilityTest: false,
-    });
-  });
+      // confirming those answers on check your answers, then saving
+      await submitPage.assertPageContents(
+        scenario.snapshotPath,
+        scenario.snapshotName,
+      );
+      await submitPage.verifyAccessibility();
+      await submitPage.clickSaveAndContinue();
 
-  test(`Complete Welsh Language Requirements with following options: 
-  Does any person in this case need orders or documents in Welsh: Yes
-  Which language are you using to complete this application: Welsh
-  Does this application need to be translated: No
-  Accessibility testing: No. @regression`, async ({ page }): Promise<void> => {
-    await WelshLanguageRequirements.welshLanguageRequirements({
-      page: page,
-      needDocumentsInWelsh: true,
-      languageToCompleteApplication: "Welsh",
-      doesApplicationNeedTranslating: false,
-      accessibilityTest: false,
-    });
-  });
+      // CCD returns to the summary tab once the event is saved
+      await summaryPage.alertBanner.assertEventAlert(
+        caseRef,
+        "Welsh language requirements",
+      );
 
-  test(`Complete Welsh Language Requirements with following options: 
-  Does any person in this case need orders or documents in Welsh: Yes
-  Which language are you using to complete this application: English
-  Does this application need to be translated: Yes
-  Accessibility testing: Yes. @accessibility @nightly`, async ({
-    page,
-  }): Promise<void> => {
-    await WelshLanguageRequirements.welshLanguageRequirements({
-      page: page,
-      needDocumentsInWelsh: true,
-      languageToCompleteApplication: "English",
-      doesApplicationNeedTranslating: true,
-      accessibilityTest: true,
+      // checking the application documents CCD regenerated as a result
+      await caseDocumentsPage.goToPage();
+      await caseDocumentsPage.assertFinalDocuments(
+        scenario.expectedFinalDocuments,
+      );
     });
   });
 });
