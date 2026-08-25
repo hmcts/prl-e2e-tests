@@ -115,6 +115,12 @@ export class CustomOrdersManageOrder5Page extends EventPage {
     await this.assertPageHeadings();
     await expect(this.selectOrderNameLabel).toBeVisible();
     await this.pageUtils.assertStrings(OrderTypesArray);
+    await expect(
+      this.page.getByRole("radio", {
+        name: "Directions on issue",
+        exact: true,
+      }),
+    ).toHaveCount(0);
     await expect(this.uploadCustomOrderTemplateLabel).toBeVisible();
     await expect(this.uploadOrderAdviceLabel).toBeVisible();
     await expect(this.cancelUploadButton).toBeVisible();
