@@ -10,7 +10,7 @@ export enum CommonContent {
   welshTranslationButton = "Cymraeg",
   judgeName = "Ms Elizabeth Williams",
   judgeNameNoPrefix = "Elizabeth Williams",
-  judgeEmail = "HHJ.Elizabeth.Williams@ejudiciary.net",
-  judgeNameAndEmail = "Ms Elizabeth Williams (HHJ.Elizabeth.Williams@ejudiciary.net)",
+  judgeEmail = "HHJ.Elizabeth.Williams@hmcts.net",
+  judgeNameAndEmail = "Ms Elizabeth Williams (HHJ.Elizabeth.Williams@hmcts.net)",
   c100Fee = "£270.00",
 }

@@ -11,7 +11,7 @@ export interface ManageOrder28Params {
 }
 
 export class ManageOrder28Page extends EventPage {
-  readonly heading2: Locator = this.page.locator(Selectors.h2, {
+  private readonly heading2: Locator = this.page.locator(Selectors.h2, {
     hasText: "Serve the order",
   });
   private readonly personallyServeText = this.page.getByText(

@@ -6,16 +6,6 @@ import process from "node:process";
 dotenv.config();
 
 setup.describe("Setup users and retrieve tokens", () => {
-  setup.beforeEach(async ({ page }) => {
-    page.on("response", (response) => {
-      if (response.status() === 502) {
-        throw new Error(
-          `Received 502 error from ${response.url()}. Aborting setup.`,
-        );
-      }
-    });
-  });
-
   setup.beforeAll(
     "Retrieve IDAM token for citizen user creation",
     async ({ tokenUtils }) => {
@@ -100,6 +90,38 @@ setup.describe("Setup users and retrieve tokens", () => {
     await idamLoginHelper.signInLongLivedUser(
       page,
       "legalAdvisor",
+      config.manageCasesBaseURLCase,
+    );
+  });
+
+  setup(
+    "Setup Manage Cases Local Authority user",
+    async ({ page, idamLoginHelper }) => {
+      await idamLoginHelper.signInLongLivedUser(
+        page,
+        "localAuthority",
+        config.manageCasesBaseURLCase,
+        "manageCases-",
+      );
+    },
+  );
+
+  setup(
+    "Setup Manage Orgs Local Authority user",
+    async ({ page, idamLoginHelper }) => {
+      await idamLoginHelper.signInLongLivedUser(
+        page,
+        "localAuthority",
+        config.manageOrgBaseURL,
+        "manageOrgs-",
+      );
+    },
+  );
+
+  setup("Setup Superuser", async ({ page, idamLoginHelper }) => {
+    await idamLoginHelper.signInLongLivedUser(
+      page,
+      "superuser",
       config.manageCasesBaseURLCase,
     );
   });

@@ -14,6 +14,15 @@ import { TransferToAnotherCourt1Page } from "../pages/exui/transferToAnotherCour
 import { TransferToAnotherCourtSubmitPage } from "../pages/exui/transferToAnotherCourt/transferToAnotherCourtSubmit.po.js";
 import { TransferToAnotherCourtConfirmPage } from "../pages/exui/transferToAnotherCourt/transferToAnotherCourtConfirm.po.js";
 import { DraftOrdersPage } from "../pages/exui/caseView/draftOrders.po.js";
+import { AmendChildDetails1Page } from "../pages/exui/amendChildDetails/amendChildDetails1.po.ts";
+import { AmendChildDetails2Page } from "../pages/exui/amendChildDetails/amendChildDetails2.po.ts";
+import { AmendChildDetailsSubmitPage } from "../pages/exui/amendChildDetails/amendChildDetailsSubmit.po.ts";
+import { RequestFurtherInformation1Page } from "../pages/exui/requestFurtherInformation/requestFurtherInformation1.po.ts";
+import { RequestFurtherInformationSubmitPage } from "../pages/exui/requestFurtherInformation/requestFurtherInformationSubmit.po.ts";
+import { AddACaseNoteSubmitPage } from "../pages/exui/addACaseNote/addACaseNoteSubmit.po.ts";
+import { AddACaseNote1Page } from "../pages/exui/addACaseNote/addACaseNote1.po.ts";
+import { AmendApplicantDetails1 } from "../pages/exui/amendApplicantDetails/amendApplicantDetails1.po.ts";
+import { AmendApplicantDetailsSubmit } from "../pages/exui/amendApplicantDetails/amendApplicantDetailsSubmit.po.ts";
 
 export class CourtAdminStokePagesGroup {
   constructor(public readonly page: Page) {}
@@ -61,6 +70,38 @@ export class CourtAdminStokePagesGroup {
   get draftedOrders() {
     return {
       draftOrdersPage: new DraftOrdersPage(this.page),
+    };
+  }
+
+  get amendChildDetails() {
+    return {
+      page1: new AmendChildDetails1Page(this.page),
+      page2: new AmendChildDetails2Page(this.page),
+      submitPage: new AmendChildDetailsSubmitPage(this.page),
+    };
+  }
+
+  get requestFurtherInformation() {
+    return {
+      requestFurtherInformation1Page: new RequestFurtherInformation1Page(
+        this.page,
+      ),
+      requestFurtherInformationSubmitPage:
+        new RequestFurtherInformationSubmitPage(this.page),
+    };
+  }
+
+  get addACaseNote() {
+    return {
+      addACaseNote1Page: new AddACaseNote1Page(this.page),
+      addACaseNoteSubmitPage: new AddACaseNoteSubmitPage(this.page),
+    };
+  }
+
+  get amendApplicantDetails() {
+    return {
+      page1: new AmendApplicantDetails1(this.page),
+      submitPage: new AmendApplicantDetailsSubmit(this.page),
     };
   }
 }

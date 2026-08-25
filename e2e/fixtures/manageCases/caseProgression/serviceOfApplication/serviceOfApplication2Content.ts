@@ -16,4 +16,5 @@ export enum ServiceOfApplication2Content {
   hiddenLi3 = "privacy notice",
   hiddenLi4 = "cover letter (if not represented)",
   powerOfArrest = "Power of arrest",
+  amendDischargeVariedOrder = "Amended, discharged or varied order (FL404B)",
 }

@@ -33,7 +33,7 @@ test.describe("Manage documents event for DA Solicitor case tests as a court adm
     });
   });
 
-  test("Complete Manage Documents where the document is an 'Guardian report' and is uploaded on behalf of the respondent. No restricted access and not confidential. @regression", async ({
+  test("Complete Manage Documents where the document is an 'Section 16.4 Guardian Report' and is uploaded on behalf of the respondent. No restricted access and not confidential. @regression", async ({
     page,
   }): Promise<void> => {
     await ManageDocuments.manageDocuments({
@@ -41,7 +41,7 @@ test.describe("Manage documents event for DA Solicitor case tests as a court adm
       accessibilityTest: true,
       caseType: "FL401",
       documentParty: "Respondent",
-      documentCategory: "Guardian report",
+      documentCategory: "Section 16.4 Guardian Report",
       restrictDocument: false,
       confidentialDocument: false,
     });

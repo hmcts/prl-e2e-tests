@@ -79,4 +79,15 @@ export class DateHelperUtils {
     };
     return now.toLocaleDateString("en-GB", options);
   }
+
+  tomorrowDateDDMMYYYY(): string {
+    const tomorrow = new Date();
+    tomorrow.setDate(tomorrow.getDate() + 1);
+
+    const day = `${tomorrow.getDate()}`.padStart(2, "0");
+    const month = `${tomorrow.getMonth() + 1}`.padStart(2, "0");
+    const year = tomorrow.getFullYear();
+
+    return `${day}-${month}-${year}`;
+  }
 }
