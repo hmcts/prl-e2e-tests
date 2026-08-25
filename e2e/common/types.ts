@@ -375,7 +375,6 @@ export interface ClippingCoords {
 
 export type OrderTypes =
   | "Standard directions order"
-  | "Directions on issue"
   | "Blank order or directions (C21)"
   | "Child arrangements, specific issue or prohibited steps order (C43)"
   | "Parental responsibility order (C45A)"
