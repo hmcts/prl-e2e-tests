@@ -105,6 +105,28 @@ export class ManageCaseEventUtils {
                 : "AAT Solicitor",
             payAgreeStatement: ["agree"],
             feeAmount: "£270.00",
+            submitAndPayDownloadApplicationLink: {
+              document_url:
+                process.env.MANAGE_CASES_TEST_ENV === "demo"
+                  ? "http://dm-store-demo.service.core-compute-demo.internal/documents/d680b650-99a0-4ac1-9e73-ae8a8a7acf96"
+                  : "http://dm-store-aat.service.core-compute-aat.internal/documents/f984d3cf-4b41-45c7-81f8-383bad5f2c42",
+              document_binary_url:
+                process.env.MANAGE_CASES_TEST_ENV === "demo"
+                  ? "http://dm-store-demo.service.core-compute-demo.internal/documents/d680b650-99a0-4ac1-9e73-ae8a8a7acf96/binary"
+                  : "http://dm-store-aat.service.core-compute-aat.internal/documents/f984d3cf-4b41-45c7-81f8-383bad5f2c42/binary",
+              document_filename: "Draft_C100_application.pdf",
+            },
+            submitAndPayDownloadApplicationWelshLink: {
+              document_url:
+                process.env.MANAGE_CASES_TEST_ENV === "demo"
+                  ? "http://dm-store-demo.service.core-compute-demo.internal/documents/1675a6a3-5929-4bd3-ab41-0c3a7a1a73da"
+                  : "http://dm-store-aat.service.core-compute-aat.internal/documents/9fea006c-38bb-4213-bb1b-a38efa158868",
+              document_binary_url:
+                process.env.MANAGE_CASES_TEST_ENV === "demo"
+                  ? "http://dm-store-demo.service.core-compute-demo.internal/documents/1675a6a3-5929-4bd3-ab41-0c3a7a1a73da/binary"
+                  : "http://dm-store-aat.service.core-compute-aat.internal/documents/9fea006c-38bb-4213-bb1b-a38efa158868/binary",
+              document_filename: "Draft_C100_application_welsh.pdf",
+            },
             helpWithFees: "No",
           },
         },
