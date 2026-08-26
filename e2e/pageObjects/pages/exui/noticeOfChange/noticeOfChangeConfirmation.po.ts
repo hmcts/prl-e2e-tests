@@ -3,7 +3,7 @@ import { Locator, Page, expect } from "@playwright/test";
 import { Selectors } from "../../../../common/selectors.js";
 import { CommonStaticText } from "../../../../common/commonStaticText.js";
 
-export class C100NocConfirmationPage extends EventPage {
+export class NoticeOfChangeConfirmationPage extends EventPage {
   private readonly viewThisCaseButton: Locator = this.page.locator(
     Selectors.a,
     {
@@ -49,6 +49,7 @@ export class C100NocConfirmationPage extends EventPage {
   private readonly a2: Locator = this.page.locator(Selectors.a, {
     hasText: "View case list",
   });
+  private readonly nextStepDropdown: Locator = this.page.locator("#next-step");
 
   constructor(page: Page) {
     super(page, "Enter your client's details");
@@ -69,9 +70,9 @@ export class C100NocConfirmationPage extends EventPage {
 
   async clickViewThisCase(): Promise<void> {
     await this.viewThisCaseButton.click();
-    // extra awaits to avoid test failure due to timeout, to be investigated/removed in the future
-    await expect(
-      this.page.locator(Selectors.a, { hasText: " Case list " }),
-    ).toBeVisible({ timeout: 9000 });
+    await expect(this.page).toHaveURL(
+      /\/cases\/case-details\/(?:PRIVATELAW\/PRLAPPS\/)?\d+(?:[/?#]|$)/,
+    );
+    await expect(this.nextStepDropdown).toBeVisible({ timeout: 60_000 });
   }
 }
