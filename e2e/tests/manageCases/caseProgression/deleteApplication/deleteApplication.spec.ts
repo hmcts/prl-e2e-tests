@@ -4,7 +4,7 @@ import { solicitorCaseCreateType } from "../../../../common/types.ts";
 
 const caseTypes: solicitorCaseCreateType[] = ["C100", "FL401"];
 
-for (const caseType of caseTypes) {
+caseTypes.forEach((caseType) => {
   let caseRef: string;
 
   test.describe(`Delete ${caseType} application tests`, (): void => {
@@ -45,4 +45,4 @@ for (const caseType of caseTypes) {
       );
     });
   });
-}
+});
