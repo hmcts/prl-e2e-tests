@@ -7,7 +7,6 @@ import config from "../../../../utils/config.utils.ts";
 import { MiamPolicyUpgrade6Content } from "../../../../fixtures/manageCases/createCase/C100/miamPolicyUpgrade/miamPolicyUpgrade6Content.ts";
 import { CommonStaticText } from "../../../../common/commonStaticText.ts";
 import { createOrderFL401Options } from "../../../../common/types.ts";
-import { ManageOrders3DAContent } from "../../../../fixtures/manageCases/caseWorker/createAnOrder/orderDA/manageOrders3DAContent.ts";
 
 interface ServiceOfApplication2Options {
   page: Page;
@@ -104,7 +103,7 @@ export class ServiceOfApplication2Page {
         break;
       case "amend discharge varied order":
         await page.click(
-          `${Selectors.p}:has-text("${ManageOrders3DAContent.amendDischargeVariedOrder}")`,
+          `${Selectors.p}:has-text("${ServiceOfApplication2Content.amendDischargeVariedOrder}")`,
         );
         break;
     }
