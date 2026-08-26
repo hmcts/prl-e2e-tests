@@ -20,17 +20,8 @@ test.describe("Welsh Language Requirements task for DA Solicitor case tests as C
     },
   );
 
-  /**
-   * One test per scenario, each on its own freshly created FL401 case:
-   *
-   * 1. Welsh documents not wanted                          -> English only
-   * 2. Wanted, completed in English, translated to Welsh   -> Welsh + English
-   * 3. Wanted, completed in English, not translated        -> English only
-   * 4. Wanted, completed in Welsh, translated to English   -> Welsh + English
-   * 5. Wanted, completed in Welsh, not translated          -> Welsh only
-   */
   scenarios.forEach((scenario: WelshLanguageRequirementsScenario) => {
-    test(`Complete Welsh Language Requirements with ${scenario.description}. @regression @accessibility @nightly @tp`, async ({
+    test(`Complete Welsh Language Requirements with ${scenario.description}. @regression @accessibility @nightly`, async ({
       caseWorker,
     }): Promise<void> => {
       const { summaryPage, caseDocumentsPage, welshLanguageRequirements } =
