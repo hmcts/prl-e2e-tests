@@ -2,7 +2,7 @@ import { expect, Locator, Page } from "@playwright/test";
 import { EventPage } from "../eventPage.po.js";
 import { Selectors } from "../../../../common/selectors.js";
 import { CommonStaticText } from "../../../../common/commonStaticText.js";
-import { Language } from "../../../../common/types.js";
+import { Language, YesNo } from "../../../../common/types.js";
 
 /** The answers that drive the Welsh language requirements event. */
 export interface WelshLanguageRequirementsOptions {
@@ -10,8 +10,6 @@ export interface WelshLanguageRequirementsOptions {
   languageToCompleteApplication: Language;
   doesApplicationNeedTranslating: boolean;
 }
-
-type YesNo = "Yes" | "No";
 
 interface RadioQuestion<Option extends string> {
   readonly label: string;
