@@ -3,7 +3,9 @@ import { expect, Locator, Page } from "@playwright/test";
 import { DateHelperUtils } from "../../../../../utils/dateHelpers.utils.ts";
 import { PageUtils } from "../../../../../utils/page.utils.ts";
 import {
+  JudgeOrMagistrateTitlesArray,
   OrderTypes,
+  OrderTypesArray,
   solicitorCaseCreateType,
 } from "../../../../../common/types.ts";
 import config from "../../../../../utils/config.utils.ts";
@@ -25,24 +27,6 @@ export class CustomOrdersManageOrder5Page extends EventPage {
 
   private readonly selectOrderNameLabel: Locator =
     this.page.getByText("Select order name");
-  private readonly orderNames: string[] = [
-    "Standard directions order",
-    "Directions on issue",
-    "Blank order or directions (C21)",
-    "Child arrangements, specific issue or prohibited steps order (C43)",
-    "Parental responsibility order (C45A)",
-    "Special guardianship order (C43A)",
-    "Notice of proceedings (C6) (Notice to parties)",
-    "Notice of proceedings (C6a) (Notice to non-parties)",
-    "Appointment of a guardian (C47A)",
-    "Non-molestation order (FL404A)",
-    "Occupation order (FL404)",
-    "Power of arrest (FL406)",
-    "Amended, discharged or varied order (FL404B)",
-    "Blank order (FL404B)",
-    "General form of undertaking (N117)",
-    "Notice of proceedings (FL402)",
-  ];
   private readonly uploadCustomOrderTemplateLabel: Locator =
     this.page.getByText("Upload custom order template (.docx only)");
   private readonly uploadOrderAdviceLabel: Locator = this.page.getByText(
@@ -67,21 +51,6 @@ export class CustomOrdersManageOrder5Page extends EventPage {
   private readonly judgeOrMagistrateLabel: Locator = this.page.getByText(
     "Select or amend the title of the Judge or magistrate",
   );
-  private readonly judgeOrMagistratesTitles: string[] = [
-    "Her Honour Judge",
-    "His Honour Judge",
-    "Circuit Judge",
-    "Deputy Circuit Judge",
-    "Recorder",
-    "District Judge",
-    "Deputy District Judge",
-    "District Judge Magistrates Court",
-    "Magistrates",
-    "Justices' Legal Adviser",
-    "Justices' Clerk",
-    "The Honourable Mrs Justice",
-    "The Honourable Mr Justice",
-  ];
   private readonly judgesFullNameLabel: Locator =
     this.page.getByText("Judge's full name");
   private readonly judgeNameInput: Locator = this.page.getByRole("textbox", {
@@ -145,7 +114,13 @@ export class CustomOrdersManageOrder5Page extends EventPage {
   async assertPageContents(caseType: solicitorCaseCreateType): Promise<void> {
     await this.assertPageHeadings();
     await expect(this.selectOrderNameLabel).toBeVisible();
-    await this.pageUtils.assertStrings(this.orderNames);
+    await this.pageUtils.assertStrings(OrderTypesArray);
+    await expect(
+      this.page.getByRole("radio", {
+        name: "Directions on issue",
+        exact: true,
+      }),
+    ).toHaveCount(0);
     await expect(this.uploadCustomOrderTemplateLabel).toBeVisible();
     await expect(this.uploadOrderAdviceLabel).toBeVisible();
     await expect(this.cancelUploadButton).toBeVisible();
@@ -155,7 +130,7 @@ export class CustomOrdersManageOrder5Page extends EventPage {
     await expect(this.orderMadeByLabel).toBeVisible();
     await expect(this.judgeOrMagistrateLabel).toBeVisible();
     await expect(this.judgeOrMagistrateLabel).toBeVisible();
-    await this.pageUtils.assertStrings(this.judgeOrMagistratesTitles);
+    await this.pageUtils.assertStrings(JudgeOrMagistrateTitlesArray);
     // check judge title pre-selected
     await expect(
       this.page.getByRole("radio", { name: "Circuit Judge", exact: true }),

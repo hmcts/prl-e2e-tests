@@ -1,20 +1,14 @@
-import { Cookie, expect, Page } from "@playwright/test";
+import { Cookie, expect, Locator, Page } from "@playwright/test";
 import fs, { existsSync, readFileSync } from "fs";
 import Config from "./config.utils.ts";
 import { CreateUserUtil } from "./createUser.utils.ts";
-import { UserCredentialsLong, UserLoginInfo } from "../common/types.ts";
+import { UserCredentialsLong } from "../common/types.ts";
 import process from "node:process";
 import { IdamUtils } from "@hmcts/playwright-common";
 import { UserInfoParams } from "@hmcts/playwright-common/dist/utils/idam.utils.ts";
 
 export class IdamLoginHelper {
   constructor(private idamUtils: IdamUtils) {}
-
-  private fields: UserLoginInfo = {
-    username: "#username",
-    password: "#password",
-  };
-  private submitButton = 'input[value="Sign in"]';
 
   /**
    * Signs a user into the application. It attempts to reuse an existing session if valid.
@@ -52,15 +46,34 @@ export class IdamLoginHelper {
           );
         }
       }
-      // Different IDAM clients render different headings under #skiplinktarget —
-      // "Sign in" (e.g. Manage Organisation's xuimowebapp login) vs "Sign in or
-      // create an account" (e.g. Manage Cases / demo). `:text("Sign in")` does a
-      // substring match, so a single wait covers every variant without needing to
-      // special-case each application's copy.
-      await page.waitForSelector(`#skiplinktarget:text("Sign in")`);
-      await page.fill(this.fields.username, username);
-      await page.fill(this.fields.password, password);
-      await page.click(this.submitButton);
+
+      // citizen user login is a single page but xui login is a two-page login journey
+      if (userType === "citizen") {
+        await expect(
+          page.getByRole("heading", { name: "Sign in", exact: true }),
+        ).toBeVisible();
+        await page.locator("#username").fill(username);
+        await page.locator("#password").fill(password);
+        await page.getByRole("button", { name: "Sign in" }).click();
+      } else {
+        const continueButton: Locator = page.getByRole("button", {
+          name: "Continue",
+        });
+        await expect(
+          page.getByRole("heading", {
+            name: "Enter your email address",
+            exact: true,
+          }),
+        ).toBeVisible();
+        await page.locator("#email").fill(username);
+        await continueButton.click();
+
+        await expect(
+          page.getByRole("heading", { name: "Enter your password" }),
+        ).toBeVisible();
+        await page.locator("#password").fill(password);
+        await continueButton.click();
+      }
 
       await expect
         .poll(() => !page.url().includes("idam-web-public."), {

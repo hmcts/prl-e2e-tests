@@ -225,17 +225,6 @@ async function editAndApproveOrder(caseRef, judge: JudgePagesGroup, data) {
   );
   await editAndApproveAnOrders.editAndApproveAnOrder2Page.clickContinue();
 
-  if (data.judeOrderAction == "Give admin further directions then serve") {
-    await editAndApproveAnOrders.editAndApproveAnOrder21Page.assertPageContents(
-      data.orderType as OrderTypes,
-    );
-    await editAndApproveAnOrders.editAndApproveAnOrder21Page.verifyAccessibility();
-    await editAndApproveAnOrders.editAndApproveAnOrder21Page.fillInFields(
-      data.serveApplication,
-    );
-    await editAndApproveAnOrders.editAndApproveAnOrder21Page.clickContinue();
-  }
-
   await editAndApproveAnOrders.editAndApproveAnOrderSubmitPage.assertPageContents(
     data.snapshotPath,
     data.snapshotName,

@@ -39,4 +39,8 @@ export abstract class Base {
   async verifyAccessibility(): Promise<void> {
     await this.axeUtils.audit();
   }
+
+  async reloadPage(): Promise<void> {
+    await this.page.reload();
+  }
 }
