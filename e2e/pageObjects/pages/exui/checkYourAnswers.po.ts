@@ -5,7 +5,7 @@ import { CheckYourAnswersTableComponent } from "../../components/exui/checkYourA
 import { CommonStaticText } from "../../../common/commonStaticText.js";
 
 type CyaSubmitButton =
-  CommonStaticText.submit | CommonStaticText.saveAndContinue;
+  CommonStaticText.submit | CommonStaticText.saveAndContinue | "Delete";
 
 export class CheckYourAnswersPage extends EventPage {
   private readonly headingH2: Locator = this.page.locator(Selectors.headingH2, {
@@ -42,8 +42,10 @@ export class CheckYourAnswersPage extends EventPage {
     // not all cya pages have the same "submit" button
     if (this.cyaSubmitButton === CommonStaticText.saveAndContinue) {
       await expect(this.saveAndContinueButton).toBeVisible();
-    } else {
+    } else if (this.cyaSubmitButton === CommonStaticText.submit) {
       await expect(this.submitButton).toBeVisible();
+    } else {
+      await expect(this.deleteButton).toBeVisible();
     }
     await expect(this.previousButton).toBeVisible();
   }
