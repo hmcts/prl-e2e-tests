@@ -1,14 +1,14 @@
 import { Page } from "@playwright/test";
 import { TasksPage } from "../pages/exui/caseView/tasks.po.ts";
 import { SummaryPage } from "../pages/exui/caseView/summary.po.ts";
-import { C100Noc1Page } from "../pages/exui/noticeOfChange/c100Noc1Page.po.ts";
-import { C100Noc2Page } from "../pages/exui/noticeOfChange/c100Noc2Page.po.ts";
-import { C100NocSubmitPage } from "../pages/exui/noticeOfChange/c100NocSubmitPage.po.ts";
-import { C100NocConfirmationPage } from "../pages/exui/noticeOfChange/c100NocConfirmationPage.po.ts";
-import { C100AdminAddBarrister1Page } from "../pages/exui/addAndRemoveBarrister/c100AdminAddBarrister1.po.ts";
-import { C100AdminAddBarristerSubmit } from "../pages/exui/addAndRemoveBarrister/c100AdminAddBarristerSubmit.po.ts";
-import { C100AdminRemoveBarrister1Page } from "../pages/exui/addAndRemoveBarrister/c100AdminRemoveBarrister1Page.po.ts";
-import { C100AdminRemoveBarristerSubmit } from "../pages/exui/addAndRemoveBarrister/c100AdminRemoveBarristerSubmit.po.ts";
+import { NoticeOfChange1Page } from "../pages/exui/noticeOfChange/noticeOfChange1.po.ts";
+import { NoticeOfChange2Page } from "../pages/exui/noticeOfChange/noticeOfChange2.po.ts";
+import { NoticeOfChangeSubmitPage } from "../pages/exui/noticeOfChange/noticeOfChangeSubmit.po.ts";
+import { NoticeOfChangeConfirmationPage } from "../pages/exui/noticeOfChange/noticeOfChangeConfirmation.po.ts";
+import { AddBarrister1Page } from "../pages/exui/addAndRemoveBarrister/addBarrister1.po.ts";
+import { AddBarristerSubmitPage } from "../pages/exui/addAndRemoveBarrister/addBarristerSubmit.po.ts";
+import { RemoveBarrister1Page } from "../pages/exui/addAndRemoveBarrister/removeBarrister1.po.ts";
+import { RemoveBarristerSubmitPage } from "../pages/exui/addAndRemoveBarrister/removeBarristerSubmit.po.ts";
 import { PartiesPage } from "../pages/exui/caseView/parties.po.ts";
 
 export class NocSolicitorPagesGroup {
@@ -25,20 +25,28 @@ export class NocSolicitorPagesGroup {
   }
 
   get noticeOfChangeC100() {
+    return this.noticeOfChange;
+  }
+
+  get noticeOfChange() {
     return {
-      page1: new C100Noc1Page(this.page),
-      page2: new C100Noc2Page(this.page),
-      submitPage: new C100NocSubmitPage(this.page),
-      confirmPage: new C100NocConfirmationPage(this.page),
+      page1: new NoticeOfChange1Page(this.page),
+      page2: new NoticeOfChange2Page(this.page),
+      submitPage: new NoticeOfChangeSubmitPage(this.page),
+      confirmPage: new NoticeOfChangeConfirmationPage(this.page),
     };
   }
 
   get manageBarristerC100() {
+    return this.manageBarrister;
+  }
+
+  get manageBarrister() {
     return {
-      addBarrister1Page: new C100AdminAddBarrister1Page(this.page),
-      addBarristerSubmit: new C100AdminAddBarristerSubmit(this.page),
-      removeBarrister1Page: new C100AdminRemoveBarrister1Page(this.page),
-      removeBarristerSubmit: new C100AdminRemoveBarristerSubmit(this.page),
+      addBarrister1Page: new AddBarrister1Page(this.page),
+      addBarristerSubmit: new AddBarristerSubmitPage(this.page),
+      removeBarrister1Page: new RemoveBarrister1Page(this.page),
+      removeBarristerSubmit: new RemoveBarristerSubmitPage(this.page),
     };
   }
 }

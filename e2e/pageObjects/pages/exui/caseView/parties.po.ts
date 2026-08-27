@@ -66,6 +66,31 @@ export class PartiesPage extends CaseAccessViewPage {
     ).toBeVisible();
   }
 
+  async assertFl401BarristerDetailsPresent(
+    org: string,
+    isApplicantBarrister: boolean,
+  ): Promise<void> {
+    const applicantBarristerHeading = this.page
+      .getByRole("heading", { name: "Applicant barrister" })
+      .first();
+
+    if (isApplicantBarrister) {
+      await expect(applicantBarristerHeading).toBeVisible();
+    } else {
+      await expect(applicantBarristerHeading).toBeHidden();
+    }
+
+    await expect(
+      this.page.locator(Selectors.Span, { hasText: org }).first(),
+    ).toBeVisible();
+  }
+
+  async assertFl401BarristerDetailsRemoved(org: string): Promise<void> {
+    await expect(
+      this.page.locator(Selectors.Span, { hasText: org }),
+    ).toHaveCount(0);
+  }
+
   async assertC100BarristerDetailsRemoved(
     applicants: ApplicantName[],
   ): Promise<void> {

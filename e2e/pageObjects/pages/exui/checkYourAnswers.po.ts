@@ -27,18 +27,25 @@ export class CheckYourAnswersPage extends EventPage {
     this.cyaSubmitButton = cyaSubmitButton;
   }
 
+  async assertPageContents(): Promise<void>;
   async assertPageContents(
     snapshotPath: string[],
     snapshotName: string,
+  ): Promise<void>;
+  async assertPageContents(
+    snapshotPath?: string[],
+    snapshotName?: string,
   ): Promise<void> {
     await this.assertPageHeadings();
     await expect(this.headingH2).toBeVisible();
     await expect(this.text16).toBeVisible();
-    const snapshotPathCopy: string[] = Array.from(snapshotPath);
-    snapshotPathCopy.push(snapshotName);
-    await this.checkYourAnswersTable.captureFullTableScreenshot(
-      snapshotPathCopy,
-    );
+    if (snapshotPath && snapshotName) {
+      const snapshotPathCopy: string[] = Array.from(snapshotPath);
+      snapshotPathCopy.push(snapshotName);
+      await this.checkYourAnswersTable.captureFullTableScreenshot(
+        snapshotPathCopy,
+      );
+    }
     // not all cya pages have the same "submit" button
     if (this.cyaSubmitButton === CommonStaticText.saveAndContinue) {
       await expect(this.saveAndContinueButton).toBeVisible();

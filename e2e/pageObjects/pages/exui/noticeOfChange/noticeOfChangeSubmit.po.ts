@@ -2,7 +2,7 @@ import { EventPage } from "../eventPage.po.js";
 import { Locator, Page, expect } from "@playwright/test";
 import { Selectors } from "../../../../common/selectors.js";
 
-export class C100NocSubmitPage extends EventPage {
+export class NoticeOfChangeSubmitPage extends EventPage {
   private readonly detailsAccurateCheckbox: Locator =
     this.page.locator("#affirmation");
   private readonly notifyEveryPartyCheckbox: Locator =
