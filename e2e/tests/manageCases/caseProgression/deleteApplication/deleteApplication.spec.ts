@@ -1,8 +1,6 @@
 import config from "../../../../utils/config.utils.ts";
 import { test } from "../../../fixtures.ts";
-import { solicitorCaseCreateType } from "../../../../common/types.ts";
-
-const caseTypes: solicitorCaseCreateType[] = ["C100", "FL401"];
+import { caseTypes } from "../../../../common/types.ts";
 
 caseTypes.forEach((caseType) => {
   let caseRef: string;

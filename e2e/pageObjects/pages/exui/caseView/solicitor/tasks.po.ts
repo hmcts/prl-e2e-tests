@@ -9,6 +9,4 @@ export class SolicitorTasksPage extends CaseAccessViewPage {
   async goToPage(): Promise<void> {
     await this.page.getByRole("tab", { name: "Tasks" }).click();
   }
-
-  // TODO: maybe add more in this class or at least leave a comment that this could be updated when required
 }

@@ -10,6 +10,4 @@ export class CaseListPage extends Base {
   readonly alertBanner: AlertBannerComponent = new AlertBannerComponent(
     this.page,
   );
-
-  // TODO: maybe add more in this class or at least leave a comment that this could be updated when required
 }
