@@ -2,9 +2,9 @@ import { EventPage } from "../eventPage.po.ts";
 import { expect, Locator, Page } from "@playwright/test";
 import { Selectors } from "../../../../common/selectors.ts";
 
-export class C100AdminAddBarrister1Page extends EventPage {
-  private readonly partyToAddBarristerCheckbox: Locator = this.page.locator(
-    "#allocatedBarrister_partyList_",
+export class AddBarrister1Page extends EventPage {
+  private readonly partyToAddBarrister: Locator = this.page.locator(
+    '[id^="allocatedBarrister_partyList_"]',
   );
   private readonly barristerFirstName: Locator = this.page
     .locator("#allocatedBarrister_barristerFirstName")
@@ -18,9 +18,6 @@ export class C100AdminAddBarrister1Page extends EventPage {
   private readonly barristerOrg: Locator = this.page
     .locator("#search-org-text")
     .first();
-  private readonly selectBarristerOrg: Locator = this.page.getByTitle(
-    "Select the organisation PRL Barrister Org2",
-  );
   private readonly textLabel1: Locator = this.page.locator(Selectors.Span, {
     hasText: "For which party do you want to add a barrister?",
   });
@@ -66,15 +63,21 @@ export class C100AdminAddBarrister1Page extends EventPage {
     lastname: string,
     email: string,
     org: string,
-    existingRepresentative: string[],
+    existingRepresentative?: string[],
   ): Promise<void> {
-    await this.page
-      .getByRole("radio", { name: existingRepresentative[0] })
-      .check();
+    if (existingRepresentative) {
+      await this.page
+        .getByRole("radio", { name: existingRepresentative[0] })
+        .check();
+    } else {
+      await this.partyToAddBarrister.first().check();
+    }
     await this.barristerFirstName.fill(firstnames);
     await this.barristerLastName.fill(lastname);
     await this.barristerEmail.fill(email);
     await this.barristerOrg.fill(org);
-    await this.selectBarristerOrg.click();
+    await this.page
+      .getByTitle(`Select the organisation ${org}`, { exact: true })
+      .click();
   }
 }

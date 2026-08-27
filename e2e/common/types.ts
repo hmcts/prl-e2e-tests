@@ -186,6 +186,8 @@ export type JudgeOrderAction =
 
 export type Language = "English" | "Welsh";
 
+export type YesNo = "Yes" | "No";
+
 export type manageOrdersOptions =
   "create order" | "upload order" | "serve order" | "create custom order";
 

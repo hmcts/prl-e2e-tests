@@ -6,11 +6,11 @@ import { SummaryPage } from "../pages/exui/caseView/summary.po.ts";
 import { HistoryPage } from "../pages/exui/caseView/history.po.ts";
 import { AmendApplicantDetails1 } from "../pages/exui/amendApplicantDetails/amendApplicantDetails1.po.ts";
 import { AmendApplicantDetailsSubmit } from "../pages/exui/amendApplicantDetails/amendApplicantDetailsSubmit.po.ts";
-import { C100AdminAddBarrister1Page } from "../pages/exui/addAndRemoveBarrister/c100AdminAddBarrister1.po.ts";
-import { C100AdminAddBarristerSubmit } from "../pages/exui/addAndRemoveBarrister/c100AdminAddBarristerSubmit.po.ts";
+import { AddBarrister1Page } from "../pages/exui/addAndRemoveBarrister/addBarrister1.po.ts";
+import { AddBarristerSubmitPage } from "../pages/exui/addAndRemoveBarrister/addBarristerSubmit.po.ts";
 import { PartiesPage } from "../pages/exui/caseView/parties.po.ts";
-import { C100AdminRemoveBarrister1Page } from "../pages/exui/addAndRemoveBarrister/c100AdminRemoveBarrister1Page.po.ts";
-import { C100AdminRemoveBarristerSubmit } from "../pages/exui/addAndRemoveBarrister/c100AdminRemoveBarristerSubmit.po.ts";
+import { RemoveBarrister1Page } from "../pages/exui/addAndRemoveBarrister/removeBarrister1.po.ts";
+import { RemoveBarristerSubmitPage } from "../pages/exui/addAndRemoveBarrister/removeBarristerSubmit.po.ts";
 import { Fl401AddCaseNumber1Page } from "../pages/exui/checkApplication/fl401AddCaseNumber1.po.ts";
 import { Fl401AddCaseNumberSubmitPage } from "../pages/exui/checkApplication/fl401AddCaseNumberSubmit.po.ts";
 import { AllocatedJudge1Page } from "../pages/exui/allocatedJudge/allocatedJudge1.po.ts";
@@ -66,6 +66,8 @@ import { AdminEditAndApproveAnOrder21Page } from "../pages/exui/orders/adminEdit
 import { AdminEditAndApproveAnOrder23Page } from "../pages/exui/orders/adminEditAndApproveAnOrders/adminEditAndApproveAnOrder23.po.js";
 import { AdminEditAndApproveAnOrder22Page } from "../pages/exui/orders/adminEditAndApproveAnOrders/adminEditAndApproveAnOrder22.po.js";
 import { AdminEditAndApproveAnOrderSubmitPage } from "../pages/exui/orders/adminEditAndApproveAnOrders/adminEditAndApproveAnOrderSubmit.po.js";
+import { WelshLanguageRequirements1Page } from "../pages/exui/welshLanguageRequirements/welshLanguageRequirements1.po.ts";
+import { WelshLanguageRequirementsSubmitPage } from "../pages/exui/welshLanguageRequirements/welshLanguageRequirementsSubmit.po.ts";
 
 export class CaseWorkerPagesGroup {
   constructor(public readonly page: Page) {}
@@ -117,11 +119,15 @@ export class CaseWorkerPagesGroup {
   }
 
   get manageBarristerC100() {
+    return this.manageBarrister;
+  }
+
+  get manageBarrister() {
     return {
-      addBarrister1Page: new C100AdminAddBarrister1Page(this.page),
-      addBarristerSubmit: new C100AdminAddBarristerSubmit(this.page),
-      removeBarrister1Page: new C100AdminRemoveBarrister1Page(this.page),
-      removeBarristerSubmit: new C100AdminRemoveBarristerSubmit(this.page),
+      addBarrister1Page: new AddBarrister1Page(this.page),
+      addBarristerSubmit: new AddBarristerSubmitPage(this.page),
+      removeBarrister1Page: new RemoveBarrister1Page(this.page),
+      removeBarristerSubmit: new RemoveBarristerSubmitPage(this.page),
     };
   }
 
@@ -246,6 +252,13 @@ export class CaseWorkerPagesGroup {
       addLocalAuthorityConfirmPage: new AdminAddLocalAuthorityConfirmPage(
         this.page,
       ),
+    };
+  }
+
+  get welshLanguageRequirements() {
+    return {
+      page1: new WelshLanguageRequirements1Page(this.page),
+      submitPage: new WelshLanguageRequirementsSubmitPage(this.page),
     };
   }
 }
