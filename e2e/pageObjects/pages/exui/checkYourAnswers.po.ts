@@ -5,7 +5,7 @@ import { CheckYourAnswersTableComponent } from "../../components/exui/checkYourA
 import { CommonStaticText } from "../../../common/commonStaticText.js";
 
 type CyaSubmitButton =
-  CommonStaticText.submit | CommonStaticText.saveAndContinue;
+  CommonStaticText.submit | CommonStaticText.saveAndContinue | "Delete";
 
 export class CheckYourAnswersPage extends EventPage {
   private readonly headingH2: Locator = this.page.locator(Selectors.headingH2, {
@@ -27,23 +27,32 @@ export class CheckYourAnswersPage extends EventPage {
     this.cyaSubmitButton = cyaSubmitButton;
   }
 
+  async assertPageContents(): Promise<void>;
   async assertPageContents(
     snapshotPath: string[],
     snapshotName: string,
+  ): Promise<void>;
+  async assertPageContents(
+    snapshotPath?: string[],
+    snapshotName?: string,
   ): Promise<void> {
     await this.assertPageHeadings();
     await expect(this.headingH2).toBeVisible();
     await expect(this.text16).toBeVisible();
-    const snapshotPathCopy: string[] = Array.from(snapshotPath);
-    snapshotPathCopy.push(snapshotName);
-    await this.checkYourAnswersTable.captureFullTableScreenshot(
-      snapshotPathCopy,
-    );
+    if (snapshotPath && snapshotName) {
+      const snapshotPathCopy: string[] = Array.from(snapshotPath);
+      snapshotPathCopy.push(snapshotName);
+      await this.checkYourAnswersTable.captureFullTableScreenshot(
+        snapshotPathCopy,
+      );
+    }
     // not all cya pages have the same "submit" button
     if (this.cyaSubmitButton === CommonStaticText.saveAndContinue) {
       await expect(this.saveAndContinueButton).toBeVisible();
-    } else {
+    } else if (this.cyaSubmitButton === CommonStaticText.submit) {
       await expect(this.submitButton).toBeVisible();
+    } else {
+      await expect(this.deleteButton).toBeVisible();
     }
     await expect(this.previousButton).toBeVisible();
   }

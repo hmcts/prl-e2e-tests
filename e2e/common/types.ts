@@ -20,6 +20,8 @@ export interface LocalCourtInfo {
 
 export type solicitorCaseCreateType = "C100" | "FL401";
 
+export const caseTypes: solicitorCaseCreateType[] = ["C100", "FL401"];
+
 export type State = "undefined";
 
 export type Events = "undefined";
