@@ -48,7 +48,7 @@ test.describe("Manage documents event for C100 case tests as a court admin.", ()
     },
   );
 
-  test("Complete Manage Documents uploading documents for the Applicant, Respondent and Local authority in one event — mixing restricted, confidential and unrestricted documents, with accessibility test. @nightly @regression @accessibility @tp", async ({
+  test("Complete Manage Documents uploading documents for the Applicant, Respondent and Local authority in one event — mixing restricted, confidential and unrestricted documents, with accessibility test. @nightly @regression @accessibility", async ({
     caseWorker,
   }): Promise<void> => {
     const {
