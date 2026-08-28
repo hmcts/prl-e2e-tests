@@ -68,6 +68,19 @@ import { AdminEditAndApproveAnOrder22Page } from "../pages/exui/orders/adminEdit
 import { AdminEditAndApproveAnOrderSubmitPage } from "../pages/exui/orders/adminEditAndApproveAnOrders/adminEditAndApproveAnOrderSubmit.po.js";
 import { WelshLanguageRequirements1Page } from "../pages/exui/welshLanguageRequirements/welshLanguageRequirements1.po.ts";
 import { WelshLanguageRequirementsSubmitPage } from "../pages/exui/welshLanguageRequirements/welshLanguageRequirementsSubmit.po.ts";
+import { HearingsPage } from "../pages/exui/caseView/hearings.po.ts";
+import { HearingRequirementsPage } from "../pages/exui/createHearingRequest/hearingRequirements.po.ts";
+import { HearingFacilitiesPage } from "../pages/exui/createHearingRequest/hearingFacilities.po.ts";
+import { HearingStagePage } from "../pages/exui/createHearingRequest/hearingStage.po.ts";
+import { HearingAttendancePage } from "../pages/exui/createHearingRequest/hearingAttendance.po.ts";
+import { HearingVenuePage } from "../pages/exui/createHearingRequest/hearingVenue.po.ts";
+import { HearingWelshPage } from "../pages/exui/createHearingRequest/hearingWelsh.po.ts";
+import { HearingJudgePage } from "../pages/exui/createHearingRequest/hearingJudge.po.ts";
+import { HearingTimingPage } from "../pages/exui/createHearingRequest/hearingTiming.po.ts";
+import { HearingLinkPage } from "../pages/exui/createHearingRequest/hearingLink.po.ts";
+import { HearingAdditionalInstructionsPage } from "../pages/exui/createHearingRequest/hearingAdditionalInstructions.po.ts";
+import { HearingSummaryPage } from "../pages/exui/createHearingRequest/hearingSummary.po.ts";
+import { HearingConfirmationPage } from "../pages/exui/createHearingRequest/hearingConfirmation.po.ts";
 
 export class CaseWorkerPagesGroup {
   constructor(public readonly page: Page) {}
@@ -90,6 +103,10 @@ export class CaseWorkerPagesGroup {
 
   get historyPage() {
     return new HistoryPage(this.page);
+  }
+
+  get hearingsPage() {
+    return new HearingsPage(this.page);
   }
 
   get partiesPage() {
@@ -259,6 +276,25 @@ export class CaseWorkerPagesGroup {
     return {
       page1: new WelshLanguageRequirements1Page(this.page),
       submitPage: new WelshLanguageRequirementsSubmitPage(this.page),
+    };
+  }
+
+  get createHearingRequest() {
+    return {
+      requirementsPage: new HearingRequirementsPage(this.page),
+      facilitiesPage: new HearingFacilitiesPage(this.page),
+      stagePage: new HearingStagePage(this.page),
+      attendancePage: new HearingAttendancePage(this.page),
+      venuePage: new HearingVenuePage(this.page),
+      welshPage: new HearingWelshPage(this.page),
+      judgePage: new HearingJudgePage(this.page),
+      timingPage: new HearingTimingPage(this.page),
+      linkPage: new HearingLinkPage(this.page),
+      additionalInstructionsPage: new HearingAdditionalInstructionsPage(
+        this.page,
+      ),
+      summaryPage: new HearingSummaryPage(this.page),
+      confirmationPage: new HearingConfirmationPage(this.page),
     };
   }
 }
