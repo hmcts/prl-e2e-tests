@@ -160,6 +160,20 @@ export class Config {
     "../assets/Section7_Mockfile.pdf",
   );
 
+  // Named mock PDFs for the court admin Manage Documents journey (3 documents)
+  public static readonly testPdfFilePositionStatement: string = path.resolve(
+    import.meta.dirname,
+    "../assets/PositionStatement_Mockfile.pdf",
+  );
+  public static readonly testPdfFileGuardianReport: string = path.resolve(
+    import.meta.dirname,
+    "../assets/GuardianReport_Mockfile.pdf",
+  );
+  public static readonly testPdfFileMIAMCertificate: string = path.resolve(
+    import.meta.dirname,
+    "../assets/MIAMCertificate_Mockfile.pdf",
+  );
+
   public static getUserCredentials(role: UserRole): UserCredentials {
     return this.userCredentials[role];
   }

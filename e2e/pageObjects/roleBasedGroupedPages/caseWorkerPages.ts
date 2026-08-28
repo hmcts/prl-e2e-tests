@@ -1,6 +1,10 @@
 import { Page } from "@playwright/test";
 import { TasksPage } from "../pages/exui/caseView/tasks.po.ts";
 import { CaseDocumentsPage } from "../pages/exui/caseView/caseDocuments.po.ts";
+import { ManageDocumentsNew1Page } from "../pages/exui/manageDocuments/manageDocumentsNew1.po.ts";
+import { ManageDocumentsNewSubmitPage } from "../pages/exui/manageDocuments/manageDocumentsNewSubmit.po.ts";
+import { ManageDocumentsNewConfirmPage } from "../pages/exui/manageDocuments/manageDocumentsNewConfirm.po.ts";
+import { ConfidentialDetailsPage } from "../pages/exui/caseView/confidentialDetails.po.ts";
 import { DocumentsToBeReviewedPage } from "../pages/exui/caseView/documentsToBeReviewed.po.ts";
 import { SummaryPage } from "../pages/exui/caseView/summary.po.ts";
 import { HistoryPage } from "../pages/exui/caseView/history.po.ts";
@@ -78,6 +82,20 @@ export class CaseWorkerPagesGroup {
 
   get caseDocumentsPage() {
     return new CaseDocumentsPage(this.page);
+  }
+
+  get manageDocuments() {
+    return {
+      manageDocumentsNew1Page: new ManageDocumentsNew1Page(this.page),
+      manageDocumentsNewSubmitPage: new ManageDocumentsNewSubmitPage(this.page),
+      manageDocumentsNewConfirmPage: new ManageDocumentsNewConfirmPage(
+        this.page,
+      ),
+    };
+  }
+
+  get confidentialDetailsPage() {
+    return new ConfidentialDetailsPage(this.page);
   }
 
   get documentsToBeReviewedPage() {
