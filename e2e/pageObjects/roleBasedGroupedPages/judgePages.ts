@@ -21,12 +21,37 @@ import { ManageOrder12Page } from "../pages/exui/orders/manageOrders/manageOrder
 import { ManageOrder102Page } from "../pages/exui/orders/manageOrders/manageOrder102.po.ts";
 import { CustomOrdersManageOrder5Page } from "../pages/exui/orders/manageOrders/customOrderManageOrder5.po.ts";
 import { CustomOrderManageOrder20Page } from "../pages/exui/orders/manageOrders/customOrderManageOrder20.po.ts";
+import { EditAndApproveAnOrder2Page } from "../pages/exui/orders/editAndApproveAnOrders/editAndApproveAnOrder2.po.js";
+import { EditAndApproveAnOrder21Page } from "../pages/exui/orders/editAndApproveAnOrders/editAndApproveAnOrder21.po.js";
+import { TasksPage } from "../pages/exui/caseView/tasks.po.js";
+import { EditAndApproveAnOrderSubmitPage } from "../pages/exui/orders/editAndApproveAnOrders/editAndApproveAnOrderSubmit.po.js";
+import { EditAndApproveAnOrderConfirmPage } from "../pages/exui/orders/editAndApproveAnOrders/editAndApproveAnOrderConfirm.po.js";
+import { HistoryPage } from "../pages/exui/caseView/history.po.js";
+import { ListOnNotice1Page } from "../pages/exui/list/listOnNotice1.po.js";
+import { ListOnNotice2Page } from "../pages/exui/list/listOnNotice2.po.js";
+import { ListOnNotice3Page } from "../pages/exui/list/listOnNotice3.po.js";
+import { Fl401ListOnNotice2Page } from "../pages/exui/list/fl401ListOnNotice2.po.js";
+import { Fl401OnNoticeSubmitPage } from "../pages/exui/list/fl401OnNoticeSubmit.po.js";
+import { Fl401ListOnNoticeConfirmPage } from "../pages/exui/list/fl401ListOnNoticeConfirm.po.js";
+import { ListWithoutNotice1Page } from "../pages/exui/list/listWithoutNotice1.po.js";
+import { ListWithoutNoticeSubmitPage } from "../pages/exui/list/listWithoutNoticeSubmit.po.js";
+import { ListWithoutNoticeConfirmPage } from "../pages/exui/list/listWithoutNoticeConfirm.po.js";
+import { CaseNotesPage } from "../pages/exui/caseView/caseNotes.po.js";
 
 export class JudgePagesGroup {
   constructor(public readonly page: Page) {}
 
   get summaryPage() {
     return new SummaryPage(this.page);
+  }
+  get tasksPage() {
+    return new TasksPage(this.page);
+  }
+  get historyPage() {
+    return new HistoryPage(this.page);
+  }
+  get caseNotesPage() {
+    return new CaseNotesPage(this.page);
   }
 
   get sendAndReplyToMessages() {
@@ -69,6 +94,38 @@ export class JudgePagesGroup {
   get draftedOrders() {
     return {
       draftOrdersPage: new DraftOrdersPage(this.page),
+    };
+  }
+
+  get editAndApproveAnOrders() {
+    return {
+      editAndApproveAnOrder2Page: new EditAndApproveAnOrder2Page(this.page),
+      editAndApproveAnOrder21Page: new EditAndApproveAnOrder21Page(this.page),
+      editAndApproveAnOrderSubmitPage: new EditAndApproveAnOrderSubmitPage(
+        this.page,
+      ),
+      editAndApproveAnOrderConfirmPage: new EditAndApproveAnOrderConfirmPage(
+        this.page,
+      ),
+    };
+  }
+
+  get listOnNotice() {
+    return {
+      listOnNotice1Page: new ListOnNotice1Page(this.page),
+      listOnNotice2Page: new ListOnNotice2Page(this.page),
+      listOnNotice3Page: new ListOnNotice3Page(this.page),
+      fl401ListOnNotice2Page: new Fl401ListOnNotice2Page(this.page),
+      fl401OnNoticeSubmitPage: new Fl401OnNoticeSubmitPage(this.page),
+      fl401ListOnNoticeConfirmPage: new Fl401ListOnNoticeConfirmPage(this.page),
+    };
+  }
+
+  get listWithoutNotice() {
+    return {
+      listWithoutNotice1Page: new ListWithoutNotice1Page(this.page),
+      listWithoutNoticeSubmitPage: new ListWithoutNoticeSubmitPage(this.page),
+      listWithoutNoticeConfirmPage: new ListWithoutNoticeConfirmPage(this.page),
     };
   }
 }

@@ -1,20 +1,19 @@
 import Config from "../../../../utils/config.utils.ts";
+import config from "../../../../utils/config.utils.ts";
 import { ServiceOfDocuments } from "../../../../journeys/manageCases/caseProgression/servceOfDocuments/serviceOfDocuments.ts";
-import { Helpers } from "../../../../common/helpers.js";
-import config from "../../../../utils/config.utils.js";
 import { test } from "../../../fixtures.ts";
 
 test.use({ storageState: Config.sessionStoragePath + "caseWorker.json" });
 
 test.describe("Service of Document event for DA Solicitor case tests as court admin.", () => {
-  test.beforeEach(async ({ page, browser, caseEventUtils }) => {
-    const ccdRef: string =
-      await caseEventUtils.createDACaseSendToGatekeeper(browser);
-    await Helpers.goToCase(
+  test.beforeEach(async ({ page, manageCasesEventUtils, navigationUtils }) => {
+    const caseRef = (await manageCasesEventUtils.submitTSSolicitorCase("FL401"))
+      .caseRef;
+    await manageCasesEventUtils.sendToGatekeeper(caseRef, "FL401");
+    await navigationUtils.goToCase(
       page,
       config.manageCasesBaseURLCase,
-      ccdRef,
-      "tasks",
+      caseRef,
     );
   });
 

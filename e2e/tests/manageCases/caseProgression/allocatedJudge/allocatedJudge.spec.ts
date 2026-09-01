@@ -7,15 +7,18 @@ test.describe("Allocate a judge to the case", () => {
     "Doesn't work on preview env - roles and access doesn't work",
   );
 
-  let caseNumber: string = "";
+  let caseRef: string = "";
 
   test.beforeEach(
-    async ({ caseWorker, browser, caseEventUtils, navigationUtils }) => {
-      caseNumber = await caseEventUtils.createDACaseSendToGatekeeper(browser);
+    async ({ caseWorker, navigationUtils, manageCasesEventUtils }) => {
+      caseRef = (await manageCasesEventUtils.submitTSSolicitorCase("FL401"))
+        .caseRef;
+      await manageCasesEventUtils.addFamilyManNumber(caseRef);
+      await manageCasesEventUtils.sendToGatekeeper(caseRef, "FL401");
       await navigationUtils.goToCase(
         caseWorker.page,
         config.manageCasesBaseURLCase,
-        caseNumber,
+        caseRef,
       );
     },
   );
@@ -27,7 +30,7 @@ test.describe("Allocate a judge to the case", () => {
       judgeOrLegalAdviserName: "Ms Elizabeth Williams",
       judgeTier: "Circuit Judge",
       judgeLastName: "Williams",
-      judgeEmailAddress: "HHJ.Elizabeth.Williams@ejudiciary.net",
+      judgeEmailAddress: "HHJ.Elizabeth.Williams@hmcts.net",
       courtName: "Swansea Civil And Family Justice Centre",
       snapshotName: "allocated-judge-specific-judge",
     },
@@ -68,7 +71,7 @@ test.describe("Allocate a judge to the case", () => {
         await allocatedJudge.submitPage.clickSubmit();
 
         await summaryPage.alertBanner.assertEventAlert(
-          caseNumber,
+          caseRef,
           "Allocated judge",
         );
         await summaryPage.assertAllocatedJudgeSection({
@@ -131,7 +134,7 @@ test.describe("Allocate a judge to the case", () => {
         await allocatedJudge.submitPage.clickSubmit();
 
         await summaryPage.alertBanner.assertEventAlert(
-          caseNumber,
+          caseRef,
           "Allocated judge",
         );
         await summaryPage.assertAllocatedJudgeSection({

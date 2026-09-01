@@ -9,7 +9,7 @@
   "devDependencies": {
     "@axe-core/playwright": "^4.10.0",
     "@eslint/js": "^10.0.0",
-    "@hmcts/playwright-common": "^1.0.39",
+    "@hmcts/playwright-common": "^1.1.4",
     "@playwright/test": "^1.60.0",
     "@types/node": "^24.0.0",
     "axios": "^1.7.4",
@@ -44,5 +44,5 @@
     "test:citizenFrontendAccessibility": "yarn pwinstall && yarn playwright test e2e/tests/citizen --project chromium --grep @accessibility",
     "start-visual-container": "docker compose run --rm playwright"
   },
-  "packageManager": "yarn@4.17.1"
+  "packageManager": "yarn@4.18.0"
 }

@@ -10,7 +10,7 @@ export class ManageOrder1Page extends EventPage {
   readonly uploadOrderRadio: Locator = this.page.locator(
     "#manageOrdersOptions-uploadAnOrder",
   );
-  readonly amendOrderRadio: Locator = this.page.locator(
+  private readonly amendOrderRadio: Locator = this.page.locator(
     "#manageOrdersOptions-amendOrderUnderSlipRule",
   );
   readonly serveSavedOrdersRadio: Locator = this.page.locator(
@@ -24,7 +24,6 @@ export class ManageOrder1Page extends EventPage {
     "What do you want to do?",
     "Create an order",
     "Upload an order",
-    "Amend an order",
     "Serve saved orders",
   ];
 
@@ -37,6 +36,7 @@ export class ManageOrder1Page extends EventPage {
   async assertPageContents(): Promise<void> {
     await this.assertPageHeadings();
     await this.pageUtils.assertStrings(this.orderOptionsFormLabels);
+    await expect(this.amendOrderRadio).toHaveCount(0);
     await expect(this.continueButton).toBeVisible();
     await expect(this.previousButton).toBeVisible();
   }
@@ -50,9 +50,6 @@ export class ManageOrder1Page extends EventPage {
         break;
       case "upload order":
         await this.uploadOrderRadio.check();
-        break;
-      case "amend order":
-        await this.amendOrderRadio.check();
         break;
       case "serve order":
         await this.serveSavedOrdersRadio.check();

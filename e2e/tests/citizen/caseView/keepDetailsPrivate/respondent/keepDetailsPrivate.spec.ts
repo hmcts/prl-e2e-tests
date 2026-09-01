@@ -10,12 +10,14 @@ test.describe("Applicant confirm contact details tests", (): void => {
     async ({
       page,
       citizenC100CaseUtils,
+      manageCasesEventUtils,
       idamLoginHelper,
       accessCodeHelper,
     }) => {
       await ActivateCitizenC100Case.activateCase({
         page,
         citizenC100CaseUtils,
+        manageCasesEventUtils,
         idamLoginHelper,
         accessCodeHelper,
         isApplicant: false,

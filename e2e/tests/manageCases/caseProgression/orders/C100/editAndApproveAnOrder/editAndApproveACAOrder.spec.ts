@@ -1,84 +1,161 @@
-import Config from "../../../../../../utils/config.utils.ts";
-import { EditAndApproveAnOrder } from "../../../../../../journeys/manageCases/caseWorker/editAndApproveAnOrder/editAndApproveAnOrder.ts";
-import { Helpers } from "../../../../../../common/helpers.ts";
-import config from "../../../../../../utils/config.utils.ts";
 import { test } from "../../../../../fixtures.ts";
-
-test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
+import config from "../../../../../../utils/config.utils.js";
+import { OrderTypes } from "../../../../../../common/types.js";
+import { JudgePagesGroup } from "../../../../../../pageObjects/roleBasedGroupedPages/judgePages.js";
 
 test.describe("Edit and approve a CA order tests", (): void => {
-  // Triple timeout for these slow tests
-  test.slow();
-
   let caseRef: string;
 
-  test.beforeEach(async ({ page, browser, caseEventUtils }) => {
-    caseRef = await caseEventUtils.createCACase(browser);
-    await Helpers.goToCase(
-      page,
+  test.beforeEach(async ({ judge, navigationUtils, manageCasesEventUtils }) => {
+    caseRef = (await manageCasesEventUtils.submitTSSolicitorCase("C100"))
+      .caseRef;
+    await manageCasesEventUtils.issueAndSendToLocalCourt(caseRef);
+    await manageCasesEventUtils.sendToGatekeeper(caseRef, "C100");
+    await manageCasesEventUtils.createSolicitorDraftOrder(
+      caseRef,
+      "Parental responsibility order (C45A)",
+    );
+    await navigationUtils.goToCase(
+      judge.page,
       config.manageCasesBaseURLCase,
       caseRef,
       "tasks",
     );
   });
-
-  test(`Complete Editing and approving an order with the following options:
-  Case: C100,
-  Order type: Parental responsibility order (C45A),
-  Judge order action: Send to admin to serve,
-  Not accessibility testing. @regression`, async ({
-    page,
-    browser,
-  }): Promise<void> => {
-    await EditAndApproveAnOrder.editAndApproveAnOrder({
-      page: page,
-      caseType: "C100",
-      orderType: "parentalResponsibility",
-      judeOrderAction: "Send to admin to serve",
-      errorMessaging: false,
-      accessibilityTest: false,
-      browser: browser,
-      caseRef: caseRef,
-    });
-  });
-
-  test(`Complete Editing and approving an order with the following options:
-  Case: C100,
-  Order type: Parental responsibility order (C45A),
-  Judge order action: Ask the legal representative to make changes,
-  Not accessibility testing. @regression`, async ({
-    page,
-    browser,
-  }): Promise<void> => {
-    await EditAndApproveAnOrder.editAndApproveAnOrder({
-      page: page,
-      caseType: "C100",
-      orderType: "parentalResponsibility",
-      judeOrderAction: "Ask the legal representative to make changes",
-      errorMessaging: false,
-      accessibilityTest: false,
-      browser: browser,
-      caseRef: caseRef,
-    });
-  });
-
-  test(`Complete Editing and approving an order with the following options:
-  Case: C100,
-  Order type: Parental responsibility order (C45A),
-  Judge order action: Give admin further directions then serve,
-  Accessibility testing. @accessibility @nightly`, async ({
-    page,
-    browser,
-  }): Promise<void> => {
-    await EditAndApproveAnOrder.editAndApproveAnOrder({
-      page: page,
-      caseType: "C100",
-      orderType: "parentalResponsibility",
+  [
+    {
       judeOrderAction: "Give admin further directions then serve",
-      errorMessaging: false,
-      accessibilityTest: true,
-      browser: browser,
-      caseRef: caseRef,
+      orderType: "Parental responsibility order (C45A)",
+      serveApplication: true,
+      status: "Reviewed by Judge",
+      snapshotName:
+        "C45A-judge-review-approve-order-giveAdmin-furtherDirections-ThenServe",
+      snapshotPath: ["caseProgression", "orders", "editAndApproveAnOrders"],
+    },
+  ].forEach((data) => {
+    test(`Complete Editing and approving an C100 solicitor drafted order as a judge with the following option : ${data.judeOrderAction} @nightly @regression @accessibility`, async ({
+      judge,
+    }): Promise<void> => {
+      await editAndApproveOrder(caseRef, judge, data);
+    });
+  });
+  [
+    {
+      judeOrderAction: "Send to admin to serve",
+      orderType: "Parental responsibility order (C45A)",
+      serveApplication: true,
+      status: "Reviewed by Judge",
+      snapshotName: "C45A-judge-review-approve-order-sendAdmin-Serve",
+      snapshotPath: ["caseProgression", "orders", "editAndApproveAnOrders"],
+    },
+  ].forEach((data) => {
+    test(`Complete Editing and approving an C100 solicitor drafted order as a judge with the following option : ${data.judeOrderAction} @regression @accessibility`, async ({
+      judge,
+    }): Promise<void> => {
+      await editAndApproveOrder(caseRef, judge, data);
+    });
+  });
+  [
+    {
+      judeOrderAction: "Ask the legal representative to make changes",
+      orderType: "Parental responsibility order (C45A)",
+      serveApplication: true,
+      status: "Rejected by Judge",
+      snapshotName: "C45A-judge-review-approve-order-askLegalRep-Changes",
+      snapshotPath: ["caseProgression", "orders", "editAndApproveAnOrders"],
+    },
+  ].forEach((data) => {
+    test(`Complete Editing and approving an C100 solicitor drafted order as a judge with the following option : ${data.judeOrderAction} @regression @accessibility`, async ({
+      judge,
+    }): Promise<void> => {
+      await editAndApproveOrder(caseRef, judge, data);
     });
   });
 });
+
+async function editAndApproveOrder(caseRef, judge: JudgePagesGroup, data) {
+  const { tasksPage, summaryPage, editAndApproveAnOrders, draftedOrders } =
+    judge;
+  await tasksPage.assignTaskToMeAndTriggerNextSteps(
+    "Review and Approve Legal rep Order - ",
+    "Review and Approve Legal rep Order",
+    "judge",
+  );
+
+  await editAndApproveAnOrders.editAndApproveAnOrder2Page.assertPageContents(
+    data.orderType as OrderTypes,
+  );
+  await editAndApproveAnOrders.editAndApproveAnOrder2Page.verifyAccessibility();
+  await editAndApproveAnOrders.editAndApproveAnOrder2Page.selectOrderCheckOptions(
+    data.judeOrderAction,
+  );
+  await editAndApproveAnOrders.editAndApproveAnOrder2Page.clickContinue();
+
+  if (data.judeOrderAction == "Give admin further directions then serve") {
+    await editAndApproveAnOrders.editAndApproveAnOrder21Page.assertPageContents(
+      data.orderType as OrderTypes,
+    );
+    await editAndApproveAnOrders.editAndApproveAnOrder21Page.verifyAccessibility();
+    await editAndApproveAnOrders.editAndApproveAnOrder21Page.fillInFields(
+      data.serveApplication,
+    );
+    await editAndApproveAnOrders.editAndApproveAnOrder21Page.clickContinue();
+  }
+
+  await editAndApproveAnOrders.editAndApproveAnOrderSubmitPage.assertPageContents(
+    data.snapshotPath,
+    data.snapshotName,
+  );
+  await editAndApproveAnOrders.editAndApproveAnOrderSubmitPage.verifyAccessibility();
+  await editAndApproveAnOrders.editAndApproveAnOrderSubmitPage.clickSubmit();
+
+  await editAndApproveAnOrders.editAndApproveAnOrderConfirmPage.assertPageContents(
+    data.judeOrderAction,
+  );
+  await editAndApproveAnOrders.editAndApproveAnOrderConfirmPage.verifyAccessibility();
+  await editAndApproveAnOrders.editAndApproveAnOrderConfirmPage.clickCloseAndReturnToCaseDetails();
+
+  await summaryPage.alertBanner.assertEventAlert(
+    caseRef,
+    "Edit and approve a draft order",
+  );
+
+  // check draft order
+  await draftedOrders.draftOrdersPage.goToPage();
+  await draftedOrders.draftOrdersPage.assertDraftOrders([
+    {
+      typeOfOrder: data.orderType as OrderTypes,
+      englishDocument: `${data.orderType
+        .replace(/[(),]/g, "")
+        .split(" ")
+        .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+        .join("_")}_draft.pdf`,
+      otherDetails: {
+        orderMadeBy: "Test Judge Name",
+        orderCreatedBy:
+          process.env.MANAGE_CASES_TEST_ENV === "demo"
+            ? "PRL DEMO ORG1 Solicitor 2"
+            : "AAT Solicitor",
+        status: data.status,
+      },
+      childrenList: [
+        "Joe Doe (Child 1)",
+        "Simon Anderson (Child 2)",
+        "Lilly Anderson (Child 3)",
+        "Charlotte Saxon (Child 4)",
+        "Selena Lees (Child 5)",
+      ],
+      isOrderAboutAllTheChildren: true,
+    },
+  ]);
+  await draftedOrders.draftOrdersPage.assertDraftOrderDocument(
+    data.snapshotPath,
+    caseRef,
+    `${data.orderType
+      .replace(/[(),]/g, "")
+      .split(" ")
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+      .join("_")}_draft.pdf`,
+    data.snapshotName,
+  );
+}

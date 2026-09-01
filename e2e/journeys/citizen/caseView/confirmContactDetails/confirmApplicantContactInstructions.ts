@@ -14,6 +14,7 @@ interface confirmApplicantContactInstructionsParams {
   accessibilityTest: boolean;
   applicationSubmittedBy: applicationSubmittedBy;
 }
+
 interface FL401CaseConfidentialParams {
   page: Page;
   browser: Browser;
@@ -40,8 +41,7 @@ export class ConfirmApplicantContactInstructions {
     applicationSubmittedBy,
   }: confirmApplicantContactInstructionsParams): Promise<void> {
     const caseUser: CaseUser = isApplicant ? "applicant" : "respondent";
-    page = await ActivateCase.activateCase({
-      page: page,
+    const citizenPage: Page = await ActivateCase.activateCase({
       browser: browser,
       caseRef: caseRef,
       caseUser: caseUser,
@@ -49,9 +49,11 @@ export class ConfirmApplicantContactInstructions {
       accessibilityTest: accessibilityTest,
       isManualSOA: false,
     });
-    await page.click(UniqueSelectors.confirmOrEditYourContactDetailsSelector);
-    await this.updateApplicantContactInstructions(page);
-    await page.click(
+    await citizenPage.click(
+      UniqueSelectors.confirmOrEditYourContactDetailsSelector,
+    );
+    await this.updateApplicantContactInstructions(citizenPage);
+    await citizenPage.click(
       `${Selectors.GovukButton}:text-is("${CommonStaticText.saveAndContinue}")`,
     );
     // Calling FL401 Case Tabs to navigate to Confidential details tab and click on confidential details tab
@@ -75,7 +77,7 @@ export class ConfirmApplicantContactInstructions {
     );
     // verify phone number value is not null or empty
     await Promise.all([
-      expect(phoneNumberValue).not.toBeNull(),
+      await expect(phoneNumberValue).toBeVisible(),
       expect(phoneNumberValue).not.toBe(""),
     ]);
 
@@ -90,16 +92,11 @@ export class ConfirmApplicantContactInstructions {
   }
 
   public static async fl401CaseConfidentialTab({
-    browser,
+    page,
     caseRef,
   }: FL401CaseConfidentialParams): Promise<void> {
-    const courtAdminPage: Page = await Helpers.openNewBrowserWindow(
-      browser,
-      "courtAdminStoke",
-    );
-
     await Helpers.goToCase(
-      courtAdminPage,
+      page,
       Config.manageCasesBaseURLCase,
       caseRef,
       "Confidential details",
@@ -107,7 +104,7 @@ export class ConfirmApplicantContactInstructions {
 
     // Verify updated contact instructions are displayed on the Confidential details tab as expected
     await Helpers.checkVisibleAndPresent(
-      courtAdminPage,
+      page,
       `${UniqueSelectors.applicantContactInstructionsSelector}:text-is("${CommonStaticText.applicantContactInstructions}")`,
       1,
     );

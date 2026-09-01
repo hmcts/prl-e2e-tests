@@ -6,7 +6,10 @@ export enum CommonStaticText {
   iDontKnow = "I don't know",
   continue = "Continue",
   submit = "Submit",
+  saveAndSubmit = "Save and submit",
+  submitYourResponse = "Submit your response",
   previous = "Previous",
+  reviewAndSubmit = "Review and submit",
   errorSummaryTitle = " There is a problem on this page ",
   day = "Day",
   month = "Month",
@@ -36,4 +39,5 @@ export enum CommonStaticText {
   proposeCaseLink = "Propose case link",
   viewThisCase = "View this case",
   applicantContactInstructions = "Anytime",
+  findAddress = "Find address",
 }

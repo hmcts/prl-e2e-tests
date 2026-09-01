@@ -112,7 +112,7 @@ export class SubmitAndPay2Page {
     await Promise.all([
       Helpers.checkGroup(
         page,
-        7,
+        6,
         SubmitAndPay2Content,
         "h3Hidden",
         `${Selectors.h3}`,

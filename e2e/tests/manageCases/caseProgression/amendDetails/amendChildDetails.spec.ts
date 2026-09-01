@@ -1,26 +1,53 @@
-import Config from "../../../../utils/config.utils.ts";
-import { AmendChildDetails } from "../../../../journeys/manageCases/caseProgression/amendDetails/amendChildDetails.ts";
+import config from "../../../../utils/config.utils.ts";
 import { test } from "../../../fixtures.ts";
-
-test.use({ storageState: Config.sessionStoragePath + "courtAdminStoke.json" });
 
 test.describe("Complete amend Child details event as a court admin", () => {
   let caseRef: string;
 
-  test.beforeEach(async ({ browser, caseEventUtils }) => {
-    caseRef = await caseEventUtils.createCACase(browser);
-  });
+  test.beforeEach(
+    async ({ courtAdminStoke, manageCasesEventUtils, navigationUtils }) => {
+      caseRef = (await manageCasesEventUtils.submitTSSolicitorCase("C100"))
+        .caseRef;
+      await navigationUtils.goToCase(
+        courtAdminStoke.page,
+        config.manageCasesBaseURLCase,
+        caseRef,
+      );
+    },
+  );
 
-  test(`Amend the following Child details: firstname, lastname, date of birth, gender @regression`, async ({
-    page,
-  }): Promise<void> => {
-    await AmendChildDetails.amendChildDetails({
-      page: page,
-      accessibilityTest: false,
-      c100ChildGender: "male",
-      yesNoDontKnow: "yes",
-      under18: true,
-      caseRef: caseRef,
+  [
+    {
+      scenario: "male and under 18",
+      fillInFieldsOptions: {
+        c100ChildGender: "male" as const,
+        under18: true,
+      },
+      confirmOptions: { yesNoDontKnow: "yes" as const },
+    },
+  ].forEach(({ scenario, fillInFieldsOptions, confirmOptions }) => {
+    test(`Amend the following Child details: firstname, lastname, date of birth, gender - ${scenario} @regression`, async ({
+      courtAdminStoke,
+    }): Promise<void> => {
+      const { summaryPage, amendChildDetails } = courtAdminStoke;
+
+      await summaryPage.chooseEventFromDropdown("Amend Child details");
+
+      await amendChildDetails.page1.assertPageContents();
+      await amendChildDetails.page1.verifyAccessibility();
+      await amendChildDetails.page1.fillInFields(fillInFieldsOptions);
+      await amendChildDetails.page1.clickContinue();
+
+      await amendChildDetails.page2.assertPageContents();
+      await amendChildDetails.page2.verifyAccessibility();
+      await amendChildDetails.page2.fillInFields(confirmOptions);
+      await amendChildDetails.page2.clickContinue();
+
+      await amendChildDetails.submitPage.assertPageContents(
+        ["caseProgression", "amendDetails", "amendChildDetails"],
+        "amend-child-details",
+      );
+      await amendChildDetails.submitPage.clickSaveAndContinue();
     });
   });
 });

@@ -1,15 +1,15 @@
-import { test } from "../../../../../fixtures.js";
-import config from "../../../../../../utils/config.utils.js";
+import { test } from "../../../../../fixtures.ts";
+import config from "../../../../../../utils/config.utils.ts";
 import {
   manageOrdersOptions,
   OrderTypes,
   solicitorCaseCreateType,
-} from "../../../../../../common/types.js";
-import { OrderInformation } from "../../../../../../pageObjects/pages/exui/caseView/draftOrders.po.js";
-import { ManageOrder5Params } from "../../../../../../pageObjects/pages/exui/orders/manageOrders/manageOrder5.po.js";
-import { ManageOrder24Params } from "../../../../../../pageObjects/pages/exui/orders/manageOrders/manageOrder24.po.js";
-import { FL404AFL406UploadOrderScenarios } from "../../../../../../testData/manageOrders.js";
-import { ManageOrder26Params } from "../../../../../../pageObjects/pages/exui/orders/manageOrders/manageOrder26.po.js";
+} from "../../../../../../common/types.ts";
+import { OrderInformation } from "../../../../../../pageObjects/pages/exui/caseView/draftOrders.po.ts";
+import { ManageOrder5Params } from "../../../../../../pageObjects/pages/exui/orders/manageOrders/manageOrder5.po.ts";
+import { ManageOrder24Params } from "../../../../../../pageObjects/pages/exui/orders/manageOrders/manageOrder24.po.ts";
+import { FL404AFL406UploadOrderScenarios } from "../../../../../../testData/ui/manageOrders.ts";
+import { ManageOrder26Params } from "../../../../../../pageObjects/pages/exui/orders/manageOrders/manageOrder26.po.ts";
 
 export interface DomesticAbuseUploadOrderParams {
   name: string;
@@ -26,16 +26,18 @@ export interface DomesticAbuseUploadOrderParams {
   orderInformation: OrderInformation[];
 }
 
-test.describe("'Upload an order' by Case Worker via the 'Create/upload draft order' event tests", (): void => {
-  let caseNumber: string;
+test.describe("'Upload an order' by Case Worker via the 'Manage order' event tests", (): void => {
+  let caseRef: string;
 
   test.beforeEach(
-    async ({ caseWorker, browser, caseEventUtils, navigationUtils }) => {
-      caseNumber = await caseEventUtils.createDACaseAddCaseNumber(browser);
+    async ({ caseWorker, manageCasesEventUtils, navigationUtils }) => {
+      caseRef = (await manageCasesEventUtils.submitTSSolicitorCase("FL401"))
+        .caseRef;
+      await manageCasesEventUtils.addFamilyManNumber(caseRef);
       await navigationUtils.goToCase(
         caseWorker.page,
         config.manageCasesBaseURLCase,
-        caseNumber,
+        caseRef,
       );
     },
   );
@@ -98,7 +100,7 @@ test.describe("'Upload an order' by Case Worker via the 'Create/upload draft ord
         await manageOrders.manageOrderSubmitPage.verifyAccessibility();
         await manageOrders.manageOrderSubmitPage.clickSubmit();
         await summaryPage.alertBanner.assertEventAlert(
-          caseNumber,
+          caseRef,
           "Manage orders",
         );
 

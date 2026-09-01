@@ -1,35 +1,17 @@
-import { Browser, expect, Page } from "@playwright/test";
+import { expect, Page } from "@playwright/test";
 import { Helpers } from "../../../../common/helpers.ts";
 import { CreateBundleSubmitPage } from "../../../../pages/manageCases/caseProgression/createBundle/createBundleSubmitPage.ts";
 import { CreateBundle1Page } from "../../../../pages/manageCases/caseProgression/createBundle/createBundle1Page.ts";
-import { jsonDatas } from "../../../../common/caseHelpers/jsonDatas.ts";
-import {
-  c100CompleteEventsUpToServiceOfApplication,
-  fl401CompleteEventsUpToServiceOfApplication,
-} from "../../../../common/caseHelpers/caseEventsHelper.ts";
-import {
-  applicationSubmittedBy,
-  createOrderFL401Options,
-} from "../../../../common/types.ts";
-import { Selectors } from "../../../../common/selectors.js";
+import { Selectors } from "../../../../common/selectors.ts";
 
 interface ServiceOfApplicationJourneyParams {
   page: Page;
   accessibilityTest: boolean;
-  ccdRef: string;
-  browser: Browser;
-  manageOrderData: typeof jsonDatas;
-  createOrderFL401Options: createOrderFL401Options;
-  applicationSubmittedBy: applicationSubmittedBy;
 }
 
 interface C100ServiceOfApplicationJourneyParams {
   page: Page;
   accessibilityTest: boolean;
-  ccdRef: string;
-  browser: Browser;
-  manageOrderData: typeof jsonDatas;
-  applicationSubmittedBy: applicationSubmittedBy;
 }
 
 const bundleContents: string[] = [
@@ -47,21 +29,7 @@ export class CreateABundleJourney {
   public static async FL401CreateABundleJourney({
     page,
     accessibilityTest,
-    ccdRef,
-    browser,
-    manageOrderData,
-    createOrderFL401Options,
-    applicationSubmittedBy,
   }: ServiceOfApplicationJourneyParams): Promise<void> {
-    await fl401CompleteEventsUpToServiceOfApplication(
-      page,
-      browser,
-      ccdRef,
-      manageOrderData,
-      createOrderFL401Options,
-      applicationSubmittedBy,
-    );
-    await page.reload();
     await Helpers.chooseEventFromDropdown(page, "Create a bundle");
     await CreateBundle1Page.createBundle1Page({
       page,
@@ -77,19 +45,7 @@ export class CreateABundleJourney {
   public static async C100CreateABundleJourney({
     page,
     accessibilityTest,
-    browser,
-    ccdRef,
-    manageOrderData,
-    applicationSubmittedBy,
   }: C100ServiceOfApplicationJourneyParams): Promise<void> {
-    await c100CompleteEventsUpToServiceOfApplication(
-      page,
-      ccdRef,
-      browser,
-      manageOrderData,
-      applicationSubmittedBy,
-    );
-    await page.reload();
     await Helpers.chooseEventFromDropdown(page, "Create a bundle");
     await CreateBundle1Page.createBundle1Page({
       page,

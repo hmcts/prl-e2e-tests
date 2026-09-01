@@ -1,5 +1,4 @@
 import Config from "../../../../utils/config.utils.ts";
-import { Helpers } from "../../../../common/helpers.ts";
 import config from "../../../../utils/config.utils.ts";
 import { NoticeOfChange } from "../../../../journeys/manageCases/caseProgression/noticeOfChange/noticeOfChange.ts";
 import { test } from "../../../fixtures.ts";
@@ -7,27 +6,24 @@ import { test } from "../../../fixtures.ts";
 test.use({ storageState: Config.sessionStoragePath + "nocSolicitor.json" });
 
 test.describe("Notice of Change tests for CA case", () => {
-  let ccdRef: string = "";
+  let caseRef: string = "";
 
-  test.beforeEach(async ({ page, browser, caseEventUtils }) => {
-    ccdRef = await caseEventUtils.createCACaseIssueAndSendToLocalCourt(browser);
-    await Helpers.goToCase(
+  test.beforeEach(async ({ page, manageCasesEventUtils, navigationUtils }) => {
+    caseRef = (await manageCasesEventUtils.submitTSSolicitorCase("C100"))
+      .caseRef;
+    await manageCasesEventUtils.issueAndSendToLocalCourt(caseRef);
+    await navigationUtils.goToCase(
       page,
       config.manageCasesBaseURLCase,
-      ccdRef,
-      "tasks",
+      caseRef,
     );
   });
 
-  test("NOC applicant. @regression", async ({
-    page,
-    browser,
-  }): Promise<void> => {
+  test("NOC applicant. @regression", async ({ page }): Promise<void> => {
     await NoticeOfChange.noticeOfChange({
       page: page,
-      browser: browser,
       caseType: "C100",
-      caseRef: ccdRef,
+      caseRef: caseRef,
       isApplicant: true,
       accessibilityTest: false,
     });
@@ -35,13 +31,11 @@ test.describe("Notice of Change tests for CA case", () => {
 
   test("NOC respondent. @nightly @accessibility @regression", async ({
     page,
-    browser,
   }): Promise<void> => {
     await NoticeOfChange.noticeOfChange({
       page: page,
-      browser: browser,
       caseType: "C100",
-      caseRef: ccdRef,
+      caseRef: caseRef,
       isApplicant: false,
       accessibilityTest: true,
     });

@@ -1,4 +1,4 @@
-import { expect, Page } from "@playwright/test";
+import { APIResponse, expect, Locator, Page } from "@playwright/test";
 import { PDFParse, TextResult } from "pdf-parse";
 
 interface checkTheApplicationParams {
@@ -51,12 +51,6 @@ export class CheckTheApplication {
       ).toBeVisible();
       await expect(
         page.getByRole("link", { name: "cover_letter_welsh_ap6.pdf" }),
-      ).toBeVisible();
-         await expect(
-        page.getByRole("link", { name: "coversheet.pdf" }),
-      ).toBeVisible();
-      await expect(
-        page.getByRole("link", { name: "coversheet_welsh.pdf" }),
       ).toBeVisible();
       await expect(
         page.getByRole("link", { name: "C100FinalDocument.pdf" }),
@@ -164,14 +158,20 @@ export class CheckTheApplication {
       await expect(
         page.getByRole("link", { name: "C1A_Blank_Welsh.pdf" }),
       ).toBeVisible();
-        
+
       //Check coversheet contents do not contain any mention of addresses
-      const extractedTextFromPdf = await this.getPdfContents(page,'coversheet.pdf');
+      const extractedTextFromPdf = await this.getPdfContents(
+        page,
+        "coversheet.pdf",
+      );
       expect(extractedTextFromPdf.text).not.toContain("Your address");
 
-      const extractedWelshText = await this.getPdfContents(page, 'coversheet_welsh.pdf');
-      await expect(extractedWelshText.text).toContain('Eich rhif achos yw:');
-      await expect(extractedWelshText.text).not.toContain('Eich cyfeiriad');
+      const extractedWelshText = await this.getPdfContents(
+        page,
+        "coversheet_welsh.pdf",
+      );
+      expect(extractedWelshText.text).toContain("Eich rhif achos yw:");
+      expect(extractedWelshText.text).not.toContain("Eich cyfeiriad");
     }
   }
 
@@ -179,16 +179,16 @@ export class CheckTheApplication {
     page: Page,
     pdfName: string,
   ): Promise<TextResult> {
-    // opens pdf in new tab
-    const [newPage] = await Promise.all([
-      page.context().waitForEvent("page"),
-      page.getByText(pdfName).click(),
-    ]);
+    const link: Locator = page.getByRole("link", { name: pdfName });
 
-    const pdfUrl = newPage.url();
-    console.log(`PDF URL for ${pdfName}: ${pdfUrl}`);
+    const href: string = await link.getAttribute("href");
+    if (!href) {
+      throw new Error(`No href found for PDF link "${pdfName}"`);
+    }
 
-    const response = await page.request.get(pdfUrl);
+    const pdfUrl: string = new URL(href, page.url()).toString();
+
+    const response: APIResponse = await page.request.get(pdfUrl);
     const uint8 = new Uint8Array(await response.body());
 
     const parser = new PDFParse({ data: uint8 });

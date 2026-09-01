@@ -13,7 +13,14 @@ export interface UserCredentialsLong extends UserCredentials {
   readonly surname: string;
 }
 
+export interface LocalCourtInfo {
+  code: string;
+  label: string;
+}
+
 export type solicitorCaseCreateType = "C100" | "FL401";
+
+export const caseTypes: solicitorCaseCreateType[] = ["C100", "FL401"];
 
 export type State = "undefined";
 
@@ -28,11 +35,15 @@ const UserRoles = {
   caseManager: "caseManager",
   nocSolicitor: "nocSolicitor",
   legalAdvisor: "legalAdvisor",
+  localAuthority: "localAuthority",
+  superuser: "superuser",
 } as const;
 
 export type UserRole = (typeof UserRoles)[keyof typeof UserRoles];
 
 export { UserRoles };
+
+export type superUserEvents = "Exit Awaiting Information";
 
 export type c100SolicitorEvents =
   | "Case name"
@@ -116,7 +127,8 @@ export type fl401JudiciaryEvents =
   | "Edit and approve a draft order"
   | "List on notice"
   | "List without notice"
-  | "Mark case as restricted";
+  | "Mark case as restricted"
+  | "Add a case note";
 
 export type ApplicantGender = "female" | "male" | "other";
 
@@ -174,12 +186,10 @@ export type JudgeOrderAction =
 
 export type Language = "English" | "Welsh";
 
+export type YesNo = "Yes" | "No";
+
 export type manageOrdersOptions =
-  | "create order"
-  | "upload order"
-  | "amend order"
-  | "serve order"
-  | "create custom order";
+  "create order" | "upload order" | "serve order" | "create custom order";
 
 export type createOrderC100Options = "C43 order";
 
@@ -265,7 +275,9 @@ export type yesNoNA = "Yes" | "No" | "Not applicable";
 export type courtAdminEvents =
   | "Edit and serve an order"
   | "Send to gatekeeper"
-  | "Remove legal representative";
+  | "Remove legal representative"
+  | "Add local authority"
+  | "Request Further Information";
 
 export type contactOption = "Digital" | "Post";
 
@@ -367,7 +379,6 @@ export interface ClippingCoords {
 
 export type OrderTypes =
   | "Standard directions order"
-  | "Directions on issue"
   | "Blank order or directions (C21)"
   | "Child arrangements, specific issue or prohibited steps order (C43)"
   | "Parental responsibility order (C45A)"
@@ -385,7 +396,6 @@ export type OrderTypes =
 
 export const OrderTypesArray: OrderTypes[] = [
   "Standard directions order",
-  "Directions on issue",
   "Blank order or directions (C21)",
   "Child arrangements, specific issue or prohibited steps order (C43)",
   "Parental responsibility order (C45A)",
@@ -520,3 +530,16 @@ export const FcOrderTypesArray: FcOrderTypes[] = [
 export type AnyOtherOrderTypes = "Other";
 
 export const AnyOtherOrderTypesArray: AnyOtherOrderTypes[] = ["Other"];
+
+type CourtKey = "aberystwyth" | "swansea";
+
+export const LOCAL_COURTS: Record<CourtKey, LocalCourtInfo> = {
+  aberystwyth: {
+    code: "827534:",
+    label: "Aberystwyth Justice Centre - Trefechan - SY23 1AS",
+  },
+  swansea: {
+    code: "234946:",
+    label: "Swansea Civil Justice Centre - Quay West, Quay Parade - SA1 1SP",
+  },
+};

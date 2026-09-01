@@ -1,6 +1,5 @@
 import { test } from "../../fixtures.ts";
 import { ReviewDocuments } from "../../../journeys/manageCases/caseProgression/reviewDocuments/reviewDocuments.ts";
-import { Helpers } from "../../../common/helpers.ts";
 import config from "../../../utils/config.utils.ts";
 
 test.use({ storageState: config.sessionStoragePath + "caseWorker.json" });
@@ -13,9 +12,9 @@ test.describe("Review Documents task for DA Solicitor case tests.", () => {
 
   let ccdRef: string = "";
 
-  test.beforeEach(async ({ page, courtNavUtils }) => {
+  test.beforeEach(async ({ page, courtNavUtils, navigationUtils }) => {
     ccdRef = await courtNavUtils.createCase(true, true);
-    await Helpers.goToCase(
+    await navigationUtils.goToCase(
       page,
       config.manageCasesBaseURLCase,
       ccdRef,

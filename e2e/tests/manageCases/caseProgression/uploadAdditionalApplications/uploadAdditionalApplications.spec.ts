@@ -1,6 +1,6 @@
 import config from "../../../../utils/config.utils.ts";
 import { test } from "../../../fixtures.ts";
-import { SolicitorPagesGroup } from "../../../../pageObjects/roleBasedGroupedPages/solicitorPages.js";
+import { SolicitorPagesGroup } from "../../../../pageObjects/roleBasedGroupedPages/solicitorPages.ts";
 
 // -------------------------------
 // C100 CASE TYPE: Upload additional applications as a solicitor
@@ -8,19 +8,21 @@ import { SolicitorPagesGroup } from "../../../../pageObjects/roleBasedGroupedPag
 // // so we need to create the case the long way to enable the upload additional applications event
 // -------------------------------
 test.describe("Upload additional applications for C100 tests", () => {
-  let caseNumber: string;
+  let caseRef: string;
 
-  test.beforeEach(async ({ solicitor, caseEventUtils, navigationUtils }) => {
-    caseNumber = await caseEventUtils.createCACaseSubmitAndPayIndividualEvents(
-      solicitor.page,
-    );
-    await navigationUtils.goToCase(
-      solicitor.page,
-      config.manageCasesBaseURLCase,
-      caseNumber,
-      "tasks",
-    );
-  });
+  test.beforeEach(
+    async ({ solicitor, manageCasesEventUtils, navigationUtils }) => {
+      caseRef = (
+        await manageCasesEventUtils.createCaseViaIndividualCaseEvents("C100")
+      ).caseRef;
+      await navigationUtils.goToCase(
+        solicitor.page,
+        config.manageCasesBaseURLCase,
+        caseRef,
+        "tasks",
+      );
+    },
+  );
 
   [
     {
@@ -32,7 +34,7 @@ test.describe("Upload additional applications for C100 tests", () => {
     test(`Upload additional C2 application with notice. @regression @accessibility @nightly`, async ({
       solicitor,
     }): Promise<void> => {
-      await uploadAdditionalApplications("C100", solicitor, caseNumber, data);
+      await uploadAdditionalApplications("C100", solicitor, caseRef, data);
     });
   });
   [
@@ -45,7 +47,7 @@ test.describe("Upload additional applications for C100 tests", () => {
     test(`Upload additional C2 application without notice. @regression @accessibility`, async ({
       solicitor,
     }): Promise<void> => {
-      await uploadAdditionalApplications("C100", solicitor, caseNumber, data);
+      await uploadAdditionalApplications("C100", solicitor, caseRef, data);
     });
   });
   [
@@ -58,7 +60,7 @@ test.describe("Upload additional applications for C100 tests", () => {
     test(`Upload additional Other application. @regression @accessibility`, async ({
       solicitor,
     }): Promise<void> => {
-      await uploadAdditionalApplications("C100", solicitor, caseNumber, data);
+      await uploadAdditionalApplications("C100", solicitor, caseRef, data);
     });
   });
 });
@@ -67,19 +69,21 @@ test.describe("Upload additional applications for C100 tests", () => {
 // FL401 CASE TYPE: Upload additional applications as a solicitor
 // -------------------------------
 test.describe("Upload additional applications for FL401 tests", () => {
-  let caseNumber: string;
+  let caseRef: string;
 
-  test.beforeEach(async ({ solicitor, caseEventUtils, navigationUtils }) => {
-    caseNumber = await caseEventUtils.createDACaseSubmitAndPayIndividualEvents(
-      solicitor.page,
-    );
-    await navigationUtils.goToCase(
-      solicitor.page,
-      config.manageCasesBaseURLCase,
-      caseNumber,
-      "tasks",
-    );
-  });
+  test.beforeEach(
+    async ({ solicitor, manageCasesEventUtils, navigationUtils }) => {
+      caseRef = (
+        await manageCasesEventUtils.createCaseViaIndividualCaseEvents("FL401")
+      ).caseRef;
+      await navigationUtils.goToCase(
+        solicitor.page,
+        config.manageCasesBaseURLCase,
+        caseRef,
+        "tasks",
+      );
+    },
+  );
 
   [
     {
@@ -91,7 +95,7 @@ test.describe("Upload additional applications for FL401 tests", () => {
     test(`Upload additional C2 application with notice. @regression @accessibility @nightly`, async ({
       solicitor,
     }): Promise<void> => {
-      await uploadAdditionalApplications("FL401", solicitor, caseNumber, data);
+      await uploadAdditionalApplications("FL401", solicitor, caseRef, data);
     });
   });
   [
@@ -104,7 +108,7 @@ test.describe("Upload additional applications for FL401 tests", () => {
     test(`Upload additional C2 application without notice. @regression @accessibility`, async ({
       solicitor,
     }): Promise<void> => {
-      await uploadAdditionalApplications("FL401", solicitor, caseNumber, data);
+      await uploadAdditionalApplications("FL401", solicitor, caseRef, data);
     });
   });
   [
@@ -117,7 +121,7 @@ test.describe("Upload additional applications for FL401 tests", () => {
     test(`Upload additional Other application. @regression @accessibility`, async ({
       solicitor,
     }): Promise<void> => {
-      await uploadAdditionalApplications("FL401", solicitor, caseNumber, data);
+      await uploadAdditionalApplications("FL401", solicitor, caseRef, data);
     });
   });
 });

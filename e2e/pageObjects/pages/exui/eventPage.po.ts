@@ -16,7 +16,11 @@ export abstract class EventPage extends Base {
     name: "Submit",
   });
   readonly saveAndContinueButton = this.page.getByRole("button", {
-    name: "Save and continue",
+    name: /save and continue/i,
+  });
+  // this button is only for the submit page when deleting an application
+  readonly deleteButton = this.page.getByRole("button", {
+    name: "Delete",
   });
   readonly closeAndReturnToCaseDetailsButton: Locator = this.page.locator(
     Selectors.button,
@@ -45,6 +49,10 @@ export abstract class EventPage extends Base {
 
   async clickSaveAndContinue() {
     await this.saveAndContinueButton.click();
+  }
+
+  async clickDelete() {
+    await this.deleteButton.click();
   }
 
   async clickCloseAndReturnToCaseDetails(): Promise<void> {

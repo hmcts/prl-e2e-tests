@@ -5,8 +5,8 @@ import {
   OrderTypes,
 } from "../../../../../../../common/types.ts";
 import { ManageOrder19Params } from "../../../../../../../pageObjects/pages/exui/orders/manageOrders/manageOrder19.po.ts";
-import { CustomOrdersManageOrder5PageParams } from "../../../../../../../pageObjects/pages/exui/orders/manageOrders/customOrderManageOrder5.po.js";
-import { CreateParentalResponsibilityCustomOrderScenarios } from "../../../../../../../testData/draftOrders.js";
+import { CustomOrdersManageOrder5PageParams } from "../../../../../../../pageObjects/pages/exui/orders/manageOrders/customOrderManageOrder5.po.ts";
+import { CreateParentalResponsibilityCustomOrderScenarios } from "../../../../../../../testData/ui/draftOrders.ts";
 
 export interface CustomOrderParams {
   orderOption: manageOrdersOptions;
@@ -20,18 +20,19 @@ export interface CustomOrderParams {
 }
 
 test.describe("Manage Orders - Create parental responsibility custom order tests", () => {
-  let caseNumber: string = "";
+  let caseRef: string = "";
 
-  test.beforeEach(
-    async ({ judge, browser, caseEventUtils, navigationUtils }) => {
-      caseNumber = await caseEventUtils.createCACaseSendToGatekeeper(browser);
-      await navigationUtils.goToCase(
-        judge.page,
-        config.manageCasesBaseURLCase,
-        caseNumber,
-      );
-    },
-  );
+  test.beforeEach(async ({ judge, manageCasesEventUtils, navigationUtils }) => {
+    caseRef = (await manageCasesEventUtils.submitTSSolicitorCase("C100"))
+      .caseRef;
+    await manageCasesEventUtils.issueAndSendToLocalCourt(caseRef);
+    await manageCasesEventUtils.sendToGatekeeper(caseRef, "C100");
+    await navigationUtils.goToCase(
+      judge.page,
+      config.manageCasesBaseURLCase,
+      caseRef,
+    );
+  });
 
   CreateParentalResponsibilityCustomOrderScenarios.forEach(
     (customOrderParams: CustomOrderParams) => {
@@ -75,7 +76,7 @@ test.describe("Manage Orders - Create parental responsibility custom order tests
         await manageOrders.manageOrder19Page.clickContinue();
 
         await manageOrders.customOrderManageOrder20Page.assertPageContents(
-          caseNumber,
+          caseRef,
           customOrderParams.snapshotsPath,
           customOrderParams.orderType,
         );
@@ -95,7 +96,7 @@ test.describe("Manage Orders - Create parental responsibility custom order tests
         await manageOrders.manageOrderSubmitPage.clickSubmit();
 
         await summaryPage.alertBanner.assertEventAlert(
-          caseNumber,
+          caseRef,
           "Manage orders",
         );
 
@@ -104,7 +105,7 @@ test.describe("Manage Orders - Create parental responsibility custom order tests
         await draftedOrders.draftOrdersPage.assertDraftOrders([
           {
             typeOfOrder: customOrderParams.orderType,
-            englishDocument: `${customOrderParams.orderType.replace(/[(),]/g, "")}_${caseNumber}.docx`,
+            englishDocument: `${customOrderParams.orderType.replace(/[(),]/g, "")}_${caseRef}.docx`,
             otherDetails: {
               orderMadeBy: "Elizabeth Williams",
               orderCreatedBy: "Elizabeth Williams",
@@ -116,8 +117,8 @@ test.describe("Manage Orders - Create parental responsibility custom order tests
         ]);
         await draftedOrders.draftOrdersPage.assertDraftOrderDocument(
           customOrderParams.snapshotsPath,
-          caseNumber,
-          `${customOrderParams.orderType.replace(/[(),]/g, "")}_${caseNumber}.docx`,
+          caseRef,
+          `${customOrderParams.orderType.replace(/[(),]/g, "")}_${caseRef}.docx`,
           customOrderParams.orderSnapshotName,
         );
       });

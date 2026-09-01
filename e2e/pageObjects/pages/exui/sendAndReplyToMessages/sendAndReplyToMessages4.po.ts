@@ -31,7 +31,7 @@ export class SendAndReplyToMessages4Page extends EventPage {
     .getByRole("button", { name: "Add new" })
     .first();
   readonly c100Anchor: Locator = this.page.locator(Selectors.GovLink, {
-    hasText: "C100FinalDocumentWelsh.pdf",
+    hasText: "Draft_C100_application.pdf",
   });
   readonly fl401Anchor: Locator = this.page.locator(Selectors.GovLink, {
     hasText: "FL401FinalDocumentWelsh.pdf",
@@ -40,7 +40,7 @@ export class SendAndReplyToMessages4Page extends EventPage {
     Selectors.GovukFormLabel,
     {
       hasText:
-        "Applications -> Applicant documents -> Applicant application -> C100FinalDocumentWelsh.pdf",
+        "Applications -> Applicant documents -> Applicant application -> Draft_C100_application.pdf",
     },
   );
   readonly fl401FormLabel: Locator = this.page.locator(
