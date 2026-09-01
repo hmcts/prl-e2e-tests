@@ -10,6 +10,14 @@ export class HearingsPage extends Base {
     name: CommonStaticText.hearingRequest,
     exact: true,
   });
+  readonly currentAndUpcomingHearingsTable: Locator = this.page
+    .getByRole("table")
+    .filter({
+      has: this.page.getByRole("columnheader", {
+        name: "Current and upcoming",
+        exact: true,
+      }),
+    });
 
   constructor(page: Page) {
     super(page);
@@ -29,5 +37,17 @@ export class HearingsPage extends Base {
 
   async requestAHearing(): Promise<void> {
     await this.requestAHearingButton.click();
+  }
+
+  async assertHearingAdded(): Promise<void> {
+    const waitingToBeListedStatus = this.page.locator("strong.govuk-tag", {
+      hasText: /^WAITING TO BE LISTED\s*$/,
+    });
+    const hearingRow = this.currentAndUpcomingHearingsTable
+      .getByRole("row")
+      .filter({ has: waitingToBeListedStatus });
+
+    await expect(hearingRow).toBeVisible();
+    await expect(hearingRow.getByRole("cell").nth(1)).toHaveText(/^\d+$/);
   }
 }
