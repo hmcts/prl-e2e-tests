@@ -1,124 +1,140 @@
 import { test } from "../../../fixtures.ts";
 import Config from "../../../../utils/config.utils.ts";
+import { CaseWorkerPagesGroup } from "../../../../pageObjects/roleBasedGroupedPages/caseWorkerPages.ts";
+import { NavigationUtils } from "../../../../utils/navigation.utils.ts";
 
-const COURT_ADMIN_DOCUMENTS: Array<{
+interface CourtAdminDocument {
   documentParty: string;
   documentCategory: string;
   confidentialDocument: boolean;
   restrictDocument: boolean;
   filePath: string;
-}> = [
-  {
-    documentParty: "Applicant",
-    documentCategory: "Position statements",
-    confidentialDocument: true,
-    restrictDocument: true,
-    filePath: Config.testPdfFilePositionStatement,
-  },
-  {
-    documentParty: "Respondent",
-    documentCategory: "Section 16.4 Guardian Report",
-    confidentialDocument: false,
-    restrictDocument: false,
-    filePath: Config.testPdfFileGuardianReport,
-  },
-  {
-    documentParty: "Local authority",
-    documentCategory: "MIAM certificate/Exemption",
-    confidentialDocument: true,
-    restrictDocument: false,
-    filePath: Config.testPdfFileMIAMCertificate,
-  },
-];
+}
+
+const APPLICANT_POSITION_STATEMENT: CourtAdminDocument = {
+  documentParty: "Applicant",
+  documentCategory: "Position statements",
+  confidentialDocument: true,
+  restrictDocument: true,
+  filePath: Config.testPdfFilePositionStatement,
+};
+
+const RESPONDENT_GUARDIAN_REPORT: CourtAdminDocument = {
+  documentParty: "Respondent",
+  documentCategory: "Section 16.4 Guardian Report",
+  confidentialDocument: false,
+  restrictDocument: false,
+  filePath: Config.testPdfFileGuardianReport,
+};
+
+const LOCAL_AUTHORITY_MIAM_CERTIFICATE: CourtAdminDocument = {
+  documentParty: "Local authority",
+  documentCategory: "MIAM certificate/Exemption",
+  confidentialDocument: true,
+  restrictDocument: false,
+  filePath: Config.testPdfFileMIAMCertificate,
+};
+
+async function uploadDocumentAndVerify(
+  caseWorker: CaseWorkerPagesGroup,
+  navigationUtils: NavigationUtils,
+  caseRef: string,
+  doc: CourtAdminDocument,
+): Promise<void> {
+  await navigationUtils.goToCase(
+    caseWorker.page,
+    Config.manageCasesBaseURLCase,
+    caseRef,
+  );
+
+  const {
+    summaryPage,
+    manageDocuments,
+    caseDocumentsPage,
+    confidentialDetailsPage,
+  } = caseWorker;
+  const {
+    manageDocumentsNew1Page,
+    manageDocumentsNewSubmitPage,
+    manageDocumentsNewConfirmPage,
+  } = manageDocuments;
+
+  await summaryPage.chooseEventFromDropdown("Manage documents");
+  await manageDocumentsNew1Page.assertPageContents();
+  await manageDocumentsNew1Page.fillDocumentSlot({
+    index: 0,
+    documentParty: doc.documentParty,
+    documentCategory: doc.documentCategory,
+    confidentialDocument: doc.confidentialDocument,
+    restrictDocument: doc.restrictDocument,
+    filePath: doc.filePath,
+  });
+  await manageDocumentsNew1Page.clickContinue();
+
+  await manageDocumentsNewSubmitPage.assertDocumentsPageContents(
+    doc.documentParty,
+    [doc],
+  );
+  await manageDocumentsNewSubmitPage.verifyAccessibility();
+  await manageDocumentsNewSubmitPage.clickSaveAndContinue();
+
+  await manageDocumentsNewConfirmPage.assertPageContents();
+  await manageDocumentsNewConfirmPage.verifyAccessibility();
+  await manageDocumentsNewConfirmPage.clickCloseAndReturnToCaseDetails();
+
+  // Confidential and/or restricted documents show up on the Confidential
+  // details tab; everything else shows up on the Case documents tab straight away.
+  if (doc.confidentialDocument || doc.restrictDocument) {
+    await confidentialDetailsPage.goToPage();
+    await confidentialDetailsPage.assertManageDocumentsSection(doc);
+  } else {
+    await caseDocumentsPage.goToPage();
+    await caseDocumentsPage.assertCourtStaffUploadedDocuments([doc]);
+  }
+}
 
 test.describe("Manage documents event for FL401 case tests as a court admin.", () => {
   let caseRef: string = "";
 
-  test.beforeEach(
-    async ({ caseWorker, manageCasesEventUtils, navigationUtils }) => {
-      caseRef = (await manageCasesEventUtils.submitTSSolicitorCase("FL401"))
-        .caseRef;
-      await manageCasesEventUtils.sendToGatekeeper(caseRef, "FL401");
-      await navigationUtils.goToCase(
-        caseWorker.page,
-        Config.manageCasesBaseURLCase,
-        caseRef,
-      );
-    },
-  );
+  test.beforeEach(async ({ manageCasesEventUtils }) => {
+    caseRef = (await manageCasesEventUtils.submitTSSolicitorCase("FL401"))
+      .caseRef;
+    await manageCasesEventUtils.sendToGatekeeper(caseRef, "FL401");
+  });
 
-  test("Complete Manage Documents uploading documents for the Applicant, Respondent and Local authority in one event — mixing restricted, confidential and unrestricted documents, with accessibility test. @nightly @regression @accessibility", async ({
+  test("Court admin uploads a confidential and restricted Position statement for the Applicant, with accessibility test. @nightly @regression @accessibility @tp", async ({
     caseWorker,
+    navigationUtils,
   }): Promise<void> => {
-    const {
-      summaryPage,
-      manageDocuments,
-      caseDocumentsPage,
-      confidentialDetailsPage,
-    } = caseWorker;
-    const {
-      manageDocumentsNew1Page,
-      manageDocumentsNewSubmitPage,
-      manageDocumentsNewConfirmPage,
-    } = manageDocuments;
-
-    await summaryPage.chooseEventFromDropdown("Manage documents");
-
-    await manageDocumentsNew1Page.assertPageContents();
-
-    for (let i = 0; i < COURT_ADMIN_DOCUMENTS.length; i++) {
-      const doc = COURT_ADMIN_DOCUMENTS[i];
-      if (i > 0) {
-        await manageDocumentsNew1Page.addAnotherDocument(i);
-      }
-      await manageDocumentsNew1Page.fillDocumentSlot({
-        index: i,
-        documentParty: doc.documentParty,
-        documentCategory: doc.documentCategory,
-        confidentialDocument: doc.confidentialDocument,
-        restrictDocument: doc.restrictDocument,
-        filePath: doc.filePath,
-      });
-    }
-    await manageDocumentsNew1Page.clickContinue();
-
-    await manageDocumentsNewSubmitPage.assertDocumentsPageContents(
-      "", // unused — every entry in COURT_ADMIN_DOCUMENTS sets its own documentParty
-      COURT_ADMIN_DOCUMENTS,
+    await uploadDocumentAndVerify(
+      caseWorker,
+      navigationUtils,
+      caseRef,
+      APPLICANT_POSITION_STATEMENT,
     );
-    await manageDocumentsNewSubmitPage.verifyAccessibility();
-    await manageDocumentsNewSubmitPage.clickSaveAndContinue();
+  });
 
-    await manageDocumentsNewConfirmPage.assertPageContents();
-    await manageDocumentsNewConfirmPage.verifyAccessibility();
-    await manageDocumentsNewConfirmPage.clickCloseAndReturnToCaseDetails();
+  test("Court admin uploads an unrestricted Section 16.4 Guardian Report for the Respondent, with accessibility test. @nightly @regression @accessibility @tp", async ({
+    caseWorker,
+    navigationUtils,
+  }): Promise<void> => {
+    await uploadDocumentAndVerify(
+      caseWorker,
+      navigationUtils,
+      caseRef,
+      RESPONDENT_GUARDIAN_REPORT,
+    );
+  });
 
-    // Documents that are neither confidential nor restricted show up on the
-    // Case documents tab straight away.
-    const caseDocumentsEligibleDocuments = COURT_ADMIN_DOCUMENTS.filter(
-      (doc) => !doc.confidentialDocument && !doc.restrictDocument,
+  test("Court admin uploads a confidential MIAM certificate/Exemption for the Local authority, with accessibility test. @nightly @regression @accessibility @tp", async ({
+    caseWorker,
+    navigationUtils,
+  }): Promise<void> => {
+    await uploadDocumentAndVerify(
+      caseWorker,
+      navigationUtils,
+      caseRef,
+      LOCAL_AUTHORITY_MIAM_CERTIFICATE,
     );
-    await caseDocumentsPage.goToPage();
-    await caseDocumentsPage.assertCourtStaffUploadedDocuments(
-      caseDocumentsEligibleDocuments,
-    );
-
-    // Confidential and/or restricted documents show up on the Confidential
-    // details tab instead.
-    const confidentialDetailsEligibleDocuments = COURT_ADMIN_DOCUMENTS.filter(
-      (doc) => doc.confidentialDocument || doc.restrictDocument,
-    );
-    if (confidentialDetailsEligibleDocuments.length > 0) {
-      await confidentialDetailsPage.goToPage();
-      for (const doc of confidentialDetailsEligibleDocuments) {
-        await confidentialDetailsPage.assertManageDocumentsSection({
-          documentParty: doc.documentParty,
-          documentCategory: doc.documentCategory,
-          restrictDocument: doc.restrictDocument,
-          confidentialDocument: doc.confidentialDocument,
-          filePath: doc.filePath,
-        });
-      }
-    }
   });
 });
