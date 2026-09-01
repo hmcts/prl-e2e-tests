@@ -1,10 +1,19 @@
 import { test } from "../../../fixtures.ts";
 import config from "../../../../utils/config.utils.ts";
 import { caseTypes } from "../../../../common/types.ts";
+import { UserWithAccess } from "../../../../pageObjects/pages/exui/restrictedCaseAccess/restrictedCaseAccess1.po.js";
 
 caseTypes.forEach((caseType) => {
   test.describe(`Complete the Restricted Case Access event`, () => {
     let caseRef: string;
+    const restrictionReason: string = "Test reason";
+    const usersWithAccess: UserWithAccess[] = [
+      {
+        name: "Elizabeth Williams",
+        role: "Gatekeeping Judge",
+        emailAddress: process.env.JUDGE_USERNAME,
+      },
+    ];
 
     test.beforeEach(
       async ({ judge, manageCasesEventUtils, navigationUtils }) => {
@@ -28,12 +37,11 @@ caseTypes.forEach((caseType) => {
     test(`Mark ${caseType} case as restricted as a gatekeeper judge. @nightly @regression @accessibility`, async ({
       judge,
     }): Promise<void> => {
-      const restrictionReason: string = "Test reason";
       const { summaryPage, restrictedCaseAccess } = judge;
 
       await summaryPage.chooseEventFromDropdown("Mark case as restricted");
 
-      await restrictedCaseAccess.page1.assertPageContents();
+      await restrictedCaseAccess.page1.assertPageContents(usersWithAccess);
       await restrictedCaseAccess.page1.verifyAccessibility();
       await restrictedCaseAccess.page1.clickContinue();
 
