@@ -102,7 +102,7 @@ test.describe("Manage documents event for FL401 case tests as a court admin.", (
     await manageCasesEventUtils.sendToGatekeeper(caseRef, "FL401");
   });
 
-  test("Court admin uploads a confidential and restricted Position statement for the Applicant, with accessibility test. @nightly @regression @accessibility @tp", async ({
+  test("Court admin uploads a confidential and restricted Position statement for the Applicant, with accessibility test. @nightly @regression @accessibility", async ({
     caseWorker,
     navigationUtils,
   }): Promise<void> => {
@@ -114,7 +114,7 @@ test.describe("Manage documents event for FL401 case tests as a court admin.", (
     );
   });
 
-  test("Court admin uploads an unrestricted Section 16.4 Guardian Report for the Respondent, with accessibility test. @nightly @regression @accessibility @tp", async ({
+  test("Court admin uploads an unrestricted Section 16.4 Guardian Report for the Respondent, with accessibility test. @nightly @regression @accessibility", async ({
     caseWorker,
     navigationUtils,
   }): Promise<void> => {
@@ -126,7 +126,7 @@ test.describe("Manage documents event for FL401 case tests as a court admin.", (
     );
   });
 
-  test("Court admin uploads a confidential MIAM certificate/Exemption for the Local authority, with accessibility test. @nightly @regression @accessibility @tp", async ({
+  test("Court admin uploads a confidential MIAM certificate/Exemption for the Local authority, with accessibility test. @nightly @regression @accessibility", async ({
     caseWorker,
     navigationUtils,
   }): Promise<void> => {
