@@ -5,6 +5,11 @@ import { UserWithAccess } from "../../../../pageObjects/pages/exui/restrictedCas
 
 caseTypes.forEach((caseType) => {
   test.describe(`Complete the Restricted Case Access event`, () => {
+    test.skip(
+      process.env.MANAGE_CASES_TEST_ENV === "preview",
+      "Doesn't work on preview env - roles and access doesn't work",
+    );
+
     let caseRef: string;
     const restrictionReason: string = "Test reason";
     const usersWithAccess: UserWithAccess[] = [
