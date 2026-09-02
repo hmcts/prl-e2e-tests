@@ -96,17 +96,13 @@ test.describe("Manage Orders - Create a Special Guardianship order tests", () =>
         await manageOrders.manageOrder20Page.verifyAccessibility();
         await manageOrders.manageOrder20Page.clickContinue();
 
-        await manageOrders.manageOrderUrgentPage.assertPageContents();
-        await manageOrders.manageOrderUrgentPage.verifyAccessibility();
-        await manageOrders.manageOrderUrgentPage.selectIsUrgent(false);
-        await manageOrders.manageOrderUrgentPage.clickContinue();
-
         await manageOrders.manageOrder24Page.assertPageContents();
         await manageOrders.manageOrder24Page.verifyAccessibility();
         await manageOrders.manageOrder24Page.selectCheckOrder(
           manageOrderParams.manageOrder24Params,
         );
         await manageOrders.manageOrder24Page.clickContinue();
+
         await manageOrders.manageOrder26Page.assertPageContents("C100");
         await manageOrders.manageOrder26Page.verifyAccessibility();
         await manageOrders.manageOrder26Page.selectServeOrderOptions(

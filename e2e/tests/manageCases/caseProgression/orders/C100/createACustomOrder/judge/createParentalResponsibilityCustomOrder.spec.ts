@@ -83,15 +83,15 @@ test.describe("Manage Orders - Create parental responsibility custom order tests
         await manageOrders.customOrderManageOrder20Page.verifyAccessibility();
         await manageOrders.customOrderManageOrder20Page.clickContinue();
 
-        await manageOrders.manageOrderUrgentPage.assertPageContents();
-        await manageOrders.manageOrderUrgentPage.verifyAccessibility();
-        await manageOrders.manageOrderUrgentPage.selectIsUrgent(false);
-        await manageOrders.manageOrderUrgentPage.clickContinue();
-
         await manageOrders.manageOrder30Page.assertPageContents();
         await manageOrders.manageOrder30Page.verifyAccessibility();
         await manageOrders.manageOrder30Page.fillAdminDirectionDetails(true);
         await manageOrders.manageOrder30Page.clickContinue();
+
+        await manageOrders.manageOrderUrgentPage.assertPageContents();
+        await manageOrders.manageOrderUrgentPage.verifyAccessibility();
+        await manageOrders.manageOrderUrgentPage.selectIsUrgent(false);
+        await manageOrders.manageOrderUrgentPage.clickContinue();
 
         await manageOrders.manageOrderSubmitPage.assertPageContents(
           customOrderParams.snapshotsPath,
