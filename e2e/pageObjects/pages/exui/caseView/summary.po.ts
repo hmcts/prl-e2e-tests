@@ -20,6 +20,12 @@ export class SummaryPage extends CaseAccessViewPage {
   readonly caseStatusDetails: Locator = this.page.locator(
     "#case-viewer-field-read--caseStatus",
   );
+  readonly restrictedCaseTabLabel: Locator = this.page.locator(
+    "#reasonsToRestrictTabLabel",
+  );
+  readonly restrictedCaseReasonLabel: Locator = this.page.locator(
+    "#case-viewer-field-read--reasonsToRestrictTab",
+  );
 
   constructor(page: Page) {
     super(page);
@@ -144,5 +150,13 @@ export class SummaryPage extends CaseAccessViewPage {
     await expect(
       localAuthorityPanel.getByText(organisationName, { exact: true }),
     ).toBeVisible();
+  }
+
+  async assertCaseRestricted(restrictionReason: string): Promise<void> {
+    await expect(this.restrictedCaseTabLabel).toBeVisible();
+    await expect(this.restrictedCaseReasonLabel).toBeVisible();
+    await expect(this.restrictedCaseReasonLabel).toContainText(
+      restrictionReason,
+    );
   }
 }
