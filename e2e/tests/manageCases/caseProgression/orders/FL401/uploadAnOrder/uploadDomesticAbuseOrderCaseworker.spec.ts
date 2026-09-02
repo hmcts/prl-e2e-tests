@@ -93,6 +93,12 @@ test.describe("'Upload an order' by Case Worker via the 'Manage order' event tes
           );
           await manageOrders.manageOrder26Page.clickContinue();
         }
+
+        await manageOrders.manageOrderUrgentPage.assertPageContents();
+        await manageOrders.manageOrderUrgentPage.verifyAccessibility();
+        await manageOrders.manageOrderUrgentPage.selectIsUrgent(false);
+        await manageOrders.manageOrderUrgentPage.clickContinue();
+
         await manageOrders.manageOrderSubmitPage.assertPageContents(
           uploadOrderParams.snapshotsPath,
           uploadOrderParams.snapshotName,

@@ -82,6 +82,11 @@ test.describe("'Upload an C100 order' by Case Worker via the 'Manage order' even
         );
         await manageOrders.manageOrder24Page.clickContinue();
 
+        await manageOrders.manageOrderUrgentPage.assertPageContents();
+        await manageOrders.manageOrderUrgentPage.verifyAccessibility();
+        await manageOrders.manageOrderUrgentPage.selectIsUrgent(false);
+        await manageOrders.manageOrderUrgentPage.clickContinue();
+
         await manageOrders.manageOrderSubmitPage.assertPageContents(
           uploadOrderParams.snapshotsPath,
           uploadOrderParams.snapshotName,

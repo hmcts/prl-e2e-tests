@@ -111,6 +111,11 @@ test.describe("Manage Orders - Create a Blank order (FL404B) and Power of arrest
         await manageOrders.manageOrder20Page.verifyAccessibility();
         await manageOrders.manageOrder20Page.clickContinue();
 
+        await manageOrders.manageOrderUrgentPage.assertPageContents();
+        await manageOrders.manageOrderUrgentPage.verifyAccessibility();
+        await manageOrders.manageOrderUrgentPage.selectIsUrgent(false);
+        await manageOrders.manageOrderUrgentPage.clickContinue();
+
         await manageOrders.manageOrder30Page.assertPageContents();
         await manageOrders.manageOrder30Page.verifyAccessibility();
         await manageOrders.manageOrder30Page.fillAdminDirectionDetails(

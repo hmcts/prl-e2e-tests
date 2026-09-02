@@ -60,6 +60,7 @@ import { ManageOrder26Page } from "../pages/exui/orders/manageOrders/manageOrder
 import { ManageOrder11Page } from "../pages/exui/orders/manageOrders/manageOrder11.po.ts";
 import { ManageOrder27Page } from "../pages/exui/orders/manageOrders/manageOrder27.po.ts";
 import { ManageOrder28Page } from "../pages/exui/orders/manageOrders/manageOrder28.po.ts";
+import { ManageOrderUrgentPage } from "../pages/exui/orders/manageOrders/manageOrderUrgent.po.ts";
 import { OrdersPage } from "../pages/exui/caseView/Orders.po.ts";
 import { AdminAddLocalAuthority1Page } from "../pages/exui/addLocalAuthority/adminAddLocalAuthority1.po.ts";
 import { AdminAddLocalAuthoritySubmitPage } from "../pages/exui/addLocalAuthority/adminAddLocalAuthoritySubmit.po.ts";
@@ -249,6 +250,7 @@ export class CaseWorkerPagesGroup {
       ),
       manageOrder19Page: new ManageOrder19Page(this.page),
       manageOrder20Page: new ManageOrder20Page(this.page),
+      manageOrderUrgentPage: new ManageOrderUrgentPage(this.page),
       manageOrder24Page: new ManageOrder24Page(this.page),
       manageOrder26Page: new ManageOrder26Page(this.page),
       manageOrder27Page: new ManageOrder27Page(this.page),

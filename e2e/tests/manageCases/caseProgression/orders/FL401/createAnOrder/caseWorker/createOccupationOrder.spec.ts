@@ -106,6 +106,11 @@ test.describe("Manage Orders - Create Occupation Order (FL404) order tests", () 
         await manageOrders.manageOrder20Page.verifyAccessibility();
         await manageOrders.manageOrder20Page.clickContinue();
 
+        await manageOrders.manageOrderUrgentPage.assertPageContents();
+        await manageOrders.manageOrderUrgentPage.verifyAccessibility();
+        await manageOrders.manageOrderUrgentPage.selectIsUrgent(false);
+        await manageOrders.manageOrderUrgentPage.clickContinue();
+
         await manageOrders.manageOrder24Page.assertPageContents();
         await manageOrders.manageOrder24Page.verifyAccessibility();
         await manageOrders.manageOrder24Page.selectCheckOrder(

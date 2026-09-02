@@ -21,6 +21,7 @@ import { ManageOrder12Page } from "../pages/exui/orders/manageOrders/manageOrder
 import { ManageOrder102Page } from "../pages/exui/orders/manageOrders/manageOrder102.po.ts";
 import { CustomOrdersManageOrder5Page } from "../pages/exui/orders/manageOrders/customOrderManageOrder5.po.ts";
 import { CustomOrderManageOrder20Page } from "../pages/exui/orders/manageOrders/customOrderManageOrder20.po.ts";
+import { ManageOrderUrgentPage } from "../pages/exui/orders/manageOrders/manageOrderUrgent.po.ts";
 import { EditAndApproveAnOrder2Page } from "../pages/exui/orders/editAndApproveAnOrders/editAndApproveAnOrder2.po.js";
 import { EditAndApproveAnOrder21Page } from "../pages/exui/orders/editAndApproveAnOrders/editAndApproveAnOrder21.po.js";
 import { TasksPage } from "../pages/exui/caseView/tasks.po.js";
@@ -85,6 +86,7 @@ export class JudgePagesGroup {
       manageOrder19Page: new ManageOrder19Page(this.page),
       manageOrder20Page: new ManageOrder20Page(this.page),
       customOrderManageOrder20Page: new CustomOrderManageOrder20Page(this.page),
+      manageOrderUrgentPage: new ManageOrderUrgentPage(this.page),
       manageOrder30Page: new ManageOrder30Page(this.page),
 
       manageOrderSubmitPage: new ManageOrderSubmitPage(this.page),
