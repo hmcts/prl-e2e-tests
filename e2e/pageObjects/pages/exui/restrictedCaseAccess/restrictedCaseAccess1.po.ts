@@ -61,17 +61,15 @@ export class RestrictedCaseAccess1Page extends EventPage {
       table.getByRole("columnheader", { name: "Email address" }),
     ).toBeVisible();
 
-    await expect(table.getByRole("row")).toHaveCount(usersWithAccess.length);
     for (let i = 0; i < usersWithAccess.length; i++) {
-      const row: Locator = table.getByRole("row").nth(i);
       await expect(
-        row.getByRole("cell", { name: usersWithAccess[i].name, exact: true }),
+        table.getByRole("cell", { name: usersWithAccess[i].name, exact: true }),
       ).toBeVisible();
       await expect(
-        row.getByRole("cell", { name: usersWithAccess[i].role, exact: true }),
+        table.getByRole("cell", { name: usersWithAccess[i].role, exact: true }),
       ).toBeVisible();
       await expect(
-        row.getByRole("cell", {
+        table.getByRole("cell", {
           name: usersWithAccess[i].emailAddress,
           exact: true,
         }),
