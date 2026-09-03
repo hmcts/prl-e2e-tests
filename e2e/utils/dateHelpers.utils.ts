@@ -90,4 +90,16 @@ export class DateHelperUtils {
 
     return `${day}-${month}-${year}`;
   }
+
+  // gets today's date in format e.g. 02-09-2026 09:41 am
+  getTodayFormattedDateTime(date: Date = new Date()): string {
+    const day = String(date.getDate()).padStart(2, "0");
+    const month = String(date.getMonth() + 1).padStart(2, "0");
+    const year = date.getFullYear();
+    const hours = date.getHours();
+    const minutes = String(date.getMinutes()).padStart(2, "0");
+    const amPm = hours >= 12 ? "pm" : "am";
+    const formattedHours = String(hours % 12 || 12).padStart(2, "0");
+    return `${day}-${month}-${year} ${formattedHours}:${minutes} ${amPm}`;
+  }
 }
