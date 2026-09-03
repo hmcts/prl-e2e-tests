@@ -47,33 +47,33 @@ export class IdamLoginHelper {
         }
       }
 
-      // citizen user login is a single page but xui login is a two-page login journey
+      // citizen user login includes an extra front page when logging in
       if (userType === "citizen") {
         await expect(
-          page.getByRole("heading", { name: "Sign in", exact: true }),
-        ).toBeVisible();
-        await page.locator("#username").fill(username);
-        await page.locator("#password").fill(password);
-        await page.getByRole("button", { name: "Sign in" }).click();
-      } else {
-        const continueButton: Locator = page.getByRole("button", {
-          name: "Continue",
-        });
-        await expect(
           page.getByRole("heading", {
-            name: "Enter your email address",
-            exact: true,
+            name: "Sign in or create an account",
           }),
         ).toBeVisible();
-        await page.locator("#email").fill(username);
-        await continueButton.click();
-
-        await expect(
-          page.getByRole("heading", { name: "Enter your password" }),
-        ).toBeVisible();
-        await page.locator("#password").fill(password);
-        await continueButton.click();
+        await page.getByRole("button", { name: "Sign in" }).click();
       }
+
+      const continueButton: Locator = page.getByRole("button", {
+        name: "Continue",
+      });
+      await expect(
+        page.getByRole("heading", {
+          name: "Enter your email address",
+          exact: true,
+        }),
+      ).toBeVisible();
+      await page.locator("#email").fill(username);
+      await continueButton.click();
+
+      await expect(
+        page.getByRole("heading", { name: "Enter your password" }),
+      ).toBeVisible();
+      await page.locator("#password").fill(password);
+      await continueButton.click();
 
       await expect
         .poll(() => !page.url().includes("idam-web-public."), {
