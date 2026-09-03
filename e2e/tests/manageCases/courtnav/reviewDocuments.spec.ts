@@ -1,8 +1,7 @@
 import { test } from "../../fixtures.ts";
-import { ReviewDocuments } from "../../../journeys/manageCases/caseProgression/reviewDocuments/reviewDocuments.ts";
 import config from "../../../utils/config.utils.ts";
-
-test.use({ storageState: config.sessionStoragePath + "caseWorker.json" });
+import { CaseWorkerPagesGroup } from "../../../pageObjects/roleBasedGroupedPages/caseWorkerPages.ts";
+import { yesNoDontKnow } from "../../../common/types.ts";
 
 test.describe("Review Documents task for DA Solicitor case tests.", () => {
   test.skip(
@@ -12,61 +11,79 @@ test.describe("Review Documents task for DA Solicitor case tests.", () => {
 
   let ccdRef: string = "";
 
-  test.beforeEach(async ({ page, courtNavUtils, navigationUtils }) => {
+  test.beforeEach(async ({ caseWorker, courtNavUtils, navigationUtils }) => {
     ccdRef = await courtNavUtils.createCase(true, true);
     await navigationUtils.goToCase(
-      page,
+      caseWorker.page,
       config.manageCasesBaseURLCase,
       ccdRef,
       "tasks",
     );
   });
 
-  test("Complete Review Documents without accessibility test. Saying yes to Restrict Access @regression", async ({
-    page,
+  async function completeReviewDocuments(
+    caseWorker: CaseWorkerPagesGroup,
+    accessibilityTest: boolean,
+    yesNoNotSureRestrictDocs: yesNoDontKnow,
+  ): Promise<void> {
+    const { tasksPage, reviewDocuments } = caseWorker;
+
+    await tasksPage.assignTaskToMeAndTriggerNextSteps(
+      "Review Documents",
+      "Review Documents",
+      "caseWorker",
+    );
+
+    await reviewDocuments.page1.assertPageContents();
+    if (accessibilityTest) {
+      await reviewDocuments.page1.verifyAccessibility();
+    }
+    await reviewDocuments.page1.selectFirstDocument();
+    await reviewDocuments.page1.clickContinue();
+
+    await reviewDocuments.page2.assertPageContents(
+      "CourtNav",
+      "Applicant's statements",
+    );
+    if (accessibilityTest) {
+      await reviewDocuments.page2.verifyAccessibility();
+    }
+    await reviewDocuments.page2.selectRestrictAccessAnswer(
+      yesNoNotSureRestrictDocs,
+    );
+    await reviewDocuments.page2.clickContinue();
+
+    await reviewDocuments.submitPage.assertDocumentAndAnswers(
+      yesNoNotSureRestrictDocs,
+      "CourtNav",
+    );
+    if (accessibilityTest) {
+      await reviewDocuments.submitPage.verifyAccessibility();
+    }
+    await reviewDocuments.submitPage.clickSubmit();
+  }
+
+  test("Complete Review Documents without accessibility test. Saying yes to Restrict Access @regression @tp", async ({
+    caseWorker,
   }): Promise<void> => {
-    await ReviewDocuments.reviewDocuments({
-      page: page,
-      accessibilityTest: false,
-      yesNoNotSureRestrictDocs: "yes",
-      partyUploadedDocument: "CourtNav",
-      documentType: "Applicant's statements",
-    });
+    await completeReviewDocuments(caseWorker, false, "yes");
   });
 
-  test("Complete Review Documents without accessibility test. Saying no to Restrict Access @regression", async ({
-    page,
+  test("Complete Review Documents without accessibility test. Saying no to Restrict Access @regression @tp", async ({
+    caseWorker,
   }): Promise<void> => {
-    await ReviewDocuments.reviewDocuments({
-      page: page,
-      accessibilityTest: false,
-      yesNoNotSureRestrictDocs: "no",
-      partyUploadedDocument: "CourtNav",
-      documentType: "Applicant's statements",
-    });
+    await completeReviewDocuments(caseWorker, false, "no");
   });
 
-  test("Complete Review Documents with accessibility test. Saying not sure to Restrict Access @regression", async ({
-    page,
+  test("Complete Review Documents with accessibility test. Saying not sure to Restrict Access @regression @tp", async ({
+    caseWorker,
   }): Promise<void> => {
-    await ReviewDocuments.reviewDocuments({
-      page: page,
-      accessibilityTest: false,
-      yesNoNotSureRestrictDocs: "dontKnow",
-      partyUploadedDocument: "CourtNav",
-      documentType: "Applicant's statements",
-    });
+    await completeReviewDocuments(caseWorker, false, "dontKnow");
   });
 
-  test("Complete Review Documents with accessibility test. Saying yes to Restrict Access @accessibility @nightly", async ({
-    page,
+  test("Complete Review Documents with accessibility test. Saying yes to Restrict Access @accessibility @nightly @tp", async ({
+    caseWorker,
   }): Promise<void> => {
-    await ReviewDocuments.reviewDocuments({
-      page: page,
-      accessibilityTest: true,
-      yesNoNotSureRestrictDocs: "yes",
-      partyUploadedDocument: "CourtNav",
-      documentType: "Applicant's statements",
-    });
+    await completeReviewDocuments(caseWorker, true, "yes");
   });
 });
