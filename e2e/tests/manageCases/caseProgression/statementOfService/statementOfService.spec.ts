@@ -31,7 +31,7 @@ test.describe("Statement of Service event for CA Solicitor case tests.", () => {
       snapshotPath: ["caseProgression", "statementOfService"],
     },
   ].forEach((data) => {
-    test("Complete Task - statement of Service - with accessibility test.@check @nightly @regression @accessibility", async ({
+    test("Complete Task - statement of Service - with accessibility test. @nightly @regression @accessibility", async ({
       caseWorker,
     }): Promise<void> => {
       await completeStatementOfService(caseWorker, data, "C100", caseRef);
@@ -66,7 +66,7 @@ test.describe("Statement of Service event for DA Solicitor case tests.", () => {
       snapshotPath: ["caseProgression", "statementOfService"],
     },
   ].forEach((data) => {
-    test("Complete Task - statement of Service - with accessibility test.@check @nightly @regression @accessibility", async ({
+    test("Complete Task - statement of Service - with accessibility test. @nightly @regression @accessibility", async ({
       caseWorker,
     }): Promise<void> => {
       await completeStatementOfService(caseWorker, data, "FL401", caseRef);

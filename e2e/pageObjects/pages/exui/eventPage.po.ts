@@ -15,8 +15,16 @@ export abstract class EventPage extends Base {
   readonly submitButton: Locator = this.page.getByRole("button", {
     name: "Submit",
   });
-  readonly saveAndContinueButton = this.page.getByRole("button", {
+  readonly saveAndContinueButton: Locator = this.page.getByRole("button", {
     name: /save and continue/i,
+  });
+  // this button is only for the submit page when deleting an application
+  readonly deleteButton: Locator = this.page.getByRole("button", {
+    name: "Delete",
+  });
+  // this button is only for the submit page when marking a case as restricted
+  readonly markCaseAsRestrictedButton: Locator = this.page.getByRole("button", {
+    name: "Mark case as restricted",
   });
   readonly closeAndReturnToCaseDetailsButton: Locator = this.page.locator(
     Selectors.button,
@@ -28,8 +36,10 @@ export abstract class EventPage extends Base {
   protected constructor(page: Page, headingText: string) {
     super(page);
     this.headingText = headingText;
-    this.pageHeading = page.locator(Selectors.GovukHeadingL, {
-      hasText: headingText,
+    this.pageHeading = page.getByRole("heading", {
+      name: headingText,
+      exact: true,
+      level: 1,
     });
   }
 
@@ -45,6 +55,14 @@ export abstract class EventPage extends Base {
 
   async clickSaveAndContinue() {
     await this.saveAndContinueButton.click();
+  }
+
+  async clickDelete() {
+    await this.deleteButton.click();
+  }
+
+  async clickMarkCaseAsRestricted() {
+    await this.markCaseAsRestrictedButton.click();
   }
 
   async clickCloseAndReturnToCaseDetails(): Promise<void> {

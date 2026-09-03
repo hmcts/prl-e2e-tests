@@ -8,6 +8,13 @@ export interface DocumentExpectation {
   documentCategory: string;
   confidentialDocument: boolean;
   restrictDocument: boolean;
+  /**
+   * Overrides the shared `documentParty` passed to
+   * `assertDocumentsPageContents` for this document only. Use when an event
+   * uploads documents on behalf of different parties in one go; omit when
+   * every document in the event shares the same party (the common case).
+   */
+  documentParty?: string;
 }
 
 export class ManageDocumentsNewSubmitPage extends CheckYourAnswersPage {
@@ -45,7 +52,11 @@ export class ManageDocumentsNewSubmitPage extends CheckYourAnswersPage {
     await this.assertPageHeadings();
 
     for (let i = 0; i < documents.length; i++) {
-      await this.assertDocumentPanel(i, documents[i], documentParty);
+      await this.assertDocumentPanel(
+        i,
+        documents[i],
+        documents[i].documentParty ?? documentParty,
+      );
     }
   }
 

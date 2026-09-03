@@ -20,6 +20,8 @@ export interface LocalCourtInfo {
 
 export type solicitorCaseCreateType = "C100" | "FL401";
 
+export const caseTypes: solicitorCaseCreateType[] = ["C100", "FL401"];
+
 export type State = "undefined";
 
 export type Events = "undefined";
@@ -183,6 +185,8 @@ export type JudgeOrderAction =
   | "Ask the legal representative to make changes";
 
 export type Language = "English" | "Welsh";
+
+export type YesNo = "Yes" | "No";
 
 export type manageOrdersOptions =
   "create order" | "upload order" | "serve order" | "create custom order";

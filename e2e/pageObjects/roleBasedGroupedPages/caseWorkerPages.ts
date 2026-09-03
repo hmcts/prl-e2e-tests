@@ -1,16 +1,20 @@
 import { Page } from "@playwright/test";
 import { TasksPage } from "../pages/exui/caseView/tasks.po.ts";
 import { CaseDocumentsPage } from "../pages/exui/caseView/caseDocuments.po.ts";
+import { ManageDocumentsNew1Page } from "../pages/exui/manageDocuments/manageDocumentsNew1.po.ts";
+import { ManageDocumentsNewSubmitPage } from "../pages/exui/manageDocuments/manageDocumentsNewSubmit.po.ts";
+import { ManageDocumentsNewConfirmPage } from "../pages/exui/manageDocuments/manageDocumentsNewConfirm.po.ts";
+import { ConfidentialDetailsPage } from "../pages/exui/caseView/confidentialDetails.po.ts";
 import { DocumentsToBeReviewedPage } from "../pages/exui/caseView/documentsToBeReviewed.po.ts";
 import { SummaryPage } from "../pages/exui/caseView/summary.po.ts";
 import { HistoryPage } from "../pages/exui/caseView/history.po.ts";
 import { AmendApplicantDetails1 } from "../pages/exui/amendApplicantDetails/amendApplicantDetails1.po.ts";
 import { AmendApplicantDetailsSubmit } from "../pages/exui/amendApplicantDetails/amendApplicantDetailsSubmit.po.ts";
-import { C100AdminAddBarrister1Page } from "../pages/exui/addAndRemoveBarrister/c100AdminAddBarrister1.po.ts";
-import { C100AdminAddBarristerSubmit } from "../pages/exui/addAndRemoveBarrister/c100AdminAddBarristerSubmit.po.ts";
+import { AddBarrister1Page } from "../pages/exui/addAndRemoveBarrister/addBarrister1.po.ts";
+import { AddBarristerSubmitPage } from "../pages/exui/addAndRemoveBarrister/addBarristerSubmit.po.ts";
 import { PartiesPage } from "../pages/exui/caseView/parties.po.ts";
-import { C100AdminRemoveBarrister1Page } from "../pages/exui/addAndRemoveBarrister/c100AdminRemoveBarrister1Page.po.ts";
-import { C100AdminRemoveBarristerSubmit } from "../pages/exui/addAndRemoveBarrister/c100AdminRemoveBarristerSubmit.po.ts";
+import { RemoveBarrister1Page } from "../pages/exui/addAndRemoveBarrister/removeBarrister1.po.ts";
+import { RemoveBarristerSubmitPage } from "../pages/exui/addAndRemoveBarrister/removeBarristerSubmit.po.ts";
 import { Fl401AddCaseNumber1Page } from "../pages/exui/checkApplication/fl401AddCaseNumber1.po.ts";
 import { Fl401AddCaseNumberSubmitPage } from "../pages/exui/checkApplication/fl401AddCaseNumberSubmit.po.ts";
 import { AllocatedJudge1Page } from "../pages/exui/allocatedJudge/allocatedJudge1.po.ts";
@@ -70,6 +74,21 @@ import { StatementOfService1Page } from "../pages/exui/statementOfService/statem
 import { StatementOfServiceSubmitPage } from "../pages/exui/statementOfService/statementOfServiceSubmit.po.js";
 import { StatementOfServiceConfirmPage } from "../pages/exui/statementOfService/statementOfServiceConfirm.po.js";
 import { ServiceOfApplicationPage } from "../pages/exui/caseView/serviceOfApplication.po.js";
+import { WelshLanguageRequirements1Page } from "../pages/exui/welshLanguageRequirements/welshLanguageRequirements1.po.ts";
+import { WelshLanguageRequirementsSubmitPage } from "../pages/exui/welshLanguageRequirements/welshLanguageRequirementsSubmit.po.ts";
+import { HearingsPage } from "../pages/exui/caseView/hearings.po.ts";
+import { HearingRequirementsPage } from "../pages/exui/createHearingRequest/hearingRequirements.po.ts";
+import { HearingFacilitiesPage } from "../pages/exui/createHearingRequest/hearingFacilities.po.ts";
+import { HearingStagePage } from "../pages/exui/createHearingRequest/hearingStage.po.ts";
+import { HearingAttendancePage } from "../pages/exui/createHearingRequest/hearingAttendance.po.ts";
+import { HearingVenuePage } from "../pages/exui/createHearingRequest/hearingVenue.po.ts";
+import { HearingWelshPage } from "../pages/exui/createHearingRequest/hearingWelsh.po.ts";
+import { HearingJudgePage } from "../pages/exui/createHearingRequest/hearingJudge.po.ts";
+import { HearingTimingPage } from "../pages/exui/createHearingRequest/hearingTiming.po.ts";
+import { HearingLinkPage } from "../pages/exui/createHearingRequest/hearingLink.po.ts";
+import { HearingAdditionalInstructionsPage } from "../pages/exui/createHearingRequest/hearingAdditionalInstructions.po.ts";
+import { HearingSummaryPage } from "../pages/exui/createHearingRequest/hearingSummary.po.ts";
+import { HearingConfirmationPage } from "../pages/exui/createHearingRequest/hearingConfirmation.po.ts";
 
 export class CaseWorkerPagesGroup {
   constructor(public readonly page: Page) {}
@@ -82,6 +101,20 @@ export class CaseWorkerPagesGroup {
     return new CaseDocumentsPage(this.page);
   }
 
+  get manageDocuments() {
+    return {
+      manageDocumentsNew1Page: new ManageDocumentsNew1Page(this.page),
+      manageDocumentsNewSubmitPage: new ManageDocumentsNewSubmitPage(this.page),
+      manageDocumentsNewConfirmPage: new ManageDocumentsNewConfirmPage(
+        this.page,
+      ),
+    };
+  }
+
+  get confidentialDetailsPage() {
+    return new ConfidentialDetailsPage(this.page);
+  }
+
   get documentsToBeReviewedPage() {
     return new DocumentsToBeReviewedPage(this.page);
   }
@@ -92,6 +125,10 @@ export class CaseWorkerPagesGroup {
 
   get historyPage() {
     return new HistoryPage(this.page);
+  }
+
+  get hearingsPage() {
+    return new HearingsPage(this.page);
   }
 
   get partiesPage() {
@@ -121,11 +158,15 @@ export class CaseWorkerPagesGroup {
   }
 
   get manageBarristerC100() {
+    return this.manageBarrister;
+  }
+
+  get manageBarrister() {
     return {
-      addBarrister1Page: new C100AdminAddBarrister1Page(this.page),
-      addBarristerSubmit: new C100AdminAddBarristerSubmit(this.page),
-      removeBarrister1Page: new C100AdminRemoveBarrister1Page(this.page),
-      removeBarristerSubmit: new C100AdminRemoveBarristerSubmit(this.page),
+      addBarrister1Page: new AddBarrister1Page(this.page),
+      addBarristerSubmit: new AddBarristerSubmitPage(this.page),
+      removeBarrister1Page: new RemoveBarrister1Page(this.page),
+      removeBarristerSubmit: new RemoveBarristerSubmitPage(this.page),
     };
   }
 
@@ -219,6 +260,7 @@ export class CaseWorkerPagesGroup {
       manageOrderSubmitPage: new ManageOrderSubmitPage(this.page),
     };
   }
+
   get adminEditAndApproveAnOrders() {
     return {
       adminEditAndApproveAnOrder1Page: new AdminEditAndApproveAnOrder1Page(
@@ -252,6 +294,7 @@ export class CaseWorkerPagesGroup {
       ),
     };
   }
+
   get statementOfService() {
     return {
       statementOfService1Page: new StatementOfService1Page(this.page),
@@ -260,6 +303,32 @@ export class CaseWorkerPagesGroup {
         this.page,
       ),
       serviceOfApplicationPage: new ServiceOfApplicationPage(this.page),
+    };
+  }
+
+  get welshLanguageRequirements() {
+    return {
+      page1: new WelshLanguageRequirements1Page(this.page),
+      submitPage: new WelshLanguageRequirementsSubmitPage(this.page),
+    };
+  }
+
+  get createHearingRequest() {
+    return {
+      requirementsPage: new HearingRequirementsPage(this.page),
+      facilitiesPage: new HearingFacilitiesPage(this.page),
+      stagePage: new HearingStagePage(this.page),
+      attendancePage: new HearingAttendancePage(this.page),
+      venuePage: new HearingVenuePage(this.page),
+      welshPage: new HearingWelshPage(this.page),
+      judgePage: new HearingJudgePage(this.page),
+      timingPage: new HearingTimingPage(this.page),
+      linkPage: new HearingLinkPage(this.page),
+      additionalInstructionsPage: new HearingAdditionalInstructionsPage(
+        this.page,
+      ),
+      summaryPage: new HearingSummaryPage(this.page),
+      confirmationPage: new HearingConfirmationPage(this.page),
     };
   }
 }
