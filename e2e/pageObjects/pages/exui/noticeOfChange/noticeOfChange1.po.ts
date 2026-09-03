@@ -27,6 +27,7 @@ export class NoticeOfChange1Page extends EventPage {
   }
 
   async assertPageContents(): Promise<void> {
+    await expect(this.pageHeading).toBeVisible();
     await expect(this.textLabel1).toBeVisible();
     await expect(this.textLabel2).toBeVisible();
     await expect(this.textLabel3).toBeVisible();

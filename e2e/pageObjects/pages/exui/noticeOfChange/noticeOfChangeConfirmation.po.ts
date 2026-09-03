@@ -52,7 +52,7 @@ export class NoticeOfChangeConfirmationPage extends EventPage {
   private readonly nextStepDropdown: Locator = this.page.locator("#next-step");
 
   constructor(page: Page) {
-    super(page, "Enter your client's details");
+    super(page, "Notice of change successful");
   }
 
   async assertPageContents(): Promise<void> {
