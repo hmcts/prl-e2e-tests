@@ -37,6 +37,10 @@ import { ListWithoutNotice1Page } from "../pages/exui/list/listWithoutNotice1.po
 import { ListWithoutNoticeSubmitPage } from "../pages/exui/list/listWithoutNoticeSubmit.po.js";
 import { ListWithoutNoticeConfirmPage } from "../pages/exui/list/listWithoutNoticeConfirm.po.js";
 import { CaseNotesPage } from "../pages/exui/caseView/caseNotes.po.js";
+import { RestrictedCaseAccess1Page } from "../pages/exui/restrictedCaseAccess/restrictedCaseAccess1.po.js";
+import { RestrictedCaseAccess2Page } from "../pages/exui/restrictedCaseAccess/restrictedCaseAccess2.po.js";
+import { RestrictedCaseAccessSubmitPage } from "../pages/exui/restrictedCaseAccess/restrictedCaseAccessSubmit.po.js";
+import { RestrictedCaseAccessConfirmPage } from "../pages/exui/restrictedCaseAccess/restrictedCaseAccessConfirm.po.js";
 
 export class JudgePagesGroup {
   constructor(public readonly page: Page) {}
@@ -44,12 +48,15 @@ export class JudgePagesGroup {
   get summaryPage() {
     return new SummaryPage(this.page);
   }
+
   get tasksPage() {
     return new TasksPage(this.page);
   }
+
   get historyPage() {
     return new HistoryPage(this.page);
   }
+
   get caseNotesPage() {
     return new CaseNotesPage(this.page);
   }
@@ -126,6 +133,15 @@ export class JudgePagesGroup {
       listWithoutNotice1Page: new ListWithoutNotice1Page(this.page),
       listWithoutNoticeSubmitPage: new ListWithoutNoticeSubmitPage(this.page),
       listWithoutNoticeConfirmPage: new ListWithoutNoticeConfirmPage(this.page),
+    };
+  }
+
+  get restrictedCaseAccess() {
+    return {
+      page1: new RestrictedCaseAccess1Page(this.page),
+      page2: new RestrictedCaseAccess2Page(this.page),
+      submitPage: new RestrictedCaseAccessSubmitPage(this.page),
+      confirmPage: new RestrictedCaseAccessConfirmPage(this.page),
     };
   }
 }

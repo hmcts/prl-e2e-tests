@@ -73,6 +73,10 @@ import { AdminEditAndApproveAnOrder21Page } from "../pages/exui/orders/adminEdit
 import { AdminEditAndApproveAnOrder23Page } from "../pages/exui/orders/adminEditAndApproveAnOrders/adminEditAndApproveAnOrder23.po.js";
 import { AdminEditAndApproveAnOrder22Page } from "../pages/exui/orders/adminEditAndApproveAnOrders/adminEditAndApproveAnOrder22.po.js";
 import { AdminEditAndApproveAnOrderSubmitPage } from "../pages/exui/orders/adminEditAndApproveAnOrders/adminEditAndApproveAnOrderSubmit.po.js";
+import { StatementOfService1Page } from "../pages/exui/statementOfService/statementOfService1.po.js";
+import { StatementOfServiceSubmitPage } from "../pages/exui/statementOfService/statementOfServiceSubmit.po.js";
+import { StatementOfServiceConfirmPage } from "../pages/exui/statementOfService/statementOfServiceConfirm.po.js";
+import { ServiceOfApplicationPage } from "../pages/exui/caseView/serviceOfApplication.po.js";
 import { WelshLanguageRequirements1Page } from "../pages/exui/welshLanguageRequirements/welshLanguageRequirements1.po.ts";
 import { WelshLanguageRequirementsSubmitPage } from "../pages/exui/welshLanguageRequirements/welshLanguageRequirementsSubmit.po.ts";
 import { HearingsPage } from "../pages/exui/caseView/hearings.po.ts";
@@ -267,6 +271,7 @@ export class CaseWorkerPagesGroup {
       manageOrderSubmitPage: new ManageOrderSubmitPage(this.page),
     };
   }
+
   get adminEditAndApproveAnOrders() {
     return {
       adminEditAndApproveAnOrder1Page: new AdminEditAndApproveAnOrder1Page(
@@ -298,6 +303,17 @@ export class CaseWorkerPagesGroup {
       addLocalAuthorityConfirmPage: new AdminAddLocalAuthorityConfirmPage(
         this.page,
       ),
+    };
+  }
+
+  get statementOfService() {
+    return {
+      statementOfService1Page: new StatementOfService1Page(this.page),
+      statementOfServiceSubmitPage: new StatementOfServiceSubmitPage(this.page),
+      statementOfServiceConfirmPage: new StatementOfServiceConfirmPage(
+        this.page,
+      ),
+      serviceOfApplicationPage: new ServiceOfApplicationPage(this.page),
     };
   }
 
