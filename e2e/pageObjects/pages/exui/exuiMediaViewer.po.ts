@@ -58,7 +58,8 @@ export class ExuiMediaViewerPage {
       screenShotPath.splice(lastIndex, 1, `${screenShotName}-${i}.png`);
       await expect(this.page).toHaveScreenshot(screenShotPath, {
         clip: clip,
-        maxDiffPixelRatio: 0.02,
+        // Order PDF pages (esp. Welsh) drift ~3% between macOS and Jenkins Linux Chromium.
+        maxDiffPixelRatio: 0.04,
         mask: mask,
       });
       if (i !== totalPages - 1) await this.toolbar.pageDownBtn.click();

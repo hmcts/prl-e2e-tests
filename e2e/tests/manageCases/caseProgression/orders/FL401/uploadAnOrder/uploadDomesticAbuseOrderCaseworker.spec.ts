@@ -92,12 +92,14 @@ test.describe("'Upload an order' by Case Worker via the 'Manage order' event tes
             uploadOrderParams.manageOrder26Params,
           );
           await manageOrders.manageOrder26Page.clickContinue();
+        } else {
+          // AAT shows the urgent page only when the order is sent for check,
+          // not on the upload serve/draft (noCheck) path.
+          await manageOrders.manageOrderUrgentPage.assertPageContents();
+          await manageOrders.manageOrderUrgentPage.verifyAccessibility();
+          await manageOrders.manageOrderUrgentPage.selectIsUrgent(false);
+          await manageOrders.manageOrderUrgentPage.clickContinue();
         }
-
-        await manageOrders.manageOrderUrgentPage.assertPageContents();
-        await manageOrders.manageOrderUrgentPage.verifyAccessibility();
-        await manageOrders.manageOrderUrgentPage.selectIsUrgent(false);
-        await manageOrders.manageOrderUrgentPage.clickContinue();
 
         await manageOrders.manageOrderSubmitPage.assertPageContents(
           uploadOrderParams.snapshotsPath,
