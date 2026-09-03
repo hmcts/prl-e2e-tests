@@ -12,12 +12,6 @@ export class NoticeOfChangeSubmitPage extends EventPage {
     this.page.locator("#affirmation");
   private readonly notifyEveryPartyCheckbox: Locator =
     this.page.locator("#notifyEveryParty");
-  private readonly headingCheckAndSubmit: Locator = this.page.locator(
-    Selectors.GovukHeadingL,
-    {
-      hasText: "Check and submit",
-    },
-  );
   private readonly textRequest: Locator = this.page.locator(
     Selectors.GovukSummaryListKey,
     {
@@ -98,7 +92,7 @@ export class NoticeOfChangeSubmitPage extends EventPage {
   }
 
   async assertPageContents(clientName?: ClientName): Promise<void> {
-    await expect(this.headingCheckAndSubmit).toBeVisible();
+    await this.assertPageHeadings();
     await expect(this.textRequest).toBeVisible();
     await expect(this.textNOC).toBeVisible();
     await expect(this.textCaseNumber).toBeVisible();

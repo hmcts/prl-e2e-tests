@@ -10,9 +10,6 @@ export class NoticeOfChangeConfirmationPage extends EventPage {
       hasText: CommonStaticText.viewThisCase,
     },
   );
-  private readonly h1: Locator = this.page.locator(Selectors.h1, {
-    hasText: "Notice of change successful",
-  });
   private readonly govUkPanel: Locator = this.page.locator(
     Selectors.GovukPanelBody,
     {
@@ -56,7 +53,7 @@ export class NoticeOfChangeConfirmationPage extends EventPage {
   }
 
   async assertPageContents(): Promise<void> {
-    await expect(this.h1).toBeVisible();
+    await this.assertPageHeadings();
     await expect(this.govUkPanel).toBeVisible();
     await expect(this.p1).toBeVisible();
     await expect(this.p2).toBeVisible();
