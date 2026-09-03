@@ -63,25 +63,25 @@ test.describe("Review Documents task for DA Solicitor case tests.", () => {
     await reviewDocuments.submitPage.clickSubmit();
   }
 
-  test("Complete Review Documents without accessibility test. Saying yes to Restrict Access @regression @tp", async ({
+  test("Complete Review Documents without accessibility test. Saying yes to Restrict Access @regression", async ({
     caseWorker,
   }): Promise<void> => {
     await completeReviewDocuments(caseWorker, false, "yes");
   });
 
-  test("Complete Review Documents without accessibility test. Saying no to Restrict Access @regression @tp", async ({
+  test("Complete Review Documents without accessibility test. Saying no to Restrict Access @regression", async ({
     caseWorker,
   }): Promise<void> => {
     await completeReviewDocuments(caseWorker, false, "no");
   });
 
-  test("Complete Review Documents with accessibility test. Saying not sure to Restrict Access @regression @tp", async ({
+  test("Complete Review Documents with accessibility test. Saying not sure to Restrict Access @regression", async ({
     caseWorker,
   }): Promise<void> => {
     await completeReviewDocuments(caseWorker, false, "dontKnow");
   });
 
-  test("Complete Review Documents with accessibility test. Saying yes to Restrict Access @accessibility @nightly @tp", async ({
+  test("Complete Review Documents with accessibility test. Saying yes to Restrict Access @accessibility @nightly", async ({
     caseWorker,
   }): Promise<void> => {
     await completeReviewDocuments(caseWorker, true, "yes");
