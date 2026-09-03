@@ -32,6 +32,10 @@ import { DeleteApplication1Page } from "../pages/exui/deleteApplication/deleteAp
 import { DeleteApplicationSubmitPage } from "../pages/exui/deleteApplication/deleteApplicationSubmit.po.ts";
 import { SolicitorTasksPage } from "../pages/exui/caseView/solicitor/tasks.po.ts";
 import { CaseListPage } from "../pages/exui/caseList.po.ts";
+import { Fl401Resubmit1Page } from "../pages/exui/resubmitApplication/fl401Resubmit1.po.js";
+import { Fl401Resubmit2Page } from "../pages/exui/resubmitApplication/fl401Resubmit2.po.js";
+import { C100Submit1Page } from "../pages/exui/resubmitApplication/c100Submit1.po.js";
+import { C100Submit2Page } from "../pages/exui/resubmitApplication/c100Submit2.po.js";
 
 export class SolicitorPagesGroup {
   constructor(public readonly page: Page) {}
@@ -111,6 +115,15 @@ export class SolicitorPagesGroup {
     return {
       page1: new DeleteApplication1Page(this.page),
       submitPage: new DeleteApplicationSubmitPage(this.page),
+    };
+  }
+
+  get resubmitApplication() {
+    return {
+      fl401Page1: new Fl401Resubmit1Page(this.page),
+      fl401Page2: new Fl401Resubmit2Page(this.page),
+      c100Page1: new C100Submit1Page(this.page),
+      c100Page2: new C100Submit2Page(this.page),
     };
   }
 }
