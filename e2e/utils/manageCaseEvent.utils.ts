@@ -819,7 +819,7 @@ export class ManageCaseEventUtils {
       eventData = {
         fl401RejectReason: [returnReason],
         caseTypeOfApplication: caseType,
-        returnMessage: `The application ${caseRef} has been returned`,
+        returnMessage: "The application has been returned",
       };
     }
     await this.commonCaseEventsUtils.completeEvent({

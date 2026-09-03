@@ -37,6 +37,10 @@ export class ReturnApplication2Page extends EventPage {
     await expect(this.continueButton).toBeVisible();
   }
 
+  async updateMessage(message: string): Promise<void> {
+    await this.messageInput.fill(message);
+  }
+
   private async assertMessageContents(
     caseRef: string,
     caseName: string,

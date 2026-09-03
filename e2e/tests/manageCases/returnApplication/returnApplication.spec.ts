@@ -39,10 +39,12 @@ caseTypes.forEach((caseType) => {
         caseType,
       );
       await returnApplication.page2.verifyAccessibility();
+      await returnApplication.page2.updateMessage(
+        "The application has been returned",
+      );
       await returnApplication.page2.clickContinue();
 
       await returnApplication.submitPage.assertPageContents(
-        // TODO: need to mask the information that could change in the screenshot
         ["caseProgression", "returnApplication"],
         `${caseType}-return-application`,
       );
