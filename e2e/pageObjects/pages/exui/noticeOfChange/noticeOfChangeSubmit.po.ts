@@ -1,4 +1,4 @@
-import { EventPage } from "../eventPage.po.js";
+import { Base } from "../../base.po.js";
 import { Locator, Page, expect } from "@playwright/test";
 import { Selectors } from "../../../../common/selectors.js";
 
@@ -7,7 +7,12 @@ interface ClientName {
   surname: string;
 }
 
-export class NoticeOfChangeSubmitPage extends EventPage {
+export class NoticeOfChangeSubmitPage extends Base {
+  private readonly pageHeading: Locator = this.page.getByRole("heading", {
+    name: "Check and submit",
+    exact: true,
+    level: 1,
+  });
   private readonly detailsAccurateCheckbox: Locator =
     this.page.locator("#affirmation");
   private readonly notifyEveryPartyCheckbox: Locator =
@@ -83,7 +88,7 @@ export class NoticeOfChangeSubmitPage extends EventPage {
   );
 
   constructor(page: Page) {
-    super(page, "Check and submit");
+    super(page);
   }
 
   async checkBoxes(): Promise<void> {
@@ -92,7 +97,7 @@ export class NoticeOfChangeSubmitPage extends EventPage {
   }
 
   async assertPageContents(clientName?: ClientName): Promise<void> {
-    await this.assertPageHeadings();
+    await expect(this.pageHeading).toBeVisible();
     await expect(this.textRequest).toBeVisible();
     await expect(this.textNOC).toBeVisible();
     await expect(this.textCaseNumber).toBeVisible();

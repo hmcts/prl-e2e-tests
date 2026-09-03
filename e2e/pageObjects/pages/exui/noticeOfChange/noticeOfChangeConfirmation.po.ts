@@ -1,9 +1,13 @@
-import { EventPage } from "../eventPage.po.js";
+import { Base } from "../../base.po.js";
 import { Locator, Page, expect } from "@playwright/test";
 import { Selectors } from "../../../../common/selectors.js";
 import { CommonStaticText } from "../../../../common/commonStaticText.js";
 
-export class NoticeOfChangeConfirmationPage extends EventPage {
+export class NoticeOfChangeConfirmationPage extends Base {
+  private readonly pageHeading: Locator = this.page.getByRole("heading", {
+    name: /^Notice of change successful/,
+    level: 1,
+  });
   private readonly viewThisCaseButton: Locator = this.page.locator(
     Selectors.a,
     {
@@ -49,11 +53,11 @@ export class NoticeOfChangeConfirmationPage extends EventPage {
   private readonly nextStepDropdown: Locator = this.page.locator("#next-step");
 
   constructor(page: Page) {
-    super(page, "Notice of change successful");
+    super(page);
   }
 
   async assertPageContents(): Promise<void> {
-    await this.assertPageHeadings();
+    await expect(this.pageHeading).toBeVisible();
     await expect(this.govUkPanel).toBeVisible();
     await expect(this.p1).toBeVisible();
     await expect(this.p2).toBeVisible();
