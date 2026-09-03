@@ -4,7 +4,7 @@ import { caseTypes } from "../../../common/types.ts";
 import { BasicCaseData } from "../../../utils/manageCaseEvent.utils.ts";
 
 caseTypes.forEach((caseType) => {
-  test.describe(`Returned application tests`, (): void => {
+  test.describe(`Returned ${caseType} application tests`, (): void => {
     let caseData: BasicCaseData;
 
     test.beforeEach(
@@ -18,7 +18,7 @@ caseTypes.forEach((caseType) => {
       },
     );
 
-    test(`Return ${caseType} application @nightly @accessibility @regression`, async ({
+    test(`Return application @nightly @accessibility @regression`, async ({
       courtAdminStoke,
     }): Promise<void> => {
       const rejectionReason: string = "Application incomplete";

@@ -790,4 +790,48 @@ export class ManageCaseEventUtils {
       .padStart(3, "0");
     return `TEST-${timestamp}${randomNumber}`;
   }
+
+  /**
+   * Complete return application event for a case via API request.
+   *
+   * @param caseRef the case reference.
+   * @param caseType the type of case either C100 or Fl401.
+   * @param returnReason the reason the application was returned.
+   */
+  async returnApplication(
+    caseRef: string,
+    caseType: solicitorCaseCreateType,
+    returnReason: string,
+  ): Promise<void> {
+    let eventData: {
+      rejectReason?: string[];
+      caseTypeOfApplication: solicitorCaseCreateType;
+      returnMessage: string;
+      fl401RejectReason?: string[];
+    };
+    if (caseType === "C100") {
+      eventData = {
+        rejectReason: [returnReason],
+        caseTypeOfApplication: caseType,
+        returnMessage: `The application ${caseRef} has been returned`,
+      };
+    } else {
+      eventData = {
+        fl401RejectReason: [returnReason],
+        caseTypeOfApplication: caseType,
+        returnMessage: `The application ${caseRef} has been returned`,
+      };
+    }
+    await this.commonCaseEventsUtils.completeEvent({
+      caseRef: caseRef,
+      eventId: "returnApplication",
+      eventData: {
+        data: eventData,
+      },
+      userCredentials: {
+        email: process.env.COURT_ADMIN_STOKE_USERNAME as string,
+        password: process.env.COURT_ADMIN_STOKE_PASSWORD as string,
+      },
+    });
+  }
 }

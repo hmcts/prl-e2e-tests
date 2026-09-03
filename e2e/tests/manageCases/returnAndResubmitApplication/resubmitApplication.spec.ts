@@ -1,99 +1,33 @@
 import Config from "../../../utils/config.utils.ts";
 import { test } from "../../fixtures.ts";
-import { caseTypes, solicitorCaseCreateType } from "../../../common/types.js";
-import { BasicCaseData } from "../../../utils/manageCaseEvent.utils.js";
-import { CourtAdminStokePagesGroup } from "../../../pageObjects/roleBasedGroupedPages/courtAdminStokePages.js";
-import { SolicitorPagesGroup } from "../../../pageObjects/roleBasedGroupedPages/solicitorPages.js";
 
-caseTypes.forEach((caseType) => {
-  test.describe(`Resubmit returned application tests`, (): void => {
-    let caseData: BasicCaseData;
+test.describe(`Resubmit returned C100 application tests`, (): void => {
+  let caseRef: string;
 
-    test.beforeEach(
-      async ({
-        solicitor,
-        courtAdminStoke,
-        manageCasesEventUtils,
-        navigationUtils,
-      }) => {
-        caseData = await manageCasesEventUtils.submitTSSolicitorCase(caseType);
-        await navigationUtils.goToCase(
-          courtAdminStoke.page,
-          Config.manageCasesBaseURLCase,
-          caseData.caseRef,
-        );
+  test.beforeEach(
+    async ({ solicitor, manageCasesEventUtils, navigationUtils }) => {
+      caseRef = (await manageCasesEventUtils.submitTSSolicitorCase("C100"))
+        .caseRef;
 
-        await returnApplication(courtAdminStoke, caseData, caseType);
+      await manageCasesEventUtils.returnApplication(
+        caseRef,
+        "C100",
+        "applicationIncomplete",
+      );
 
-        await navigationUtils.goToCase(
-          solicitor.page,
-          Config.manageCasesBaseURLCase,
-          caseData.caseRef,
-        );
-      },
-    );
-
-    test(`Resubmit returned ${caseType} application @nightly @accessibility @regression`, async ({
-      solicitor,
-    }): Promise<void> => {
-      await resubmitApplication(caseType, caseData, solicitor);
-    });
-  });
-});
-
-// TODO: low-key just want to make this an API call and make a separate test for return application
-async function returnApplication(
-  courtAdminStoke: CourtAdminStokePagesGroup,
-  caseData: BasicCaseData,
-  caseType: solicitorCaseCreateType,
-): Promise<void> {
-  const rejectionReason: string = "Application incomplete";
-  const { summaryPage, historyPage, partiesPage, returnApplication } =
-    courtAdminStoke;
-
-  // return application
-  await summaryPage.chooseEventFromDropdown("Return application");
-
-  await returnApplication.page1.assertPageContents(caseType);
-  await returnApplication.page1.verifyAccessibility();
-  await returnApplication.page1.selectRejectionReason(rejectionReason);
-  await returnApplication.page1.clickContinue();
-
-  await returnApplication.page2.assertPageContents(
-    caseData.caseRef,
-    caseData.caseName,
-    rejectionReason,
-    caseType,
-  );
-  await returnApplication.page2.verifyAccessibility();
-  await returnApplication.page2.clickContinue();
-
-  await returnApplication.submitPage.assertPageContents(
-    // TODO: need to mask the information that could change in the screenshot
-    ["caseProgression", "returnApplication"],
-    `${caseType}-return-application`,
-  );
-  await returnApplication.submitPage.verifyAccessibility();
-  await returnApplication.submitPage.clickSaveAndContinue();
-
-  await partiesPage.alertBanner.assertEventAlert(
-    caseData.caseRef,
-    "Return application",
+      await navigationUtils.goToCase(
+        solicitor.page,
+        Config.manageCasesBaseURLCase,
+        caseRef,
+      );
+    },
   );
 
-  // check status is correct
-  await historyPage.goToPage();
-  await historyPage.verifyEventHistory("Return application", "Returned");
-}
+  test(`Resubmit returned application @nightly @accessibility @regression`, async ({
+    solicitor,
+  }): Promise<void> => {
+    const { tasksPage, resubmitApplication, summaryPage } = solicitor;
 
-async function resubmitApplication(
-  caseType: solicitorCaseCreateType,
-  caseData: BasicCaseData,
-  solicitor: SolicitorPagesGroup,
-): Promise<void> {
-  const { tasksPage, resubmitApplication, summaryPage } = solicitor;
-
-  if (caseType === "C100") {
     await tasksPage.chooseEventFromDropdown("Submit");
 
     await resubmitApplication.c100Page1.assertPageContents();
@@ -106,13 +40,48 @@ async function resubmitApplication(
     await resubmitApplication.c100Page2.checkAgreeWithStatement();
     await resubmitApplication.c100Page2.clickSubmit();
 
-    await summaryPage.alertBanner.assertEventAlert(caseData.caseRef, "Submit");
-  } else {
+    await summaryPage.alertBanner.assertEventAlert(caseRef, "Submit");
+
+    await summaryPage.assertCaseStatus("Submitted");
+  });
+});
+
+test.describe(`Resubmit returned FL401 application tests`, (): void => {
+  let caseRef: string;
+
+  test.beforeEach(
+    async ({ solicitor, manageCasesEventUtils, navigationUtils }) => {
+      caseRef = (await manageCasesEventUtils.submitTSSolicitorCase("FL401"))
+        .caseRef;
+
+      await manageCasesEventUtils.returnApplication(
+        caseRef,
+        "FL401",
+        "applicationIncomplete",
+      );
+
+      await navigationUtils.goToCase(
+        solicitor.page,
+        Config.manageCasesBaseURLCase,
+        caseRef,
+      );
+    },
+  );
+
+  test(`Resubmit returned application @nightly @accessibility @regression`, async ({
+    solicitor,
+  }): Promise<void> => {
+    const { tasksPage, resubmitApplication, summaryPage } = solicitor;
+
     await tasksPage.chooseEventFromDropdown("Statement of Truth and submit");
 
     await resubmitApplication.fl401Page1.assertPageContents();
     await resubmitApplication.fl401Page1.verifyAccessibility();
-    await resubmitApplication.fl401Page1.fillInFields("Test", "Test", "Test");
+    await resubmitApplication.fl401Page1.fillInFields(
+      "Test Name",
+      "Test Firm Name",
+      "Test Position",
+    );
     await resubmitApplication.fl401Page1.clickContinue();
 
     await resubmitApplication.fl401Page2.assertPageContents();
@@ -121,10 +90,10 @@ async function resubmitApplication(
     await resubmitApplication.fl401Page2.clickSaveAndContinue();
 
     await summaryPage.alertBanner.assertEventAlert(
-      caseData.caseRef,
+      caseRef,
       "Statement of Truth and submit",
     );
-  }
 
-  await summaryPage.assertCaseStatus("Submitted");
-}
+    await summaryPage.assertCaseStatus("Submitted");
+  });
+});
