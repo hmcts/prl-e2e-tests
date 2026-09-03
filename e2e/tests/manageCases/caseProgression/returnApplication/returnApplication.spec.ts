@@ -1,7 +1,7 @@
-import Config from "../../../utils/config.utils.ts";
-import { test } from "../../fixtures.ts";
-import { caseTypes } from "../../../common/types.ts";
-import { BasicCaseData } from "../../../utils/manageCaseEvent.utils.ts";
+import Config from "../../../../utils/config.utils.ts";
+import { test } from "../../../fixtures.ts";
+import { caseTypes } from "../../../../common/types.ts";
+import { BasicCaseData } from "../../../../utils/manageCaseEvent.utils.ts";
 
 caseTypes.forEach((caseType) => {
   test.describe(`Returned ${caseType} application tests`, (): void => {

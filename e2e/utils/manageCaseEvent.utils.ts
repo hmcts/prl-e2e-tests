@@ -813,7 +813,7 @@ export class ManageCaseEventUtils {
       eventData = {
         rejectReason: [returnReason],
         caseTypeOfApplication: caseType,
-        returnMessage: `The application ${caseRef} has been returned`,
+        returnMessage: "The application has been returned",
       };
     } else {
       eventData = {

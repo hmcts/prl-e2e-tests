@@ -1,5 +1,5 @@
-import Config from "../../../utils/config.utils.ts";
-import { test } from "../../fixtures.ts";
+import Config from "../../../../utils/config.utils.ts";
+import { test } from "../../../fixtures.ts";
 
 test.describe(`Resubmit returned C100 application tests`, (): void => {
   let caseRef: string;
