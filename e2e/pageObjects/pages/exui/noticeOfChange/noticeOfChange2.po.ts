@@ -1,8 +1,13 @@
 import { Locator, Page, expect } from "@playwright/test";
 import { Selectors } from "../../../../common/selectors.js";
-import { EventPage } from "../eventPage.po.ts";
+import { Base } from "../../base.po.js";
 
-export class NoticeOfChange2Page extends EventPage {
+export class NoticeOfChange2Page extends Base {
+  private readonly pageHeading: Locator = this.page.getByRole("heading", {
+    name: "Enter your client's details",
+    exact: true,
+    level: 1,
+  });
   private readonly clientFirstNameField: Locator =
     this.page.locator("#NoCChallengeQ1");
   private readonly clientLastNameField: Locator =
@@ -20,10 +25,11 @@ export class NoticeOfChange2Page extends EventPage {
   );
 
   constructor(page: Page) {
-    super(page, "Enter your client's details");
+    super(page);
   }
 
   async assertPageContents(): Promise<void> {
+    await expect(this.pageHeading).toBeVisible();
     await expect(this.textLabel1).toBeVisible();
     await expect(this.textLabel2).toBeVisible();
     await expect(this.textLabel3).toBeVisible();
