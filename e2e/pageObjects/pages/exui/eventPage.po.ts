@@ -39,7 +39,7 @@ export abstract class EventPage extends Base {
     this.pageHeading = page.getByRole("heading", {
       name: headingText,
       exact: true,
-      level: 1
+      level: 1,
     });
   }
 

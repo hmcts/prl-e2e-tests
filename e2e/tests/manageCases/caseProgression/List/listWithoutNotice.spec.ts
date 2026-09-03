@@ -102,7 +102,7 @@ async function listWithoutNoticeJourney(
   data,
 ) {
   const { listWithoutNotice, summaryPage, caseNotesPage } = judge;
-  
+
   if (caseType === "C100") {
     await Helpers.waitForTask(judge.page, "Gatekeeping");
   } else {
