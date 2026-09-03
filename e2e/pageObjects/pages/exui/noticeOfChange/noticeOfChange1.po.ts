@@ -1,8 +1,13 @@
-import { EventPage } from "../eventPage.po.js";
+import { Base } from "../../base.po.js";
 import { expect, Locator, Page } from "@playwright/test";
 import { Selectors } from "../../../../common/selectors.js";
 
-export class NoticeOfChange1Page extends EventPage {
+export class NoticeOfChange1Page extends Base {
+  private readonly pageHeading: Locator = this.page.getByRole("heading", {
+    name: "Notice of change",
+    exact: true,
+    level: 1,
+  });
   private readonly caseNumberField: Locator = this.page.locator("#caseRef");
   private readonly textLabel1: Locator = this.page.locator(Selectors.p, {
     hasText:
@@ -23,10 +28,11 @@ export class NoticeOfChange1Page extends EventPage {
   });
 
   constructor(page: Page) {
-    super(page, "Notice of change");
+    super(page);
   }
 
   async assertPageContents(): Promise<void> {
+    await expect(this.pageHeading).toBeVisible();
     await expect(this.textLabel1).toBeVisible();
     await expect(this.textLabel2).toBeVisible();
     await expect(this.textLabel3).toBeVisible();

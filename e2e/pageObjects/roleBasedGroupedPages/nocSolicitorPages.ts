@@ -10,6 +10,7 @@ import { AddBarristerSubmitPage } from "../pages/exui/addAndRemoveBarrister/addB
 import { RemoveBarrister1Page } from "../pages/exui/addAndRemoveBarrister/removeBarrister1.po.ts";
 import { RemoveBarristerSubmitPage } from "../pages/exui/addAndRemoveBarrister/removeBarristerSubmit.po.ts";
 import { PartiesPage } from "../pages/exui/caseView/parties.po.ts";
+import { ApplicationPage } from "../pages/exui/caseView/application.po.ts";
 
 export class NocSolicitorPagesGroup {
   constructor(public readonly page: Page) {}
@@ -22,6 +23,9 @@ export class NocSolicitorPagesGroup {
   }
   get partiesPage() {
     return new PartiesPage(this.page);
+  }
+  get applicationPage() {
+    return new ApplicationPage(this.page);
   }
 
   get noticeOfChangeC100() {
