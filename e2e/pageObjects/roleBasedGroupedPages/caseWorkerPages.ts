@@ -6,6 +6,9 @@ import { ManageDocumentsNewSubmitPage } from "../pages/exui/manageDocuments/mana
 import { ManageDocumentsNewConfirmPage } from "../pages/exui/manageDocuments/manageDocumentsNewConfirm.po.ts";
 import { ConfidentialDetailsPage } from "../pages/exui/caseView/confidentialDetails.po.ts";
 import { DocumentsToBeReviewedPage } from "../pages/exui/caseView/documentsToBeReviewed.po.ts";
+import { ReviewDocuments1Page } from "../pages/exui/reviewDocuments/reviewDocuments1.po.ts";
+import { ReviewDocuments2Page } from "../pages/exui/reviewDocuments/reviewDocuments2.po.ts";
+import { ReviewDocumentsSubmitPage } from "../pages/exui/reviewDocuments/reviewDocumentsSubmit.po.ts";
 import { SummaryPage } from "../pages/exui/caseView/summary.po.ts";
 import { HistoryPage } from "../pages/exui/caseView/history.po.ts";
 import { AmendApplicantDetails1 } from "../pages/exui/amendApplicantDetails/amendApplicantDetails1.po.ts";
@@ -117,6 +120,14 @@ export class CaseWorkerPagesGroup {
 
   get documentsToBeReviewedPage() {
     return new DocumentsToBeReviewedPage(this.page);
+  }
+
+  get reviewDocuments() {
+    return {
+      page1: new ReviewDocuments1Page(this.page),
+      page2: new ReviewDocuments2Page(this.page),
+      submitPage: new ReviewDocumentsSubmitPage(this.page),
+    };
   }
 
   get summaryPage() {
