@@ -112,8 +112,8 @@ test.describe("Manage Orders - Create parental responsibility custom order tests
             typeOfOrder: customOrderParams.orderType,
             englishDocument: `${customOrderParams.orderType.replace(/[(),]/g, "")}_${caseRef}.docx`,
             otherDetails: {
-              orderMadeBy: "Elizabeth Williams",
-              orderCreatedBy: "Elizabeth Williams",
+              orderMadeBy: "Williams",
+              orderCreatedBy: "Williams",
               status: "Created by Judge",
             },
             isOrderAboutAllTheChildren:

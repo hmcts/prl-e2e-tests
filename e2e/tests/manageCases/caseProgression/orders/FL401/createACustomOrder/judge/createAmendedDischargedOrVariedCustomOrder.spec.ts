@@ -95,8 +95,8 @@ test.describe("Manage Orders - Create custom amended, discharged or varied custo
             typeOfOrder: customOrderParams.orderType,
             englishDocument: `${customOrderParams.orderType.replace(/[(),]/g, "")}_${caseRef}.docx`,
             otherDetails: {
-              orderMadeBy: "Elizabeth Williams",
-              orderCreatedBy: "Elizabeth Williams",
+              orderMadeBy: "Williams",
+              orderCreatedBy: "Williams",
               status: "Created by Judge",
             },
             isOrderAboutChildren:

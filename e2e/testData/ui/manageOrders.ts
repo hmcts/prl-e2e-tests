@@ -884,8 +884,8 @@ export const C21CreateOrderScenarios: C21CreateOrderParams[] = [
         welshDocument: "Welsh_Blank_Order_Directions_C21_Draft.pdf",
         englishDocument: "Blank_Order_Directions_C21_Draft.pdf",
         otherDetails: {
-          orderMadeBy: "Elizabeth Williams",
-          orderCreatedBy: "Elizabeth Williams",
+          orderMadeBy: "Williams",
+          orderCreatedBy: "Williams",
           status: "Created by Judge",
         },
         childrenList: [
@@ -933,8 +933,8 @@ export const C21CreateOrderScenarios: C21CreateOrderParams[] = [
         welshDocument: "Welsh_Blank_Order_Directions_C21_Draft.pdf",
         englishDocument: "Blank_Order_Directions_C21_Draft.pdf",
         otherDetails: {
-          orderMadeBy: "Elizabeth Williams",
-          orderCreatedBy: "Elizabeth Williams",
+          orderMadeBy: "Williams",
+          orderCreatedBy: "Williams",
           status: "Created by Judge",
         },
         childrenList: [
@@ -998,8 +998,8 @@ export const C43UploadOrderScenarios: C43UploadOrderParams[] = [
           "Child arrangements, specific issue or prohibited steps order (C43)",
         englishDocument: "mockFile.pdf",
         otherDetails: {
-          orderMadeBy: "Elizabeth Williams",
-          orderCreatedBy: "Elizabeth Williams",
+          orderMadeBy: "Williams",
+          orderCreatedBy: "Williams",
           status: "Created by Judge",
         },
         childrenList: [
@@ -1052,8 +1052,8 @@ export const C43UploadOrderScenarios: C43UploadOrderParams[] = [
           "Child arrangements, specific issue or prohibited steps order (C43)",
         englishDocument: "mockFile.pdf",
         otherDetails: {
-          orderMadeBy: "Elizabeth Williams",
-          orderCreatedBy: "Elizabeth Williams",
+          orderMadeBy: "Williams",
+          orderCreatedBy: "Williams",
           status: "Created by Judge",
         },
         childrenList: [
@@ -1114,8 +1114,8 @@ export const FL404B2Fl406OrderScenarios: FL404B2FL406CreateOrderParams[] = [
         welshDocument: "welsh_blank_order_fl404b_draft.pdf",
         englishDocument: "blank_order_fl404b_draft.pdf",
         otherDetails: {
-          orderMadeBy: "Elizabeth Williams",
-          orderCreatedBy: "Elizabeth Williams",
+          orderMadeBy: "Williams",
+          orderCreatedBy: "Williams",
           status: "Created by Judge",
         },
         isOrderAboutChildren: false,
@@ -1158,8 +1158,8 @@ export const FL404B2Fl406OrderScenarios: FL404B2FL406CreateOrderParams[] = [
         welshDocument: "Welsh_Power_of_arrest_draft.pdf",
         englishDocument: "Power_of_arrest_draft.pdf",
         otherDetails: {
-          orderMadeBy: "Elizabeth Williams",
-          orderCreatedBy: "Elizabeth Williams",
+          orderMadeBy: "Williams",
+          orderCreatedBy: "Williams",
           status: "Created by Judge",
         },
         childrenList: ["Joe Doe", "Simon Anderson"],
@@ -1200,8 +1200,8 @@ export const FL404B2UploadOrderScenarios: FL404B2UploadOrderParams[] = [
         typeOfOrder: "Blank order (FL404B)",
         englishDocument: "mockFile.pdf",
         otherDetails: {
-          orderMadeBy: "Elizabeth Williams",
-          orderCreatedBy: "Elizabeth Williams",
+          orderMadeBy: "Williams",
+          orderCreatedBy: "Williams",
           status: "Created by Judge",
         },
         isOrderAboutChildren: false,
@@ -1237,8 +1237,8 @@ export const FL404B2UploadOrderScenarios: FL404B2UploadOrderParams[] = [
         typeOfOrder: "Blank order (FL404B)",
         englishDocument: "mockFile.pdf",
         otherDetails: {
-          orderMadeBy: "Elizabeth Williams",
-          orderCreatedBy: "Elizabeth Williams",
+          orderMadeBy: "Williams",
+          orderCreatedBy: "Williams",
           status: "Created by Judge",
         },
         childrenList: ["Joe Doe", "Simon Anderson"],
