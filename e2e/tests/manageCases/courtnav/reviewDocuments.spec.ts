@@ -48,27 +48,27 @@ test.describe("Review Documents task for DA Solicitor case tests.", () => {
     );
     await reviewDocuments.page2.clickContinue();
 
-    await reviewDocuments.submitPage.assertDocumentAndAnswers(
-      yesNoNotSureRestrictDocs,
-      "CourtNav",
+    await reviewDocuments.submitPage.assertPageContents(
+      ["manageCases", "courtnav"],
+      `review-documents-CourtNav-${yesNoNotSureRestrictDocs}`,
     );
     await reviewDocuments.submitPage.verifyAccessibility();
     await reviewDocuments.submitPage.clickSubmit();
   }
 
-  test("Complete Review Documents. Saying yes to Restrict Access @regression @accessibility @nightly @tp", async ({
+  test("Complete Review Documents. Saying yes to Restrict Access @regression @accessibility @nightly", async ({
     caseWorker,
   }): Promise<void> => {
     await completeReviewDocuments(caseWorker, "yes");
   });
 
-  test("Complete Review Documents. Saying no to Restrict Access @regression @accessibility @nightly @tp", async ({
+  test("Complete Review Documents. Saying no to Restrict Access @regression @accessibility @nightly", async ({
     caseWorker,
   }): Promise<void> => {
     await completeReviewDocuments(caseWorker, "no");
   });
 
-  test("Complete Review Documents. Saying not sure to Restrict Access @regression @accessibility @nightly @tp", async ({
+  test("Complete Review Documents. Saying not sure to Restrict Access @regression @accessibility @nightly", async ({
     caseWorker,
   }): Promise<void> => {
     await completeReviewDocuments(caseWorker, "dontKnow");
