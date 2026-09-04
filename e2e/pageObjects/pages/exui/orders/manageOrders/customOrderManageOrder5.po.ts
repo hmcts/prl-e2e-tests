@@ -136,8 +136,8 @@ export class CustomOrdersManageOrder5Page extends EventPage {
       this.page.getByRole("radio", { name: "Circuit Judge", exact: true }),
     ).toBeChecked();
     await expect(this.judgesFullNameLabel).toBeVisible();
-    // check judge name pre-filled
-    await expect(this.judgeNameInput).toHaveValue("Elizabeth Williams");
+    // check judge surname pre-filled (FPVTL-3483: COS only pulls through surname)
+    await expect(this.judgeNameInput).toHaveValue("Williams");
     await expect(this.legalAdviserNameLabel).toBeVisible();
     await expect(this.dateOrderMadeLabel).toBeVisible();
     await expect(this.dayLabel).toBeVisible();

@@ -71,6 +71,11 @@ test.describe("Manage Orders - Create custom amended, discharged or varied custo
         await manageOrders.manageOrder30Page.fillAdminDirectionDetails(true);
         await manageOrders.manageOrder30Page.clickContinue();
 
+        await manageOrders.manageOrderUrgentPage.assertPageContents();
+        await manageOrders.manageOrderUrgentPage.verifyAccessibility();
+        await manageOrders.manageOrderUrgentPage.selectIsUrgent(false);
+        await manageOrders.manageOrderUrgentPage.clickContinue();
+
         await manageOrders.manageOrderSubmitPage.assertPageContents(
           customOrderParams.snapshotsPath,
           customOrderParams.cyaSnapshotName,
@@ -90,8 +95,8 @@ test.describe("Manage Orders - Create custom amended, discharged or varied custo
             typeOfOrder: customOrderParams.orderType,
             englishDocument: `${customOrderParams.orderType.replace(/[(),]/g, "")}_${caseRef}.docx`,
             otherDetails: {
-              orderMadeBy: "Elizabeth Williams",
-              orderCreatedBy: "Elizabeth Williams",
+              orderMadeBy: "Williams",
+              orderCreatedBy: "Williams",
               status: "Created by Judge",
             },
             isOrderAboutChildren:
