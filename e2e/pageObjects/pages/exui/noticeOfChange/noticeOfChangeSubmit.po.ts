@@ -1,18 +1,22 @@
-import { EventPage } from "../eventPage.po.js";
+import { Base } from "../../base.po.js";
 import { Locator, Page, expect } from "@playwright/test";
 import { Selectors } from "../../../../common/selectors.js";
 
-export class NoticeOfChangeSubmitPage extends EventPage {
+interface ClientName {
+  firstname: string;
+  surname: string;
+}
+
+export class NoticeOfChangeSubmitPage extends Base {
+  private readonly pageHeading: Locator = this.page.getByRole("heading", {
+    name: "Check and submit",
+    exact: true,
+    level: 1,
+  });
   private readonly detailsAccurateCheckbox: Locator =
     this.page.locator("#affirmation");
   private readonly notifyEveryPartyCheckbox: Locator =
     this.page.locator("#notifyEveryParty");
-  private readonly headingCheckAndSumit: Locator = this.page.locator(
-    Selectors.GovukHeadingL,
-    {
-      hasText: "Check and submit",
-    },
-  );
   private readonly textRequest: Locator = this.page.locator(
     Selectors.GovukSummaryListKey,
     {
@@ -84,7 +88,7 @@ export class NoticeOfChangeSubmitPage extends EventPage {
   );
 
   constructor(page: Page) {
-    super(page, "Enter your client's details");
+    super(page);
   }
 
   async checkBoxes(): Promise<void> {
@@ -92,8 +96,8 @@ export class NoticeOfChangeSubmitPage extends EventPage {
     await this.notifyEveryPartyCheckbox.check();
   }
 
-  async assertPageContents(): Promise<void> {
-    await expect(this.headingCheckAndSumit).toBeVisible();
+  async assertPageContents(clientName?: ClientName): Promise<void> {
+    await expect(this.pageHeading).toBeVisible();
     await expect(this.textRequest).toBeVisible();
     await expect(this.textNOC).toBeVisible();
     await expect(this.textCaseNumber).toBeVisible();
@@ -110,5 +114,18 @@ export class NoticeOfChangeSubmitPage extends EventPage {
     await expect(
       this.page.getByRole("link", { name: "Notice of change" }),
     ).toBeVisible();
+    await expect(this.submitButton).toBeVisible();
+
+    if (clientName) {
+      const summaryListValues = this.page.locator(
+        Selectors.GovukSummaryListValue,
+      );
+      await expect(
+        summaryListValues.filter({ hasText: clientName.firstname }),
+      ).toHaveText(clientName.firstname);
+      await expect(
+        summaryListValues.filter({ hasText: clientName.surname }),
+      ).toHaveText(clientName.surname);
+    }
   }
 }
