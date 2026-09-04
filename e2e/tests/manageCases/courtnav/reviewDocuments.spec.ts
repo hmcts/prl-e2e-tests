@@ -23,7 +23,6 @@ test.describe("Review Documents task for DA Solicitor case tests.", () => {
 
   async function completeReviewDocuments(
     caseWorker: CaseWorkerPagesGroup,
-    accessibilityTest: boolean,
     yesNoNotSureRestrictDocs: yesNoDontKnow,
   ): Promise<void> {
     const { tasksPage, reviewDocuments } = caseWorker;
@@ -35,9 +34,7 @@ test.describe("Review Documents task for DA Solicitor case tests.", () => {
     );
 
     await reviewDocuments.page1.assertPageContents();
-    if (accessibilityTest) {
-      await reviewDocuments.page1.verifyAccessibility();
-    }
+    await reviewDocuments.page1.verifyAccessibility();
     await reviewDocuments.page1.selectFirstDocument();
     await reviewDocuments.page1.clickContinue();
 
@@ -45,9 +42,7 @@ test.describe("Review Documents task for DA Solicitor case tests.", () => {
       "CourtNav",
       "Applicant's statements",
     );
-    if (accessibilityTest) {
-      await reviewDocuments.page2.verifyAccessibility();
-    }
+    await reviewDocuments.page2.verifyAccessibility();
     await reviewDocuments.page2.selectRestrictAccessAnswer(
       yesNoNotSureRestrictDocs,
     );
@@ -57,33 +52,25 @@ test.describe("Review Documents task for DA Solicitor case tests.", () => {
       yesNoNotSureRestrictDocs,
       "CourtNav",
     );
-    if (accessibilityTest) {
-      await reviewDocuments.submitPage.verifyAccessibility();
-    }
+    await reviewDocuments.submitPage.verifyAccessibility();
     await reviewDocuments.submitPage.clickSubmit();
   }
 
-  test("Complete Review Documents without accessibility test. Saying yes to Restrict Access @regression", async ({
+  test("Complete Review Documents. Saying yes to Restrict Access @regression @accessibility @nightly @tp", async ({
     caseWorker,
   }): Promise<void> => {
-    await completeReviewDocuments(caseWorker, false, "yes");
+    await completeReviewDocuments(caseWorker, "yes");
   });
 
-  test("Complete Review Documents without accessibility test. Saying no to Restrict Access @regression", async ({
+  test("Complete Review Documents. Saying no to Restrict Access @regression @accessibility @nightly @tp", async ({
     caseWorker,
   }): Promise<void> => {
-    await completeReviewDocuments(caseWorker, false, "no");
+    await completeReviewDocuments(caseWorker, "no");
   });
 
-  test("Complete Review Documents with accessibility test. Saying not sure to Restrict Access @regression", async ({
+  test("Complete Review Documents. Saying not sure to Restrict Access @regression @accessibility @nightly @tp", async ({
     caseWorker,
   }): Promise<void> => {
-    await completeReviewDocuments(caseWorker, false, "dontKnow");
-  });
-
-  test("Complete Review Documents with accessibility test. Saying yes to Restrict Access @accessibility @nightly", async ({
-    caseWorker,
-  }): Promise<void> => {
-    await completeReviewDocuments(caseWorker, true, "yes");
+    await completeReviewDocuments(caseWorker, "dontKnow");
   });
 });
