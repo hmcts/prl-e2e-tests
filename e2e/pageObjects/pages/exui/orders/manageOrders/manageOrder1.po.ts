@@ -25,6 +25,7 @@ export class ManageOrder1Page extends EventPage {
     "Create an order",
     "Upload an order",
     "Serve saved orders",
+    "Create a custom order",
   ];
 
   constructor(page: Page) {
