@@ -27,8 +27,18 @@ export class ManageOrderUrgentPage extends EventPage {
 
   private readonly pageUtils: PageUtils = new PageUtils(this.page);
 
-  async assertPageContents(): Promise<void> {
-    await this.assertPageHeadings();
+  async assertPageContents(
+    headingText: string = this.headingText,
+  ): Promise<void> {
+    await expect(
+      this.page.getByRole("heading", {
+        name: headingText,
+        exact: true,
+        level: 1,
+      }),
+    ).toBeVisible();
+    await expect(this.familyManHeading).toBeVisible();
+    await expect(this.caseNumberHeading).toBeVisible();
     await this.pageUtils.assertStrings(this.formLabels);
     await expect(this.page.getByText(this.hintText)).toBeVisible();
     await expect(this.continueButton).toBeVisible();
@@ -43,7 +53,9 @@ export class ManageOrderUrgentPage extends EventPage {
     }
   }
 
-  async selectUrgentOption({ isUrgent }: ManageOrderUrgentParams): Promise<void> {
+  async selectUrgentOption({
+    isUrgent,
+  }: ManageOrderUrgentParams): Promise<void> {
     await this.selectIsUrgent(isUrgent);
   }
 }

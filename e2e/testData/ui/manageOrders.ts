@@ -1237,8 +1237,8 @@ export const FL404B2UploadOrderScenarios: FL404B2UploadOrderParams[] = [
         typeOfOrder: "Blank order (FL404B)",
         englishDocument: "mockFile.pdf",
         otherDetails: {
-          orderMadeBy: "Williams",
-          orderCreatedBy: "Williams",
+          orderMadeBy: "Test judge name",
+          orderCreatedBy: "Elizabeth Williams",
           status: "Created by Judge",
         },
         childrenList: ["Joe Doe", "Simon Anderson"],

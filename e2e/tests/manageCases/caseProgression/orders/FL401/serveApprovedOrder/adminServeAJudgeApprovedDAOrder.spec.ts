@@ -198,8 +198,13 @@ async function editAndServeOrder(caseRef, caseWorker, data, navigationUtils) {
 }
 
 async function editAndApproveOrder(caseRef, judge: JudgePagesGroup, data) {
-  const { tasksPage, summaryPage, editAndApproveAnOrders, draftedOrders } =
-    judge;
+  const {
+    tasksPage,
+    summaryPage,
+    editAndApproveAnOrders,
+    draftedOrders,
+    manageOrders,
+  } = judge;
   await tasksPage.assignTaskToMeAndTriggerNextSteps(
     "Review and Approve Legal rep Order - ",
     "Review and Approve Legal rep Order",
@@ -214,6 +219,13 @@ async function editAndApproveOrder(caseRef, judge: JudgePagesGroup, data) {
     data.judeOrderAction,
   );
   await editAndApproveAnOrders.editAndApproveAnOrder2Page.clickContinue();
+
+  await manageOrders.manageOrderUrgentPage.assertPageContents(
+    "Edit and approve a draft order",
+  );
+  await manageOrders.manageOrderUrgentPage.verifyAccessibility();
+  await manageOrders.manageOrderUrgentPage.selectIsUrgent(false);
+  await manageOrders.manageOrderUrgentPage.clickContinue();
 
   await editAndApproveAnOrders.editAndApproveAnOrderSubmitPage.assertPageContents(
     data.snapshotPath,
