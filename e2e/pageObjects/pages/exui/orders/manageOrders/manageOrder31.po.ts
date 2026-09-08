@@ -2,11 +2,11 @@ import { EventPage } from "../../eventPage.po.js";
 import { expect, Locator, Page } from "@playwright/test";
 import { PageUtils } from "../../../../../utils/page.utils.js";
 
-export interface ManageOrderUrgentParams {
+export interface ManageOrder31Params {
   isUrgent: boolean;
 }
 
-export class ManageOrderUrgentPage extends EventPage {
+export class ManageOrder31Page extends EventPage {
   readonly urgentYesRadio: Locator = this.page.locator(
     "#checkIsThisUrgent_Yes",
   );
@@ -53,9 +53,7 @@ export class ManageOrderUrgentPage extends EventPage {
     }
   }
 
-  async selectUrgentOption({
-    isUrgent,
-  }: ManageOrderUrgentParams): Promise<void> {
+  async selectUrgentOption({ isUrgent }: ManageOrder31Params): Promise<void> {
     await this.selectIsUrgent(isUrgent);
   }
 }

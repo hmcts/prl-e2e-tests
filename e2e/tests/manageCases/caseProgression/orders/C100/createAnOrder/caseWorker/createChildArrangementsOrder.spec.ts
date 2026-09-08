@@ -115,10 +115,10 @@ test.describe("Manage Orders - Create a Child arrangements, specific issue or pr
         );
         await manageOrders.manageOrder24Page.clickContinue();
 
-        await manageOrders.manageOrderUrgentPage.assertPageContents();
-        await manageOrders.manageOrderUrgentPage.verifyAccessibility();
-        await manageOrders.manageOrderUrgentPage.selectIsUrgent(false);
-        await manageOrders.manageOrderUrgentPage.clickContinue();
+        await manageOrders.manageOrder31Page.assertPageContents();
+        await manageOrders.manageOrder31Page.verifyAccessibility();
+        await manageOrders.manageOrder31Page.selectIsUrgent(false);
+        await manageOrders.manageOrder31Page.clickContinue();
 
         await manageOrders.manageOrderSubmitPage.assertPageContents(
           manageOrderParams.snapshotsPath,

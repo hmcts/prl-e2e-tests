@@ -230,12 +230,12 @@ async function editAndApproveOrder(caseRef, judge: JudgePagesGroup, data) {
   );
   await editAndApproveAnOrders.editAndApproveAnOrder2Page.clickContinue();
 
-  await manageOrders.manageOrderUrgentPage.assertPageContents(
+  await manageOrders.manageOrder31Page.assertPageContents(
     "Edit and approve a draft order",
   );
-  await manageOrders.manageOrderUrgentPage.verifyAccessibility();
-  await manageOrders.manageOrderUrgentPage.selectIsUrgent(false);
-  await manageOrders.manageOrderUrgentPage.clickContinue();
+  await manageOrders.manageOrder31Page.verifyAccessibility();
+  await manageOrders.manageOrder31Page.selectIsUrgent(false);
+  await manageOrders.manageOrder31Page.clickContinue();
 
   await editAndApproveAnOrders.editAndApproveAnOrderSubmitPage.assertPageContents(
     data.snapshotPath,

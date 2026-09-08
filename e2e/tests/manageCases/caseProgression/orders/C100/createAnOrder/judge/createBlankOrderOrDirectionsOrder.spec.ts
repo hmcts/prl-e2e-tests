@@ -99,10 +99,10 @@ test.describe("Manage Orders - Create a Blank order or Directions order (C21) te
       );
       await manageOrders.manageOrder30Page.clickContinue();
 
-      await manageOrders.manageOrderUrgentPage.assertPageContents();
-      await manageOrders.manageOrderUrgentPage.verifyAccessibility();
-      await manageOrders.manageOrderUrgentPage.selectIsUrgent(false);
-      await manageOrders.manageOrderUrgentPage.clickContinue();
+      await manageOrders.manageOrder31Page.assertPageContents();
+      await manageOrders.manageOrder31Page.verifyAccessibility();
+      await manageOrders.manageOrder31Page.selectIsUrgent(false);
+      await manageOrders.manageOrder31Page.clickContinue();
 
       await manageOrders.manageOrderSubmitPage.assertPageContents(
         manageOrderParams.snapshotsPath,
