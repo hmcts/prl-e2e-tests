@@ -99,7 +99,7 @@ export class ServiceOfApplicationPage extends CaseAccessViewPage {
     await expect(this.notificationsSection).toContainText('By email');
     await expect(this.notificationsSection).toContainText('Court - court admin');
 
-    
+
 
   }
 
