@@ -102,6 +102,7 @@ test.describe("Manage Orders - Create a Special Guardianship order tests", () =>
           manageOrderParams.manageOrder24Params,
         );
         await manageOrders.manageOrder24Page.clickContinue();
+
         await manageOrders.manageOrder26Page.assertPageContents("C100");
         await manageOrders.manageOrder26Page.verifyAccessibility();
         await manageOrders.manageOrder26Page.selectServeOrderOptions(

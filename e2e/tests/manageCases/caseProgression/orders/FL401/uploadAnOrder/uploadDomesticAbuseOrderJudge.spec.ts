@@ -80,6 +80,11 @@ test.describe("'Upload an order' by Judge via the 'Manage order' event tests", (
         );
         await manageOrders.manageOrder30Page.clickContinue();
 
+        await manageOrders.manageOrder31Page.assertPageContents();
+        await manageOrders.manageOrder31Page.verifyAccessibility();
+        await manageOrders.manageOrder31Page.selectIsUrgent(false);
+        await manageOrders.manageOrder31Page.clickContinue();
+
         await manageOrders.manageOrderSubmitPage.assertPageContents(
           uploadOrderParams.snapshotsPath,
           uploadOrderParams.snapshotName,

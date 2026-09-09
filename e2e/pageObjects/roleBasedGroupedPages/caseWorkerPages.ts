@@ -6,6 +6,9 @@ import { ManageDocumentsNewSubmitPage } from "../pages/exui/manageDocuments/mana
 import { ManageDocumentsNewConfirmPage } from "../pages/exui/manageDocuments/manageDocumentsNewConfirm.po.ts";
 import { ConfidentialDetailsPage } from "../pages/exui/caseView/confidentialDetails.po.ts";
 import { DocumentsToBeReviewedPage } from "../pages/exui/caseView/documentsToBeReviewed.po.ts";
+import { ReviewDocuments1Page } from "../pages/exui/reviewDocuments/reviewDocuments1.po.ts";
+import { ReviewDocuments2Page } from "../pages/exui/reviewDocuments/reviewDocuments2.po.ts";
+import { ReviewDocumentsSubmitPage } from "../pages/exui/reviewDocuments/reviewDocumentsSubmit.po.ts";
 import { SummaryPage } from "../pages/exui/caseView/summary.po.ts";
 import { HistoryPage } from "../pages/exui/caseView/history.po.ts";
 import { AmendApplicantDetails1 } from "../pages/exui/amendApplicantDetails/amendApplicantDetails1.po.ts";
@@ -60,6 +63,7 @@ import { ManageOrder26Page } from "../pages/exui/orders/manageOrders/manageOrder
 import { ManageOrder11Page } from "../pages/exui/orders/manageOrders/manageOrder11.po.ts";
 import { ManageOrder27Page } from "../pages/exui/orders/manageOrders/manageOrder27.po.ts";
 import { ManageOrder28Page } from "../pages/exui/orders/manageOrders/manageOrder28.po.ts";
+import { ManageOrder31Page } from "../pages/exui/orders/manageOrders/manageOrder31.po.ts";
 import { OrdersPage } from "../pages/exui/caseView/Orders.po.ts";
 import { AdminAddLocalAuthority1Page } from "../pages/exui/addLocalAuthority/adminAddLocalAuthority1.po.ts";
 import { AdminAddLocalAuthoritySubmitPage } from "../pages/exui/addLocalAuthority/adminAddLocalAuthoritySubmit.po.ts";
@@ -117,6 +121,14 @@ export class CaseWorkerPagesGroup {
 
   get documentsToBeReviewedPage() {
     return new DocumentsToBeReviewedPage(this.page);
+  }
+
+  get reviewDocuments() {
+    return {
+      page1: new ReviewDocuments1Page(this.page),
+      page2: new ReviewDocuments2Page(this.page),
+      submitPage: new ReviewDocumentsSubmitPage(this.page),
+    };
   }
 
   get summaryPage() {
@@ -253,6 +265,7 @@ export class CaseWorkerPagesGroup {
       ),
       manageOrder19Page: new ManageOrder19Page(this.page),
       manageOrder20Page: new ManageOrder20Page(this.page),
+      manageOrder31Page: new ManageOrder31Page(this.page),
       manageOrder24Page: new ManageOrder24Page(this.page),
       manageOrder26Page: new ManageOrder26Page(this.page),
       manageOrder27Page: new ManageOrder27Page(this.page),
