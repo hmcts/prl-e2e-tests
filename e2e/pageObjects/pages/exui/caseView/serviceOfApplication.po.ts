@@ -13,6 +13,35 @@ export class ServiceOfApplicationPage extends CaseAccessViewPage {
     "#case-viewer-field-read--stmtOfServiceForApplication",
   );
   private dateHelper: DateHelperUtils = new DateHelperUtils();
+  private readonly unservedLabel:Locator = this.page.locator(
+    "#unServedPackLabel"
+  );
+  private readonly servedLabel:Locator = this.page.locator(
+    "#servedPackLabel"
+  );
+  private readonly unservedRespondentPack:Locator = this.page.locator(
+  "#case-viewer-field-read--unServedRespondentPack"
+  );
+  private readonly notificationsSection:Locator = this.page.locator(
+    "#case-viewer-field-read--finalServedApplicationDetailsList"
+  )
+
+  private readonly expectedRespondentDocuments: string[] = [
+    "C100FinalDocument.pdf",
+    "C100FinalDocumentWelsh.pdf",
+    "C1A_Document.pdf",
+    "C1A_Document_Welsh.pdf",
+    "Privacy_Notice.pdf",
+    "Privacy_Notice_Welsh.pdf",
+    "Annex 1 - Confidential contact details notice.pdf",
+    "Annex 1 - Confidential contact details notice - welsh.pdf",
+    "Family Presidents letter to parties.pdf",
+    "Family Presidents letter to parties - Welsh.pdf",
+    "C9_personal_service.pdf",
+    "ChildArrangements_Specific_Prohibited_Steps_C43.pdf",
+    "Welsh_ChildArrangements_Specific_Prohibited_Steps_C43.pdf",
+    "Special arrangements letter.docx",
+  ];
 
   constructor(page: Page) {
     super(page);
@@ -22,6 +51,56 @@ export class ServiceOfApplicationPage extends CaseAccessViewPage {
     await this.page
       .getByRole("tab", { name: "Service of application" })
       .click();
+  }
+
+  async assertServiceOfApplicationDetails(
+
+  ): Promise<void> {
+
+    await expect(this.unservedLabel).toContainText('Unserved pack');
+    await expect(this.servedLabel).toContainText('Served pack');
+    await expect(this.page.getByText('Print and email notifications', { exact: true }).first()).toBeVisible();
+
+    await this.assertUnservedRespondentDetailsWithinServiceOfApplication();
+
+
+
+
+
+  }
+
+  async assertUnservedRespondentDetailsWithinServiceOfApplication(){
+
+    //Respondent Pack Assertion
+    await expect(this.unservedRespondentPack).toBeVisible();
+    await expect(this.unservedRespondentPack).toContainText('Respondents pack');
+    await expect(this.unservedRespondentPack).toContainText('Document');
+
+    for (const document of this.expectedRespondentDocuments) {
+      await expect(this.unservedRespondentPack).toContainText(document);
+    }
+
+    // Served by value
+    const servedBy =
+      process.env.MANAGE_CASES_TEST_ENV === "demo"
+        ? "PRL Demo Swansea HCTL"
+        : "PRL Court admin";
+
+    await expect(this.unservedRespondentPack).toContainText('Served by');
+    await expect(this.unservedRespondentPack).toContainText(servedBy);
+    await expect(this.unservedRespondentPack).toContainText('Pack created date');
+    await expect(this.unservedRespondentPack).toContainText(this.dateHelper.todayDate());
+  }
+
+  async assertServedPackDetails(){
+
+    await expect(this.notificationsSection).toBeVisible();
+    await expect(this.notificationsSection).toContainText('PRL Swansea Case Manager');
+    await expect(this.notificationsSection).toContainText('By email');
+    await expect(this.notificationsSection).toContainText('Court - court admin');
+
+    
+
   }
 
   async assertStatementOfServiceDetails(
