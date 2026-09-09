@@ -533,37 +533,37 @@ export const ParentalResponsibilityOrderActionData: ManageOrdersRequestData = {
       previewOrderDocWelsh:
         process.env.MANAGE_CASES_TEST_ENV === "demo"
           ? {
-              document_url:
-                "http://dm-store-demo.service.core-compute-demo.internal/documents/d9ee0fa9-23fc-4ce7-80e9-1f1716fa1550",
-              document_binary_url:
-                "http://dm-store-demo.service.core-compute-demo.internal/documents/d9ee0fa9-23fc-4ce7-80e9-1f1716fa1550/binary",
-              document_filename:
-                "Welsh_Parental_Responsibility_Order_C45A_draft.pdf",
-            }
+            document_url:
+              "http://dm-store-demo.service.core-compute-demo.internal/documents/d9ee0fa9-23fc-4ce7-80e9-1f1716fa1550",
+            document_binary_url:
+              "http://dm-store-demo.service.core-compute-demo.internal/documents/d9ee0fa9-23fc-4ce7-80e9-1f1716fa1550/binary",
+            document_filename:
+              "Welsh_Parental_Responsibility_Order_C45A_draft.pdf",
+          }
           : {
-              document_url:
-                "http://dm-store-aat.service.core-compute-aat.internal/documents/e964841f-a497-4f3d-af8c-67ff183f8f18",
-              document_binary_url:
-                "http://dm-store-aat.service.core-compute-aat.internal/documents/e964841f-a497-4f3d-af8c-67ff183f8f18/binary",
-              document_filename:
-                "Welsh_Parental_Responsibility_Order_C45A_draft.pdf",
-            },
+            document_url:
+              "http://dm-store-aat.service.core-compute-aat.internal/documents/8dc44331-51f7-4a27-9adb-60df7f79e686",
+            document_binary_url:
+              "http://dm-store-aat.service.core-compute-aat.internal/documents/8dc44331-51f7-4a27-9adb-60df7f79e686/binary",
+            document_filename:
+              "Welsh_Parental_Responsibility_Order_C45A_draft.pdf",
+          },
       previewOrderDoc:
         process.env.MANAGE_CASES_TEST_ENV === "demo"
           ? {
-              document_url:
-                "http://dm-store-demo.service.core-compute-demo.internal/documents/206b1f5f-1034-4a4c-ac6f-d3862814b36b",
-              document_binary_url:
-                "http://dm-store-demo.service.core-compute-demo.internal/documents/206b1f5f-1034-4a4c-ac6f-d3862814b36b/binary",
-              document_filename: "Parental_Responsibility_Order_C45A_draft.pdf",
-            }
+            document_url:
+              "http://dm-store-demo.service.core-compute-demo.internal/documents/206b1f5f-1034-4a4c-ac6f-d3862814b36b",
+            document_binary_url:
+              "http://dm-store-demo.service.core-compute-demo.internal/documents/206b1f5f-1034-4a4c-ac6f-d3862814b36b/binary",
+            document_filename: "Parental_Responsibility_Order_C45A_draft.pdf",
+          }
           : {
-              document_url:
-                "http://dm-store-aat.service.core-compute-aat.internal/documents/c5a50165-fbfe-4400-9bae-48111b82a75f",
-              document_binary_url:
-                "http://dm-store-aat.service.core-compute-aat.internal/documents/c5a50165-fbfe-4400-9bae-48111b82a75f/binary",
-              document_filename: "Parental_Responsibility_Order_C45A_draft.pdf",
-            },
+            document_url:
+              "http://dm-store-aat.service.core-compute-aat.internal/documents/bc1cfc50-f451-4553-8377-39cf07e94a4f",
+            document_binary_url:
+              "http://dm-store-aat.service.core-compute-aat.internal/documents/bc1cfc50-f451-4553-8377-39cf07e94a4f/binary",
+            document_filename: "Parental_Responsibility_Order_C45A_draft.pdf",
+          },
       amendOrderSelectCheckOptions: "noCheck",
       selectTypeOfOrder: "general",
       cafcassOrCymruNeedToProvideReport: "No",
