@@ -1,5 +1,9 @@
 import { expect, Locator, Page } from "@playwright/test";
 import { CaseAccessViewPage } from "./caseAccessView.po.js";
+import {
+  OrderTypes,
+  solicitorCaseCreateType,
+} from "../../../../common/types.ts";
 import { DateHelperUtils } from "../../../../utils/dateHelpers.utils.js";
 import config from "../../../../utils/config.utils.js";
 
@@ -7,6 +11,29 @@ export interface ServedDetails {
   whoServed: string;
   servedBy: string;
 }
+
+const commonPackDocuments: string[] = [
+  "Annex 1 - Confidential contact details notice.pdf",
+  "Annex 1 - Confidential contact details notice - welsh.pdf",
+  "Privacy_Notice.pdf",
+  "Privacy_Notice_Welsh.pdf",
+  "mockFile.pdf",
+];
+
+const orderDocuments: Partial<Record<OrderTypes, string[]>> = {
+  "Child arrangements, specific issue or prohibited steps order (C43)": [
+    "ChildArrangements_Specific_Prohibited_Steps_C43.pdf",
+    "Welsh_ChildArrangements_Specific_Prohibited_Steps_C43.pdf",
+  ],
+  "Power of arrest (FL406)": [
+    "Power_of_arrest.pdf",
+    "Welsh_Power_of_arrest.pdf",
+  ],
+  "Amended, discharged or varied order (FL404B)": [
+    "amended_discharged_or_varied_order_fl404b_final.pdf",
+    "welsh_amended_discharged_or_varied_order_fl404b_final.pdf",
+  ],
+};
 
 export class ServiceOfApplicationPage extends CaseAccessViewPage {
   private readonly statementOfServiceTable: Locator = this.page.locator(
@@ -61,14 +88,73 @@ export class ServiceOfApplicationPage extends CaseAccessViewPage {
     }
   }
 
-  async assertUnservedPacks(): Promise<void> {
-    for (const pack of [
-      "Unserved pack",
-      "Applicants pack",
-      "Respondents pack",
-      "Cafcass cymru",
-    ]) {
-      await expect(this.page.getByText(pack)).toBeVisible();
+  async assertServicePacks(
+    caseType: solicitorCaseCreateType,
+    orderType: OrderTypes,
+    personallyServed: boolean,
+  ): Promise<void> {
+    const expectedOrderDocuments: string[] | undefined =
+      orderDocuments[orderType];
+    if (!expectedOrderDocuments) {
+      throw new Error(`No service pack documents configured for ${orderType}`);
+    }
+
+    const applicationDocuments: string[] =
+      caseType === "C100"
+        ? [
+            "C100FinalDocument.pdf",
+            "C100FinalDocumentWelsh.pdf",
+            "C1A_Document.pdf",
+            "C1A_Document_Welsh.pdf",
+            "Family Presidents letter to parties.pdf",
+            "Family Presidents letter to parties - Welsh.pdf",
+            ...expectedOrderDocuments,
+          ]
+        : [
+            "FL401FinalDocument.pdf",
+            "FL401FinalDocumentWelsh.pdf",
+            ...expectedOrderDocuments,
+          ];
+    const applicantDocuments: string[] = [
+      ...commonPackDocuments,
+      ...applicationDocuments,
+    ];
+    const respondentDocuments: string[] = [
+      ...applicantDocuments,
+      ...(personallyServed
+        ? ["cover_letter_re1.pdf", "cover_letter_welsh_re1.pdf"]
+        : [
+            "C1A_Blank.pdf",
+            "C1A_Blank_Welsh.pdf",
+            "Blank_C7.pdf",
+            "cover_letter_re5.pdf",
+            "cover_letter_welsh_re5.pdf",
+          ]),
+    ];
+
+    const sectionHeadings: string[] =
+      caseType === "C100"
+        ? ["Unserved pack", "Cafcass cymru"]
+        : ["Unserved pack"];
+    for (const heading of sectionHeadings) {
+      await expect(this.page.getByText(heading, { exact: true })).toBeVisible();
+    }
+    await this.assertPackDocuments("Applicants pack", applicantDocuments);
+    await this.assertPackDocuments("Respondents pack", respondentDocuments);
+  }
+
+  private async assertPackDocuments(
+    packName: string,
+    documents: string[],
+  ): Promise<void> {
+    const pack: Locator = this.page.locator("ccd-read-complex-field-table", {
+      hasText: packName,
+    });
+    await expect(pack).toBeVisible();
+    for (const document of documents) {
+      await expect(
+        pack.getByRole("button", { name: document, exact: true }).first(),
+      ).toBeVisible();
     }
   }
 

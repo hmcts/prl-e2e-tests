@@ -116,4 +116,19 @@ export class ServiceOfApplication4Page extends EventPage {
   async selectDoNotServeLocalAuthority(): Promise<void> {
     await this.localAuthorityNo.check();
   }
+
+  async selectServiceOptions(
+    caseType: solicitorCaseCreateType,
+    personallyServed: boolean,
+  ): Promise<void> {
+    if (personallyServed) {
+      await this.selectPersonalServiceByCourtBailiff();
+      return;
+    }
+
+    await this.selectNonPersonalServiceForAllRecipients();
+    if (caseType === "C100") {
+      await this.selectDoNotServeLocalAuthority();
+    }
+  }
 }
