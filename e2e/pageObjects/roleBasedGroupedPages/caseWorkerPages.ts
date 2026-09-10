@@ -78,6 +78,10 @@ import { StatementOfService1Page } from "../pages/exui/statementOfService/statem
 import { StatementOfServiceSubmitPage } from "../pages/exui/statementOfService/statementOfServiceSubmit.po.js";
 import { StatementOfServiceConfirmPage } from "../pages/exui/statementOfService/statementOfServiceConfirm.po.js";
 import { ServiceOfApplicationPage } from "../pages/exui/caseView/serviceOfApplication.po.js";
+import { ServiceOfApplication2Page } from "../pages/exui/serviceOfApplication/serviceOfApplication2.po.ts";
+import { ServiceOfApplication4Page } from "../pages/exui/serviceOfApplication/serviceOfApplication4.po.ts";
+import { ServiceOfApplicationSubmitPage } from "../pages/exui/serviceOfApplication/serviceOfApplicationSubmit.po.ts";
+import { ServiceOfApplicationConfirmPage } from "../pages/exui/serviceOfApplication/serviceOfApplicationConfirm.po.ts";
 import { WelshLanguageRequirements1Page } from "../pages/exui/welshLanguageRequirements/welshLanguageRequirements1.po.ts";
 import { WelshLanguageRequirementsSubmitPage } from "../pages/exui/welshLanguageRequirements/welshLanguageRequirementsSubmit.po.ts";
 import { HearingsPage } from "../pages/exui/caseView/hearings.po.ts";
@@ -305,6 +309,16 @@ export class CaseWorkerPagesGroup {
       addLocalAuthorityConfirmPage: new AdminAddLocalAuthorityConfirmPage(
         this.page,
       ),
+    };
+  }
+
+  get serviceOfApplication() {
+    return {
+      page2: new ServiceOfApplication2Page(this.page),
+      page4: new ServiceOfApplication4Page(this.page),
+      submitPage: new ServiceOfApplicationSubmitPage(this.page),
+      confirmPage: new ServiceOfApplicationConfirmPage(this.page),
+      serviceOfApplicationPage: new ServiceOfApplicationPage(this.page),
     };
   }
 

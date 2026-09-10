@@ -61,6 +61,17 @@ export class ServiceOfApplicationPage extends CaseAccessViewPage {
     }
   }
 
+  async assertUnservedPacks(): Promise<void> {
+    for (const pack of [
+      "Unserved pack",
+      "Applicants pack",
+      "Respondents pack",
+      "Cafcass cymru",
+    ]) {
+      await expect(this.page.getByText(pack)).toBeVisible();
+    }
+  }
+
   private async assertTableRow(
     sosTable: Locator,
     label: string,
