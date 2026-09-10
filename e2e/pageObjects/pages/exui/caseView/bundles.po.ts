@@ -1,9 +1,18 @@
 import { CaseAccessViewPage } from "./caseAccessView.po.js";
-import { expect, Page } from "@playwright/test";
+import { expect, Locator, Page } from "@playwright/test";
+import { Selectors } from "../../../../common/selectors.js";
 import { PageUtils } from "../../../../utils/page.utils.js";
 
 export class BundlesPage extends CaseAccessViewPage {
   private readonly pageUtils: PageUtils = new PageUtils(this.page);
+
+  private readonly warningBanner: Locator = this.page.locator(
+    Selectors.GovukWarningText,
+    {
+      hasText:
+        "Please check all areas of the digital case management system, as documents may be stored in different sections and not be available in the created bundle",
+    },
+  );
 
   private readonly bundleContents: string[] = [
     "Bundle Details",
@@ -50,6 +59,7 @@ export class BundlesPage extends CaseAccessViewPage {
   }
 
   async assertBundleContents(): Promise<void> {
+    await expect(this.warningBanner).toBeVisible();
     await this.pageUtils.assertStrings(this.bundleContents);
   }
 }

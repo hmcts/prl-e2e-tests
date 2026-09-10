@@ -1,23 +1,18 @@
-import { Base } from "../../base.po.js";
+import { EventPage } from "../eventPage.po.js";
 import { Locator, Page } from "@playwright/test";
 import { Selectors } from "../../../../common/selectors.js";
-import { CreateBundle1Content } from "../../../../fixtures/manageCases/caseProgression/createBundle/createBundle1Content.js";
-import { CreateBundleSubmitContent } from "../../../../fixtures/manageCases/caseProgression/createBundle/createBundleSubmitContent.js";
 
-export class CreateBundleSubmitPage extends Base {
-  private readonly pageTitle: Locator = this.page.locator(
-    `${Selectors.GovukHeadingL}:text-is("${CreateBundle1Content.pageTitle}")`,
-  );
+export class CreateBundleSubmitPage extends EventPage {
   private readonly createBundleButton: Locator = this.page.locator(
-    `${Selectors.button}:text-is("${CreateBundleSubmitContent.creatBundle}")`,
+    `${Selectors.button}:text-is("Create Bundle")`,
   );
 
   constructor(page: Page) {
-    super(page);
+    super(page, "Create a bundle");
   }
 
   async assertPageContents(): Promise<void> {
-    await this.pageTitle.waitFor();
+    await this.assertPageHeadings();
   }
 
   async clickCreateBundle(): Promise<void> {
