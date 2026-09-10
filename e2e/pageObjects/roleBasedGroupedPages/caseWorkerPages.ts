@@ -1,6 +1,9 @@
 import { Page } from "@playwright/test";
 import { TasksPage } from "../pages/exui/caseView/tasks.po.ts";
 import { CaseDocumentsPage } from "../pages/exui/caseView/caseDocuments.po.ts";
+import { BundlesPage } from "../pages/exui/caseView/bundles.po.ts";
+import { CreateBundle1Page } from "../pages/exui/createABundle/createBundle1.po.ts";
+import { CreateBundleSubmitPage } from "../pages/exui/createABundle/createBundleSubmit.po.ts";
 import { ManageDocumentsNew1Page } from "../pages/exui/manageDocuments/manageDocumentsNew1.po.ts";
 import { ManageDocumentsNewSubmitPage } from "../pages/exui/manageDocuments/manageDocumentsNewSubmit.po.ts";
 import { ManageDocumentsNewConfirmPage } from "../pages/exui/manageDocuments/manageDocumentsNewConfirm.po.ts";
@@ -103,6 +106,17 @@ export class CaseWorkerPagesGroup {
 
   get caseDocumentsPage() {
     return new CaseDocumentsPage(this.page);
+  }
+
+  get bundlesPage() {
+    return new BundlesPage(this.page);
+  }
+
+  get createABundle() {
+    return {
+      page1: new CreateBundle1Page(this.page),
+      submitPage: new CreateBundleSubmitPage(this.page),
+    };
   }
 
   get manageDocuments() {
