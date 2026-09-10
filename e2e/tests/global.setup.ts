@@ -106,7 +106,7 @@ setup.describe("Setup users and retrieve tokens", () => {
     },
   );
 
-  setup(
+  /*setup(
     "Setup Manage Orgs Local Authority user",
     async ({ page, idamLoginHelper }) => {
       await idamLoginHelper.signInLongLivedUser(
@@ -116,7 +116,7 @@ setup.describe("Setup users and retrieve tokens", () => {
         "manageOrgs-",
       );
     },
-  );
+  );*/
 
   setup("Setup Superuser", async ({ page, idamLoginHelper }) => {
     await idamLoginHelper.signInLongLivedUser(
