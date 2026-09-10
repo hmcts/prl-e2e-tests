@@ -15,14 +15,14 @@ interface CreateABundleTestData {
 const testData: CreateABundleTestData[] = [
   {
     caseType: "C100",
-    describeTitle: "Complete the Order task for CA Solicitor case tests.",
+    describeTitle: "Create a Bundle - C100 Case Type",
     orderType:
       "Child arrangements, specific issue or prohibited steps order (C43)",
     issueToLocalCourt: true,
   },
   {
     caseType: "FL401",
-    describeTitle: "Complete the Order task for DA Solicitor case tests.",
+    describeTitle: "Create a Bundle - FL401 Case Type",
     orderType: "Power of arrest (FL406)",
     issueToLocalCourt: false,
   },
