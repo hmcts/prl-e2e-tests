@@ -11,6 +11,7 @@ interface ServiceOfDocumentsOptions {
   personallyServed: yesNoNA;
   servedByPost: boolean;
   checkDocuments: boolean;
+  snapshotName: string;
 }
 
 interface CaseDocument {
@@ -65,6 +66,7 @@ test.describe("Service of Document event for DA Solicitor case tests as court ad
       personallyServed: "Yes",
       servedByPost: true,
       checkDocuments: true,
+      snapshotName: "service-of-documents-personal-service-post-checked",
     });
   });
 
@@ -86,6 +88,7 @@ test.describe("Service of Document event for DA Solicitor case tests as court ad
       personallyServed: "No",
       servedByPost: false,
       checkDocuments: false,
+      snapshotName: "service-of-documents-additional-doc-email-unchecked",
     });
   });
 
@@ -106,6 +109,7 @@ test.describe("Service of Document event for DA Solicitor case tests as court ad
       personallyServed: "Not applicable",
       servedByPost: false,
       checkDocuments: false,
+      snapshotName: "service-of-documents-not-applicable-no-recipient",
     });
   });
 });
@@ -120,6 +124,7 @@ async function completeServiceOfDocuments(
     personallyServed,
     servedByPost,
     checkDocuments,
+    snapshotName,
   }: ServiceOfDocumentsOptions,
 ): Promise<void> {
   const { summaryPage, serviceOfDocuments } = caseWorker;
@@ -155,14 +160,10 @@ async function completeServiceOfDocuments(
   }
   await page3.clickContinue();
 
-  await submitPage.assertAnswers({
-    withCaseDoc,
-    additionalDoc,
-    additionalRecipient,
-    personallyServed,
-    servedByPost,
-    checkDocuments,
-  });
+  await submitPage.assertPageContents(
+    ["caseProgression", "serviceOfDocuments"],
+    snapshotName,
+  );
   if (accessibilityTest) {
     await submitPage.verifyAccessibility();
   }
