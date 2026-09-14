@@ -54,7 +54,7 @@ test.describe("Service of Document event for DA Solicitor case tests as court ad
   Serve to an additional recipient: yes, 
   Additional recipients served by post or email: post, 
   Documents should be check by manager: yes, 
-  Accessibility testing: Yes. @accessibility @nightly @tp`, async ({
+  Accessibility testing: Yes. @accessibility @nightly`, async ({
     caseWorker,
   }): Promise<void> => {
     await completeServiceOfDocuments(caseWorker, {
@@ -75,7 +75,7 @@ test.describe("Service of Document event for DA Solicitor case tests as court ad
   Serve to an additional recipient: yes, 
   Additional recipients served by post or email: email, 
   Documents should be check by manager: no, 
-  Accessibility testing: No. @regression @tp`, async ({
+  Accessibility testing: No. @regression`, async ({
     caseWorker,
   }): Promise<void> => {
     await completeServiceOfDocuments(caseWorker, {
@@ -95,7 +95,7 @@ test.describe("Service of Document event for DA Solicitor case tests as court ad
   Documents should be personally served: Not applicable, 
   Serve to an additional recipient: no, 
   Documents should be check by manager: no, 
-  Accessibility testing: No. @regression @tp`, async ({
+  Accessibility testing: No. @regression`, async ({
     caseWorker,
   }): Promise<void> => {
     await completeServiceOfDocuments(caseWorker, {

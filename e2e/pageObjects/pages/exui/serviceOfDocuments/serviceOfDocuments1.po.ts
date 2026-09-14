@@ -63,12 +63,6 @@ export class ServiceOfDocuments1Page extends EventPage {
     );
   }
 
-  /**
-   * Selects the document(s) to be served. `additionalDoc` uploads a second,
-   * ad-hoc document via "Add new"; `withCaseDoc` adds a second entry to the
-   * documents list pointing at the case document uploaded earlier in the
-   * test (via Manage documents), rather than uploading a new file.
-   */
   async selectDocumentsToServe({
     additionalDoc,
     withCaseDoc,
