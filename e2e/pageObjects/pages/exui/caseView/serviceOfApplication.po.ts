@@ -6,6 +6,7 @@ import {
 } from "../../../../common/types.ts";
 import { DateHelperUtils } from "../../../../utils/dateHelpers.utils.js";
 import config from "../../../../utils/config.utils.js";
+import { ServiceOptions } from "../serviceOfApplication/serviceOfApplication4.po.js";
 
 export interface ServedDetails {
   whoServed: string;
@@ -91,7 +92,7 @@ export class ServiceOfApplicationPage extends CaseAccessViewPage {
   async assertServicePacks(
     caseType: solicitorCaseCreateType,
     orderType: OrderTypes,
-    personallyServed: boolean,
+    serviceOptions: ServiceOptions,
   ): Promise<void> {
     const expectedOrderDocuments: string[] | undefined =
       orderDocuments[orderType];
@@ -115,21 +116,17 @@ export class ServiceOfApplicationPage extends CaseAccessViewPage {
             "FL401FinalDocumentWelsh.pdf",
             ...expectedOrderDocuments,
           ];
+
     const applicantDocuments: string[] = [
       ...commonPackDocuments,
       ...applicationDocuments,
+      ...this.addApplicantSpecificDocuments(caseType, serviceOptions),
     ];
+
     const respondentDocuments: string[] = [
-      ...applicantDocuments,
-      ...(personallyServed
-        ? ["cover_letter_re1.pdf", "cover_letter_welsh_re1.pdf"]
-        : [
-            "C1A_Blank.pdf",
-            "C1A_Blank_Welsh.pdf",
-            "Blank_C7.pdf",
-            "cover_letter_re5.pdf",
-            "cover_letter_welsh_re5.pdf",
-          ]),
+      ...commonPackDocuments,
+      ...applicationDocuments,
+      ...this.addRespondentSpecificDocuments(caseType, serviceOptions),
     ];
 
     const sectionHeadings: string[] =
@@ -143,6 +140,53 @@ export class ServiceOfApplicationPage extends CaseAccessViewPage {
     await this.assertPackDocuments("Respondents pack", respondentDocuments);
   }
 
+  private addApplicantSpecificDocuments(
+    caseType: string,
+    serviceOptions: ServiceOptions,
+  ): string[] {
+    const applicantsDocuments: string[] = [];
+    if (caseType === "C100") {
+      // TODO: do something
+    } else {
+      if (
+        serviceOptions.personallyServed &&
+        serviceOptions.servedBy === "applicantsSolicitor"
+      ) {
+        applicantsDocuments.push("FL415.pdf");
+      }
+    }
+
+    return applicantsDocuments;
+  }
+
+  private addRespondentSpecificDocuments(
+    caseType: string,
+    serviceOptions: ServiceOptions,
+  ): string[] {
+    const respondentsDocuments: string[] = [];
+
+    if (caseType === "C100") {
+      // TODO: do something
+    } else {
+      if (
+        serviceOptions.personallyServed &&
+        serviceOptions.servedBy === "applicantsSolicitor"
+      ) {
+        respondentsDocuments.push(
+          "cover_letter_re3.pdf",
+          "cover_letter_welsh_re3.pdf",
+        );
+      } else {
+        respondentsDocuments.push(
+          "cover_letter_re1.pdf",
+          "cover_letter_welsh_re1.pdf",
+        );
+      }
+    }
+
+    return respondentsDocuments;
+  }
+
   private async assertPackDocuments(
     packName: string,
     documents: string[],
@@ -151,6 +195,7 @@ export class ServiceOfApplicationPage extends CaseAccessViewPage {
       hasText: packName,
     });
     await expect(pack).toBeVisible();
+    await expect(pack.getByRole("button")).toHaveCount(documents.length);
     for (const document of documents) {
       await expect(
         pack.getByRole("button", { name: document, exact: true }).first(),
