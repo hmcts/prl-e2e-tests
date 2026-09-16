@@ -4,7 +4,6 @@ import { CaseWorkerPagesGroup } from "../../../../pageObjects/roleBasedGroupedPa
 import { yesNoNA } from "../../../../common/types.ts";
 
 interface ServiceOfDocumentsOptions {
-  accessibilityTest: boolean;
   withCaseDoc: boolean;
   additionalDoc: boolean;
   additionalRecipient: boolean;
@@ -54,12 +53,10 @@ test.describe("Service of Document event for DA Solicitor case tests as court ad
   Documents should be personally served: Yes, 
   Serve to an additional recipient: yes, 
   Additional recipients served by post or email: post, 
-  Documents should be check by manager: yes, 
-  Accessibility testing: Yes. @accessibility @nightly`, async ({
+  Documents should be check by manager: yes. @nightly @tp`, async ({
     caseWorker,
   }): Promise<void> => {
     await completeServiceOfDocuments(caseWorker, {
-      accessibilityTest: true,
       withCaseDoc: false,
       additionalDoc: false,
       additionalRecipient: true,
@@ -76,12 +73,10 @@ test.describe("Service of Document event for DA Solicitor case tests as court ad
   Documents should be personally served: No, 
   Serve to an additional recipient: yes, 
   Additional recipients served by post or email: email, 
-  Documents should be check by manager: no, 
-  Accessibility testing: No. @regression`, async ({
+  Documents should be check by manager: no. @regression @tp`, async ({
     caseWorker,
   }): Promise<void> => {
     await completeServiceOfDocuments(caseWorker, {
-      accessibilityTest: false,
       withCaseDoc: true,
       additionalDoc: true,
       additionalRecipient: true,
@@ -97,12 +92,10 @@ test.describe("Service of Document event for DA Solicitor case tests as court ad
   Witness statement (case doc) added to event: no
   Documents should be personally served: Not applicable, 
   Serve to an additional recipient: no, 
-  Documents should be check by manager: no, 
-  Accessibility testing: No. @regression`, async ({
+  Documents should be check by manager: no. @regression @tp`, async ({
     caseWorker,
   }): Promise<void> => {
     await completeServiceOfDocuments(caseWorker, {
-      accessibilityTest: false,
       withCaseDoc: false,
       additionalDoc: false,
       additionalRecipient: false,
@@ -117,7 +110,6 @@ test.describe("Service of Document event for DA Solicitor case tests as court ad
 async function completeServiceOfDocuments(
   caseWorker: CaseWorkerPagesGroup,
   {
-    accessibilityTest,
     withCaseDoc,
     additionalDoc,
     additionalRecipient,
@@ -138,9 +130,7 @@ async function completeServiceOfDocuments(
 
   await page1.assertPageContents();
   await page1.selectDocumentsToServe({ additionalDoc, withCaseDoc });
-  if (accessibilityTest) {
-    await page1.verifyAccessibility();
-  }
+  // await page1.verifyAccessibility(); FPVTL-3627 - “Upload additional documents” file input has no accessible label
   await page1.clickContinue();
 
   await page2.assertPageContents();
@@ -148,25 +138,19 @@ async function completeServiceOfDocuments(
   if (additionalRecipient) {
     await page2.addAdditionalRecipient({ servedByPost });
   }
-  if (accessibilityTest) {
-    await page2.verifyAccessibility();
-  }
+  await page2.verifyAccessibility();
   await page2.clickContinue();
 
   await page3.assertPageContents();
   await page3.selectDocumentCheckOption(checkDocuments);
-  if (accessibilityTest) {
-    await page3.verifyAccessibility();
-  }
+  await page3.verifyAccessibility();
   await page3.clickContinue();
 
   await submitPage.assertPageContents(
     ["caseProgression", "serviceOfDocuments"],
     snapshotName,
   );
-  if (accessibilityTest) {
-    await submitPage.verifyAccessibility();
-  }
+  await submitPage.verifyAccessibility();
   await submitPage.clickSaveAndContinue();
 }
 
