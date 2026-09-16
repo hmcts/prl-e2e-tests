@@ -73,6 +73,9 @@ export class ServiceOfDocuments1Page extends EventPage {
     if (additionalDoc) {
       await this.addAdditionalDocumentButton.click();
       await this.additionalDocumentUpload.setInputFiles(config.testPdfFile);
+      await expect(
+        this.page.locator(".error-message", { hasText: "Uploading..." }),
+      ).toBeHidden();
     }
 
     await this.selectDocumentField.selectOption(
