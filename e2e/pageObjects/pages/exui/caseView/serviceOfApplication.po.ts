@@ -34,6 +34,10 @@ const orderDocuments: Partial<Record<OrderTypes, string[]>> = {
     "amended_discharged_or_varied_order_fl404b_final.pdf",
     "welsh_amended_discharged_or_varied_order_fl404b_final.pdf",
   ],
+  "Parental responsibility order (C45A)": [
+    "Parental_Responsibility_Order_C45A.pdf",
+    "Welsh_Parental_Responsibility_Order_C45A.pdf",
+  ],
 };
 
 export class ServiceOfApplicationPage extends CaseAccessViewPage {
@@ -94,6 +98,10 @@ export class ServiceOfApplicationPage extends CaseAccessViewPage {
     orderType: OrderTypes,
     serviceOptions: ServiceOptions,
   ): Promise<void> {
+    await expect(
+      this.page.getByText("Unserved pack", { exact: true }),
+    ).toBeVisible();
+
     const expectedOrderDocuments: string[] | undefined =
       orderDocuments[orderType];
     if (!expectedOrderDocuments) {
@@ -117,27 +125,32 @@ export class ServiceOfApplicationPage extends CaseAccessViewPage {
             ...expectedOrderDocuments,
           ];
 
-    const applicantDocuments: string[] = [
-      ...commonPackDocuments,
-      ...applicationDocuments,
-      ...this.addApplicantSpecificDocuments(caseType, serviceOptions),
-    ];
+    if (serviceOptions.personallyServed !== "notApplicable") {
+      const applicantDocuments: string[] = [
+        ...commonPackDocuments,
+        ...applicationDocuments,
+        ...this.addApplicantSpecificDocuments(caseType, serviceOptions),
+      ];
 
-    const respondentDocuments: string[] = [
-      ...commonPackDocuments,
-      ...applicationDocuments,
-      ...this.addRespondentSpecificDocuments(caseType, serviceOptions),
-    ];
+      const respondentDocuments: string[] = [
+        ...commonPackDocuments,
+        ...applicationDocuments,
+        ...this.addRespondentSpecificDocuments(caseType, serviceOptions),
+      ];
 
-    const sectionHeadings: string[] =
-      caseType === "C100"
-        ? ["Unserved pack", "Cafcass cymru"]
-        : ["Unserved pack"];
-    for (const heading of sectionHeadings) {
-      await expect(this.page.getByText(heading, { exact: true })).toBeVisible();
+      await this.assertPackDocuments("Applicants pack", applicantDocuments);
+
+      await this.assertPackDocuments("Respondents pack", respondentDocuments);
     }
-    await this.assertPackDocuments("Applicants pack", applicantDocuments);
-    await this.assertPackDocuments("Respondents pack", respondentDocuments);
+
+    if (serviceOptions.serveCafcass) {
+      // Cafcass cymru are not directly served any documents
+      await this.assertPackDocuments("Cafcass cymru", []);
+    }
+
+    if (serviceOptions.serveLocalAuthority) {
+      await this.assertLocalAuthorityPack();
+    }
   }
 
   private addApplicantSpecificDocuments(
@@ -146,15 +159,19 @@ export class ServiceOfApplicationPage extends CaseAccessViewPage {
   ): string[] {
     const applicantsDocuments: string[] = [];
     if (caseType === "C100") {
-      // TODO: do something
+      if (serviceOptions.personallyServed === "yes") {
+        applicantsDocuments.push("C9_personal_service.pdf");
+      }
     } else {
       if (
-        serviceOptions.personallyServed &&
+        serviceOptions.personallyServed === "yes" &&
         serviceOptions.servedBy === "applicantsSolicitor"
       ) {
         applicantsDocuments.push("FL415.pdf");
       }
     }
+
+    // TODO: assert that Served by is correct - currently waiting on ticket ... to implement this check
 
     return applicantsDocuments;
   }
@@ -166,10 +183,38 @@ export class ServiceOfApplicationPage extends CaseAccessViewPage {
     const respondentsDocuments: string[] = [];
 
     if (caseType === "C100") {
-      // TODO: do something
+      // documents that all C100 respondent packs have
+      respondentsDocuments.push("Blank_C7.pdf");
+      respondentsDocuments.push("C1A_Blank.pdf");
+      respondentsDocuments.push("C1A_Blank_Welsh.pdf");
+
+      if (
+        serviceOptions.personallyServed === "yes" &&
+        serviceOptions.servedBy === "applicantsSolicitor"
+      ) {
+        // repeated 3 times because of three respondents on the case
+        respondentsDocuments.push(
+          "cover_letter_re6.pdf",
+          "cover_letter_welsh_re6.pdf",
+          "cover_letter_re6.pdf",
+          "cover_letter_welsh_re6.pdf",
+          "cover_letter_re6.pdf",
+          "cover_letter_welsh_re6.pdf",
+        );
+      } else {
+        // repeated 3 times because of three respondents on the case
+        respondentsDocuments.push(
+          "cover_letter_re5.pdf",
+          "cover_letter_welsh_re5.pdf",
+          "cover_letter_re5.pdf",
+          "cover_letter_welsh_re5.pdf",
+          "cover_letter_re5.pdf",
+          "cover_letter_welsh_re5.pdf",
+        );
+      }
     } else {
       if (
-        serviceOptions.personallyServed &&
+        serviceOptions.personallyServed === "yes" &&
         serviceOptions.servedBy === "applicantsSolicitor"
       ) {
         respondentsDocuments.push(
@@ -223,5 +268,37 @@ export class ServiceOfApplicationPage extends CaseAccessViewPage {
       .first();
     await expect(labelLocator).toBeVisible();
     await expect(valueLocator).toBeVisible();
+  }
+
+  private async assertLocalAuthorityPack(): Promise<void> {
+    const pack: Locator = this.page.locator("ccd-read-complex-field-table", {
+      hasText: "Local Authority pack",
+    });
+    await expect(pack).toBeVisible();
+    await expect(pack.getByRole("button")).toHaveCount(3);
+    await expect(
+      pack
+        .getByRole("button", {
+          name: "Draft_C100_application.pdf",
+          exact: true,
+        })
+        .first(),
+    ).toBeVisible();
+    await expect(
+      pack
+        .getByRole("button", {
+          name: /^Confidential_C8.*(?<! Welsh)\.pdf$/,
+          exact: true,
+        })
+        .first(),
+    ).toBeVisible();
+    await expect(
+      pack
+        .getByRole("button", {
+          name: /^Confidential_C8.* Welsh\.pdf$/,
+          exact: true,
+        })
+        .first(),
+    ).toBeVisible();
   }
 }
