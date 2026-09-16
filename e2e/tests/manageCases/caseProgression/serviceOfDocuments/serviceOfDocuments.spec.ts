@@ -53,7 +53,7 @@ test.describe("Service of Document event for DA Solicitor case tests as court ad
   Documents should be personally served: Yes, 
   Serve to an additional recipient: yes, 
   Additional recipients served by post or email: post, 
-  Documents should be check by manager: yes. @nightly @tp`, async ({
+  Documents should be check by manager: yes. @nightly`, async ({
     caseWorker,
   }): Promise<void> => {
     await completeServiceOfDocuments(caseWorker, {
@@ -73,7 +73,7 @@ test.describe("Service of Document event for DA Solicitor case tests as court ad
   Documents should be personally served: No, 
   Serve to an additional recipient: yes, 
   Additional recipients served by post or email: email, 
-  Documents should be check by manager: no. @regression @tp`, async ({
+  Documents should be check by manager: no. @regression`, async ({
     caseWorker,
   }): Promise<void> => {
     await completeServiceOfDocuments(caseWorker, {
@@ -92,7 +92,7 @@ test.describe("Service of Document event for DA Solicitor case tests as court ad
   Witness statement (case doc) added to event: no
   Documents should be personally served: Not applicable, 
   Serve to an additional recipient: no, 
-  Documents should be check by manager: no. @regression @tp`, async ({
+  Documents should be check by manager: no. @regression`, async ({
     caseWorker,
   }): Promise<void> => {
     await completeServiceOfDocuments(caseWorker, {
