@@ -4,7 +4,7 @@ Enter the ticket description
 
 ### JIRA link
 
-[FPVTL-](https://hmcts.atlassian.net/browse/FPVTL-)
+[PRL-](https://tools.hmcts.net/jira/browse/PRL-)
 
 **Before merging a pull request make sure that:**
 
