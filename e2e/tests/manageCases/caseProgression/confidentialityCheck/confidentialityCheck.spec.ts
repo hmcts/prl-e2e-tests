@@ -75,6 +75,7 @@ caseTypes.forEach((caseType) => {
             caseManager.page,
             config.manageCasesBaseURLCase,
             caseRef,
+            "tasks"
           );
 
           await tasksPage.assignTaskToMeAndTriggerNextSteps(
