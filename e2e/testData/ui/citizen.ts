@@ -116,11 +116,11 @@ export function buildSOAEventData(citizenSOACaseInfo: CitizenApplicationInfo) {
         document_url:
           process.env.MANAGE_CASES_TEST_ENV === "demo"
             ? "http://dm-store-demo.service.core-compute-demo.internal/documents/da240bb3-848a-4ab9-8eeb-938e195e922d"
-            : "http://dm-store-aat.service.core-compute-aat.internal/documents/5417e28b-d4a0-4c41-8194-d133c50e2297",
+            : "http://dm-store-aat.service.core-compute-aat.internal/documents/418714f8-ab5b-455a-9341-de9352fd753e",
         document_binary_url:
           process.env.MANAGE_CASES_TEST_ENV === "demo"
             ? "http://dm-store-demo.service.core-compute-demo.internal/documents/da240bb3-848a-4ab9-8eeb-938e195e922d/binary"
-            : "http://dm-store-aat.service.core-compute-aat.internal/documents/5417e28b-d4a0-4c41-8194-d133c50e2297/binary",
+            : "http://dm-store-aat.service.core-compute-aat.internal/documents/418714f8-ab5b-455a-9341-de9352fd753e/binary",
         document_filename: "Special arrangements letter.docx",
       },
       additionalDocumentsList: [],

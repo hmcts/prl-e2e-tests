@@ -30,13 +30,17 @@ export class CaseManagerPagesGroup {
   get confidentialityCheck() {
     return {
       confidentialityCheck1Page: new ConfidentialityCheck1Page(this.page),
-      confidentialityCheckSubmitPage: new ConfidentialityCheckSubmitPage(this.page),
-      confidentialityCheckConfirmPage: new ConfidentialityCheckConfirmPage(this.page),
+      confidentialityCheckSubmitPage: new ConfidentialityCheckSubmitPage(
+        this.page,
+      ),
+      confidentialityCheckConfirmPage: new ConfidentialityCheckConfirmPage(
+        this.page,
+      ),
     };
   }
-  get serviceOfApplication(){
+  get serviceOfApplication() {
     return {
       serviceOfApplicationPage: new ServiceOfApplicationPage(this.page),
-    }
+    };
   }
 }

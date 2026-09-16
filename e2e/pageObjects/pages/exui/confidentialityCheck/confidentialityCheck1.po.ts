@@ -4,6 +4,67 @@ import { PageUtils } from "../../../../utils/page.utils.js";
 import { Selectors } from "../../../../common/selectors.js";
 import { clippingCoords, ExuiMediaViewerPage } from "../exuiMediaViewer.po.js";
 import { NavigationUtils } from "../../../../utils/navigation.utils.js";
+import {
+  OrderTypes,
+  solicitorCaseCreateType,
+} from "../../../../common/types.js";
+
+const commonPackDocuments: string[] = [
+  "Annex 1 - Confidential contact details notice.pdf",
+  "Annex 1 - Confidential contact details notice - welsh.pdf",
+  "Privacy_Notice.pdf",
+  "Privacy_Notice_Welsh.pdf",
+];
+
+const expectedC100CaseFieldLabels: string[] = [
+  "C8 Document",
+  "C8 Document (Welsh)",
+  "Respondent 1 English c8 Document",
+  "Respondent 1 Welsh c8 Document",
+  "Respondent 2 English c8 Document",
+  "Respondent 2 Welsh c8 Document",
+  "Respondent 3 English c8 Document",
+  "Respondent 3 Welsh c8 Document",
+  "Respondent 4 English c8 Document",
+  "Respondent 4 Welsh c8 Document",
+  "Respondent 5 English c8 Document",
+  "Respondent 5 Welsh c8 Document",
+  "Applicant 1 Refuge C8 Document",
+  "Applicant 2 Refuge C8 Document",
+  "Applicant 3 Refuge C8 Document",
+  "Applicant 4 Refuge C8 Document",
+  "Applicant 5 Refuge C8 Document",
+  "Respondent 1 Refuge C8 Document",
+  "Respondent 2 Refuge C8 Document",
+  "Respondent 3 Refuge C8 Document",
+  "Respondent 4 Refuge C8 Document",
+  "Respondent 5 Refuge C8 Document",
+  "Other Person 1 Refuge C8 Document",
+  "Other Person 2 Refuge C8 Document",
+  "Other Person 3 Refuge C8 Document",
+  "Other Person 4 Refuge C8 Document",
+  "Other Person 5 Refuge C8 Document",
+];
+
+const expectedFL401CaseFieldLabels: string[] = [
+  "C8 Document",
+  "C8 Document (Welsh)",
+  "Respondent 1 English c8 Document",
+  "Respondent 1 Welsh c8 Document",
+  "Applicant 1 Refuge C8 Document",
+  "Respondent 1 Refuge C8 Document",
+];
+
+const orderDocuments: Partial<Record<OrderTypes, string[]>> = {
+  "Child arrangements, specific issue or prohibited steps order (C43)": [
+    "ChildArrangements_Specific_Prohibited_Steps_C43.pdf",
+    "Welsh_ChildArrangements_Specific_Prohibited_Steps_C43.pdf",
+  ],
+  "Power of arrest (FL406)": [
+    "Power_of_arrest.pdf",
+    "Welsh_Power_of_arrest.pdf",
+  ],
+};
 
 export class ConfidentialityCheck1Page extends EventPage {
   private readonly navigationUtils: NavigationUtils = new NavigationUtils();
@@ -18,35 +79,6 @@ export class ConfidentialityCheck1Page extends EventPage {
     "Cafcass cymru",
   ];
 
-  private readonly expectedCaseFieldLabels: string[] = [
-    "C8 Document",
-    "C8 Document (Welsh)",
-    "Respondent 1 English c8 Document",
-    "Respondent 1 Welsh c8 Document",
-    "Respondent 2 English c8 Document",
-    "Respondent 2 Welsh c8 Document",
-    "Respondent 3 English c8 Document",
-    "Respondent 3 Welsh c8 Document",
-    "Respondent 4 English c8 Document",
-    "Respondent 4 Welsh c8 Document",
-    "Respondent 5 English c8 Document",
-    "Respondent 5 Welsh c8 Document",
-    "Applicant 1 Refuge C8 Document",
-    "Applicant 1 Refuge C8 Document",
-    "Applicant 1 Refuge C8 Document",
-    "Applicant 1 Refuge C8 Document",
-    "Applicant 1 Refuge C8 Document",
-    "Respondent 1 Refuge C8 Document",
-    "Respondent 1 Refuge C8 Document",
-    "Respondent 1 Refuge C8 Document",
-    "Respondent 1 Refuge C8 Document",
-    "Respondent 1 Refuge C8 Document",
-    "Other Person 1 Refuge C8 Document",
-    "Other Person 1 Refuge C8 Document",
-    "Other Person 1 Refuge C8 Document",
-    "Other Person 1 Refuge C8 Document",
-    "Other Person 1 Refuge C8 Document",
-  ];
   private readonly formLabel: Locator = this.page.locator(
     Selectors.GovukFormLabel,
     {
@@ -68,53 +100,80 @@ export class ConfidentialityCheck1Page extends EventPage {
 
   private readonly pageUtils: PageUtils = new PageUtils(this.page);
 
-  async assertPageContents(snapshotsPath: string[],): Promise<void> {
+  async assertPageContents(
+    caseType: solicitorCaseCreateType,
+    orderType: OrderTypes,
+    snapshotsPath: string[],
+  ): Promise<void> {
     await this.assertPageHeadings();
     await expect(this.warningText).toBeVisible();
-    await this.validatePackDocuments("Applicants pack", [
-      "C100FinalDocument.pdf",
-      "C100FinalDocumentWelsh.pdf",
-      "C1A_Document.pdf",
-      "C1A_Document_Welsh.pdf",
-      "Privacy_Notice.pdf",
-      "Privacy_Notice_Welsh.pdf",
-      "Annex 1 - Confidential contact details notice.pdf",
-      "Annex 1 - Confidential contact details notice - welsh.pdf",
-      "Family Presidents letter to parties.pdf",
-      "Family Presidents letter to parties - Welsh.pdf",
-      "C9_personal_service.pdf",
-      "ChildArrangements_Specific_Prohibited_Steps_C43.pdf",
-      "Welsh_ChildArrangements_Specific_Prohibited_Steps_C43.pdf",
-      "Special arrangements letter.docx",
-    ]);
-
-    await this.validatePackDocuments("Respondents pack", [
-      "cover_letter_re5.pdf",
-      "cover_letter_welsh_re5.pdf",
-      "C100FinalDocument.pdf",
-      "C100FinalDocumentWelsh.pdf",
-      "C1A_Document.pdf",
-      "C1A_Document_Welsh.pdf",
-      "Privacy_Notice.pdf",
-      "Privacy_Notice_Welsh.pdf",
-      "Annex 1 - Confidential contact details notice.pdf",
-      "Annex 1 - Confidential contact details notice - welsh.pdf",
-      "Family Presidents letter to parties.pdf",
-      "Family Presidents letter to parties - Welsh.pdf",
-      "Blank_C7.pdf",
-      "C1A_Blank.pdf",
-      "C1A_Blank_Welsh.pdf",
-      "ChildArrangements_Specific_Prohibited_Steps_C43.pdf",
-      "Welsh_ChildArrangements_Specific_Prohibited_Steps_C43.pdf",
-      "Special arrangements letter.docx",
-    ]);
     await this.pageUtils.assertStrings(this.confCheck1PageObjects);
 
-    for (const label of this.expectedCaseFieldLabels) {
+    const expectedOrderDocuments: string[] | undefined =
+      orderDocuments[orderType];
+    if (!expectedOrderDocuments) {
+      throw new Error(`No service pack documents configured for ${orderType}`);
+    }
+
+    const applicationDocuments: string[] =
+      caseType === "C100"
+        ? [
+            "C100FinalDocument.pdf",
+            "C100FinalDocumentWelsh.pdf",
+            "C1A_Document.pdf",
+            "C1A_Document_Welsh.pdf",
+            "Family Presidents letter to parties.pdf",
+            "Family Presidents letter to parties - Welsh.pdf",
+            ...expectedOrderDocuments,
+            "C9_personal_service.pdf",
+            "Special arrangements letter.docx",
+          ]
+        : [
+            "FL401FinalDocument.pdf",
+            "FL401FinalDocumentWelsh.pdf",
+            ...expectedOrderDocuments,
+            "Safety Letter.docx",
+          ];
+    const applicantDocuments: string[] = [
+      ...commonPackDocuments,
+      ...applicationDocuments,
+    ];
+    const respondentDocuments: string[] =
+      caseType === "C100"
+        ? [
+            "cover_letter_re5.pdf",
+            "cover_letter_welsh_re5.pdf",
+            ...commonPackDocuments,
+            ...expectedOrderDocuments,
+            "C100FinalDocument.pdf",
+            "C100FinalDocumentWelsh.pdf",
+            "C1A_Document.pdf",
+            "C1A_Document_Welsh.pdf",
+            "Family Presidents letter to parties.pdf",
+            "Family Presidents letter to parties - Welsh.pdf",
+            "Blank_C7.pdf",
+            "C1A_Blank.pdf",
+            "C1A_Blank_Welsh.pdf",
+            "Special arrangements letter.docx",
+          ]
+        : [
+            ...applicantDocuments,
+            "cover_letter_re1.pdf",
+            "cover_letter_welsh_re1.pdf",
+          ];
+
+    await this.assertPackDocuments("Applicants pack", applicantDocuments);
+    await this.assertPackDocuments("Respondents pack", respondentDocuments);
+
+    const expectedCaseFieldLabels: string[] =
+      caseType === "C100"
+        ? [...expectedC100CaseFieldLabels]
+        : [...expectedFL401CaseFieldLabels];
+    for (const label of expectedCaseFieldLabels) {
       await expect(
-        this.page.locator(".case-field__label").filter({
-          hasText: label,
-        }),
+        this.page
+          .locator(".case-field__label")
+          .getByText(label, { exact: true }),
       ).toBeVisible();
     }
     await expect(
@@ -134,8 +193,8 @@ export class ConfidentialityCheck1Page extends EventPage {
     await expect(this.previousButton).toBeVisible();
 
     // assert Confidential contact details notice in media viewer
-    await this.assertPdfContents(true, snapshotsPath);
-    await this.assertPdfContents(false, snapshotsPath);
+    await this.assertPdfContents(caseType, true, snapshotsPath);
+    await this.assertPdfContents(caseType, false, snapshotsPath);
   }
 
   async serveApplication(
@@ -152,26 +211,21 @@ export class ConfidentialityCheck1Page extends EventPage {
     }
   }
 
-  private async validatePackDocuments(
+  private async assertPackDocuments(
     packName: string,
     documents: string[],
   ): Promise<void> {
-    const pack = this.page
-      .locator(".complex-panel")
-      .filter({
-        has: this.page.getByText(packName, { exact: true }),
-      })
-      .first();
-
-    await expect(pack).toBeVisible();
-
-    await expect(pack.getByText("Document", { exact: true })).toBeVisible();
-
+    const pack: Locator = this.page.locator("ccd-read-complex-field-table", {
+      hasText: packName,
+    });
+    await expect(pack.first()).toBeVisible();
     for (const document of documents) {
       await expect(
-        pack.locator("button").first().filter({ hasText: document }),
+        pack.getByRole("button", { name: document, exact: true }).first(),
       ).toBeVisible();
     }
+
+    await expect(pack.getByText("Document", { exact: true })).toBeVisible();
 
     // Served by label
     await expect(pack.getByText("Served by", { exact: true })).toBeVisible();
@@ -191,9 +245,10 @@ export class ConfidentialityCheck1Page extends EventPage {
   }
 
   async assertPdfContents(
+    caseType: solicitorCaseCreateType,
     isApplicant: boolean,
     snapshotsPath: string[],
-    ): Promise<void> {
+  ): Promise<void> {
     const locatorText: string = isApplicant
       ? "Applicants pack"
       : "Respondents pack";
@@ -201,17 +256,14 @@ export class ConfidentialityCheck1Page extends EventPage {
       hasText: locatorText,
     });
 
-    const pdfLocator = packLocator.locator(
-    Selectors.GovLink,
-    {
-      hasText: 'Annex 1 - Confidential contact details notice.pdf',
-    }
-  );
+    const pdfLocator = packLocator.locator(Selectors.GovLink, {
+      hasText: "Annex 1 - Confidential contact details notice.pdf",
+    });
     const pdfPage: Page = await this.navigationUtils.openPdfLink(
       this.page,
       pdfLocator,
     );
-    const pdfName: string = `${isApplicant ? "applicant" : "respondent"}-confidential-contact-details-notice`;
+    const pdfName: string = `${caseType}-${isApplicant ? "applicant" : "respondent"}-confidential-contact-details-notice`;
     const snapshotPath: string[] = [...snapshotsPath, pdfName];
     const mediaViewerPage = new ExuiMediaViewerPage(pdfPage);
     await mediaViewerPage.runVisualTestOnAllPages(

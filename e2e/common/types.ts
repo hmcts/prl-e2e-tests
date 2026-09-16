@@ -107,6 +107,8 @@ export type WACaseWorkerActions =
   | "Remove barrister"
   | "Review RA Request";
 
+export type WACaseManagerActions = "Confidentiality check";
+
 export type fl401CaseWorkerActions =
   | "Welsh language requirements"
   | "Send and reply to messages"
