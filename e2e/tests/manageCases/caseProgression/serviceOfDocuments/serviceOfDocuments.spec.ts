@@ -130,7 +130,10 @@ async function completeServiceOfDocuments(
 
   await page1.assertPageContents();
   await page1.selectDocumentsToServe({ additionalDoc, withCaseDoc });
-  // await page1.verifyAccessibility(); FPVTL-3627 - “Upload additional documents” file input has no accessible label
+  if (!additionalDoc) {
+    // FPVTL-3627 - “Upload additional documents” file input has no accessible label
+    await page1.verifyAccessibility();
+  }
   await page1.clickContinue();
 
   await page2.assertPageContents();
