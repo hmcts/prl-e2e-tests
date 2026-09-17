@@ -12,6 +12,7 @@ import {
   fl401SubmittedSolicitorEvents,
   WACaseWorkerActions,
   superUserEvents,
+  WACaseManagerActions,
 } from "../../../../common/types.js";
 import { MatTabHeaderComponent } from "../../../components/exui/matTabHeader.component.js";
 import { NotificationBannerComponent } from "../../../components/exui/notificationBanner.component.js";
@@ -47,7 +48,8 @@ export abstract class CaseAccessViewPage extends Base {
       | fl401CaseWorkerActions
       | courtAdminEvents
       | amendEvents
-      | superUserEvents,
+      | superUserEvents
+      | WACaseManagerActions,
   ) {
     await expect(
       this.page.locator(Selectors.h2, {
