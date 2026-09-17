@@ -3,6 +3,7 @@ import { test } from "../../fixtures.ts";
 import { OrderTypes } from "../../../common/types.ts";
 import { ServiceOptions } from "../../../pageObjects/pages/exui/serviceOfApplication/serviceOfApplication4.po.js";
 
+// TEST COMMENT
 interface ServiceOfApplicationScenario {
   orderType: OrderTypes;
   orderName?: string;
