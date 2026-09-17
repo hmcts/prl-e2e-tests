@@ -85,6 +85,10 @@ import { ServiceOfApplication2Page } from "../pages/exui/serviceOfApplication/se
 import { ServiceOfApplication4Page } from "../pages/exui/serviceOfApplication/serviceOfApplication4.po.ts";
 import { ServiceOfApplicationSubmitPage } from "../pages/exui/serviceOfApplication/serviceOfApplicationSubmit.po.ts";
 import { ServiceOfApplicationConfirmPage } from "../pages/exui/serviceOfApplication/serviceOfApplicationConfirm.po.ts";
+import { ServiceOfDocuments1Page } from "../pages/exui/serviceOfDocuments/serviceOfDocuments1.po.js";
+import { ServiceOfDocuments2Page } from "../pages/exui/serviceOfDocuments/serviceOfDocuments2.po.js";
+import { ServiceOfDocuments3Page } from "../pages/exui/serviceOfDocuments/serviceOfDocuments3.po.js";
+import { ServiceOfDocumentsSubmitPage } from "../pages/exui/serviceOfDocuments/serviceOfDocumentsSubmit.po.js";
 import { WelshLanguageRequirements1Page } from "../pages/exui/welshLanguageRequirements/welshLanguageRequirements1.po.ts";
 import { WelshLanguageRequirementsSubmitPage } from "../pages/exui/welshLanguageRequirements/welshLanguageRequirementsSubmit.po.ts";
 import { HearingsPage } from "../pages/exui/caseView/hearings.po.ts";
@@ -333,6 +337,15 @@ export class CaseWorkerPagesGroup {
       submitPage: new ServiceOfApplicationSubmitPage(this.page),
       confirmPage: new ServiceOfApplicationConfirmPage(this.page),
       serviceOfApplicationPage: new ServiceOfApplicationPage(this.page),
+    };
+  }
+
+  get serviceOfDocuments() {
+    return {
+      page1: new ServiceOfDocuments1Page(this.page),
+      page2: new ServiceOfDocuments2Page(this.page),
+      page3: new ServiceOfDocuments3Page(this.page),
+      submitPage: new ServiceOfDocumentsSubmitPage(this.page),
     };
   }
 
