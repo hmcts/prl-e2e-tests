@@ -45,7 +45,7 @@ export class ExuiCaseTaskComponent {
     assignedTo?: string,
   ): Promise<void> {
     const task: Locator = this.page.locator("exui-case-task", {
-      has: this.page.locator(`strong:text-is("${taskName}")`),
+      has: this.page.getByText(taskName),
     });
     await expect(task, `Task "${taskName}" should be listed once`).toHaveCount(
       1,
