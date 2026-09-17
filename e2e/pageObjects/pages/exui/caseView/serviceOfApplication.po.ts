@@ -106,6 +106,10 @@ export class ServiceOfApplicationPage extends CaseAccessViewPage {
         ? [
             "cover_letter_re5.pdf",
             "cover_letter_welsh_re5.pdf",
+            "cover_letter_re5.pdf",
+            "cover_letter_welsh_re5.pdf",
+            "cover_letter_re5.pdf",
+            "cover_letter_welsh_re5.pdf",
             ...updatedCommonPackDocuments,
             ...expectedOrderDocuments,
             "C100FinalDocument.pdf",

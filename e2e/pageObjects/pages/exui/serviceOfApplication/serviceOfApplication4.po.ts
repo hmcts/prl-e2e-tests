@@ -50,6 +50,11 @@ export class ServiceOfApplication4Page extends EventPage {
       name: "Applicant's legal representative",
       exact: true,
     });
+  private readonly unrepresentedApplicantRadio: Locator =
+    this.servingPartyOptions.getByRole("radio", {
+      name: "Unrepresented applicant who is arranging service",
+      exact: true,
+    });
   private readonly courtBailiffRadio: Locator =
     this.servingPartyOptions.getByRole("radio", {
       name: "Court bailiff",
@@ -188,10 +193,14 @@ export class ServiceOfApplication4Page extends EventPage {
     await expect(this.previousButton).toBeVisible();
   }
 
-  async selectPersonalService(): Promise<void> {
+  async selectPersonalService(isCitizenCase: boolean): Promise<void> {
     await this.personalServiceYesRadio.check();
     await expect(this.servingPartyOptions).toBeVisible();
-    await expect(this.applicantsLegalRepresentativeRadio).toBeVisible();
+    if (isCitizenCase) {
+      await expect(this.unrepresentedApplicantRadio).toBeVisible();
+    } else {
+      await expect(this.applicantsLegalRepresentativeRadio).toBeVisible();
+    }
     await expect(this.courtBailiffRadio).toBeVisible();
     await expect(this.courtAdminRadio).toBeVisible();
   }
@@ -219,24 +228,28 @@ export class ServiceOfApplication4Page extends EventPage {
   async selectServiceOptions(
     caseType: solicitorCaseCreateType,
     serviceOptions: ServiceOptions,
+    isCitizenCase: boolean,
   ): Promise<void> {
-    await this.handlePersonalService(serviceOptions);
+    await this.handlePersonalService(serviceOptions, isCitizenCase);
 
     if (caseType === "C100") {
       await this.handleC100ServiceOptions(serviceOptions);
     }
   }
 
-  private async handlePersonalService({
-    personallyServed,
-    servedBy,
-  }: Partial<ServiceOptions>): Promise<void> {
+  private async handlePersonalService(
+    { personallyServed, servedBy }: Partial<ServiceOptions>,
+    isCitizenCase: boolean,
+  ): Promise<void> {
     switch (personallyServed) {
       case "yes":
-        await this.selectPersonalService();
+        await this.selectPersonalService(isCitizenCase);
         switch (servedBy) {
           case "applicantsSolicitor":
             await this.applicantsLegalRepresentativeRadio.check();
+            break;
+          case "unrepresentedApplicant":
+            await this.unrepresentedApplicantRadio.check();
             break;
           case "courtBailiff":
             await this.courtBailiffRadio.check();

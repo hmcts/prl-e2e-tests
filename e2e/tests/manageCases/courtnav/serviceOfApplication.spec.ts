@@ -15,12 +15,12 @@ const scenarios: ServiceOfApplicationScenario[] = [
   {
     orderType: "Power of arrest (FL406)",
     orderName: "Power of arrest",
-    serviceOptions: { personallyServed: "yes" },
+    serviceOptions: { personallyServed: "yes", servedBy: "courtBailiff" },
     snapshotName: "courtnav-fl406-personally-served",
   },
   {
     orderType: "Amended, discharged or varied order (FL404B)",
-    serviceOptions: { personallyServed: "yes" },
+    serviceOptions: { personallyServed: "yes", servedBy: "courtBailiff" },
     snapshotName: "courtnav-fl404b-personally-served",
   },
 ];
@@ -92,7 +92,7 @@ test.describe("Service of Application task for DA Citizen case tests.", () => {
 
         await page4.assertPageContents("FL401");
         await page4.verifyAccessibility();
-        await page4.selectServiceOptions("FL401", serviceOptions);
+        await page4.selectServiceOptions("FL401", serviceOptions, true);
         await page4.clickContinue();
 
         await submitPage.assertPageContents(

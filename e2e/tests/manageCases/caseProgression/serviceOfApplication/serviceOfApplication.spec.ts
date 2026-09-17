@@ -243,7 +243,7 @@ async function completeServiceOfApplication(
 
   await page4.assertPageContents(caseType);
   await page4.verifyAccessibility();
-  await page4.selectServiceOptions(caseType, serviceOptions);
+  await page4.selectServiceOptions(caseType, serviceOptions, false);
   await page4.clickContinue();
 
   await submitPage.assertPageContents(

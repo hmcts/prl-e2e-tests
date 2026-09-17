@@ -549,4 +549,7 @@ export const LOCAL_COURTS: Record<CourtKey, LocalCourtInfo> = {
 };
 
 export type PersonalServiceTypes =
-  "applicantsSolicitor" | "courtBailiff" | "courtAdmin";
+  | "applicantsSolicitor"
+  | "courtBailiff"
+  | "courtAdmin"
+  | "unrepresentedApplicant";
