@@ -257,7 +257,6 @@ export class ServiceOfApplicationPage extends CaseAccessViewPage {
     caseType: solicitorCaseCreateType,
     orderType: OrderTypes,
     serviceOptions: ServiceOptions,
-    personallyServed: boolean,
     submittedBy: applicationSubmittedBy = "Solicitor",
   ): Promise<void> {
     await expect(
@@ -273,7 +272,7 @@ export class ServiceOfApplicationPage extends CaseAccessViewPage {
     if (submittedBy === "Citizen") {
       await this.assertCitizenServicePacks(
         expectedOrderDocuments[0],
-        personallyServed,
+        serviceOptions.personallyServed === "yes",
       );
       return;
     }
