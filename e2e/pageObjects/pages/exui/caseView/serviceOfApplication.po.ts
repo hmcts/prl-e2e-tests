@@ -1,6 +1,7 @@
 import { expect, Locator, Page } from "@playwright/test";
 import { CaseAccessViewPage } from "./caseAccessView.po.js";
 import {
+  applicationSubmittedBy,
   OrderTypes,
   solicitorCaseCreateType,
 } from "../../../../common/types.ts";
@@ -251,11 +252,20 @@ export class ServiceOfApplicationPage extends CaseAccessViewPage {
     caseType: solicitorCaseCreateType,
     orderType: OrderTypes,
     personallyServed: boolean,
+    submittedBy: applicationSubmittedBy = "Solicitor",
   ): Promise<void> {
     const expectedOrderDocuments: string[] | undefined =
       orderDocuments[orderType];
     if (!expectedOrderDocuments) {
       throw new Error(`No service pack documents configured for ${orderType}`);
+    }
+
+    if (submittedBy === "Citizen") {
+      await this.assertCitizenServicePacks(
+        expectedOrderDocuments[0],
+        personallyServed,
+      );
+      return;
     }
 
     const applicationDocuments: string[] =
@@ -302,6 +312,53 @@ export class ServiceOfApplicationPage extends CaseAccessViewPage {
     await this.assertPackDocuments("Respondents pack", respondentDocuments);
   }
 
+  private async assertCitizenServicePacks(
+    orderDocument: string,
+    personallyServed: boolean,
+  ): Promise<void> {
+    const commonDocuments: string[] = [
+      "FL401FinalDocument.pdf",
+      "Privacy_Notice.pdf",
+      orderDocument,
+      "mockFile.pdf",
+    ];
+    const applicantDocuments: string[] = [
+      "cover_letter_ap2.pdf",
+      "coversheet.pdf",
+      ...commonDocuments,
+    ];
+    const respondentDocuments: string[] = [
+      personallyServed ? "cover_letter_re1.pdf" : "cover_letter_re5.pdf",
+      ...commonDocuments,
+    ];
+
+    await expect(
+      this.page.getByText("Served pack", { exact: true }),
+    ).toBeVisible();
+    if (personallyServed) {
+      await expect(
+        this.page.getByText("Unserved pack", { exact: true }),
+      ).toBeVisible();
+    }
+
+    await this.expandServedPackDetails();
+    await this.assertServedPackDocuments("Applicant", applicantDocuments);
+    if (personallyServed) {
+      await this.assertPackDocuments("Respondents pack", respondentDocuments);
+    } else {
+      await this.assertServedPackDocuments("Respondent", respondentDocuments);
+    }
+  }
+
+  private async expandServedPackDetails(): Promise<void> {
+    const expanders: Locator = this.page.getByRole("link", {
+      name: "accordion-img",
+    });
+    for (let index = 0; index < (await expanders.count()); index++) {
+      await expanders.nth(index).click();
+    }
+  }
+
   private async assertPackDocuments(
     packName: string,
     documents: string[],
@@ -314,6 +371,21 @@ export class ServiceOfApplicationPage extends CaseAccessViewPage {
       await expect(
         pack.getByRole("button", { name: document, exact: true }).first(),
       ).toBeVisible();
+    }
+  }
+
+  private async assertServedPackDocuments(
+    servedParty: "Applicant" | "Respondent",
+    documents: string[],
+  ): Promise<void> {
+    const servedPack: Locator = this.page
+      .locator("ccd-read-complex-field-table", {
+        hasText: `Served party${servedParty}`,
+      })
+      .first();
+    await expect(servedPack).toBeVisible();
+    for (const document of documents) {
+      await expect(servedPack).toContainText(document);
     }
   }
 
