@@ -2,6 +2,7 @@ import { test } from "../../../../../fixtures.ts";
 import config from "../../../../../../utils/config.utils.js";
 import { OrderTypes } from "../../../../../../common/types.js";
 import { JudgePagesGroup } from "../../../../../../pageObjects/roleBasedGroupedPages/judgePages.js";
+import { CaseWorkerPagesGroup } from "../../../../../../pageObjects/roleBasedGroupedPages/caseWorkerPages.js";
 
 test.describe("Edit and approve a CA order tests", (): void => {
   let caseRef: string;
@@ -28,6 +29,7 @@ test.describe("Edit and approve a CA order tests", (): void => {
       orderType: "Parental responsibility order (C45A)",
       serveApplication: true,
       status: "Reviewed by Judge",
+      isUrgent: false,
       snapshotName:
         "C45A-judge-review-approve-order-giveAdmin-furtherDirections-ThenServe",
       snapshotPath: ["caseProgression", "orders", "editAndApproveAnOrders"],
@@ -35,8 +37,16 @@ test.describe("Edit and approve a CA order tests", (): void => {
   ].forEach((data) => {
     test(`Complete Editing and approving an C100 solicitor drafted order as a judge with the following option : ${data.judeOrderAction} @nightly @regression @accessibility`, async ({
       judge,
+      caseWorker,
+      navigationUtils,
     }): Promise<void> => {
-      await editAndApproveOrder(caseRef, judge, data);
+      await editAndApproveOrder(
+        caseRef,
+        judge,
+        caseWorker,
+        data,
+        navigationUtils,
+      );
     });
   });
   [
@@ -45,14 +55,23 @@ test.describe("Edit and approve a CA order tests", (): void => {
       orderType: "Parental responsibility order (C45A)",
       serveApplication: true,
       status: "Reviewed by Judge",
+      isUrgent: true,
       snapshotName: "C45A-judge-review-approve-order-sendAdmin-Serve",
       snapshotPath: ["caseProgression", "orders", "editAndApproveAnOrders"],
     },
   ].forEach((data) => {
-    test(`Complete Editing and approving an C100 solicitor drafted order as a judge with the following option : ${data.judeOrderAction} @regression @accessibility`, async ({
+    test(`Complete Editing and approving an C100 solicitor drafted order as a judge with the following option : ${data.judeOrderAction} and urgent day as : ${data.isUrgent} @regression @accessibility`, async ({
       judge,
+      caseWorker,
+      navigationUtils,
     }): Promise<void> => {
-      await editAndApproveOrder(caseRef, judge, data);
+      await editAndApproveOrder(
+        caseRef,
+        judge,
+        caseWorker,
+        data,
+        navigationUtils,
+      );
     });
   });
   [
@@ -61,26 +80,36 @@ test.describe("Edit and approve a CA order tests", (): void => {
       orderType: "Parental responsibility order (C45A)",
       serveApplication: true,
       status: "Rejected by Judge",
+      isUrgent: false,
       snapshotName: "C45A-judge-review-approve-order-askLegalRep-Changes",
       snapshotPath: ["caseProgression", "orders", "editAndApproveAnOrders"],
     },
   ].forEach((data) => {
     test(`Complete Editing and approving an C100 solicitor drafted order as a judge with the following option : ${data.judeOrderAction} @regression @accessibility`, async ({
       judge,
+      caseWorker,
+      navigationUtils,
     }): Promise<void> => {
-      await editAndApproveOrder(caseRef, judge, data);
+      await editAndApproveOrder(
+        caseRef,
+        judge,
+        caseWorker,
+        data,
+        navigationUtils,
+      );
     });
   });
 });
 
-async function editAndApproveOrder(caseRef, judge: JudgePagesGroup, data) {
-  const {
-    tasksPage,
-    summaryPage,
-    editAndApproveAnOrders,
-    draftedOrders,
-    manageOrders,
-  } = judge;
+async function editAndApproveOrder(
+  caseRef,
+  judge: JudgePagesGroup,
+  caseWorker: CaseWorkerPagesGroup,
+  data,
+  navigationUtils,
+) {
+  const { tasksPage, summaryPage, editAndApproveAnOrders, draftedOrders } =
+    judge;
   await tasksPage.assignTaskToMeAndTriggerNextSteps(
     "Review and Approve Legal rep Order - ",
     "Review and Approve Legal rep Order",
@@ -107,12 +136,12 @@ async function editAndApproveOrder(caseRef, judge: JudgePagesGroup, data) {
     await editAndApproveAnOrders.editAndApproveAnOrder21Page.clickContinue();
   }
 
-  await manageOrders.manageOrder31Page.assertPageContents(
-    "Edit and approve a draft order",
+  await editAndApproveAnOrders.editAndApproveAnOrder22Page.assertPageContents();
+  await editAndApproveAnOrders.editAndApproveAnOrder22Page.verifyAccessibility();
+  await editAndApproveAnOrders.editAndApproveAnOrder22Page.selectIsUrgent(
+    data.isUrgent,
   );
-  await manageOrders.manageOrder31Page.verifyAccessibility();
-  await manageOrders.manageOrder31Page.selectIsUrgent(false);
-  await manageOrders.manageOrder31Page.clickContinue();
+  await editAndApproveAnOrders.editAndApproveAnOrder22Page.clickContinue();
 
   await editAndApproveAnOrders.editAndApproveAnOrderSubmitPage.assertPageContents(
     data.snapshotPath,
@@ -170,4 +199,23 @@ async function editAndApproveOrder(caseRef, judge: JudgePagesGroup, data) {
       .join("_")}_draft.pdf`,
     data.snapshotName,
   );
+
+  //assert urgent day priority in the work allocation task
+  if (data.isUrgent) {
+    await navigationUtils.goToCase(
+      caseWorker.page,
+      config.manageCasesBaseURLCase,
+      caseRef,
+      "tasks",
+    );
+
+    const { tasksPage } = caseWorker;
+    await tasksPage.waitForTask("Complete the Order - " + data.orderType);
+    await tasksPage.task.assertTaskSummary(
+      "Complete the Order - " + data.orderType,
+      "urgent",
+      ["Assign to me"],
+      "Unassigned",
+    );
+  }
 }

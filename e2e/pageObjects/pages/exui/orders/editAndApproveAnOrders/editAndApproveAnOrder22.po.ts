@@ -2,7 +2,7 @@ import { EventPage } from "../../eventPage.po.js";
 import { expect, Locator, Page } from "@playwright/test";
 import { PageUtils } from "../../../../../utils/page.utils.js";
 
-export class ManageOrder31Page extends EventPage {
+export class EditAndApproveAnOrder22Page extends EventPage {
   readonly urgentYesRadio: Locator = this.page.locator(
     "#checkIsThisUrgent_Yes",
   );
@@ -18,7 +18,7 @@ export class ManageOrder31Page extends EventPage {
     "Only select Yes if this work needs to be actioned today. Selecting Yes will generate an urgent work allocation task for the recipient.";
 
   constructor(page: Page) {
-    super(page, "Manage orders");
+    super(page, "Edit and approve a draft order");
   }
 
   private readonly pageUtils: PageUtils = new PageUtils(this.page);
