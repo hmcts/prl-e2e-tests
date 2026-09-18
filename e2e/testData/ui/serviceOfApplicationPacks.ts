@@ -1,5 +1,5 @@
-import { OrderTypes, solicitorCaseCreateType } from "../../common/types.js";
-import { ServiceOptions } from "../../pageObjects/pages/exui/serviceOfApplication/serviceOfApplication4.po.js";
+import { OrderTypes } from "../../common/types.js";
+import { ServicePackParams } from "../../pageObjects/pages/exui/caseView/serviceOfApplication.po.js";
 
 type PackDocuments = {
   applicantPack: string[];
@@ -25,13 +25,13 @@ const orderDocuments: Partial<Record<OrderTypes, string[]>> = {
   ],
 };
 
-export function getPackDocuments(
-  caseType: solicitorCaseCreateType,
-  orderType: OrderTypes,
-  isCitizenCase: boolean,
-  isWelshLanguageRequired: boolean,
-  serviceOptions: ServiceOptions,
-): PackDocuments | undefined {
+export function getPackDocuments({
+  caseType,
+  orderType,
+  isCitizenCase,
+  isWelshLanguageRequired,
+  serviceOptions,
+}: Partial<ServicePackParams>): PackDocuments | undefined {
   if (serviceOptions.personallyServed === "notApplicable") {
     return undefined;
   }

@@ -1,18 +1,8 @@
 import { expect, Locator, Page } from "@playwright/test";
-import {
-  PersonalServiceTypes,
-  solicitorCaseCreateType,
-  YesNoNotApplicable,
-} from "../../../../common/types.ts";
+import { solicitorCaseCreateType } from "../../../../common/types.ts";
 import { PageUtils } from "../../../../utils/page.utils.ts";
 import { EventPage } from "../eventPage.po.ts";
-
-export interface ServiceOptions {
-  personallyServed: YesNoNotApplicable;
-  servedBy?: PersonalServiceTypes;
-  serveCafcass?: boolean;
-  serveLocalAuthority?: boolean;
-}
+import { ServiceOptions } from "../caseView/serviceOfApplication.po.js";
 
 export class ServiceOfApplication4Page extends EventPage {
   private readonly pageUtils = new PageUtils(this.page);

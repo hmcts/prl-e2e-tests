@@ -1,9 +1,8 @@
 import config from "../../../utils/config.utils.ts";
 import { test } from "../../fixtures.ts";
 import { OrderTypes } from "../../../common/types.ts";
-import { ServiceOptions } from "../../../pageObjects/pages/exui/serviceOfApplication/serviceOfApplication4.po.js";
+import { ServiceOptions } from "../../../pageObjects/pages/exui/caseView/serviceOfApplication.po.js";
 
-// TEST COMMENT
 interface ServiceOfApplicationScenario {
   orderType: OrderTypes;
   orderName?: string;
@@ -107,14 +106,14 @@ test.describe("Service of Application task for DA Citizen case tests.", () => {
         await confirmPage.clickCloseAndReturnToCaseDetails();
 
         await serviceOfApplicationPage.goToPage();
-        await serviceOfApplicationPage.assertServicePacks(
-          "FL401",
-          orderType,
-          true,
-          false,
-          serviceOptions,
-          true,
-        );
+        await serviceOfApplicationPage.assertServicePacks({
+          caseType: "FL401",
+          orderType: orderType,
+          isCitizenCase: true,
+          isWelshLanguageRequired: false,
+          serviceOptions: serviceOptions,
+          areConfidentialDetailsChecked: true,
+        });
       });
     },
   );

@@ -2,11 +2,12 @@ import { expect, Locator, Page } from "@playwright/test";
 import { CaseAccessViewPage } from "./caseAccessView.po.js";
 import {
   OrderTypes,
+  PersonalServiceTypes,
   solicitorCaseCreateType,
+  YesNoNotApplicable,
 } from "../../../../common/types.ts";
 import { DateHelperUtils } from "../../../../utils/dateHelpers.utils.js";
 import config from "../../../../utils/config.utils.js";
-import { ServiceOptions } from "../serviceOfApplication/serviceOfApplication4.po.js";
 import { getPackDocuments } from "../../../../testData/ui/serviceOfApplicationPacks.js";
 
 export interface ServedDetails {
@@ -14,20 +15,27 @@ export interface ServedDetails {
   servedBy: string;
 }
 
+export interface ServiceOptions {
+  personallyServed: YesNoNotApplicable;
+  servedBy?: PersonalServiceTypes;
+  serveCafcass?: boolean;
+  serveLocalAuthority?: boolean;
+}
+
+export interface ServicePackParams {
+  caseType: solicitorCaseCreateType;
+  orderType: OrderTypes;
+  isCitizenCase: boolean;
+  isWelshLanguageRequired: boolean;
+  serviceOptions: ServiceOptions;
+  areConfidentialDetailsChecked: boolean;
+}
+
 export class ServiceOfApplicationPage extends CaseAccessViewPage {
   private readonly statementOfServiceTable: Locator = this.page.locator(
     "#case-viewer-field-read--stmtOfServiceForApplication",
   );
   private dateHelper: DateHelperUtils = new DateHelperUtils();
-  private readonly unservedLabel: Locator =
-    this.page.locator("#unServedPackLabel");
-  private readonly servedLabel: Locator = this.page.locator("#servedPackLabel");
-  private readonly unservedRespondentPack: Locator = this.page.locator(
-    "#case-viewer-field-read--unServedRespondentPack",
-  );
-  private readonly notificationsSection: Locator = this.page.locator(
-    "#case-viewer-field-read--finalServedApplicationDetailsList",
-  );
 
   constructor(page: Page) {
     super(page);
@@ -76,18 +84,69 @@ export class ServiceOfApplicationPage extends CaseAccessViewPage {
     }
   }
 
-  private async expandServedPackDetails(): Promise<void> {
-    // Served packs is already expanded if print details is showing
-    const printDetailsLocator: Locator = this.page.getByText("Print details", {
-      exact: true,
+  private async assertTableRow(
+    sosTable: Locator,
+    label: string,
+    value: string,
+  ): Promise<void> {
+    const labelLocator: Locator = sosTable
+      .getByRole("rowheader", {
+        name: label,
+        exact: true,
+      })
+      .first();
+    //const exactValue: boolean = !label.includes("When");
+    const valueLocator: Locator = sosTable
+      .getByRole("cell", {
+        name: value,
+        exact: false,
+      })
+      .first();
+    await expect(labelLocator).toBeVisible();
+    await expect(valueLocator).toBeVisible();
+  }
+
+  async assertServicePacks({
+    caseType,
+    orderType,
+    isCitizenCase,
+    isWelshLanguageRequired,
+    serviceOptions,
+    areConfidentialDetailsChecked,
+  }: ServicePackParams): Promise<void> {
+    const packDocuments = getPackDocuments({
+      caseType: caseType,
+      orderType: orderType,
+      isCitizenCase: isCitizenCase,
+      isWelshLanguageRequired: isWelshLanguageRequired,
+      serviceOptions: serviceOptions,
     });
-    if (await printDetailsLocator.isHidden()) {
-      const expanders: Locator = this.page.getByRole("link", {
-        name: "accordion-img",
-      });
-      for (let index = 0; index < (await expanders.count()); index++) {
-        await expanders.nth(index).click();
-      }
+
+    if (packDocuments) {
+      await this.assertPackDocuments(
+        "Applicants pack",
+        packDocuments.applicantPack,
+        areConfidentialDetailsChecked,
+        serviceOptions.personallyServed === "yes",
+        "Applicant",
+      );
+      await this.assertPackDocuments(
+        "Respondents pack",
+        packDocuments.respondentPack,
+        areConfidentialDetailsChecked,
+        serviceOptions.personallyServed === "yes",
+        "Respondent",
+      );
+    }
+
+    // TODO: create ticket to cover incorrect served by person
+
+    if (serviceOptions.serveCafcass) {
+      await this.assertCafcassPack();
+    }
+
+    if (serviceOptions.serveLocalAuthority) {
+      await this.assertLocalAuthorityPack();
     }
   }
 
@@ -201,26 +260,26 @@ export class ServiceOfApplicationPage extends CaseAccessViewPage {
     }
   }
 
-  private async assertTableRow(
-    sosTable: Locator,
-    label: string,
-    value: string,
-  ): Promise<void> {
-    const labelLocator: Locator = sosTable
-      .getByRole("rowheader", {
-        name: label,
-        exact: true,
-      })
-      .first();
-    //const exactValue: boolean = !label.includes("When");
-    const valueLocator: Locator = sosTable
-      .getByRole("cell", {
-        name: value,
-        exact: false,
-      })
-      .first();
-    await expect(labelLocator).toBeVisible();
-    await expect(valueLocator).toBeVisible();
+  private async expandServedPackDetails(): Promise<void> {
+    // Served packs is already expanded if print details is showing
+    const printDetailsLocator: Locator = this.page.getByText("Print details", {
+      exact: true,
+    });
+    if (await printDetailsLocator.isHidden()) {
+      const expanders: Locator = this.page.getByRole("link", {
+        name: "accordion-img",
+      });
+      for (let index = 0; index < (await expanders.count()); index++) {
+        await expanders.nth(index).click();
+      }
+    }
+  }
+
+  private async assertCafcassPack(): Promise<void> {
+    const pack: Locator = this.page.locator("ccd-read-complex-field-table", {
+      hasText: "Cafcass cymru",
+    });
+    await expect(pack).toBeVisible();
   }
 
   private async assertLocalAuthorityPack(): Promise<void> {
@@ -253,57 +312,5 @@ export class ServiceOfApplicationPage extends CaseAccessViewPage {
         })
         .first(),
     ).toBeVisible();
-  }
-
-  private async assertCafcassPack(): Promise<void> {
-    const pack: Locator = this.page.locator("ccd-read-complex-field-table", {
-      hasText: "Cafcass cymru",
-    });
-    await expect(pack).toBeVisible();
-  }
-
-  async assertServicePacks(
-    caseType: solicitorCaseCreateType,
-    orderType: OrderTypes,
-    isCitizenCase: boolean,
-    isWelshLanguageRequired: boolean,
-    serviceOptions: ServiceOptions,
-    areConfidentialDetailsChecked: boolean,
-  ): Promise<void> {
-    const packDocuments = getPackDocuments(
-      caseType,
-      orderType,
-      isCitizenCase,
-      isWelshLanguageRequired,
-      serviceOptions,
-    );
-
-    if (packDocuments) {
-      await this.assertPackDocuments(
-        "Applicants pack",
-        packDocuments.applicantPack,
-        areConfidentialDetailsChecked,
-        serviceOptions.personallyServed === "yes",
-        "Applicant",
-      );
-      await this.assertPackDocuments(
-        "Respondents pack",
-        packDocuments.respondentPack,
-        areConfidentialDetailsChecked,
-        serviceOptions.personallyServed === "yes",
-        "Respondent",
-      );
-    }
-
-    // TODO: create ticket to cover incorrect served by person
-
-    // TODO: sort this properly
-    if (serviceOptions.serveCafcass) {
-      await this.assertCafcassPack();
-    }
-
-    if (serviceOptions.serveLocalAuthority) {
-      await this.assertLocalAuthorityPack();
-    }
   }
 }

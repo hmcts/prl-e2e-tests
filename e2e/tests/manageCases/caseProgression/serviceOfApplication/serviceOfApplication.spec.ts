@@ -4,9 +4,9 @@ import {
   OrderTypes,
   solicitorCaseCreateType,
 } from "../../../../common/types.ts";
-import { ServiceOptions } from "../../../../pageObjects/pages/exui/serviceOfApplication/serviceOfApplication4.po.js";
 import { CaseWorkerPagesGroup } from "../../../../pageObjects/roleBasedGroupedPages/caseWorkerPages.js";
 import { ManageCaseEventUtils } from "../../../../utils/manageCaseEvent.utils.js";
+import { ServiceOptions } from "../../../../pageObjects/pages/exui/caseView/serviceOfApplication.po.js";
 
 interface ServiceOfApplicationParams {
   caseRef: string;
@@ -258,12 +258,12 @@ async function completeServiceOfApplication(
   await confirmPage.clickCloseAndReturnToCaseDetails();
 
   await serviceOfApplicationPage.goToPage();
-  await serviceOfApplicationPage.assertServicePacks(
-    caseType,
-    orderType,
-    false,
-    true,
-    serviceOptions,
-    false,
-  );
+  await serviceOfApplicationPage.assertServicePacks({
+    caseType: caseType,
+    orderType: orderType,
+    isCitizenCase: false,
+    isWelshLanguageRequired: true,
+    serviceOptions: serviceOptions,
+    areConfidentialDetailsChecked: false,
+  });
 }

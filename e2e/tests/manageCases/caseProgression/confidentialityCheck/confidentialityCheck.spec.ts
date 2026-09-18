@@ -6,7 +6,6 @@ import {
 import { test } from "../../../fixtures.js";
 import config from "../../../../utils/config.utils.js";
 
-// TEST COMMENT
 interface ConfidentialityCheckScenario {
   orderType: OrderTypes;
   serveApplication: boolean;
@@ -113,12 +112,17 @@ caseTypes.forEach((caseType) => {
           );
           await serviceOfApplication.serviceOfApplicationPage.goToPage();
           await serviceOfApplication.serviceOfApplicationPage.assertServicePacks(
-            caseType,
-            orderType,
-            false,
-            true,
-            { personallyServed: "yes", servedBy: "courtAdmin" }, // these are the same options as the api call
-            true,
+            {
+              caseType: caseType,
+              orderType: orderType,
+              isCitizenCase: false,
+              isWelshLanguageRequired: true,
+              serviceOptions: {
+                personallyServed: "yes",
+                servedBy: "courtAdmin", // these are the same options as the api call
+              },
+              areConfidentialDetailsChecked: true,
+            },
           );
         });
       },
