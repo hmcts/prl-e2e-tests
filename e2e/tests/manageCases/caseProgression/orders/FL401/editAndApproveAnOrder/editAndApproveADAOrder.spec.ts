@@ -73,13 +73,8 @@ test.describe("Edit and approve a DA order tests", (): void => {
 });
 
 async function editAndApproveOrder(caseRef, judge: JudgePagesGroup, data) {
-  const {
-    tasksPage,
-    summaryPage,
-    editAndApproveAnOrders,
-    draftedOrders,
-    manageOrders,
-  } = judge;
+  const { tasksPage, summaryPage, editAndApproveAnOrders, draftedOrders } =
+    judge;
   await tasksPage.assignTaskToMeAndTriggerNextSteps(
     "Review and Approve Legal rep Order - ",
     "Review and Approve Legal rep Order",
@@ -106,12 +101,12 @@ async function editAndApproveOrder(caseRef, judge: JudgePagesGroup, data) {
     await editAndApproveAnOrders.editAndApproveAnOrder21Page.clickContinue();
   }
 
-  await manageOrders.manageOrder31Page.assertPageContents(
-    "Edit and approve a draft order",
+  await editAndApproveAnOrders.editAndApproveAnOrder22Page.assertPageContents();
+  await editAndApproveAnOrders.editAndApproveAnOrder22Page.verifyAccessibility();
+  await editAndApproveAnOrders.editAndApproveAnOrder22Page.selectIsUrgent(
+    false,
   );
-  await manageOrders.manageOrder31Page.verifyAccessibility();
-  await manageOrders.manageOrder31Page.selectIsUrgent(false);
-  await manageOrders.manageOrder31Page.clickContinue();
+  await editAndApproveAnOrders.editAndApproveAnOrder22Page.clickContinue();
 
   await editAndApproveAnOrders.editAndApproveAnOrderSubmitPage.assertPageContents(
     data.snapshotPath,
