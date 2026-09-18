@@ -157,7 +157,12 @@ export class ServiceOfApplicationPage extends CaseAccessViewPage {
     isPersonallyServed: boolean,
     party: "Applicant" | "Respondent",
   ): Promise<void> {
-    if (areConfidentialDetailsChecked && party === "Applicant") {
+    const shouldUseServedPack =
+      areConfidentialDetailsChecked &&
+      (party === "Applicant" ||
+        (party === "Respondent" && !isPersonallyServed));
+
+    if (shouldUseServedPack) {
       await expect(
         this.page.getByRole("heading", {
           name: "Served pack",
@@ -168,95 +173,46 @@ export class ServiceOfApplicationPage extends CaseAccessViewPage {
 
       await this.expandServedPackDetails();
 
-      // check served pack
-      const servedPack: Locator = this.page
+      const pack = this.page
         .locator("ccd-read-complex-field-table", {
           hasText: `Served party${party}`,
         })
         .first();
-      await expect(servedPack).toBeVisible();
-      await expect(servedPack.getByRole("button")).toHaveCount(
-        documents.length,
-      );
-      for (const document of documents) {
-        await expect(
-          servedPack
-            .getByRole("button", { name: document, exact: true })
-            .first(),
-        ).toBeVisible();
-      }
-    } else if (areConfidentialDetailsChecked && party === "Respondent") {
-      if (isPersonallyServed) {
-        // respondent pack will show as unserved
-        await expect(
-          this.page.getByRole("heading", {
-            name: "Unserved pack",
-            exact: true,
-            level: 2,
-          }),
-        ).toBeVisible();
 
-        const pack: Locator = this.page.locator(
-          "ccd-read-complex-field-table",
-          {
-            hasText: packName,
-          },
-        );
-        await expect(pack).toBeVisible();
-        await expect(pack.getByRole("button")).toHaveCount(documents.length);
-        for (const document of documents) {
-          await expect(
-            pack.getByRole("button", { name: document, exact: true }).first(),
-          ).toBeVisible();
-        }
-      } else {
-        await expect(
-          this.page.getByRole("heading", {
-            name: "Served pack",
-            exact: true,
-            level: 2,
-          }),
-        ).toBeVisible();
+      await this.assertDocuments(pack, documents);
+      return;
+    }
 
-        await this.expandServedPackDetails();
+    await expect(
+      this.page.getByRole("heading", {
+        name: "Unserved pack",
+        exact: true,
+        level: 2,
+      }),
+    ).toBeVisible();
 
-        // check served pack
-        const servedPack: Locator = this.page
-          .locator("ccd-read-complex-field-table", {
-            hasText: `Served party${party}`,
-          })
-          .first();
-        await expect(servedPack).toBeVisible();
-        await expect(servedPack.getByRole("button")).toHaveCount(
-          documents.length,
-        );
-        for (const document of documents) {
-          await expect(
-            servedPack
-              .getByRole("button", { name: document, exact: true })
-              .first(),
-          ).toBeVisible();
-        }
-      }
-    } else {
+    const pack = this.page.locator("ccd-read-complex-field-table", {
+      hasText: packName,
+    });
+
+    await this.assertDocuments(pack, documents);
+  }
+
+  private async assertDocuments(
+    pack: Locator,
+    documents: string[],
+  ): Promise<void> {
+    await expect(pack).toBeVisible();
+    await expect(pack.getByRole("button")).toHaveCount(documents.length);
+    for (const document of documents) {
       await expect(
-        this.page.getByRole("heading", {
-          name: "Unserved pack",
-          exact: true,
-          level: 2,
-        }),
+        pack
+          .getByRole("button", {
+            name: document,
+            exact: true,
+          })
+          .first(),
       ).toBeVisible();
-
-      const pack: Locator = this.page.locator("ccd-read-complex-field-table", {
-        hasText: packName,
-      });
-      await expect(pack).toBeVisible();
-      await expect(pack.getByRole("button")).toHaveCount(documents.length);
-      for (const document of documents) {
-        await expect(
-          pack.getByRole("button", { name: document, exact: true }).first(),
-        ).toBeVisible();
-      }
     }
   }
 
