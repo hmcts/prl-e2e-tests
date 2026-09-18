@@ -35,7 +35,7 @@ test.describe(`Service of Application task for C100 case with confidential detai
     },
   );
 
-  test(`Complete Task - service of application (personally served by applicant's solicitor + cafcass + local authority) - Child arrangements, specific issue or prohibited steps order. @regression @accessibility @nightly @1`, async ({
+  test(`Complete Task - service of application (personally served by applicant's solicitor + cafcass + local authority) - Child arrangements, specific issue or prohibited steps order. @regression @accessibility @nightly`, async ({
     caseWorker,
     manageCasesEventUtils,
   }) => {
@@ -55,7 +55,7 @@ test.describe(`Service of Application task for C100 case with confidential detai
     });
   });
 
-  test(`Complete Task - service of application (personally served by court bailiff) - Parental responsibility order. @regression @accessibility @2`, async ({
+  test(`Complete Task - service of application (personally served by court bailiff) - Parental responsibility order. @regression @accessibility`, async ({
     caseWorker,
     manageCasesEventUtils,
   }) => {
@@ -72,7 +72,7 @@ test.describe(`Service of Application task for C100 case with confidential detai
     });
   });
 
-  test(`Complete Task - service of application (personally served by court admin) - Child arrangements, specific issue or prohibited steps order. @regression @accessibility @3`, async ({
+  test(`Complete Task - service of application (personally served by court admin) - Child arrangements, specific issue or prohibited steps order. @regression @accessibility`, async ({
     caseWorker,
     manageCasesEventUtils,
   }) => {
@@ -90,7 +90,7 @@ test.describe(`Service of Application task for C100 case with confidential detai
     });
   });
 
-  test(`Complete Task - service of application (non personally served to all parties) - Parental responsibility order. @regression @accessibility @4`, async ({
+  test(`Complete Task - service of application (non personally served to all parties) - Parental responsibility order. @regression @accessibility @nightly`, async ({
     caseWorker,
     manageCasesEventUtils,
   }) => {
@@ -106,7 +106,7 @@ test.describe(`Service of Application task for C100 case with confidential detai
     });
   });
 
-  test(`Complete Task - service of application (service not applicable + cafcass + local authority) - Child arrangements, specific issue or prohibited steps order. @regression @accessibility @5`, async ({
+  test(`Complete Task - service of application (service not applicable + cafcass + local authority) - Child arrangements, specific issue or prohibited steps order. @regression @accessibility`, async ({
     caseWorker,
     manageCasesEventUtils,
   }) => {
@@ -143,7 +143,7 @@ test.describe(`Service of Application task for FL401 case with confidential deta
     },
   );
 
-  test(`Complete Task - service of application (personally served by applicant's solicitor) - Power of arrest order. @regression @accessibility @nightly @6`, async ({
+  test(`Complete Task - service of application (personally served by applicant's solicitor) - Power of arrest order. @regression @accessibility @nightly`, async ({
     caseWorker,
     manageCasesEventUtils,
   }) => {
@@ -160,7 +160,7 @@ test.describe(`Service of Application task for FL401 case with confidential deta
     });
   });
 
-  test(`Complete Task - service of application (personally served by court bailiff) - Amended, discharged or varied order. @regression @accessibility @7`, async ({
+  test(`Complete Task - service of application (personally served by court bailiff) - Amended, discharged or varied order. @regression @accessibility`, async ({
     caseWorker,
     manageCasesEventUtils,
   }) => {
@@ -177,7 +177,7 @@ test.describe(`Service of Application task for FL401 case with confidential deta
     });
   });
 
-  test(`Complete Task - service of application (personally served by court admin) - Power of arrest order. @regression @accessibility @8`, async ({
+  test(`Complete Task - service of application (personally served by court admin) - Power of arrest order. @regression @accessibility`, async ({
     caseWorker,
     manageCasesEventUtils,
   }) => {
@@ -194,7 +194,7 @@ test.describe(`Service of Application task for FL401 case with confidential deta
     });
   });
 
-  test(`Complete Task - service of application (non personally served to all parties) - Amended, discharged or varied order. @regression @accessibility @nightly @9`, async ({
+  test(`Complete Task - service of application (non personally served to all parties) - Amended, discharged or varied order. @regression @accessibility @nightly`, async ({
     caseWorker,
     manageCasesEventUtils,
   }) => {
