@@ -42,6 +42,7 @@ import { RestrictedCaseAccess1Page } from "../pages/exui/restrictedCaseAccess/re
 import { RestrictedCaseAccess2Page } from "../pages/exui/restrictedCaseAccess/restrictedCaseAccess2.po.js";
 import { RestrictedCaseAccessSubmitPage } from "../pages/exui/restrictedCaseAccess/restrictedCaseAccessSubmit.po.js";
 import { RestrictedCaseAccessConfirmPage } from "../pages/exui/restrictedCaseAccess/restrictedCaseAccessConfirm.po.js";
+import { EditAndApproveAnOrder22Page } from "../pages/exui/orders/editAndApproveAnOrders/editAndApproveAnOrder22.po.js";
 
 export class JudgePagesGroup {
   constructor(public readonly page: Page) {}
@@ -110,6 +111,7 @@ export class JudgePagesGroup {
     return {
       editAndApproveAnOrder2Page: new EditAndApproveAnOrder2Page(this.page),
       editAndApproveAnOrder21Page: new EditAndApproveAnOrder21Page(this.page),
+      editAndApproveAnOrder22Page: new EditAndApproveAnOrder22Page(this.page),
       editAndApproveAnOrderSubmitPage: new EditAndApproveAnOrderSubmitPage(
         this.page,
       ),
