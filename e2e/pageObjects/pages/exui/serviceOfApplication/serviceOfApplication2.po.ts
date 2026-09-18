@@ -3,6 +3,7 @@ import { solicitorCaseCreateType } from "../../../../common/types.ts";
 import { PageUtils } from "../../../../utils/page.utils.ts";
 import { FileUploadComponent } from "../../../components/exui/uploadFile.component.ts";
 import { EventPage } from "../eventPage.po.ts";
+import { Config } from "../../../../utils/index.js";
 
 export class ServiceOfApplication2Page extends EventPage {
   private readonly pageUtils = new PageUtils(this.page);
@@ -112,6 +113,6 @@ export class ServiceOfApplication2Page extends EventPage {
       caseType === "C100"
         ? this.specialArrangementsLetter
         : this.noticeOfSafetyLetter;
-    await letter.completeUpload();
+    await letter.completeUpload(Config.testSpecialArrangementsLetter);
   }
 }

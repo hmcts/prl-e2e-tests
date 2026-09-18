@@ -261,6 +261,9 @@ async function completeServiceOfApplication(
   await serviceOfApplicationPage.assertServicePacks(
     caseType,
     orderType,
+    false,
+    true,
     serviceOptions,
+    false,
   );
 }

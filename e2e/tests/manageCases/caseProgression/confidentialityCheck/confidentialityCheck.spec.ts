@@ -112,9 +112,13 @@ caseTypes.forEach((caseType) => {
             "Confidentiality check",
           );
           await serviceOfApplication.serviceOfApplicationPage.goToPage();
-          await serviceOfApplication.serviceOfApplicationPage.assertConfidentialCheckDetails(
+          await serviceOfApplication.serviceOfApplicationPage.assertServicePacks(
             caseType,
             orderType,
+            false,
+            true,
+            { personallyServed: "yes", servedBy: "courtAdmin" }, // these are the same options as the api call
+            true,
           );
         });
       },
