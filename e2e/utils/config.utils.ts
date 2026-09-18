@@ -141,6 +141,10 @@ export class Config {
     import.meta.dirname,
     "../assets/Special arrangements letter.docx",
   );
+  public static readonly testSafetyLetter: string = path.resolve(
+    import.meta.dirname,
+    "../assets/Safety Letter.docx",
+  );
 
   // Named mock PDFs for the LA Manage Documents journey (5 documents)
   public static readonly testPdfFileCR1: string = path.resolve(

@@ -113,6 +113,10 @@ export class ServiceOfApplication2Page extends EventPage {
       caseType === "C100"
         ? this.specialArrangementsLetter
         : this.noticeOfSafetyLetter;
-    await letter.completeUpload(Config.testSpecialArrangementsLetter);
+    const file =
+      caseType === "C100"
+        ? Config.testSpecialArrangementsLetter
+        : Config.testSafetyLetter;
+    await letter.completeUpload(file);
   }
 }
