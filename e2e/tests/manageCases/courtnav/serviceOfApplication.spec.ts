@@ -1,11 +1,12 @@
 import config from "../../../utils/config.utils.ts";
 import { test } from "../../fixtures.ts";
 import { OrderTypes } from "../../../common/types.ts";
+import { ServiceOptions } from "../../../pageObjects/pages/exui/caseView/serviceOfApplication.po.js";
 
 interface ServiceOfApplicationScenario {
   orderType: OrderTypes;
   orderName?: string;
-  personallyServed: boolean;
+  serviceOptions: ServiceOptions;
   snapshotName: string;
 }
 
@@ -13,13 +14,13 @@ const scenarios: ServiceOfApplicationScenario[] = [
   {
     orderType: "Power of arrest (FL406)",
     orderName: "Power of arrest",
-    personallyServed: true,
-    snapshotName: "courtnav-fl406-personally-served",
+    serviceOptions: { personallyServed: "yes", servedBy: "courtBailiff" },
+    snapshotName: "courtnav-fl406-personally-served-by-court-bailiff",
   },
   {
     orderType: "Amended, discharged or varied order (FL404B)",
-    personallyServed: true,
-    snapshotName: "courtnav-fl404b-personally-served",
+    serviceOptions: { personallyServed: "no" },
+    snapshotName: "courtnav-fl404b-not-personally-served",
   },
 ];
 
@@ -51,13 +52,15 @@ test.describe("Service of Application task for DA Citizen case tests.", () => {
   );
 
   scenarios.forEach(
-    ({ orderType, orderName = orderType, personallyServed, snapshotName }) => {
-      const serviceMethod = personallyServed
-        ? "personally served"
-        : "non-personally served";
-      const confirmation = personallyServed
-        ? "personal service"
-        : "non-personal service";
+    ({ orderType, orderName = orderType, serviceOptions, snapshotName }) => {
+      const serviceMethod =
+        serviceOptions.personallyServed === "yes"
+          ? "personally served"
+          : "non-personally served";
+      const confirmation =
+        serviceOptions.personallyServed === "yes"
+          ? "personal service"
+          : "non-personal service";
 
       test(`Complete Task - service of application (${serviceMethod}) - ${orderType} with accessibility test. @regression @accessibility${orderType === "Power of arrest (FL406)" ? " @nightly" : ""}`, async ({
         caseWorker,
@@ -88,11 +91,11 @@ test.describe("Service of Application task for DA Citizen case tests.", () => {
 
         await page4.assertPageContents("FL401");
         await page4.verifyAccessibility();
-        await page4.selectServiceOptions("FL401", personallyServed);
+        await page4.selectServiceOptions("FL401", serviceOptions, true);
         await page4.clickContinue();
 
         await submitPage.assertPageContents(
-          ["manageCases", "courtnav", "serviceOfApplication"],
+          ["courtnav", "serviceOfApplication"],
           snapshotName,
         );
         await submitPage.verifyAccessibility();
@@ -103,12 +106,14 @@ test.describe("Service of Application task for DA Citizen case tests.", () => {
         await confirmPage.clickCloseAndReturnToCaseDetails();
 
         await serviceOfApplicationPage.goToPage();
-        await serviceOfApplicationPage.assertServicePacks(
-          "FL401",
-          orderType,
-          personallyServed,
-          "Citizen",
-        );
+        await serviceOfApplicationPage.assertServicePacks({
+          caseType: "FL401",
+          orderType: orderType,
+          isCitizenCase: true,
+          isWelshLanguageRequired: false,
+          serviceOptions: serviceOptions,
+          areConfidentialDetailsChecked: true,
+        });
       });
     },
   );
