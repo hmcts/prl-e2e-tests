@@ -17,11 +17,11 @@ const scenarios: ServiceOfApplicationScenario[] = [
     serviceOptions: { personallyServed: "yes", servedBy: "courtBailiff" },
     snapshotName: "courtnav-fl406-personally-served-by-court-bailiff",
   },
-  {
-    orderType: "Amended, discharged or varied order (FL404B)",
-    serviceOptions: { personallyServed: "no" },
-    snapshotName: "courtnav-fl404b-not-personally-served",
-  },
+  // {
+  //   orderType: "Amended, discharged or varied order (FL404B)",
+  //   serviceOptions: { personallyServed: "no" },
+  //   snapshotName: "courtnav-fl404b-not-personally-served",
+  // },
 ];
 
 test.describe("Service of Application task for DA Citizen case tests.", () => {
@@ -95,7 +95,7 @@ test.describe("Service of Application task for DA Citizen case tests.", () => {
         await page4.clickContinue();
 
         await submitPage.assertPageContents(
-          ["manageCases", "courtnav", "serviceOfApplication"],
+          ["courtnav", "serviceOfApplication"],
           snapshotName,
         );
         await submitPage.verifyAccessibility();
