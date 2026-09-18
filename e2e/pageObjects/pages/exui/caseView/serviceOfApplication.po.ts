@@ -139,7 +139,7 @@ export class ServiceOfApplicationPage extends CaseAccessViewPage {
       );
     }
 
-    // TODO: create ticket to cover incorrect served by person
+    // Need to fix the servedBy issues in the following ticket FPVTL-3643 before we can assert the servedBy is correct in the tests
 
     if (serviceOptions.serveCafcass) {
       await this.assertCafcassPack();
