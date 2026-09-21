@@ -6,9 +6,9 @@ export const C100SoaWithoutOrderRequestData = {
       process.env.MANAGE_CASES_TEST_ENV === "demo"
         ? {
             document_url:
-              "http://dm-store-aat.service.core-compute-aat.internal/documents/230db177-a3aa-4a3c-b70d-db1fd434a72d",
+              "http://dm-store-demo.service.core-compute-demo.internal/documents/230db177-a3aa-4a3c-b70d-db1fd434a72d",
             document_binary_url:
-              "http://dm-store-aat.service.core-compute-aat.internal/documents/230db177-a3aa-4a3c-b70d-db1fd434a72d/binary",
+              "http://dm-store-demo.service.core-compute-demo.internal/documents/230db177-a3aa-4a3c-b70d-db1fd434a72d/binary",
             document_filename: "Special arrangements letter.docx",
           }
         : {
@@ -36,9 +36,9 @@ export const Fl401SoaWithoutOrderRequestData = {
       process.env.MANAGE_CASES_TEST_ENV === "demo"
         ? {
             document_url:
-              "http://dm-store-aat.service.core-compute-aat.internal/documents/045c59dd-d67c-4b3a-8a9e-9820dbbd9db2",
+              "http://dm-store-demo.service.core-compute-demo.internal/documents/045c59dd-d67c-4b3a-8a9e-9820dbbd9db2",
             document_binary_url:
-              "http://dm-store-aat.service.core-compute-aat.internal/documents/045c59dd-d67c-4b3a-8a9e-9820dbbd9db2/binary",
+              "http://dm-store-demo.service.core-compute-demo.internal/documents/045c59dd-d67c-4b3a-8a9e-9820dbbd9db2/binary",
             document_filename: "Safety Letter.docx",
           }
         : {
