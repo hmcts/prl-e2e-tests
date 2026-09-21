@@ -17,6 +17,7 @@ interface ServiceOfApplicationParams {
   snapshotName: string;
 }
 
+// TEST COMMENT
 // C100
 test.describe(`Service of Application task for C100 case with confidential details tests.`, () => {
   let caseRef: string;
