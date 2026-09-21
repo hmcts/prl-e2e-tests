@@ -75,7 +75,7 @@ caseTypes.forEach((caseType) => {
             caseManager.page,
             config.manageCasesBaseURLCase,
             caseRef,
-            "tasks"
+            "tasks",
           );
 
           await tasksPage.assignTaskToMeAndTriggerNextSteps(
@@ -111,9 +111,18 @@ caseTypes.forEach((caseType) => {
             "Confidentiality check",
           );
           await serviceOfApplication.serviceOfApplicationPage.goToPage();
-          await serviceOfApplication.serviceOfApplicationPage.assertConfidentialCheckDetails(
-            caseType,
-            orderType,
+          await serviceOfApplication.serviceOfApplicationPage.assertServicePacks(
+            {
+              caseType: caseType,
+              orderType: orderType,
+              isCitizenCase: false,
+              isWelshLanguageRequired: true,
+              serviceOptions: {
+                personallyServed: "yes",
+                servedBy: "courtAdmin", // these are the same options as the api call
+              },
+              areConfidentialDetailsChecked: true,
+            },
           );
         });
       },

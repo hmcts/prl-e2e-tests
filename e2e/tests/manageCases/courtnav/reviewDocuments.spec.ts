@@ -49,7 +49,7 @@ test.describe("Review Documents task for DA Solicitor case tests.", () => {
     await reviewDocuments.page2.clickContinue();
 
     await reviewDocuments.submitPage.assertPageContents(
-      ["manageCases", "courtnav"],
+      ["courtnav", "reviewDocuments"],
       `review-documents-CourtNav-${yesNoNotSureRestrictDocs}`,
     );
     await reviewDocuments.submitPage.verifyAccessibility();
