@@ -231,10 +231,7 @@ export class ConfidentialityCheck1Page extends EventPage {
     await expect(pack.getByText("Served by", { exact: true })).toBeVisible();
 
     // Served by value
-    const servedBy =
-      process.env.MANAGE_CASES_TEST_ENV === "demo"
-        ? "PRL Demo Swansea HCTL"
-        : "PRL Court admin";
+    const servedBy = "PRL Court admin";
 
     await expect(pack.getByText(servedBy, { exact: true })).toBeVisible();
 
