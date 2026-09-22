@@ -5,6 +5,7 @@ import {
 } from "../../../../common/types.js";
 import { test } from "../../../fixtures.js";
 import config from "../../../../utils/config.utils.js";
+import { ServiceOptions } from "../../../../pageObjects/pages/exui/caseView/serviceOfApplication.po.js";
 
 interface ConfidentialityCheckScenario {
   orderType: OrderTypes;
@@ -54,6 +55,11 @@ caseTypes.forEach((caseType) => {
           navigationUtils,
           manageCasesEventUtils,
         }): Promise<void> => {
+          const serviceOptions: ServiceOptions = {
+            personallyServed: "yes",
+            servedBy: "courtAdmin", // these are the same options as the api call
+          };
+
           const {
             tasksPage,
             confidentialityCheck,
@@ -88,6 +94,7 @@ caseTypes.forEach((caseType) => {
           await confidentialityCheck.confidentialityCheck1Page.assertPageContents(
             caseType,
             orderType,
+            serviceOptions,
             ["caseProgression", "confidentialityCheck"],
           );
           await confidentialityCheck.confidentialityCheck1Page.serveApplication(
@@ -118,10 +125,7 @@ caseTypes.forEach((caseType) => {
               orderType: orderType,
               isCitizenCase: false,
               isWelshLanguageRequired: true,
-              serviceOptions: {
-                personallyServed: "yes",
-                servedBy: "courtAdmin", // these are the same options as the api call
-              },
+              serviceOptions: serviceOptions,
               areConfidentialDetailsChecked: true,
             },
           );

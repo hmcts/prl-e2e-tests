@@ -8,13 +8,8 @@ import {
   OrderTypes,
   solicitorCaseCreateType,
 } from "../../../../common/types.js";
-
-const commonPackDocuments: string[] = [
-  "Annex 1 - Confidential contact details notice.pdf",
-  "Annex 1 - Confidential contact details notice - welsh.pdf",
-  "Privacy_Notice.pdf",
-  "Privacy_Notice_Welsh.pdf",
-];
+import { getPackDocuments } from "../../../../testData/ui/serviceOfApplicationPacks.js";
+import { ServiceOptions } from "../caseView/serviceOfApplication.po.js";
 
 const expectedC100CaseFieldLabels: string[] = [
   "C8 Document",
@@ -55,17 +50,6 @@ const expectedFL401CaseFieldLabels: string[] = [
   "Respondent 1 Refuge C8 Document",
 ];
 
-const orderDocuments: Partial<Record<OrderTypes, string[]>> = {
-  "Child arrangements, specific issue or prohibited steps order (C43)": [
-    "ChildArrangements_Specific_Prohibited_Steps_C43.pdf",
-    "Welsh_ChildArrangements_Specific_Prohibited_Steps_C43.pdf",
-  ],
-  "Power of arrest (FL406)": [
-    "Power_of_arrest.pdf",
-    "Welsh_Power_of_arrest.pdf",
-  ],
-};
-
 export class ConfidentialityCheck1Page extends EventPage {
   private readonly navigationUtils: NavigationUtils = new NavigationUtils();
   private readonly warningText: Locator = this.page.getByText(
@@ -103,67 +87,29 @@ export class ConfidentialityCheck1Page extends EventPage {
   async assertPageContents(
     caseType: solicitorCaseCreateType,
     orderType: OrderTypes,
+    serviceOptions: ServiceOptions,
     snapshotsPath: string[],
   ): Promise<void> {
     await this.assertPageHeadings();
     await expect(this.warningText).toBeVisible();
     await this.pageUtils.assertStrings(this.confCheck1PageObjects);
 
-    const expectedOrderDocuments: string[] | undefined =
-      orderDocuments[orderType];
-    if (!expectedOrderDocuments) {
-      throw new Error(`No service pack documents configured for ${orderType}`);
-    }
+    const packDocuments = getPackDocuments({
+      caseType: caseType,
+      orderType: orderType,
+      isCitizenCase: false,
+      isWelshLanguageRequired: true,
+      serviceOptions: serviceOptions,
+    });
 
-    const applicationDocuments: string[] =
-      caseType === "C100"
-        ? [
-            "C100FinalDocument.pdf",
-            "C100FinalDocumentWelsh.pdf",
-            "C1A_Document.pdf",
-            "C1A_Document_Welsh.pdf",
-            "Family Presidents letter to parties.pdf",
-            "Family Presidents letter to parties - Welsh.pdf",
-            ...expectedOrderDocuments,
-            "C9_personal_service.pdf",
-            "Special arrangements letter.docx",
-          ]
-        : [
-            "FL401FinalDocument.pdf",
-            "FL401FinalDocumentWelsh.pdf",
-            ...expectedOrderDocuments,
-            "Safety Letter.docx",
-          ];
-    const applicantDocuments: string[] = [
-      ...commonPackDocuments,
-      ...applicationDocuments,
-    ];
-    const respondentDocuments: string[] =
-      caseType === "C100"
-        ? [
-            "cover_letter_re5.pdf",
-            "cover_letter_welsh_re5.pdf",
-            ...commonPackDocuments,
-            ...expectedOrderDocuments,
-            "C100FinalDocument.pdf",
-            "C100FinalDocumentWelsh.pdf",
-            "C1A_Document.pdf",
-            "C1A_Document_Welsh.pdf",
-            "Family Presidents letter to parties.pdf",
-            "Family Presidents letter to parties - Welsh.pdf",
-            "Blank_C7.pdf",
-            "C1A_Blank.pdf",
-            "C1A_Blank_Welsh.pdf",
-            "Special arrangements letter.docx",
-          ]
-        : [
-            ...applicantDocuments,
-            "cover_letter_re1.pdf",
-            "cover_letter_welsh_re1.pdf",
-          ];
-
-    await this.assertPackDocuments("Applicants pack", applicantDocuments);
-    await this.assertPackDocuments("Respondents pack", respondentDocuments);
+    await this.assertPackDocuments(
+      "Applicants pack",
+      packDocuments.applicantPack,
+    );
+    await this.assertPackDocuments(
+      "Respondents pack",
+      packDocuments.respondentPack,
+    );
 
     const expectedCaseFieldLabels: string[] =
       caseType === "C100"
@@ -219,6 +165,7 @@ export class ConfidentialityCheck1Page extends EventPage {
       hasText: packName,
     });
     await expect(pack.first()).toBeVisible();
+    await expect(pack.getByRole("button")).toHaveCount(documents.length);
     for (const document of documents) {
       await expect(
         pack.getByRole("button", { name: document, exact: true }).first(),
