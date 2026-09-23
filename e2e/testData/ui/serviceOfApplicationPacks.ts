@@ -52,10 +52,10 @@ export function getPackDocuments({
     expectedOrderDocuments = [expectedOrderDocuments[0]];
   }
 
-  packs.applicantPack.push(...expectedOrderDocuments);
-  packs.respondentPack.push(...expectedOrderDocuments);
-
-  return packs;
+  return {
+    applicantPack: [...packs.applicantPack, ...expectedOrderDocuments],
+    respondentPack: [...packs.respondentPack, ...expectedOrderDocuments],
+  };
 }
 
 export const EXPECTED_APPLICANT_C100_PACKS = {

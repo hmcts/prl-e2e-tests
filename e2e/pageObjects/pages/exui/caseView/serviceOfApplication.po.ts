@@ -122,12 +122,6 @@ export class ServiceOfApplicationPage extends CaseAccessViewPage {
       serviceOptions: serviceOptions,
     });
 
-    console.log("APPLICANT PACK");
-    console.log(packDocuments.applicantPack);
-
-    console.log("RESPONDENT PACK");
-    console.log(packDocuments.respondentPack);
-
     if (packDocuments) {
       await this.assertPackDocuments(
         "Applicants pack",
