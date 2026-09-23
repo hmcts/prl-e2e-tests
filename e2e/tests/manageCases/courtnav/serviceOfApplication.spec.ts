@@ -24,7 +24,6 @@ const scenarios: ServiceOfApplicationScenario[] = [
   },
 ];
 
-// TEST COMMENT
 test.describe("Service of Application task for DA Citizen case tests.", () => {
   test.skip(
     process.env.MANAGE_CASES_TEST_ENV === "preview",
