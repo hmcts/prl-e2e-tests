@@ -50,6 +50,7 @@ import { SendAndReplyToMessages3Page } from "../pages/exui/sendAndReplyToMessage
 import { ReviewRARequest1Page } from "../pages/exui/caseFlags/reviewRARequest/reviewRARequest1.po.ts";
 import { ReviewRARequest2Page } from "../pages/exui/caseFlags/reviewRARequest/reviewRARequest2.po.ts";
 import { ReviewRARequestSubmitPage } from "../pages/exui/caseFlags/reviewRARequest/reviewRARequestSubmit.po.ts";
+import { ReviewRARequestAddTranslationsPage } from "../pages/exui/caseFlags/reviewRARequest/reviewRARequestAddTranslations.po.ts";
 import { CaseFlagsPage } from "../pages/exui/caseView/caseFlags.po.ts";
 import { ManageOrder1Page } from "../pages/exui/orders/manageOrders/manageOrder1.po.ts";
 import { ManageOrder2Page } from "../pages/exui/orders/manageOrders/manageOrder2.po.ts";
@@ -269,6 +270,8 @@ export class CaseWorkerPagesGroup {
     return {
       reviewRARequestPage1: new ReviewRARequest1Page(this.page),
       reviewRARequestPage2: new ReviewRARequest2Page(this.page),
+      reviewRARequestAddTranslationsPage:
+        new ReviewRARequestAddTranslationsPage(this.page),
       reviewRARequestPageSubmit: new ReviewRARequestSubmitPage(this.page),
     };
   }

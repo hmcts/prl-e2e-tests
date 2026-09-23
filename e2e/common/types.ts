@@ -363,8 +363,6 @@ export type EdgeCaseApplicationType =
   | "AppointingChildGuardian"
   | "ChangeOfChildSurname";
 
-export type SupportType = "reasonableAdjustment" | "languageInterpreter";
-
 export type CaseState =
   | "Draft"
   | "Pending"

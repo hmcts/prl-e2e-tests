@@ -55,16 +55,16 @@ export abstract class CaseAccessViewPage extends Base {
       this.page.locator(Selectors.h2, {
         hasText: "FamilyMan ID",
       }),
-    ).toBeVisible();
+    ).toBeVisible({ timeout: 60_000 });
     await expect(
       this.page.locator(Selectors.h2, {
         hasText: "Casenumber",
       }),
-    ).toBeVisible();
+    ).toBeVisible({ timeout: 60_000 });
     await this.page.waitForLoadState("domcontentloaded");
     await expect(this.page.locator("#next-step")).toBeVisible();
     await this.page.locator("#next-step").click();
-    await this.page.selectOption("#next-step", chosenEvent);
+    await this.page.locator("#next-step").selectOption(chosenEvent);
 
     await expect(this.goButton).toBeEnabled();
 

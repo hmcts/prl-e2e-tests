@@ -15,6 +15,7 @@ import { RequestSupport3Page } from "../pages/exui/caseFlags/requestSupport/requ
 import { RequestSupport4Page } from "../pages/exui/caseFlags/requestSupport/requestSupport4.po.ts";
 import { RequestSupport5Page } from "../pages/exui/caseFlags/requestSupport/requestSupport5.po.ts";
 import { RequestSupportSubmitPage } from "../pages/exui/caseFlags/requestSupport/requestSupportSubmit.po.ts";
+import { RequestSupportLanguageInterpreterPage } from "../pages/exui/caseFlags/requestSupport/requestSupportLanguageInterpreter.po.ts";
 import { SupportPage } from "../pages/exui/caseView/support.po.ts";
 import { DraftAnOrder1Page } from "../pages/exui/orders/draftOrders/draftAnOrder1.po.ts";
 import { DraftAnOrder2Page } from "../pages/exui/orders/draftOrders/draftAnOrder2.po.ts";
@@ -90,6 +91,8 @@ export class SolicitorPagesGroup {
       requestSupport3Page: new RequestSupport3Page(this.page),
       requestSupport4Page: new RequestSupport4Page(this.page),
       requestSupport5Page: new RequestSupport5Page(this.page),
+      requestSupportLanguageInterpreterPage:
+        new RequestSupportLanguageInterpreterPage(this.page),
       requestSupportSubmitPage: new RequestSupportSubmitPage(this.page),
     };
   }
