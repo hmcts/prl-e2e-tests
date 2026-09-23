@@ -18,7 +18,6 @@ interface CaseFlagScenario {
   newStatus: FlagStatus;
   changeReason: string;
   withTranslation: boolean;
-  accessibilityTest: boolean;
   tags: TestTag[];
 }
 
@@ -30,7 +29,6 @@ interface RequestSupportParams {
   adjustment: string;
   reason: string;
   caseNumber: string;
-  accessibilityTest: boolean;
 }
 
 interface ReviewSupportRequestParams {
@@ -45,7 +43,6 @@ interface ReviewSupportRequestParams {
   newStatus: FlagStatus;
   changeReason: string;
   withTranslation: boolean;
-  accessibilityTest: boolean;
 }
 
 const scenarios: CaseFlagScenario[] = [
@@ -59,7 +56,6 @@ const scenarios: CaseFlagScenario[] = [
     newStatus: "Active",
     changeReason: "test reason",
     withTranslation: true,
-    accessibilityTest: true,
     tags: ["@nightly", "@accessibility", "@regression"],
   },
   {
@@ -72,7 +68,6 @@ const scenarios: CaseFlagScenario[] = [
     newStatus: "Not approved",
     changeReason: "test reason",
     withTranslation: true,
-    accessibilityTest: true,
     tags: ["@nightly", "@accessibility", "@regression"],
   },
   {
@@ -85,7 +80,6 @@ const scenarios: CaseFlagScenario[] = [
     newStatus: "Not approved",
     changeReason: "test reason",
     withTranslation: false,
-    accessibilityTest: false,
     tags: ["@regression"],
   },
   {
@@ -98,7 +92,6 @@ const scenarios: CaseFlagScenario[] = [
     newStatus: "Active",
     changeReason: "test reason",
     withTranslation: false,
-    accessibilityTest: false,
     tags: ["@regression"],
   },
 ];
@@ -133,7 +126,6 @@ test.describe("Case flags tests for CA case tests.", () => {
       newStatus,
       changeReason,
       withTranslation,
-      accessibilityTest,
       tags,
     }) => {
       const supportTypeDescription =
@@ -159,7 +151,6 @@ test.describe("Case flags tests for CA case tests.", () => {
             adjustment,
             reason,
             caseNumber: caseRef,
-            accessibilityTest,
           });
 
           // review support request as HCA
@@ -175,7 +166,6 @@ test.describe("Case flags tests for CA case tests.", () => {
             newStatus,
             changeReason,
             withTranslation,
-            accessibilityTest,
           });
         },
       );
@@ -191,31 +181,24 @@ async function requestSupport({
   adjustment,
   reason,
   caseNumber,
-  accessibilityTest,
 }: RequestSupportParams): Promise<void> {
   const { caseFlags, summaryPage, supportPage } = solicitor;
 
   await summaryPage.chooseEventFromDropdown("Request support");
 
   await caseFlags.requestSupport1Page.assertPageContents();
-  if (accessibilityTest) {
-    await caseFlags.requestSupport1Page.verifyAccessibility();
-  }
+  await caseFlags.requestSupport1Page.verifyAccessibility();
   await caseFlags.requestSupport1Page.selectSupportRecipient(recipient);
   await caseFlags.requestSupport1Page.clickContinue();
 
   await caseFlags.requestSupport2Page.assertPageContents();
-  if (accessibilityTest) {
-    await caseFlags.requestSupport2Page.verifyAccessibility();
-  }
+  await caseFlags.requestSupport2Page.verifyAccessibility();
   await caseFlags.requestSupport2Page.selectSupportType(supportType);
   await caseFlags.requestSupport2Page.clickContinue();
 
   if (supportType === "Reasonable adjustment") {
     await caseFlags.requestSupport3Page.assertPageContents();
-    if (accessibilityTest) {
-      await caseFlags.requestSupport3Page.verifyAccessibility();
-    }
+    await caseFlags.requestSupport3Page.verifyAccessibility();
     await caseFlags.requestSupport3Page.selectReasonableAdjustment(
       reasonableAdjustment,
     );
@@ -224,16 +207,12 @@ async function requestSupport({
     await caseFlags.requestSupport4Page.assertPageContents(
       reasonableAdjustment,
     );
-    if (accessibilityTest) {
-      await caseFlags.requestSupport4Page.verifyAccessibility();
-    }
+    await caseFlags.requestSupport4Page.verifyAccessibility();
     await caseFlags.requestSupport4Page.selectAdjustment(adjustment);
     await caseFlags.requestSupport4Page.clickContinue();
   } else {
     await caseFlags.requestSupportLanguageInterpreterPage.assertPageContents();
-    if (accessibilityTest) {
-      await caseFlags.requestSupportLanguageInterpreterPage.verifyAccessibility();
-    }
+    await caseFlags.requestSupportLanguageInterpreterPage.verifyAccessibility();
     await caseFlags.requestSupportLanguageInterpreterPage.selectLanguage(
       adjustment,
     );
@@ -241,9 +220,7 @@ async function requestSupport({
   }
 
   await caseFlags.requestSupport5Page.assertPageContents();
-  if (accessibilityTest) {
-    await caseFlags.requestSupport5Page.verifyAccessibility();
-  }
+  await caseFlags.requestSupport5Page.verifyAccessibility();
   await caseFlags.requestSupport5Page.enterReason(reason);
   await caseFlags.requestSupport5Page.clickContinue();
 
@@ -256,9 +233,7 @@ async function requestSupport({
     reason,
     "Requested",
   ]);
-  if (accessibilityTest) {
-    await caseFlags.requestSupportSubmitPage.verifyAccessibility();
-  }
+  await caseFlags.requestSupportSubmitPage.verifyAccessibility();
   await caseFlags.requestSupportSubmitPage.clickSubmit();
 
   await summaryPage.alertBanner.assertEventAlert(caseNumber, "Request support");
@@ -282,7 +257,6 @@ async function reviewSupportRequest({
   newStatus,
   changeReason,
   withTranslation,
-  accessibilityTest,
 }: ReviewSupportRequestParams): Promise<void> {
   const { page, tasksPage, caseFlags, summaryPage, caseFlagsPage } = caseWorker;
   await navigationUtils.goToCase(
@@ -301,9 +275,7 @@ async function reviewSupportRequest({
     reason,
     caseType: "C100",
   });
-  if (accessibilityTest) {
-    await caseFlags.reviewRARequestPage1.verifyAccessibility();
-  }
+  await caseFlags.reviewRARequestPage1.verifyAccessibility();
   await caseFlags.reviewRARequestPage1.selectSupportRequest(recipient);
   await caseFlags.reviewRARequestPage1.clickSubmit();
 
@@ -321,9 +293,7 @@ async function reviewSupportRequest({
 
   if (withTranslation) {
     await caseFlags.reviewRARequestAddTranslationsPage.assertPageContents();
-    if (accessibilityTest) {
-      await caseFlags.reviewRARequestAddTranslationsPage.verifyAccessibility();
-    }
+    await caseFlags.reviewRARequestAddTranslationsPage.verifyAccessibility();
     await caseFlags.reviewRARequestAddTranslationsPage.fillInFields({
       otherDescription: "test description",
       otherDescriptionWelsh: "test description welsh",
