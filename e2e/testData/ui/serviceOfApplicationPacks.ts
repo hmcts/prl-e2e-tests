@@ -52,10 +52,10 @@ export function getPackDocuments({
     expectedOrderDocuments = [expectedOrderDocuments[0]];
   }
 
-  packs.applicantPack.push(...expectedOrderDocuments);
-  packs.respondentPack.push(...expectedOrderDocuments);
-
-  return packs;
+  return {
+    applicantPack: [...packs.applicantPack, ...expectedOrderDocuments],
+    respondentPack: [...packs.respondentPack, ...expectedOrderDocuments],
+  };
 }
 
 export const EXPECTED_APPLICANT_C100_PACKS = {
@@ -72,6 +72,7 @@ export const EXPECTED_APPLICANT_C100_PACKS = {
     "Family Presidents letter to parties.pdf",
     "Family Presidents letter to parties - Welsh.pdf",
     "C9_personal_service.pdf",
+    "C9_personal_service_CY.pdf",
   ],
   personallyServedByCourtBailiff: [
     "Annex 1 - Confidential contact details notice.pdf",
@@ -86,6 +87,7 @@ export const EXPECTED_APPLICANT_C100_PACKS = {
     "Family Presidents letter to parties.pdf",
     "Family Presidents letter to parties - Welsh.pdf",
     "C9_personal_service.pdf",
+    "C9_personal_service_CY.pdf",
   ],
   personallyServedByCourtAdmin: [
     "Annex 1 - Confidential contact details notice.pdf",
@@ -100,6 +102,7 @@ export const EXPECTED_APPLICANT_C100_PACKS = {
     "Family Presidents letter to parties.pdf",
     "Family Presidents letter to parties - Welsh.pdf",
     "C9_personal_service.pdf",
+    "C9_personal_service_CY.pdf",
   ],
   nonPersonallyServedToAllParties: [
     "Annex 1 - Confidential contact details notice.pdf",
@@ -217,6 +220,7 @@ export const EXPECTED_APPLICANT_FL401_PACKS = {
     "Privacy_Notice_Welsh.pdf",
     "Safety Letter.docx",
     "FL415.pdf",
+    "FL415_CY.pdf",
   ],
   personallyServedByCourtBailiff: [
     "FL401FinalDocument.pdf",
