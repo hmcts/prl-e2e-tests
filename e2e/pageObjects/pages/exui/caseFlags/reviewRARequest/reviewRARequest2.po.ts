@@ -83,4 +83,8 @@ export class ReviewRARequest2Page extends Base {
   async addReasonForChange(changeReason: string): Promise<void> {
     await this.changeReasonTextbox.fill(changeReason);
   }
+
+  async requestTranslation(): Promise<void> {
+    await this.page.locator("#flagIsWelshTranslationNeeded").check();
+  }
 }
