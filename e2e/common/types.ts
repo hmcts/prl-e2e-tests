@@ -107,6 +107,8 @@ export type WACaseWorkerActions =
   | "Remove barrister"
   | "Review RA Request";
 
+export type WACaseManagerActions = "Confidentiality check";
+
 export type fl401CaseWorkerActions =
   | "Welsh language requirements"
   | "Send and reply to messages"
@@ -133,6 +135,8 @@ export type fl401JudiciaryEvents =
 export type ApplicantGender = "female" | "male" | "other";
 
 export type yesNoDontKnow = "yes" | "no" | "dontKnow";
+
+export type YesNoNotApplicable = "yes" | "no" | "notApplicable";
 
 export type otherProceedingsRadios = "Yes" | "No" | "Don't know";
 
@@ -359,8 +363,6 @@ export type EdgeCaseApplicationType =
   | "AppointingChildGuardian"
   | "ChangeOfChildSurname";
 
-export type SupportType = "reasonableAdjustment" | "languageInterpreter";
-
 export type CaseState =
   | "Draft"
   | "Pending"
@@ -543,3 +545,9 @@ export const LOCAL_COURTS: Record<CourtKey, LocalCourtInfo> = {
     label: "Swansea Civil Justice Centre - Quay West, Quay Parade - SA1 1SP",
   },
 };
+
+export type PersonalServiceTypes =
+  | "applicantsSolicitor"
+  | "courtBailiff"
+  | "courtAdmin"
+  | "unrepresentedApplicant";

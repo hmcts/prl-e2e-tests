@@ -1,6 +1,9 @@
 import { Page } from "@playwright/test";
 import { TasksPage } from "../pages/exui/caseView/tasks.po.ts";
 import { CaseDocumentsPage } from "../pages/exui/caseView/caseDocuments.po.ts";
+import { BundlesPage } from "../pages/exui/caseView/bundles.po.ts";
+import { CreateBundle1Page } from "../pages/exui/createABundle/createBundle1.po.ts";
+import { CreateBundleSubmitPage } from "../pages/exui/createABundle/createBundleSubmit.po.ts";
 import { ManageDocumentsNew1Page } from "../pages/exui/manageDocuments/manageDocumentsNew1.po.ts";
 import { ManageDocumentsNewSubmitPage } from "../pages/exui/manageDocuments/manageDocumentsNewSubmit.po.ts";
 import { ManageDocumentsNewConfirmPage } from "../pages/exui/manageDocuments/manageDocumentsNewConfirm.po.ts";
@@ -47,6 +50,7 @@ import { SendAndReplyToMessages3Page } from "../pages/exui/sendAndReplyToMessage
 import { ReviewRARequest1Page } from "../pages/exui/caseFlags/reviewRARequest/reviewRARequest1.po.ts";
 import { ReviewRARequest2Page } from "../pages/exui/caseFlags/reviewRARequest/reviewRARequest2.po.ts";
 import { ReviewRARequestSubmitPage } from "../pages/exui/caseFlags/reviewRARequest/reviewRARequestSubmit.po.ts";
+import { ReviewRARequestAddTranslationsPage } from "../pages/exui/caseFlags/reviewRARequest/reviewRARequestAddTranslations.po.ts";
 import { CaseFlagsPage } from "../pages/exui/caseView/caseFlags.po.ts";
 import { ManageOrder1Page } from "../pages/exui/orders/manageOrders/manageOrder1.po.ts";
 import { ManageOrder2Page } from "../pages/exui/orders/manageOrders/manageOrder2.po.ts";
@@ -78,6 +82,14 @@ import { StatementOfService1Page } from "../pages/exui/statementOfService/statem
 import { StatementOfServiceSubmitPage } from "../pages/exui/statementOfService/statementOfServiceSubmit.po.js";
 import { StatementOfServiceConfirmPage } from "../pages/exui/statementOfService/statementOfServiceConfirm.po.js";
 import { ServiceOfApplicationPage } from "../pages/exui/caseView/serviceOfApplication.po.js";
+import { ServiceOfApplication2Page } from "../pages/exui/serviceOfApplication/serviceOfApplication2.po.ts";
+import { ServiceOfApplication4Page } from "../pages/exui/serviceOfApplication/serviceOfApplication4.po.ts";
+import { ServiceOfApplicationSubmitPage } from "../pages/exui/serviceOfApplication/serviceOfApplicationSubmit.po.ts";
+import { ServiceOfApplicationConfirmPage } from "../pages/exui/serviceOfApplication/serviceOfApplicationConfirm.po.ts";
+import { ServiceOfDocuments1Page } from "../pages/exui/serviceOfDocuments/serviceOfDocuments1.po.js";
+import { ServiceOfDocuments2Page } from "../pages/exui/serviceOfDocuments/serviceOfDocuments2.po.js";
+import { ServiceOfDocuments3Page } from "../pages/exui/serviceOfDocuments/serviceOfDocuments3.po.js";
+import { ServiceOfDocumentsSubmitPage } from "../pages/exui/serviceOfDocuments/serviceOfDocumentsSubmit.po.js";
 import { WelshLanguageRequirements1Page } from "../pages/exui/welshLanguageRequirements/welshLanguageRequirements1.po.ts";
 import { WelshLanguageRequirementsSubmitPage } from "../pages/exui/welshLanguageRequirements/welshLanguageRequirementsSubmit.po.ts";
 import { HearingsPage } from "../pages/exui/caseView/hearings.po.ts";
@@ -103,6 +115,17 @@ export class CaseWorkerPagesGroup {
 
   get caseDocumentsPage() {
     return new CaseDocumentsPage(this.page);
+  }
+
+  get bundlesPage() {
+    return new BundlesPage(this.page);
+  }
+
+  get createABundle() {
+    return {
+      page1: new CreateBundle1Page(this.page),
+      submitPage: new CreateBundleSubmitPage(this.page),
+    };
   }
 
   get manageDocuments() {
@@ -247,6 +270,8 @@ export class CaseWorkerPagesGroup {
     return {
       reviewRARequestPage1: new ReviewRARequest1Page(this.page),
       reviewRARequestPage2: new ReviewRARequest2Page(this.page),
+      reviewRARequestAddTranslationsPage:
+        new ReviewRARequestAddTranslationsPage(this.page),
       reviewRARequestPageSubmit: new ReviewRARequestSubmitPage(this.page),
     };
   }
@@ -305,6 +330,25 @@ export class CaseWorkerPagesGroup {
       addLocalAuthorityConfirmPage: new AdminAddLocalAuthorityConfirmPage(
         this.page,
       ),
+    };
+  }
+
+  get serviceOfApplication() {
+    return {
+      page2: new ServiceOfApplication2Page(this.page),
+      page4: new ServiceOfApplication4Page(this.page),
+      submitPage: new ServiceOfApplicationSubmitPage(this.page),
+      confirmPage: new ServiceOfApplicationConfirmPage(this.page),
+      serviceOfApplicationPage: new ServiceOfApplicationPage(this.page),
+    };
+  }
+
+  get serviceOfDocuments() {
+    return {
+      page1: new ServiceOfDocuments1Page(this.page),
+      page2: new ServiceOfDocuments2Page(this.page),
+      page3: new ServiceOfDocuments3Page(this.page),
+      submitPage: new ServiceOfDocumentsSubmitPage(this.page),
     };
   }
 

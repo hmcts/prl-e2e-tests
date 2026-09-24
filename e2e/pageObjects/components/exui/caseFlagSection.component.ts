@@ -13,15 +13,26 @@ export class CaseFlagSectionComponent {
     status: string = "Requested",
     modified: boolean = false,
   ): Promise<void> {
-    const caseFlagSection: Locator = this.page.locator("ccd-case-flag-table", {
-      hasText: recipient,
+    const caseFlagSection: Locator = this.page.getByRole("table", {
+      name: recipient,
+      exact: true,
     });
     // table headings
-    await expect(caseFlagSection.getByText("Party level flags")).toBeVisible();
-    await expect(caseFlagSection.getByText("Comments")).toBeVisible();
-    await expect(caseFlagSection.getByText("Creation date")).toBeVisible();
-    await expect(caseFlagSection.getByText("Last modified")).toBeVisible();
-    await expect(caseFlagSection.getByText("Flag status")).toBeVisible();
+    await expect(
+      caseFlagSection.getByText("Party level flags", { exact: true }),
+    ).toBeVisible();
+    await expect(
+      caseFlagSection.getByText("Comments", { exact: true }),
+    ).toBeVisible();
+    await expect(
+      caseFlagSection.getByText("Creation date", { exact: true }),
+    ).toBeVisible();
+    await expect(
+      caseFlagSection.getByText("Last modified", { exact: true }),
+    ).toBeVisible();
+    await expect(
+      caseFlagSection.getByText("Flag status", { exact: true }),
+    ).toBeVisible();
     // table contents
     await expect(caseFlagSection.getByText(adjustment)).toBeVisible();
     await expect(caseFlagSection.getByText(reason)).toBeVisible();
