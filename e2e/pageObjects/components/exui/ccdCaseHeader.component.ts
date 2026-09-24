@@ -7,6 +7,18 @@ export class CcdCaseHeaderComponent {
 
   constructor(private page: Page) {}
 
+  /**
+   * Asserts the case header has rendered, used straight after a case is created.
+   */
+  async assertCaseHeaderIsVisible(): Promise<void> {
+    await expect(
+      this.caseHeader.locator("h2", { hasText: "FamilyMan ID" }),
+    ).toBeVisible();
+    await expect(
+      this.caseHeader.locator("h2", { hasText: "Casenumber" }),
+    ).toBeVisible();
+  }
+
   async assertCaseNameIsVisible(caseName: string): Promise<void> {
     await expect(
       this.caseHeader.locator("h2", {
