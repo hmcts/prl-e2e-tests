@@ -37,6 +37,8 @@ import { Fl401Resubmit1Page } from "../pages/exui/resubmitApplication/fl401Resub
 import { Fl401Resubmit2Page } from "../pages/exui/resubmitApplication/fl401Resubmit2.po.js";
 import { C100Submit1Page } from "../pages/exui/resubmitApplication/c100Submit1.po.js";
 import { C100Submit2Page } from "../pages/exui/resubmitApplication/c100Submit2.po.js";
+import { C100ApplicantDetails1Page } from "../pages/exui/createCase/applicantDetails/c100ApplicantDetails1.po.ts";
+import { C100ApplicantDetailsSubmitPage } from "../pages/exui/createCase/applicantDetails/c100ApplicantDetailsSubmit.po.ts";
 
 export class SolicitorPagesGroup {
   constructor(public readonly page: Page) {}
@@ -94,6 +96,13 @@ export class SolicitorPagesGroup {
       requestSupportLanguageInterpreterPage:
         new RequestSupportLanguageInterpreterPage(this.page),
       requestSupportSubmitPage: new RequestSupportSubmitPage(this.page),
+    };
+  }
+
+  get c100ApplicantDetails() {
+    return {
+      page1: new C100ApplicantDetails1Page(this.page),
+      submitPage: new C100ApplicantDetailsSubmitPage(this.page),
     };
   }
 

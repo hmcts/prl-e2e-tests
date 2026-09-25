@@ -1,61 +1,146 @@
-import { test } from "@playwright/test";
-import Config from "../../../../utils/config.utils.ts";
-import { C100ApplicantDetails } from "../../../../journeys/manageCases/createCase/C100ApplicantDetails/c100ApplicantDetails.ts";
+import { ApplicantGender } from "../../../../common/types.ts";
+import { C100ApplicantDetailsData } from "../../../../pageObjects/pages/exui/createCase/applicantDetails/c100ApplicantDetails1.po.ts";
+import config from "../../../../utils/config.utils.ts";
+import { test } from "../../../fixtures.ts";
 
-test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
+type TestTag =
+  | "@accessibility"
+  | "@errorMessage"
+  | "@nightly"
+  | "@regression";
 
-test.describe("C100 Create case - Applicant Details tests", (): void => {
-  test(`Complete the C100 applicant details event as a solicitor with the following options:
-  Not Accessibility testing,
-  Not Error message testing,
-  Saying no to all options,
-  Setting the applicant Gender to other. @regression`, async ({
-    page,
-  }): Promise<void> => {
-    await C100ApplicantDetails.C100ApplicantDetails({
-      page,
-      user: "solicitor",
-      accessibilityTest: false,
-      errorMessaging: false,
-      yesNoApplicantDetails: false,
-      applicantGender: "other",
-      subJourney: true,
-    });
-  });
+interface ApplicantDetailsScenario {
+  description: string;
+  applicantGender: ApplicantGender;
+  answerYesToAll: boolean;
+  checkErrorMessages: boolean;
+  snapshotName: string;
+  tags: TestTag[];
+}
 
-  test(`Complete the C100 applicant details event as a solicitor with the following options:
-  Not Accessibility testing,
-  Error message testing,
-  Saying yes to all options,
-  Setting the applicant Gender to male. @regression @errorMessage`, async ({
-    page,
-  }): Promise<void> => {
-    await C100ApplicantDetails.C100ApplicantDetails({
-      page,
-      user: "solicitor",
-      accessibilityTest: false,
-      errorMessaging: true,
-      yesNoApplicantDetails: true,
-      applicantGender: "male",
-      subJourney: true,
-    });
-  });
-});
+const snapshotPath = ["createCase", "C100", "applicantDetails"];
 
-test(`C100 applicant details event as a solicitor with the following options:
-  Accessibility testing,
-  Not Error message testing,
-  Saying yes to all options,
-  Setting the applicant Gender to female. @accessibility @nightly`, async ({
-  page,
-}): Promise<void> => {
-  await C100ApplicantDetails.C100ApplicantDetails({
-    page,
-    user: "solicitor",
-    accessibilityTest: true,
-    errorMessaging: false,
-    yesNoApplicantDetails: true,
+const applicantDetails: C100ApplicantDetailsData = {
+  firstName: "AutomatedApplicant",
+  lastName: "TestApplicantLastName",
+  previousName: "CaseApplicantPrevName",
+  dateOfBirth: {
+    day: "1",
+    month: "1",
+    year: "2020",
+    displayValue: "1 Jan 2020",
+  },
+  otherGender: "Other",
+  placeOfBirth: "London",
+  address: {
+    postcode: "SW1A 1AA",
+    selection: "Buckingham Palace, London",
+    buildingAndStreet: "Buckingham Palace",
+    townOrCity: "London",
+    country: "United Kingdom",
+  },
+  previousAddresses: "Lorem ipsum last 5 years",
+  email: "appautomated@test.com",
+  phoneNumber: "0123456789",
+  representative: {
+    firstName: "Automated representative",
+    lastName: "TestrepresentativeLastName",
+    email: "repautomated@test.com",
+    reference: "A reference",
+    organisationSearch: "Test",
+    dxNumber: "1234",
+  },
+};
+
+const scenarios: ApplicantDetailsScenario[] = [
+  {
+    description: "no answers and other gender",
+    applicantGender: "other",
+    answerYesToAll: false,
+    checkErrorMessages: false,
+    snapshotName: "c100-applicant-details-no-answers-other-gender",
+    tags: ["@regression"],
+  },
+  {
+    description: "yes answers, male gender and error validation",
+    applicantGender: "male",
+    answerYesToAll: true,
+    checkErrorMessages: true,
+    snapshotName: "c100-applicant-details-yes-answers-male-gender",
+    tags: ["@regression", "@errorMessage"],
+  },
+  {
+    description: "yes answers and female gender",
     applicantGender: "female",
-    subJourney: true,
-  });
+    answerYesToAll: true,
+    checkErrorMessages: false,
+    snapshotName: "c100-applicant-details-yes-answers-female-gender",
+    tags: ["@accessibility", "@nightly"],
+  },
+];
+
+test.describe("C100 Create case - Applicant Details tests", () => {
+  let caseRef: string;
+
+  test.beforeEach(
+    async ({ solicitor, manageCasesEventUtils, navigationUtils }) => {
+      caseRef = (
+        await manageCasesEventUtils.createBlankSolicitorCase("C100")
+      ).caseRef;
+      await navigationUtils.goToCase(
+        solicitor.page,
+        config.manageCasesBaseURLCase,
+        caseRef,
+        "tasks",
+      );
+    },
+  );
+
+  scenarios.forEach(
+    ({
+      description,
+      applicantGender,
+      answerYesToAll,
+      checkErrorMessages,
+      snapshotName,
+      tags,
+    }) => {
+      test(
+        `Complete the C100 applicant details event with ${description}.`,
+        { tag: [...tags] },
+        async ({ solicitor }): Promise<void> => {
+          const { tasksPage, c100ApplicantDetails, summaryPage } = solicitor;
+
+          await tasksPage.chooseEventFromDropdown("Applicant details");
+
+          await c100ApplicantDetails.page1.assertPageContents();
+          await c100ApplicantDetails.page1.verifyAccessibility();
+          await c100ApplicantDetails.page1.checkErrorMessages(
+            checkErrorMessages,
+          );
+          await c100ApplicantDetails.page1.fillInFields({
+            applicantDetails,
+            applicantGender,
+            answerYesToAll,
+          });
+          await c100ApplicantDetails.page1.clickContinue();
+
+          await c100ApplicantDetails.submitPage.assertApplicantDetails(
+            applicantDetails,
+            applicantGender,
+            answerYesToAll,
+            snapshotPath,
+            snapshotName,
+          );
+          // Accessibility is disabled on this EXUI check-your-answers page until FPET-1135 is fixed.
+          await c100ApplicantDetails.submitPage.clickSaveAndContinue();
+
+          await summaryPage.alertBanner.assertEventAlert(
+            caseRef,
+            "Applicant details",
+          );
+        },
+      );
+    },
+  );
 });
