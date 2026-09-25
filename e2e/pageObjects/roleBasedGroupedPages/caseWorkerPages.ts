@@ -2,11 +2,15 @@ import { Page } from "@playwright/test";
 import { TasksPage } from "../pages/exui/caseView/tasks.po.ts";
 import { CaseDocumentsPage } from "../pages/exui/caseView/caseDocuments.po.ts";
 import { BundlesPage } from "../pages/exui/caseView/bundles.po.ts";
+import { CaseFileViewPage } from "../pages/exui/caseView/caseFileView.po.ts";
 import { CreateBundle1Page } from "../pages/exui/createABundle/createBundle1.po.ts";
 import { CreateBundleSubmitPage } from "../pages/exui/createABundle/createBundleSubmit.po.ts";
 import { ManageDocumentsNew1Page } from "../pages/exui/manageDocuments/manageDocumentsNew1.po.ts";
 import { ManageDocumentsNewSubmitPage } from "../pages/exui/manageDocuments/manageDocumentsNewSubmit.po.ts";
 import { ManageDocumentsNewConfirmPage } from "../pages/exui/manageDocuments/manageDocumentsNewConfirm.po.ts";
+import { RenameDocuments1Page } from "../pages/exui/renameDocuments/renameDocuments1.po.ts";
+import { RenameDocuments2Page } from "../pages/exui/renameDocuments/renameDocuments2.po.ts";
+import { RenameDocumentsSubmitPage } from "../pages/exui/renameDocuments/renameDocumentsSubmit.po.ts";
 import { ConfidentialDetailsPage } from "../pages/exui/caseView/confidentialDetails.po.ts";
 import { DocumentsToBeReviewedPage } from "../pages/exui/caseView/documentsToBeReviewed.po.ts";
 import { ReviewDocuments1Page } from "../pages/exui/reviewDocuments/reviewDocuments1.po.ts";
@@ -121,6 +125,10 @@ export class CaseWorkerPagesGroup {
     return new BundlesPage(this.page);
   }
 
+  get caseFileViewPage() {
+    return new CaseFileViewPage(this.page);
+  }
+
   get createABundle() {
     return {
       page1: new CreateBundle1Page(this.page),
@@ -135,6 +143,14 @@ export class CaseWorkerPagesGroup {
       manageDocumentsNewConfirmPage: new ManageDocumentsNewConfirmPage(
         this.page,
       ),
+    };
+  }
+
+  get renameDocuments() {
+    return {
+      page1: new RenameDocuments1Page(this.page),
+      page2: new RenameDocuments2Page(this.page),
+      submitPage: new RenameDocumentsSubmitPage(this.page),
     };
   }
 
