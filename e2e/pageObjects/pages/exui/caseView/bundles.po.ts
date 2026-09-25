@@ -39,7 +39,7 @@ export class BundlesPage extends CaseAccessViewPage {
    * submitted. Polls the Bundles tab, reloading the page each retry, until
    * the "DONE" stitch status appears.
    */
-  async waitForBundleStitched(timeout: number = 180_000): Promise<void> {
+  async waitForBundleStitched(): Promise<void> {
     await expect
       .poll(
         async () => {
@@ -53,7 +53,8 @@ export class BundlesPage extends CaseAccessViewPage {
         {
           // Allow 5s delay before retrying
           intervals: [5_000],
-          timeout,
+          // Allow up to 3 minutes
+          timeout: 180_000,
         },
       )
       .toBeTruthy();
