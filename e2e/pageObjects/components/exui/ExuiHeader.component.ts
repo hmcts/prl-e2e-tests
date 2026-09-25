@@ -15,7 +15,16 @@ export class ExuiHeaderComponent {
     },
   );
 
+  private readonly serviceNameLink: Locator = this.hmctsHeader.locator(
+    '.hmcts-header__link[href="/"]',
+  );
+
   constructor(private page: Page) {}
+
+  async waitForHeaderToRender(): Promise<void> {
+    if ((await this.hmctsHeader.count()) === 0) return; // non-ExUI pages
+    await expect(this.serviceNameLink).not.toHaveText(/^\s*$/);
+  }
 
   async checkIsVisible(): Promise<void> {
     await expect(this.globalHeader).toBeVisible();

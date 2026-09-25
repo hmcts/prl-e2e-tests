@@ -40,6 +40,15 @@ import { C100Submit2Page } from "../pages/exui/resubmitApplication/c100Submit2.p
 import { C100ApplicantDetails1Page } from "../pages/exui/createCase/applicantDetails/c100ApplicantDetails1.po.ts";
 import { C100ApplicantDetailsSubmitPage } from "../pages/exui/createCase/applicantDetails/c100ApplicantDetailsSubmit.po.ts";
 
+import { CaseFilterPage } from "../pages/exui/createCase/caseFilter.po.ts";
+import { TypeOfApplicationPage } from "../pages/exui/createCase/typeOfApplication.po.ts";
+import { C100ConfidentialityStatementPage } from "../pages/exui/createCase/c100ConfidentialityStatement.po.ts";
+import { Fl401ConfidentialityStatementPage } from "../pages/exui/createCase/fl401ConfidentialityStatement.po.ts";
+import { SelectFamilyCourtPage } from "../pages/exui/createCase/selectFamilyCourt.po.ts";
+import { C100CaseNamePage } from "../pages/exui/createCase/c100CaseName.po.ts";
+import { Fl401CaseNamePage } from "../pages/exui/createCase/fl401CaseName.po.ts";
+import { CreateCaseSubmitPage } from "../pages/exui/createCase/createCaseSubmit.po.ts";
+
 export class SolicitorPagesGroup {
   constructor(public readonly page: Page) {}
 
@@ -49,6 +58,23 @@ export class SolicitorPagesGroup {
 
   get tasksPage() {
     return new SolicitorTasksPage(this.page);
+  }
+
+  get createCase() {
+    return {
+      caseFilterPage: new CaseFilterPage(this.page),
+      typeOfApplicationPage: new TypeOfApplicationPage(this.page),
+      c100ConfidentialityStatementPage: new C100ConfidentialityStatementPage(
+        this.page,
+      ),
+      fl401ConfidentialityStatementPage: new Fl401ConfidentialityStatementPage(
+        this.page,
+      ),
+      selectFamilyCourtPage: new SelectFamilyCourtPage(this.page),
+      c100CaseNamePage: new C100CaseNamePage(this.page),
+      fl401CaseNamePage: new Fl401CaseNamePage(this.page),
+      submitPage: new CreateCaseSubmitPage(this.page),
+    };
   }
 
   get caseListPage() {
