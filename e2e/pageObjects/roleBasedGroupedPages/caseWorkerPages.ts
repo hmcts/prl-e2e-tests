@@ -54,6 +54,7 @@ import { CaseFlagsPage } from "../pages/exui/caseView/caseFlags.po.ts";
 import { ManageOrder1Page } from "../pages/exui/orders/manageOrders/manageOrder1.po.ts";
 import { ManageOrder2Page } from "../pages/exui/orders/manageOrders/manageOrder2.po.ts";
 import { ManageOrder5Page } from "../pages/exui/orders/manageOrders/manageOrder5.po.ts";
+import { ManageOrder6Page } from "../pages/exui/orders/manageOrders/manageOrder6.po.ts";
 import { ManageOrder10Page } from "../pages/exui/orders/manageOrders/manageOrder10.po.ts";
 import { ManageOrder19Page } from "../pages/exui/orders/manageOrders/manageOrder19.po.ts";
 import { ManageOrder20Page } from "../pages/exui/orders/manageOrders/manageOrder20.po.ts";
@@ -279,6 +280,7 @@ export class CaseWorkerPagesGroup {
       manageOrder2Page: new ManageOrder2Page(this.page),
       manageOrder3Page: new ManageOrder3Page(this.page),
       manageOrder5Page: new ManageOrder5Page(this.page),
+      manageOrder6Page: new ManageOrder6Page(this.page),
       manageOrder10Page: new ManageOrder10Page(this.page),
       manageOrder11Page: new ManageOrder11Page(this.page),
       manageOrder12Page: new ManageOrder12Page(this.page),
