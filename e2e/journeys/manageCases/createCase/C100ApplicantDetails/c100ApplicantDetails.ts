@@ -79,9 +79,7 @@ export class C100ApplicantDetails {
     const submitPage = new C100ApplicantDetailsSubmitPage(page);
 
     await page1.assertPageContents();
-    if (accessibilityTest) {
-      await page1.verifyAccessibility();
-    }
+    await page1.verifyAccessibility();
     await page1.checkErrorMessages(errorMessaging);
     await page1.fillInFields({
       applicantDetails,
