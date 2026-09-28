@@ -1,67 +1,106 @@
-import { test } from "@playwright/test";
-import Config from "../../../../utils/config.utils.ts";
-import { C100HearingUrgency } from "../../../../journeys/manageCases/createCase/C100HearingUrgency/C100HearingUrgency.ts";
+import { C100HearingUrgencyData } from "../../../../pageObjects/pages/exui/createCase/hearingUrgency/c100HearingUrgency1.po.ts";
+import config from "../../../../utils/config.utils.ts";
+import { test } from "../../../fixtures.ts";
 
-test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
+type TestTag = "@accessibility" | "@errorMessage" | "@nightly" | "@regression";
 
-test.describe("C100 Create case hearing urgency tests", (): void => {
-  test(`Complete the C100 hearing urgency event as a solicitor with the following options:
-  Not Accessibility testing,
-  Not Error message testing,
-  Saying yes to all options, @regression`, async ({ page }): Promise<void> => {
-    await C100HearingUrgency.c100HearingUrgency({
-      page,
-      user: "solicitor",
-      accessibilityTest: false,
-      errorMessaging: false,
-      yesNoHearingUrgency: true,
-      subJourney: true,
-    });
-  });
+interface HearingUrgencyScenario {
+  description: string;
+  answerYesToAll: boolean;
+  checkErrorMessages: boolean;
+  snapshotName: string;
+  tags: TestTag[];
+}
 
-  test(`Complete the C100 hearing urgency event as a solicitor with the following options:
-  Not Accessibility testing,
-  Not Error message testing,
-  Saying no to all options, @regression`, async ({ page }): Promise<void> => {
-    await C100HearingUrgency.c100HearingUrgency({
-      page,
-      user: "solicitor",
-      accessibilityTest: false,
-      errorMessaging: false,
-      yesNoHearingUrgency: false,
-      subJourney: true,
-    });
-  });
+const snapshotPath = ["createCase", "C100", "hearingUrgency"];
 
-  test(`Complete the C100 hearing urgency event as a solicitor with the following options:
-  Not Accessibility testing,
-  Error message testing,
-  Saying yes to all options, @regression @errorMessage`, async ({
-    page,
-  }): Promise<void> => {
-    await C100HearingUrgency.c100HearingUrgency({
-      page,
-      user: "solicitor",
-      accessibilityTest: false,
-      errorMessaging: true,
-      yesNoHearingUrgency: true,
-      subJourney: true,
-    });
-  });
-});
+const hearingUrgency: C100HearingUrgencyData = {
+  urgencyTimeAndReason: "Needs to be heard within 2 days due to risk of harm",
+  effortsToNotifyRespondents: "Respondent notified by email and phone",
+  withoutNoticeReasons: "Notifying the respondent would put the child at risk",
+  reducedNoticeReasons: "The hearing is needed before the usual notice period",
+};
 
-test(`C100 hearing urgency event as a solicitor with the following options:
-  Accessibility testing,
-  Not Error message testing,
-  Saying yes to all options, @accessibility @nightly`, async ({
-  page,
-}): Promise<void> => {
-  await C100HearingUrgency.c100HearingUrgency({
-    page,
-    user: "solicitor",
-    accessibilityTest: true,
-    errorMessaging: false,
-    yesNoHearingUrgency: true,
-    subJourney: true,
-  });
+const scenarios: HearingUrgencyScenario[] = [
+  {
+    description: "yes answers",
+    answerYesToAll: true,
+    checkErrorMessages: false,
+    snapshotName: "c100-hearing-urgency-yes-answers",
+    tags: ["@regression", "@accessibility", "@nightly"],
+  },
+  {
+    description: "no answers",
+    answerYesToAll: false,
+    checkErrorMessages: false,
+    snapshotName: "c100-hearing-urgency-no-answers",
+    tags: ["@regression"],
+  },
+  {
+    description: "yes answers and error validation",
+    answerYesToAll: true,
+    checkErrorMessages: true,
+    snapshotName: "c100-hearing-urgency-yes-answers-error-validation",
+    tags: ["@regression", "@errorMessage"],
+  },
+];
+
+test.describe("C100 Create case - Hearing Urgency tests", () => {
+  let caseRef: string;
+
+  test.beforeEach(
+    async ({ solicitor, manageCasesEventUtils, navigationUtils }) => {
+      caseRef = (await manageCasesEventUtils.createBlankSolicitorCase("C100"))
+        .caseRef;
+      await navigationUtils.goToCase(
+        solicitor.page,
+        config.manageCasesBaseURLCase,
+        caseRef,
+        "tasks",
+      );
+    },
+  );
+
+  scenarios.forEach(
+    ({
+      description,
+      answerYesToAll,
+      checkErrorMessages,
+      snapshotName,
+      tags,
+    }) => {
+      test(
+        `Complete the C100 hearing urgency event with ${description}.`,
+        { tag: [...tags] },
+        async ({ solicitor }): Promise<void> => {
+          const { tasksPage, c100HearingUrgency, summaryPage } = solicitor;
+
+          await tasksPage.chooseEventFromDropdown("Hearing urgency");
+
+          await c100HearingUrgency.page1.assertPageContents();
+          await c100HearingUrgency.page1.verifyAccessibility();
+          await c100HearingUrgency.page1.checkErrorMessages(checkErrorMessages);
+          await c100HearingUrgency.page1.fillInFields(
+            answerYesToAll,
+            hearingUrgency,
+          );
+          await c100HearingUrgency.page1.clickContinue();
+
+          await c100HearingUrgency.submitPage.assertHearingUrgencyAnswers(
+            hearingUrgency,
+            answerYesToAll,
+            snapshotPath,
+            snapshotName,
+          );
+          await c100HearingUrgency.submitPage.verifyAccessibility();
+          await c100HearingUrgency.submitPage.clickSaveAndContinue();
+
+          await summaryPage.alertBanner.assertEventAlert(
+            caseRef,
+            "Hearing urgency",
+          );
+        },
+      );
+    },
+  );
 });
