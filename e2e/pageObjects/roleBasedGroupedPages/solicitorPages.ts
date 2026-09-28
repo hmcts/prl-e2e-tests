@@ -51,6 +51,15 @@ import { C100CaseNamePage } from "../pages/exui/createCase/c100CaseName.po.ts";
 import { Fl401CaseNamePage } from "../pages/exui/createCase/fl401CaseName.po.ts";
 import { CreateCaseSubmitPage } from "../pages/exui/createCase/createCaseSubmit.po.ts";
 
+import { CaseFilterPage } from "../pages/exui/createCase/caseFilter.po.ts";
+import { TypeOfApplicationPage } from "../pages/exui/createCase/typeOfApplication.po.ts";
+import { C100ConfidentialityStatementPage } from "../pages/exui/createCase/c100ConfidentialityStatement.po.ts";
+import { Fl401ConfidentialityStatementPage } from "../pages/exui/createCase/fl401ConfidentialityStatement.po.ts";
+import { SelectFamilyCourtPage } from "../pages/exui/createCase/selectFamilyCourt.po.ts";
+import { C100CaseNamePage } from "../pages/exui/createCase/c100CaseName.po.ts";
+import { Fl401CaseNamePage } from "../pages/exui/createCase/fl401CaseName.po.ts";
+import { CreateCaseSubmitPage } from "../pages/exui/createCase/createCaseSubmit.po.ts";
+
 export class SolicitorPagesGroup {
   constructor(public readonly page: Page) {}
 
