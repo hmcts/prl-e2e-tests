@@ -2,14 +2,12 @@ import { C100HearingUrgencyData } from "../../../../pageObjects/pages/exui/creat
 import config from "../../../../utils/config.utils.ts";
 import { test } from "../../../fixtures.ts";
 
-type TestTag = "@accessibility" | "@errorMessage" | "@nightly" | "@regression";
-
 interface HearingUrgencyScenario {
   description: string;
   answerYesToAll: boolean;
   checkErrorMessages: boolean;
   snapshotName: string;
-  tags: TestTag[];
+  nightly: boolean;
 }
 
 const snapshotPath = ["createCase", "C100", "hearingUrgency"];
@@ -27,21 +25,21 @@ const scenarios: HearingUrgencyScenario[] = [
     answerYesToAll: true,
     checkErrorMessages: false,
     snapshotName: "c100-hearing-urgency-yes-answers",
-    tags: ["@regression", "@accessibility", "@nightly"],
+    nightly: true,
   },
   {
     description: "no answers",
     answerYesToAll: false,
     checkErrorMessages: false,
     snapshotName: "c100-hearing-urgency-no-answers",
-    tags: ["@regression"],
+    nightly: false,
   },
   {
     description: "yes answers and error validation",
     answerYesToAll: true,
     checkErrorMessages: true,
     snapshotName: "c100-hearing-urgency-yes-answers-error-validation",
-    tags: ["@regression", "@errorMessage"],
+    nightly: false,
   },
 ];
 
@@ -67,40 +65,38 @@ test.describe("C100 Create case - Hearing Urgency tests", () => {
       answerYesToAll,
       checkErrorMessages,
       snapshotName,
-      tags,
+      nightly,
     }) => {
-      test(
-        `Complete the C100 hearing urgency event with ${description}.`,
-        { tag: [...tags] },
-        async ({ solicitor }): Promise<void> => {
-          const { tasksPage, c100HearingUrgency, summaryPage } = solicitor;
+      test(`Complete the C100 hearing urgency event with ${description}. @regression @accessibility${nightly ? " @nightly" : ""}${checkErrorMessages ? " @errorMessage" : ""}`, async ({
+        solicitor,
+      }): Promise<void> => {
+        const { tasksPage, c100HearingUrgency, summaryPage } = solicitor;
 
-          await tasksPage.chooseEventFromDropdown("Hearing urgency");
+        await tasksPage.chooseEventFromDropdown("Hearing urgency");
 
-          await c100HearingUrgency.page1.assertPageContents();
-          await c100HearingUrgency.page1.verifyAccessibility();
-          await c100HearingUrgency.page1.checkErrorMessages(checkErrorMessages);
-          await c100HearingUrgency.page1.fillInFields(
-            answerYesToAll,
-            hearingUrgency,
-          );
-          await c100HearingUrgency.page1.clickContinue();
+        await c100HearingUrgency.page1.assertPageContents();
+        await c100HearingUrgency.page1.verifyAccessibility();
+        await c100HearingUrgency.page1.checkErrorMessages(checkErrorMessages);
+        await c100HearingUrgency.page1.fillInFields(
+          answerYesToAll,
+          hearingUrgency,
+        );
+        await c100HearingUrgency.page1.clickContinue();
 
-          await c100HearingUrgency.submitPage.assertHearingUrgencyAnswers(
-            hearingUrgency,
-            answerYesToAll,
-            snapshotPath,
-            snapshotName,
-          );
-          await c100HearingUrgency.submitPage.verifyAccessibility();
-          await c100HearingUrgency.submitPage.clickSaveAndContinue();
+        await c100HearingUrgency.submitPage.assertHearingUrgencyAnswers(
+          hearingUrgency,
+          answerYesToAll,
+          snapshotPath,
+          snapshotName,
+        );
+        await c100HearingUrgency.submitPage.verifyAccessibility();
+        await c100HearingUrgency.submitPage.clickSaveAndContinue();
 
-          await summaryPage.alertBanner.assertEventAlert(
-            caseRef,
-            "Hearing urgency",
-          );
-        },
-      );
+        await summaryPage.alertBanner.assertEventAlert(
+          caseRef,
+          "Hearing urgency",
+        );
+      });
     },
   );
 });
