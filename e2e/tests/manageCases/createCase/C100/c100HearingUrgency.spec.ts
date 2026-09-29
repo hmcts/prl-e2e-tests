@@ -1,4 +1,3 @@
-import { C100HearingUrgencyData } from "../../../../pageObjects/pages/exui/createCase/hearingUrgency/c100HearingUrgency1.po.ts";
 import config from "../../../../utils/config.utils.ts";
 import { test } from "../../../fixtures.ts";
 
@@ -11,13 +10,6 @@ interface HearingUrgencyScenario {
 }
 
 const snapshotPath = ["createCase", "C100", "hearingUrgency"];
-
-const hearingUrgency: C100HearingUrgencyData = {
-  urgencyTimeAndReason: "Needs to be heard within 2 days due to risk of harm",
-  effortsToNotifyRespondents: "Respondent notified by email and phone",
-  withoutNoticeReasons: "Notifying the respondent would put the child at risk",
-  reducedNoticeReasons: "The hearing is needed before the usual notice period",
-};
 
 const scenarios: HearingUrgencyScenario[] = [
   {
@@ -38,7 +30,7 @@ const scenarios: HearingUrgencyScenario[] = [
     description: "yes answers and error validation",
     answerYesToAll: true,
     checkErrorMessages: true,
-    snapshotName: "c100-hearing-urgency-yes-answers-error-validation",
+    snapshotName: "c100-hearing-urgency-yes-answers",
     nightly: false,
   },
 ];
@@ -77,14 +69,10 @@ test.describe("C100 Create case - Hearing Urgency tests", () => {
         await c100HearingUrgency.page1.assertPageContents();
         await c100HearingUrgency.page1.verifyAccessibility();
         await c100HearingUrgency.page1.checkErrorMessages(checkErrorMessages);
-        await c100HearingUrgency.page1.fillInFields(
-          answerYesToAll,
-          hearingUrgency,
-        );
+        await c100HearingUrgency.page1.fillInFields(answerYesToAll);
         await c100HearingUrgency.page1.clickContinue();
 
         await c100HearingUrgency.submitPage.assertHearingUrgencyAnswers(
-          hearingUrgency,
           answerYesToAll,
           snapshotPath,
           snapshotName,

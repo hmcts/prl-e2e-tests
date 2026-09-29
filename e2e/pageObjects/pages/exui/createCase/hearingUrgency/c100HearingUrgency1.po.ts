@@ -1,12 +1,12 @@
 import { expect, Locator, Page } from "@playwright/test";
 import { EventPage } from "../../eventPage.po.ts";
 
-export interface C100HearingUrgencyData {
-  urgencyTimeAndReason: string;
-  effortsToNotifyRespondents: string;
-  withoutNoticeReasons: string;
-  reducedNoticeReasons: string;
-}
+export const hearingUrgencyDetails = {
+  urgencyTimeAndReason: "Needs to be heard within 2 days due to risk of harm",
+  effortsToNotifyRespondents: "Respondent notified by email and phone",
+  withoutNoticeReasons: "Notifying the respondent would put the child at risk",
+  reducedNoticeReasons: "The hearing is needed before the usual notice period",
+};
 
 const questions: string[] = [
   "*Is this case urgent?",
@@ -108,10 +108,7 @@ export class C100HearingUrgency1Page extends EventPage {
     ]);
   }
 
-  async fillInFields(
-    answerYesToAll: boolean,
-    hearingUrgency: C100HearingUrgencyData,
-  ): Promise<void> {
+  async fillInFields(answerYesToAll: boolean): Promise<void> {
     if (!answerYesToAll) {
       await this.caseUrgentNo.check();
       await this.withoutNoticeNo.check();
@@ -123,12 +120,18 @@ export class C100HearingUrgency1Page extends EventPage {
     for (const label of conditionalFieldLabels) {
       await expect(this.page.getByText(label, { exact: true })).toBeVisible();
     }
-    await this.urgencyTimeAndReason.fill(hearingUrgency.urgencyTimeAndReason);
-    await this.effortsToNotifyRespondents.fill(
-      hearingUrgency.effortsToNotifyRespondents,
+    await this.urgencyTimeAndReason.fill(
+      hearingUrgencyDetails.urgencyTimeAndReason,
     );
-    await this.withoutNoticeReasons.fill(hearingUrgency.withoutNoticeReasons);
-    await this.reducedNoticeReasons.fill(hearingUrgency.reducedNoticeReasons);
+    await this.effortsToNotifyRespondents.fill(
+      hearingUrgencyDetails.effortsToNotifyRespondents,
+    );
+    await this.withoutNoticeReasons.fill(
+      hearingUrgencyDetails.withoutNoticeReasons,
+    );
+    await this.reducedNoticeReasons.fill(
+      hearingUrgencyDetails.reducedNoticeReasons,
+    );
   }
 
   private async selectYesToAll(): Promise<void> {

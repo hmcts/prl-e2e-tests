@@ -1,7 +1,7 @@
 import { expect, Locator, Page } from "@playwright/test";
 import { CommonStaticText } from "../../../../../common/commonStaticText.ts";
 import { CheckYourAnswersPage } from "../../checkYourAnswers.po.ts";
-import { C100HearingUrgencyData } from "./c100HearingUrgency1.po.ts";
+import { hearingUrgencyDetails } from "./c100HearingUrgency1.po.ts";
 
 const questions: string[] = [
   "*Is this case urgent?",
@@ -29,7 +29,6 @@ export class C100HearingUrgencySubmitPage extends CheckYourAnswersPage {
   }
 
   async assertHearingUrgencyAnswers(
-    hearingUrgency: C100HearingUrgencyData,
     answerYesToAll: boolean,
     snapshotPath?: string[],
     snapshotName?: string,
@@ -52,10 +51,10 @@ export class C100HearingUrgencySubmitPage extends CheckYourAnswersPage {
     ).toHaveCount(questions.length);
 
     const followUpAnswers: string[] = [
-      hearingUrgency.urgencyTimeAndReason,
-      hearingUrgency.effortsToNotifyRespondents,
-      hearingUrgency.withoutNoticeReasons,
-      hearingUrgency.reducedNoticeReasons,
+      hearingUrgencyDetails.urgencyTimeAndReason,
+      hearingUrgencyDetails.effortsToNotifyRespondents,
+      hearingUrgencyDetails.withoutNoticeReasons,
+      hearingUrgencyDetails.reducedNoticeReasons,
     ];
     for (const [index, question] of followUpQuestions.entries()) {
       const questionText = this.answersTable.getByText(question, {
