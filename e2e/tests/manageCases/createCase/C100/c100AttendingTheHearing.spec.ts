@@ -1,64 +1,113 @@
-import { test } from "@playwright/test";
-import Config from "../../../../utils/config.utils.ts";
-import { C100AttendingTheHearing } from "../../../../journeys/manageCases/createCase/C100AttendingTheHearing/c100AttendingTheHearing.ts";
+import { C100AttendingTheHearingData } from "../../../../pageObjects/pages/exui/createCase/attendingTheHearing/c100AttendingTheHearing1.po.ts";
+import config from "../../../../utils/config.utils.ts";
+import { test } from "../../../fixtures.ts";
 
-test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
-test.slow();
+type TestTag = "@accessibility" | "@errorMessage" | "@nightly" | "@regression";
 
-test.describe("C100 Create case respondent’s behaviour tests", (): void => {
-  test(`C100 Attending The Hearing Journey with the following options:
-  Not Accessibility testing,
-  Not error Messaging,
-  No to All Options, @regression`, async ({ page }): Promise<void> => {
-    await C100AttendingTheHearing.c100AttendingTheHearing({
-      page: page,
-      accessibilityTest: false,
-      errorMessaging: false,
-      c100AttendingTheHearingYesNo: false,
-      subJourney: true,
-    });
-  });
+interface AttendingTheHearingScenario {
+  answerYesToAll: boolean;
+  checkErrorMessages: boolean;
+  description: string;
+  snapshotName: string;
+  tags: TestTag[];
+}
 
-  test(`C100 Attending The Hearing Journey with the following options:
-  Not Accessibility testing,
-  Not error Messaging,
-  Yes to All Options @regression`, async ({ page }): Promise<void> => {
-    await C100AttendingTheHearing.c100AttendingTheHearing({
-      page: page,
-      accessibilityTest: false,
-      errorMessaging: false,
-      c100AttendingTheHearingYesNo: true,
-      subJourney: true,
-    });
-  });
+const snapshotPath = ["createCase", "C100", "attendingTheHearing"];
 
-  test(`C100 Attending The Hearing Journey with the following options:
-  Not Accessibility testing,
-  Yes error Messaging,
-  Yes to All Options, @regression @errorMessage`, async ({
-    page,
-  }): Promise<void> => {
-    await C100AttendingTheHearing.c100AttendingTheHearing({
-      page: page,
-      accessibilityTest: false,
-      errorMessaging: true,
-      c100AttendingTheHearingYesNo: true,
-      subJourney: true,
-    });
-  });
-});
+const attendingTheHearingData: C100AttendingTheHearingData = {
+  whoNeedsWelsh: "Automated Tester",
+  interpreter: {
+    relationship: "Automated Interpreter",
+    language: "Automated Language",
+    assistance: "Automated Assistance",
+  },
+  adjustments: "Automated Adjustments",
+  specialArrangements: "Automated Arrangements",
+  intermediaryReasons: "Intermediary Reasons",
+};
 
-test(`C100 Attending The Hearing Journey with the following options:
-  Accessibility testing,
-  No error Messaging,
-  Yes to All Options, @accessibility @nightly`, async ({
-  page,
-}): Promise<void> => {
-  await C100AttendingTheHearing.c100AttendingTheHearing({
-    page: page,
-    accessibilityTest: true,
-    errorMessaging: false,
-    c100AttendingTheHearingYesNo: true,
-    subJourney: true,
-  });
+const scenarios: AttendingTheHearingScenario[] = [
+  {
+    answerYesToAll: false,
+    checkErrorMessages: false,
+    description: "no answers",
+    snapshotName: "c100-attending-the-hearing-no-answers",
+    tags: ["@regression"],
+  },
+  {
+    answerYesToAll: true,
+    checkErrorMessages: false,
+    description: "yes answers",
+    snapshotName: "c100-attending-the-hearing-yes-answers",
+    tags: ["@regression", "@accessibility", "@nightly"],
+  },
+  {
+    answerYesToAll: true,
+    checkErrorMessages: true,
+    description: "yes answers and error validation",
+    snapshotName: "c100-attending-the-hearing-yes-answers",
+    tags: ["@regression", "@errorMessage"],
+  },
+];
+
+test.describe("C100 Create case - Attending the hearing tests", () => {
+  let caseRef: string;
+
+  test.beforeEach(
+    async ({ solicitor, manageCasesEventUtils, navigationUtils }) => {
+      caseRef = (await manageCasesEventUtils.createBlankSolicitorCase("C100"))
+        .caseRef;
+      await navigationUtils.goToCase(
+        solicitor.page,
+        config.manageCasesBaseURLCase,
+        caseRef,
+        "tasks",
+      );
+    },
+  );
+
+  scenarios.forEach(
+    ({
+      answerYesToAll,
+      checkErrorMessages,
+      description,
+      snapshotName,
+      tags,
+    }) => {
+      test(
+        `Complete Attending the hearing with ${description}.`,
+        { tag: [...tags] },
+        async ({ solicitor }): Promise<void> => {
+          const { c100AttendingTheHearing, summaryPage, tasksPage } = solicitor;
+
+          await tasksPage.chooseEventFromDropdown("Attending the hearing");
+
+          await c100AttendingTheHearing.page1.assertPageContents();
+          await c100AttendingTheHearing.page1.verifyAccessibility();
+          await c100AttendingTheHearing.page1.checkErrorMessages(
+            checkErrorMessages,
+          );
+          await c100AttendingTheHearing.page1.fillInFields({
+            answerYesToAll,
+            attendingTheHearingData,
+          });
+          await c100AttendingTheHearing.page1.clickContinue();
+
+          await c100AttendingTheHearing.submitPage.assertAttendingTheHearingAnswers(
+            attendingTheHearingData,
+            answerYesToAll,
+            snapshotPath,
+            snapshotName,
+          );
+          await c100AttendingTheHearing.submitPage.verifyAccessibility();
+          await c100AttendingTheHearing.submitPage.clickSaveAndContinue();
+
+          await summaryPage.alertBanner.assertEventAlert(
+            caseRef,
+            "Attending the hearing",
+          );
+        },
+      );
+    },
+  );
 });
