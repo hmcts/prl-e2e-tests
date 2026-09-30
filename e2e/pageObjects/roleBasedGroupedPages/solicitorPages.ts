@@ -50,6 +50,8 @@ import { SelectFamilyCourtPage } from "../pages/exui/createCase/selectFamilyCour
 import { C100CaseNamePage } from "../pages/exui/createCase/c100CaseName.po.ts";
 import { Fl401CaseNamePage } from "../pages/exui/createCase/fl401CaseName.po.ts";
 import { CreateCaseSubmitPage } from "../pages/exui/createCase/createCaseSubmit.po.ts";
+import { C100InternationalElementSubmitPage } from "../pages/exui/createCase/internationalElement/c100InternationalElementSubmit.po.js";
+import { C100InternationalElement1Page } from "../pages/exui/createCase/internationalElement/c100InternationalElement1.po.js";
 
 export class SolicitorPagesGroup {
   constructor(public readonly page: Page) {}
@@ -138,6 +140,13 @@ export class SolicitorPagesGroup {
     return {
       page1: new C100AttendingTheHearing1Page(this.page),
       submitPage: new C100AttendingTheHearingSubmitPage(this.page),
+    };
+  }
+
+  get c100InternationalElement() {
+    return {
+      internationalElement1: new C100InternationalElement1Page(this.page),
+      submitPage: new C100InternationalElementSubmitPage(this.page),
     };
   }
 
