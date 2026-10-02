@@ -26,7 +26,6 @@ export class AdminEditAndApproveAnOrder21Page extends EventPage {
     "Section 16.4 Guardian Report",
     "Update to safeguarding letter",
     "Section 16A Risk Assessment",
-    "Child Impact report",
     "Other reports",
     "Enforcement Order Suitability Report",
     "Parental Order Reporter Report",

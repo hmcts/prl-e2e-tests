@@ -8,6 +8,7 @@ import { SummaryPage } from "../pages/exui/caseView/summary.po.js";
 import { ManageOrder1Page } from "../pages/exui/orders/manageOrders/manageOrder1.po.js";
 import { ManageOrder2Page } from "../pages/exui/orders/manageOrders/manageOrder2.po.js";
 import { ManageOrder5Page } from "../pages/exui/orders/manageOrders/manageOrder5.po.js";
+import { ManageOrder6Page } from "../pages/exui/orders/manageOrders/manageOrder6.po.js";
 import { ManageOrder10Page } from "../pages/exui/orders/manageOrders/manageOrder10.po.js";
 import { ManageOrder20Page } from "../pages/exui/orders/manageOrders/manageOrder20.po.js";
 import { ManageOrderSubmitPage } from "../pages/exui/orders/manageOrders/manageOrderSubmit.po.js";
@@ -85,6 +86,7 @@ export class JudgePagesGroup {
       manageOrder3Page: new ManageOrder3Page(this.page),
       manageOrder4Page: new ManageOrder4Page(this.page),
       manageOrder5Page: new ManageOrder5Page(this.page),
+      manageOrder6Page: new ManageOrder6Page(this.page),
       customOrderManageOrder5Page: new CustomOrdersManageOrder5Page(this.page),
       manageOrder10Page: new ManageOrder10Page(this.page),
       manageOrder12Page: new ManageOrder12Page(this.page),
