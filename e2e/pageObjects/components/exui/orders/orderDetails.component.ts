@@ -66,16 +66,23 @@ export class OrderDetailsComponent {
   private readonly orderAboutAllTheChildrenLabel: Locator = this.page.getByText(
     "Is the order about all the children?",
   );
-  private readonly recitalsOrPreamblesLabel: Locator = this.page.getByText(
-    "Add recitals or preamble (Optional)",
-  );
-  private readonly directionsLabel: Locator = this.page.getByText(
-    "Add directions (Optional)",
-  );
   private readonly whichChildrenAreIncludedInTheOrderLabel: Locator =
     this.page.getByText("Which children are included in the order?");
   private readonly whichHearingWasOrderApprovedLabel: Locator =
     this.page.getByText("At which hearing was the order approved?");
+  //only C43?
+  private readonly partiesAndRepresentation: Locator = this.page.locator(
+    Selectors.Span,
+    {
+      hasText: "Parties and representation",
+    },
+  );
+  private readonly partiesAndRepresentationHintText: Locator = this.page.locator(
+    Selectors.Span,
+    {
+      hasText: "Add the names of all the parties in the case, with a brief description of their role in proceedings and details of their representation",
+    },
+  );
 
   //ManageOrders specific labels
   private readonly amendTitleLabel1: Locator = this.page.locator(
@@ -115,8 +122,11 @@ export class OrderDetailsComponent {
         this.page.locator(`#isTheOrderByConsent ${Selectors.GovukFormLabel}`),
       );
       await expect(this.orderMadeByParagraph).toBeVisible();
-      await expect(this.recitalsOrPreamblesLabel).toBeVisible();
-      await expect(this.directionsLabel).toBeVisible();
+      // the 2 fields below were added for C43 orders only
+      if (orderType.includes("C43")) {
+        await expect(this.partiesAndRepresentation).toBeVisible();
+        await expect(this.partiesAndRepresentationHintText).toBeVisible();
+      }
     }
     await expect(this.approvedAtHearingLabel).toBeVisible();
     await this.pageUtils.assertStrings(
@@ -178,20 +188,6 @@ export class OrderDetailsComponent {
         .getByLabel(isOrderByConsent ? "Yes" : "No")
         .check();
 
-      if (recitalsAndPreamble) {
-        await this.page
-          .getByRole("textbox", {
-            name: "Add recitals or preamble (Optional)",
-          })
-          .fill(recitalsAndPreamble);
-      }
-      if (directions) {
-        await this.page
-          .getByRole("textbox", {
-            name: "Add directions (Optional)",
-          })
-          .fill(directions);
-      }
     } else {
       const fileUpload = new FileUploadComponent(this.page, {
         uploadLabelText: "Upload Order",
