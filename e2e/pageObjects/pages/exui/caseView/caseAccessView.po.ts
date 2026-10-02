@@ -61,7 +61,12 @@ export abstract class CaseAccessViewPage extends Base {
         hasText: "Casenumber",
       }),
     ).toBeVisible({ timeout: 60_000 });
-    await this.page.waitForLoadState("domcontentloaded");
+
+    /*
+    Tried waiting for the last page response and last page asset to load and dropdown selection behaviour was still flaky
+    frustratingly waiting for a timeout seems like the most "consistent" approach - to be re-evaluated in the future
+    */
+    await this.page.waitForTimeout(5000);
     await expect(this.page.locator("#next-step")).toBeVisible();
     await this.page.locator("#next-step").click();
     await this.page.locator("#next-step").selectOption(chosenEvent);

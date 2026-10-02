@@ -63,6 +63,12 @@ export class Helpers {
     const eventSelector = `${Selectors.markdown} > ${Selectors.div} > ${Selectors.p} > ${Selectors.a}:has-text("${event}")`;
     await page.waitForSelector(`.mat-tab-label-content:text-is("Tasks")`);
     await page.locator(eventSelector).waitFor();
+
+    /*
+    Tried waiting for the last page response and last page asset to load and dropdown selection behaviour was still flaky
+    frustratingly waiting for a timeout seems like the most "consistent" approach - to be re-evaluated in the future
+    */
+    await page.waitForTimeout(5000);
     await page.click(eventSelector);
   }
 
