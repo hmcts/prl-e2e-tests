@@ -3,11 +3,7 @@ import { C100ApplicantDetailsData } from "../../../../pageObjects/pages/exui/cre
 import config from "../../../../utils/config.utils.ts";
 import { test } from "../../../fixtures.ts";
 
-type TestTag =
-  | "@accessibility"
-  | "@errorMessage"
-  | "@nightly"
-  | "@regression";
+type TestTag = "@accessibility" | "@errorMessage" | "@nightly" | "@regression";
 
 interface ApplicantDetailsScenario {
   description: string;
@@ -84,9 +80,8 @@ test.describe("C100 Create case - Applicant Details tests", () => {
 
   test.beforeEach(
     async ({ solicitor, manageCasesEventUtils, navigationUtils }) => {
-      caseRef = (
-        await manageCasesEventUtils.createBlankSolicitorCase("C100")
-      ).caseRef;
+      caseRef = (await manageCasesEventUtils.createBlankSolicitorCase("C100"))
+        .caseRef;
       await navigationUtils.goToCase(
         solicitor.page,
         config.manageCasesBaseURLCase,
