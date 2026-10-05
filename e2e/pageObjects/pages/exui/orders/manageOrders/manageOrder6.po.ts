@@ -1,7 +1,6 @@
 import { EventPage } from "../../eventPage.po.js";
 import { expect, Locator, Page } from "@playwright/test";
 import { OrderTypes } from "../../../../../common/types.js";
-import { Selectors } from "../../../../../common/selectors.js";
 
 export interface ManageOrder6Params {
   orderType: OrderTypes;
@@ -112,21 +111,5 @@ export class ManageOrder6Page extends EventPage {
       orderType ===
         "Child arrangements, specific issue or prohibited steps order (C43)"
     );
-  }
-
-  async clickContinue(): Promise<void> {
-    await super.clickContinue();
-    const spinner = this.page.locator(Selectors.xuiSpinner);
-    await expect
-      .poll(
-        async () => {
-          const spinnerCount = await spinner.count();
-          return spinnerCount;
-        },
-        {
-          timeout: 60_000,
-        },
-      )
-      .toBe(0);
   }
 }
