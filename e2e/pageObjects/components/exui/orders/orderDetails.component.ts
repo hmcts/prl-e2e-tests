@@ -123,7 +123,10 @@ export class OrderDetailsComponent {
       );
       await expect(this.orderMadeByParagraph).toBeVisible();
       if (orderJourneyType === "manageOrder") {
-        if (orderType.endsWith("(C43)")) {
+        if (
+          orderType ===
+          "Child arrangements, specific issue or prohibited steps order (C43)"
+        ) {
           await expect(this.partiesAndRepresentation).toBeVisible();
           await expect(this.partiesAndRepresentationHintText).toBeVisible();
         }
@@ -193,7 +196,10 @@ export class OrderDetailsComponent {
         .getByLabel(isOrderByConsent ? "Yes" : "No")
         .check();
       if (orderJourneyType === "manageOrder") {
-        if (orderType.endsWith("(C43)")) {
+        if (
+          orderType ===
+          "Child arrangements, specific issue or prohibited steps order (C43)"
+        ) {
           await this.page
             .locator("#partiesAndRepresentation")
             .fill("Test parties and representation");

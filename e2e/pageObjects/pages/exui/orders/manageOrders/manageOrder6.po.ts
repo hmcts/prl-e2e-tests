@@ -98,15 +98,20 @@ export class ManageOrder6Page extends EventPage {
 
   private usesRtf(orderType: OrderTypes): boolean {
     return (
-      orderType.endsWith("(C21)") ||
-      orderType.endsWith("(C43)") ||
-      orderType.endsWith("(FL404)") ||
-      orderType.endsWith("(FL404A)")
+      orderType === "Blank order or directions (C21)" ||
+      orderType ===
+        "Child arrangements, specific issue or prohibited steps order (C43)" ||
+      orderType === "Occupation order (FL404)" ||
+      orderType === "Non-molestation order (FL404A)"
     );
   }
 
   private hasPenalNotice(orderType: OrderTypes): boolean {
-    return orderType.endsWith("(C21)") || orderType.endsWith("(C43)");
+    return (
+      orderType === "Blank order or directions (C21)" ||
+      orderType ===
+        "Child arrangements, specific issue or prohibited steps order (C43)"
+    );
   }
 
   async clickContinue(): Promise<void> {
