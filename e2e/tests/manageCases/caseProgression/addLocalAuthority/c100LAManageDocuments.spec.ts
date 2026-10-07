@@ -44,6 +44,16 @@ const LA_DOCUMENTS: Array<{
 test.describe("Add local authority event for C100 case tests as a Local Authority User.", () => {
   let caseRef: string = "";
 
+  const organisationName =
+    process.env.MANAGE_CASES_TEST_ENV === "demo"
+      ? "PRL_DEMO_LA_ORG"
+      : "Local Authority Private Law AAT Test Organisation";
+
+  const snapshotName: string =
+    process.env.MANAGE_CASES_TEST_ENV === "demo"
+      ? "add-local-authority-demo"
+      : "add-local-authority";
+
   test.beforeAll(async ({ manageCasesEventUtils }) => {
     caseRef = (await manageCasesEventUtils.submitTSSolicitorCase("C100"))
       .caseRef;
@@ -64,9 +74,6 @@ test.describe("Add local authority event for C100 case tests as a Local Authorit
       addLocalAuthorityConfirmPage,
     } = addLocalAuthority;
 
-    const organisationName =
-      "Local Authority Private Law AAT Test Organisation";
-
     await navigationUtils.goToCase(
       caseWorker.page,
       Config.manageCasesBaseURLCase,
@@ -82,7 +89,7 @@ test.describe("Add local authority event for C100 case tests as a Local Authorit
 
     await addLocalAuthoritySubmitPage.assertPageContents(
       ["caseProgression", "addLocalAuthority"],
-      "submit",
+      snapshotName,
     );
     await addLocalAuthoritySubmitPage.clickSubmit();
 

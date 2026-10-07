@@ -24,7 +24,7 @@ export const SendToGateKeeperCourtAdminScenarios: SendToGateKeeperJourneyParams[
         judgeOrLegalAdviser: "Legal adviser",
         legalAdviserDropdownName:
           process.env.MANAGE_CASES_TEST_ENV === "demo"
-            ? "legal advisor(prl_demo_la_swansea@justice.gov.uk)"
+            ? "legal advisor(prl_demo_la_swansea@hmcts.net)"
             : "legaladvisor-swansea-two(prl_legaladvisor_swansea@hmcts.net)",
         legalAdviserDisplayName:
           process.env.MANAGE_CASES_TEST_ENV === "demo"
