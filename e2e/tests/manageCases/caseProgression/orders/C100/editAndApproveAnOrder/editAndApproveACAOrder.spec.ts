@@ -23,6 +23,7 @@ test.describe("Edit and approve a CA order tests", (): void => {
       "tasks",
     );
   });
+
   [
     {
       judeOrderAction: "Give admin further directions then serve",
@@ -49,6 +50,7 @@ test.describe("Edit and approve a CA order tests", (): void => {
       );
     });
   });
+
   [
     {
       judeOrderAction: "Send to admin to serve",
@@ -74,6 +76,7 @@ test.describe("Edit and approve a CA order tests", (): void => {
       );
     });
   });
+
   [
     {
       judeOrderAction: "Ask the legal representative to make changes",
