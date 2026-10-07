@@ -1,55 +1,61 @@
-import { test } from "@playwright/test";
-import Config from "../../../../utils/config.utils.ts";
-import { C100InternationalElement } from "../../../../journeys/manageCases/createCase/C100InternationalElement/C100InternationalElement.ts";
+import config from "../../../../utils/config.utils.ts";
+import { test } from "../../../fixtures.ts";
 
-test.use({ storageState: Config.sessionStoragePath + "solicitor.json" });
+test.describe("C100 Create case - International Element Tests", () => {
+  let caseRef: string;
 
-test.describe("C100 Create case International Element Tests", (): void => {
-  test(`Complete the C100 International Element as a solicitor with the following options:
-  Not Accessibility testing,
-  Not Error message testing,
-  Saying yes to all options,
-  Setting the applicant Gender to male. @regression`, async ({
-    page,
-  }): Promise<void> => {
-    await C100InternationalElement.c100InternationalElement({
-      page: page,
-      user: "solicitor",
-      accessibilityTest: false,
+  test.beforeEach(
+    async ({ solicitor, manageCasesEventUtils, navigationUtils }) => {
+      caseRef = (await manageCasesEventUtils.createBlankSolicitorCase("C100"))
+        .caseRef;
+      await navigationUtils.goToCase(
+        solicitor.page,
+        config.manageCasesBaseURLCase,
+        caseRef,
+        "tasks",
+      );
+    },
+  );
+
+  [
+    {
       yesNoInternationalElement: true,
-      subJourney: true,
-    });
-  });
-
-  test(`Complete the C100 Create case International Element as a solicitor with the following options:
-  Not Accessibility testing,
-  Not Error message testing,
-  Saying no to all options,
-  Setting the applicant Gender to male. @regression`, async ({
-    page,
-  }): Promise<void> => {
-    await C100InternationalElement.c100InternationalElement({
-      page: page,
-      user: "solicitor",
-      accessibilityTest: false,
+      snapshotName: "international-element-yes",
+      snapshotPath: ["createCase", "C100", "internationalElement"],
+    },
+    {
       yesNoInternationalElement: false,
-      subJourney: true,
-    });
-  });
-});
+      snapshotName: "international-element-no",
+      snapshotPath: ["createCase", "C100", "internationalElement"],
+    },
+  ].forEach(({ yesNoInternationalElement, snapshotName, snapshotPath }) => {
+    const tag = yesNoInternationalElement
+      ? "@nightly @regression"
+      : "@regression";
 
-test(`Complete the C100 Create case International Element as a solicitor with the following options:
-  Accessibility testing,
-  Not Error message testing,
-  Saying yes to all options,
-  Setting the applicant Gender to male. @accessibility @nightly`, async ({
-  page,
-}): Promise<void> => {
-  await C100InternationalElement.c100InternationalElement({
-    page: page,
-    user: "solicitor",
-    accessibilityTest: true,
-    yesNoInternationalElement: true,
-    subJourney: true,
+    test(`Complete the C100 International Element options as : ${yesNoInternationalElement}. ${tag}`, async ({
+      solicitor,
+    }): Promise<void> => {
+      const { c100InternationalElement, summaryPage, tasksPage } = solicitor;
+
+      await tasksPage.chooseEventFromDropdown("International element");
+
+      await c100InternationalElement.internationalElement1.assertPageContents();
+      await c100InternationalElement.internationalElement1.fillInFields(
+        yesNoInternationalElement,
+      );
+      await c100InternationalElement.internationalElement1.clickContinue();
+
+      await c100InternationalElement.submitPage.assertPageContents(
+        snapshotPath,
+        snapshotName,
+      );
+      await c100InternationalElement.submitPage.verifyAccessibility();
+      await c100InternationalElement.submitPage.clickSaveAndContinue();
+      await summaryPage.alertBanner.assertEventAlert(
+        caseRef,
+        "International Element",
+      );
+    });
   });
 });

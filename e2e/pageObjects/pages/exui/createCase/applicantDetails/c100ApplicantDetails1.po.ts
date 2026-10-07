@@ -126,7 +126,10 @@ export class C100ApplicantDetails1Page extends EventPage {
       ["*Does the applicant currently live in a refuge? is required", 2],
       ["An address is required", 1],
       ["*Do you need to keep their address confidential? is required", 2],
-      ["*Has applicant lived at this address for less than 5 years? is required", 2],
+      [
+        "*Has applicant lived at this address for less than 5 years? is required",
+        2,
+      ],
       ["*Can you provide their email address? is required", 2],
       ["*Contact Number is required", 2],
       [
@@ -292,15 +295,9 @@ export class C100ApplicantDetails1Page extends EventPage {
     const answer = answerYesToAll ? "Yes" : "No";
     await this.applicantField(`liveInRefuge_${answer}`).check();
     await this.applicantField(`isAddressConfidential_${answer}`).check();
-    await this.applicantField(
-      `isAtAddressLessThan5Years_${answer}`,
-    ).check();
-    await this.applicantField(
-      `canYouProvideEmailAddress_${answer}`,
-    ).check();
-    await this.applicantField(
-      `isPhoneNumberConfidential_${answer}`,
-    ).check();
+    await this.applicantField(`isAtAddressLessThan5Years_${answer}`).check();
+    await this.applicantField(`canYouProvideEmailAddress_${answer}`).check();
+    await this.applicantField(`isPhoneNumberConfidential_${answer}`).check();
 
     if (answerYesToAll) {
       await this.applicantField("addressLivedLessThan5YearsDetails").fill(

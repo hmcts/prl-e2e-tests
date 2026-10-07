@@ -2,7 +2,7 @@ import { expect, Locator, Page } from "@playwright/test";
 import { CreateCasePage } from "./createCase.po.js";
 
 /**
- * Final FL401 create-case screen 
+ * Final FL401 create-case screen
  */
 export class Fl401CaseNamePage extends CreateCasePage {
   private readonly caseNameField: Locator = this.page.locator(
