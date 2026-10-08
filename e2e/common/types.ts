@@ -440,7 +440,7 @@ export const NonMolestationRespondentMustNotDoOptionsArray: NonMolestationRespon
     "must not go to, enter or attempt to enter the school",
   ];
 export type ChildArrangementOrderTypes =
-  | "Standard directions order"
+  | "Directions on issue"
   | "Blank order or directions (C21)"
   | "Child arrangements, specific issue or prohibited steps order (C43)"
   | "Parental responsibility order (C45A)"
@@ -460,7 +460,7 @@ export type ChildArrangementOrderTypes =
   | "Warrant of committal (FC604)";
 
 export const ChildArrangementOrderTypesArray: ChildArrangementOrderTypes[] = [
-  "Standard directions order",
+  "Directions on issue",
   "Blank order or directions (C21)",
   "Child arrangements, specific issue or prohibited steps order (C43)",
   "Parental responsibility order (C45A)",
