@@ -164,7 +164,11 @@ export class ManageDocumentsNewSubmitPage extends CheckYourAnswersPage {
               }`,
               exact: true,
             })
-            .nth(document.confidentialDocument === document.restrictDocument ? 1 : 0),
+            .nth(
+              document.confidentialDocument === document.restrictDocument
+                ? 1
+                : 0,
+            ),
         )
         .toBeVisible(),
       ...(document.restrictDocument
