@@ -68,6 +68,10 @@ export class OrderOptionsComponent {
     await expect(this.domesticAbuseOrdersLabel).toBeVisible();
     await expect(this.fcOrdersLabel).toBeVisible();
     await expect(this.anyOtherOrdersLabel).toBeVisible();
+    // assert only these options are present
+    await expect(
+      this.childArrangementOrders.locator(".multiple-choice label"),
+    ).toHaveCount(ChildArrangementOrderTypesArray.length);
     await this.pageUtils.assertStrings(
       ChildArrangementOrderTypesArray,
       this.childArrangementOrders,
