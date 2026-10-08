@@ -394,7 +394,9 @@ export type OrderTypes =
   | "Amended, discharged or varied order (FL404B)"
   | "Blank order (FL404B)"
   | "General form of undertaking (N117)"
-  | "Notice of proceedings (FL402)";
+  | "Notice of proceedings (FL402)"
+  | "Notice of Hearing (CA)"
+  | "Notice of Hearing (DA)";
 
 export const OrderTypesArray: OrderTypes[] = [
   "Standard directions order",
@@ -412,6 +414,8 @@ export const OrderTypesArray: OrderTypes[] = [
   "Blank order (FL404B)",
   "General form of undertaking (N117)",
   "Notice of proceedings (FL402)",
+  "Notice of Hearing (CA)",
+  "Notice of Hearing (DA)",
 ];
 
 export type NonMolestationRespondentMustNotDoOptions =
