@@ -1,9 +1,6 @@
 import { test } from "../../../../fixtures.ts";
-import config from "../../../../../utils/config.utils.ts";
 import { ContactPreferences } from "../../../../../journeys/citizen/caseView/contactPreferences/contactPreferences.ts";
 import { ActivateCitizenC100Case } from "../../../../../journeys/citizen/activateCase/activateCitizenC100Case.ts";
-
-test.use({ storageState: config.sessionStoragePath + "caseWorker.json" });
 
 test.describe("Applicant confirm contact details tests", (): void => {
   test.beforeEach(
