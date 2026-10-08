@@ -4,9 +4,15 @@ import { Selectors } from "../../../../../common/selectors.js";
 import { OrderTypes } from "../../../../../common/types.js";
 
 export class ManageOrder11Page extends EventPage {
-  readonly heading2: Locator = this.page.locator(Selectors.h2, {
-    hasText: "Who is the appointed special guardian?",
-  });
+  readonly appointedGuardianLabel: Locator = this.page.locator(
+    "#appointedGuardianLabel",
+  );
+  readonly heading2: Locator = this.appointedGuardianLabel.locator(
+    Selectors.h2,
+    {
+      hasText: "Who is the appointed special guardian?",
+    },
+  );
 
   readonly nameHeading2: Locator = this.page.locator(Selectors.h2, {
     hasText: "Full name",

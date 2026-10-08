@@ -76,6 +76,13 @@ export class OrderDetailsComponent {
     this.page.getByText("Which children are included in the order?");
   private readonly whichHearingWasOrderApprovedLabel: Locator =
     this.page.getByText("At which hearing was the order approved?");
+  private readonly partiesAndRepresentation: Locator = this.page.getByText(
+    "Parties and representation",
+  );
+  private readonly partiesAndRepresentationHintText: Locator =
+    this.page.getByText(
+      "Add the names of all the parties in the case, with a brief description of their role in proceedings and details of their representation",
+    );
 
   //ManageOrders specific labels
   private readonly amendTitleLabel1: Locator = this.page.locator(
@@ -115,8 +122,18 @@ export class OrderDetailsComponent {
         this.page.locator(`#isTheOrderByConsent ${Selectors.GovukFormLabel}`),
       );
       await expect(this.orderMadeByParagraph).toBeVisible();
-      await expect(this.recitalsOrPreamblesLabel).toBeVisible();
-      await expect(this.directionsLabel).toBeVisible();
+      if (orderJourneyType === "manageOrder") {
+        if (
+          orderType ===
+          "Child arrangements, specific issue or prohibited steps order (C43)"
+        ) {
+          await expect(this.partiesAndRepresentation).toBeVisible();
+          await expect(this.partiesAndRepresentationHintText).toBeVisible();
+        }
+      } else {
+        await expect(this.recitalsOrPreamblesLabel).toBeVisible();
+        await expect(this.directionsLabel).toBeVisible();
+      }
     }
     await expect(this.approvedAtHearingLabel).toBeVisible();
     await this.pageUtils.assertStrings(
@@ -158,6 +175,7 @@ export class OrderDetailsComponent {
     caseType: solicitorCaseCreateType,
     orderJourneyType: string,
     {
+      orderType,
       isOrderByConsent,
       wasOrderApprovedAtAHearing,
       judgeOrMagistratesTitle,
@@ -177,20 +195,40 @@ export class OrderDetailsComponent {
         .getByRole("group", { name: "Is the order by consent?" })
         .getByLabel(isOrderByConsent ? "Yes" : "No")
         .check();
-
-      if (recitalsAndPreamble) {
-        await this.page
-          .getByRole("textbox", {
-            name: "Add recitals or preamble (Optional)",
-          })
-          .fill(recitalsAndPreamble);
-      }
-      if (directions) {
-        await this.page
-          .getByRole("textbox", {
-            name: "Add directions (Optional)",
-          })
-          .fill(directions);
+      if (orderJourneyType === "manageOrder") {
+        if (
+          orderType ===
+          "Child arrangements, specific issue or prohibited steps order (C43)"
+        ) {
+          await this.page
+            .locator("#partiesAndRepresentation")
+            .fill("Test parties and representation");
+        }
+      } else {
+        if (recitalsAndPreamble) {
+          await this.page
+            .getByRole("textbox", {
+              name: "Add recitals or preamble (Optional)",
+            })
+            .click();
+          await this.page
+            .getByRole("textbox", {
+              name: "Add recitals or preamble (Optional)",
+            })
+            .fill(recitalsAndPreamble);
+        }
+        if (directions) {
+          await this.page
+            .getByRole("textbox", {
+              name: "Add directions (Optional)",
+            })
+            .click();
+          await this.page
+            .getByRole("textbox", {
+              name: "Add directions (Optional)",
+            })
+            .fill(directions);
+        }
       }
     } else {
       const fileUpload = new FileUploadComponent(this.page, {
