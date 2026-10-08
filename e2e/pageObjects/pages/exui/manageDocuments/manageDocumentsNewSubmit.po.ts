@@ -74,24 +74,48 @@ export class ManageDocumentsNewSubmitPage extends CheckYourAnswersPage {
     const assertions: Promise<void>[] = [
       expect
         .soft(
-          panel.getByRole("row", {
-            name: "Confirm the document is related to this case Yes, the document belongs to the case",
+          panel.getByRole("rowheader", {
+            name: "Confirm the document is related to this case",
             exact: true,
           }),
         )
         .toBeVisible(),
       expect
         .soft(
-          panel.getByRole("row", {
-            name: `Submitting document on behalf of ${documentParty}`,
+          panel.getByRole("cell", {
+            name: "Yes, the document belongs to the case",
             exact: true,
           }),
         )
         .toBeVisible(),
       expect
         .soft(
-          panel.getByRole("row", {
-            name: `Document category ${document.documentCategory}`,
+          panel.getByRole("rowheader", {
+            name: `Submitting document on behalf of`,
+            exact: true,
+          }),
+        )
+        .toBeVisible(),
+      expect
+        .soft(
+          panel.getByRole("cell", {
+            name: `${documentParty}`,
+            exact: true,
+          }),
+        )
+        .toBeVisible(),
+      expect
+        .soft(
+          panel.getByRole("rowheader", {
+            name: `Document category`,
+            exact: true,
+          }),
+        )
+        .toBeVisible(),
+      expect
+        .soft(
+          panel.getByRole("cell", {
+            name: `${document.documentCategory}`,
             exact: true,
           }),
         )
@@ -101,26 +125,50 @@ export class ManageDocumentsNewSubmitPage extends CheckYourAnswersPage {
         .toHaveCount(1),
       expect
         .soft(
-          panel.getByRole("row", {
-            name: `Does the document contain confidential information? ${
-              document.confidentialDocument
-                ? CommonStaticText.yes
-                : CommonStaticText.no
-            }`,
+          panel.getByRole("rowheader", {
+            name: `Does the document contain confidential information?`,
             exact: true,
           }),
         )
         .toBeVisible(),
       expect
         .soft(
-          panel.getByRole("row", {
-            name: `Do you want to request this document is restricted? ${
-              document.restrictDocument
-                ? CommonStaticText.yes
-                : CommonStaticText.no
-            }`,
+          panel
+            .getByRole("cell", {
+              name: `${
+                document.confidentialDocument
+                  ? CommonStaticText.yes
+                  : CommonStaticText.no
+              }`,
+              exact: true,
+            })
+            .first(),
+        )
+        .toBeVisible(),
+      expect
+        .soft(
+          panel.getByRole("rowheader", {
+            name: `Do you want to request this document is restricted?`,
             exact: true,
           }),
+        )
+        .toBeVisible(),
+      expect
+        .soft(
+          panel
+            .getByRole("cell", {
+              name: `${
+                document.restrictDocument
+                  ? CommonStaticText.yes
+                  : CommonStaticText.no
+              }`,
+              exact: true,
+            })
+            .nth(
+              document.confidentialDocument === document.restrictDocument
+                ? 1
+                : 0,
+            ),
         )
         .toBeVisible(),
       ...(document.restrictDocument

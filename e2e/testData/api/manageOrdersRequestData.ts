@@ -30,9 +30,9 @@ export const PowerOfArrestOrderActionData: ManageOrdersRequestData = {
         process.env.MANAGE_CASES_TEST_ENV === "demo"
           ? {
               document_url:
-                "http://dm-store-aat.service.core-compute-aat.internal/documents/a6789d89-d02d-486d-ba89-607c99ef5580",
+                "http://dm-store-demo.service.core-compute-demo.internal/documents/a6789d89-d02d-486d-ba89-607c99ef5580",
               document_binary_url:
-                "http://dm-store-aat.service.core-compute-aat.internal/documents/a6789d89-d02d-486d-ba89-607c99ef5580/binary",
+                "http://dm-store-demo.service.core-compute-demo.internal/documents/a6789d89-d02d-486d-ba89-607c99ef5580/binary",
               document_filename: "Welsh_Power_of_arrest_draft.pdf",
             }
           : {
@@ -46,9 +46,9 @@ export const PowerOfArrestOrderActionData: ManageOrdersRequestData = {
         process.env.MANAGE_CASES_TEST_ENV === "demo"
           ? {
               document_url:
-                "http://dm-store-aat.service.core-compute-aat.internal/documents/709f0751-7b7b-49d2-9d7b-61dffe547dd3",
+                "http://dm-store-demo.service.core-compute-demo.internal/documents/709f0751-7b7b-49d2-9d7b-61dffe547dd3",
               document_binary_url:
-                "http://dm-store-aat.service.core-compute-aat.internal/documents/709f0751-7b7b-49d2-9d7b-61dffe547dd3/binary",
+                "http://dm-store-demo.service.core-compute-demo.internal/documents/709f0751-7b7b-49d2-9d7b-61dffe547dd3/binary",
               document_filename: "Power_of_arrest_draft.pdf",
             }
           : {
@@ -156,9 +156,9 @@ export const PowerOfArrestOrderActionData: ManageOrdersRequestData = {
         process.env.MANAGE_CASES_TEST_ENV === "demo"
           ? {
               document_url:
-                "http://dm-store-aat.service.core-compute-aat.internal/documents/a6789d89-d02d-486d-ba89-607c99ef5580",
+                "http://dm-store-demo.service.core-compute-demo.internal/documents/a6789d89-d02d-486d-ba89-607c99ef5580",
               document_binary_url:
-                "http://dm-store-aat.service.core-compute-aat.internal/documents/a6789d89-d02d-486d-ba89-607c99ef5580/binary",
+                "http://dm-store-demo.service.core-compute-demo.internal/documents/a6789d89-d02d-486d-ba89-607c99ef5580/binary",
               document_filename: "Welsh_Power_of_arrest_draft.pdf",
             }
           : {
@@ -172,9 +172,9 @@ export const PowerOfArrestOrderActionData: ManageOrdersRequestData = {
         process.env.MANAGE_CASES_TEST_ENV === "demo"
           ? {
               document_url:
-                "http://dm-store-aat.service.core-compute-aat.internal/documents/709f0751-7b7b-49d2-9d7b-61dffe547dd3",
+                "http://dm-store-demo.service.core-compute-demo.internal/documents/709f0751-7b7b-49d2-9d7b-61dffe547dd3",
               document_binary_url:
-                "http://dm-store-aat.service.core-compute-aat.internal/documents/709f0751-7b7b-49d2-9d7b-61dffe547dd3/binary",
+                "http://dm-store-demo.service.core-compute-demo.internal/documents/709f0751-7b7b-49d2-9d7b-61dffe547dd3/binary",
               document_filename: "Power_of_arrest_draft.pdf",
             }
           : {
@@ -212,9 +212,9 @@ export const AmendDischargedVariedOrderActionData: ManageOrdersRequestData = {
         process.env.MANAGE_CASES_TEST_ENV === "demo"
           ? {
               document_url:
-                "http://dm-store-aat.service.core-compute-aat.internal/documents/3137f42e-f7b2-4485-aa9d-b842909405d8",
+                "http://dm-store-demo.service.core-compute-demo.internal/documents/3137f42e-f7b2-4485-aa9d-b842909405d8",
               document_binary_url:
-                "http://dm-store-aat.service.core-compute-aat.internal/documents/3137f42e-f7b2-4485-aa9d-b842909405d8/binary",
+                "http://dm-store-demo.service.core-compute-demo.internal/documents/3137f42e-f7b2-4485-aa9d-b842909405d8/binary",
               document_filename:
                 "welsh_amended_discharged_or_varied_order_fl404b_draft.pdf",
             }
@@ -230,9 +230,9 @@ export const AmendDischargedVariedOrderActionData: ManageOrdersRequestData = {
         process.env.MANAGE_CASES_TEST_ENV === "demo"
           ? {
               document_url:
-                "http://dm-store-aat.service.core-compute-aat.internal/documents/c7b7d9b7-7418-422d-a877-1b06de8cd588",
+                "http://dm-store-demo.service.core-compute-demo.internal/documents/c7b7d9b7-7418-422d-a877-1b06de8cd588",
               document_binary_url:
-                "http://dm-store-aat.service.core-compute-aat.internal/documents/c7b7d9b7-7418-422d-a877-1b06de8cd588/binary",
+                "http://dm-store-demo.service.core-compute-demo.internal/documents/c7b7d9b7-7418-422d-a877-1b06de8cd588/binary",
               document_filename:
                 "amended_discharged_or_varied_order_fl404b_draft.pdf",
             }
@@ -336,9 +336,9 @@ export const AmendDischargedVariedOrderActionData: ManageOrdersRequestData = {
         process.env.MANAGE_CASES_TEST_ENV === "demo"
           ? {
               document_url:
-                "http://dm-store-aat.service.core-compute-aat.internal/documents/3137f42e-f7b2-4485-aa9d-b842909405d8",
+                "http://dm-store-demo.service.core-compute-demo.internal/documents/3137f42e-f7b2-4485-aa9d-b842909405d8",
               document_binary_url:
-                "http://dm-store-aat.service.core-compute-aat.internal/documents/3137f42e-f7b2-4485-aa9d-b842909405d8/binary",
+                "http://dm-store-demo.service.core-compute-demo.internal/documents/3137f42e-f7b2-4485-aa9d-b842909405d8/binary",
               document_filename:
                 "welsh_amended_discharged_or_varied_order_fl404b_draft.pdf",
             }
@@ -354,9 +354,9 @@ export const AmendDischargedVariedOrderActionData: ManageOrdersRequestData = {
         process.env.MANAGE_CASES_TEST_ENV === "demo"
           ? {
               document_url:
-                "http://dm-store-aat.service.core-compute-aat.internal/documents/c7b7d9b7-7418-422d-a877-1b06de8cd588",
+                "http://dm-store-demo.service.core-compute-demo.internal/documents/c7b7d9b7-7418-422d-a877-1b06de8cd588",
               document_binary_url:
-                "http://dm-store-aat.service.core-compute-aat.internal/documents/c7b7d9b7-7418-422d-a877-1b06de8cd588/binary",
+                "http://dm-store-demo.service.core-compute-demo.internal/documents/c7b7d9b7-7418-422d-a877-1b06de8cd588/binary",
               document_filename:
                 "amended_discharged_or_varied_order_fl404b_draft.pdf",
             }
@@ -399,9 +399,9 @@ export const ChildArrangementsOrderActionData: ManageOrdersRequestData = {
         process.env.MANAGE_CASES_TEST_ENV === "demo"
           ? {
               document_url:
-                "http://dm-store-aat.service.core-compute-aat.internal/documents/b5c87797-8c0f-48a9-b4f9-9f55445b3b13",
+                "http://dm-store-demo.service.core-compute-demo.internal/documents/b5c87797-8c0f-48a9-b4f9-9f55445b3b13",
               document_binary_url:
-                "http://dm-store-aat.service.core-compute-aat.internal/documents/b5c87797-8c0f-48a9-b4f9-9f55445b3b13/binary",
+                "http://dm-store-demo.service.core-compute-demo.internal/documents/b5c87797-8c0f-48a9-b4f9-9f55445b3b13/binary",
               document_filename:
                 "Welsh_ChildArrangements_Specific_Prohibited_Steps_C43_Draft.pdf",
             }
@@ -417,9 +417,9 @@ export const ChildArrangementsOrderActionData: ManageOrdersRequestData = {
         process.env.MANAGE_CASES_TEST_ENV === "demo"
           ? {
               document_url:
-                "http://dm-store-aat.service.core-compute-aat.internal/documents/e008c25a-647a-4e95-86f2-478594bd4ab7",
+                "http://dm-store-demo.service.core-compute-demo.internal/documents/e008c25a-647a-4e95-86f2-478594bd4ab7",
               document_binary_url:
-                "http://dm-store-aat.service.core-compute-aat.internal/documents/e008c25a-647a-4e95-86f2-478594bd4ab7/binary",
+                "http://dm-store-demo.service.core-compute-demo.internal/documents/e008c25a-647a-4e95-86f2-478594bd4ab7/binary",
               document_filename:
                 "ChildArrangements_Specific_Prohibited_Steps_C43_Draft.pdf",
             }

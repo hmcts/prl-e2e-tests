@@ -22,6 +22,7 @@ test.describe("List without notice tests for CA cases", () => {
       "tasks",
     );
   });
+
   [
     {
       subject: "List without notice",
@@ -64,6 +65,7 @@ test.describe("List without notice tests for DA cases", () => {
       "tasks",
     );
   });
+
   [
     {
       subject: "List without notice",

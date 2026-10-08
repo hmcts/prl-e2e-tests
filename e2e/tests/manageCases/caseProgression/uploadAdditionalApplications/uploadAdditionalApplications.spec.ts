@@ -37,6 +37,7 @@ test.describe("Upload additional applications for C100 tests", () => {
       await uploadAdditionalApplications("C100", solicitor, caseRef, data);
     });
   });
+
   [
     {
       additionalApplicationType: "c2",
@@ -50,6 +51,7 @@ test.describe("Upload additional applications for C100 tests", () => {
       await uploadAdditionalApplications("C100", solicitor, caseRef, data);
     });
   });
+
   [
     {
       additionalApplicationType: "other",
@@ -98,6 +100,7 @@ test.describe("Upload additional applications for FL401 tests", () => {
       await uploadAdditionalApplications("FL401", solicitor, caseRef, data);
     });
   });
+
   [
     {
       additionalApplicationType: "c2",
@@ -111,6 +114,7 @@ test.describe("Upload additional applications for FL401 tests", () => {
       await uploadAdditionalApplications("FL401", solicitor, caseRef, data);
     });
   });
+
   [
     {
       additionalApplicationType: "other",

@@ -1,15 +1,20 @@
 import { Page } from "@playwright/test";
-import { solicitorCaseCreateType } from "../../../../common/types.ts";
-import { CaseListPage } from "../../../../pages/manageCases/caseList/caseListPage.ts";
-import { SolicitorCreatePage } from "../../../../pages/manageCases/createCase/initialJourney/solicitorCreatePage.ts";
-import { SolicitorCreate2Page } from "../../../../pages/manageCases/createCase/initialJourney/solicitorCreate2Page.ts";
-import { SolicitorCreate4Page } from "../../../../pages/manageCases/createCase/initialJourney/solicitorCreate4Page.ts";
-import { SubmitPage } from "../../../../pages/manageCases/createCase/initialJourney/submitPage.ts";
+import { Helpers } from "../../../../common/helpers.ts";
 import { Selectors } from "../../../../common/selectors.ts";
+import { solicitorCaseCreateType } from "../../../../common/types.ts";
 import { C100TasksTabPage } from "../../../../pages/manageCases/caseTabs/c100TasksTabPage.ts";
-import { SolicitorCreate5Page } from "../../../../pages/manageCases/createCase/initialJourney/solicitorCreate5Page.ts";
 import { Fl401TasksTabPage } from "../../../../pages/manageCases/caseTabs/fl401TasksTabPage.ts";
+import { CaseFilterPage } from "../../../../pageObjects/pages/exui/createCase/caseFilter.po.ts";
+import { TypeOfApplicationPage } from "../../../../pageObjects/pages/exui/createCase/typeOfApplication.po.ts";
+import { C100CaseNamePage } from "../../../../pageObjects/pages/exui/createCase/c100CaseName.po.ts";
+import { Fl401CaseNamePage } from "../../../../pageObjects/pages/exui/createCase/fl401CaseName.po.ts";
+import { CreateCaseSubmitPage } from "../../../../pageObjects/pages/exui/createCase/createCaseSubmit.po.ts";
 
+/**
+ * Creates a case via the dummy ("TS-Solicitor application") event, which
+ * reuses the solicitor create-case screens but asks for the case name and
+ * ends on a check your answers page.
+ */
 export class DummyCreateInitial {
   public static async createDummyCase({
     page,
@@ -18,57 +23,55 @@ export class DummyCreateInitial {
     page: Page;
     solicitorCaseType: solicitorCaseCreateType;
   }): Promise<void> {
-    let caseName: string;
-    await CaseListPage.navigateToCreateCasePage(page);
-    await SolicitorCreatePage.solicitorCreatePage(page, false, true);
-    await SolicitorCreate2Page.solicitorCreate2Page(
-      page,
-      false,
-      false,
-      solicitorCaseType,
-      true,
-    );
+    const caseFilterPage: CaseFilterPage = new CaseFilterPage(page);
+    await caseFilterPage.goToPage();
+    await caseFilterPage.selectSolicitorApplication(true);
+    await caseFilterPage.clickStart();
+
+    const typeOfApplicationPage: TypeOfApplicationPage =
+      new TypeOfApplicationPage(page);
+    await typeOfApplicationPage.assertPageContents(true);
+    await typeOfApplicationPage.selectCaseType(solicitorCaseType);
+    await typeOfApplicationPage.clickContinue();
+
+    const caseName: string = Helpers.generateCaseName();
+    const submitPage: CreateCaseSubmitPage = new CreateCaseSubmitPage(page);
+
     switch (solicitorCaseType) {
-      case "C100":
-        caseName = await SolicitorCreate4Page.solicitorCreate4Page(
-          page,
-          false,
-          false,
-          true,
-        );
-        await SubmitPage.submitPage(page, false, caseName, true);
-        if (
-          await page
-            .locator(
-              `${Selectors.markdown} > ${Selectors.div} > ${Selectors.p} > ${Selectors.a}:text-is("Case name")`,
-            )
-            .isVisible()
-        ) {
+      case "C100": {
+        const caseNamePage: C100CaseNamePage = new C100CaseNamePage(page);
+        await caseNamePage.assertDummyPageContents();
+        await caseNamePage.fillCaseName(caseName);
+        await caseNamePage.clickContinue();
+        await submitPage.assertPageContents(caseName);
+        await submitPage.clickCreateMyDummyCase();
+        if (await this.hasReachedTasksTab(page)) {
           await C100TasksTabPage.c100TasksTabPage(page, false);
         }
         break;
-      case "FL401":
-        caseName = await SolicitorCreate5Page.solicitorCreate5Page(
-          page,
-          false,
-          false,
-          true,
-        );
-        await SubmitPage.submitPage(page, false, caseName, true);
-        if (
-          await page
-            .locator(
-              `${Selectors.markdown} > ${Selectors.div} > ${Selectors.p} > ${Selectors.a}:text-is("Case name")`,
-            )
-            .isVisible()
-        ) {
+      }
+      case "FL401": {
+        const caseNamePage: Fl401CaseNamePage = new Fl401CaseNamePage(page);
+        await caseNamePage.assertDummyPageContents();
+        await caseNamePage.fillCaseName(caseName);
+        await caseNamePage.clickContinue();
+        await submitPage.assertPageContents(caseName);
+        await submitPage.clickCreateMyDummyCase();
+        if (await this.hasReachedTasksTab(page)) {
           await Fl401TasksTabPage.fl401TasksTabPage(page, false);
         }
         break;
+      }
       default:
-        caseName = "null";
         console.error("An invalid case type was selected");
-        await SubmitPage.submitPage(page, false, caseName, true);
     }
+  }
+
+  private static async hasReachedTasksTab(page: Page): Promise<boolean> {
+    return page
+      .locator(
+        `${Selectors.markdown} > ${Selectors.div} > ${Selectors.p} > ${Selectors.a}:text-is("Case name")`,
+      )
+      .isVisible();
   }
 }

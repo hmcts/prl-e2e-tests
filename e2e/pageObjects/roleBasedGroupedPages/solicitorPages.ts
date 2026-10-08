@@ -37,6 +37,22 @@ import { Fl401Resubmit1Page } from "../pages/exui/resubmitApplication/fl401Resub
 import { Fl401Resubmit2Page } from "../pages/exui/resubmitApplication/fl401Resubmit2.po.js";
 import { C100Submit1Page } from "../pages/exui/resubmitApplication/c100Submit1.po.js";
 import { C100Submit2Page } from "../pages/exui/resubmitApplication/c100Submit2.po.js";
+import { C100ApplicantDetails1Page } from "../pages/exui/createCase/applicantDetails/c100ApplicantDetails1.po.ts";
+import { C100ApplicantDetailsSubmitPage } from "../pages/exui/createCase/applicantDetails/c100ApplicantDetailsSubmit.po.ts";
+import { C100HearingUrgency1Page } from "../pages/exui/createCase/hearingUrgency/c100HearingUrgency1.po.ts";
+import { C100HearingUrgencySubmitPage } from "../pages/exui/createCase/hearingUrgency/c100HearingUrgencySubmit.po.ts";
+import { C100AttendingTheHearing1Page } from "../pages/exui/createCase/attendingTheHearing/c100AttendingTheHearing1.po.ts";
+import { C100AttendingTheHearingSubmitPage } from "../pages/exui/createCase/attendingTheHearing/c100AttendingTheHearingSubmit.po.ts";
+import { CaseFilterPage } from "../pages/exui/createCase/caseFilter.po.ts";
+import { TypeOfApplicationPage } from "../pages/exui/createCase/typeOfApplication.po.ts";
+import { C100ConfidentialityStatementPage } from "../pages/exui/createCase/c100ConfidentialityStatement.po.ts";
+import { Fl401ConfidentialityStatementPage } from "../pages/exui/createCase/fl401ConfidentialityStatement.po.ts";
+import { SelectFamilyCourtPage } from "../pages/exui/createCase/selectFamilyCourt.po.ts";
+import { C100CaseNamePage } from "../pages/exui/createCase/c100CaseName.po.ts";
+import { Fl401CaseNamePage } from "../pages/exui/createCase/fl401CaseName.po.ts";
+import { CreateCaseSubmitPage } from "../pages/exui/createCase/createCaseSubmit.po.ts";
+import { C100InternationalElementSubmitPage } from "../pages/exui/createCase/internationalElement/c100InternationalElementSubmit.po.js";
+import { C100InternationalElement1Page } from "../pages/exui/createCase/internationalElement/c100InternationalElement1.po.js";
 
 export class SolicitorPagesGroup {
   constructor(public readonly page: Page) {}
@@ -47,6 +63,23 @@ export class SolicitorPagesGroup {
 
   get tasksPage() {
     return new SolicitorTasksPage(this.page);
+  }
+
+  get createCase() {
+    return {
+      caseFilterPage: new CaseFilterPage(this.page),
+      typeOfApplicationPage: new TypeOfApplicationPage(this.page),
+      c100ConfidentialityStatementPage: new C100ConfidentialityStatementPage(
+        this.page,
+      ),
+      fl401ConfidentialityStatementPage: new Fl401ConfidentialityStatementPage(
+        this.page,
+      ),
+      selectFamilyCourtPage: new SelectFamilyCourtPage(this.page),
+      c100CaseNamePage: new C100CaseNamePage(this.page),
+      fl401CaseNamePage: new Fl401CaseNamePage(this.page),
+      submitPage: new CreateCaseSubmitPage(this.page),
+    };
   }
 
   get caseListPage() {
@@ -94,6 +127,34 @@ export class SolicitorPagesGroup {
       requestSupportLanguageInterpreterPage:
         new RequestSupportLanguageInterpreterPage(this.page),
       requestSupportSubmitPage: new RequestSupportSubmitPage(this.page),
+    };
+  }
+
+  get c100ApplicantDetails() {
+    return {
+      page1: new C100ApplicantDetails1Page(this.page),
+      submitPage: new C100ApplicantDetailsSubmitPage(this.page),
+    };
+  }
+
+  get c100HearingUrgency() {
+    return {
+      page1: new C100HearingUrgency1Page(this.page),
+      submitPage: new C100HearingUrgencySubmitPage(this.page),
+    };
+  }
+
+  get c100AttendingTheHearing() {
+    return {
+      page1: new C100AttendingTheHearing1Page(this.page),
+      submitPage: new C100AttendingTheHearingSubmitPage(this.page),
+    };
+  }
+
+  get c100InternationalElement() {
+    return {
+      internationalElement1: new C100InternationalElement1Page(this.page),
+      submitPage: new C100InternationalElementSubmitPage(this.page),
     };
   }
 
