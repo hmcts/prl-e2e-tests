@@ -1,9 +1,6 @@
 import { test } from "../../../../fixtures.ts";
-import config from "../../../../../utils/config.utils.ts";
 import { ReasonableAdjustments } from "../../../../../journeys/citizen/caseView/reasonableAdjustments/reasonableAdjustments.ts";
 import { ActivateCitizenC100Case } from "../../../../../journeys/citizen/activateCase/activateCitizenC100Case.ts";
-
-test.use({ storageState: config.sessionStoragePath + "caseWorker.json" });
 
 test.describe("Respondent reasonable adjustments tests", (): void => {
   let caseRef: string;
