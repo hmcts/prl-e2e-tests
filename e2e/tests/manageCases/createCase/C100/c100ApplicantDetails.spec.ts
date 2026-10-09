@@ -2,7 +2,7 @@ import { ApplicantGender } from "../../../../common/types.ts";
 import { C100ApplicantDetailsData } from "../../../../pageObjects/pages/exui/createCase/applicantDetails/c100ApplicantDetails1.po.ts";
 import config from "../../../../utils/config.utils.ts";
 import { test } from "../../../fixtures.ts";
-
+// TEST COMMENT
 type TestTag = "@accessibility" | "@errorMessage" | "@nightly" | "@regression";
 
 interface ApplicantDetailsScenario {
