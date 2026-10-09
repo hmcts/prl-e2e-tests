@@ -4,8 +4,6 @@ import { JudgePagesGroup } from "../../../../../../pageObjects/roleBasedGroupedP
 import { OrderTypes } from "../../../../../../common/types.js";
 
 test.describe("As a Court admin, serve a judge approved - solicitor drafted CA case order tests", (): void => {
-  test.slow();
-
   let caseRef: string;
   const orderType = "Parental responsibility order (C45A)";
 
@@ -36,6 +34,7 @@ test.describe("As a Court admin, serve a judge approved - solicitor drafted CA c
 
     await editAndApproveOrder(caseRef, judge, judgeData);
   });
+
   [
     {
       wantToEditOrder: false,
@@ -81,7 +80,7 @@ test.describe("As a Court admin, serve a judge approved - solicitor drafted CA c
       snapshotPath: ["caseProgression", "orders", "serveApprovedOrders"],
     },
   ].forEach((data) => {
-    test(`Admin serve an judge approved C100 order that is personally served as : ${data.personallyServed} to : ${data.recipientsToServe} @nightly @regression @accessibility`, async ({
+    test(`Admin serve an judge approved C100 order that is personally served as : ${data.personallyServed} to : ${data.recipientsToServe} @nightly @regression @accessibility @potato`, async ({
       caseWorker,
       navigationUtils,
     }): Promise<void> => {
