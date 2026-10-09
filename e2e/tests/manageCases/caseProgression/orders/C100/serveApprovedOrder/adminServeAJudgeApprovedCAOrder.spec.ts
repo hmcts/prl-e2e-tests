@@ -80,7 +80,7 @@ test.describe("As a Court admin, serve a judge approved - solicitor drafted CA c
       snapshotPath: ["caseProgression", "orders", "serveApprovedOrders"],
     },
   ].forEach((data) => {
-    test(`Admin serve an judge approved C100 order that is personally served as : ${data.personallyServed} to : ${data.recipientsToServe} @nightly @regression @accessibility @potato`, async ({
+    test(`Admin serve an judge approved C100 order that is personally served as : ${data.personallyServed} to : ${data.recipientsToServe} @nightly @regression @accessibility`, async ({
       caseWorker,
       navigationUtils,
     }): Promise<void> => {
