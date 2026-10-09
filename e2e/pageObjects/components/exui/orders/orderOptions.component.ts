@@ -2,7 +2,7 @@ import { expect, Locator, Page } from "@playwright/test";
 import { Selectors } from "../../../../common/selectors.js";
 import {
   AnyOtherOrderTypesArray,
-  ChildArrangementOrderTypesArray,
+  CustomOrderTypesArray,
   DomesticAbuseOrderTypesArray,
   FcOrderTypesArray,
   OrderTypesArray,
@@ -69,7 +69,7 @@ export class OrderOptionsComponent {
     await expect(this.fcOrdersLabel).toBeVisible();
     await expect(this.anyOtherOrdersLabel).toBeVisible();
     await this.pageUtils.assertStrings(
-      ChildArrangementOrderTypesArray,
+      CustomOrderTypesArray, //UPDATED HERE
       this.childArrangementOrders,
     );
     await this.pageUtils.assertStrings(DomesticAbuseOrderTypesArray);
