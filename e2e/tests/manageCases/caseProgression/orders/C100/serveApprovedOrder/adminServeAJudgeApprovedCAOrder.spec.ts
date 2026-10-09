@@ -4,8 +4,6 @@ import { JudgePagesGroup } from "../../../../../../pageObjects/roleBasedGroupedP
 import { OrderTypes } from "../../../../../../common/types.js";
 
 test.describe("As a Court admin, serve a judge approved - solicitor drafted CA case order tests", (): void => {
-  test.slow();
-
   let caseRef: string;
   const orderType = "Parental responsibility order (C45A)";
 
@@ -36,6 +34,7 @@ test.describe("As a Court admin, serve a judge approved - solicitor drafted CA c
 
     await editAndApproveOrder(caseRef, judge, judgeData);
   });
+
   [
     {
       wantToEditOrder: false,

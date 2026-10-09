@@ -4,8 +4,6 @@ import { OrderTypes } from "../../../../../../common/types.js";
 import { JudgePagesGroup } from "../../../../../../pageObjects/roleBasedGroupedPages/judgePages.js";
 
 test.describe("As a Court admin Serve a judge approved solicitor created DA case order tests", (): void => {
-  test.slow();
-
   let caseRef: string;
   const orderType = "Non-molestation order (FL404A)";
 
