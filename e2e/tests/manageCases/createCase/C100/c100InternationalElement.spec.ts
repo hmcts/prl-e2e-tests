@@ -1,7 +1,6 @@
 import config from "../../../../utils/config.utils.ts";
 import { test } from "../../../fixtures.ts";
 
-// TEST COMMENT
 test.describe("C100 Create case - International Element Tests", () => {
   let caseRef: string;
 
