@@ -394,7 +394,9 @@ export type OrderTypes =
   | "Amended, discharged or varied order (FL404B)"
   | "Blank order (FL404B)"
   | "General form of undertaking (N117)"
-  | "Notice of proceedings (FL402)";
+  | "Notice of proceedings (FL402)"
+  | "Notice of Hearing (CA)"
+  | "Notice of Hearing (DA)";
 
 export const OrderTypesArray: OrderTypes[] = [
   "Standard directions order",
@@ -412,6 +414,8 @@ export const OrderTypesArray: OrderTypes[] = [
   "Blank order (FL404B)",
   "General form of undertaking (N117)",
   "Notice of proceedings (FL402)",
+  "Notice of Hearing (CA)",
+  "Notice of Hearing (DA)",
 ];
 
 export type NonMolestationRespondentMustNotDoOptions =
@@ -459,6 +463,23 @@ export type ChildArrangementOrderTypes =
   | "Order on determination of proceedings for contempt of court (FC603)"
   | "Warrant of committal (FC604)";
 
+export type CustomOrderTypes =
+  | "Standard directions order"
+  | "Blank order or directions (C21)"
+  | "Child arrangements, specific issue or prohibited steps order (C43)"
+  | "Parental responsibility order (C45A)"
+  | "Special guardianship order (C43A)"
+  | "Notice of proceedings (C6) (Notice to parties)"
+  | "Notice of proceedings (C6a) (Notice to non-parties)"
+  | "Appointment of a guardian (C47A)"
+  | "Non-molestation order (FL404A)"
+  | "Occupation order (FL404)"
+  | "Power of arrest (FL406)"
+  | "Amended, discharged or varied order (FL404B)"
+  | "Blank order (FL404B)"
+  | "General form of undertaking (N117)"
+  | "Notice of proceedings (FL402)";
+
 export const ChildArrangementOrderTypesArray: ChildArrangementOrderTypes[] = [
   "Standard directions order",
   "Blank order or directions (C21)",
@@ -478,6 +499,23 @@ export const ChildArrangementOrderTypesArray: ChildArrangementOrderTypes[] = [
   "Warrant to secure attendance at court (FC602)",
   "Order on determination of proceedings for contempt of court (FC603)",
   "Warrant of committal (FC604)",
+];
+export const CustomOrderTypesArray: CustomOrderTypes[] = [
+  "Standard directions order",
+  "Blank order or directions (C21)",
+  "Child arrangements, specific issue or prohibited steps order (C43)",
+  "Parental responsibility order (C45A)",
+  "Special guardianship order (C43A)",
+  "Notice of proceedings (C6) (Notice to parties)",
+  "Notice of proceedings (C6a) (Notice to non-parties)",
+  "Appointment of a guardian (C47A)",
+  "Non-molestation order (FL404A)",
+  "Occupation order (FL404)",
+  "Power of arrest (FL406)",
+  "Amended, discharged or varied order (FL404B)",
+  "Blank order (FL404B)",
+  "General form of undertaking (N117)",
+  "Notice of proceedings (FL402)",
 ];
 export type DomesticAbuseOrderTypes =
   | "Non-molestation order (FL404A)"
