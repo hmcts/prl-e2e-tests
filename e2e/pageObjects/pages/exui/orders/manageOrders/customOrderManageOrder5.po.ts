@@ -5,7 +5,7 @@ import { PageUtils } from "../../../../../utils/page.utils.ts";
 import {
   JudgeOrMagistrateTitlesArray,
   OrderTypes,
-  OrderTypesArray,
+  CustomOrderTypesArray,
   solicitorCaseCreateType,
 } from "../../../../../common/types.ts";
 import config from "../../../../../utils/config.utils.ts";
@@ -114,7 +114,7 @@ export class CustomOrdersManageOrder5Page extends EventPage {
   async assertPageContents(caseType: solicitorCaseCreateType): Promise<void> {
     await this.assertPageHeadings();
     await expect(this.selectOrderNameLabel).toBeVisible();
-    await this.pageUtils.assertStrings(OrderTypesArray);
+    await this.pageUtils.assertStrings(CustomOrderTypesArray);
     await expect(
       this.page.getByRole("radio", {
         name: "Directions on issue",
