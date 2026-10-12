@@ -137,7 +137,7 @@ export enum CaJourneyEmergencyProtectionReviewContent {
   dd_swansea = "Swansea", // 2 occurrences
   dd_grandparent = "Grandparent", // 3 occurrences
   dd_exampletextExampletext = "exampleText exampleText", // 3 occurrences
-  dd_12October2008 = "12 October 2008", // 2 occurrences
+  dd_12October2008 = "12 October 2020", // 2 occurrences
   dd_male = "Male", // 2 occurrences
   dd_no = "No", // 2 occurrences
   dd_yes = "Yes", // 15 occurrences

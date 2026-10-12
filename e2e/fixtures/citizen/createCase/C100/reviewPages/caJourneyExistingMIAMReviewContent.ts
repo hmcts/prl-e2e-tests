@@ -7,7 +7,7 @@ export enum CaJourneyExistingMIAMReviewContent {
   dd_1 = "SA1 2FA",
   dd_2 = "Automated Permission Reasoning",
   dd_3 = "Lorem ipsum describe what you want the court to do regarding the children in this application",
-  dd_4 = "12 October 2008",
+  dd_4 = "12 October 2020",
   dd_5 = "Female",
   dd_6 = "exampleText",
   dd_7 = "I dont know",
