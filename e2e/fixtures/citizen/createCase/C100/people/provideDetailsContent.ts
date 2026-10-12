@@ -13,7 +13,7 @@ export enum ProvideDetailsContent {
   repeatedLabel3 = "Year",
   exampleDay = "12",
   exampleMonth = "10",
-  exampleYear = "2008",
+  exampleYear = "2020",
   errorLink1 = "Enter the date of birth",
   errorLink2 = "Select the gender",
 }
