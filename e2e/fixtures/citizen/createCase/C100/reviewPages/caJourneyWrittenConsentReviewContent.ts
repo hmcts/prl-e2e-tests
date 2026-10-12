@@ -124,7 +124,7 @@ export enum CaJourneyWrittenConsentReviewContent {
   dd_father = "Father", // 3 occurrences
   dd_mother = "Mother",
   dd_exampletextExampletext = "exampleText exampleText", // 4 occurrences
-  dd_12October2008 = "12 October 2008", // 2 occurrences
+  dd_12October2020 = "12 October 2020", // 2 occurrences
   dd_yes = "Yes", // 13 occurrences
   dd_male = "Male", // 5 occurrences
   span_1 = "Where do the children live?",
