@@ -1,8 +1,5 @@
-import config from "../../../utils/config.utils.ts";
 import { test } from "../../fixtures.ts";
 import { ConfirmApplicantContactInstructions } from "../../../journeys/citizen/caseView/confirmContactDetails/confirmApplicantContactInstructions.ts";
-
-test.use({ storageState: config.sessionStoragePath + "caseWorker.json" });
 
 // This test is specifically for FL401 cases see FPVTL-871
 test.describe("Applicant confirm contact details tests", (): void => {
@@ -27,12 +24,12 @@ test.describe("Applicant confirm contact details tests", (): void => {
   });
 
   test("Applicant update contact details. @nightly @regression", async ({
-    page,
+    caseWorker,
     browser,
   }): Promise<void> => {
     await ConfirmApplicantContactInstructions.confirmApplicantContactInstructions(
       {
-        page,
+        page: caseWorker.page,
         browser,
         caseRef: caseRef,
         isApplicant: true,
