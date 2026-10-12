@@ -227,7 +227,7 @@ export class ReviewPage {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.dd}:text-is("${CaJourneyWrittenConsentReviewContent.dd_12October2008}")`,
+        `${Selectors.dd}:text-is("${CaJourneyWrittenConsentReviewContent.dd_12October2020}")`,
         2,
       ),
       Helpers.checkVisibleAndPresent(

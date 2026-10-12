@@ -4,8 +4,6 @@ import { OrderTypes } from "../../../../../../common/types.js";
 import { JudgePagesGroup } from "../../../../../../pageObjects/roleBasedGroupedPages/judgePages.js";
 
 test.describe("As a Court admin Serve a judge approved solicitor created DA case order tests", (): void => {
-  test.slow();
-
   let caseRef: string;
   const orderType = "Non-molestation order (FL404A)";
 
@@ -198,13 +196,8 @@ async function editAndServeOrder(caseRef, caseWorker, data, navigationUtils) {
 }
 
 async function editAndApproveOrder(caseRef, judge: JudgePagesGroup, data) {
-  const {
-    tasksPage,
-    summaryPage,
-    editAndApproveAnOrders,
-    draftedOrders,
-    manageOrders,
-  } = judge;
+  const { tasksPage, summaryPage, editAndApproveAnOrders, draftedOrders } =
+    judge;
   await tasksPage.assignTaskToMeAndTriggerNextSteps(
     "Review and Approve Legal rep Order - ",
     "Review and Approve Legal rep Order",
@@ -220,12 +213,10 @@ async function editAndApproveOrder(caseRef, judge: JudgePagesGroup, data) {
   );
   await editAndApproveAnOrders.editAndApproveAnOrder2Page.clickContinue();
 
-  await manageOrders.manageOrder31Page.assertPageContents(
-    "Edit and approve a draft order",
-  );
-  await manageOrders.manageOrder31Page.verifyAccessibility();
-  await manageOrders.manageOrder31Page.selectIsUrgent(false);
-  await manageOrders.manageOrder31Page.clickContinue();
+  await editAndApproveAnOrders.editAndApproveAnOrder22Page.assertPageContents();
+  await editAndApproveAnOrders.editAndApproveAnOrder22Page.verifyAccessibility();
+  await editAndApproveAnOrders.editAndApproveAnOrder22Page.selectIsUrgent(false);
+  await editAndApproveAnOrders.editAndApproveAnOrder22Page.clickContinue();
 
   await editAndApproveAnOrders.editAndApproveAnOrderSubmitPage.assertPageContents(
     data.snapshotPath,

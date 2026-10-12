@@ -1,9 +1,6 @@
 import { test } from "../../../../fixtures.ts";
-import config from "../../../../../utils/config.utils.ts";
 import { UploadDocumentsWitnessStatement } from "../../../../../journeys/citizen/caseView/uploadDocuments/witnessStatementsAndEvidence/respondent/uploadDocumentsWitnessStatement.ts";
 import { ActivateCitizenC100Case } from "../../../../../journeys/citizen/activateCase/activateCitizenC100Case.ts";
-
-test.use({ storageState: config.sessionStoragePath + "caseWorker.json" });
 
 test.describe("Applicant upload documents position statement tests", (): void => {
   let caseRef: string;

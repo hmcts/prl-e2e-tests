@@ -31,9 +31,9 @@ export class CaseNotesPage extends CaseAccessViewPage {
       await expect(
         this.page.getByRole("link", { name: "Add case note" }),
       ).toBeVisible();
-      await expect(
-        this.page.locator(".case-viewer-label"),
-      ).toContainText("Case notes");
+      await expect(this.page.locator(".case-viewer-label")).toContainText(
+        "Case notes",
+      );
       await expect(caseNotesHeading).toBeVisible();
 
       await this.assertTableRow(caseNoteTable, "Subject", caseNote.subject);

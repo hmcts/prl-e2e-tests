@@ -1,9 +1,6 @@
 import { test } from "../../../../fixtures.ts";
-import config from "../../../../../utils/config.utils.ts";
 import { RequestToOrderWitnessToAttendCourt } from "../../../../../journeys/citizen/caseView/makeRequestToCourtAboutCase/requestToOrderWitnessToAttendCourt.ts";
 import { ActivateCitizenC100Case } from "../../../../../journeys/citizen/activateCase/activateCitizenC100Case.ts";
-
-test.use({ storageState: config.sessionStoragePath + "caseWorker.json" });
 
 test.describe("Respondent Make a request to order a witness to attend court tests", (): void => {
   test.beforeEach(

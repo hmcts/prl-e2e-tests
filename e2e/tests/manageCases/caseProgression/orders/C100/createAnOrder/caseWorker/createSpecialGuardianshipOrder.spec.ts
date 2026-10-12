@@ -80,6 +80,19 @@ test.describe("Manage Orders - Create a Special Guardianship order tests", () =>
         );
         await manageOrders.manageOrder5Page.clickContinue();
 
+        await manageOrders.manageOrder6Page.assertPageContents(
+          manageOrderParams.isUploadAnOrder,
+          manageOrderParams.orderType,
+        );
+        await manageOrders.manageOrder6Page.verifyAccessibility();
+        await manageOrders.manageOrder6Page.fillInFields({
+          orderType: manageOrderParams.orderType,
+          recitalsAndPreamble:
+            manageOrderParams.manageOrder5Params.recitalsAndPreamble,
+          directions: manageOrderParams.manageOrder5Params.directions,
+        });
+        await manageOrders.manageOrder6Page.clickContinue();
+
         await manageOrders.manageOrder11Page.assertPageContents(
           manageOrderParams.orderType,
         );
