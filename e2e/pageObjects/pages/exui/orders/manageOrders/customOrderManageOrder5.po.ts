@@ -114,13 +114,14 @@ export class CustomOrdersManageOrder5Page extends EventPage {
   async assertPageContents(caseType: solicitorCaseCreateType): Promise<void> {
     await this.assertPageHeadings();
     await expect(this.selectOrderNameLabel).toBeVisible();
-    await this.pageUtils.assertStrings(CustomOrderTypesArray);
+    const customOrderOptions: Locator = this.page.locator(
+      "#customOrderNameOption",
+    );
+    // assert only these options are present
     await expect(
-      this.page.getByRole("radio", {
-        name: "Directions on issue",
-        exact: true,
-      }),
-    ).toHaveCount(0);
+      customOrderOptions.locator(".multiple-choice label"),
+    ).toHaveCount(CustomOrderTypesArray.length);
+    await this.pageUtils.assertStrings(CustomOrderTypesArray);
     await expect(this.uploadCustomOrderTemplateLabel).toBeVisible();
     await expect(this.uploadOrderAdviceLabel).toBeVisible();
     await expect(this.cancelUploadButton).toBeVisible();

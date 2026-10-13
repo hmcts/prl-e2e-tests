@@ -13,10 +13,6 @@ export class OrderOptionsComponent {
   private readonly orderTypeLabel: Locator = this.page.getByText(
     "Select the type of order",
   );
-  private readonly directionsOnIssueOption: Locator = this.page.getByRole(
-    "radio",
-    { name: "Directions on issue", exact: true },
-  );
   private readonly childArrangementOrdersLabel: Locator = this.page.getByText(
     "Child arrangement orders (Optional)",
   );
@@ -59,8 +55,11 @@ export class OrderOptionsComponent {
   async assertCreateOrderPageContents(): Promise<void> {
     await expect(this.insetText).toBeVisible();
     await expect(this.orderTypeLabel).toBeVisible();
+    // assert only these options are present
+    await expect(
+      this.page.locator(".multiple-choice label"),
+    ).toHaveCount(OrderTypesArray.length);
     await this.pageUtils.assertStrings(OrderTypesArray);
-    await expect(this.directionsOnIssueOption).toHaveCount(0);
   }
 
   async assertUploadOrderPageContents(): Promise<void> {
@@ -68,6 +67,10 @@ export class OrderOptionsComponent {
     await expect(this.domesticAbuseOrdersLabel).toBeVisible();
     await expect(this.fcOrdersLabel).toBeVisible();
     await expect(this.anyOtherOrdersLabel).toBeVisible();
+    // assert only these options are present
+    await expect(
+      this.childArrangementOrders.locator(".multiple-choice label"),
+    ).toHaveCount(ChildArrangementOrderTypesArray.length);
     await this.pageUtils.assertStrings(
       ChildArrangementOrderTypesArray,
       this.childArrangementOrders,
