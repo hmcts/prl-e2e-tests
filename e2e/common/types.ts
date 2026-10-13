@@ -368,7 +368,7 @@ export type ChildArrangementOrderTypes =
   | "Warrant of committal (FC604)";
 
 export type CustomOrderTypes =
-  | "Standard directions order"
+  | "Directions on issue"
   | "Blank order or directions (C21)"
   | "Child arrangements, specific issue or prohibited steps order (C43)"
   | "Parental responsibility order (C45A)"
@@ -405,7 +405,7 @@ export const ChildArrangementOrderTypesArray: ChildArrangementOrderTypes[] = [
   "Warrant of committal (FC604)",
 ];
 export const CustomOrderTypesArray: CustomOrderTypes[] = [
-  "Standard directions order",
+  "Directions on issue",
   "Blank order or directions (C21)",
   "Child arrangements, specific issue or prohibited steps order (C43)",
   "Parental responsibility order (C45A)",
