@@ -1,8 +1,3 @@
-export interface UserLoginInfo {
-  username: string;
-  password: string;
-}
-
 export interface UserCredentials {
   readonly email: string;
   readonly password: string;
@@ -23,8 +18,6 @@ export type solicitorCaseCreateType = "C100" | "FL401";
 export const caseTypes: solicitorCaseCreateType[] = ["C100", "FL401"];
 
 export type State = "undefined";
-
-export type Events = "undefined";
 
 const UserRoles = {
   solicitor: "solicitor",
@@ -140,8 +133,6 @@ export type YesNoNotApplicable = "yes" | "no" | "notApplicable";
 
 export type otherProceedingsRadios = "Yes" | "No" | "Don't know";
 
-export type ViewPdfTestCases = "1" | "2" | "3";
-
 export type Relationship =
   | "mother"
   | "father"
@@ -158,35 +149,7 @@ export type CapitalizedRelationship =
   | "Grandparent"
   | "Other";
 
-export type OrderType =
-  | "standardDirectionsOrder"
-  | "directionOnIssue"
-  | "blankOrderOrDirections"
-  | "childArrangementsSpecificProhibitedOrder"
-  | "parentalResponsibility"
-  | "specialGuardianShip"
-  | "noticeOfProceedingsParties"
-  | "noticeOfProceedingsNonParties"
-  | "appointmentOfGuardian"
-  | "nonMolestation"
-  | "occupation"
-  | "powerOfArrest"
-  | "amendDischargedVaried"
-  | "blank"
-  | "generalForm"
-  | "noticeOfProceedings"
-  | "c21ApplicationRefused"
-  | "c21WithdrawApplication"
-  | "c21NoOrderMade"
-  | "c21other";
-
 export type typeOfPerson = "applicant" | "respondent" | "otherPerson";
-
-export type JudgeOrderAction =
-  | "Send to admin to serve"
-  | "Give admin further directions then serve"
-  | "Edit the order myself and send to admin to serve"
-  | "Ask the legal representative to make changes";
 
 export type Language = "English" | "Welsh";
 
@@ -194,54 +157,6 @@ export type YesNo = "Yes" | "No";
 
 export type manageOrdersOptions =
   "create order" | "upload order" | "serve order" | "create custom order";
-
-export type createOrderC100Options = "C43 order";
-
-export type createOrderFL401Options =
-  | "power of arrest"
-  | "non-molestation"
-  | "occupation order"
-  | "amend discharge varied order"
-  | "blank order"
-  | "general form of undertaking"
-  | "notice of proceedings";
-
-export type uploadOrderFL401Options =
-  | "power of arrest"
-  | "non-molestation"
-  | "occupation order"
-  | "amend discharge varied order"
-  | "blank order (FL404B)"
-  | "general form of undertaking"
-  | "warrant of arrest"
-  | "remand order"
-  | "form for taking recognizance"
-  | "form for taking surety"
-  | "bail notice"
-  | "hospital order"
-  | "guardianship order"
-  | "statement of service"
-  | "blank order (FL514)"
-  | "Notice landlord mortgage";
-
-export type uploadOrderC100Options =
-  | "Blank order or directions (C21)"
-  | "Child arrangements, specific issue or prohibited steps order (C43)"
-  | "Parental responsibility order (C45A)"
-  | "Special guardianship order (C43A)"
-  | "Declaration of parentage order (C63A)"
-  | "Order to disclose information about whereabouts of a child (C30)"
-  | "Authority for search, taking charge and delivery of a child (C31)"
-  | "Family assistance order (C42)"
-  | "Leave to change a child's surname or remove from the jurisdiction (C44)"
-  | "Appointment of a guardian (C47A)"
-  | "Appointment of a solicitor for the child (C48A)"
-  | "Enforcement of a child arrangements order (C80)"
-  | "Financial compensation order following C79 enforcement application (C82)"
-  | "Summons to appear at court for directions in contempt proceedings (FC601)"
-  | "Warrant to secure attendance at court (FC602)"
-  | "Order on determination of proceedings for contempt of court (FC603)"
-  | "Warrant of committal (FC604)";
 
 export type JudgeOrMagistrateTitles =
   | "Her Honour Judge"
@@ -350,8 +265,6 @@ export type solicitorCACaseAPIEvent =
   | "manageOrders"
   | "sendToGateKeeper";
 
-export type AdditionalApplicationType = "c2" | "other";
-
 export type EdgeCaseApplicationType =
   | "FGM"
   | "FMPO"
@@ -363,15 +276,6 @@ export type EdgeCaseApplicationType =
   | "AppointingChildGuardian"
   | "ChangeOfChildSurname";
 
-export type CaseState =
-  | "Draft"
-  | "Pending"
-  | "Submitted"
-  | "Returned"
-  | "Case issued"
-  | "Gatekeeping"
-  | "Hearing";
-
 export interface ClippingCoords {
   x: number;
   y: number;
@@ -380,7 +284,7 @@ export interface ClippingCoords {
 }
 
 export type OrderTypes =
-  | "Standard directions order"
+  | "Directions on issue"
   | "Blank order or directions (C21)"
   | "Child arrangements, specific issue or prohibited steps order (C43)"
   | "Parental responsibility order (C45A)"
@@ -399,7 +303,7 @@ export type OrderTypes =
   | "Notice of Hearing (DA)";
 
 export const OrderTypesArray: OrderTypes[] = [
-  "Standard directions order",
+  "Directions on issue",
   "Blank order or directions (C21)",
   "Child arrangements, specific issue or prohibited steps order (C43)",
   "Parental responsibility order (C45A)",
