@@ -292,6 +292,7 @@ export type OrderTypes =
   | "Notice of proceedings (C6) (Notice to parties)"
   | "Notice of proceedings (C6a) (Notice to non-parties)"
   | "Appointment of a guardian (C47A)"
+  | "Notice of Hearing (CA)"
   | "Non-molestation order (FL404A)"
   | "Occupation order (FL404)"
   | "Power of arrest (FL406)"
@@ -299,7 +300,6 @@ export type OrderTypes =
   | "Blank order (FL404B)"
   | "General form of undertaking (N117)"
   | "Notice of proceedings (FL402)"
-  | "Notice of Hearing (CA)"
   | "Notice of Hearing (DA)";
 
 export const OrderTypesArray: OrderTypes[] = [
@@ -311,6 +311,7 @@ export const OrderTypesArray: OrderTypes[] = [
   "Notice of proceedings (C6) (Notice to parties)",
   "Notice of proceedings (C6a) (Notice to non-parties)",
   "Appointment of a guardian (C47A)",
+  "Notice of Hearing (CA)",
   "Non-molestation order (FL404A)",
   "Occupation order (FL404)",
   "Power of arrest (FL406)",
@@ -318,7 +319,6 @@ export const OrderTypesArray: OrderTypes[] = [
   "Blank order (FL404B)",
   "General form of undertaking (N117)",
   "Notice of proceedings (FL402)",
-  "Notice of Hearing (CA)",
   "Notice of Hearing (DA)",
 ];
 
