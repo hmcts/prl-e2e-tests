@@ -28,12 +28,6 @@ export class SendAndReplyToMessages2Page extends EventPage {
     "Select a judicial tier or enter a judge's name manually",
     "Enter name of Judge (Optional)",
   ];
-  // readonly selectLegalAdvisorLabel: Locator = this.page.locator( // TO BE REMOVED ONCE FIXED
-  //   Selectors.GovukFormLabel,
-  //   {
-  //     hasText: "Select a legal adviser (Optional)",
-  //   },
-// );
   readonly selectLegalAdvisorLabelCorrect: Locator = this.page
     .locator(Selectors.Span)
     .getByText("Select a legal adviser", {
@@ -60,9 +54,6 @@ export class SendAndReplyToMessages2Page extends EventPage {
   readonly judgeTierDropdown: Locator = this.page.locator(
     "#sendMessageObject_judicialOrMagistrateTierList",
   );
-  // readonly legalAdvisorDropdown: Locator = this.page.locator(
-  //   "#sendMessageObject_legalAdviserList",
-  // );
   readonly legalAdviserNameTextBox: Locator = this.page.locator(
     "#sendMessageObject_legalAdviser",
   );
@@ -131,7 +122,7 @@ export class SendAndReplyToMessages2Page extends EventPage {
   async selectLegalAdvisor(legalAdvisorName: string): Promise<void> {
     await this.legalAdvisorRecipientRadio.check();
     await expect(this.selectLegalAdvisorLabelCorrect).toBeVisible();
-    await this.legalAdviserNameTextBox.fill(legalAdvisorName);
+    await this.legalAdviserNameTextBox.fill(legalAdvisorName); // TypeAhead field
     await expect(this.legalAdviserTypeAHeadOption).toBeVisible();
     await this.legalAdviserTypeAHeadOption.click();
   }
