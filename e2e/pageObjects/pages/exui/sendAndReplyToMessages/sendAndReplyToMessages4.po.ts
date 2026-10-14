@@ -120,10 +120,10 @@ export class SendAndReplyToMessages4Page extends EventPage {
     } else {
       await this.pageUtils.assertStrings(this.replyingMessagesFormLabelsForLA);
       await this.pageUtils.assertStrings(this.replyingMessagesHeadingH4ForLA);
-      const email = judgeOrLegalAdviserName.match(/\((.*)\)/)?.[1];
+      //const email = judgeOrLegalAdviserName;
       await expect(
         this.page.locator(Selectors.GovukFormLabel, {
-          hasText: email,
+          hasText: judgeOrLegalAdviserName,
         }),
       ).toBeVisible();
     }
