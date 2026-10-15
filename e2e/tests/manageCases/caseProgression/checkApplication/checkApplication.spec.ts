@@ -2,32 +2,28 @@ import { test, expect } from "../../../fixtures.ts";
 import config from "../../../../utils/config.utils.ts";
 
 test.describe("Check Application task for DA Solicitor case tests.", () => {
-  let caseNumber: string;
+  let caseRef: string;
 
-  test.beforeEach(async ({ browser, caseEventUtils }) => {
-    caseNumber = await caseEventUtils.createDACase(browser);
-  });
+  test.beforeEach(
+    async ({ caseWorker, manageCasesEventUtils, navigationUtils }) => {
+      caseRef = (await manageCasesEventUtils.submitTSSolicitorCase("FL401"))
+        .caseRef;
+      await navigationUtils.goToCase(
+        caseWorker.page,
+        config.manageCasesBaseURLCase,
+        caseRef,
+        "tasks",
+      );
+    },
+  );
 
   [{ familyManNumber: "1234", snapshotName: "check-application" }].forEach(
     ({ familyManNumber, snapshotName }) => {
       test("Complete Task - Check Application with accessibility test. @nightly @accessibility @regression", async ({
         caseWorker,
-        navigationUtils,
       }): Promise<void> => {
-        const {
-          page,
-          tasksPage,
-          fl401AddCaseNumber,
-          summaryPage,
-          historyPage,
-        } = caseWorker;
-
-        await navigationUtils.goToCase(
-          page, // accessing the destructured page property
-          config.manageCasesBaseURLCase,
-          caseNumber,
-          "tasks",
-        );
+        const { tasksPage, fl401AddCaseNumber, summaryPage, historyPage } =
+          caseWorker;
 
         await tasksPage.assignTaskToMeAndTriggerNextSteps(
           "Check Application",
@@ -48,7 +44,7 @@ test.describe("Check Application task for DA Solicitor case tests.", () => {
         await fl401AddCaseNumber.submitPage.clickSaveAndContinue();
 
         await summaryPage.alertBanner.assertEventAlert(
-          caseNumber,
+          caseRef,
           "Add case number",
         );
         await summaryPage.caseHeader.assertFamilyManNumberIsVisible(

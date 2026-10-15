@@ -1,18 +1,14 @@
-import { Cookie, expect, Page } from "@playwright/test";
+import { Cookie, expect, Locator, Page } from "@playwright/test";
 import fs, { existsSync, readFileSync } from "fs";
 import Config from "./config.utils.ts";
 import { CreateUserUtil } from "./createUser.utils.ts";
-import { UserCredentialsLong, UserLoginInfo } from "../common/types.ts";
+import { UserCredentialsLong } from "../common/types.ts";
 import process from "node:process";
 import { IdamUtils } from "@hmcts/playwright-common";
-import { UserInfoParams } from "@hmcts/playwright-common/dist/utils/idam.utils.js";
+import { UserInfoParams } from "@hmcts/playwright-common/dist/utils/idam.utils.ts";
 
 export class IdamLoginHelper {
-  private fields: UserLoginInfo = {
-    username: "#username",
-    password: "#password",
-  };
-  private submitButton = 'input[value="Sign in"]';
+  constructor(private idamUtils: IdamUtils) {}
 
   /**
    * Signs a user into the application. It attempts to reuse an existing session if valid.
@@ -21,6 +17,10 @@ export class IdamLoginHelper {
    * @param password The user's password.
    * @param application The URL of the application to sign into.
    * @param userType The type of user (e.g., "citizen", "solicitor").
+   * @param sessionKey Optional override for the cached session file name. Use this
+   *   when the same user logs into multiple distinct applications (e.g. Manage Cases
+   *   vs Manage Organisation) so each gets its own session cache instead of
+   *   colliding on `${userType}.json`. Defaults to `userType`.
    */
   public async signIn(
     page: Page,
@@ -28,8 +28,9 @@ export class IdamLoginHelper {
     password: string,
     application: string,
     userType: string,
+    sessionKey?: string,
   ): Promise<void> {
-    const sessionPath = `${Config.sessionStoragePath}${userType}.json`;
+    const sessionPath = `${Config.sessionStoragePath}${sessionKey ? sessionKey + userType : userType}.json`;
     if (
       userType !== "citizen" &&
       existsSync(sessionPath) &&
@@ -38,18 +39,57 @@ export class IdamLoginHelper {
       return;
     } else {
       if (!page.url().includes("idam-web-public.")) {
-        await page.goto(application);
+        const response = await page.goto(application);
+        if (response?.status() === 502) {
+          throw new Error(
+            `Received 502 error from ${application}. Aborting setup.`,
+          );
+        }
       }
-      if (page.url().includes("demo")) {
-        await page.waitForSelector(`#skiplinktarget:text("Sign in")`);
-      } else {
-        await page.waitForSelector(
-          `#skiplinktarget:text("Sign in or create an account")`,
-        );
+
+      let newLogin: boolean;
+      newLogin = true;
+      // citizen user login includes an extra front page when logging in
+      if (userType === "citizen") {
+        await expect(
+          page.getByRole("heading", {
+            name: "Sign in or create an account",
+          }),
+        ).toBeVisible();
+
+        //handle old login page if required (will be removed in future)
+        if (await page.locator("#username").isVisible()) {
+          newLogin = false;
+          await expect(
+            page.getByRole("heading", { name: "Sign in", exact: true }),
+          ).toBeVisible();
+          await page.locator("#username").fill(username);
+          await page.locator("#password").fill(password);
+          await page.getByRole("button", { name: "Sign in" }).click();
+        } else {
+          await page.getByRole("button", { name: "Sign in" }).click();
+        }
       }
-      await page.fill(this.fields.username, username);
-      await page.fill(this.fields.password, password);
-      await page.click(this.submitButton);
+
+      if (newLogin) {
+        const continueButton: Locator = page.getByRole("button", {
+          name: "Continue",
+        });
+        await expect(
+          page.getByRole("heading", {
+            name: "Enter your email address",
+            exact: true,
+          }),
+        ).toBeVisible();
+        await page.locator("#email").fill(username);
+        await continueButton.click();
+
+        await expect(
+          page.getByRole("heading", { name: "Enter your password" }),
+        ).toBeVisible();
+        await page.locator("#password").fill(password);
+        await continueButton.click();
+      }
 
       await expect
         .poll(() => !page.url().includes("idam-web-public."), {
@@ -71,11 +111,16 @@ export class IdamLoginHelper {
    * @param page Playwright Page object.
    * @param user Key of the user credentials in Config.
    * @param application The URL of the application.
+   * @param sessionKey Optional override for the cached session file name — see
+   *   {@link signIn} for why you'd want this (e.g. the same `localAuthority`
+   *   user signing into both Manage Cases and Manage Organisation needs two
+   *   separate session caches, not one shared `localAuthority.json`).
    */
   public async signInLongLivedUser(
     page: Page,
     user: keyof typeof Config.userCredentials,
     application: string,
+    sessionKey?: string,
   ): Promise<void> {
     const userCredentials = Config.getUserCredentials(user);
     if (!userCredentials) return;
@@ -86,6 +131,7 @@ export class IdamLoginHelper {
       userCredentials.password,
       application,
       user,
+      sessionKey,
     );
   }
 
@@ -167,8 +213,7 @@ export class IdamLoginHelper {
       let userId: string;
       if (process.env.MANAGE_CASES_TEST_ENV === "preview") {
         const token = process.env.CREATE_USER_BEARER_TOKEN as string;
-        const idamUtils = new IdamUtils(); // Instantiate IdamUtils
-        const userDetails: UserInfoParams = await idamUtils.getUserInfo({
+        const userDetails: UserInfoParams = await this.idamUtils.getUserInfo({
           email: username,
           bearerToken: token,
         });

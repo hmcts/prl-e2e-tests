@@ -11,6 +11,10 @@ export class IssueAndSendToLocalCourtCallback1Page extends EventPage {
     hasText: "Let the local court admin know there’s a new case",
   });
 
+  readonly localCourtTextH2: Locator = this.page.locator(Selectors.h2, {
+    hasText: "is currently chosen",
+  });
+
   readonly courtListDropdown: Locator = this.page.locator("#courtList");
 
   constructor(page: Page) {

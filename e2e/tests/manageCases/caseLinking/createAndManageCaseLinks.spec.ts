@@ -1,31 +1,40 @@
 import { test } from "../../fixtures.ts";
 import config from "../../../utils/config.utils.ts";
+import { BasicCaseData } from "../../../utils/manageCaseEvent.utils.ts";
 
 test.describe("Create and manage linked DA cases as a court admin.", () => {
-  let caseNumber: string = "";
-  let linkedCaseNumber: string = "";
+  let caseRef: string = "";
+  let caseName: string = "";
+  let linkedCaseRef: string = "";
+  let linkedCaseName: string = "";
 
   test.beforeEach(
-    async ({ caseWorker, browser, caseEventUtils, navigationUtils }) => {
-      caseNumber = await caseEventUtils.createDACase(browser);
-      linkedCaseNumber = await caseEventUtils.createDACase(browser);
+    async ({ caseWorker, manageCasesEventUtils, navigationUtils }) => {
+      const caseData =
+        await manageCasesEventUtils.submitTSSolicitorCase("FL401");
+      caseRef = caseData.caseRef;
+      caseName = caseData.caseName;
+
+      const linkedCaseData: BasicCaseData =
+        await manageCasesEventUtils.submitTSSolicitorCase("FL401");
+      linkedCaseRef = linkedCaseData.caseRef;
+      linkedCaseName = linkedCaseData.caseName;
 
       await navigationUtils.goToCase(
         caseWorker.page,
         config.manageCasesBaseURLCase,
-        caseNumber,
+        caseRef,
       );
     },
   );
 
   [
     {
-      caseName: "TEST",
       state: "Submitted",
       reasonsForCaseLink: ["Case consolidated", "Other"],
       otherReason: "TEST",
     },
-  ].forEach(({ caseName, state, reasonsForCaseLink, otherReason }) => {
+  ].forEach(({ state, reasonsForCaseLink, otherReason }) => {
     test("Create and manage linked case. @nightly", async ({
       caseWorker,
       navigationUtils,
@@ -41,14 +50,14 @@ test.describe("Create and manage linked DA cases as a court admin.", () => {
       await manageCaseLinks.createCaseLink2Page.assertPageContents();
       // await createCaseLink2Page.verifyAccessibility(); // TODO: failing accessibility waiting on FPVTL-1242
       await manageCaseLinks.createCaseLink2Page.proposeCaseLink({
-        linkedCaseNumber,
+        linkedCaseNumber: linkedCaseRef,
         reasonsForCaseLink,
         otherReason,
       });
       await manageCaseLinks.createCaseLink2Page.assertProposedCaseLinksTableContents(
         {
-          caseName,
-          linkedCaseNumber,
+          caseName: linkedCaseName,
+          linkedCaseNumber: linkedCaseRef,
           state,
           reasonsForCaseLink,
           otherReason,
@@ -64,15 +73,15 @@ test.describe("Create and manage linked DA cases as a court admin.", () => {
       await manageCaseLinks.createCaseLinkSubmitPage.verifyAccessibility();
       await manageCaseLinks.createCaseLinkSubmitPage.clickCreateCaseLink();
 
-      await summaryPage.alertBanner.assertEventAlert(caseNumber, "Link Cases");
+      await summaryPage.alertBanner.assertEventAlert(caseRef, "Link Cases");
 
       // check linked cases tab
       await manageCaseLinks.linkedCasesTab.goToPage();
       await manageCaseLinks.linkedCasesTab.assertPageContents({
         linkedToTableRowParams: [
           {
-            caseName,
-            linkedCaseNumber,
+            caseName: linkedCaseName,
+            linkedCaseNumber: linkedCaseRef,
             state,
             reasonsForCaseLink,
             otherReason,
@@ -84,7 +93,7 @@ test.describe("Create and manage linked DA cases as a court admin.", () => {
       await navigationUtils.goToCase(
         caseWorker.page,
         config.manageCasesBaseURLCase,
-        linkedCaseNumber,
+        linkedCaseRef,
       );
 
       await manageCaseLinks.linkedCasesTab.goToPage();
@@ -92,8 +101,8 @@ test.describe("Create and manage linked DA cases as a court admin.", () => {
       await manageCaseLinks.linkedCasesTab.assertPageContents({
         linkedFromTableRowParams: [
           {
-            caseName,
-            linkedCaseNumber: caseNumber,
+            caseName: caseName,
+            linkedCaseNumber: caseRef,
             state,
             reasonsForCaseLink,
             otherReason,
@@ -105,7 +114,7 @@ test.describe("Create and manage linked DA cases as a court admin.", () => {
       await navigationUtils.goToCase(
         caseWorker.page,
         config.manageCasesBaseURLCase,
-        caseNumber,
+        caseRef,
       );
 
       await summaryPage.chooseEventFromDropdown("Manage case links");
@@ -115,8 +124,8 @@ test.describe("Create and manage linked DA cases as a court admin.", () => {
       await manageCaseLinks.maintainCaseLink1Page.clickContinue();
 
       await manageCaseLinks.maintainCaseLink2Page.assertPageContents(
-        caseName,
-        linkedCaseNumber,
+        linkedCaseName,
+        linkedCaseRef,
       );
 
       // await maintainCaseLink2Page.verifyAccessibility();  // TODO: failing accessibility waiting on FPVTL-1242
@@ -132,7 +141,7 @@ test.describe("Create and manage linked DA cases as a court admin.", () => {
       await manageCaseLinks.maintainCaseLinkSubmitPage.clickMaintainCaseLink();
 
       await summaryPage.alertBanner.assertEventAlert(
-        caseNumber,
+        caseRef,
         "Manage case links",
       );
 
@@ -144,7 +153,7 @@ test.describe("Create and manage linked DA cases as a court admin.", () => {
       await navigationUtils.goToCase(
         caseWorker.page,
         config.manageCasesBaseURLCase,
-        linkedCaseNumber,
+        linkedCaseRef,
       );
       await manageCaseLinks.linkedCasesTab.goToPage();
       await manageCaseLinks.linkedCasesTab.assertPageContents({});

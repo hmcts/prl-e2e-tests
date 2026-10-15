@@ -2,6 +2,7 @@ import { EventPage } from "../eventPage.po.js";
 import { expect, Locator, Page } from "@playwright/test";
 import { PageUtils } from "../../../../utils/page.utils.js";
 import { Selectors } from "../../../../common/selectors.js";
+import { CommonContent } from "../../../../fixtures/manageCases/commonContent.js";
 
 export class UploadAdditionalApplications4Page extends EventPage {
   readonly nextStepH3: Locator = this.page.locator(Selectors.h3, {
@@ -12,13 +13,13 @@ export class UploadAdditionalApplications4Page extends EventPage {
       " After you have submitted your application, you will be asked to pay the application fee.",
   });
   readonly withNoticeFeeP: Locator = this.page.locator(Selectors.p, {
-    hasText: "£190.00",
+    hasText: "£195.00",
   });
   readonly withoutNoticeFeeP: Locator = this.page.locator(Selectors.p, {
-    hasText: "£60.00",
+    hasText: "£62.00",
   });
   readonly c100FeeP: Locator = this.page.locator(Selectors.p, {
-    hasText: "£263.00",
+    hasText: CommonContent.c100Fee,
   });
 
   readonly noHelpWithFeesRadio: Locator = this.page.locator(
@@ -30,14 +31,10 @@ export class UploadAdditionalApplications4Page extends EventPage {
   });
   readonly yesFormLabel = this.page.getByText("Yes", { exact: true }).first();
   readonly noFormLabel = this.page.getByText("No", { exact: true }).first();
-  readonly formHint: Locator = this.page.locator(Selectors.GovukFormHint, {
-    hasText: "You must select 'No' to continue with your application.",
-  });
 
   readonly h3FormLabels: string[] = [
-    "Help with Fees is not yet available in the Family Private Law digital service.",
-    "If the applicant has applied for Help with Fees, you should email or post this application to the court instead.",
-    "If you continue online, you will still have to pay the fee. You can apply for a refund by contacting the court and providing the applicant's Help with Fees reference.",
+    "If the applicant has applied for Help with Fees, you should continue to process their application online.",
+    "You will still have to pay the fee. You can apply for a refund by contacting the court and providing the applicant's Help with Fees reference.",
     "Application fee",
   ];
 
@@ -56,7 +53,6 @@ export class UploadAdditionalApplications4Page extends EventPage {
     await expect(this.nextStepP).toBeVisible();
     await this.pageUtils.assertStrings(this.h3FormLabels);
     await expect(this.formLabel).toBeVisible();
-    await expect(this.formHint).toBeVisible();
     await expect(this.yesFormLabel).toBeVisible();
     await expect(this.noFormLabel).toBeVisible();
 

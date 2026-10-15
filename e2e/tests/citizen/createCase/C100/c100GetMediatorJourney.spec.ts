@@ -10,6 +10,7 @@ test.describe("Create Citizen Application but you must get a mediator", (): void
       "citizen",
     );
   });
+
   test(`MIAM testing  with no previously attended MIAM. Redirect to Get Mediator
   With no valid reason for attending
   Not error message testing,
@@ -160,6 +161,7 @@ test.describe("Create Citizen Application but you must get a mediator", (): void
       miamReasonForNoAccessToMediator: "None of these",
     });
   });
+
   test(`MIAM testing  with no previously attended MIAM, Redirects to Get Mediator
     With a valid reason for attending
     With all general exemptions

@@ -15,6 +15,9 @@ interface ReasonableAdjustmentsAttendingCourtPageOptions {
 enum uniqueSelectors {
   yesVideoHearingsCheckbox = "#ra_typeOfHearing",
   yesPhoneHearingsCheckbox = "#ra_typeOfHearing-2",
+}
+
+enum uniqueSelectors2 {
   noToAll = "#ra_typeOfHearing-4",
   noToAllField = "#ra_noVideoAndPhoneHearing_subfield",
 }
@@ -110,7 +113,7 @@ export class ReasonableAdjustmentsAttendingCourtPage {
         1,
       ),
     ]);
-    await page.click(uniqueSelectors.noToAll);
+    await page.click(uniqueSelectors2.noToAll);
     await page.click(
       `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
     );
@@ -131,7 +134,7 @@ export class ReasonableAdjustmentsAttendingCourtPage {
         1,
       ),
     ]);
-    await page.click(uniqueSelectors.noToAll);
+    await page.click(uniqueSelectors2.noToAll);
   }
 
   private static async fillInFields({
@@ -150,14 +153,14 @@ export class ReasonableAdjustmentsAttendingCourtPage {
         await page.click(selector);
       }
     } else {
-      await page.click(uniqueSelectors.noToAll);
+      await page.click(uniqueSelectors2.noToAll);
       await Helpers.checkVisibleAndPresent(
         page,
         `${Selectors.GovukLabel}:text-is("${ReasonableAdjustmentsAttendingCourtContent.govukLabelNo}")`,
         1,
       );
       await page.fill(
-        uniqueSelectors.noToAllField,
+        uniqueSelectors2.noToAllField,
         ReasonableAdjustmentsAttendingCourtContent.noFieldValue,
       );
     }

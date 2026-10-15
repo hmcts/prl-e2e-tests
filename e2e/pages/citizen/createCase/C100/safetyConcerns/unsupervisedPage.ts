@@ -14,9 +14,7 @@ enum inputIDs {
 }
 
 export type c100ChildrenSupervisionRadios =
-  | "yesSpendTime"
-  | "yesButSupervised"
-  | "noSpendTime";
+  "yesSpendTime" | "yesButSupervised" | "noSpendTime";
 
 interface UnsupervisedPageOptions {
   page: Page;

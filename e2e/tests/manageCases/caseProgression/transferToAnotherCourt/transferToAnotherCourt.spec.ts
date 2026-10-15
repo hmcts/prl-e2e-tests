@@ -1,20 +1,21 @@
 import config from "../../../../utils/config.utils.ts";
 import { test } from "../../../fixtures.ts";
-import { CourtAdminStokePagesGroup } from "../../../../pageObjects/roleBasedGroupedPages/courtAdminStokePages.js";
+import { CourtAdminStokePagesGroup } from "../../../../pageObjects/roleBasedGroupedPages/courtAdminStokePages.ts";
 
 // -------------------------------
 // C100 CASE TYPE: Transfer to another court as a CTSC
 // -------------------------------
 test.describe("Transfer to another court event for CA Solicitor case tests as a court admin.", () => {
-  let caseNumber: string;
+  let caseRef: string;
 
   test.beforeEach(
-    async ({ courtAdminStoke, browser, caseEventUtils, navigationUtils }) => {
-      caseNumber = await caseEventUtils.createCACase(browser);
+    async ({ courtAdminStoke, manageCasesEventUtils, navigationUtils }) => {
+      caseRef = (await manageCasesEventUtils.submitTSSolicitorCase("C100"))
+        .caseRef;
       await navigationUtils.goToCase(
         courtAdminStoke.page,
         config.manageCasesBaseURLCase,
-        caseNumber,
+        caseRef,
         "tasks",
       );
     },
@@ -30,7 +31,7 @@ test.describe("Transfer to another court event for CA Solicitor case tests as a 
     test(`Complete Transfer to another court event by selecting court from the courts list. @regression @nightly`, async ({
       courtAdminStoke,
     }): Promise<void> => {
-      await transferToAnotherCourt("C100", courtAdminStoke, caseNumber, data);
+      await transferToAnotherCourt("C100", courtAdminStoke, caseRef, data);
     });
   });
   [
@@ -43,7 +44,7 @@ test.describe("Transfer to another court event for CA Solicitor case tests as a 
     test(`Complete Transfer to another court event by entering court name manually when the court is not available in the courts list. @regression`, async ({
       courtAdminStoke,
     }): Promise<void> => {
-      await transferToAnotherCourt("C100", courtAdminStoke, caseNumber, data);
+      await transferToAnotherCourt("C100", courtAdminStoke, caseRef, data);
     });
   });
 });
@@ -52,15 +53,16 @@ test.describe("Transfer to another court event for CA Solicitor case tests as a 
 // FL401 CASE TYPE: Transfer to another court as a CTSC
 // -------------------------------
 test.describe("Transfer to another court event for DA Solicitor case tests as a court admin.", () => {
-  let caseNumber: string;
+  let caseRef: string;
 
   test.beforeEach(
-    async ({ courtAdminStoke, browser, caseEventUtils, navigationUtils }) => {
-      caseNumber = await caseEventUtils.createDACase(browser);
+    async ({ courtAdminStoke, manageCasesEventUtils, navigationUtils }) => {
+      caseRef = (await manageCasesEventUtils.submitTSSolicitorCase("FL401"))
+        .caseRef;
       await navigationUtils.goToCase(
         courtAdminStoke.page,
         config.manageCasesBaseURLCase,
-        caseNumber,
+        caseRef,
         "tasks",
       );
     },
@@ -76,7 +78,7 @@ test.describe("Transfer to another court event for DA Solicitor case tests as a 
     test(`Complete Transfer to another court event by selecting court from the courts list. @regression @nightly`, async ({
       courtAdminStoke,
     }): Promise<void> => {
-      await transferToAnotherCourt("FL401", courtAdminStoke, caseNumber, data);
+      await transferToAnotherCourt("FL401", courtAdminStoke, caseRef, data);
     });
   });
   [
@@ -89,7 +91,7 @@ test.describe("Transfer to another court event for DA Solicitor case tests as a 
     test(`Complete Transfer to another court event by entering court name manually when the court is not available in the courts list. @regression`, async ({
       courtAdminStoke,
     }): Promise<void> => {
-      await transferToAnotherCourt("FL401", courtAdminStoke, caseNumber, data);
+      await transferToAnotherCourt("FL401", courtAdminStoke, caseRef, data);
     });
   });
 });

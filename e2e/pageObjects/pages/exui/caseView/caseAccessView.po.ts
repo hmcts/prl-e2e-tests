@@ -11,9 +11,12 @@ import {
   fl401SolicitorEvents,
   fl401SubmittedSolicitorEvents,
   WACaseWorkerActions,
+  superUserEvents,
+  WACaseManagerActions,
 } from "../../../../common/types.js";
 import { MatTabHeaderComponent } from "../../../components/exui/matTabHeader.component.js";
 import { NotificationBannerComponent } from "../../../components/exui/notificationBanner.component.js";
+import { Selectors } from "../../../../common/selectors.js";
 
 export abstract class CaseAccessViewPage extends Base {
   readonly caseHeader: CcdCaseHeaderComponent = new CcdCaseHeaderComponent(
@@ -44,12 +47,29 @@ export abstract class CaseAccessViewPage extends Base {
       | WACaseWorkerActions
       | fl401CaseWorkerActions
       | courtAdminEvents
-      | amendEvents,
+      | amendEvents
+      | superUserEvents
+      | WACaseManagerActions,
   ) {
-    await this.page.waitForLoadState("domcontentloaded");
-    await expect(this.page.locator("#next-step")).toBeVisible();
+    await expect(
+      this.page.locator(Selectors.h2, {
+        hasText: "FamilyMan ID",
+      }),
+    ).toBeVisible({ timeout: 60_000 });
+    await expect(
+      this.page.locator(Selectors.h2, {
+        hasText: "Casenumber",
+      }),
+    ).toBeVisible({ timeout: 60_000 });
 
-    await this.page.selectOption("#next-step", chosenEvent);
+    /*
+    Tried waiting for the last page response and last page asset to load and dropdown selection behaviour was still flaky
+    frustratingly waiting for a timeout seems like the most "consistent" approach - to be re-evaluated in the future
+    */
+    await this.page.waitForTimeout(5000);
+    await expect(this.page.locator("#next-step")).toBeVisible();
+    await this.page.locator("#next-step").click();
+    await this.page.locator("#next-step").selectOption(chosenEvent);
 
     await expect(this.goButton).toBeEnabled();
 
@@ -70,5 +90,40 @@ export abstract class CaseAccessViewPage extends Base {
         },
       )
       .toBeFalsy();
+  }
+
+  async assertEventVisibilityInDropdown(
+    eventShouldBeVisible: boolean,
+    eventToCheck:
+      | c100SolicitorEvents
+      | fl401SolicitorEvents
+      | fl401SubmittedSolicitorEvents
+      | fl401JudiciaryEvents
+      | WACaseWorkerActions
+      | fl401CaseWorkerActions
+      | courtAdminEvents
+      | amendEvents,
+  ) {
+    await expect(
+      this.page.locator(Selectors.h2, {
+        hasText: "FamilyMan ID",
+      }),
+    ).toBeVisible();
+    await expect(
+      this.page.locator(Selectors.h2, {
+        hasText: "Casenumber",
+      }),
+    ).toBeVisible();
+    await expect(this.page.locator("#next-step")).toBeVisible();
+
+    const dropdownOptions = await this.page
+      .locator("#next-step option")
+      .allTextContents();
+
+    if (eventShouldBeVisible) {
+      expect(dropdownOptions).toContain(eventToCheck);
+    } else {
+      expect(dropdownOptions).not.toContain(eventToCheck);
+    }
   }
 }

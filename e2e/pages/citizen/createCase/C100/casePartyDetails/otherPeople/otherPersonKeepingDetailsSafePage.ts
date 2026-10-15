@@ -1,7 +1,5 @@
-import { Page } from "@playwright/test";
+import { expect, Page } from "@playwright/test";
 import { Selectors } from "../../../../../../common/selectors.ts";
-import { OtherPersonKeepingDetailsSafeContent } from "../../../../../../fixtures/citizen/createCase/C100/casePartyDetails/otherPeople/otherPersonKeepingDetailsSafeContent.ts";
-import { Helpers } from "../../../../../../common/helpers.ts";
 import { CommonStaticText } from "../../../../../../common/commonStaticText.ts";
 import { AxeUtils } from "@hmcts/playwright-common";
 
@@ -31,18 +29,24 @@ export class OtherPersonKeepingDetailsSafePage {
     if (!page) {
       throw new Error("Missing the page object.");
     }
-    await page.waitForSelector(
-      `${Selectors.GovukHeadingXL}:has-text("${OtherPersonKeepingDetailsSafeContent.pageTitle}")`,
-    );
-    await Promise.all([
-      Helpers.checkGroupHasText(
-        page,
-        3,
-        OtherPersonKeepingDetailsSafeContent,
-        "p",
-        Selectors.p,
+    await expect(
+      page.getByRole("heading", { name: /Keeping .* details safe/ }),
+    ).toBeVisible();
+    await expect(
+      page.getByText(
+        /We understand how important it is to feel safe, and know that .* details will be kept private./,
       ),
-    ]);
+    ).toBeVisible();
+    await expect(
+      page.getByText(
+        "The court will hold this information securely and will not share it with anyone else except the Children and Family Court Advisory and Support Service (Cafcass), Cafcass Cymru, or the local authority, if they are involved in your case, unless it is by order of the court.",
+      ),
+    ).toBeVisible();
+    await expect(
+      page.getByText(
+        /To help us to keep .* details safe, do not include their details in any other communications during the case./,
+      ),
+    ).toBeVisible();
     if (accessibilityTest) {
       await new AxeUtils(page).audit();
     }

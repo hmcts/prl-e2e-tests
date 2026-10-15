@@ -10,6 +10,7 @@ test.describe("Manage citizen cases case dashboard tests.", (): void => {
       "citizen",
     );
   });
+
   test("Check the case dashboard is visible to the user. @regression @smoke", async ({
     page,
   }): Promise<void> => {
@@ -19,6 +20,7 @@ test.describe("Manage citizen cases case dashboard tests.", (): void => {
       childArrangementsJourney: "C100",
     });
   });
+
   test("Check the case dashboard is visible to the user and accessible @accessibility @nightly", async ({
     page,
   }): Promise<void> => {

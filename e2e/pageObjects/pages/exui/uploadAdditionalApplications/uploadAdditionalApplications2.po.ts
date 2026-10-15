@@ -1,8 +1,8 @@
 import { expect, Locator, Page } from "@playwright/test";
-import { PageUtils } from "../../../../utils/page.utils.js";
-import { EventPage } from "../eventPage.po.js";
-import { Selectors } from "../../../../common/selectors.js";
-import config from "../../../../utils/config.utils.js";
+import { PageUtils } from "../../../../utils/page.utils.ts";
+import { EventPage } from "../eventPage.po.ts";
+import { Selectors } from "../../../../common/selectors.ts";
+import { FileUploadComponent } from "../../../components/exui/uploadFile.component.ts";
 
 export class UploadAdditionalApplications2Page extends EventPage {
   readonly heading2: Locator = this.page.locator(Selectors.headingH2, {
@@ -93,6 +93,14 @@ export class UploadAdditionalApplications2Page extends EventPage {
 
   private readonly pageUtils: PageUtils = new PageUtils(this.page);
 
+  private readonly fileUpload: FileUploadComponent = new FileUploadComponent(
+    this.page,
+    {
+      uploadLabelText: "Upload C2 application",
+      chooseFileLocatorID: "#temporaryC2Document_document",
+    },
+  );
+
   async assertPageContents(caseType: string): Promise<void> {
     await this.assertPageHeadings();
     await this.heading2.waitFor();
@@ -122,10 +130,7 @@ export class UploadAdditionalApplications2Page extends EventPage {
   }
 
   async fillInFields(caseType: string): Promise<void> {
-    await this.c2ApplicationFileUpload.setInputFiles(config.testPdfFile);
-    await this.page
-      .locator(".error-message", { hasText: " Uploading..." })
-      .waitFor({ state: "hidden" });
+    await this.fileUpload.completeUpload();
     await this.yesDocumentRelatesToCaseCheckbox.check();
 
     if (caseType === "C100") {

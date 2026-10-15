@@ -3,36 +3,87 @@ import { WithdrawApplicationEvent1Page } from "../pages/exui/withdrawApplication
 import { WithdrawApplicationEventSubmitPage } from "../pages/exui/withdrawApplication/withdrawApplicationEventSubmit.po.ts";
 import { WithdrawApplicationEventConfirmPage } from "../pages/exui/withdrawApplication/withdrawApplicationEventConfirm.po.ts";
 import { SummaryPage } from "../pages/exui/caseView/summary.po.ts";
-import { UploadAdditionalApplications1Page } from "../pages/exui/uploadAdditionalApplications/uploadAdditionalApplications1.po.js";
-import { UploadAdditionalApplications2Page } from "../pages/exui/uploadAdditionalApplications/uploadAdditionalApplications2.po.js";
-import { UploadAdditionalApplications3Page } from "../pages/exui/uploadAdditionalApplications/uploadAdditionalApplications3.po.js";
-import { UploadAdditionalApplications4Page } from "../pages/exui/uploadAdditionalApplications/uploadAdditionalApplications4.po.js";
-import { UploadAdditionalApplicationsSubmitPage } from "../pages/exui/uploadAdditionalApplications/uploadAdditionalApplicationsSubmit.po.js";
-import { UploadAdditionalApplicationsConfirmPage } from "../pages/exui/uploadAdditionalApplications/uploadAdditionalApplicationsConfirm.po.js";
+import { UploadAdditionalApplications1Page } from "../pages/exui/uploadAdditionalApplications/uploadAdditionalApplications1.po.ts";
+import { UploadAdditionalApplications2Page } from "../pages/exui/uploadAdditionalApplications/uploadAdditionalApplications2.po.ts";
+import { UploadAdditionalApplications3Page } from "../pages/exui/uploadAdditionalApplications/uploadAdditionalApplications3.po.ts";
+import { UploadAdditionalApplications4Page } from "../pages/exui/uploadAdditionalApplications/uploadAdditionalApplications4.po.ts";
+import { UploadAdditionalApplicationsSubmitPage } from "../pages/exui/uploadAdditionalApplications/uploadAdditionalApplicationsSubmit.po.ts";
+import { UploadAdditionalApplicationsConfirmPage } from "../pages/exui/uploadAdditionalApplications/uploadAdditionalApplicationsConfirm.po.ts";
 import { RequestSupport1Page } from "../pages/exui/caseFlags/requestSupport/requestSupport1.po.ts";
 import { RequestSupport2Page } from "../pages/exui/caseFlags/requestSupport/requestSupport2.po.ts";
 import { RequestSupport3Page } from "../pages/exui/caseFlags/requestSupport/requestSupport3.po.ts";
 import { RequestSupport4Page } from "../pages/exui/caseFlags/requestSupport/requestSupport4.po.ts";
 import { RequestSupport5Page } from "../pages/exui/caseFlags/requestSupport/requestSupport5.po.ts";
 import { RequestSupportSubmitPage } from "../pages/exui/caseFlags/requestSupport/requestSupportSubmit.po.ts";
-import { SupportPage } from "../pages/exui/caseView/support.po.js";
-import { DraftAnOrder1Page } from "../pages/exui/orders/draftOrders/draftAnOrder1.po.js";
-import { DraftAnOrder2Page } from "../pages/exui/orders/draftOrders/draftAnOrder2.po.js";
-import { DraftAnOrder9Page } from "../pages/exui/orders/draftOrders/draftAnOrder9.po.js";
-import { DraftAnOrder6Page } from "../pages/exui/orders/draftOrders/draftAnOrder6.po.js";
-import { DraftAnOrder17Page } from "../pages/exui/orders/draftOrders/draftAnOrder17.po.js";
-import { DraftAnOrder20Page } from "../pages/exui/orders/draftOrders/draftAnOrder20.po.js";
-import { DraftAnOrderSubmitPage } from "../pages/exui/orders/draftOrders/draftAnOrderSubmit.po.js";
-import { DraftAnOrder5Page } from "../pages/exui/orders/draftOrders/draftAnOrder5.po.js";
-import { DraftAnOrder3Page } from "../pages/exui/orders/draftOrders/draftAnOrder3.po.js";
-import { DraftAnOrder8Page } from "../pages/exui/orders/draftOrders/draftAnOrder8.po.js";
-import { DraftAnOrder4Page } from "../pages/exui/orders/draftOrders/draftAnOrder4.po.js";
+import { RequestSupportLanguageInterpreterPage } from "../pages/exui/caseFlags/requestSupport/requestSupportLanguageInterpreter.po.ts";
+import { SupportPage } from "../pages/exui/caseView/support.po.ts";
+import { DraftAnOrder1Page } from "../pages/exui/orders/draftOrders/draftAnOrder1.po.ts";
+import { DraftAnOrder2Page } from "../pages/exui/orders/draftOrders/draftAnOrder2.po.ts";
+import { DraftAnOrder9Page } from "../pages/exui/orders/draftOrders/draftAnOrder9.po.ts";
+import { DraftAnOrder6Page } from "../pages/exui/orders/draftOrders/draftAnOrder6.po.ts";
+import { DraftAnOrder17Page } from "../pages/exui/orders/draftOrders/draftAnOrder17.po.ts";
+import { DraftAnOrder20Page } from "../pages/exui/orders/draftOrders/draftAnOrder20.po.ts";
+import { DraftAnOrderSubmitPage } from "../pages/exui/orders/draftOrders/draftAnOrderSubmit.po.ts";
+import { DraftAnOrder5Page } from "../pages/exui/orders/draftOrders/draftAnOrder5.po.ts";
+import { DraftAnOrder3Page } from "../pages/exui/orders/draftOrders/draftAnOrder3.po.ts";
+import { DraftAnOrder8Page } from "../pages/exui/orders/draftOrders/draftAnOrder8.po.ts";
+import { DraftAnOrder4Page } from "../pages/exui/orders/draftOrders/draftAnOrder4.po.ts";
+import { DraftAnOrder7Page } from "../pages/exui/orders/draftOrders/draftAnOrder7.po.ts";
+import { DeleteApplication1Page } from "../pages/exui/deleteApplication/deleteApplication1.po.ts";
+import { DeleteApplicationSubmitPage } from "../pages/exui/deleteApplication/deleteApplicationSubmit.po.ts";
+import { SolicitorTasksPage } from "../pages/exui/caseView/solicitor/tasks.po.ts";
+import { CaseListPage } from "../pages/exui/caseList.po.ts";
+import { Fl401Resubmit1Page } from "../pages/exui/resubmitApplication/fl401Resubmit1.po.js";
+import { Fl401Resubmit2Page } from "../pages/exui/resubmitApplication/fl401Resubmit2.po.js";
+import { C100Submit1Page } from "../pages/exui/resubmitApplication/c100Submit1.po.js";
+import { C100Submit2Page } from "../pages/exui/resubmitApplication/c100Submit2.po.js";
+import { C100ApplicantDetails1Page } from "../pages/exui/createCase/applicantDetails/c100ApplicantDetails1.po.ts";
+import { C100ApplicantDetailsSubmitPage } from "../pages/exui/createCase/applicantDetails/c100ApplicantDetailsSubmit.po.ts";
+import { C100HearingUrgency1Page } from "../pages/exui/createCase/hearingUrgency/c100HearingUrgency1.po.ts";
+import { C100HearingUrgencySubmitPage } from "../pages/exui/createCase/hearingUrgency/c100HearingUrgencySubmit.po.ts";
+import { C100AttendingTheHearing1Page } from "../pages/exui/createCase/attendingTheHearing/c100AttendingTheHearing1.po.ts";
+import { C100AttendingTheHearingSubmitPage } from "../pages/exui/createCase/attendingTheHearing/c100AttendingTheHearingSubmit.po.ts";
+import { CaseFilterPage } from "../pages/exui/createCase/caseFilter.po.ts";
+import { TypeOfApplicationPage } from "../pages/exui/createCase/typeOfApplication.po.ts";
+import { C100ConfidentialityStatementPage } from "../pages/exui/createCase/c100ConfidentialityStatement.po.ts";
+import { Fl401ConfidentialityStatementPage } from "../pages/exui/createCase/fl401ConfidentialityStatement.po.ts";
+import { SelectFamilyCourtPage } from "../pages/exui/createCase/selectFamilyCourt.po.ts";
+import { C100CaseNamePage } from "../pages/exui/createCase/c100CaseName.po.ts";
+import { Fl401CaseNamePage } from "../pages/exui/createCase/fl401CaseName.po.ts";
+import { CreateCaseSubmitPage } from "../pages/exui/createCase/createCaseSubmit.po.ts";
+import { C100InternationalElementSubmitPage } from "../pages/exui/createCase/internationalElement/c100InternationalElementSubmit.po.js";
+import { C100InternationalElement1Page } from "../pages/exui/createCase/internationalElement/c100InternationalElement1.po.js";
 
 export class SolicitorPagesGroup {
   constructor(public readonly page: Page) {}
 
   get summaryPage() {
     return new SummaryPage(this.page);
+  }
+
+  get tasksPage() {
+    return new SolicitorTasksPage(this.page);
+  }
+
+  get createCase() {
+    return {
+      caseFilterPage: new CaseFilterPage(this.page),
+      typeOfApplicationPage: new TypeOfApplicationPage(this.page),
+      c100ConfidentialityStatementPage: new C100ConfidentialityStatementPage(
+        this.page,
+      ),
+      fl401ConfidentialityStatementPage: new Fl401ConfidentialityStatementPage(
+        this.page,
+      ),
+      selectFamilyCourtPage: new SelectFamilyCourtPage(this.page),
+      c100CaseNamePage: new C100CaseNamePage(this.page),
+      fl401CaseNamePage: new Fl401CaseNamePage(this.page),
+      submitPage: new CreateCaseSubmitPage(this.page),
+    };
+  }
+
+  get caseListPage() {
+    return new CaseListPage(this.page);
   }
 
   get withdrawApplicationEvent() {
@@ -61,9 +112,11 @@ export class SolicitorPagesGroup {
       confirmPage: new UploadAdditionalApplicationsConfirmPage(this.page),
     };
   }
+
   get supportPage() {
     return new SupportPage(this.page);
   }
+
   get caseFlags() {
     return {
       requestSupport1Page: new RequestSupport1Page(this.page),
@@ -71,9 +124,40 @@ export class SolicitorPagesGroup {
       requestSupport3Page: new RequestSupport3Page(this.page),
       requestSupport4Page: new RequestSupport4Page(this.page),
       requestSupport5Page: new RequestSupport5Page(this.page),
+      requestSupportLanguageInterpreterPage:
+        new RequestSupportLanguageInterpreterPage(this.page),
       requestSupportSubmitPage: new RequestSupportSubmitPage(this.page),
     };
   }
+
+  get c100ApplicantDetails() {
+    return {
+      page1: new C100ApplicantDetails1Page(this.page),
+      submitPage: new C100ApplicantDetailsSubmitPage(this.page),
+    };
+  }
+
+  get c100HearingUrgency() {
+    return {
+      page1: new C100HearingUrgency1Page(this.page),
+      submitPage: new C100HearingUrgencySubmitPage(this.page),
+    };
+  }
+
+  get c100AttendingTheHearing() {
+    return {
+      page1: new C100AttendingTheHearing1Page(this.page),
+      submitPage: new C100AttendingTheHearingSubmitPage(this.page),
+    };
+  }
+
+  get c100InternationalElement() {
+    return {
+      internationalElement1: new C100InternationalElement1Page(this.page),
+      submitPage: new C100InternationalElementSubmitPage(this.page),
+    };
+  }
+
   get draftOrders() {
     return {
       draftAnOrder1Page: new DraftAnOrder1Page(this.page),
@@ -82,11 +166,28 @@ export class SolicitorPagesGroup {
       draftAnOrder4Page: new DraftAnOrder4Page(this.page),
       draftAnOrder5Page: new DraftAnOrder5Page(this.page),
       draftAnOrder6Page: new DraftAnOrder6Page(this.page),
+      draftAnOrder7Page: new DraftAnOrder7Page(this.page),
       draftAnOrder8Page: new DraftAnOrder8Page(this.page),
       draftAnOrder9Page: new DraftAnOrder9Page(this.page),
       draftAnOrder17Page: new DraftAnOrder17Page(this.page),
       draftAnOrder20Page: new DraftAnOrder20Page(this.page),
       draftAnOrderSubmitPage: new DraftAnOrderSubmitPage(this.page),
+    };
+  }
+
+  get deleteApplication() {
+    return {
+      page1: new DeleteApplication1Page(this.page),
+      submitPage: new DeleteApplicationSubmitPage(this.page),
+    };
+  }
+
+  get resubmitApplication() {
+    return {
+      fl401Page1: new Fl401Resubmit1Page(this.page),
+      fl401Page2: new Fl401Resubmit2Page(this.page),
+      c100Page1: new C100Submit1Page(this.page),
+      c100Page2: new C100Submit2Page(this.page),
     };
   }
 }

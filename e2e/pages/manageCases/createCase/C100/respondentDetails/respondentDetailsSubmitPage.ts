@@ -49,6 +49,7 @@ export class RespondentDetailsSubmitPage {
       respondentAddress5Years,
       respondentLegalRepresentation,
     });
+    await this.continueOn(page);
   }
 
   private static async checkPageContent({
@@ -76,7 +77,6 @@ export class RespondentDetailsSubmitPage {
         respondentLegalRepresentation,
       }),
     ]);
-    await this.continueOn(page);
   }
 
   private static async checkDefaultContent({
@@ -97,7 +97,7 @@ export class RespondentDetailsSubmitPage {
       ),
       Helpers.checkGroup(
         page,
-        14,
+        15,
         C100RespondentDetailsSubmitContent,
         `text16`,
         `${Selectors.GovukText16}`,
@@ -107,7 +107,7 @@ export class RespondentDetailsSubmitPage {
       await Promise.all([
         Helpers.checkGroup(
           page,
-          12,
+          15,
           C100RespondentDetailsSubmitContent,
           `text16yes`,
           `${Selectors.GovukText16}`,
@@ -197,7 +197,7 @@ export class RespondentDetailsSubmitPage {
         await Helpers.checkVisibleAndPresent(
           page,
           `${Selectors.GovukText16}:text-is("${C100RespondentDetailsSubmitContent.no}")`,
-          7,
+          8,
         );
         break;
     }
@@ -206,7 +206,7 @@ export class RespondentDetailsSubmitPage {
         Helpers.checkVisibleAndPresent(
           page,
           `${Selectors.GovukText16}:text-is("${C100RespondentDetailsSubmitContent.yes}")`,
-          7,
+          11,
         ),
         Helpers.checkVisibleAndPresent(
           page,

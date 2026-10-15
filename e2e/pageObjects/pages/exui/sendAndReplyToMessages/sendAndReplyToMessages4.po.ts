@@ -31,10 +31,10 @@ export class SendAndReplyToMessages4Page extends EventPage {
     .getByRole("button", { name: "Add new" })
     .first();
   readonly c100Anchor: Locator = this.page.locator(Selectors.GovLink, {
-    hasText: "C100DraftDocument.pdf",
+    hasText: "Draft_C100_application.pdf",
   });
   readonly fl401Anchor: Locator = this.page.locator(Selectors.GovLink, {
-    hasText: "DA-Welsh-application.pdf",
+    hasText: "FL401FinalDocumentWelsh.pdf",
   });
   readonly c100FormLabel: Locator = this.page.locator(
     Selectors.GovukFormLabel,
@@ -120,10 +120,9 @@ export class SendAndReplyToMessages4Page extends EventPage {
     } else {
       await this.pageUtils.assertStrings(this.replyingMessagesFormLabelsForLA);
       await this.pageUtils.assertStrings(this.replyingMessagesHeadingH4ForLA);
-      const email = judgeOrLegalAdviserName.match(/\((.*)\)/)?.[1];
       await expect(
         this.page.locator(Selectors.GovukFormLabel, {
-          hasText: email,
+          hasText: judgeOrLegalAdviserName,
         }),
       ).toBeVisible();
     }

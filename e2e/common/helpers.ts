@@ -5,7 +5,6 @@ import {
   Locator,
   Page,
 } from "@playwright/test";
-import { IdamLoginHelper } from "../utils/idamLoginHelper.utils.ts";
 import { Selectors } from "./selectors.ts";
 import {
   amendEvents,
@@ -64,22 +63,13 @@ export class Helpers {
     const eventSelector = `${Selectors.markdown} > ${Selectors.div} > ${Selectors.p} > ${Selectors.a}:has-text("${event}")`;
     await page.waitForSelector(`.mat-tab-label-content:text-is("Tasks")`);
     await page.locator(eventSelector).waitFor();
-    //retry until element is clicked or task heading is no longer visible
-    await expect
-      .poll(
-        async () => {
-          const taskTitleStillVisible = await page
-            .locator('.mat-tab-label-content:text-is("Tasks")')
-            .isVisible();
-          if (taskTitleStillVisible) await page.click(eventSelector);
-          return taskTitleStillVisible;
-        },
-        {
-          intervals: [1_000, 2_000, 10_000],
-          timeout: 100_000,
-        },
-      )
-      .toBeFalsy();
+
+    /*
+    Tried waiting for the last page response and last page asset to load and dropdown selection behaviour was still flaky
+    frustratingly waiting for a timeout seems like the most "consistent" approach - to be re-evaluated in the future
+    */
+    await page.waitForTimeout(5000);
+    await page.click(eventSelector);
   }
 
   public static async checkVisibleAndPresent(
@@ -116,28 +106,6 @@ export class Helpers {
       await page.goto(Helpers.generateUrl(baseURL, caseNumber, caseTab));
     } catch (error) {
       console.error("An error occurred while navigating to the case: ", error);
-      throw error;
-    }
-  }
-
-  public static async signOutAndGoToCase(
-    page: Page,
-    baseURL: string,
-    caseNumber: string,
-    caseTab: string,
-    user: UserRole,
-  ): Promise<void> {
-    try {
-      await page.locator(`a:text-is(" Sign out ")`).click();
-      await page.waitForLoadState("domcontentloaded");
-      const idamLoginHelper = await new IdamLoginHelper();
-      await idamLoginHelper.signInLongLivedUser(page, user, baseURL);
-      await Helpers.goToCase(page, baseURL, caseNumber, caseTab);
-    } catch (error) {
-      console.error(
-        "An error occurred while signing out and navigating to the case:",
-        error,
-      );
       throw error;
     }
   }

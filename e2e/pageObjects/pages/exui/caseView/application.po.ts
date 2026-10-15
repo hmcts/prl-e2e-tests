@@ -1,6 +1,6 @@
 import { CaseAccessViewPage } from "./caseAccessView.po.js";
 import { expect, Locator, Page } from "@playwright/test";
-import { Selectors } from "../../../../common/selectors.js";
+import { solicitorCaseCreateType } from "../../../../common/types.ts";
 
 interface ApplicantName {
   firstname: string;
@@ -8,14 +8,6 @@ interface ApplicantName {
 }
 
 export class ApplicationPage extends CaseAccessViewPage {
-  private readonly fl401LegalRepresentativeDetailsHeading: Locator =
-    this.page.locator(Selectors.h2, {
-      hasText: "Legal representative's details",
-    });
-  private readonly fl401SolicitorDetailsTable: Locator = this.page.locator(
-    "#case-viewer-field-read--fl401SolicitorDetailsTable",
-  );
-
   constructor(page: Page) {
     super(page);
   }
@@ -44,5 +36,26 @@ export class ApplicationPage extends CaseAccessViewPage {
         }),
       ).toBeVisible();
     }
+  }
+
+  async assertNocSolicitorRepresentsParty(
+    caseType: solicitorCaseCreateType,
+    party: "applicant" | "respondent",
+    solicitorEmail: string,
+  ): Promise<void> {
+    const partyTableSelector =
+      caseType === "C100"
+        ? party === "applicant"
+          ? "#case-viewer-field-read--applicantTable"
+          : "#case-viewer-field-read--respondentTable"
+        : party === "applicant"
+          ? "#case-viewer-field-read--fl401SolicitorDetailsTable"
+          : "#case-viewer-field-read--fl401RespondentTable";
+
+    await expect(
+      this.page
+        .locator(partyTableSelector)
+        .getByRole("link", { name: solicitorEmail }),
+    ).toBeVisible();
   }
 }

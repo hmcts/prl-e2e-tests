@@ -19,12 +19,13 @@ export class DateHelperUtils {
   todayDate(
     longFormat: boolean = false,
     array: boolean = false,
+    isTwoDigitDay = false,
   ): string | string[] {
     const now: Date = new Date();
     const options: Intl.DateTimeFormatOptions = {
       year: "numeric",
       month: "2-digit",
-      day: "numeric",
+      day: isTwoDigitDay ? "2-digit" : "numeric",
     };
     const dateString: string = now.toLocaleDateString("en-US", options);
     const [month, day, year] = dateString.split("/");
@@ -67,5 +68,38 @@ export class DateHelperUtils {
       throw new Error("Month index out of range");
     }
     return this.months[index - 1];
+  }
+
+  todayDateUK(): string {
+    const now: Date = new Date();
+    const options: Intl.DateTimeFormatOptions = {
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+    };
+    return now.toLocaleDateString("en-GB", options);
+  }
+
+  tomorrowDateDDMMYYYY(): string {
+    const tomorrow = new Date();
+    tomorrow.setDate(tomorrow.getDate() + 1);
+
+    const day = `${tomorrow.getDate()}`.padStart(2, "0");
+    const month = `${tomorrow.getMonth() + 1}`.padStart(2, "0");
+    const year = tomorrow.getFullYear();
+
+    return `${day}-${month}-${year}`;
+  }
+
+  // gets today's date in format e.g. 02-09-2026 09:41 am
+  getTodayFormattedDateTime(date: Date = new Date()): string {
+    const day = String(date.getDate()).padStart(2, "0");
+    const month = String(date.getMonth() + 1).padStart(2, "0");
+    const year = date.getFullYear();
+    const hours = date.getHours();
+    const minutes = String(date.getMinutes()).padStart(2, "0");
+    const amPm = hours >= 12 ? "pm" : "am";
+    const formattedHours = String(hours % 12 || 12).padStart(2, "0");
+    return `${day}-${month}-${year} ${formattedHours}:${minutes} ${amPm}`;
   }
 }

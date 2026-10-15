@@ -1,6 +1,7 @@
 import { test as setup } from "./fixtures.ts";
 import dotenv from "dotenv";
 import config from "../utils/config.utils.ts";
+import process from "node:process";
 
 dotenv.config();
 
@@ -30,10 +31,19 @@ setup.describe("Setup users and retrieve tokens", () => {
   );
 
   setup("Retrieve s2s token", async ({ serviceAuthUtils }) => {
-    const s2sToken = await serviceAuthUtils.retrieveToken({
-      microservice: "prl_cos_api",
-    });
-    process.env.S2S_TOKEN = s2sToken;
+    try {
+      const s2sToken = await serviceAuthUtils.retrieveToken({
+        microservice: "prl_cos_api",
+      });
+      process.env.S2S_TOKEN = s2sToken;
+    } catch (error) {
+      if (error.message?.includes("502")) {
+        throw new Error(
+          "Received 502 error during S2S token retrieval. Aborting setup.",
+        );
+      }
+      throw error;
+    }
   });
 
   setup("Setup judge user", async ({ page, idamLoginHelper }) => {
@@ -84,10 +94,34 @@ setup.describe("Setup users and retrieve tokens", () => {
     );
   });
 
-  setup("Setup Barrister user", async ({ page, idamLoginHelper }) => {
+  setup(
+    "Setup Manage Cases Local Authority user",
+    async ({ page, idamLoginHelper }) => {
+      await idamLoginHelper.signInLongLivedUser(
+        page,
+        "localAuthority",
+        config.manageCasesBaseURLCase,
+        "manageCases-",
+      );
+    },
+  );
+
+  setup(
+    "Setup Manage Orgs Local Authority user",
+    async ({ page, idamLoginHelper }) => {
+      await idamLoginHelper.signInLongLivedUser(
+        page,
+        "localAuthority",
+        config.manageOrgBaseURL,
+        "manageOrgs-",
+      );
+    },
+  );
+
+  setup("Setup Superuser", async ({ page, idamLoginHelper }) => {
     await idamLoginHelper.signInLongLivedUser(
       page,
-      "barrister",
+      "superuser",
       config.manageCasesBaseURLCase,
     );
   });

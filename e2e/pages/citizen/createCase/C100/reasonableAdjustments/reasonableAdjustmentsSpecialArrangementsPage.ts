@@ -10,21 +10,17 @@ interface ReasonableAdjustmentsSpecialArrangementsPageOptions {
   accessibilityTest: boolean;
   errorMessaging: boolean;
   yesNoReasonableAdjustments: boolean;
+  isApplicant: boolean;
 }
 
 enum safetyRequirementsUniqueSelectors {
   separateWaitingRooms = "#ra_specialArrangements",
   separateExitsAndEntrances = "#ra_specialArrangements-2",
   screensToNotSeeEachOther = "#ra_specialArrangements-3",
-  separateToilet = "#ra_specialArrangements-4",
-  visitCourtBeforeHearing = "#ra_specialArrangements-5",
-  videoLinks = "#ra_specialArrangements-6",
-  other = "#ra_specialArrangements-7",
+  videoLinks = "#ra_specialArrangements-4",
 }
 
-const otherInput: string = "#ra_specialArrangementsOther_subfield";
-
-const noToAll: string = "#ra_specialArrangements-9";
+const noSafetyRequirements: string = "#ra_specialArrangements-6";
 
 export class ReasonableAdjustmentsSpecialArrangementsPage {
   public static async reasonableAdjustmentsSpecialArrangementsPage({
@@ -32,10 +28,12 @@ export class ReasonableAdjustmentsSpecialArrangementsPage {
     accessibilityTest: accessibilityTest,
     errorMessaging: errorMessaging,
     yesNoReasonableAdjustments: yesNoReasonableAdjustments,
+    isApplicant: isApplicant,
   }: ReasonableAdjustmentsSpecialArrangementsPageOptions): Promise<void> {
     await this.checkPageLoads({
       page: page,
       accessibilityTest: accessibilityTest,
+      isApplicant: isApplicant,
     });
     if (errorMessaging) {
       await this.triggerErrorMessages({ page: page });
@@ -49,6 +47,7 @@ export class ReasonableAdjustmentsSpecialArrangementsPage {
   private static async checkPageLoads({
     page: page,
     accessibilityTest: accessibilityTest,
+    isApplicant: isApplicant,
   }: Partial<ReasonableAdjustmentsSpecialArrangementsPageOptions>): Promise<void> {
     if (!page) {
       throw new Error();
@@ -72,14 +71,9 @@ export class ReasonableAdjustmentsSpecialArrangementsPage {
         `${Selectors.GovukHint}:text-is("${ReasonableAdjustmentsSpecialArrangementsContent.govukHint1}")`,
         1,
       ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukHint}:text-is("${ReasonableAdjustmentsSpecialArrangementsContent.govukHint2}")`,
-        2,
-      ),
       Helpers.checkGroup(
         page,
-        8,
+        4,
         ReasonableAdjustmentsSpecialArrangementsContent,
         "govukLabel",
         Selectors.GovukLabel,
@@ -89,7 +83,25 @@ export class ReasonableAdjustmentsSpecialArrangementsPage {
         `${Selectors.GovukCheckboxesDivider}:text-is("${ReasonableAdjustmentsSpecialArrangementsContent.or}")`,
         1,
       ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukLabel}:text-is("${ReasonableAdjustmentsSpecialArrangementsContent.boldLabel}")`,
+        1,
+      ),
     ]);
+    if (isApplicant) {
+      await Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukLabel}:text-is("${ReasonableAdjustmentsSpecialArrangementsContent.labelIfApplicant}")`,
+        1,
+      );
+    } else {
+      await Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukLabel}:text-is("${ReasonableAdjustmentsSpecialArrangementsContent.labelIfRespondent}")`,
+        1,
+      );
+    }
     if (accessibilityTest) {
       await new AxeUtils(page).audit();
     }
@@ -121,7 +133,6 @@ export class ReasonableAdjustmentsSpecialArrangementsPage {
         1,
       ),
     ]);
-    await page.click(safetyRequirementsUniqueSelectors.other);
     await page.click(
       `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,
     );
@@ -131,18 +142,7 @@ export class ReasonableAdjustmentsSpecialArrangementsPage {
         `${Selectors.GovukErrorSummaryTitle}:text-is("${CommonStaticText.errorSummaryTitle}")`,
         1,
       ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.a}:text-is("${ReasonableAdjustmentsSpecialArrangementsContent.errorMessageGiveDetails}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukErrorMessageCitizen}:text-is("${ReasonableAdjustmentsSpecialArrangementsContent.errorMessageGiveDetails}")`,
-        1,
-      ),
     ]);
-    await page.click(safetyRequirementsUniqueSelectors.other);
   }
 
   private static async fillInFields({
@@ -156,17 +156,8 @@ export class ReasonableAdjustmentsSpecialArrangementsPage {
       for (const selector of Object.values(safetyRequirementsUniqueSelectors)) {
         await page.click(selector);
       }
-      await Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.GovukLabel}:text-is("${ReasonableAdjustmentsSpecialArrangementsContent.hiddengovukLabel}")`,
-        1,
-      );
-      await page.fill(
-        otherInput,
-        ReasonableAdjustmentsSpecialArrangementsContent.loremIpsum,
-      );
     } else {
-      await page.click(noToAll);
+      await page.click(noSafetyRequirements);
     }
     await page.click(
       `${Selectors.GovukButton}:text-is("${CommonStaticText.continue}")`,

@@ -46,8 +46,6 @@ export class C100CaseTabs {
     await C100ConfidentialDetailsTabPage.c100ConfidentialDetailsTabPage(
       courtAdminPage,
       accessibilityTest,
-      applicantLivesInRefuge,
-      otherPersonLivesInRefuge,
     );
   }
 }

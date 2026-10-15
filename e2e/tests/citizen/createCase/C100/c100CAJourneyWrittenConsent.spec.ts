@@ -33,6 +33,7 @@ test.describe("C100 Citizen Application with Written Consent from other people i
     respondent place of birth known,
     respondent gender: male,
     respondent changed name: yes,
+    respondent staying in refuge: no,
     respondent lived aat address less than 5 years: yes,
     respondent address lookup: true,
     respondent address lookup successful: true,
@@ -42,6 +43,7 @@ test.describe("C100 Citizen Application with Written Consent from other people i
     Other person changed name: yes,
     other person birthday known: true,
     Other Person lives in a refuge: yes,
+    Other Person keeping address private: no,
     child mainly lives with: applicant,
     child arrangement order details: true,
     yes to all other proceedings radios: true,
@@ -77,6 +79,7 @@ test.describe("C100 Citizen Application with Written Consent from other people i
       respondentKnownPlaceOfBirth: true,
       respondentGender: "male",
       respondentChangedName: "yes",
+      respondentStayingInRefuge: false,
       respAddress5Years: "yes",
       respAddressLookup: true,
       respAddressLookupSuccessful: true,
@@ -86,6 +89,7 @@ test.describe("C100 Citizen Application with Written Consent from other people i
       c100OtherPeopleChangedName: "yes",
       c100OtherPeopleDoBKnown: true,
       c100OtherPersonLivesInRefuge: true,
+      c100OtherPersonKeepingAddressPrivate: false,
       c100ChildMainlyLivesWith: "applicant",
       C100YesNoConfidentiality: true,
       yesNoOtherProceedings: true,
@@ -102,6 +106,7 @@ test.describe("C100 Citizen Application with Written Consent from other people i
       c100YesNoFeesApplied: true,
       reviewPageTopJourneyMotherFather: "mother",
       relationshipType: "mother",
+      isApplicant: true,
     });
   });
 
@@ -127,6 +132,7 @@ test.describe("C100 Citizen Application with Written Consent from other people i
     respondent place of birth known,
     respondent gender: male,
     respondent changed name: yes,
+    respondent staying in refuge: no,
     respondent lived aat address less than 5 years: yes,
     respondent address lookup: true,
     respondent address lookup successful: true,
@@ -136,6 +142,7 @@ test.describe("C100 Citizen Application with Written Consent from other people i
     Other person changed name: yes,
     other person birthday known: true,
     Other Person lives in a refuge: yes,
+    Other Person keeping address private: no,
     child mainly lives with: 'applicant'
     child arrangement order details: true,
     yes to all other proceedings radios: true,
@@ -171,6 +178,7 @@ test.describe("C100 Citizen Application with Written Consent from other people i
       respondentKnownPlaceOfBirth: true,
       respondentGender: "male",
       respondentChangedName: "yes",
+      respondentStayingInRefuge: false,
       respAddress5Years: "yes",
       respAddressLookup: true,
       respAddressLookupSuccessful: true,
@@ -180,6 +188,7 @@ test.describe("C100 Citizen Application with Written Consent from other people i
       c100OtherPeopleChangedName: "yes",
       c100OtherPeopleDoBKnown: true,
       c100OtherPersonLivesInRefuge: true,
+      c100OtherPersonKeepingAddressPrivate: false,
       c100ChildMainlyLivesWith: "applicant",
       C100YesNoConfidentiality: true,
       yesNoOtherProceedings: true,
@@ -196,6 +205,7 @@ test.describe("C100 Citizen Application with Written Consent from other people i
       c100YesNoFeesApplied: true,
       reviewPageTopJourneyMotherFather: "father",
       relationshipType: "father",
+      isApplicant: true,
     });
   });
 
@@ -221,6 +231,7 @@ test.describe("C100 Citizen Application with Written Consent from other people i
     respondent place of birth known,
     respondent gender: male,
     respondent changed name: yes,
+    respondent staying in refuge: no,
     respondent lived aat address less than 5 years: yes,
     respondent address lookup: true,
     respondent address lookup successful: true,
@@ -230,6 +241,7 @@ test.describe("C100 Citizen Application with Written Consent from other people i
     Other person changed name: yes,
     other person birthday known: true,
     Other Person lives in a refuge: yes,
+    Other Person keeping address private: no,
     child mainly lives with: 'applicant'
     child arrangement order details: true,
     yes to all other proceedings radios: true,
@@ -265,6 +277,7 @@ test.describe("C100 Citizen Application with Written Consent from other people i
       respondentKnownPlaceOfBirth: true,
       respondentGender: "male",
       respondentChangedName: "yes",
+      respondentStayingInRefuge: false,
       respAddress5Years: "yes",
       respAddressLookup: true,
       respAddressLookupSuccessful: true,
@@ -274,6 +287,7 @@ test.describe("C100 Citizen Application with Written Consent from other people i
       c100OtherPeopleChangedName: "yes",
       c100OtherPeopleDoBKnown: true,
       c100OtherPersonLivesInRefuge: true,
+      c100OtherPersonKeepingAddressPrivate: false,
       c100ChildMainlyLivesWith: "applicant",
       C100YesNoConfidentiality: true,
       yesNoOtherProceedings: true,
@@ -290,6 +304,7 @@ test.describe("C100 Citizen Application with Written Consent from other people i
       c100YesNoFeesApplied: true,
       reviewPageTopJourneyMotherFather: "father",
       relationshipType: "father",
+      isApplicant: true,
     });
   });
 });
@@ -302,6 +317,7 @@ test.describe("Test the accessibility of the CA C100 Citizen Journey", (): void 
       "citizen",
     );
   });
+
   test(`C100 of the citizen journey with the following options:
     Accessibility Testing,
     Not Error Messaging,
@@ -324,6 +340,7 @@ test.describe("Test the accessibility of the CA C100 Citizen Journey", (): void 
     respondent place of birth known,
     respondent gender: male,
     respondent changed name: yes,
+    respondent staying in refuge: no,
     respondent lived aat address less than 5 years: yes,
     respondent address lookup: true,
     respondent address lookup successful: true,
@@ -334,6 +351,7 @@ test.describe("Test the accessibility of the CA C100 Citizen Journey", (): void 
     other person birthday known: true,
     child arrangement order details: true,
     Other Person lives in a refuge: yes,
+    Other Person keeping address private: no,
     child mainly lives with: 'applicant'
     yes to all other proceedings radios: true,
     safety concerns yes: true,
@@ -370,6 +388,7 @@ test.describe("Test the accessibility of the CA C100 Citizen Journey", (): void 
       respondentKnownPlaceOfBirth: true,
       respondentGender: "male",
       respondentChangedName: "yes",
+      respondentStayingInRefuge: false,
       respAddress5Years: "yes",
       respAddressLookup: true,
       respAddressLookupSuccessful: true,
@@ -379,6 +398,7 @@ test.describe("Test the accessibility of the CA C100 Citizen Journey", (): void 
       c100OtherPeopleChangedName: "yes",
       c100OtherPeopleDoBKnown: true,
       c100OtherPersonLivesInRefuge: true,
+      c100OtherPersonKeepingAddressPrivate: false,
       c100ChildMainlyLivesWith: "applicant",
       C100YesNoConfidentiality: true,
       yesNoOtherProceedings: true,
@@ -395,6 +415,7 @@ test.describe("Test the accessibility of the CA C100 Citizen Journey", (): void 
       c100YesNoFeesApplied: true,
       reviewPageTopJourneyMotherFather: "father",
       relationshipType: "father",
+      isApplicant: true,
     });
   });
 });

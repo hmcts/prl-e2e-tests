@@ -20,6 +20,12 @@ export class SummaryPage extends CaseAccessViewPage {
   readonly caseStatusDetails: Locator = this.page.locator(
     "#case-viewer-field-read--caseStatus",
   );
+  readonly restrictedCaseTabLabel: Locator = this.page.locator(
+    "#reasonsToRestrictTabLabel",
+  );
+  readonly restrictedCaseReasonLabel: Locator = this.page.locator(
+    "#case-viewer-field-read--reasonsToRestrictTab",
+  );
 
   constructor(page: Page) {
     super(page);
@@ -118,5 +124,39 @@ export class SummaryPage extends CaseAccessViewPage {
     await expect(
       this.page.getByRole("heading", { name: fl401newCaseNameRespondent }),
     ).toBeVisible({ timeout: 12000 });
+  }
+
+  async assertLocalAuthoritySection(organisationName: string): Promise<void> {
+    const localAuthorityPanel = this.page.locator(
+      "#case-viewer-field-read--localAuthority",
+    );
+
+    await expect(
+      this.page.getByRole("heading", { name: "Local Authority", exact: true }),
+    ).toBeVisible();
+    await expect(
+      localAuthorityPanel.getByText("Local Authority involvement", {
+        exact: true,
+      }),
+    ).toBeVisible();
+    await expect(
+      localAuthorityPanel.getByText("Yes", { exact: true }),
+    ).toBeVisible();
+    await expect(
+      localAuthorityPanel.getByText("Local Authority Organisation Name", {
+        exact: true,
+      }),
+    ).toBeVisible();
+    await expect(
+      localAuthorityPanel.getByText(organisationName, { exact: true }),
+    ).toBeVisible();
+  }
+
+  async assertCaseRestricted(restrictionReason: string): Promise<void> {
+    await expect(this.restrictedCaseTabLabel).toBeVisible();
+    await expect(this.restrictedCaseReasonLabel).toBeVisible();
+    await expect(this.restrictedCaseReasonLabel).toContainText(
+      restrictionReason,
+    );
   }
 }

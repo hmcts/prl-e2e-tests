@@ -13,8 +13,9 @@ export class LanguageRequirementsAndSpecialArrangementsPage {
   public static async languageRequirementsAndSpecialArrangementsPage(
     page: Page,
     accessibilityTest: boolean,
+    isApplicant: boolean,
   ): Promise<void> {
-    await this.checkPageLoads(page, accessibilityTest);
+    await this.checkPageLoads(page, accessibilityTest, isApplicant);
     await this.fillInFields(page);
     await this.continue(page);
   }
@@ -22,6 +23,7 @@ export class LanguageRequirementsAndSpecialArrangementsPage {
   private static async checkPageLoads(
     page: Page,
     accessibilityTest: boolean,
+    isApplicant: boolean,
   ): Promise<void> {
     await page
       .locator(Selectors.GovukHeadingXL, {
@@ -37,29 +39,24 @@ export class LanguageRequirementsAndSpecialArrangementsPage {
       ),
       Helpers.checkGroup(
         page,
-        2,
+        3,
         LanguageRequirementsAndSpecialArrangementsContent,
         `govUkHeadingM`,
         `${Selectors.GovukHeadingM}`,
       ),
       Helpers.checkGroup(
         page,
-        3,
+        6,
         LanguageRequirementsAndSpecialArrangementsContent,
         `p`,
         `${Selectors.p}`,
       ),
       Helpers.checkGroup(
         page,
-        9,
+        8,
         LanguageRequirementsAndSpecialArrangementsContent,
         `li`,
         `${Selectors.li}`,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.Span}:text-is("${LanguageRequirementsAndSpecialArrangementsContent.span1}")`,
-        1,
       ),
       Helpers.checkVisibleAndPresent(
         page,
@@ -77,6 +74,33 @@ export class LanguageRequirementsAndSpecialArrangementsPage {
         1,
       ),
     ]);
+    if (isApplicant) {
+      await Promise.all([
+        Helpers.checkVisibleAndPresent(
+          page,
+          `${Selectors.li}:text-is("${LanguageRequirementsAndSpecialArrangementsContent.applicant_li}")`,
+          1,
+        ),
+        Helpers.checkVisibleAndPresent(
+          page,
+          `${Selectors.p}:text-is("${LanguageRequirementsAndSpecialArrangementsContent.applicant_p}")`,
+          1,
+        ),
+      ]);
+    } else {
+      await Promise.all([
+        Helpers.checkVisibleAndPresent(
+          page,
+          `${Selectors.li}:text-is("${LanguageRequirementsAndSpecialArrangementsContent.respondent_li}")`,
+          1,
+        ),
+        Helpers.checkVisibleAndPresent(
+          page,
+          `${Selectors.p}:text-is("${LanguageRequirementsAndSpecialArrangementsContent.respondent_p}")`,
+          1,
+        ),
+      ]);
+    }
     if (accessibilityTest) {
       await new AxeUtils(page).audit();
     }

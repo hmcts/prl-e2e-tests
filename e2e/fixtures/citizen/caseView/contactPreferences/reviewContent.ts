@@ -1,11 +1,21 @@
 export enum ReviewContent {
-  GovukHeadingXL = "Contact Preferences",
-  GovukHeadingL = "Personal details",
-  GovukSummaryListKey = "Address",
-  GovukBody1 = "Heaven",
-  GovukBody2 = "7 Castle Square",
-  GovukBody3 = "Swansea",
-  GovukBody4 = "SA1 1DW",
-  GovukBody5 = "You have decided to receive updates by post.",
-  GovukBody6 = "You will no longer receive updates by email. You can still access previous updates through your dashboard.",
+  govUkHeadingXL = "Review contact preferences",
+  govUkHeadingL = "Personal details",
+  govUkSummaryListKey = "Address",
+  commonGovUkBody1 = "You have decided to receive updates by post.",
+  commonGovUkBody2 = "You will no longer receive updates by email. You can still access previous updates through your dashboard.",
+  govUkWarningText = "Make sure that your contact details are up to date.",
+
+  // applicant address
+  applicantGovUkBody1 = "102 MINISTRY OF JUSTICE, SEVENTH FLOOR, PETTY FRANCE",
+  applicantGovUkBody2 = "LONDON",
+  applicantGovUkBody3 = "CITY OF WESTMINSTER",
+  applicantGovUkBody4 = "SW1H 9AJ",
+
+  // respondent address
+  respondentGovUkBody1 = "FLAT 100, MACKENZIE HOUSE, CHADWICK STREET",
+  respondentGovUkBody2 = "HUNSLET",
+  respondentGovUkBody3 = "LEEDS",
+  respondentGovUkBody4 = "WEST YORKSHIRE",
+  respondentGovUkBody5 = "LS10 1PT",
 }

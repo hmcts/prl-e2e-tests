@@ -13,9 +13,7 @@ export interface MiamChildProtectionPageOptions {
 }
 
 export type MiamChildProtectionConcernsType =
-  | "Child protection plan"
-  | "Section 47"
-  | "None of the above";
+  "Child protection plan" | "Section 47" | "None of the above";
 
 enum uniqueSelectors {
   childProtectionPlan = "#miam_childProtectionEvidence",

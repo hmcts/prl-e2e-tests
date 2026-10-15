@@ -4,6 +4,6 @@ import { CommonStaticText } from "../../../../common/commonStaticText.ts";
 
 export class AmendApplicantDetailsSubmit extends CheckYourAnswersPage {
   constructor(page: Page) {
-    super(page, "Amend respondent details", CommonStaticText.saveAndContinue);
+    super(page, "Amend applicant details", CommonStaticText.saveAndContinue);
   }
 }

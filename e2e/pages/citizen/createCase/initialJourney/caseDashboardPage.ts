@@ -6,8 +6,7 @@ import { AxeUtils } from "@hmcts/playwright-common";
 import { solicitorCaseCreateType } from "../../../../common/types.ts";
 
 export type ChildArrangementsJourneyType =
-  | "accessCode"
-  | solicitorCaseCreateType;
+  "accessCode" | solicitorCaseCreateType;
 
 enum linkSelectors {
   accessCode = `${Selectors.GovukLink}:text-is("${CaseDashboardContent.link1}")`,

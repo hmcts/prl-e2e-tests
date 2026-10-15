@@ -8,7 +8,7 @@ export enum ChildrenAndOtherPeopleSubmitContent {
   text1615 = "Child's name:",
   text1616 = "What is their relationship to the child?",
   text1617 = "Does the child live with this person?",
-  text1618 = "Do you need to keep the identify of the person that the child live with confidential?",
+  text1618 = "Do you need to keep the identity of the person that the child lives with confidential?",
 
   text1621 = "Check the information below carefully.",
   text1622 = "Other party",

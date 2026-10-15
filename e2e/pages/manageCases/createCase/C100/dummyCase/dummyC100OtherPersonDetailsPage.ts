@@ -1,13 +1,8 @@
 import { Page } from "@playwright/test";
 import { Selectors } from "../../../../../common/selectors.ts";
-import { Helpers } from "../../../../../common/helpers.ts";
-import config from "../../../../../utils/config.utils.ts";
 import { OtherPeopleInTheCase1Content } from "../../../../../fixtures/manageCases/createCase/C100/otherPeopleInTheCaseRevised/otherPeopleInTheCaseRevised1Content.ts";
 
 enum UniqueSelectors {
-  uploadC8FormLabel = "label[for='otherPartyInTheCaseRevised_0_refugeConfidentialityC8Form'] .form-label",
-  uploadC8FormHint = "label[for='otherPartyInTheCaseRevised_0_refugeConfidentialityC8Form'] + .form-hint",
-  c8RefugeFormUploadFileInput = "#otherPartyInTheCaseRevised_0_refugeConfidentialityC8Form",
   otherPersonLivesInRefugeYes = "#otherPartyInTheCaseRevised_0_liveInRefuge_Yes",
   otherPersonLivesInRefugeNo = "#otherPartyInTheCaseRevised_0_liveInRefuge_No",
   otherPersonPostCodeInput = "#otherPartyInTheCaseRevised_0_address_address_postcodeInput",
@@ -32,20 +27,6 @@ export class DummyC100OtherPersonDetailsPage {
     if (otherPersonLivesInRefuge) {
       await page.click(`${PageLoadFields.otherPersonCurrentAddressYes}`);
       await page.click(`${UniqueSelectors.otherPersonLivesInRefugeYes}`);
-      await Helpers.checkVisibleAndPresent(
-        page,
-        `${UniqueSelectors.uploadC8FormLabel}:text-is("${OtherPeopleInTheCase1Content.formLabelC8FormUpload}")`,
-        1,
-      );
-      await Helpers.checkVisibleAndPresent(
-        page,
-        `${Selectors.p}:text-is("${OtherPeopleInTheCase1Content.c8FormUploadP}")`,
-        1,
-      );
-      const fileInput = page.locator(
-        `${UniqueSelectors.c8RefugeFormUploadFileInput}`,
-      );
-      await fileInput.setInputFiles(config.testPdfFile);
       await page.waitForSelector(
         `${Selectors.GovukErrorMessage}:text-is("${OtherPeopleInTheCase1Content.uploadingFile}")`,
         { state: "hidden" },

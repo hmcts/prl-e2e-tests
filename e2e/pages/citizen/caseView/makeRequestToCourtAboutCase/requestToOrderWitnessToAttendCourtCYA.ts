@@ -1,0 +1,57 @@
+import { Page } from "@playwright/test";
+import { Selectors } from "../../../../common/selectors.ts";
+import { Helpers } from "../../../../common/helpers.ts";
+import { AxeUtils } from "@hmcts/playwright-common";
+import { CommonStaticText } from "../../../../common/commonStaticText.ts";
+import { RequestToOrderWitnessContentCYA } from "../../../../fixtures/citizen/caseView/makeRequestToCourtAboutCase/requestToOrderWitnessContentCYA.ts";
+
+export class RequestToOrderWitnessToAttendCourtCYA {
+  public static async requestToOrderWitnessToAttendCourtCYA(
+    page: Page,
+    accessibilityTest: boolean,
+  ): Promise<void> {
+    await this.checkPageLoads(page, accessibilityTest);
+    await this.submitApplication(page);
+  }
+
+  private static async checkPageLoads(
+    page: Page,
+    accessibilityTest: boolean,
+  ): Promise<void> {
+    await page
+      .locator(Selectors.GovukHeadingXL, {
+        hasText: RequestToOrderWitnessContentCYA.GovukHeadingXl,
+      })
+      .waitFor();
+    await Promise.all([
+      Helpers.checkGroup(
+        page,
+        4,
+        RequestToOrderWitnessContentCYA,
+        `GovukSummaryListKey`,
+        `${Selectors.GovukSummaryListKey}`,
+      ),
+      Helpers.checkGroup(
+        page,
+        4,
+        RequestToOrderWitnessContentCYA,
+        `GovukSummaryListValue`,
+        `${Selectors.GovukSummaryListValue}`,
+      ),
+      Helpers.checkVisibleAndPresent(
+        page,
+        `${Selectors.GovukLink}:text-is("${RequestToOrderWitnessContentCYA.GovukLink}")`,
+        4,
+      ),
+    ]);
+    if (accessibilityTest) {
+      await new AxeUtils(page).audit();
+    }
+  }
+
+  private static async submitApplication(page: Page): Promise<void> {
+    await page
+      .getByRole("button", { name: CommonStaticText.submitApplication })
+      .click();
+  }
+}

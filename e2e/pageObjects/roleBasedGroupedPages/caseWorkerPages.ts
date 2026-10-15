@@ -1,14 +1,26 @@
 import { Page } from "@playwright/test";
 import { TasksPage } from "../pages/exui/caseView/tasks.po.ts";
+import { CaseDocumentsPage } from "../pages/exui/caseView/caseDocuments.po.ts";
+import { BundlesPage } from "../pages/exui/caseView/bundles.po.ts";
+import { CreateBundle1Page } from "../pages/exui/createABundle/createBundle1.po.ts";
+import { CreateBundleSubmitPage } from "../pages/exui/createABundle/createBundleSubmit.po.ts";
+import { ManageDocumentsNew1Page } from "../pages/exui/manageDocuments/manageDocumentsNew1.po.ts";
+import { ManageDocumentsNewSubmitPage } from "../pages/exui/manageDocuments/manageDocumentsNewSubmit.po.ts";
+import { ManageDocumentsNewConfirmPage } from "../pages/exui/manageDocuments/manageDocumentsNewConfirm.po.ts";
+import { ConfidentialDetailsPage } from "../pages/exui/caseView/confidentialDetails.po.ts";
+import { DocumentsToBeReviewedPage } from "../pages/exui/caseView/documentsToBeReviewed.po.ts";
+import { ReviewDocuments1Page } from "../pages/exui/reviewDocuments/reviewDocuments1.po.ts";
+import { ReviewDocuments2Page } from "../pages/exui/reviewDocuments/reviewDocuments2.po.ts";
+import { ReviewDocumentsSubmitPage } from "../pages/exui/reviewDocuments/reviewDocumentsSubmit.po.ts";
 import { SummaryPage } from "../pages/exui/caseView/summary.po.ts";
 import { HistoryPage } from "../pages/exui/caseView/history.po.ts";
 import { AmendApplicantDetails1 } from "../pages/exui/amendApplicantDetails/amendApplicantDetails1.po.ts";
 import { AmendApplicantDetailsSubmit } from "../pages/exui/amendApplicantDetails/amendApplicantDetailsSubmit.po.ts";
-import { C100AdminAddBarrister1Page } from "../pages/exui/addAndRemoveBarrister/c100AdminAddBarrister1.po.ts";
-import { C100AdminAddBarristerSubmit } from "../pages/exui/addAndRemoveBarrister/c100AdminAddBarristerSubmit.po.ts";
+import { AddBarrister1Page } from "../pages/exui/addAndRemoveBarrister/addBarrister1.po.ts";
+import { AddBarristerSubmitPage } from "../pages/exui/addAndRemoveBarrister/addBarristerSubmit.po.ts";
 import { PartiesPage } from "../pages/exui/caseView/parties.po.ts";
-import { C100AdminRemoveBarrister1Page } from "../pages/exui/addAndRemoveBarrister/c100AdminRemoveBarrister1Page.po.ts";
-import { C100AdminRemoveBarristerSubmit } from "../pages/exui/addAndRemoveBarrister/c100AdminRemoveBarristerSubmit.po.ts";
+import { RemoveBarrister1Page } from "../pages/exui/addAndRemoveBarrister/removeBarrister1.po.ts";
+import { RemoveBarristerSubmitPage } from "../pages/exui/addAndRemoveBarrister/removeBarristerSubmit.po.ts";
 import { Fl401AddCaseNumber1Page } from "../pages/exui/checkApplication/fl401AddCaseNumber1.po.ts";
 import { Fl401AddCaseNumberSubmitPage } from "../pages/exui/checkApplication/fl401AddCaseNumberSubmit.po.ts";
 import { AllocatedJudge1Page } from "../pages/exui/allocatedJudge/allocatedJudge1.po.ts";
@@ -29,28 +41,71 @@ import { MaintainCaseLinkSubmitPage } from "../pages/exui/caseLinking/maintainCa
 import { LinkedCasesPage } from "../pages/exui/caseView/linkedCases.po.ts";
 import { SendToGateKeeper1Page } from "../pages/exui/sendToGateKeeper/sendToGateKeeper1.po.ts";
 import { SendToGateKeeperSubmitPage } from "../pages/exui/sendToGateKeeper/sendToGateKeeperSubmit.po.ts";
-import { AmendRespondentDetails1 } from "../pages/exui/amendRespondentDetails/amendRespondentDetails1.po.js";
-import { AmendRespondentDetailsSubmit } from "../pages/exui/amendRespondentDetails/amendRespondentDetailsSubmit.po.js";
-import { SendAndReplyToMessages1Page } from "../pages/exui/sendAndReplyToMessages/sendAndReplyToMessages1.po.js";
-import { SendAndReplyToMessagesSubmitPage } from "../pages/exui/sendAndReplyToMessages/sendAndReplyToMessagesSubmit.po.js";
-import { SendAndReplyToMessages2Page } from "../pages/exui/sendAndReplyToMessages/sendAndReplyToMessages2.po.js";
-import { SendAndReplyToMessages3Page } from "../pages/exui/sendAndReplyToMessages/sendAndReplyToMessages3.po.js";
-import { ReviewRARequest1Page } from "../pages/exui/caseFlags/reviewRARequest/reviewRARequest1.po.js";
-import { ReviewRARequest2Page } from "../pages/exui/caseFlags/reviewRARequest/reviewRARequest2.po.js";
-import { ReviewRARequestSubmitPage } from "../pages/exui/caseFlags/reviewRARequest/reviewRARequestSubmit.po.js";
-import { CaseFlagsPage } from "../pages/exui/caseView/caseFlags.po.js";
-import { ManageOrder1Page } from "../pages/exui/orders/manageOrders/manageOrder1.po.js";
-import { ManageOrder2Page } from "../pages/exui/orders/manageOrders/manageOrder2.po.js";
-import { ManageOrder5Page } from "../pages/exui/orders/manageOrders/manageOrder5.po.js";
-import { ManageOrder10Page } from "../pages/exui/orders/manageOrders/manageOrder10.po.js";
-import { ManageOrder19Page } from "../pages/exui/orders/manageOrders/manageOrder19.po.js";
-import { ManageOrder20Page } from "../pages/exui/orders/manageOrders/manageOrder20.po.js";
-import { ManageOrder24Page } from "../pages/exui/orders/manageOrders/manageOrder24.po.js";
-import { ManageOrderSubmitPage } from "../pages/exui/orders/manageOrders/manageOrderSubmit.po.js";
-import { ManageOrder12Page } from "../pages/exui/orders/manageOrders/manageOrder12.po.js";
-import { OccupationOrderManageOrders12Page } from "../pages/exui/orders/manageOrders/occupationOrderManageOrder12.po.js";
-import { ManageOrder3Page } from "../pages/exui/orders/manageOrders/manageOrder3.po.js";
-import { ManageOrder26Page } from "../pages/exui/orders/manageOrders/manageOrder26.po.js";
+import { AmendRespondentDetails1 } from "../pages/exui/amendRespondentDetails/amendRespondentDetails1.po.ts";
+import { AmendRespondentDetailsSubmit } from "../pages/exui/amendRespondentDetails/amendRespondentDetailsSubmit.po.ts";
+import { SendAndReplyToMessages1Page } from "../pages/exui/sendAndReplyToMessages/sendAndReplyToMessages1.po.ts";
+import { SendAndReplyToMessagesSubmitPage } from "../pages/exui/sendAndReplyToMessages/sendAndReplyToMessagesSubmit.po.ts";
+import { SendAndReplyToMessages2Page } from "../pages/exui/sendAndReplyToMessages/sendAndReplyToMessages2.po.ts";
+import { SendAndReplyToMessages3Page } from "../pages/exui/sendAndReplyToMessages/sendAndReplyToMessages3.po.ts";
+import { ReviewRARequest1Page } from "../pages/exui/caseFlags/reviewRARequest/reviewRARequest1.po.ts";
+import { ReviewRARequest2Page } from "../pages/exui/caseFlags/reviewRARequest/reviewRARequest2.po.ts";
+import { ReviewRARequestSubmitPage } from "../pages/exui/caseFlags/reviewRARequest/reviewRARequestSubmit.po.ts";
+import { ReviewRARequestAddTranslationsPage } from "../pages/exui/caseFlags/reviewRARequest/reviewRARequestAddTranslations.po.ts";
+import { CaseFlagsPage } from "../pages/exui/caseView/caseFlags.po.ts";
+import { ManageOrder1Page } from "../pages/exui/orders/manageOrders/manageOrder1.po.ts";
+import { ManageOrder2Page } from "../pages/exui/orders/manageOrders/manageOrder2.po.ts";
+import { ManageOrder5Page } from "../pages/exui/orders/manageOrders/manageOrder5.po.ts";
+import { ManageOrder6Page } from "../pages/exui/orders/manageOrders/manageOrder6.po.ts";
+import { ManageOrder10Page } from "../pages/exui/orders/manageOrders/manageOrder10.po.ts";
+import { ManageOrder19Page } from "../pages/exui/orders/manageOrders/manageOrder19.po.ts";
+import { ManageOrder20Page } from "../pages/exui/orders/manageOrders/manageOrder20.po.ts";
+import { ManageOrder24Page } from "../pages/exui/orders/manageOrders/manageOrder24.po.ts";
+import { ManageOrderSubmitPage } from "../pages/exui/orders/manageOrders/manageOrderSubmit.po.ts";
+import { ManageOrder12Page } from "../pages/exui/orders/manageOrders/manageOrder12.po.ts";
+import { OccupationOrderManageOrders12Page } from "../pages/exui/orders/manageOrders/occupationOrderManageOrder12.po.ts";
+import { ManageOrder3Page } from "../pages/exui/orders/manageOrders/manageOrder3.po.ts";
+import { ManageOrder26Page } from "../pages/exui/orders/manageOrders/manageOrder26.po.ts";
+import { ManageOrder11Page } from "../pages/exui/orders/manageOrders/manageOrder11.po.ts";
+import { ManageOrder27Page } from "../pages/exui/orders/manageOrders/manageOrder27.po.ts";
+import { ManageOrder28Page } from "../pages/exui/orders/manageOrders/manageOrder28.po.ts";
+import { ManageOrder31Page } from "../pages/exui/orders/manageOrders/manageOrder31.po.ts";
+import { OrdersPage } from "../pages/exui/caseView/Orders.po.ts";
+import { AdminAddLocalAuthority1Page } from "../pages/exui/addLocalAuthority/adminAddLocalAuthority1.po.ts";
+import { AdminAddLocalAuthoritySubmitPage } from "../pages/exui/addLocalAuthority/adminAddLocalAuthoritySubmit.po.ts";
+import { AdminAddLocalAuthorityConfirmPage } from "../pages/exui/addLocalAuthority/adminAddLocalAuthorityConfirm.po.ts";
+import { AdminEditAndApproveAnOrder1Page } from "../pages/exui/orders/adminEditAndApproveAnOrders/adminEditAndApproveAnOrder1.po.js";
+import { AdminEditAndApproveAnOrder4Page } from "../pages/exui/orders/adminEditAndApproveAnOrders/adminEditAndApproveAnOrder4.po.js";
+import { AdminEditAndApproveAnOrder21Page } from "../pages/exui/orders/adminEditAndApproveAnOrders/adminEditAndApproveAnOrder21.po.js";
+import { AdminEditAndApproveAnOrder23Page } from "../pages/exui/orders/adminEditAndApproveAnOrders/adminEditAndApproveAnOrder23.po.js";
+import { AdminEditAndApproveAnOrder22Page } from "../pages/exui/orders/adminEditAndApproveAnOrders/adminEditAndApproveAnOrder22.po.js";
+import { AdminEditAndApproveAnOrderSubmitPage } from "../pages/exui/orders/adminEditAndApproveAnOrders/adminEditAndApproveAnOrderSubmit.po.js";
+import { StatementOfService1Page } from "../pages/exui/statementOfService/statementOfService1.po.js";
+import { StatementOfServiceSubmitPage } from "../pages/exui/statementOfService/statementOfServiceSubmit.po.js";
+import { StatementOfServiceConfirmPage } from "../pages/exui/statementOfService/statementOfServiceConfirm.po.js";
+import { ServiceOfApplicationPage } from "../pages/exui/caseView/serviceOfApplication.po.js";
+import { ServiceOfApplication2Page } from "../pages/exui/serviceOfApplication/serviceOfApplication2.po.ts";
+import { ServiceOfApplication4Page } from "../pages/exui/serviceOfApplication/serviceOfApplication4.po.ts";
+import { ServiceOfApplicationSubmitPage } from "../pages/exui/serviceOfApplication/serviceOfApplicationSubmit.po.ts";
+import { ServiceOfApplicationConfirmPage } from "../pages/exui/serviceOfApplication/serviceOfApplicationConfirm.po.ts";
+import { ServiceOfDocuments1Page } from "../pages/exui/serviceOfDocuments/serviceOfDocuments1.po.js";
+import { ServiceOfDocuments2Page } from "../pages/exui/serviceOfDocuments/serviceOfDocuments2.po.js";
+import { ServiceOfDocuments3Page } from "../pages/exui/serviceOfDocuments/serviceOfDocuments3.po.js";
+import { ServiceOfDocumentsSubmitPage } from "../pages/exui/serviceOfDocuments/serviceOfDocumentsSubmit.po.js";
+import { WelshLanguageRequirements1Page } from "../pages/exui/welshLanguageRequirements/welshLanguageRequirements1.po.ts";
+import { WelshLanguageRequirementsSubmitPage } from "../pages/exui/welshLanguageRequirements/welshLanguageRequirementsSubmit.po.ts";
+import { HearingsPage } from "../pages/exui/caseView/hearings.po.ts";
+import { HearingRequirementsPage } from "../pages/exui/createHearingRequest/hearingRequirements.po.ts";
+import { HearingFacilitiesPage } from "../pages/exui/createHearingRequest/hearingFacilities.po.ts";
+import { HearingStagePage } from "../pages/exui/createHearingRequest/hearingStage.po.ts";
+import { HearingAttendancePage } from "../pages/exui/createHearingRequest/hearingAttendance.po.ts";
+import { HearingVenuePage } from "../pages/exui/createHearingRequest/hearingVenue.po.ts";
+import { HearingWelshPage } from "../pages/exui/createHearingRequest/hearingWelsh.po.ts";
+import { HearingJudgePage } from "../pages/exui/createHearingRequest/hearingJudge.po.ts";
+import { HearingTimingPage } from "../pages/exui/createHearingRequest/hearingTiming.po.ts";
+import { HearingLinkPage } from "../pages/exui/createHearingRequest/hearingLink.po.ts";
+import { HearingAdditionalInstructionsPage } from "../pages/exui/createHearingRequest/hearingAdditionalInstructions.po.ts";
+import { HearingSummaryPage } from "../pages/exui/createHearingRequest/hearingSummary.po.ts";
+import { HearingConfirmationPage } from "../pages/exui/createHearingRequest/hearingConfirmation.po.ts";
 
 export class CaseWorkerPagesGroup {
   constructor(public readonly page: Page) {}
@@ -59,12 +114,57 @@ export class CaseWorkerPagesGroup {
     return new TasksPage(this.page);
   }
 
+  get caseDocumentsPage() {
+    return new CaseDocumentsPage(this.page);
+  }
+
+  get bundlesPage() {
+    return new BundlesPage(this.page);
+  }
+
+  get createABundle() {
+    return {
+      page1: new CreateBundle1Page(this.page),
+      submitPage: new CreateBundleSubmitPage(this.page),
+    };
+  }
+
+  get manageDocuments() {
+    return {
+      manageDocumentsNew1Page: new ManageDocumentsNew1Page(this.page),
+      manageDocumentsNewSubmitPage: new ManageDocumentsNewSubmitPage(this.page),
+      manageDocumentsNewConfirmPage: new ManageDocumentsNewConfirmPage(
+        this.page,
+      ),
+    };
+  }
+
+  get confidentialDetailsPage() {
+    return new ConfidentialDetailsPage(this.page);
+  }
+
+  get documentsToBeReviewedPage() {
+    return new DocumentsToBeReviewedPage(this.page);
+  }
+
+  get reviewDocuments() {
+    return {
+      page1: new ReviewDocuments1Page(this.page),
+      page2: new ReviewDocuments2Page(this.page),
+      submitPage: new ReviewDocumentsSubmitPage(this.page),
+    };
+  }
+
   get summaryPage() {
     return new SummaryPage(this.page);
   }
 
   get historyPage() {
     return new HistoryPage(this.page);
+  }
+
+  get hearingsPage() {
+    return new HearingsPage(this.page);
   }
 
   get partiesPage() {
@@ -94,11 +194,15 @@ export class CaseWorkerPagesGroup {
   }
 
   get manageBarristerC100() {
+    return this.manageBarrister;
+  }
+
+  get manageBarrister() {
     return {
-      addBarrister1Page: new C100AdminAddBarrister1Page(this.page),
-      addBarristerSubmit: new C100AdminAddBarristerSubmit(this.page),
-      removeBarrister1Page: new C100AdminRemoveBarrister1Page(this.page),
-      removeBarristerSubmit: new C100AdminRemoveBarristerSubmit(this.page),
+      addBarrister1Page: new AddBarrister1Page(this.page),
+      addBarristerSubmit: new AddBarristerSubmitPage(this.page),
+      removeBarrister1Page: new RemoveBarrister1Page(this.page),
+      removeBarristerSubmit: new RemoveBarristerSubmitPage(this.page),
     };
   }
 
@@ -119,6 +223,12 @@ export class CaseWorkerPagesGroup {
   get draftedOrders() {
     return {
       draftOrdersPage: new DraftOrdersPage(this.page),
+    };
+  }
+
+  get Orders() {
+    return {
+      OrdersPage: new OrdersPage(this.page),
     };
   }
 
@@ -161,6 +271,8 @@ export class CaseWorkerPagesGroup {
     return {
       reviewRARequestPage1: new ReviewRARequest1Page(this.page),
       reviewRARequestPage2: new ReviewRARequest2Page(this.page),
+      reviewRARequestAddTranslationsPage:
+        new ReviewRARequestAddTranslationsPage(this.page),
       reviewRARequestPageSubmit: new ReviewRARequestSubmitPage(this.page),
     };
   }
@@ -171,16 +283,111 @@ export class CaseWorkerPagesGroup {
       manageOrder2Page: new ManageOrder2Page(this.page),
       manageOrder3Page: new ManageOrder3Page(this.page),
       manageOrder5Page: new ManageOrder5Page(this.page),
+      manageOrder6Page: new ManageOrder6Page(this.page),
       manageOrder10Page: new ManageOrder10Page(this.page),
+      manageOrder11Page: new ManageOrder11Page(this.page),
       manageOrder12Page: new ManageOrder12Page(this.page),
       occupationOrderManageOrders12Page: new OccupationOrderManageOrders12Page(
         this.page,
       ),
       manageOrder19Page: new ManageOrder19Page(this.page),
       manageOrder20Page: new ManageOrder20Page(this.page),
+      manageOrder31Page: new ManageOrder31Page(this.page),
       manageOrder24Page: new ManageOrder24Page(this.page),
       manageOrder26Page: new ManageOrder26Page(this.page),
+      manageOrder27Page: new ManageOrder27Page(this.page),
+      manageOrder28Page: new ManageOrder28Page(this.page),
       manageOrderSubmitPage: new ManageOrderSubmitPage(this.page),
+    };
+  }
+
+  get adminEditAndApproveAnOrders() {
+    return {
+      adminEditAndApproveAnOrder1Page: new AdminEditAndApproveAnOrder1Page(
+        this.page,
+      ),
+      adminEditAndApproveAnOrder4Page: new AdminEditAndApproveAnOrder4Page(
+        this.page,
+      ),
+      adminEditAndApproveAnOrder21Page: new AdminEditAndApproveAnOrder21Page(
+        this.page,
+      ),
+      adminEditAndApproveAnOrder22Page: new AdminEditAndApproveAnOrder22Page(
+        this.page,
+      ),
+      adminEditAndApproveAnOrder23Page: new AdminEditAndApproveAnOrder23Page(
+        this.page,
+      ),
+      adminEditAndApproveAnOrderSubmitPage:
+        new AdminEditAndApproveAnOrderSubmitPage(this.page),
+    };
+  }
+
+  get addLocalAuthority() {
+    return {
+      addLocalAuthority1Page: new AdminAddLocalAuthority1Page(this.page),
+      addLocalAuthoritySubmitPage: new AdminAddLocalAuthoritySubmitPage(
+        this.page,
+      ),
+      addLocalAuthorityConfirmPage: new AdminAddLocalAuthorityConfirmPage(
+        this.page,
+      ),
+    };
+  }
+
+  get serviceOfApplication() {
+    return {
+      page2: new ServiceOfApplication2Page(this.page),
+      page4: new ServiceOfApplication4Page(this.page),
+      submitPage: new ServiceOfApplicationSubmitPage(this.page),
+      confirmPage: new ServiceOfApplicationConfirmPage(this.page),
+      serviceOfApplicationPage: new ServiceOfApplicationPage(this.page),
+    };
+  }
+
+  get serviceOfDocuments() {
+    return {
+      page1: new ServiceOfDocuments1Page(this.page),
+      page2: new ServiceOfDocuments2Page(this.page),
+      page3: new ServiceOfDocuments3Page(this.page),
+      submitPage: new ServiceOfDocumentsSubmitPage(this.page),
+    };
+  }
+
+  get statementOfService() {
+    return {
+      statementOfService1Page: new StatementOfService1Page(this.page),
+      statementOfServiceSubmitPage: new StatementOfServiceSubmitPage(this.page),
+      statementOfServiceConfirmPage: new StatementOfServiceConfirmPage(
+        this.page,
+      ),
+      serviceOfApplicationPage: new ServiceOfApplicationPage(this.page),
+    };
+  }
+
+  get welshLanguageRequirements() {
+    return {
+      page1: new WelshLanguageRequirements1Page(this.page),
+      submitPage: new WelshLanguageRequirementsSubmitPage(this.page),
+    };
+  }
+
+  get createHearingRequest() {
+    return {
+      requirementsPage: new HearingRequirementsPage(this.page),
+      facilitiesPage: new HearingFacilitiesPage(this.page),
+      stagePage: new HearingStagePage(this.page),
+      attendancePage: new HearingAttendancePage(this.page),
+      venuePage: new HearingVenuePage(this.page),
+      welshPage: new HearingWelshPage(this.page),
+      judgePage: new HearingJudgePage(this.page),
+      timingPage: new HearingTimingPage(this.page),
+      linkPage: new HearingLinkPage(this.page),
+      additionalInstructionsPage: new HearingAdditionalInstructionsPage(
+        this.page,
+      ),
+      summaryPage: new HearingSummaryPage(this.page),
+      confirmationPage: new HearingConfirmationPage(this.page),
     };
   }
 }

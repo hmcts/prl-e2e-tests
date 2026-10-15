@@ -1,0 +1,21 @@
+export enum ListOfApplications2Content {
+  GovukHeadingL = "Make a request to the court about your case",
+  GovukBody1 = "Select a form to make an application in your court proceedings.",
+  GovukAccordionSection1 = "Request the court grants you parental responsibility",
+  GovukBody2 = "You can apply for a parental responsibility order by completing and submitting the form C1.",
+  GovukLinkC1 = "Apply to the court using form C1", //x2
+  GovukAccordionSection2 = "Request the court appoints a guardian for the child",
+  GovukBody3 = "You can ask the court to appoint a guardian for a child or end the guardian appointment by completing and submitting the form C1.",
+  GovukAccordionSection3 = "Ask the court to deliver papers to the other party",
+  GovukBody4 = "You can ask for a court official to hand court papers to the other person in the case by completing and submitting form D89.",
+  GovukBody5 = "You can ask for this when it may not be safe for you to deliver the court papers to the other person in a domestic abuse case.",
+  GovukLink1 = "Apply to the court using form D89",
+  GovukAccordionSection4 = "Ask the court to order someone to provide information on where a child is",
+  GovukBody6 = "You can ask the court to order someone to provide information on where a child is or who they are with by completing and submitting the C4 form.",
+  GovukLink2 = "Apply to the court using form C4",
+  GovukAccordionSection5 = "Appeal a court order or ask for permission to appeal",
+  GovukBody7 = "You can appeal or ask for permission to appeal a court order by completing and submitting and completing form N161.",
+  GovukLink3 = "Apply to the court using form N161",
+  paginationPrevious = "Previous",
+  paginationNext = "Next",
+}

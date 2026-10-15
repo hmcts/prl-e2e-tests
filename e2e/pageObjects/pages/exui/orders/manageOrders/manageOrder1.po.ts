@@ -1,6 +1,7 @@
 import { EventPage } from "../../eventPage.po.js";
 import { expect, Locator, Page } from "@playwright/test";
 import { PageUtils } from "../../../../../utils/page.utils.js";
+import { manageOrdersOptions } from "../../../../../common/types.ts";
 
 export class ManageOrder1Page extends EventPage {
   readonly createOrderRadio: Locator = this.page.locator(
@@ -9,19 +10,22 @@ export class ManageOrder1Page extends EventPage {
   readonly uploadOrderRadio: Locator = this.page.locator(
     "#manageOrdersOptions-uploadAnOrder",
   );
-  readonly amendOrderRadio: Locator = this.page.locator(
+  private readonly amendOrderRadio: Locator = this.page.locator(
     "#manageOrdersOptions-amendOrderUnderSlipRule",
   );
   readonly serveSavedOrdersRadio: Locator = this.page.locator(
     "#manageOrdersOptions-servedSavedOrders",
+  );
+  readonly createCustomOrderRadio: Locator = this.page.locator(
+    "#manageOrdersOptions-createCustomOrder",
   );
 
   private readonly orderOptionsFormLabels: string[] = [
     "What do you want to do?",
     "Create an order",
     "Upload an order",
-    "Amend an order",
     "Serve saved orders",
+    "Create a custom order",
   ];
 
   constructor(page: Page) {
@@ -33,11 +37,14 @@ export class ManageOrder1Page extends EventPage {
   async assertPageContents(): Promise<void> {
     await this.assertPageHeadings();
     await this.pageUtils.assertStrings(this.orderOptionsFormLabels);
+    await expect(this.amendOrderRadio).toHaveCount(0);
     await expect(this.continueButton).toBeVisible();
     await expect(this.previousButton).toBeVisible();
   }
 
-  async selectOrderOption(manageOrderOptions: string): Promise<void> {
+  async selectOrderOption(
+    manageOrderOptions: manageOrdersOptions,
+  ): Promise<void> {
     switch (manageOrderOptions) {
       case "create order":
         await this.createOrderRadio.check();
@@ -45,11 +52,11 @@ export class ManageOrder1Page extends EventPage {
       case "upload order":
         await this.uploadOrderRadio.check();
         break;
-      case "amend order":
-        await this.amendOrderRadio.check();
-        break;
       case "serve order":
         await this.serveSavedOrdersRadio.check();
+        break;
+      case "create custom order":
+        await this.createCustomOrderRadio.check();
         break;
     }
   }

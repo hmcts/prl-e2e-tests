@@ -8,7 +8,7 @@ export enum ChildrenAndOtherPeople1Content {
   formLabel2 = "Does the child live with this person?",
   formLabelOtherRelationship = "Give details",
   loremIpsum = "loremIpsum",
-  formLabelConfidentiality = "Do you need to keep the identify of the person that the child live with confidential?",
+  formLabelConfidentiality = "Do you need to keep the identity of the person that the child lives with confidential?",
   formLabelYes = "Yes",
   formLabelNo = "No",
   textField1 = "Full name:",
@@ -21,7 +21,7 @@ export enum ChildrenAndOtherPeople1Content {
   errorMessageRespondentsRelationship = "What is their relationship to the child? is required",
   errorMessageDoesChildLiveWithPerson = "Does the child live with this person? is required",
   errorMessageRelationshipOtherGiveDetails = "Give details is required",
-  errorMessageIdentityOfOtherConfidential = "Do you need to keep the identify of the person that the child live with confidential? is required",
+  errorMessageIdentityOfOtherConfidential = "Do you need to keep the identity of the person that the child lives with confidential? is required",
   addNew = "Add new",
   continue = "Continue",
 }

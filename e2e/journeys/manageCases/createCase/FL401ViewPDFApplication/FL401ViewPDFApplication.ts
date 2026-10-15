@@ -1,42 +1,31 @@
 import { Helpers } from "../../../../common/helpers.ts";
 import { Page } from "@playwright/test";
-import { ViewPDFApplicationPage } from "../../../../pages/manageCases/createCase/FL401/viewPDFApplication/viewPDFApplicationPage.ts";
+import { ViewPDFApplicationPage } from "../../../../pages/manageCases/createCase/Common/viewPDFApplication/viewPDFApplicationPage.ts";
 import { Fl401TasksTabPage } from "../../../../pages/manageCases/caseTabs/fl401TasksTabPage.ts";
-import { ViewPDFApplicationSubmitPage } from "../../../../pages/manageCases/createCase/FL401/viewPDFApplication/viewPDFApplicationSubmitPage.ts";
-import { SolicitorCreateInitial } from "../solicitorCreateInitial.ts";
-import { ViewPdfTestCases } from "../../../../common/types.ts";
+import { ViewPDFApplicationSubmitPage } from "../../../../pages/manageCases/createCase/Common/viewPDFApplication/viewPDFApplicationSubmitPage.ts";
+import { NavigationUtils } from "../../../../utils/navigation.utils.js";
 
 interface fl401ViewPDFApplicationOptions {
   page: Page;
+  navigationUtils: NavigationUtils;
+  caseNumber: string;
   accessibilityTest: boolean;
-  errorMessaging: boolean;
-  viewPdfTestCases: ViewPdfTestCases;
-  subJourney: boolean;
 }
 
 export class FL401ViewPDFApplication {
   public static async fl401ViewPDFApplication({
     page,
+    navigationUtils,
+    caseNumber,
     accessibilityTest,
-    // errorMessaging,
-    // viewPdfTestCases,
-    subJourney,
   }: fl401ViewPDFApplicationOptions): Promise<void> {
-    if (subJourney) {
-      await SolicitorCreateInitial.createInitialCase({
-        page: page,
-        user: "solicitor",
-        accessibilityTest: false,
-        solicitorCaseType: "FL401",
-        errorMessaging: false,
-      });
-    }
     await Helpers.handleEventBasedOnEnvironment(page, "View PDF application");
     await ViewPDFApplicationPage.viewPDFApplicationPage(
       page,
-      // errorMessaging,
-      // accessibilityTest,
-      // viewPdfTestCases,
+      navigationUtils,
+      caseNumber,
+      "FL401",
+      accessibilityTest,
     );
     await ViewPDFApplicationSubmitPage.viewPDFApplicationSubmitPage(
       page,

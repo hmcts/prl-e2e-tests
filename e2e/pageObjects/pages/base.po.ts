@@ -37,6 +37,11 @@ export abstract class Base {
   }
 
   async verifyAccessibility(): Promise<void> {
+    await this.exuiHeader.waitForHeaderToRender();
     await this.axeUtils.audit();
+  }
+
+  async reloadPage(): Promise<void> {
+    await this.page.reload();
   }
 }

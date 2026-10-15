@@ -3,17 +3,17 @@ import { test } from "../../../../../fixtures.ts";
 import {
   C21UploadOrderScenarios,
   ChildArrangementsUploadOrderScenarios,
-} from "../../../../../../testData/draftOrders.js";
+} from "../../../../../../testData/ui/draftOrders.ts";
 import {
   OrderTypes,
   solicitorCaseCreateType,
-} from "../../../../../../common/types.js";
-import { DraftAnOrder5Params } from "../../../../../../pageObjects/pages/exui/orders/draftOrders/draftAnOrder5.po.js";
-import { OrderInformation } from "../../../../../../pageObjects/pages/exui/caseView/draftOrders.po.js";
-import { DraftAnOrder8Params } from "../../../../../../pageObjects/pages/exui/orders/draftOrders/draftAnOrder8.po.js";
-import { DraftAnOrder4Params } from "../../../../../../pageObjects/pages/exui/orders/draftOrders/draftAnOrder4.po.js";
-import { SolicitorPagesGroup } from "../../../../../../pageObjects/roleBasedGroupedPages/solicitorPages.js";
-import { CourtAdminStokePagesGroup } from "../../../../../../pageObjects/roleBasedGroupedPages/courtAdminStokePages.js";
+} from "../../../../../../common/types.ts";
+import { DraftAnOrder5Params } from "../../../../../../pageObjects/pages/exui/orders/draftOrders/draftAnOrder5.po.ts";
+import { OrderInformation } from "../../../../../../pageObjects/pages/exui/caseView/draftOrders.po.ts";
+import { DraftAnOrder8Params } from "../../../../../../pageObjects/pages/exui/orders/draftOrders/draftAnOrder8.po.ts";
+import { DraftAnOrder4Params } from "../../../../../../pageObjects/pages/exui/orders/draftOrders/draftAnOrder4.po.ts";
+import { SolicitorPagesGroup } from "../../../../../../pageObjects/roleBasedGroupedPages/solicitorPages.ts";
+import { CourtAdminStokePagesGroup } from "../../../../../../pageObjects/roleBasedGroupedPages/courtAdminStokePages.ts";
 
 export interface ChildArrangementsUploadOrderParams {
   name: string;
@@ -27,6 +27,7 @@ export interface ChildArrangementsUploadOrderParams {
   snapshotsPath: string[];
   orderInformation: OrderInformation[];
 }
+
 export interface C21UploadOrderParams {
   name: string;
   caseType: solicitorCaseCreateType;
@@ -41,15 +42,16 @@ export interface C21UploadOrderParams {
 }
 
 test.describe("'Upload an order' by Solicitor via the 'Create/upload draft order' event tests", (): void => {
-  let caseNumber: string;
+  let caseRef: string;
 
   test.beforeEach(
-    async ({ solicitor, browser, caseEventUtils, navigationUtils }) => {
-      caseNumber = await caseEventUtils.createCACase(browser);
+    async ({ solicitor, manageCasesEventUtils, navigationUtils }) => {
+      caseRef = (await manageCasesEventUtils.submitTSSolicitorCase("C100"))
+        .caseRef;
       await navigationUtils.goToCase(
         solicitor.page,
         config.manageCasesBaseURLCase,
-        caseNumber,
+        caseRef,
       );
     },
   );
@@ -63,7 +65,7 @@ test.describe("'Upload an order' by Solicitor via the 'Create/upload draft order
         navigationUtils,
       }): Promise<void> => {
         await uploadC100Orders(
-          caseNumber,
+          caseRef,
           solicitor,
           uploadOrderParams,
           "C43",
@@ -82,7 +84,7 @@ test.describe("'Upload an order' by Solicitor via the 'Create/upload draft order
       navigationUtils,
     }): Promise<void> => {
       await uploadC100Orders(
-        caseNumber,
+        caseRef,
         solicitor,
         uploadOrderParams,
         "C21",

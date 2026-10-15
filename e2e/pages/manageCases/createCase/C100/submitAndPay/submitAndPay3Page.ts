@@ -58,11 +58,6 @@ export class SubmitAndPay3Page {
       ),
       Helpers.checkVisibleAndPresent(
         page,
-        `${Selectors.GovukFormHint}:text-is("${SubmitAndPay3Content.formHint}")`,
-        1,
-      ),
-      Helpers.checkVisibleAndPresent(
-        page,
         `${Selectors.GovukFormLabel}:text-is("${SubmitAndPay3Content.formLabelYes}")`,
         1,
       ),

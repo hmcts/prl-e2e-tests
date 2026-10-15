@@ -18,15 +18,31 @@ export class RequestSupportSubmitPage extends Base {
     super(page);
   }
 
-  async assertPageContents(caseType: solicitorCaseCreateType): Promise<void> {
+  async assertPageContents(
+    caseType: solicitorCaseCreateType,
+    captureScreenshot: boolean = true,
+  ): Promise<void> {
     await expect(this.eventHeading).toBeVisible();
     await expect(this.pageHeading).toBeVisible();
-    await this.table.captureFullTableScreenshot([
-      "caseProgression",
-      "caseFlags",
-      `request-support-${caseType}`,
-    ]);
+    if (captureScreenshot) {
+      await this.table.captureFullTableScreenshot([
+        "caseProgression",
+        "caseFlags",
+        `request-support-${caseType}`,
+      ]);
+    }
     await expect(this.submitButton).toBeVisible();
     await expect(this.previousButton).toBeVisible();
+  }
+
+  async assertRequestDetails(details: string[]): Promise<void> {
+    const table: Locator = this.page.locator(".form-table");
+    for (const detail of details) {
+      await expect(
+        table
+          .locator("dd.govuk-summary-list__value", { hasText: detail })
+          .first(),
+      ).toBeVisible();
+    }
   }
 }

@@ -44,9 +44,7 @@ enum uniqueSelectors {
 }
 
 export type C100OtherChildGender =
-  | "Female"
-  | "Male"
-  | "They identify in another way";
+  "Female" | "Male" | "They identify in another way";
 
 export class OtherChildNotInTheCase1Page {
   public static async otherChildNotInTheCase1Page({

@@ -6,9 +6,7 @@ import { SelectApplicationType3Content } from "../../../../../fixtures/manageCas
 import config from "../../../../../utils/config.utils.ts";
 
 export type radioButtons =
-  | "Yes"
-  | "No, permission is not required"
-  | "No, permission now sought";
+  "Yes" | "No, permission is not required" | "No, permission now sought";
 
 enum PageIDs {
   yes = "#applicationPermissionRequired-yes",

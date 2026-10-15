@@ -3,6 +3,8 @@ import Config from "../../../../utils/config.utils.ts";
 import { C100 } from "../../../../journeys/citizen/createCase/C100/C100.ts";
 
 test.describe("C100 Citizen Application with an existing MIAM document.", (): void => {
+  test.describe.configure({ timeout: 480_000 }); // Set timeout to 8 mins because these test sometimes takes slightly longer than default 6 mins
+
   test.beforeEach(async ({ page, idamLoginHelper }) => {
     await idamLoginHelper.setupAndSignInUser(
       page,
@@ -10,6 +12,7 @@ test.describe("C100 Citizen Application with an existing MIAM document.", (): vo
       "citizen",
     );
   });
+
   test(`C100 Citizen Application with the following options:
   Not Accessibility Testing
   Not Error Messaging
@@ -34,6 +37,7 @@ test.describe("C100 Citizen Application with an existing MIAM document.", (): vo
   respondent place of birth false,
   respondent gender: female,
   respondent changed name: no,
+  respondent staying in refuge: no,
   respondent lived aat address less than 5 years: no,
   respondent relationship: special guardian,
   respondent address lookup: false,
@@ -45,6 +49,7 @@ test.describe("C100 Citizen Application with an existing MIAM document.", (): vo
   other person birthday known: false,
   other person relationship: special guardian,
   other person lives in a refuge: no,
+  Other Person keeping address private: no,
   child mainly lives with: applicant,
   other proceedings radios: false,
   safety concerns : false,
@@ -96,6 +101,7 @@ test.describe("C100 Citizen Application with an existing MIAM document.", (): vo
       respondentChangedName: "dontKnow",
       respAddress5Years: "dontKnow",
       respondentRelationship: "specialGuardian",
+      respondentStayingInRefuge: false,
       respAddressLookup: true,
       respAddressLookupSuccessful: true,
       respKnownEmailAndPhone: true,
@@ -105,6 +111,7 @@ test.describe("C100 Citizen Application with an existing MIAM document.", (): vo
       c100OtherPeopleDoBKnown: true,
       c100OtherPersonRelationship: "specialGuardian",
       c100OtherPersonLivesInRefuge: false,
+      c100OtherPersonKeepingAddressPrivate: false,
       c100ChildMainlyLivesWith: "otherPerson",
       C100YesNoConfidentiality: true,
       yesNoChildArrangementOrderDetails: true,
@@ -120,6 +127,7 @@ test.describe("C100 Citizen Application with an existing MIAM document.", (): vo
       yesNoReasonableAdjustments: true,
       c100YesNoNeedHelpWithFees: false,
       c100YesNoFeesApplied: false,
+      isApplicant: true,
     });
   });
 
@@ -151,6 +159,7 @@ test.describe("C100 Citizen Application with an existing MIAM document.", (): vo
   respondent place of birth false,
   respondent gender: female,
   respondent changed name: no,
+  respondent staying in refuge: no,
   respondent lived aat address less than 5 years: no,
   respondent relationship: special guardian,
   respondent address lookup: false,
@@ -162,6 +171,7 @@ test.describe("C100 Citizen Application with an existing MIAM document.", (): vo
   other person birthday known: false,
   other person relationship: special guardian,
   other person lives in a refuge: no,
+  Other Person keeping address private: no,
   child mainly lives with: applicant,
   other proceedings radios: false,
   safety concerns : false,
@@ -211,6 +221,7 @@ test.describe("C100 Citizen Application with an existing MIAM document.", (): vo
       respondentKnownPlaceOfBirth: true,
       respondentGender: "other",
       respondentChangedName: "dontKnow",
+      respondentStayingInRefuge: false,
       respAddress5Years: "dontKnow",
       respondentRelationship: "specialGuardian",
       respAddressLookup: true,
@@ -222,6 +233,7 @@ test.describe("C100 Citizen Application with an existing MIAM document.", (): vo
       c100OtherPeopleDoBKnown: true,
       c100OtherPersonRelationship: "specialGuardian",
       c100OtherPersonLivesInRefuge: false,
+      c100OtherPersonKeepingAddressPrivate: false,
       c100ChildMainlyLivesWith: "otherPerson",
       C100YesNoConfidentiality: true,
       yesNoChildArrangementOrderDetails: true,
@@ -237,6 +249,7 @@ test.describe("C100 Citizen Application with an existing MIAM document.", (): vo
       yesNoReasonableAdjustments: true,
       c100YesNoNeedHelpWithFees: false,
       c100YesNoFeesApplied: false,
+      isApplicant: true,
     });
   });
 
@@ -268,6 +281,7 @@ test.describe("C100 Citizen Application with an existing MIAM document.", (): vo
   respondent place of birth false,
   respondent gender: female,
   respondent changed name: no,
+  respondent staying in refuge: no,
   respondent lived aat address less than 5 years: no,
   respondent relationship: special guardian,
   respondent address lookup: false,
@@ -279,6 +293,7 @@ test.describe("C100 Citizen Application with an existing MIAM document.", (): vo
   other person birthday known: false,
   other person relationship: special guardian,
   other person lives in a refuge: no,
+  Other Person keeping address private: no,
   child mainly lives with: applicant,
   other proceedings radios: false,
   safety concerns : false,
@@ -328,6 +343,7 @@ test.describe("C100 Citizen Application with an existing MIAM document.", (): vo
       respondentKnownPlaceOfBirth: true,
       respondentGender: "other",
       respondentChangedName: "dontKnow",
+      respondentStayingInRefuge: false,
       respAddress5Years: "dontKnow",
       respondentRelationship: "specialGuardian",
       respAddressLookup: true,
@@ -339,6 +355,7 @@ test.describe("C100 Citizen Application with an existing MIAM document.", (): vo
       c100OtherPeopleDoBKnown: true,
       c100OtherPersonRelationship: "specialGuardian",
       c100OtherPersonLivesInRefuge: false,
+      c100OtherPersonKeepingAddressPrivate: false,
       c100ChildMainlyLivesWith: "otherPerson",
       C100YesNoConfidentiality: true,
       yesNoChildArrangementOrderDetails: true,
@@ -354,6 +371,7 @@ test.describe("C100 Citizen Application with an existing MIAM document.", (): vo
       yesNoReasonableAdjustments: true,
       c100YesNoNeedHelpWithFees: false,
       c100YesNoFeesApplied: false,
+      isApplicant: true,
     });
   });
 
@@ -384,6 +402,7 @@ test.describe("C100 Citizen Application with an existing MIAM document.", (): vo
   respondent place of birth false,
   respondent gender: female,
   respondent changed name: no,
+  respondent staying in refuge: no,
   respondent lived aat address less than 5 years: no,
   respondent relationship: special guardian,
   respondent address lookup: false,
@@ -395,6 +414,7 @@ test.describe("C100 Citizen Application with an existing MIAM document.", (): vo
   other person birthday known: false,
   other person relationship: special guardian,
   other person lives in a refuge: no,
+  Other Person keeping address private: no,
   child mainly lives with: applicant,
   other proceedings radios: false,
   safety concerns : false,
@@ -444,6 +464,7 @@ test.describe("C100 Citizen Application with an existing MIAM document.", (): vo
       respondentKnownPlaceOfBirth: true,
       respondentGender: "other",
       respondentChangedName: "dontKnow",
+      respondentStayingInRefuge: false,
       respAddress5Years: "dontKnow",
       respondentRelationship: "specialGuardian",
       respAddressLookup: true,
@@ -455,6 +476,7 @@ test.describe("C100 Citizen Application with an existing MIAM document.", (): vo
       c100OtherPeopleDoBKnown: true,
       c100OtherPersonRelationship: "specialGuardian",
       c100OtherPersonLivesInRefuge: false,
+      c100OtherPersonKeepingAddressPrivate: false,
       c100ChildMainlyLivesWith: "otherPerson",
       C100YesNoConfidentiality: true,
       yesNoChildArrangementOrderDetails: true,
@@ -470,6 +492,7 @@ test.describe("C100 Citizen Application with an existing MIAM document.", (): vo
       yesNoReasonableAdjustments: true,
       c100YesNoNeedHelpWithFees: false,
       c100YesNoFeesApplied: false,
+      isApplicant: true,
     });
   });
 
@@ -500,6 +523,7 @@ test.describe("C100 Citizen Application with an existing MIAM document.", (): vo
   respondent place of birth false,
   respondent gender: female,
   respondent changed name: no,
+  respondent staying in refuge: no,
   respondent lived aat address less than 5 years: no,
   respondent relationship: special guardian, 
   respondent address lookup: false,
@@ -511,6 +535,7 @@ test.describe("C100 Citizen Application with an existing MIAM document.", (): vo
   other person birthday known: false,
   other person relationship: special guardian,
   other person lives in a refuge: no,
+  Other Person keeping address private: no,
   child mainly lives with: applicant,
   other proceedings radios: false,
   safety concerns : false,
@@ -560,6 +585,7 @@ test.describe("C100 Citizen Application with an existing MIAM document.", (): vo
       respondentKnownPlaceOfBirth: true,
       respondentGender: "other",
       respondentChangedName: "dontKnow",
+      respondentStayingInRefuge: false,
       respAddress5Years: "dontKnow",
       respondentRelationship: "specialGuardian",
       respAddressLookup: true,
@@ -571,6 +597,7 @@ test.describe("C100 Citizen Application with an existing MIAM document.", (): vo
       c100OtherPeopleDoBKnown: true,
       c100OtherPersonRelationship: "specialGuardian",
       c100OtherPersonLivesInRefuge: false,
+      c100OtherPersonKeepingAddressPrivate: false,
       c100ChildMainlyLivesWith: "otherPerson",
       C100YesNoConfidentiality: true,
       yesNoChildArrangementOrderDetails: true,
@@ -586,6 +613,7 @@ test.describe("C100 Citizen Application with an existing MIAM document.", (): vo
       yesNoReasonableAdjustments: true,
       c100YesNoNeedHelpWithFees: false,
       c100YesNoFeesApplied: false,
+      isApplicant: true,
     });
   });
 
@@ -617,6 +645,7 @@ test.describe("C100 Citizen Application with an existing MIAM document.", (): vo
   respondent place of birth false,
   respondent gender: female,
   respondent changed name: no,
+  respondent staying in refuge: no,
   respondent lived aat address less than 5 years: no,
   respondent relationship: special guardian,
   respondent address lookup: false,
@@ -628,6 +657,7 @@ test.describe("C100 Citizen Application with an existing MIAM document.", (): vo
   other person birthday known: false,
   other person relationship: special guardian,
   other person lives in a refuge: no,
+  Other Person keeping address private: no,
   child mainly lives with: applicant,
   other proceedings radios: false,
   safety concerns : false,
@@ -677,6 +707,7 @@ test.describe("C100 Citizen Application with an existing MIAM document.", (): vo
       respondentKnownPlaceOfBirth: true,
       respondentGender: "other",
       respondentChangedName: "dontKnow",
+      respondentStayingInRefuge: false,
       respAddress5Years: "dontKnow",
       respondentRelationship: "specialGuardian",
       respAddressLookup: true,
@@ -688,6 +719,7 @@ test.describe("C100 Citizen Application with an existing MIAM document.", (): vo
       c100OtherPeopleDoBKnown: true,
       c100OtherPersonRelationship: "specialGuardian",
       c100OtherPersonLivesInRefuge: false,
+      c100OtherPersonKeepingAddressPrivate: false,
       c100ChildMainlyLivesWith: "otherPerson",
       C100YesNoConfidentiality: true,
       yesNoChildArrangementOrderDetails: true,
@@ -703,6 +735,7 @@ test.describe("C100 Citizen Application with an existing MIAM document.", (): vo
       yesNoReasonableAdjustments: true,
       c100YesNoNeedHelpWithFees: false,
       c100YesNoFeesApplied: false,
+      isApplicant: true,
     });
   });
 
@@ -734,6 +767,7 @@ test.describe("C100 Citizen Application with an existing MIAM document.", (): vo
   respondent place of birth false,
   respondent gender: female,
   respondent changed name: no,
+  respondent staying in refuge: no,
   respondent lived aat address less than 5 years: no,
   respondent relationship: special guardian,
   respondent address lookup: false,
@@ -745,6 +779,7 @@ test.describe("C100 Citizen Application with an existing MIAM document.", (): vo
   other person birthday known: false,
   other person relationship: special guardian,
   other person lives in a refuge: no,
+  Other Person keeping address private: no,
   child mainly lives with: applicant,
   other proceedings radios: false,
   safety concerns : false,
@@ -794,6 +829,7 @@ test.describe("C100 Citizen Application with an existing MIAM document.", (): vo
       respondentKnownPlaceOfBirth: true,
       respondentGender: "other",
       respondentChangedName: "dontKnow",
+      respondentStayingInRefuge: false,
       respAddress5Years: "dontKnow",
       respondentRelationship: "specialGuardian",
       respAddressLookup: true,
@@ -805,6 +841,7 @@ test.describe("C100 Citizen Application with an existing MIAM document.", (): vo
       c100OtherPeopleDoBKnown: true,
       c100OtherPersonRelationship: "specialGuardian",
       c100OtherPersonLivesInRefuge: false,
+      c100OtherPersonKeepingAddressPrivate: false,
       c100ChildMainlyLivesWith: "otherPerson",
       C100YesNoConfidentiality: true,
       yesNoChildArrangementOrderDetails: true,
@@ -820,6 +857,7 @@ test.describe("C100 Citizen Application with an existing MIAM document.", (): vo
       yesNoReasonableAdjustments: true,
       c100YesNoNeedHelpWithFees: false,
       c100YesNoFeesApplied: false,
+      isApplicant: true,
     });
   });
 
@@ -851,6 +889,7 @@ test.describe("C100 Citizen Application with an existing MIAM document.", (): vo
   respondent place of birth false,
   respondent gender: female,
   respondent changed name: no,
+  respondent staying in refuge: no,
   respondent lived aat address less than 5 years: no,
   respondent relationship: special guardian,
   respondent address lookup: false,
@@ -862,6 +901,7 @@ test.describe("C100 Citizen Application with an existing MIAM document.", (): vo
   other person birthday known: false,
   other person relationship: special guardian,
   other person lives in a refuge: no,
+  Other Person keeping address private: no,
   child mainly lives with: applicant,
   other proceedings radios: false,
   safety concerns : false,
@@ -911,6 +951,7 @@ test.describe("C100 Citizen Application with an existing MIAM document.", (): vo
       respondentKnownPlaceOfBirth: true,
       respondentGender: "other",
       respondentChangedName: "dontKnow",
+      respondentStayingInRefuge: false,
       respAddress5Years: "dontKnow",
       respondentRelationship: "specialGuardian",
       respAddressLookup: true,
@@ -922,6 +963,7 @@ test.describe("C100 Citizen Application with an existing MIAM document.", (): vo
       c100OtherPeopleDoBKnown: true,
       c100OtherPersonRelationship: "specialGuardian",
       c100OtherPersonLivesInRefuge: false,
+      c100OtherPersonKeepingAddressPrivate: false,
       c100ChildMainlyLivesWith: "otherPerson",
       C100YesNoConfidentiality: true,
       yesNoChildArrangementOrderDetails: true,
@@ -937,6 +979,7 @@ test.describe("C100 Citizen Application with an existing MIAM document.", (): vo
       yesNoReasonableAdjustments: true,
       c100YesNoNeedHelpWithFees: false,
       c100YesNoFeesApplied: false,
+      isApplicant: true,
     });
   });
 
@@ -968,6 +1011,7 @@ test.describe("C100 Citizen Application with an existing MIAM document.", (): vo
   respondent place of birth false,
   respondent gender: female,
   respondent changed name: no,
+  respondent staying in refuge: no,
   respondent lived aat address less than 5 years: no,
   respondent relationship: special guardian,
   respondent address lookup: false,
@@ -979,6 +1023,7 @@ test.describe("C100 Citizen Application with an existing MIAM document.", (): vo
   other person birthday known: false,
   other person relationship: special guardian,
   other person lives in a refuge: no,
+  Other Person keeping address private: no,
   child mainly lives with: applicant,
   other proceedings radios: false,
   safety concerns : false,
@@ -1028,6 +1073,7 @@ test.describe("C100 Citizen Application with an existing MIAM document.", (): vo
       respondentKnownPlaceOfBirth: true,
       respondentGender: "other",
       respondentChangedName: "dontKnow",
+      respondentStayingInRefuge: false,
       respAddress5Years: "dontKnow",
       respondentRelationship: "specialGuardian",
       respAddressLookup: true,
@@ -1039,6 +1085,7 @@ test.describe("C100 Citizen Application with an existing MIAM document.", (): vo
       c100OtherPeopleDoBKnown: true,
       c100OtherPersonRelationship: "specialGuardian",
       c100OtherPersonLivesInRefuge: false,
+      c100OtherPersonKeepingAddressPrivate: false,
       c100ChildMainlyLivesWith: "otherPerson",
       C100YesNoConfidentiality: true,
       yesNoChildArrangementOrderDetails: true,
@@ -1054,6 +1101,7 @@ test.describe("C100 Citizen Application with an existing MIAM document.", (): vo
       yesNoReasonableAdjustments: true,
       c100YesNoNeedHelpWithFees: false,
       c100YesNoFeesApplied: false,
+      isApplicant: true,
     });
   });
 
@@ -1085,6 +1133,7 @@ test.describe("C100 Citizen Application with an existing MIAM document.", (): vo
   respondent place of birth false,
   respondent gender: female,
   respondent changed name: no,
+  respondent staying in refuge: no,
   respondent lived aat address less than 5 years: no,
   respondent relationship: special guardian,
   respondent address lookup: false,
@@ -1096,6 +1145,7 @@ test.describe("C100 Citizen Application with an existing MIAM document.", (): vo
   other person birthday known: false,
   other person relationship: special guardian,
   other person lives in a refuge: no,
+  Other Person keeping address private: no,
   child mainly lives with: applicant,
   other proceedings radios: false,
   safety concerns : false,
@@ -1145,6 +1195,7 @@ test.describe("C100 Citizen Application with an existing MIAM document.", (): vo
       respondentKnownPlaceOfBirth: true,
       respondentGender: "other",
       respondentChangedName: "dontKnow",
+      respondentStayingInRefuge: false,
       respAddress5Years: "dontKnow",
       respondentRelationship: "specialGuardian",
       respAddressLookup: true,
@@ -1156,6 +1207,7 @@ test.describe("C100 Citizen Application with an existing MIAM document.", (): vo
       c100OtherPeopleDoBKnown: true,
       c100OtherPersonRelationship: "specialGuardian",
       c100OtherPersonLivesInRefuge: false,
+      c100OtherPersonKeepingAddressPrivate: false,
       c100ChildMainlyLivesWith: "otherPerson",
       C100YesNoConfidentiality: true,
       yesNoChildArrangementOrderDetails: true,
@@ -1171,6 +1223,7 @@ test.describe("C100 Citizen Application with an existing MIAM document.", (): vo
       yesNoReasonableAdjustments: true,
       c100YesNoNeedHelpWithFees: false,
       c100YesNoFeesApplied: false,
+      isApplicant: true,
     });
   });
 
@@ -1203,6 +1256,7 @@ test.describe("C100 Citizen Application with an existing MIAM document.", (): vo
   respondent place of birth false,
   respondent gender: female,
   respondent changed name: no,
+  respondent staying in refuge: no,
   respondent lived aat address less than 5 years: no,
   respondent relationship: special guardian,
   respondent address lookup: false,
@@ -1214,6 +1268,7 @@ test.describe("C100 Citizen Application with an existing MIAM document.", (): vo
   other person birthday known: false,
   other person relationship: special guardian,
   other person lives in a refuge: no,
+  Other Person keeping address private: no,
   child mainly lives with: applicant,
   other proceedings radios: false,
   safety concerns : false,
@@ -1263,6 +1318,7 @@ test.describe("C100 Citizen Application with an existing MIAM document.", (): vo
       respondentKnownPlaceOfBirth: true,
       respondentGender: "other",
       respondentChangedName: "dontKnow",
+      respondentStayingInRefuge: false,
       respAddress5Years: "dontKnow",
       respondentRelationship: "specialGuardian",
       respAddressLookup: true,
@@ -1274,6 +1330,7 @@ test.describe("C100 Citizen Application with an existing MIAM document.", (): vo
       c100OtherPeopleDoBKnown: true,
       c100OtherPersonRelationship: "specialGuardian",
       c100OtherPersonLivesInRefuge: false,
+      c100OtherPersonKeepingAddressPrivate: false,
       c100ChildMainlyLivesWith: "otherPerson",
       C100YesNoConfidentiality: true,
       yesNoChildArrangementOrderDetails: true,
@@ -1289,6 +1346,7 @@ test.describe("C100 Citizen Application with an existing MIAM document.", (): vo
       yesNoReasonableAdjustments: true,
       c100YesNoNeedHelpWithFees: false,
       c100YesNoFeesApplied: false,
+      isApplicant: true,
     });
   });
 
@@ -1314,6 +1372,7 @@ test.describe("C100 Citizen Application with an existing MIAM document.", (): vo
   respondent place of birth false,
   respondent gender: female,
   respondent changed name: no,
+  respondent staying in refuge: no,
   respondent lived aat address less than 5 years: no,
   respondent relationship: special guardian,
   respondent address lookup: false,
@@ -1325,6 +1384,7 @@ test.describe("C100 Citizen Application with an existing MIAM document.", (): vo
   other person birthday known: false,
   other person relationship: special guardian,
   other person lives in a refuge: no,
+  Other Person keeping address private: no,
   child mainly lives with: applicant,
   other proceedings radios: false,
   safety concerns : false,
@@ -1376,6 +1436,7 @@ test.describe("C100 Citizen Application with an existing MIAM document.", (): vo
       respondentKnownPlaceOfBirth: true,
       respondentGender: "other",
       respondentChangedName: "dontKnow",
+      respondentStayingInRefuge: false,
       respAddress5Years: "dontKnow",
       respondentRelationship: "specialGuardian",
       respAddressLookup: true,
@@ -1387,6 +1448,7 @@ test.describe("C100 Citizen Application with an existing MIAM document.", (): vo
       c100OtherPeopleDoBKnown: true,
       c100OtherPersonRelationship: "specialGuardian",
       c100OtherPersonLivesInRefuge: false,
+      c100OtherPersonKeepingAddressPrivate: false,
       c100ChildMainlyLivesWith: "otherPerson",
       C100YesNoConfidentiality: true,
       yesNoChildArrangementOrderDetails: true,
@@ -1402,6 +1464,7 @@ test.describe("C100 Citizen Application with an existing MIAM document.", (): vo
       yesNoReasonableAdjustments: true,
       c100YesNoNeedHelpWithFees: false,
       c100YesNoFeesApplied: false,
+      isApplicant: true,
     });
   });
 
@@ -1431,6 +1494,7 @@ test.describe("C100 Citizen Application with an existing MIAM document.", (): vo
   respondent place of birth false,
   respondent gender: female,
   respondent changed name: no,
+  respondent staying in refuge: no,
   respondent lived aat address less than 5 years: no,
   respondent relationship: special guardian,
   respondent address lookup: false,
@@ -1442,6 +1506,7 @@ test.describe("C100 Citizen Application with an existing MIAM document.", (): vo
   other person birthday known: false,
   other person relationship: special guardian,
   other person lives in a refuge: no,
+  Other Person keeping address private: no,
   child mainly lives with: applicant,
   other proceedings radios: false,
   safety concerns : false,
@@ -1493,6 +1558,7 @@ test.describe("C100 Citizen Application with an existing MIAM document.", (): vo
       respondentKnownPlaceOfBirth: true,
       respondentGender: "other",
       respondentChangedName: "dontKnow",
+      respondentStayingInRefuge: false,
       respAddress5Years: "dontKnow",
       respondentRelationship: "specialGuardian",
       respAddressLookup: true,
@@ -1504,6 +1570,7 @@ test.describe("C100 Citizen Application with an existing MIAM document.", (): vo
       c100OtherPeopleDoBKnown: true,
       c100OtherPersonRelationship: "specialGuardian",
       c100OtherPersonLivesInRefuge: false,
+      c100OtherPersonKeepingAddressPrivate: false,
       c100ChildMainlyLivesWith: "otherPerson",
       C100YesNoConfidentiality: true,
       yesNoChildArrangementOrderDetails: true,
@@ -1519,6 +1586,7 @@ test.describe("C100 Citizen Application with an existing MIAM document.", (): vo
       yesNoReasonableAdjustments: true,
       c100YesNoNeedHelpWithFees: false,
       c100YesNoFeesApplied: false,
+      isApplicant: true,
     });
   });
 });
@@ -1531,6 +1599,7 @@ test.describe("C100 Citizen Application accessibility tests on the third row jou
       "citizen",
     );
   });
+
   test(`C100 Citizen Application with the following options:
   Accessibility Testing
   Not Error Messaging
@@ -1555,6 +1624,7 @@ test.describe("C100 Citizen Application accessibility tests on the third row jou
   respondent place of birth false,
   respondent gender: female,
   respondent changed name: no,
+  respondent staying in refuge: no,
   respondent lived aat address less than 5 years: no,
   respondent relationship: special guardian,
   respondent address lookup: false,
@@ -1566,6 +1636,7 @@ test.describe("C100 Citizen Application accessibility tests on the third row jou
   other person birthday known: false,
   other person relationship: special guardian,
   other person lives in a refuge: no,
+  Other Person keeping address private: no,
   child mainly lives with: applicant,
   other proceedings radios: false,
   safety concerns : false,
@@ -1615,6 +1686,7 @@ test.describe("C100 Citizen Application accessibility tests on the third row jou
       respondentKnownPlaceOfBirth: true,
       respondentGender: "other",
       respondentChangedName: "dontKnow",
+      respondentStayingInRefuge: false,
       respAddress5Years: "dontKnow",
       respondentRelationship: "specialGuardian",
       respAddressLookup: true,
@@ -1626,6 +1698,7 @@ test.describe("C100 Citizen Application accessibility tests on the third row jou
       c100OtherPeopleDoBKnown: true,
       c100OtherPersonRelationship: "specialGuardian",
       c100OtherPersonLivesInRefuge: false,
+      c100OtherPersonKeepingAddressPrivate: false,
       c100ChildMainlyLivesWith: "otherPerson",
       C100YesNoConfidentiality: true,
       yesNoChildArrangementOrderDetails: true,
@@ -1641,6 +1714,7 @@ test.describe("C100 Citizen Application accessibility tests on the third row jou
       yesNoReasonableAdjustments: true,
       c100YesNoNeedHelpWithFees: false,
       c100YesNoFeesApplied: false,
+      isApplicant: true,
     });
   });
 
@@ -1672,6 +1746,7 @@ test.describe("C100 Citizen Application accessibility tests on the third row jou
   respondent place of birth false,
   respondent gender: female,
   respondent changed name: no,
+  respondent staying in refuge: no,
   respondent lived aat address less than 5 years: no,
   respondent relationship: special guardian,
   respondent address lookup: false,
@@ -1683,6 +1758,7 @@ test.describe("C100 Citizen Application accessibility tests on the third row jou
   other person birthday known: false,
   other person relationship: special guardian,
   other person lives in a refuge: no,
+  Other Person keeping address private: no,
   child mainly lives with: applicant,
   other proceedings radios: false,
   safety concerns : false,
@@ -1734,6 +1810,7 @@ test.describe("C100 Citizen Application accessibility tests on the third row jou
       respondentKnownPlaceOfBirth: true,
       respondentGender: "other",
       respondentChangedName: "dontKnow",
+      respondentStayingInRefuge: false,
       respAddress5Years: "dontKnow",
       respondentRelationship: "specialGuardian",
       respAddressLookup: true,
@@ -1745,6 +1822,7 @@ test.describe("C100 Citizen Application accessibility tests on the third row jou
       c100OtherPeopleDoBKnown: true,
       c100OtherPersonRelationship: "specialGuardian",
       c100OtherPersonLivesInRefuge: false,
+      c100OtherPersonKeepingAddressPrivate: false,
       c100ChildMainlyLivesWith: "otherPerson",
       C100YesNoConfidentiality: true,
       yesNoChildArrangementOrderDetails: true,
@@ -1760,6 +1838,7 @@ test.describe("C100 Citizen Application accessibility tests on the third row jou
       yesNoReasonableAdjustments: true,
       c100YesNoNeedHelpWithFees: false,
       c100YesNoFeesApplied: false,
+      isApplicant: true,
     });
   });
 });

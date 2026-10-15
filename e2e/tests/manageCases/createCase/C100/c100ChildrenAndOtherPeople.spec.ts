@@ -26,6 +26,7 @@ test.describe("C100 Create case Children and respondents Tests", (): void => {
       subJourney: true,
     });
   });
+
   test(`Complete the C100 Create case Children and Other people as a solicitor with the following options:
   Not Accessibility testing,
   Not Error message testing,

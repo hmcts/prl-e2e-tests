@@ -7,19 +7,21 @@ import { Helpers } from "../../../../common/helpers.ts";
 interface ApplicationPackDocumentsParams {
   page: Page;
   accessibilityTest: boolean;
+  isApplicant: boolean;
 }
 
 export class ApplicationPackDocumentsPage {
   public static async applicationPackDocumentsPage({
     page,
     accessibilityTest,
+    isApplicant,
   }: ApplicationPackDocumentsParams): Promise<void> {
-    await this.checkPageLoads({ page, accessibilityTest });
-    await this.fillInFields({ page });
+    await this.checkPageLoads({ page, isApplicant, accessibilityTest });
   }
 
   private static async checkPageLoads({
     page,
+    isApplicant,
     accessibilityTest,
   }: Partial<ApplicationPackDocumentsParams>): Promise<void> {
     if (!page) {
@@ -46,28 +48,28 @@ export class ApplicationPackDocumentsPage {
         `${Selectors.p}:has-text("${ApplicationPackDocumentsContent.p2}")`,
         1,
       ),
-      Helpers.checkGroup(
-        page,
-        5,
-        ApplicationPackDocumentsContent,
-        "a",
-        Selectors.a,
-      ),
     ]);
+
+    if (isApplicant) {
+      await Helpers.checkGroup(
+        page,
+        13,
+        ApplicationPackDocumentsContent,
+        "applicantLink",
+        Selectors.a,
+      );
+    } else {
+      await Helpers.checkGroup(
+        page,
+        18,
+        ApplicationPackDocumentsContent,
+        "respondentLink",
+        Selectors.a,
+      );
+    }
+
     if (accessibilityTest) {
       await new AxeUtils(page).audit();
     }
-  }
-
-  private static async fillInFields({
-    page,
-  }: Partial<ApplicationPackDocumentsParams>): Promise<void> {
-    if (!page) {
-      throw new Error("Page is not defined)");
-    }
-    await page.click(
-      `${Selectors.a}:text-is("${ApplicationPackDocumentsContent.a1}")`,
-    );
-    await page.waitForTimeout(2000);
   }
 }

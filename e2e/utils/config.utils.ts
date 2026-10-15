@@ -43,6 +43,14 @@ export class Config {
       email: process.env.BARRISTER_USERNAME as string,
       password: process.env.BARRISTER_PASSWORD as string,
     },
+    localAuthority: {
+      email: process.env.LOCAL_AUTHORITY_USERNAME as string,
+      password: process.env.LOCAL_AUTHORITY_PASSWORD as string,
+    },
+    superuser: {
+      email: process.env.SUPERUSER_USERNAME as string,
+      password: process.env.SUPERUSER_PASSWORD as string,
+    },
   };
 
   public static readonly sessionStoragePath: string = path.join(
@@ -66,6 +74,12 @@ export class Config {
       "https://manage-case.aat.platform.hmcts.net",
   );
 
+  public static readonly manageOrgBaseURL: string =
+    Config.ensureNoTrailingSlash(
+      process.env.MANAGE_ORGANISATION_BASE_URL ||
+        "https://manage-org.aat.platform.hmcts.net",
+    );
+
   public static readonly edgeCasesBaseURL: string =
     process.env.EDGE_CASE_BASE_URL ||
     "https://fis-ds-web.ithc.platform.hmcts.net/";
@@ -73,10 +87,12 @@ export class Config {
   private static removeCasesPath(url: string): string {
     return url.replace(/\/cases$/, ""); // Removes `/cases` only if it's at the end
   }
+
   //ensures url is in the correct format (with a trailing slash for citizenFrontendBaseURL, and without trailing slash for manageCasesBaseURLCase)
   private static ensureTrailingSlash(url: string): string {
     return url.endsWith("/") ? url : `${url}/`;
   }
+
   private static ensureNoTrailingSlash(url: string): string {
     return url.endsWith("/") ? url.slice(0, -1) : url;
   }
@@ -95,6 +111,14 @@ export class Config {
     process.env.MANAGE_CASES_TEST_ENV = this.getEnvironment(
       this.manageCasesBaseURLCase,
     );
+
+    // override environment variables to point to preview cos-api and ccd-definitions urls
+    if (process.env.MANAGE_CASES_TEST_ENV === "preview") {
+      process.env.PRL_COS_API_URL = this.manageCasesBaseURL.replace("xui-", "");
+      const prNumber: string =
+        this.manageCasesBaseURL.match(/-pr-(\d+)\b/)?.[1] ?? "unknown";
+      process.env.CCD_DATA_STORE_URL = `https://ccd-data-store-api-prl-ccd-definitions-pr-${prNumber}.preview.platform.hmcts.net`;
+    }
   }
 
   public static readonly testFile: string = path.resolve(
@@ -116,6 +140,50 @@ export class Config {
   public static readonly testMP3File: string = path.resolve(
     import.meta.dirname,
     "../assets/mockFile.mp3",
+  );
+  public static readonly testSpecialArrangementsLetter: string = path.resolve(
+    import.meta.dirname,
+    "../assets/Special arrangements letter.docx",
+  );
+  public static readonly testSafetyLetter: string = path.resolve(
+    import.meta.dirname,
+    "../assets/Safety Letter.docx",
+  );
+
+  // Named mock PDFs for the LA Manage Documents journey (5 documents)
+  public static readonly testPdfFileCR1: string = path.resolve(
+    import.meta.dirname,
+    "../assets/CR1_Mockfile.pdf",
+  );
+  public static readonly testPdfFileCR2: string = path.resolve(
+    import.meta.dirname,
+    "../assets/CR2_Mockfile.pdf",
+  );
+  public static readonly testPdfFileExtension: string = path.resolve(
+    import.meta.dirname,
+    "../assets/Extension_Mockfile.pdf",
+  );
+  public static readonly testPdfFileRequest: string = path.resolve(
+    import.meta.dirname,
+    "../assets/Request_Mockfile.pdf",
+  );
+  public static readonly testPdfFileSection7: string = path.resolve(
+    import.meta.dirname,
+    "../assets/Section7_Mockfile.pdf",
+  );
+
+  // Named mock PDFs for the court admin Manage Documents journey (3 documents)
+  public static readonly testPdfFilePositionStatement: string = path.resolve(
+    import.meta.dirname,
+    "../assets/PositionStatement_Mockfile.pdf",
+  );
+  public static readonly testPdfFileGuardianReport: string = path.resolve(
+    import.meta.dirname,
+    "../assets/GuardianReport_Mockfile.pdf",
+  );
+  public static readonly testPdfFileMIAMCertificate: string = path.resolve(
+    import.meta.dirname,
+    "../assets/MIAMCertificate_Mockfile.pdf",
   );
 
   public static getUserCredentials(role: UserRole): UserCredentials {

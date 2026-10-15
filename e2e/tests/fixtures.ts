@@ -5,10 +5,11 @@ import { SolicitorPagesGroup } from "../pageObjects/roleBasedGroupedPages/solici
 import { CourtAdminStokePagesGroup } from "../pageObjects/roleBasedGroupedPages/courtAdminStokePages.ts";
 import { CaseManagerPagesGroup } from "../pageObjects/roleBasedGroupedPages/caseManagerPages.ts";
 import { JudgePagesGroup } from "../pageObjects/roleBasedGroupedPages/judgePages.ts";
-import { utilsFixtures, UtilsFixtures } from "../utils/utils.fixtures.ts";
+import { utilsFixtures, UtilsFixtures } from "../utils/index.ts";
 import Config from "../utils/config.utils.ts";
-import { LegalAdvisorPagesGroup } from "../pageObjects/roleBasedGroupedPages/legalAdvisorPages.js";
-import { BarristerPagesGroup } from "../pageObjects/roleBasedGroupedPages/barristerPages.ts";
+import { LegalAdvisorPagesGroup } from "../pageObjects/roleBasedGroupedPages/legalAdvisorPages.ts";
+import { LocalAuthorityPagesGroup } from "../pageObjects/roleBasedGroupedPages/localAuthorityPages.ts";
+import { SuperUserPagesGroup } from "../pageObjects/roleBasedGroupedPages/superUserPages.ts";
 
 type MyFixtures = UtilsFixtures & {
   nocSolicitor: NocSolicitorPagesGroup;
@@ -18,7 +19,8 @@ type MyFixtures = UtilsFixtures & {
   caseManager: CaseManagerPagesGroup;
   judge: JudgePagesGroup;
   legalAdvisor: LegalAdvisorPagesGroup;
-  barrister: BarristerPagesGroup;
+  localAuthority: LocalAuthorityPagesGroup;
+  superUser: SuperUserPagesGroup;
 };
 
 export const test = base.extend<MyFixtures>({
@@ -87,12 +89,22 @@ export const test = base.extend<MyFixtures>({
     await context.close();
   },
 
-  barrister: async ({ browser }, use) => {
+  localAuthority: async ({ browser }, use) => {
     const context = await browser.newContext({
-      storageState: Config.sessionStoragePath + "barrister.json",
+      storageState:
+        Config.sessionStoragePath + "manageCases-localAuthority.json",
     });
     const page = await context.newPage();
-    await use(new BarristerPagesGroup(page));
+    await use(new LocalAuthorityPagesGroup(page));
+    await context.close();
+  },
+
+  superUser: async ({ browser }, use) => {
+    const context = await browser.newContext({
+      storageState: Config.sessionStoragePath + "superuser.json",
+    });
+    const page = await context.newPage();
+    await use(new SuperUserPagesGroup(page));
     await context.close();
   },
 });

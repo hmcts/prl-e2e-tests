@@ -7,7 +7,7 @@ export class RequestSupport5Page extends Base {
     name: "Request Support",
   });
   private readonly pageHeading: Locator = this.page.getByRole("heading", {
-    name: "Tell us more about the request (optional)",
+    name: "Tell us more about the request",
   });
   private readonly hintText: Locator = this.page.getByText(
     "Explain why you are creating this support request. Do not include any sensitive information such as personal details.",
