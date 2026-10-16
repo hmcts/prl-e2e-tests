@@ -64,7 +64,7 @@ async function completeSendToGatekeeperJourney(
 }
 
 // COURT ADMIN (C100 Cases)
-test.describe("Court Admin: Send to Gatekeeper (C100) potato", () => {
+test.describe("Court Admin: Send to Gatekeeper (C100)", () => {
   let caseRef: string = "";
 
   test.beforeEach(
