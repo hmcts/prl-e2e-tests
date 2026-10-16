@@ -1,7 +1,9 @@
 import { test } from "../../../fixtures.ts";
 import config from "../../../../utils/config.utils.ts";
-import { SendToGateKeeperJourneyParams } from "../../../../journeys/manageCases/caseProgression/sendToGateKeeper/sendToGateKeeperJourney.ts";
-import { SendToGateKeeperCourtAdminScenarios as scenarios } from "../../../../testData/ui/sendToGateKeeper.ts";
+import {
+  SendToGateKeeperCourtAdminScenarios as scenarios,
+  SendToGateKeeperJourneyParams,
+} from "../../../../testData/ui/sendToGateKeeper.ts";
 import { CaseWorkerPagesGroup } from "../../../../pageObjects/roleBasedGroupedPages/caseWorkerPages.ts";
 import { CaseManagerPagesGroup } from "../../../../pageObjects/roleBasedGroupedPages/caseManagerPages.ts";
 
@@ -54,7 +56,7 @@ async function completeSendToGatekeeperJourney(
     } else {
       await rolesAndAccessPage.assertRolesAndAccessSection(
         "Legal Ops",
-        params.sendToGateKeeperParams.legalAdviserDisplayName,
+        params.sendToGateKeeperParams.legalAdviserName,
         "Allocated Legal Adviser",
       );
     }
@@ -62,7 +64,7 @@ async function completeSendToGatekeeperJourney(
 }
 
 // COURT ADMIN (C100 Cases)
-test.describe("Court Admin: Send to Gatekeeper (C100)", () => {
+test.describe("Court Admin: Send to Gatekeeper (C100) potato", () => {
   let caseRef: string = "";
 
   test.beforeEach(
