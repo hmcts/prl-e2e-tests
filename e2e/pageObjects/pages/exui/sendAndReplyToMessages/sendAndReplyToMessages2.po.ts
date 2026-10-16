@@ -123,7 +123,12 @@ export class SendAndReplyToMessages2Page extends EventPage {
     await this.legalAdvisorRecipientRadio.check();
     await expect(this.selectLegalAdvisorLabelCorrect).toBeVisible();
     await this.legalAdviserNameTextBox.fill(legalAdvisorName); // TypeAhead field
-    await expect(this.legalAdviserTypeAHeadOption).toBeVisible();
-    await this.legalAdviserTypeAHeadOption.click();
+    const legalAdvisorOption = this.page.getByRole("option", {
+      name: new RegExp(
+        `^${legalAdvisorName.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")}\\s*\\(`
+      ),
+    });
+    await expect(legalAdvisorOption).toBeVisible({ timeout: 20000 });
+    await legalAdvisorOption.click();
   }
 }
