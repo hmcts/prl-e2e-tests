@@ -28,6 +28,7 @@ const UserRoles = {
   caseManager: "caseManager",
   nocSolicitor: "nocSolicitor",
   legalAdvisor: "legalAdvisor",
+  barrister: "barrister",
   localAuthority: "localAuthority",
   superuser: "superuser",
 } as const;
