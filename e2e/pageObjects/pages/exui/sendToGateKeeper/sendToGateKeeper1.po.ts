@@ -6,6 +6,7 @@ export interface SendToGateKeeperParams {
   judgeOrLegalAdviser?: string;
   judgeName?: string;
   legalAdviserName?: string;
+  legalAdviserEmail?: string;
 }
 
 export class SendToGateKeeper1Page extends EventPage {
@@ -89,7 +90,7 @@ export class SendToGateKeeper1Page extends EventPage {
         const legalAdviserNameDropdownOption = this.page.locator(
           ".mat-option-text",
           {
-            hasText: params.legalAdviserName,
+            hasText: `${params.legalAdviserName} (${params.legalAdviserEmail})`, // include email to differentiate from other users with names containing the same stirng
           },
         );
         await expect(legalAdviserNameDropdownOption).toBeVisible();

@@ -32,6 +32,7 @@ export const SendToGateKeeperCourtAdminScenarios: SendToGateKeeperJourneyParams[
           process.env.MANAGE_CASES_TEST_ENV === "demo"
             ? "Prl legal advisor"
             : "prl legaladvisor-swansea-two",
+        legalAdviserEmail: process.env.LEGALADVISOR_USERNAME,
       },
       snapshotPath: ["caseProgression", "sendToGateKeeper"],
       snapshotName:
