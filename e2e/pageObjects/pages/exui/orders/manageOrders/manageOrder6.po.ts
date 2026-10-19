@@ -45,8 +45,11 @@ export class ManageOrder6Page extends EventPage {
     { name: "Include a penal notice" },
   );
   readonly penalNoticeRtf: Locator = this.page
-    .getByRole("toolbar", { name: "penalNoticeRtf formatting options" })
-    .locator("xpath=following::*[@role='textbox'][1]");
+    .locator(".ccd-rich-text-area", {
+      hasText:
+        "If the penal notice applies only to specific paragraphs, state which ones",
+    })
+    .getByRole("textbox");
 
   constructor(page: Page) {
     super(page, "Manage orders");
