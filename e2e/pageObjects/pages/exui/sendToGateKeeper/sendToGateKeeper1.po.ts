@@ -5,8 +5,8 @@ export interface SendToGateKeeperParams {
   sendToSpecificGateKeeper: boolean;
   judgeOrLegalAdviser?: string;
   judgeName?: string;
-  legalAdviserDropdownName?: string;
-  legalAdviserDisplayName?: string;
+  legalAdviserName?: string;
+  legalAdviserEmail?: string;
 }
 
 export class SendToGateKeeper1Page extends EventPage {
@@ -36,6 +36,7 @@ export class SendToGateKeeper1Page extends EventPage {
     this.page.getByText("Name of the judge");
   private readonly nameOfLegalAdviserLabel: Locator = this.page.getByText(
     "Name of legal adviser",
+    { exact: true },
   );
 
   constructor(page: Page) {
@@ -83,8 +84,18 @@ export class SendToGateKeeper1Page extends EventPage {
       } else {
         await expect(this.nameOfLegalAdviserLabel).toBeVisible();
         await this.page
-          .locator("#legalAdviserList")
-          .selectOption(params.legalAdviserDropdownName);
+          .getByRole("combobox", { name: "Name of legal adviser" })
+          .fill(params.legalAdviserName);
+        // Wait for the legal adviser option in the dropdown to become visible using dynamic content
+        const legalAdviserNameDropdownOption = this.page.locator(
+          ".mat-option-text",
+          {
+            hasText: `${params.legalAdviserName} (${params.legalAdviserEmail})`, // include email to differentiate from other users with names containing the same stirng
+          },
+        );
+        await expect(legalAdviserNameDropdownOption).toBeVisible();
+        // Click the option containing the legal adviser name (dynamic value)
+        await legalAdviserNameDropdownOption.click();
       }
     }
   }
