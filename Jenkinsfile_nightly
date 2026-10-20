@@ -123,8 +123,8 @@ def secrets = [
     secret('e2e-tests-github-token', 'GITHUB_TOKEN'),
     secret('legaladvisor-swansea-username', 'LEGALADVISOR_USERNAME'),
     secret('legaladvisor-swansea-password', 'LEGALADVISOR_PASSWORD'),
-    secret('local-authority-username', 'LOCAL_AUTHORITY_USERNAME'), 
-    secret('local-authority-password', 'LOCAL_AUTHORITY_PASSWORD'), 
+    secret('local-authority-username', 'LOCAL_AUTHORITY_USERNAME'),
+    secret('local-authority-password', 'LOCAL_AUTHORITY_PASSWORD'),
     secret('superuser-username', 'SUPERUSER_USERNAME'),
     secret('superuser-password', 'SUPERUSER_PASSWORD'),
   ]
@@ -142,13 +142,16 @@ withNightlyPipeline(type, product, component, 600) {
   enableSlackNotifications(channel)
 
   afterAlways('DependencyCheckNightly') {
-    stage('Delete nightly dev branch') {
-      try {
-        yarnBuilder.yarn('delete-nightly-dev-branch prl-e2e-tests')
-      } catch (Error) {
-        unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
+      if (env.BRANCH_NAME == 'nightly-dev') {
+          // only needs to run on the nightly-dev branch
+          stage('Delete nightly dev branch') {
+              try {
+                  yarnBuilder.yarn('delete-nightly-dev-branch prl-e2e-tests')
+              } catch (Error) {
+                  unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
+              }
+          }
       }
-    }
     if(params.tests || params.tag) {
       stage("${params.tag} ${params.tests ? "custom" : ""} tests - ${params.browser}") {
         try {
