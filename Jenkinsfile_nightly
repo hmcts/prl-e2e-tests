@@ -34,6 +34,11 @@ properties([
       defaultValue: false,
       description: 'Tick the checkbox for skipping Manage Cases application tests.'
     ),
+    booleanParam(
+      name: 'updateSnapshots',
+      defaultValue: false,
+      description: 'Tick the checkbox to update snapshots as part of the pipeline run (this will publish changed snapshots in the build artifacts).'
+    ),
     string(
       name: 'tag',
       defaultValue: '',
@@ -126,6 +131,7 @@ def secrets = [
 ]
 
 def yarnBuilder = new uk.gov.hmcts.contino.YarnBuilder(this)
+def snapshotArg = params.updateSnapshots ? '--update-snapshots' : ''
 
 withNightlyPipeline(type, product, component, 600) {
   loadVaultSecrets(secrets)
@@ -147,7 +153,7 @@ withNightlyPipeline(type, product, component, 600) {
       stage("${params.tag} ${params.tests ? "custom" : ""} tests - ${params.browser}") {
         try {
           yarnBuilder.yarn('playwright install --with-deps')
-          yarnBuilder.yarn("playwright test ${params.tests} ${params.tag ? "--grep ${params.tag}": ""} --project ${params.browser}")
+          yarnBuilder.yarn("playwright test ${params.tests} ${params.tag ? "--grep ${params.tag}": ""} --project ${params.browser} ${snapshotArg}")
         } catch (Error) {
           unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
         } finally {
@@ -166,7 +172,7 @@ withNightlyPipeline(type, product, component, 600) {
       if (!params.skipCitizenTests) {
         stage('Citizen E2E tests - Chrome with accessibility') {
           try {
-            yarnBuilder.yarn('test:citizenFrontendChrome')
+            yarnBuilder.yarn("test:citizenFrontendChrome ${snapshotArg}")
           } catch (Error) {
             unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
           } finally {
@@ -219,7 +225,7 @@ withNightlyPipeline(type, product, component, 600) {
       if (!params.skipManageCasesTests) {
         stage('Manage Cases E2E tests - Chrome with accessibility') {
           try {
-            yarnBuilder.yarn('test:manageCasesChrome')
+            yarnBuilder.yarn("test:manageCasesChrome ${snapshotArg}")
           } catch (Error) {
             unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
           } finally {
@@ -267,6 +273,36 @@ withNightlyPipeline(type, product, component, 600) {
             ])
             steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/ManageCasesFunctional/*'
           }
+        }
+      }
+    }
+
+    // publish any updated snapshots into the build artifacts
+    if (params.updateSnapshots) {
+      stage('Publish updated snapshots') {
+        try {
+          sh '''
+        rm -rf snapshot-updates
+        mkdir -p snapshot-updates
+
+        git status --porcelain | while read -r status file; do
+          case "$file" in
+            *-snapshots/*.png)
+              if [ -f "$file" ]; then
+                mkdir -p "snapshot-updates/$(dirname "$file")"
+                cp "$file" "snapshot-updates/$file"
+              fi
+              ;;
+          esac
+        done
+      '''
+
+          steps.archiveArtifacts(
+                  allowEmptyArchive: true,
+                  artifacts: 'snapshot-updates/**/*'
+          )
+        } catch (Error) {
+          unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
         }
       }
     }
