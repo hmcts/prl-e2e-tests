@@ -72,7 +72,7 @@ export class Config {
 
   public static readonly manageOrgBaseURL: string =
     Config.ensureNoTrailingSlash(
-      process.env.MANAGE_ORG_BASE_URL ||
+      process.env.MANAGE_ORGANISATION_BASE_URL ||
         "https://manage-org.aat.platform.hmcts.net",
     );
 

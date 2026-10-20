@@ -110,6 +110,9 @@ export class ViewPDFApplicationPage {
       ).toBeVisible();
     }
 
+    const demoSuffix: string =
+      process.env.MANAGE_CASES_TEST_ENV === "demo" ? "-demo" : "";
+
     // check english application pdf
     await this.checkPdfContents({
       page,
@@ -119,7 +122,7 @@ export class ViewPDFApplicationPage {
         caseType === "C100"
           ? this.c100EnglishApplicationPdfName
           : this.fl401EnglishApplicationPdfName,
-      snapshotName: `${caseType}-draft-application-english`,
+      snapshotName: `${caseType}-draft-application-english${demoSuffix}`,
       caseType,
     });
     // check welsh application pdf
@@ -131,7 +134,7 @@ export class ViewPDFApplicationPage {
         caseType === "C100"
           ? this.c100WelshApplicationPdfName
           : this.fl401WelshApplicationPdfName,
-      snapshotName: `${caseType}-draft-application-welsh`,
+      snapshotName: `${caseType}-draft-application-welsh${demoSuffix}`,
       caseType,
     });
 
@@ -142,7 +145,7 @@ export class ViewPDFApplicationPage {
         navigationUtils,
         caseNumber,
         pdfLink: this.englishC1APdfName,
-        snapshotName: `${caseType}-draft-c1a-english`,
+        snapshotName: `${caseType}-draft-c1a-english${demoSuffix}`,
         caseType,
       });
       // check welsh C1A pdf
@@ -151,7 +154,7 @@ export class ViewPDFApplicationPage {
         navigationUtils,
         caseNumber,
         pdfLink: this.welshC1APdfName,
-        snapshotName: `${caseType}-draft-c1a-welsh`,
+        snapshotName: `${caseType}-draft-c1a-welsh${demoSuffix}`,
         caseType,
       });
     }
@@ -179,7 +182,15 @@ export class ViewPDFApplicationPage {
     );
     // locators to mask in screenshot
     const caseRefLocator: Locator = pdfPage.getByText(caseNumber);
-    const snapshotPath: string[] = ["createCase", caseType, snapshotName];
+    const subFolder: string =
+      process.env.MANAGE_CASES_TEST_ENV === "demo" ? "demo" : "aat";
+    const snapshotPath: string[] = [
+      "createCase",
+      caseType,
+      "pdfApplication",
+      subFolder,
+      snapshotName,
+    ];
     const mediaViewerPage = new ExuiMediaViewerPage(pdfPage);
     await mediaViewerPage.runVisualTestOnAllPages(
       pdfPage,

@@ -2,6 +2,10 @@ import { EventPage } from "../eventPage.po.js";
 import { expect, Locator, Page } from "@playwright/test";
 
 export class C100Submit2Page extends EventPage {
+  private readonly solicitorName: string =
+    process.env.MANAGE_CASES_TEST_ENV === "demo"
+      ? "PRL DEMO ORG1 Solicitor 2"
+      : "AAT Solicitor";
   private readonly declarationHeading: Locator = this.page.getByRole(
     "heading",
     { name: "Declaration", level: 3 },
@@ -10,7 +14,7 @@ export class C100Submit2Page extends EventPage {
     "I understand that proceedings for contempt of court may be brought against anyone who makes, or causes to be made, a false statement in a document verified by a statement of truth without an honest belief in its truth.",
   );
   private readonly declarationInfo2: Locator = this.page.getByText(
-    "The applicant believes that the facts stated in this form and any continuation sheets are true. AAT Solicitor is authorised by the applicant to sign this statement.",
+    `The applicant believes that the facts stated in this form and any continuation sheets are true. ${this.solicitorName} is authorised by the applicant to sign this statement.`,
   );
   private readonly checkboxHint: Locator = this.page.locator(".form-hint", {
     hasText:

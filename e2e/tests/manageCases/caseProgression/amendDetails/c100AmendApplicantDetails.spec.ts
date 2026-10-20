@@ -3,6 +3,10 @@ import { test } from "../../../fixtures.ts";
 
 test.describe("Complete amend applicant details event as a court admin for a CA case", () => {
   let caseRef: string;
+  const snapshotName: string =
+    process.env.MANAGE_CASES_TEST_ENV === "demo"
+      ? "c100-amend-applicant-details-demo"
+      : "c100-amend-applicant-details";
 
   test.beforeEach(
     async ({ courtAdminStoke, manageCasesEventUtils, navigationUtils }) => {
@@ -38,7 +42,7 @@ test.describe("Complete amend applicant details event as a court admin for a CA 
 
     await amendApplicantDetails.submitPage.assertPageContents(
       ["caseProgression", "amendDetails", "C100"],
-      "c100-amend-applicant-details",
+      snapshotName,
     );
     // Accessibility is disabled on this EXUI check-your-answers page until EXUI-2726 is fixed.
     await amendApplicantDetails.submitPage.clickSaveAndContinue();

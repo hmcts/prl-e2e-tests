@@ -18,9 +18,9 @@ export const SolicitorDraftParentalResponsibilityOrderData = {
       process.env.MANAGE_CASES_TEST_ENV === "demo"
         ? {
             document_url:
-              "http://dm-store-aat.service.core-compute-aat.internal/documents/48f043c8-ec55-4aca-9f46-e37c8342f0b6",
+              "http://dm-store-demo.service.core-compute-demo.internal/documents/48f043c8-ec55-4aca-9f46-e37c8342f0b6",
             document_binary_url:
-              "http://dm-store-aat.service.core-compute-aat.internal/documents/48f043c8-ec55-4aca-9f46-e37c8342f0b6/binary",
+              "http://dm-store-demo.service.core-compute-demo.internal/documents/48f043c8-ec55-4aca-9f46-e37c8342f0b6/binary",
             document_filename:
               "Welsh_Parental_Responsibility_Order_C45A_draft.pdf",
           }
@@ -36,9 +36,9 @@ export const SolicitorDraftParentalResponsibilityOrderData = {
       process.env.MANAGE_CASES_TEST_ENV === "demo"
         ? {
             document_url:
-              "http://dm-store-aat.service.core-compute-aat.internal/documents/d450f2d5-dbac-4fe5-8288-5698c68f6166",
+              "http://dm-store-demo.service.core-compute-demo.internal/documents/d450f2d5-dbac-4fe5-8288-5698c68f6166",
             document_binary_url:
-              "http://dm-store-aat.service.core-compute-aat.internal/documents/d450f2d5-dbac-4fe5-8288-5698c68f6166/binary",
+              "http://dm-store-demo.service.core-compute-demo.internal/documents/d450f2d5-dbac-4fe5-8288-5698c68f6166/binary",
             document_filename: "Parental_Responsibility_Order_C45A_draft.pdf",
           }
         : {
@@ -79,9 +79,9 @@ export const SolicitorDraftNonMolestationOrderData = {
       process.env.MANAGE_CASES_TEST_ENV === "demo"
         ? {
             document_url:
-              "http://dm-store-aat.service.core-compute-aat.internal/documents/2bd4d6a5-b304-498a-bab5-ef2e868c1142",
+              "http://dm-store-demo.service.core-compute-demo.internal/documents/2bd4d6a5-b304-498a-bab5-ef2e868c1142",
             document_binary_url:
-              "http://dm-store-aat.service.core-compute-aat.internal/documents/2bd4d6a5-b304-498a-bab5-ef2e868c1142/binary",
+              "http://dm-store-demo.service.core-compute-demo.internal/documents/2bd4d6a5-b304-498a-bab5-ef2e868c1142/binary",
             document_filename: "welsh_non_molestation_order_fl404a_draft.pdf",
           }
         : {
@@ -95,9 +95,9 @@ export const SolicitorDraftNonMolestationOrderData = {
       process.env.MANAGE_CASES_TEST_ENV === "demo"
         ? {
             document_url:
-              "http://dm-store-aat.service.core-compute-aat.internal/documents/7f5c19a9-9613-4b84-b6c3-25b3752df5d8",
+              "http://dm-store-demo.service.core-compute-demo.internal/documents/7f5c19a9-9613-4b84-b6c3-25b3752df5d8",
             document_binary_url:
-              "http://dm-store-aat.service.core-compute-aat.internal/documents/7f5c19a9-9613-4b84-b6c3-25b3752df5d8/binary",
+              "http://dm-store-demo.service.core-compute-demo.internal/documents/7f5c19a9-9613-4b84-b6c3-25b3752df5d8/binary",
             document_filename: "non_molestation_order_fl404a_draft.pdf",
           }
         : {

@@ -1,6 +1,7 @@
 import { EventPage } from "../../eventPage.po.js";
 import { expect, Locator, Page } from "@playwright/test";
 import { PageUtils } from "../../../../../utils/page.utils.js";
+import { Selectors } from "../../../../../common/selectors.js";
 
 export class ManageOrder31Page extends EventPage {
   readonly urgentYesRadio: Locator = this.page.locator(
@@ -10,9 +11,8 @@ export class ManageOrder31Page extends EventPage {
 
   private readonly formLabels: string[] = [
     "Does this need to be actioned today?",
-    "Yes",
-    "No",
   ];
+  private readonly yesAndNoLabels: string[] = ["Yes", "No"];
 
   private readonly hintText =
     "Only select Yes if this work needs to be actioned today. Selecting Yes will generate an urgent work allocation task for the recipient.";
@@ -36,6 +36,10 @@ export class ManageOrder31Page extends EventPage {
     await expect(this.familyManHeading).toBeVisible();
     await expect(this.caseNumberHeading).toBeVisible();
     await this.pageUtils.assertStrings(this.formLabels);
+    await this.pageUtils.assertStrings(
+      this.yesAndNoLabels,
+      this.page.locator(`#checkIsThisUrgent ${Selectors.GovukFormLabel}`),
+    );
     await expect(this.page.getByText(this.hintText)).toBeVisible();
     await expect(this.continueButton).toBeVisible();
     await expect(this.previousButton).toBeVisible();

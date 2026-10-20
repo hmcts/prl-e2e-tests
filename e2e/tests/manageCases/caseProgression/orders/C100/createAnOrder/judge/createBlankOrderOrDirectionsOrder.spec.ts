@@ -83,6 +83,22 @@ test.describe("Manage Orders - Create a Blank order or Directions order (C21) te
       );
       await manageOrders.manageOrder5Page.clickContinue();
 
+      await manageOrders.manageOrder6Page.assertPageContents(
+        manageOrderParams.isUploadAnOrder,
+        manageOrderParams.orderType,
+      );
+      await manageOrders.manageOrder6Page.verifyAccessibility();
+      await manageOrders.manageOrder6Page.fillInFields({
+        orderType: manageOrderParams.orderType,
+        recitalsAndPreamble:
+          manageOrderParams.manageOrder5Params.recitalsAndPreamble,
+        directions: manageOrderParams.manageOrder5Params.directions,
+        includePenalNotice:
+          manageOrderParams.manageOrder5Params.includePenalNotice,
+        penalNotice: manageOrderParams.manageOrder5Params.penalNotice,
+      });
+      await manageOrders.manageOrder6Page.clickContinue();
+
       await manageOrders.manageOrder20Page.assertPageContents(
         manageOrderParams.orderType,
         caseRef,
