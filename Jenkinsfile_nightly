@@ -180,7 +180,7 @@ withNightlyPipeline(type, product, component, 600) {
     find . -type f -name '*.png' -print || true
   '''
 
-          steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/*'
+          steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'playwright-report/**/*'
         }
       }
     } else {
@@ -300,24 +300,28 @@ withNightlyPipeline(type, product, component, 600) {
         rm -rf snapshot-updates
         mkdir -p snapshot-updates
 
-        git status --porcelain | while read -r status file; do
-          case "$file" in
-            *-snapshots/*.png)
-              if [ -f "$file" ]; then
-                mkdir -p "snapshot-updates/$(dirname "$file")"
-                cp "$file" "snapshot-updates/$file"
-              fi
-              ;;
-          esac
+        git status --porcelain -- e2e/snapshots/ | while read -r status file; do
+          if [ -f "$file" ]; then
+            echo "Collecting updated snapshot: $file"
+
+            mkdir -p "snapshot-updates/$(dirname "$file")"
+            cp "$file" "snapshot-updates/$file"
+          fi
         done
+
+        echo "===== UPDATED SNAPSHOTS ====="
+        find snapshot-updates -type f -print
       '''
 
           steps.archiveArtifacts(
                   allowEmptyArchive: true,
-                  artifacts: 'snapshot-updates/**/*'
+                  artifacts: 'snapshot-updates/**/*.png'
           )
+
         } catch (Error) {
-          unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
+          unstable(
+                  message: "${STAGE_NAME} is unstable: " + Error.toString()
+          )
         }
       }
     }
