@@ -165,7 +165,22 @@ withNightlyPipeline(type, product, component, 600) {
                   reportFiles: 'index.html',
                   reportName: "${params.tag} custom tests - ${params.browser}"
           ])
-          steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/CitizenFunctional/*'
+
+          sh '''
+    echo "===== CURRENT DIRECTORY ====="
+    pwd
+
+    echo "===== WORKSPACE CONTENTS ====="
+    ls -la
+
+    echo "===== REPORT DIRECTORIES ====="
+    find . -maxdepth 5 -type d -name '*results*' -print || true
+
+    echo "===== PNG FILES ====="
+    find . -type f -name '*.png' -print || true
+  '''
+
+          steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/*'
         }
       }
     } else {
