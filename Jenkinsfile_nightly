@@ -165,21 +165,6 @@ withNightlyPipeline(type, product, component, 600) {
                   reportFiles: 'index.html',
                   reportName: "${params.tag} custom tests - ${params.browser}"
           ])
-
-          sh '''
-    echo "===== CURRENT DIRECTORY ====="
-    pwd
-
-    echo "===== WORKSPACE CONTENTS ====="
-    ls -la
-
-    echo "===== REPORT DIRECTORIES ====="
-    find . -maxdepth 5 -type d -name '*results*' -print || true
-
-    echo "===== PNG FILES ====="
-    find . -type f -name '*.png' -print || true
-  '''
-
           steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'playwright-report/**/*'
         }
       }
@@ -319,9 +304,7 @@ withNightlyPipeline(type, product, component, 600) {
           )
 
         } catch (Error) {
-          unstable(
-                  message: "${STAGE_NAME} is unstable: " + Error.toString()
-          )
+          unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
         }
       }
     }
