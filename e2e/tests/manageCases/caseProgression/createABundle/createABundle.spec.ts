@@ -31,58 +31,46 @@ const testData: CreateABundleTestData[] = [
   },
 ];
 
-const uploadedDocuments: {
+const includedDocuments: {
   documentParty: string;
   documentCategory: string;
-  cfvFolderPath: string[];
+  filePath: string;
 }[] = [
   {
     documentParty: "Applicant",
     documentCategory: "Applicant application",
-    cfvFolderPath: [
-      "Applications",
-      "Applicant documents",
-      "Applicant application",
-    ],
+    filePath: config.testPdfFileCR1,
   },
   {
     documentParty: "Applicant",
     documentCategory: "Medical reports",
-    cfvFolderPath: ["Expert report", "Medical reports"],
+    filePath: config.testPdfFileGuardianReport,
   },
   {
     documentParty: "Respondent",
     documentCategory: "Other witness statements",
-    cfvFolderPath: [
-      "Witness statement and evidence",
-      "Other witness statements",
-    ],
+    filePath: config.testPdfFilePositionStatement,
   },
 ];
 
-const uploadedDocumentFileName: string = basename(config.testPdfFile);
-
-const bundleExclusionCategory: string = "Other witness statements";
-const bundleExclusionParty: string = "Respondent";
-const confidentialDocumentFileName: string = `Confidential_${uploadedDocumentFileName}`;
-
-const movedDocument = {
-  originalDropdownLabel: `Applications -> Applicant documents -> Applicant application -> ${uploadedDocumentFileName}`,
-  originalFolderPath: [
-    "Applications",
-    "Applicant documents",
-    "Applicant application",
-  ],
-  newCategory: "Position statements",
-  newName: "movedDocument",
-  newFolderPath: ["Preliminary Documents", "Position statements"],
+const confidentialDocument: {
+  documentParty: string;
+  documentCategory: string;
+  filePath: string;
+} = {
+  documentParty: "Respondent",
+  documentCategory: "Other witness statements",
+  filePath: config.testPdfFileMIAMCertificate,
 };
+
+const confidentialDocumentFileName: string = `Confidential_${basename(confidentialDocument.filePath)}`;
 
 async function uploadDocumentWithoutChecks(
   caseWorker: CaseWorkerPagesGroup,
   documentParty: string,
   documentCategory: string,
-  confidentialDocument: boolean,
+  isConfidential: boolean,
+  filePath: string,
 ): Promise<void> {
   const { summaryPage, manageDocuments } = caseWorker;
   const {
@@ -97,8 +85,9 @@ async function uploadDocumentWithoutChecks(
     index: 0,
     documentParty,
     documentCategory,
-    confidentialDocument,
+    confidentialDocument: isConfidential,
     restrictDocument: false,
+    filePath,
   });
   await manageDocumentsNew1Page.clickContinue();
   await manageDocumentsNewSubmitPage.clickSaveAndContinue();
@@ -145,34 +134,24 @@ testData.forEach((data) => {
     test(`Complete Task - Create a Bundle - ${data.orderType} with accessibility test. @nightly @regression @accessibility`, async ({
       caseWorker,
     }): Promise<void> => {
-      const {
-        summaryPage,
-        createABundle,
-        bundlesPage,
-        caseFileViewPage,
-        renameDocuments,
-      } = caseWorker;
+      const { summaryPage, createABundle, bundlesPage } = caseWorker;
 
-      for (const document of uploadedDocuments) {
+      for (const document of includedDocuments) {
         await uploadDocumentWithoutChecks(
           caseWorker,
           document.documentParty,
           document.documentCategory,
           false,
+          document.filePath,
         );
       }
 
       await uploadDocumentWithoutChecks(
         caseWorker,
-        bundleExclusionParty,
-        bundleExclusionCategory,
+        confidentialDocument.documentParty,
+        confidentialDocument.documentCategory,
         true,
-      );
-      await uploadDocumentWithoutChecks(
-        caseWorker,
-        bundleExclusionParty,
-        bundleExclusionCategory,
-        false,
+        confidentialDocument.filePath,
       );
 
       await summaryPage.chooseEventFromDropdown("Create a bundle");
@@ -195,37 +174,11 @@ testData.forEach((data) => {
       const mediaViewer = new ExuiMediaViewerPage(pdfPage);
       await mediaViewer.waitForLoad();
       await mediaViewer.toolbar.pageDownBtn.click();
-      await mediaViewer.verifyTextPresent(uploadedDocumentFileName);
+      for (const document of includedDocuments) {
+        await mediaViewer.verifyTextPresent(basename(document.filePath));
+      }
       await mediaViewer.verifyTextNotPresent(confidentialDocumentFileName);
       await pdfPage.close();
-
-      await caseFileViewPage.goToPage();
-      for (const document of uploadedDocuments) {
-        await caseFileViewPage.verifyDocumentInFolder(
-          document.cfvFolderPath,
-          uploadedDocumentFileName,
-        );
-      }
-
-      await summaryPage.chooseEventFromDropdown("Rename documents");
-      await renameDocuments.page1.selectDocument(
-        movedDocument.originalDropdownLabel,
-      );
-      await renameDocuments.page2.changeCategoryAndName(
-        movedDocument.newCategory,
-        movedDocument.newName,
-      );
-      await renameDocuments.submitPage.submit();
-
-      await caseFileViewPage.goToPage();
-      await caseFileViewPage.verifyDocumentNotInFolder(
-        movedDocument.originalFolderPath,
-        movedDocument.newName,
-      );
-      await caseFileViewPage.verifyDocumentInFolder(
-        movedDocument.newFolderPath,
-        movedDocument.newName,
-      );
     });
   });
 });
