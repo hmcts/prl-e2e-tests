@@ -27,6 +27,8 @@ export interface ManageOrder5Params {
   allChildrenInOrder?: string[];
   recitalsAndPreamble?: string;
   directions?: string;
+  includePenalNotice?: boolean;
+  penalNotice?: string;
 }
 
 export class ManageOrder5Page extends EventPage {
