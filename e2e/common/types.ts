@@ -285,7 +285,7 @@ export interface ClippingCoords {
 }
 
 export type OrderTypes =
-  | "Directions on issue"
+  | "Directions on Issue"
   | "Blank order or directions (C21)"
   | "Child arrangements, specific issue or prohibited steps order (C43)"
   | "Parental responsibility order (C45A)"
@@ -304,7 +304,7 @@ export type OrderTypes =
   | "Notice of Hearing (DA)";
 
 export const OrderTypesArray: OrderTypes[] = [
-  "Directions on issue",
+  "Directions on Issue",
   "Blank order or directions (C21)",
   "Child arrangements, specific issue or prohibited steps order (C43)",
   "Parental responsibility order (C45A)",
@@ -349,7 +349,7 @@ export const NonMolestationRespondentMustNotDoOptionsArray: NonMolestationRespon
     "must not go to, enter or attempt to enter the school",
   ];
 export type ChildArrangementOrderTypes =
-  | "Directions on issue"
+  | "Directions on Issue"
   | "Blank order or directions (C21)"
   | "Child arrangements, specific issue or prohibited steps order (C43)"
   | "Parental responsibility order (C45A)"
@@ -369,7 +369,7 @@ export type ChildArrangementOrderTypes =
   | "Warrant of committal (FC604)";
 
 export type CustomOrderTypes =
-  | "Directions on issue"
+  | "Directions on Issue"
   | "Blank order or directions (C21)"
   | "Child arrangements, specific issue or prohibited steps order (C43)"
   | "Parental responsibility order (C45A)"
@@ -386,7 +386,7 @@ export type CustomOrderTypes =
   | "Notice of proceedings (FL402)";
 
 export const ChildArrangementOrderTypesArray: ChildArrangementOrderTypes[] = [
-  "Directions on issue",
+  "Directions on Issue",
   "Blank order or directions (C21)",
   "Child arrangements, specific issue or prohibited steps order (C43)",
   "Parental responsibility order (C45A)",
@@ -406,7 +406,7 @@ export const ChildArrangementOrderTypesArray: ChildArrangementOrderTypes[] = [
   "Warrant of committal (FC604)",
 ];
 export const CustomOrderTypesArray: CustomOrderTypes[] = [
-  "Directions on issue",
+  "Directions on Issue",
   "Blank order or directions (C21)",
   "Child arrangements, specific issue or prohibited steps order (C43)",
   "Parental responsibility order (C45A)",

@@ -93,6 +93,9 @@ test.describe("Manage Orders - Create a Blank order or Directions order (C21) te
         recitalsAndPreamble:
           manageOrderParams.manageOrder5Params.recitalsAndPreamble,
         directions: manageOrderParams.manageOrder5Params.directions,
+        includePenalNotice:
+          manageOrderParams.manageOrder5Params.includePenalNotice,
+        penalNotice: manageOrderParams.manageOrder5Params.penalNotice,
       });
       await manageOrders.manageOrder6Page.clickContinue();
 

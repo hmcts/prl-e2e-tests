@@ -120,6 +120,8 @@ export const ChildArrangementsCreateOrderScenarios: ChildArrangementsCreateOrder
         allChildrenInOrder: undefined,
         recitalsAndPreamble: "Test recitals",
         directions: "Test preamble",
+        includePenalNotice: true,
+        penalNotice: "Updated penal notice warning",
       },
       manageOrder10Params: {
         childArrangementOrderType: "Spend time with order",
@@ -921,6 +923,8 @@ export const C21CreateOrderScenarios: C21CreateOrderParams[] = [
       allChildrenInOrder: undefined,
       recitalsAndPreamble: "Test recitals",
       directions: "Test preamble",
+      includePenalNotice: true,
+      penalNotice: "Updated penal notice warning",
     },
     manageOrder30Params: {
       serveApplication: true,
