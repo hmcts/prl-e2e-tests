@@ -215,7 +215,9 @@ async function editAndApproveOrder(caseRef, judge: JudgePagesGroup, data) {
 
   await editAndApproveAnOrders.editAndApproveAnOrder22Page.assertPageContents();
   await editAndApproveAnOrders.editAndApproveAnOrder22Page.verifyAccessibility();
-  await editAndApproveAnOrders.editAndApproveAnOrder22Page.selectIsUrgent(false);
+  await editAndApproveAnOrders.editAndApproveAnOrder22Page.selectIsUrgent(
+    false,
+  );
   await editAndApproveAnOrders.editAndApproveAnOrder22Page.clickContinue();
 
   await editAndApproveAnOrders.editAndApproveAnOrderSubmitPage.assertPageContents(
