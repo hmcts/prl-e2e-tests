@@ -1,22 +1,15 @@
-import { expect, Locator, Page } from "@playwright/test";
+import { Page } from "@playwright/test";
 import { CommonStaticText } from "../../../../../common/commonStaticText.js";
 import { DateHelperUtils } from "../../../../../utils/dateHelpers.utils.js";
-import { CheckYourAnswersPage } from "../../checkYourAnswers.po.js";
+import { RespondentResponseSubmitPage } from "../respondentResponseSubmit.po.js";
 import { ConsentToApplicationParams } from "./consentToApplication1.po.js";
 
 // Check your answers for "Do you give your consent?" (c100ResSolConsentingToApplicationA/submit)
-export class ConsentToApplicationSubmitPage extends CheckYourAnswersPage {
-  private readonly answersTable: Locator = this.page.locator(".form-table");
+export class ConsentToApplicationSubmitPage extends RespondentResponseSubmitPage {
   private readonly dateUtils: DateHelperUtils = new DateHelperUtils();
 
   constructor(page: Page) {
-    super(page, "Do you give your consent?", CommonStaticText.saveAndContinue);
-  }
-
-  /** Saves the answers and waits until ExUI has left the event, i.e. the save has finished. */
-  async clickSaveAndContinue(): Promise<void> {
-    await super.clickSaveAndContinue();
-    await expect(this.page).not.toHaveURL(/\/trigger\//, { timeout: 60_000 });
+    super(page, "Do you give your consent?");
   }
 
   /** Asserts the page and that each question shows the answer given on the previous page. */
@@ -54,14 +47,6 @@ export class ConsentToApplicationSubmitPage extends CheckYourAnswersPage {
         params.courtOrderDetails as string,
       ]);
     }
-
-    for (const [question, answer] of answers) {
-      // one question per inner row of the complex field table
-      const row: Locator = this.answersTable
-        .locator("tr.complex-panel-simple-field")
-        .filter({ hasText: question });
-      await expect(row).toHaveCount(1);
-      await expect(row).toContainText(answer);
-    }
+    await this.assertAnswerRows(answers);
   }
 }

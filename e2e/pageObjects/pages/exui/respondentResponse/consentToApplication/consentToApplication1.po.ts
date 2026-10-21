@@ -1,5 +1,5 @@
 import { expect, Locator, Page } from "@playwright/test";
-import { EventPage } from "../../eventPage.po.js";
+import { RespondentResponseEventPage } from "../respondentResponseEventPage.po.js";
 import { PageUtils } from "../../../../../utils/page.utils.js";
 
 export interface ConsentToApplicationParams {
@@ -11,7 +11,7 @@ export interface ConsentToApplicationParams {
 }
 
 // Respondent solicitor C7 response - "Do you give your consent?" (c100ResSolConsentingToApplicationA1)
-export class ConsentToApplication1Page extends EventPage {
+export class ConsentToApplication1Page extends RespondentResponseEventPage {
   private readonly pageUtils: PageUtils = new PageUtils(this.page);
 
   private readonly formLabels: string[] = [
@@ -89,30 +89,5 @@ export class ConsentToApplication1Page extends EventPage {
     await this.receivedDay.fill(day);
     await this.receivedMonth.fill(month);
     await this.receivedYear.fill(year);
-  }
-
-  /**
-   * Continues to check your answers. The click straight after the date can be swallowed by
-   * CCD's redraw of the form, so click until the browser is on the event's submit page.
-   */
-  async clickContinue(): Promise<void> {
-    await expect
-      .poll(
-        async () => {
-          const onSubmitPage = new URL(this.page.url()).pathname.endsWith(
-            "/submit",
-          );
-          if (!onSubmitPage) {
-            await this.continueButton.click();
-          }
-          return onSubmitPage;
-        },
-        {
-          intervals: [2_000],
-          timeout: 30_000,
-          message: "Check your answers page did not open after Continue",
-        },
-      )
-      .toBeTruthy();
   }
 }

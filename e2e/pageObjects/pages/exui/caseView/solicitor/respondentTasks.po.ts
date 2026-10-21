@@ -102,8 +102,35 @@ export class RespondentTasksPage extends CaseAccessViewPage {
     ).toBeVisible();
   }
 
+  /**
+   * Opens the task's event. ExUI can cancel the navigation while it is still settling the case
+   * view (it can also switch back to another tab), so click until the event's page has opened.
+   */
   async clickTask(taskName: RespondentTaskName): Promise<void> {
-    await this.taskLink(taskName).click();
+    const link: Locator = this.taskLink(taskName);
+    // e.g. /cases/case-details/<case>/trigger/c100ResSolKeepDetailsPrivateA/c100ResSolKeepDetailsPrivateA1
+    const eventPath: string = `/trigger/${((await link.getAttribute("href")) ?? "").split("/trigger/")[1]?.split("/")[0]}/`;
+    await expect
+      .poll(
+        async () => {
+          const eventOpened: boolean = this.page.url().includes(eventPath);
+          if (!eventOpened) {
+            if ((await this.tab.getAttribute("aria-selected")) !== "true") {
+              await this.tab.click();
+            }
+            if (await link.isVisible()) {
+              await link.click();
+            }
+          }
+          return eventOpened;
+        },
+        {
+          intervals: [10_000],
+          timeout: 60_000,
+          message: `"${taskName}" did not open after clicking it`,
+        },
+      )
+      .toBeTruthy();
   }
 
   private taskLink(taskName: string): Locator {
