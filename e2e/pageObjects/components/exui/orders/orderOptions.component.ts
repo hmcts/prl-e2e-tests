@@ -56,9 +56,9 @@ export class OrderOptionsComponent {
     await expect(this.insetText).toBeVisible();
     await expect(this.orderTypeLabel).toBeVisible();
     // assert only these options are present
-    await expect(
-      this.page.locator(".multiple-choice label"),
-    ).toHaveCount(OrderTypesArray.length);
+    await expect(this.page.locator(".multiple-choice label")).toHaveCount(
+      OrderTypesArray.length,
+    );
     await this.pageUtils.assertStrings(OrderTypesArray);
   }
 
