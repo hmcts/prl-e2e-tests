@@ -2,10 +2,15 @@ import { EventPage } from "../../eventPage.po.js";
 import { expect, Locator, Page } from "@playwright/test";
 import { OrderTypes } from "../../../../../common/types.js";
 
+const defaultPenalNoticeText =
+  "IMPORTANT WARNING TO [NAME] If you [NAME] of [ADDRESS] disobey [this order] / [paragraph[s] [insert paragraph number(s)] of this order] you may be held to be in contempt of court and may be imprisoned, fined or have your assets seized.";
+
 export interface ManageOrder6Params {
   orderType: OrderTypes;
   recitalsAndPreamble?: string;
   directions?: string;
+  includePenalNotice?: boolean;
+  penalNotice?: string;
 }
 
 export class ManageOrder6Page extends EventPage {
@@ -35,6 +40,16 @@ export class ManageOrder6Page extends EventPage {
     name: "Add directions (Optional)",
   });
   readonly penalNoticeLabel: Locator = this.page.locator("#penalNoticeLabel");
+  readonly includePenalNoticeCheckbox: Locator = this.page.getByRole(
+    "checkbox",
+    { name: "Include a penal notice" },
+  );
+  readonly penalNoticeRtf: Locator = this.page
+    .locator(".ccd-rich-text-area", {
+      hasText:
+        "If the penal notice applies only to specific paragraphs, state which ones",
+    })
+    .getByRole("textbox");
 
   constructor(page: Page) {
     super(page, "Manage orders");
@@ -63,6 +78,7 @@ export class ManageOrder6Page extends EventPage {
       await expect(this.orderDirectionsRtfLabel).toBeVisible();
       if (this.hasPenalNotice(orderType)) {
         await expect(this.penalNoticeLabel).toBeVisible();
+        await expect(this.includePenalNoticeCheckbox).toBeVisible();
       }
     } else {
       await expect(this.recitalsOrPreamblesLabel).toBeVisible();
@@ -76,7 +92,17 @@ export class ManageOrder6Page extends EventPage {
     orderType,
     recitalsAndPreamble,
     directions,
+    includePenalNotice,
+    penalNotice,
   }: ManageOrder6Params): Promise<void> {
+    if (includePenalNotice && this.hasPenalNotice(orderType)) {
+      await this.includePenalNoticeCheckbox.check();
+      await expect(this.penalNoticeRtf).toContainText(defaultPenalNoticeText);
+      if (penalNotice) {
+        await this.penalNoticeRtf.click();
+        await this.penalNoticeRtf.fill(penalNotice);
+      }
+    }
     if (recitalsAndPreamble) {
       if (this.usesRtf(orderType)) {
         await this.recitalsOrPreambleRtf.click();
