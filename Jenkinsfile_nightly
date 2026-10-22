@@ -34,6 +34,11 @@ properties([
       defaultValue: false,
       description: 'Tick the checkbox for skipping Manage Cases application tests.'
     ),
+    booleanParam(
+      name: 'updateSnapshots',
+      defaultValue: false,
+      description: 'Tick the checkbox to update snapshots as part of the pipeline run (this will publish changed snapshots in the build artifacts).'
+    ),
     string(
       name: 'tag',
       defaultValue: '',
@@ -52,7 +57,7 @@ properties([
   ])
 ])
 
-@Library("Infrastructure@2.13.0")
+@Library("Infrastructure@2.13.1")
 
 def type  = "nodejs"
 def product = "prl"
@@ -120,14 +125,15 @@ def secrets = [
     secret('barrister-password', 'BARRISTER_PASSWORD'),
     secret('legaladvisor-swansea-username', 'LEGALADVISOR_USERNAME'),
     secret('legaladvisor-swansea-password', 'LEGALADVISOR_PASSWORD'),
-    secret('local-authority-username', 'LOCAL_AUTHORITY_USERNAME'), 
-    secret('local-authority-password', 'LOCAL_AUTHORITY_PASSWORD'), 
+    secret('local-authority-username', 'LOCAL_AUTHORITY_USERNAME'),
+    secret('local-authority-password', 'LOCAL_AUTHORITY_PASSWORD'),
     secret('superuser-username', 'SUPERUSER_USERNAME'),
     secret('superuser-password', 'SUPERUSER_PASSWORD'),
   ]
 ]
 
 def yarnBuilder = new uk.gov.hmcts.contino.YarnBuilder(this)
+def snapshotArg = params.updateSnapshots ? '--update-snapshots' : ''
 
 withNightlyPipeline(type, product, component, 600) {
   loadVaultSecrets(secrets)
@@ -138,18 +144,21 @@ withNightlyPipeline(type, product, component, 600) {
   enableSlackNotifications(channel)
 
   afterAlways('DependencyCheckNightly') {
-    stage('Delete nightly dev branch') {
-      try {
-        yarnBuilder.yarn('delete-nightly-dev-branch prl-e2e-tests')
-      } catch (Error) {
-        unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
+      if (env.BRANCH_NAME == 'nightly-dev') {
+          // only needs to run on the nightly-dev branch
+          stage('Delete nightly dev branch') {
+              try {
+                  yarnBuilder.yarn('delete-nightly-dev-branch prl-e2e-tests')
+              } catch (Error) {
+                  unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
+              }
+          }
       }
-    }
     if(params.tests || params.tag) {
       stage("${params.tag} ${params.tests ? "custom" : ""} tests - ${params.browser}") {
         try {
           yarnBuilder.yarn('playwright install --with-deps')
-          yarnBuilder.yarn("playwright test ${params.tests} ${params.tag ? "--grep ${params.tag}": ""} --project ${params.browser}")
+          yarnBuilder.yarn("playwright test ${params.tests} ${params.tag ? "--grep ${params.tag}": ""} --project ${params.browser} ${snapshotArg}")
         } catch (Error) {
           unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
         } finally {
@@ -161,14 +170,14 @@ withNightlyPipeline(type, product, component, 600) {
                   reportFiles: 'index.html',
                   reportName: "${params.tag} custom tests - ${params.browser}"
           ])
-          steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/CitizenFunctional/*'
+          steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'playwright-report/**/*'
         }
       }
     } else {
       if (!params.skipCitizenTests) {
         stage('Citizen E2E tests - Chrome with accessibility') {
           try {
-            yarnBuilder.yarn('test:citizenFrontendChrome')
+            yarnBuilder.yarn("test:citizenFrontendChrome ${snapshotArg}")
           } catch (Error) {
             unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
           } finally {
@@ -221,7 +230,7 @@ withNightlyPipeline(type, product, component, 600) {
       if (!params.skipManageCasesTests) {
         stage('Manage Cases E2E tests - Chrome with accessibility') {
           try {
-            yarnBuilder.yarn('test:manageCasesChrome')
+            yarnBuilder.yarn("test:manageCasesChrome ${snapshotArg}")
           } catch (Error) {
             unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
           } finally {
@@ -269,6 +278,38 @@ withNightlyPipeline(type, product, component, 600) {
             ])
             steps.archiveArtifacts allowEmptyArchive: true, artifacts: 'reports/tests-results/ManageCasesFunctional/*'
           }
+        }
+      }
+    }
+
+    // publish any updated snapshots into the build artifacts
+    if (params.updateSnapshots) {
+      stage('Publish updated snapshots') {
+        try {
+          sh '''
+        rm -rf snapshot-updates
+        mkdir -p snapshot-updates
+
+        git status --porcelain -- e2e/snapshots/ | while read -r status file; do
+          if [ -f "$file" ]; then
+            echo "Collecting updated snapshot: $file"
+
+            mkdir -p "snapshot-updates/$(dirname "$file")"
+            cp "$file" "snapshot-updates/$file"
+          fi
+        done
+
+        echo "===== UPDATED SNAPSHOTS ====="
+        find snapshot-updates -type f -print
+      '''
+
+          steps.archiveArtifacts(
+                  allowEmptyArchive: true,
+                  artifacts: 'snapshot-updates/**/*.png'
+          )
+
+        } catch (Error) {
+          unstable(message: "${STAGE_NAME} is unstable: " + Error.toString())
         }
       }
     }
