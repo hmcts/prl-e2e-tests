@@ -2,7 +2,7 @@ import config from "../../../utils/config.utils.ts";
 import { test } from "../../fixtures.ts";
 import { OrderTypes } from "../../../common/types.ts";
 import { ServiceOptions } from "../../../pageObjects/pages/exui/caseView/serviceOfApplication.po.js";
-
+// TEST COMMENT
 interface ServiceOfApplicationScenario {
   orderType: OrderTypes;
   orderName?: string;

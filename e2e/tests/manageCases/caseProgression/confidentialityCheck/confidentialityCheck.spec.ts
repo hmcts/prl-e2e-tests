@@ -6,7 +6,7 @@ import {
 import { test } from "../../../fixtures.js";
 import config from "../../../../utils/config.utils.js";
 import { ServiceOptions } from "../../../../pageObjects/pages/exui/caseView/serviceOfApplication.po.js";
-
+// TEST COMMENT
 interface ConfidentialityCheckScenario {
   orderType: OrderTypes;
   serveApplication: boolean;
