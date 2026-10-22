@@ -57,7 +57,7 @@ properties([
   ])
 ])
 
-@Library("Infrastructure@2.13.1")
+@Library("Infrastructure@2.13.2")
 
 def type  = "nodejs"
 def product = "prl"
