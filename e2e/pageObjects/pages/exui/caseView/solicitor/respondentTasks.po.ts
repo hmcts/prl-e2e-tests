@@ -1,16 +1,6 @@
 import { expect, Locator, Page } from "@playwright/test";
 import { CaseAccessViewPage } from "../caseAccessView.po.js";
-
-/** Task status, as the status icon's title on the "Respondent 1 tasks" tab. */
-export const RespondentTaskStatus = {
-  notStarted: "Not started / Heb ddechrau",
-  inProgress: "In progress / Ar y gweill",
-  finished: "Finished / Wedi gorffen",
-  cannotStartYet: "Cannot start yet / Methu dechrau eto",
-} as const;
-
-export type RespondentTaskStatusName =
-  (typeof RespondentTaskStatus)[keyof typeof RespondentTaskStatus];
+import { TaskStatus, TaskStatusName } from "../../../../../common/types.js";
 
 /** Task link names on the "Respondent 1 tasks" tab. */
 export const RespondentTask = {
@@ -82,7 +72,7 @@ export class RespondentTasksPage extends CaseAccessViewPage {
     for (const [section, tasks] of Object.entries(TASK_SECTIONS)) {
       await this.assertSectionHeading(section);
       for (const task of tasks) {
-        await this.assertTaskStatus(task, RespondentTaskStatus.notStarted);
+        await this.assertTaskStatus(task, TaskStatus.notStarted);
       }
     }
 
@@ -95,7 +85,7 @@ export class RespondentTasksPage extends CaseAccessViewPage {
     await expect(
       this.taskList
         .locator("p", { hasText: "Submit / Cyflwyno" })
-        .locator(`img[title="${RespondentTaskStatus.cannotStartYet}"]`),
+        .locator(`img[title="${TaskStatus.cannotStartYet}"]`),
     ).toBeVisible();
     await expect(
       this.taskList.getByText("Why can't I submit my application?"),
@@ -151,7 +141,7 @@ export class RespondentTasksPage extends CaseAccessViewPage {
 
   async assertTaskStatus(
     taskName: RespondentTaskName,
-    status: RespondentTaskStatusName,
+    status: TaskStatusName,
   ): Promise<void> {
     await expect(this.taskLink(taskName)).toBeVisible();
     await expect(
