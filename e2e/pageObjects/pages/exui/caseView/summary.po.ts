@@ -35,6 +35,13 @@ export class SummaryPage extends CaseAccessViewPage {
     await this.page.getByRole("tab", { name: "Summary" }).click();
   }
 
+  async assertSummaryTabLoaded(): Promise<void> {
+    await expect(
+      this.page.getByRole("tab", { name: "Summary" }),
+    ).toHaveAttribute("aria-selected", "true");
+    await expect(this.caseStatusDetails).toBeVisible();
+  }
+
   async assertAllocatedJudgeSection({
     isSpecificJudgeOrLegalAdviser,
     isJudge,
