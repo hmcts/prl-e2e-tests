@@ -1,16 +1,18 @@
 import { test } from "../../../fixtures.ts";
+import { TaskStatus } from "../../../../common/types.ts";
+import { RespondentTask } from "../../../../pageObjects/pages/exui/caseView/solicitor/respondentTasks.po.ts";
+import config from "../../../../utils/config.utils.ts";
 import {
-  RespondentTask,
-  RespondentTaskStatus,
-} from "../../../../pageObjects/pages/exui/caseView/solicitor/respondentTasks.po.ts";
-import {
-  C100_RESPONDENT_1_NAME,
-  RespondentSolicitorCaseJourney,
-} from "../../../../journeys/manageCases/caseProgression/respondentResponse/respondentSolicitorCaseJourney.ts";
+  NocClientName,
+  NoticeOfChangeJourney,
+} from "../../../../journeys/manageCases/caseProgression/noticeOfChange/noticeOfChangeJourney.ts";
 import {
   EditContactDetailsParams,
   LivesInRefuge,
 } from "../../../../pageObjects/pages/exui/respondentResponse/editContactDetails/editContactDetails1.po.ts";
+
+const respondent1: NocClientName = { firstname: "Mary", surname: "Richards" };
+const respondent1Name = `${respondent1.firstname} ${respondent1.surname}`;
 
 const snapshotPath: string[] = [
   "caseProgression",
@@ -40,17 +42,25 @@ const EDIT_CONTACT_DETAILS: EditContactDetailsParams = {
 test.describe("C100 respondent response (C7) - Edit contact details as the respondent solicitor.", () => {
   let caseRef: string;
 
-  test.beforeEach(
-    async ({ manageCasesEventUtils, dateHelperUtils, nocSolicitor }) => {
-      caseRef = (
-        await new RespondentSolicitorCaseJourney().createCaseAsRespondentSolicitor(
-          manageCasesEventUtils,
-          dateHelperUtils,
-          nocSolicitor,
-        )
-      ).caseRef;
-    },
-  );
+  test.beforeEach(async ({ manageCasesEventUtils, nocSolicitor }) => {
+    // API: create the C100 case, issue it and send it to gatekeeping
+    caseRef = (await manageCasesEventUtils.submitTSSolicitorCase("C100"))
+      .caseRef;
+    await manageCasesEventUtils.issueAndSendToLocalCourt(caseRef);
+    await manageCasesEventUtils.sendToGatekeeper(caseRef, "C100");
+
+    // the solicitor cannot open the case until the Notice of Change is done
+    await nocSolicitor.page.goto(config.manageCasesBaseURL);
+    await new NoticeOfChangeJourney().performNoticeOfChange(
+      nocSolicitor,
+      caseRef,
+      respondent1,
+    );
+    // ExUI opens the case on Summary once it has loaded; only then switch tabs
+    await nocSolicitor.summaryPage.assertSummaryTabLoaded();
+    await nocSolicitor.respondentTasksPage.goToPage();
+    await nocSolicitor.respondentTasksPage.assertTabIsSelected();
+  });
 
   test("Respondent solicitor completes Edit contact details and the task is Finished. @nightly @accessibility @regression", async ({
     nocSolicitor,
@@ -60,7 +70,7 @@ test.describe("C100 respondent response (C7) - Edit contact details as the respo
 
     const { editContactDetails1, editContactDetailsSubmit } =
       nocSolicitor.respondentResponse;
-    await editContactDetails1.assertPageContents(C100_RESPONDENT_1_NAME);
+    await editContactDetails1.assertPageContents(respondent1Name);
     await editContactDetails1.verifyAccessibility();
     await editContactDetails1.fillInFields(EDIT_CONTACT_DETAILS);
     await editContactDetails1.clickContinue();
@@ -83,7 +93,7 @@ test.describe("C100 respondent response (C7) - Edit contact details as the respo
     await respondentTasksPage.assertTabIsSelected();
     await respondentTasksPage.assertTaskStatus(
       RespondentTask.editContactDetails,
-      RespondentTaskStatus.finished,
+      TaskStatus.finished,
     );
   });
 });
