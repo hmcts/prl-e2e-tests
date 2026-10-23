@@ -1,17 +1,20 @@
 import { test } from "../../../fixtures.ts";
+import { TaskStatus } from "../../../../common/types.ts";
+import { RespondentTask } from "../../../../pageObjects/pages/exui/caseView/solicitor/respondentTasks.po.ts";
+import config from "../../../../utils/config.utils.ts";
 import {
-  RespondentTask,
-  RespondentTaskStatus,
-} from "../../../../pageObjects/pages/exui/caseView/solicitor/respondentTasks.po.ts";
-import {
-  C100_RESPONDENT_1_NAME,
-  RespondentSolicitorCaseJourney,
-} from "../../../../journeys/manageCases/caseProgression/respondentResponse/respondentSolicitorCaseJourney.ts";
+  NocClientName,
+  NoticeOfChangeJourney,
+} from "../../../../journeys/manageCases/caseProgression/noticeOfChange/noticeOfChangeJourney.ts";
 import {
   AttendingTheCourtParams,
   InterpreterParty,
   WelshNeed,
 } from "../../../../pageObjects/pages/exui/respondentResponse/attendingTheCourt/attendingTheCourt1.po.ts";
+
+// Respondent 1 on the test-support C100 case (C100_Dummy_Draft_CaseDetails)
+const respondent1: NocClientName = { firstname: "Mary", surname: "Richards" };
+const respondent1Name = `${respondent1.firstname} ${respondent1.surname}`;
 
 const snapshotPath: string[] = [
   "caseProgression",
@@ -38,17 +41,25 @@ const ATTENDING_THE_COURT: AttendingTheCourtParams = {
 test.describe("C100 respondent response (C7) - Attending the court as the respondent solicitor.", () => {
   let caseRef: string;
 
-  test.beforeEach(
-    async ({ manageCasesEventUtils, dateHelperUtils, nocSolicitor }) => {
-      caseRef = (
-        await new RespondentSolicitorCaseJourney().createCaseAsRespondentSolicitor(
-          manageCasesEventUtils,
-          dateHelperUtils,
-          nocSolicitor,
-        )
-      ).caseRef;
-    },
-  );
+  test.beforeEach(async ({ manageCasesEventUtils, nocSolicitor }) => {
+    // API: create the C100 case, issue it and send it to gatekeeping
+    caseRef = (await manageCasesEventUtils.submitTSSolicitorCase("C100"))
+      .caseRef;
+    await manageCasesEventUtils.issueAndSendToLocalCourt(caseRef);
+    await manageCasesEventUtils.sendToGatekeeper(caseRef, "C100");
+
+    // the solicitor cannot open the case until the Notice of Change is done
+    await nocSolicitor.page.goto(config.manageCasesBaseURL);
+    await new NoticeOfChangeJourney().performNoticeOfChange(
+      nocSolicitor,
+      caseRef,
+      respondent1,
+    );
+    // ExUI opens the case on Summary once it has loaded; only then switch tabs
+    await nocSolicitor.summaryPage.assertSummaryTabLoaded();
+    await nocSolicitor.respondentTasksPage.goToPage();
+    await nocSolicitor.respondentTasksPage.assertTabIsSelected();
+  });
 
   test("Respondent solicitor completes Attending the court and the task is Finished. @nightly @accessibility @regression", async ({
     nocSolicitor,
@@ -58,7 +69,7 @@ test.describe("C100 respondent response (C7) - Attending the court as the respon
 
     const { attendingTheCourt1, attendingTheCourt2, attendingTheCourtSubmit } =
       nocSolicitor.respondentResponse;
-    await attendingTheCourt1.assertPageContents(C100_RESPONDENT_1_NAME);
+    await attendingTheCourt1.assertPageContents(respondent1Name);
     await attendingTheCourt1.verifyAccessibility();
     await attendingTheCourt1.fillInFields(ATTENDING_THE_COURT);
     await attendingTheCourt1.clickContinue();
@@ -87,7 +98,7 @@ test.describe("C100 respondent response (C7) - Attending the court as the respon
     await respondentTasksPage.assertTabIsSelected();
     await respondentTasksPage.assertTaskStatus(
       RespondentTask.attendingTheCourt,
-      RespondentTaskStatus.finished,
+      TaskStatus.finished,
     );
   });
 });
