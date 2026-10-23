@@ -2,6 +2,7 @@ import { test } from "../../../fixtures.ts";
 import Config from "../../../../utils/config.utils.ts";
 import { CaseWorkerPagesGroup } from "../../../../pageObjects/roleBasedGroupedPages/caseWorkerPages.ts";
 import { NavigationUtils } from "../../../../utils/navigation.utils.ts";
+import path from "path";
 
 interface CourtAdminDocument {
   documentParty: string;
@@ -9,6 +10,7 @@ interface CourtAdminDocument {
   confidentialDocument: boolean;
   restrictDocument: boolean;
   filePath: string;
+  cfvPath: string[];
 }
 
 const APPLICANT_POSITION_STATEMENT: CourtAdminDocument = {
@@ -17,6 +19,7 @@ const APPLICANT_POSITION_STATEMENT: CourtAdminDocument = {
   confidentialDocument: true,
   restrictDocument: true,
   filePath: Config.testPdfFilePositionStatement,
+  cfvPath: ["Preliminary Documents"],
 };
 
 const RESPONDENT_GUARDIAN_REPORT: CourtAdminDocument = {
@@ -25,6 +28,7 @@ const RESPONDENT_GUARDIAN_REPORT: CourtAdminDocument = {
   confidentialDocument: false,
   restrictDocument: false,
   filePath: Config.testPdfFileGuardianReport,
+  cfvPath: ["Cafcass/Cafcass Cymru report and Guardian"],
 };
 
 const LOCAL_AUTHORITY_MIAM_CERTIFICATE: CourtAdminDocument = {
@@ -33,6 +37,7 @@ const LOCAL_AUTHORITY_MIAM_CERTIFICATE: CourtAdminDocument = {
   confidentialDocument: true,
   restrictDocument: false,
   filePath: Config.testPdfFileMIAMCertificate,
+  cfvPath: ["Applications", "Applicant documents"],
 };
 
 async function uploadDocumentAndVerify(
@@ -52,6 +57,7 @@ async function uploadDocumentAndVerify(
     manageDocuments,
     caseDocumentsPage,
     confidentialDetailsPage,
+    caseFileViewPage,
   } = caseWorker;
   const {
     manageDocumentsNew1Page,
@@ -91,6 +97,18 @@ async function uploadDocumentAndVerify(
     await caseDocumentsPage.goToPage();
     await caseDocumentsPage.assertCourtStaffUploadedDocuments([doc]);
   }
+
+  //validate document in Case File View Tab
+  await caseFileViewPage.goToPage();
+  const fileName = path.basename(doc.filePath);
+  const expectedDocumentName = doc.confidentialDocument
+    ? `Confidential_${fileName}`
+    : fileName;
+
+  await caseFileViewPage.validateDocumentExistsInCFV(
+    [...doc.cfvPath, doc.documentCategory],
+    expectedDocumentName,
+  );
 }
 
 test.describe("Manage documents event for C100 case tests as a court admin.", () => {
