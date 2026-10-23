@@ -493,3 +493,13 @@ export type PersonalServiceTypes =
   | "courtBailiff"
   | "courtAdmin"
   | "unrepresentedApplicant";
+
+/** Task status, as shown by the status icon's title on ExUI task lists (e.g. "Respondent 1 tasks"). */
+export const TaskStatus = {
+  notStarted: "Not started / Heb ddechrau",
+  inProgress: "In progress / Ar y gweill",
+  finished: "Finished / Wedi gorffen",
+  cannotStartYet: "Cannot start yet / Methu dechrau eto",
+} as const;
+
+export type TaskStatusName = (typeof TaskStatus)[keyof typeof TaskStatus];

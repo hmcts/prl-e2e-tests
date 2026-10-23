@@ -1,16 +1,8 @@
 import { expect, Locator, Page } from "@playwright/test";
 import { CaseAccessViewPage } from "../caseAccessView.po.js";
+import { TaskStatus, TaskStatusName } from "../../../../../common/types.js";
 
-export const RespondentTaskStatus = {
-  notStarted: "Not started / Heb ddechrau",
-  inProgress: "In progress / Ar y gweill",
-  finished: "Finished / Wedi gorffen",
-  cannotStartYet: "Cannot start yet / Methu dechrau eto",
-} as const;
-
-export type RespondentTaskStatusName =
-  (typeof RespondentTaskStatus)[keyof typeof RespondentTaskStatus];
-
+/** Task link names on the "Respondent 1 tasks" tab. */
 export const RespondentTask = {
   consentToApplication:
     "Do you give your consent? / A ydych yn rhoi eich caniatâd?",
@@ -27,6 +19,7 @@ export const RespondentTask = {
 export type RespondentTaskName =
   (typeof RespondentTask)[keyof typeof RespondentTask];
 
+// Section heading -> task links in that section, as shown before any task is started
 const TASK_SECTIONS: Record<string, RespondentTaskName[]> = {
   "1. Consent to the Application / Caniatâd i'r Cais": [
     RespondentTask.consentToApplication,
@@ -45,6 +38,7 @@ const TASK_SECTIONS: Record<string, RespondentTaskName[]> = {
   ],
 };
 
+/** "Respondent 1 tasks" case tab, shown to the solicitor representing respondent 1. */
 export class RespondentTasksPage extends CaseAccessViewPage {
   readonly tabName: string = "Respondent 1 tasks";
   private readonly tab: Locator = this.page.getByRole("tab", {
@@ -66,6 +60,7 @@ export class RespondentTasksPage extends CaseAccessViewPage {
     await expect(this.tab).toHaveAttribute("aria-selected", "true");
   }
 
+  /** Asserts the task list for a response that has not been started yet. */
   async assertPageContents(respondentName: string): Promise<void> {
     await expect(
       this.taskList.getByRole("heading", {
@@ -77,7 +72,7 @@ export class RespondentTasksPage extends CaseAccessViewPage {
     for (const [section, tasks] of Object.entries(TASK_SECTIONS)) {
       await this.assertSectionHeading(section);
       for (const task of tasks) {
-        await this.assertTaskStatus(task, RespondentTaskStatus.notStarted);
+        await this.assertTaskStatus(task, TaskStatus.notStarted);
       }
     }
 
@@ -90,15 +85,20 @@ export class RespondentTasksPage extends CaseAccessViewPage {
     await expect(
       this.taskList
         .locator("p", { hasText: "Submit / Cyflwyno" })
-        .locator(`img[title="${RespondentTaskStatus.cannotStartYet}"]`),
+        .locator(`img[title="${TaskStatus.cannotStartYet}"]`),
     ).toBeVisible();
     await expect(
       this.taskList.getByText("Why can't I submit my application?"),
     ).toBeVisible();
   }
 
+  /**
+   * Opens the task's event. ExUI can cancel the navigation while it is still settling the case
+   * view (it can also switch back to another tab), so click until the event's page has opened.
+   */
   async clickTask(taskName: RespondentTaskName): Promise<void> {
     const link: Locator = this.taskLink(taskName);
+    // e.g. /cases/case-details/<case>/trigger/c100ResSolKeepDetailsPrivateA/c100ResSolKeepDetailsPrivateA1
     const eventPath: string = `/trigger/${((await link.getAttribute("href")) ?? "").split("/trigger/")[1]?.split("/")[0]}/`;
     await expect
       .poll(
@@ -141,7 +141,7 @@ export class RespondentTasksPage extends CaseAccessViewPage {
 
   async assertTaskStatus(
     taskName: RespondentTaskName,
-    status: RespondentTaskStatusName,
+    status: TaskStatusName,
   ): Promise<void> {
     await expect(this.taskLink(taskName)).toBeVisible();
     await expect(
