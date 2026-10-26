@@ -1,23 +1,11 @@
 import { expect, Locator, Page } from "@playwright/test";
 import { CaseAccessViewPage } from "../caseAccessView.po.js";
-import { TaskStatus, TaskStatusName } from "../../../../../common/types.js";
-
-/** Task link names on the "Respondent 1 tasks" tab. */
-export const RespondentTask = {
-  consentToApplication:
-    "Do you give your consent? / A ydych yn rhoi eich caniatâd?",
-  keepDetailsPrivate: "Keep details private / Cadwch y manylion yn breifat",
-  editContactDetails: "Edit contact details / Golygu manylion cyswllt",
-  attendingTheCourt: "Attending the court / Mynychu'r llys",
-  miam: "MIAM / MIAM",
-  allegationsOfHarm: "Make allegations of harm / Gwneud honiadau o niwed",
-  otherProceedings: "Other proceedings / Achosion eraill",
-  internationalElement: "International element / Elfen ryngwladol",
-  litigationCapacity: "Litigation capacity / Capasiti cyfreitha",
-} as const;
-
-export type RespondentTaskName =
-  (typeof RespondentTask)[keyof typeof RespondentTask];
+import {
+  RespondentTask,
+  RespondentTaskName,
+  TaskStatus,
+  TaskStatusName,
+} from "../../../../../common/types.js";
 
 // Section heading -> task links in that section, as shown before any task is started
 const TASK_SECTIONS: Record<string, RespondentTaskName[]> = {

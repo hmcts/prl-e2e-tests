@@ -1,7 +1,5 @@
 import { test } from "../../../fixtures.ts";
-import { TaskStatus } from "../../../../common/types.ts";
-import { RespondentTask } from "../../../../pageObjects/pages/exui/caseView/solicitor/respondentTasks.po.ts";
-import config from "../../../../utils/config.utils.ts";
+import { RespondentTask, TaskStatus } from "../../../../common/types.ts";
 import {
   NocClientName,
   NoticeOfChangeJourney,
@@ -48,8 +46,6 @@ test.describe("C100 respondent response (C7) - Attending the court as the respon
     await manageCasesEventUtils.issueAndSendToLocalCourt(caseRef);
     await manageCasesEventUtils.sendToGatekeeper(caseRef, "C100");
 
-    // the solicitor cannot open the case until the Notice of Change is done
-    await nocSolicitor.page.goto(config.manageCasesBaseURL);
     await new NoticeOfChangeJourney().performNoticeOfChange(
       nocSolicitor,
       caseRef,
