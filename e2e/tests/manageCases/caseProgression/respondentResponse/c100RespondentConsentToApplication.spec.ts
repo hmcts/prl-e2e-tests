@@ -16,7 +16,6 @@ const snapshotPath: string[] = [
   "consentToApplication",
 ];
 
-// a fixed received date so the answers (and the snapshot) never change
 const CONSENT_TO_APPLICATION: ConsentToApplicationParams = {
   consentToApplication: true,
   applicationReceivedDate: { day: "20", month: "10", year: "2026" },
@@ -40,7 +39,6 @@ test.describe("C100 respondent response (C7) - Do you give your consent? as the 
       respondent1,
       true,
     );
-    // ExUI opens the case on Summary once it has loaded; only then switch tabs
     await nocSolicitor.summaryPage.assertSummaryTabLoaded();
     await nocSolicitor.respondentTasksPage.goToPage();
     await nocSolicitor.respondentTasksPage.assertTabIsSelected();
