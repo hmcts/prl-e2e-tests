@@ -10,42 +10,41 @@ import { ConsentToApplicationParams } from "../../../../pageObjects/pages/exui/r
 const respondent1: NocClientName = { firstname: "Mary", surname: "Richards" };
 const respondent1Name = `${respondent1.firstname} ${respondent1.surname}`;
 
+const snapshotPath: string[] = [
+  "caseProgression",
+  "respondentResponse",
+  "consentToApplication",
+];
+
+// a fixed received date so the answers (and the snapshot) never change
+const CONSENT_TO_APPLICATION: ConsentToApplicationParams = {
+  consentToApplication: true,
+  applicationReceivedDate: { day: "20", month: "10", year: "2026" },
+  permissionFromCourtNeeded: true,
+  courtOrderDetails: "This is a sample order text",
+};
+
 test.describe("C100 respondent response (C7) - Do you give your consent? as the respondent solicitor.", () => {
   let caseRef: string;
-  let consentToApplication: ConsentToApplicationParams;
 
-  test.beforeEach(
-    async ({ manageCasesEventUtils, dateHelperUtils, nocSolicitor }) => {
-      // API: create the C100 case, issue it and send it to gatekeeping
-      caseRef = (await manageCasesEventUtils.submitTSSolicitorCase("C100"))
-        .caseRef;
-      const [day, month, year] = dateHelperUtils.todayDate(
-        false,
-        true,
-      ) as string[];
-      await manageCasesEventUtils.issueAndSendToLocalCourt(caseRef);
-      await manageCasesEventUtils.sendToGatekeeper(caseRef, "C100");
+  test.beforeEach(async ({ manageCasesEventUtils, nocSolicitor }) => {
+    // API: create the C100 case, issue it and send it to gatekeeping
+    caseRef = (await manageCasesEventUtils.submitTSSolicitorCase("C100"))
+      .caseRef;
+    await manageCasesEventUtils.issueAndSendToLocalCourt(caseRef);
+    await manageCasesEventUtils.sendToGatekeeper(caseRef, "C100");
 
-      await new NoticeOfChangeJourney().performNoticeOfChange(
-        nocSolicitor,
-        caseRef,
-        respondent1,
-        true,
-      );
-      // ExUI opens the case on Summary once it has loaded; only then switch tabs
-      await nocSolicitor.summaryPage.assertSummaryTabLoaded();
-      await nocSolicitor.respondentTasksPage.goToPage();
-      await nocSolicitor.respondentTasksPage.assertTabIsSelected();
-
-      consentToApplication = {
-        consentToApplication: true,
-        // same date as the case was created
-        applicationReceivedDate: { day, month, year },
-        permissionFromCourtNeeded: true,
-        courtOrderDetails: "This is a sample order text",
-      };
-    },
-  );
+    await new NoticeOfChangeJourney().performNoticeOfChange(
+      nocSolicitor,
+      caseRef,
+      respondent1,
+      true,
+    );
+    // ExUI opens the case on Summary once it has loaded; only then switch tabs
+    await nocSolicitor.summaryPage.assertSummaryTabLoaded();
+    await nocSolicitor.respondentTasksPage.goToPage();
+    await nocSolicitor.respondentTasksPage.assertTabIsSelected();
+  });
 
   test("Respondent solicitor completes Do you give your consent? and the task is Finished. @nightly @accessibility @regression", async ({
     nocSolicitor,
@@ -59,10 +58,13 @@ test.describe("C100 respondent response (C7) - Do you give your consent? as the 
       nocSolicitor.respondentResponse;
     await consentToApplication1.assertPageContents(respondent1Name);
     await consentToApplication1.verifyAccessibility();
-    await consentToApplication1.fillInFields(consentToApplication);
+    await consentToApplication1.fillInFields(CONSENT_TO_APPLICATION);
     await consentToApplication1.clickContinue();
 
-    await consentToApplicationSubmit.assertAnswers(consentToApplication);
+    await consentToApplicationSubmit.assertPageContents(
+      snapshotPath,
+      "c100-respondent-consent-to-application",
+    );
     await consentToApplicationSubmit.verifyAccessibility();
     await consentToApplicationSubmit.clickSaveAndContinue();
 
