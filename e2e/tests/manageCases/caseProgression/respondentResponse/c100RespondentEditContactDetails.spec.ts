@@ -52,7 +52,6 @@ test.describe("C100 respondent response (C7) - Edit contact details as the respo
       caseRef,
       respondent1,
     );
-    // ExUI opens the case on Summary once it has loaded; only then switch tabs
     await nocSolicitor.summaryPage.assertSummaryTabLoaded();
     await nocSolicitor.respondentTasksPage.goToPage();
     await nocSolicitor.respondentTasksPage.assertTabIsSelected();
