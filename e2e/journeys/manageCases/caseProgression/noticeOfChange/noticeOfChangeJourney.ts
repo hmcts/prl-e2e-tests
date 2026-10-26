@@ -1,10 +1,13 @@
 import { NocSolicitorPagesGroup } from "../../../../pageObjects/roleBasedGroupedPages/nocSolicitorPages.js";
+import config from "../../../../utils/config.utils.js";
 
 export interface NocClientName {
   firstname: string;
   surname: string;
 }
 
+// Notice of change as the NoC solicitor: opens Manage Cases (the solicitor cannot open the case
+// until the Notice of Change is done), completes the Notice of Change and ends on the case.
 export class NoticeOfChangeJourney {
   async performNoticeOfChange(
     nocSolicitor: NocSolicitorPagesGroup,
@@ -14,6 +17,7 @@ export class NoticeOfChangeJourney {
   ): Promise<void> {
     const { summaryPage, noticeOfChange } = nocSolicitor;
 
+    await nocSolicitor.page.goto(config.manageCasesBaseURL);
     await summaryPage.exuiHeader.clickNoticeOfChange();
 
     await noticeOfChange.page1.assertPageContents();

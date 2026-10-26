@@ -503,3 +503,20 @@ export const TaskStatus = {
 } as const;
 
 export type TaskStatusName = (typeof TaskStatus)[keyof typeof TaskStatus];
+
+/** Task link names on the "Respondent 1 tasks" tab. */
+export const RespondentTask = {
+  consentToApplication:
+    "Do you give your consent? / A ydych yn rhoi eich caniatâd?",
+  keepDetailsPrivate: "Keep details private / Cadwch y manylion yn breifat",
+  editContactDetails: "Edit contact details / Golygu manylion cyswllt",
+  attendingTheCourt: "Attending the court / Mynychu'r llys",
+  miam: "MIAM / MIAM",
+  allegationsOfHarm: "Make allegations of harm / Gwneud honiadau o niwed",
+  otherProceedings: "Other proceedings / Achosion eraill",
+  internationalElement: "International element / Elfen ryngwladol",
+  litigationCapacity: "Litigation capacity / Capasiti cyfreitha",
+} as const;
+
+export type RespondentTaskName =
+  (typeof RespondentTask)[keyof typeof RespondentTask];
