@@ -106,12 +106,17 @@ import { HearingLinkPage } from "../pages/exui/createHearingRequest/hearingLink.
 import { HearingAdditionalInstructionsPage } from "../pages/exui/createHearingRequest/hearingAdditionalInstructions.po.ts";
 import { HearingSummaryPage } from "../pages/exui/createHearingRequest/hearingSummary.po.ts";
 import { HearingConfirmationPage } from "../pages/exui/createHearingRequest/hearingConfirmation.po.ts";
+import { CaseFileViewPage } from "../pages/exui/caseView/caseFileView.po.js";
 
 export class CaseWorkerPagesGroup {
   constructor(public readonly page: Page) {}
 
   get tasksPage() {
     return new TasksPage(this.page);
+  }
+
+  get caseFileViewPage() {
+    return new CaseFileViewPage(this.page);
   }
 
   get caseDocumentsPage() {

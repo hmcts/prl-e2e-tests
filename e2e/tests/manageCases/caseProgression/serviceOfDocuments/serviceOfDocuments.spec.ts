@@ -2,6 +2,7 @@ import { test } from "../../../fixtures.ts";
 import config from "../../../../utils/config.utils.ts";
 import { CaseWorkerPagesGroup } from "../../../../pageObjects/roleBasedGroupedPages/caseWorkerPages.ts";
 import { yesNoNA } from "../../../../common/types.ts";
+import path from "path";
 
 interface ServiceOfDocumentsOptions {
   withCaseDoc: boolean;
@@ -19,6 +20,7 @@ interface CaseDocument {
   confidentialDocument: boolean;
   restrictDocument: boolean;
   filePath: string;
+  cfvPath: string[];
 }
 
 // The document Service of documents page1 expects to find in its "case
@@ -29,6 +31,7 @@ const APPLICANT_POSITION_STATEMENT: CaseDocument = {
   confidentialDocument: false,
   restrictDocument: false,
   filePath: config.testPdfFile,
+  cfvPath: ["Preliminary Documents"],
 };
 
 test.describe("Service of Document event for DA Solicitor case tests as court admin.", () => {
@@ -161,7 +164,8 @@ async function uploadCaseDocument(
   caseWorker: CaseWorkerPagesGroup,
   doc: CaseDocument,
 ): Promise<void> {
-  const { summaryPage, manageDocuments, caseDocumentsPage } = caseWorker;
+  const { summaryPage, manageDocuments, caseDocumentsPage, caseFileViewPage } =
+    caseWorker;
   const {
     manageDocumentsNew1Page,
     manageDocumentsNewSubmitPage,
@@ -193,4 +197,16 @@ async function uploadCaseDocument(
 
   await caseDocumentsPage.goToPage();
   await caseDocumentsPage.assertCourtStaffUploadedDocuments([doc]);
+
+  //validate uploaded document in Case File View Tab
+  await caseFileViewPage.goToPage();
+  const fileName = path.basename(doc.filePath);
+  const expectedDocumentName = doc.confidentialDocument
+    ? `Confidential_${fileName}`
+    : fileName;
+
+  await caseFileViewPage.validateDocumentExistsInCFV(
+    [...doc.cfvPath, doc.documentCategory],
+    expectedDocumentName,
+  );
 }
