@@ -1,0 +1,47 @@
+import { NocSolicitorPagesGroup } from "../../../../pageObjects/roleBasedGroupedPages/nocSolicitorPages.js";
+import config from "../../../../utils/config.utils.js";
+
+export interface NocClientName {
+  firstname: string;
+  surname: string;
+}
+
+// Notice of change as the NoC solicitor: opens Manage Cases (the solicitor cannot open the case
+// until the Notice of Change is done), completes the Notice of Change and ends on the case.
+export class NoticeOfChangeJourney {
+  async performNoticeOfChange(
+    nocSolicitor: NocSolicitorPagesGroup,
+    caseRef: string,
+    clientName: NocClientName,
+    accessibilityTest: boolean = false,
+  ): Promise<void> {
+    const { summaryPage, noticeOfChange } = nocSolicitor;
+
+    await nocSolicitor.page.goto(config.manageCasesBaseURL);
+    await summaryPage.exuiHeader.clickNoticeOfChange();
+
+    await noticeOfChange.page1.assertPageContents();
+    if (accessibilityTest) await noticeOfChange.page1.verifyAccessibility();
+    await noticeOfChange.page1.fillInCaseNumber(caseRef);
+    await noticeOfChange.page1.clickContinue();
+
+    await noticeOfChange.page2.assertPageContents();
+    if (accessibilityTest) await noticeOfChange.page2.verifyAccessibility();
+    await noticeOfChange.page2.fillInPartyName(
+      clientName.firstname,
+      clientName.surname,
+    );
+    await noticeOfChange.page2.clickContinue();
+
+    await noticeOfChange.submitPage.assertPageContents(clientName);
+    if (accessibilityTest)
+      await noticeOfChange.submitPage.verifyAccessibility();
+    await noticeOfChange.submitPage.checkBoxes();
+    await noticeOfChange.submitPage.clickSubmit();
+
+    await noticeOfChange.confirmPage.assertPageContents();
+    if (accessibilityTest)
+      await noticeOfChange.confirmPage.verifyAccessibility();
+    await noticeOfChange.confirmPage.clickViewThisCase();
+  }
+}
