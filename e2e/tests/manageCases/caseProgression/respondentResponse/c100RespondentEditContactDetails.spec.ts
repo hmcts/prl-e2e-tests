@@ -71,8 +71,7 @@ test.describe("C100 respondent response (C7) - Edit contact details as the respo
     await editContactDetails1.fillInFields(EDIT_CONTACT_DETAILS);
     await editContactDetails1.clickContinue();
 
-    await editContactDetailsSubmit.assertAnswers(
-      EDIT_CONTACT_DETAILS,
+    await editContactDetailsSubmit.assertPageContents(
       snapshotPath,
       "c100-respondent-edit-contact-details",
     );
