@@ -35,6 +35,17 @@ export class SummaryPage extends CaseAccessViewPage {
     await this.page.getByRole("tab", { name: "Summary" }).click();
   }
 
+  /**
+   * Waits until the case view has finished loading on the Summary tab - ExUI opens a case on
+   * Summary once loading is done, overriding any tab clicked before that.
+   */
+  async assertSummaryTabLoaded(): Promise<void> {
+    await expect(
+      this.page.getByRole("tab", { name: "Summary" }),
+    ).toHaveAttribute("aria-selected", "true");
+    await expect(this.caseStatusDetails).toBeVisible();
+  }
+
   async assertAllocatedJudgeSection({
     isSpecificJudgeOrLegalAdviser,
     isJudge,

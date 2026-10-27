@@ -493,3 +493,30 @@ export type PersonalServiceTypes =
   | "courtBailiff"
   | "courtAdmin"
   | "unrepresentedApplicant";
+
+/** Task status, as shown by the status icon's title on ExUI task lists (e.g. "Respondent 1 tasks"). */
+export const TaskStatus = {
+  notStarted: "Not started / Heb ddechrau",
+  inProgress: "In progress / Ar y gweill",
+  finished: "Finished / Wedi gorffen",
+  cannotStartYet: "Cannot start yet / Methu dechrau eto",
+} as const;
+
+export type TaskStatusName = (typeof TaskStatus)[keyof typeof TaskStatus];
+
+/** Task link names on the "Respondent 1 tasks" tab. */
+export const RespondentTask = {
+  consentToApplication:
+    "Do you give your consent? / A ydych yn rhoi eich caniatâd?",
+  keepDetailsPrivate: "Keep details private / Cadwch y manylion yn breifat",
+  editContactDetails: "Edit contact details / Golygu manylion cyswllt",
+  attendingTheCourt: "Attending the court / Mynychu'r llys",
+  miam: "MIAM / MIAM",
+  allegationsOfHarm: "Make allegations of harm / Gwneud honiadau o niwed",
+  otherProceedings: "Other proceedings / Achosion eraill",
+  internationalElement: "International element / Elfen ryngwladol",
+  litigationCapacity: "Litigation capacity / Capasiti cyfreitha",
+} as const;
+
+export type RespondentTaskName =
+  (typeof RespondentTask)[keyof typeof RespondentTask];
