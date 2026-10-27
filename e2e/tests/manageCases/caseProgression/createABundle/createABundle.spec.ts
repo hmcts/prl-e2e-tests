@@ -12,7 +12,6 @@ interface CreateABundleTestData {
   caseType: solicitorCaseCreateType;
   describeTitle: string;
   orderType: OrderTypes;
-  issueToLocalCourt: boolean;
 }
 
 const testData: CreateABundleTestData[] = [
@@ -21,13 +20,11 @@ const testData: CreateABundleTestData[] = [
     describeTitle: "Create a Bundle - C100 Case Type",
     orderType:
       "Child arrangements, specific issue or prohibited steps order (C43)",
-    issueToLocalCourt: true,
   },
   {
     caseType: "FL401",
     describeTitle: "Create a Bundle - FL401 Case Type",
     orderType: "Power of arrest (FL406)",
-    issueToLocalCourt: false,
   },
 ];
 
@@ -105,7 +102,7 @@ testData.forEach((data) => {
           await manageCasesEventUtils.submitTSSolicitorCase(data.caseType)
         ).caseRef;
 
-        if (data.issueToLocalCourt) {
+        if (data.caseType === "C100") {
           await manageCasesEventUtils.issueAndSendToLocalCourt(caseRef);
         }
 
