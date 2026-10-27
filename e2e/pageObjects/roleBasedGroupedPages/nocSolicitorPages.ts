@@ -1,5 +1,10 @@
 import { Page } from "@playwright/test";
 import { TasksPage } from "../pages/exui/caseView/tasks.po.ts";
+import { RespondentTasksPage } from "../pages/exui/caseView/solicitor/respondentTasks.po.ts";
+import { ConsentToApplication1Page } from "../pages/exui/respondentResponse/consentToApplication/consentToApplication1.po.ts";
+import { ConsentToApplicationSubmitPage } from "../pages/exui/respondentResponse/consentToApplication/consentToApplicationSubmit.po.ts";
+import { EditContactDetails1Page } from "../pages/exui/respondentResponse/editContactDetails/editContactDetails1.po.ts";
+import { EditContactDetailsSubmitPage } from "../pages/exui/respondentResponse/editContactDetails/editContactDetailsSubmit.po.ts";
 import { SummaryPage } from "../pages/exui/caseView/summary.po.ts";
 import { NoticeOfChange1Page } from "../pages/exui/noticeOfChange/noticeOfChange1.po.ts";
 import { NoticeOfChange2Page } from "../pages/exui/noticeOfChange/noticeOfChange2.po.ts";
@@ -17,6 +22,9 @@ export class NocSolicitorPagesGroup {
 
   get tasksPage() {
     return new TasksPage(this.page);
+  }
+  get respondentTasksPage() {
+    return new RespondentTasksPage(this.page);
   }
   get summaryPage() {
     return new SummaryPage(this.page);
@@ -51,6 +59,15 @@ export class NocSolicitorPagesGroup {
       addBarristerSubmit: new AddBarristerSubmitPage(this.page),
       removeBarrister1Page: new RemoveBarrister1Page(this.page),
       removeBarristerSubmit: new RemoveBarristerSubmitPage(this.page),
+    };
+  }
+
+  get respondentResponse() {
+    return {
+      consentToApplication1: new ConsentToApplication1Page(this.page),
+      consentToApplicationSubmit: new ConsentToApplicationSubmitPage(this.page),
+      editContactDetails1: new EditContactDetails1Page(this.page),
+      editContactDetailsSubmit: new EditContactDetailsSubmitPage(this.page),
     };
   }
 }

@@ -26,13 +26,38 @@ test.describe("List with notice tests for CA cases", () => {
   [
     {
       reason: "noEvidenceOfImmediateRiskOfHarmToTheChildren",
-      subject: "Without notice rejection",
+      subject: "List On Notice",
       caseNote:
         "There is no evidence of immediate risk of harm to the child[ren]",
       User: "Elizabeth Williams",
     },
   ].forEach((data) => {
-    test(`Complete list with notice event for CA cases. @regression @accessibility @nightly`, async ({
+    test(`Complete list with notice event for CA cases with option as - ${data.reason}. @regression @accessibility @nightly`, async ({
+      navigationUtils,
+      judge,
+      caseWorker,
+      caseManager,
+    }): Promise<void> => {
+      await listOnNoticeJourney(
+        navigationUtils,
+        caseRef,
+        "C100",
+        judge,
+        caseWorker,
+        caseManager,
+        data,
+      );
+    });
+  });
+  [
+    {
+      reason: "itsNotWithoutNoticeButItsUrgent",
+      subject: "List On Notice",
+      caseNote: "It is not without notice but it is urgent",
+      User: "Elizabeth Williams",
+    },
+  ].forEach((data) => {
+    test(`Complete list with notice event for CA cases with option as - ${data.reason}. @regression`, async ({
       navigationUtils,
       judge,
       caseWorker,
