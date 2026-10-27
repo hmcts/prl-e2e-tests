@@ -1,10 +1,11 @@
 import { Page } from "@playwright/test";
-import { RespondentResponseSubmitPage } from "../respondentResponseSubmit.po.js";
+import { CommonStaticText } from "../../../../../common/commonStaticText.js";
+import { CheckYourAnswersPage } from "../../checkYourAnswers.po.js";
 
 // Check your answers for "Attending the court" (c100ResSolAttendingTheCourtA/submit).
-// The answers are compared with a snapshot of the answers table.
-export class AttendingTheCourtSubmitPage extends RespondentResponseSubmitPage {
+// The answers are checked with the shared table snapshot: assertPageContents(snapshotPath, snapshotName).
+export class AttendingTheCourtSubmitPage extends CheckYourAnswersPage {
   constructor(page: Page) {
-    super(page, "Attending the court");
+    super(page, "Attending the court", CommonStaticText.saveAndContinue);
   }
 }

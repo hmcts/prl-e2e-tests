@@ -1,6 +1,10 @@
 import { Page } from "@playwright/test";
 import { TasksPage } from "../pages/exui/caseView/tasks.po.ts";
 import { RespondentTasksPage } from "../pages/exui/caseView/solicitor/respondentTasks.po.ts";
+import { ConsentToApplication1Page } from "../pages/exui/respondentResponse/consentToApplication/consentToApplication1.po.ts";
+import { ConsentToApplicationSubmitPage } from "../pages/exui/respondentResponse/consentToApplication/consentToApplicationSubmit.po.ts";
+import { EditContactDetails1Page } from "../pages/exui/respondentResponse/editContactDetails/editContactDetails1.po.ts";
+import { EditContactDetailsSubmitPage } from "../pages/exui/respondentResponse/editContactDetails/editContactDetailsSubmit.po.ts";
 import { AttendingTheCourt1Page } from "../pages/exui/respondentResponse/attendingTheCourt/attendingTheCourt1.po.ts";
 import { AttendingTheCourt2Page } from "../pages/exui/respondentResponse/attendingTheCourt/attendingTheCourt2.po.ts";
 import { AttendingTheCourtSubmitPage } from "../pages/exui/respondentResponse/attendingTheCourt/attendingTheCourtSubmit.po.ts";
@@ -63,6 +67,10 @@ export class NocSolicitorPagesGroup {
 
   get respondentResponse() {
     return {
+      consentToApplication1: new ConsentToApplication1Page(this.page),
+      consentToApplicationSubmit: new ConsentToApplicationSubmitPage(this.page),
+      editContactDetails1: new EditContactDetails1Page(this.page),
+      editContactDetailsSubmit: new EditContactDetailsSubmitPage(this.page),
       attendingTheCourt1: new AttendingTheCourt1Page(this.page),
       attendingTheCourt2: new AttendingTheCourt2Page(this.page),
       attendingTheCourtSubmit: new AttendingTheCourtSubmitPage(this.page),
