@@ -3,6 +3,8 @@ import { TasksPage } from "../pages/exui/caseView/tasks.po.ts";
 import { RespondentTasksPage } from "../pages/exui/caseView/solicitor/respondentTasks.po.ts";
 import { ConsentToApplication1Page } from "../pages/exui/respondentResponse/consentToApplication/consentToApplication1.po.ts";
 import { ConsentToApplicationSubmitPage } from "../pages/exui/respondentResponse/consentToApplication/consentToApplicationSubmit.po.ts";
+import { EditContactDetails1Page } from "../pages/exui/respondentResponse/editContactDetails/editContactDetails1.po.ts";
+import { EditContactDetailsSubmitPage } from "../pages/exui/respondentResponse/editContactDetails/editContactDetailsSubmit.po.ts";
 import { SummaryPage } from "../pages/exui/caseView/summary.po.ts";
 import { NoticeOfChange1Page } from "../pages/exui/noticeOfChange/noticeOfChange1.po.ts";
 import { NoticeOfChange2Page } from "../pages/exui/noticeOfChange/noticeOfChange2.po.ts";
@@ -64,6 +66,8 @@ export class NocSolicitorPagesGroup {
     return {
       consentToApplication1: new ConsentToApplication1Page(this.page),
       consentToApplicationSubmit: new ConsentToApplicationSubmitPage(this.page),
+      editContactDetails1: new EditContactDetails1Page(this.page),
+      editContactDetailsSubmit: new EditContactDetailsSubmitPage(this.page),
     };
   }
 }
