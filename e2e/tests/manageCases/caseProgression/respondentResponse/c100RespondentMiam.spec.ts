@@ -4,7 +4,7 @@ import {
   NocClientName,
   NoticeOfChangeJourney,
 } from "../../../../journeys/manageCases/caseProgression/noticeOfChange/noticeOfChangeJourney.ts";
-import { MiamParams } from "../../../../pageObjects/pages/exui/respondentResponse/miam/miamSubmit.po.ts";
+import { MiamParams } from "../../../../pageObjects/pages/exui/respondentResponse/miam/miam1.po.ts";
 
 // Respondent 1 on the test-support C100 case (C100_Dummy_Draft_CaseDetails)
 const respondent1: NocClientName = { firstname: "Mary", surname: "Richards" };
@@ -64,10 +64,9 @@ test.describe("C100 respondent response (C7) - MIAM as the respondent solicitor.
     );
     await miam2.clickContinue();
 
-    await miamSubmit.assertAnswers(
-      MIAM,
+    await miamSubmit.assertPageContents(
       snapshotPath,
-      "c100-respondent-miam-not-attended-cya",
+      "c100-respondent-miam-not-attended",
     );
     await miamSubmit.verifyAccessibility();
     await miamSubmit.clickSaveAndContinue();

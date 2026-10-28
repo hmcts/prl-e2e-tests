@@ -2,6 +2,13 @@ import { expect, Locator, Page } from "@playwright/test";
 import { RespondentResponseEventPage } from "../respondentResponseEventPage.po.js";
 import { PageUtils } from "../../../../../utils/page.utils.js";
 
+/** Answers for the MIAM event; the willing/reason answers only apply when not attended. */
+export interface MiamParams {
+  hasAttendedMiam: boolean;
+  willingToAttendMiam?: boolean;
+  reasonNotWilling?: string;
+}
+
 export class Miam1Page extends RespondentResponseEventPage {
   private readonly pageUtils: PageUtils = new PageUtils(this.page);
 

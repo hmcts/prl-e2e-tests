@@ -32,7 +32,7 @@ export class SendAndReplyToMessages2Page extends EventPage {
     .locator(Selectors.Span)
     .getByText("Select a legal adviser", {
       exact: true,
-  });
+    });
   readonly otherFormLabel = this.page
     .getByText("Other", { exact: true })
     .first();
