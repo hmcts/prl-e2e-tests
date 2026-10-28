@@ -39,7 +39,9 @@ interface SendToGatekeeperParams {
   /** If the case should be sent to a specific gatekeeper user */
   isSpecificGatekeeper: boolean;
   /** If should the event should be sent to a judge. If false then send to a legal adviser */
-  isJudge?: boolean;
+  isSpecificJudge?: boolean;
+  isAnyJudge?: boolean;
+  isAnyLegalAdviser?: boolean;
 }
 
 /**
@@ -345,50 +347,59 @@ export class ManageCaseEventUtils {
     caseType: solicitorCaseCreateType,
     sendToGatekeeperParams: SendToGatekeeperParams = {
       isSpecificGatekeeper: false,
-      isJudge: false,
+      isSpecificJudge: true,
+      isAnyJudge: false,
+      isAnyLegalAdviser: false,
     },
   ): Promise<void> {
     let eventData;
     if (sendToGatekeeperParams.isSpecificGatekeeper) {
-      if (sendToGatekeeperParams.isJudge) {
-        const judgeUserDetails =
-          await this.commonCaseEventsUtils.getUserDetails(
-            process.env.JUDGE_USERNAME,
-          );
+      const userDetails = await this.commonCaseEventsUtils.getUserDetails(
+        sendToGatekeeperParams.isSpecificJudge
+          ? process.env.JUDGE_USERNAME
+          : process.env.LEGALADVISOR_USERNAME,
+      );
 
-        eventData = {
-          data: {
-            isJudgeOrLegalAdviserGatekeeping: "judge",
-            isSpecificGateKeeperNeeded: "Yes",
-            judgeName: {
-              idamId: judgeUserDetails.id as string,
-              personalCode: "4923961", // this is the same for the static judge across AAT and DEMO
-            },
-          },
-        };
-      } else {
-        // TODO: fix - for some reason the legal adviser request succeeds but the role doesn't get added correctly
-        const laUserDetails = await this.commonCaseEventsUtils.getUserDetails(
-          process.env.LEGALADVISOR_USERNAME,
-        );
-
-        eventData = {
-          data: {
-            isJudgeOrLegalAdviserGatekeeping: "legalAdviser",
-            isSpecificGateKeeperNeeded: "Yes",
-            legalAdviserList: {
-              value: {
-                code: `${laUserDetails.surname}(${laUserDetails.email})`,
-                label: `${laUserDetails.surname}(${laUserDetails.email})`,
+      eventData = sendToGatekeeperParams.isSpecificJudge
+        ? {
+            data: {
+              whoToSendTheCaseToForGatekeeping: "SEND_TO_A_SPECIFIC_JUDGE",
+              judgeName: {
+                idamId: userDetails.id as string,
+                personalCode: "4923961",
               },
             },
-          },
-        };
-      }
+          }
+        : {
+            data: {
+              whoToSendTheCaseToForGatekeeping:
+                "SEND_TO_A_SPECIFIC_LEGAL_ADVISER",
+              legalAdviser: {
+                idamId: userDetails.id as string,
+              },
+            },
+          };
     } else {
+      const judgeOrLegalAdviserForGatekeeping = [
+        ...(sendToGatekeeperParams.isAnyJudge ? ["SEND_TO_A_JUDGE"] : []),
+        ...(sendToGatekeeperParams.isAnyLegalAdviser
+          ? ["SEND_TO_A_LEGAL_ADVISER"]
+          : []),
+      ];
+
+      // if neither option is provided, send to both.
+      if (judgeOrLegalAdviserForGatekeeping.length === 0) {
+        judgeOrLegalAdviserForGatekeeping.push(
+          "SEND_TO_A_JUDGE",
+          "SEND_TO_A_LEGAL_ADVISER",
+        );
+      }
+
       eventData = {
         data: {
-          isSpecificGateKeeperNeeded: "No",
+          whoToSendTheCaseToForGatekeeping:
+            "SEND_TO_ANY_JUDGE_OR_LEGAL_ADVISER",
+          judgeOrLegalAdviserForGatekeeping,
         },
       };
     }

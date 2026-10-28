@@ -29,7 +29,6 @@ caseTypes.forEach((caseType) => {
         }
         await manageCasesEventUtils.sendToGatekeeper(caseRef, caseType, {
           isSpecificGatekeeper: true,
-          isJudge: true,
         });
         await navigationUtils.goToCase(
           judge.page,
