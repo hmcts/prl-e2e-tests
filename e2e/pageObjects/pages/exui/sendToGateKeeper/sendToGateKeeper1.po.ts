@@ -6,6 +6,7 @@ export interface SendToGateKeeperParams {
   specificJudgeOrLegalAdviser?: string;
   anyJudgeOrLegalAdviser?: string;
   judgeName?: string;
+  judgeEmail?: string;
   legalAdviserName?: string;
   legalAdviserEmail?: string;
 }
@@ -74,8 +75,8 @@ export class SendToGateKeeper1Page extends EventPage {
           .getByRole("combobox", { name: "Name of the judge" })
           .fill(params.judgeName);
         // Wait for the judge option in the dropdown to become visible using dynamic content
-        const judgeNameDropdownOption = this.page.locator(".mat-option-text", {
-          hasText: params.judgeName,
+        const judgeNameDropdownOption = this.page.locator("mat-option", {
+          hasText: `${params.judgeName} (${params.judgeEmail})`,
         });
         await expect(judgeNameDropdownOption).toBeVisible();
         // Click the option containing the judge name (dynamic value)
@@ -86,12 +87,9 @@ export class SendToGateKeeper1Page extends EventPage {
           .getByRole("combobox", { name: "Name of legal adviser" })
           .fill(params.legalAdviserName);
         // Wait for the legal adviser option in the dropdown to become visible using dynamic content
-        const legalAdviserNameDropdownOption = this.page.locator(
-          ".mat-option-text",
-          {
-            hasText: `${params.legalAdviserName} (${params.legalAdviserEmail})`, // include email to differentiate from other users with names containing the same string
-          },
-        );
+        const legalAdviserNameDropdownOption = this.page.locator("mat-option", {
+          hasText: `${params.legalAdviserName} (${params.legalAdviserEmail})`, // include email to differentiate from other users with names containing the same string
+        });
         await expect(legalAdviserNameDropdownOption).toBeVisible();
         // Click the option containing the legal adviser name (dynamic value)
         await legalAdviserNameDropdownOption.click();
