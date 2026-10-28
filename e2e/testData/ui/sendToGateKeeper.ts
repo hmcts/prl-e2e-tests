@@ -11,14 +11,30 @@ export const SendToGateKeeperCourtAdminScenarios: SendToGateKeeperJourneyParams[
     {
       sendToGateKeeperParams: {
         sendToSpecificGateKeeper: false,
+        anyJudgeOrLegalAdviser: "Send to a judge",
       },
       snapshotPath: ["caseProgression", "sendToGateKeeper"],
-      snapshotName: "send-to-no-specific-gatekeeper",
+      snapshotName: "send-to-any-judge",
+    },
+    {
+      sendToGateKeeperParams: {
+        sendToSpecificGateKeeper: false,
+        anyJudgeOrLegalAdviser: "Send to a legal adviser",
+      },
+      snapshotPath: ["caseProgression", "sendToGateKeeper"],
+      snapshotName: "send-to-any-legal-adviser",
+    },
+    {
+      sendToGateKeeperParams: {
+        sendToSpecificGateKeeper: false,
+      },
+      snapshotPath: ["caseProgression", "sendToGateKeeper"],
+      snapshotName: "send-to-both-judge-and-legal-adviser",
     },
     {
       sendToGateKeeperParams: {
         sendToSpecificGateKeeper: true,
-        judgeOrLegalAdviser: "Judge",
+        specificJudgeOrLegalAdviser: "Send to a specific judge",
         judgeName: "Ms Elizabeth Williams",
         judgeEmail: process.env.JUDGE_USERNAME,
       },
@@ -28,7 +44,7 @@ export const SendToGateKeeperCourtAdminScenarios: SendToGateKeeperJourneyParams[
     {
       sendToGateKeeperParams: {
         sendToSpecificGateKeeper: true,
-        judgeOrLegalAdviser: "Legal adviser",
+        specificJudgeOrLegalAdviser: "Send to a specific legal adviser",
         legalAdviserName:
           process.env.MANAGE_CASES_TEST_ENV === "demo"
             ? "Prl legal advisor"
