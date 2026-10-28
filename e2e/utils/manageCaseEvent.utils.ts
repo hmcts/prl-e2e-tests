@@ -345,9 +345,9 @@ export class ManageCaseEventUtils {
   async sendToGatekeeper(
     caseRef: string,
     caseType: solicitorCaseCreateType,
-    sendToGatekeeperParams: SendToGatekeeperParams = {
+    sendToGatekeeperParams: Partial<SendToGatekeeperParams> = {
       isSpecificGatekeeper: false,
-      isSpecificJudge: true,
+      isSpecificJudge: false,
       isAnyJudge: false,
       isAnyLegalAdviser: false,
     },
