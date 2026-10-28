@@ -70,10 +70,7 @@ test.describe("C100 respondent response (C7) - Attending the court as the respon
     await attendingTheCourt1.fillInFields(ATTENDING_THE_COURT);
     await attendingTheCourt1.clickContinue();
 
-    await attendingTheCourt2.assertPageContents(
-      snapshotPath,
-      "c100-respondent-attending-the-court-domestic-abuse-act",
-    );
+    await attendingTheCourt2.assertPageContents();
     await attendingTheCourt2.verifyAccessibility();
     await attendingTheCourt2.clickContinue();
 
