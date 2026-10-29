@@ -4,22 +4,7 @@ export const ChildArrangementsEditAReturnedOrderScenarios: ChildArrangementsEdit
     [
         {
             orderType: "Parental responsibility order (C45A)",
-            existingRepresentative: [
-                "John Doe (Applicant), PRL NOC Respondent Solicitor 1, Private law NOC solution",
-            ],
-            existingRepresentativeRemoval: [
-                "John Doe (Applicant), PRL NOC Respondent Solicitor 1, BarristerOneFN BarristerOneLN",
-            ],
-            addBarristerSnapshotName: "c100-add-barrister",
-            removeBarristerSnapshotName: "c100-remove-barrister",
-            nocParty: { firstname: "John", surname: "Doe" },
-            barrister: {
-              firstnames: "BarristerOneFN",
-                lastname: "BarristerOneLN",
-                email: "hmcts.privatelaw+org2bar2@gmail.com",
-                org: "PRL Barrister Org2",
-        },
-        editReturnedOrder3Params: {
+            editReturnedOrder3Params: {
             isOrderByConsent: false,
             wasOrderApprovedAtAHearing: true,
             hearing: "No hearings available", // No hearings available is a valid hearing
@@ -38,11 +23,6 @@ export const ChildArrangementsEditAReturnedOrderScenarios: ChildArrangementsEdit
             ],
             recitalsAndPreamble: undefined,
             directions: undefined,
-      },
-          editReturnedOrder12PageParams: {
-        hasJudgeProvidedHearingDetails: false,
-              hearingDetails: undefined,
-        orderJourneyType: undefined,
       },
       snapshotName: "child-arrangements-edit-a-returned-order",
       snapshotsPath: ["caseProgression", "orders", "editAReturnedOrder"],

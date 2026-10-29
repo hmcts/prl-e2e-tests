@@ -19,7 +19,7 @@ export class EditReturnedOrder13Page extends EventPage {
     private englishPdfLink: string;
 
     constructor(page: Page) {
-        super(page, "Create/upload draft order");
+        super(page, "Edit a returned order");
     }
 
     async assertPageContents(

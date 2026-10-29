@@ -3,12 +3,12 @@ import { expect, Locator, Page } from "@playwright/test";
 import { Selectors } from "../../../../common/selectors.ts";
 
 export class EditReturnedOrder2Page extends EventPage {
-    private readonly h2: Locator = this.page.locator(Selectors.h2, {
+    private readonly h2: Locator = this.page.locator(Selectors.headingH2, {
         hasText:
             "Instructions from the judge"
     },
     );
-    private readonly h3: Locator = this.page.locator(Selectors.h3, {
+    private readonly h3: Locator = this.page.locator(Selectors.headingH3, {
         hasText:
             "Edit the order"
     },

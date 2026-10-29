@@ -10,6 +10,7 @@ import Config from "../utils/config.utils.ts";
 import { LegalAdvisorPagesGroup } from "../pageObjects/roleBasedGroupedPages/legalAdvisorPages.ts";
 import { LocalAuthorityPagesGroup } from "../pageObjects/roleBasedGroupedPages/localAuthorityPages.ts";
 import { SuperUserPagesGroup } from "../pageObjects/roleBasedGroupedPages/superUserPages.ts";
+import { BarristerPagesGroup } from "../pageObjects/roleBasedGroupedPages/barristerPages.ts";
 
 type MyFixtures = UtilsFixtures & {
   nocSolicitor: NocSolicitorPagesGroup;
@@ -21,6 +22,7 @@ type MyFixtures = UtilsFixtures & {
   legalAdvisor: LegalAdvisorPagesGroup;
   localAuthority: LocalAuthorityPagesGroup;
   superUser: SuperUserPagesGroup;
+  barrister: BarristerPagesGroup;
 };
 
 export const test = base.extend<MyFixtures>({
@@ -107,6 +109,16 @@ export const test = base.extend<MyFixtures>({
     await use(new SuperUserPagesGroup(page));
     await context.close();
   },
+
+  barrister: async ({ browser }, use) => {
+    const context = await browser.newContext({
+      storageState: Config.sessionStoragePath + "barrister.json",
+    });
+    const page = await context.newPage();
+    await use(new BarristerPagesGroup(page));
+    await context.close();
+  },
+
 });
 
 export { expect } from "@playwright/test";

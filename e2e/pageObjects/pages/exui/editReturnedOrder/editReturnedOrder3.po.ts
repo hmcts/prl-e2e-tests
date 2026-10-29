@@ -56,7 +56,7 @@ export class EditReturnedOrder3Page extends EventPage {
   private readonly justicesLegalAdviserFullNameLabel: Locator =
     this.page.getByText("Full name of Justices' Legal Adviser (Optional)");
   private readonly dateOrderMadeLabel: Locator = this.page.getByText(
-    "Date order made (Optional)",
+    "Date order made",
   );
   private readonly dayMonthYearLabels: string[] = ["Day", "Month", "Year"];
   private readonly orderAboutChildrenLabel: Locator = this.page.getByText(
@@ -78,7 +78,7 @@ export class EditReturnedOrder3Page extends EventPage {
   private readonly pageUtils: PageUtils = new PageUtils(this.page);
 
   constructor(page: Page) {
-    super(page, "Create/upload draft order");
+    super(page, "Edit a returned order");
   }
 
   async assertPageContents(
@@ -86,7 +86,7 @@ export class EditReturnedOrder3Page extends EventPage {
     orderType: OrderTypes,
   ): Promise<void> {
     await this.assertPageHeadings();
-    await expect(this.page.getByText(orderType)).toBeVisible();
+    await expect(this.page.getByText(orderType).first()).toBeVisible();
     await expect(this.consentLabel).toBeVisible();
     await this.pageUtils.assertStrings(
       this.yesAndNoLabels,
