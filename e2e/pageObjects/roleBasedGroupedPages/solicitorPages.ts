@@ -200,13 +200,13 @@ export class SolicitorPagesGroup {
 
   get editAReturnedOrderEvent() {
     return {
-        editReturnedOrder1Page: new EditReturnedOrder1Page(this.page),
-        editReturnedOrder2Page: new EditReturnedOrder2Page(this.page),
-        editReturnedOrder3Page: new EditReturnedOrder3Page(this.page),
-        editReturnedOrder7Page: new EditReturnedOrder7Page(this.page),
-        editReturnedOrder13Page: new EditReturnedOrder13Page(this.page),
-        editReturnedOrderSubmitPage: new EditReturnedOrderSubmitPage(this.page),
-        editReturnedOrderConfirmPage: new EditReturnedOrderConfirmPage(this.page),
+      editReturnedOrder1Page: new EditReturnedOrder1Page(this.page),
+      editReturnedOrder2Page: new EditReturnedOrder2Page(this.page),
+      editReturnedOrder3Page: new EditReturnedOrder3Page(this.page),
+      editReturnedOrder7Page: new EditReturnedOrder7Page(this.page),
+      editReturnedOrder13Page: new EditReturnedOrder13Page(this.page),
+      editReturnedOrderSubmitPage: new EditReturnedOrderSubmitPage(this.page),
+      editReturnedOrderConfirmPage: new EditReturnedOrderConfirmPage(this.page),
     };
-}
+  }
 }

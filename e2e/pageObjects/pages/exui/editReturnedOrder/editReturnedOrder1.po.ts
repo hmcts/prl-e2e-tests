@@ -2,10 +2,10 @@ import { EventPage } from "../eventPage.po.js";
 import { expect, Locator, Page } from "@playwright/test";
 
 export class EditReturnedOrder1Page extends EventPage {
-  private readonly formLabel: Locator = this.page.getByText(
-    "Select the order",
+  private readonly formLabel: Locator = this.page.getByText("Select the order");
+  private readonly orderDropdownList: Locator = this.page.locator(
+    "#rejectedOrdersDynamicList",
   );
-    private readonly orderDropdownList: Locator = this.page.locator("#rejectedOrdersDynamicList");
 
   constructor(page: Page) {
     super(page, "Edit a returned order");
@@ -20,6 +20,8 @@ export class EditReturnedOrder1Page extends EventPage {
   }
 
   async selectOrder(): Promise<void> {
-      await this.page.locator("#rejectedOrdersDynamicList").selectOption({ index: 1});
+    await this.page
+      .locator("#rejectedOrdersDynamicList")
+      .selectOption({ index: 1 });
   }
 }

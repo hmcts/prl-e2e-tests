@@ -3,9 +3,12 @@ import { expect, Locator, Page } from "@playwright/test";
 import { OrderTypes } from "../../../../common/types.ts";
 
 export class EditReturnedOrder7Page extends EventPage {
-  private readonly fullNameParentText: Locator =
-    this.page.getByText("Full name").first();
-  private readonly parentNameField: Locator = this.page.getByRole("textbox", { name: "Full name" }).first();
+  private readonly fullNameParentText: Locator = this.page
+    .getByText("Full name")
+    .first();
+  private readonly parentNameField: Locator = this.page
+    .getByRole("textbox", { name: "Full name" })
+    .first();
 
   constructor(page: Page) {
     super(page, "Edit a returned order");

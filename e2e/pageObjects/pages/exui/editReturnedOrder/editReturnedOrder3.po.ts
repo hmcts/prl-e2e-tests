@@ -55,9 +55,8 @@ export class EditReturnedOrder3Page extends EventPage {
   );
   private readonly justicesLegalAdviserFullNameLabel: Locator =
     this.page.getByText("Full name of Justices' Legal Adviser (Optional)");
-  private readonly dateOrderMadeLabel: Locator = this.page.getByText(
-    "Date order made",
-  );
+  private readonly dateOrderMadeLabel: Locator =
+    this.page.getByText("Date order made");
   private readonly dayMonthYearLabels: string[] = ["Day", "Month", "Year"];
   private readonly orderAboutChildrenLabel: Locator = this.page.getByText(
     "Is the order about the children?",
