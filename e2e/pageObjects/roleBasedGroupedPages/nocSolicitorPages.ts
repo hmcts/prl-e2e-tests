@@ -8,6 +8,9 @@ import { EditContactDetailsSubmitPage } from "../pages/exui/respondentResponse/e
 import { AttendingTheCourt1Page } from "../pages/exui/respondentResponse/attendingTheCourt/attendingTheCourt1.po.ts";
 import { AttendingTheCourt2Page } from "../pages/exui/respondentResponse/attendingTheCourt/attendingTheCourt2.po.ts";
 import { AttendingTheCourtSubmitPage } from "../pages/exui/respondentResponse/attendingTheCourt/attendingTheCourtSubmit.po.ts";
+import { Miam1Page } from "../pages/exui/respondentResponse/miam/miam1.po.ts";
+import { Miam2Page } from "../pages/exui/respondentResponse/miam/miam2.po.ts";
+import { MiamSubmitPage } from "../pages/exui/respondentResponse/miam/miamSubmit.po.ts";
 import { SummaryPage } from "../pages/exui/caseView/summary.po.ts";
 import { NoticeOfChange1Page } from "../pages/exui/noticeOfChange/noticeOfChange1.po.ts";
 import { NoticeOfChange2Page } from "../pages/exui/noticeOfChange/noticeOfChange2.po.ts";
@@ -74,6 +77,9 @@ export class NocSolicitorPagesGroup {
       attendingTheCourt1: new AttendingTheCourt1Page(this.page),
       attendingTheCourt2: new AttendingTheCourt2Page(this.page),
       attendingTheCourtSubmit: new AttendingTheCourtSubmitPage(this.page),
+      miam1: new Miam1Page(this.page),
+      miam2: new Miam2Page(this.page),
+      miamSubmit: new MiamSubmitPage(this.page),
     };
   }
 }
