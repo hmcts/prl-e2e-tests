@@ -36,6 +36,7 @@ export const SendToGateKeeperCourtAdminScenarios: SendToGateKeeperJourneyParams[
         sendToSpecificGateKeeper: true,
         specificJudgeOrLegalAdviser: "Send to a specific judge",
         judgeName: "Ms Elizabeth Williams",
+        judgeEmail: process.env.JUDGE_USERNAME,
       },
       snapshotPath: ["caseProgression", "sendToGateKeeper"],
       snapshotName: "send-to-judiciary-gatekeeper",
