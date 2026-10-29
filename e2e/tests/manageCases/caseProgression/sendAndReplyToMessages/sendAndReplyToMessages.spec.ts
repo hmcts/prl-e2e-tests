@@ -31,6 +31,7 @@ test.describe("C100 Send & Reply to messages scenarios", () => {
     const {
       isJudge,
       judgeOrLegalAdviserName,
+      judgeOrLegalAdviserEmail,
       respondToMessage,
       snapshotPath,
       sendSnapshotName,
@@ -48,6 +49,7 @@ test.describe("C100 Send & Reply to messages scenarios", () => {
         caseRef,
         isJudge,
         judgeOrLegalAdviserName,
+        judgeOrLegalAdviserEmail,
         snapshotPath,
         sendSnapshotName,
       );
@@ -95,6 +97,7 @@ test.describe("FL401 Send & Reply to messages scenarios", () => {
     const {
       isJudge,
       judgeOrLegalAdviserName,
+      judgeOrLegalAdviserEmail,
       respondToMessage,
       snapshotPath,
       sendSnapshotName,
@@ -112,6 +115,7 @@ test.describe("FL401 Send & Reply to messages scenarios", () => {
         caseRef,
         isJudge,
         judgeOrLegalAdviserName,
+        judgeOrLegalAdviserEmail,
         snapshotPath,
         sendSnapshotName,
       );
@@ -145,6 +149,7 @@ async function sendMessageToJudgeOrLegalAdvisorJourney(
   caseNumber: string,
   isJudge: boolean,
   judgeOrLegalAdviserName: string,
+  judgeOrLegalAdviserEmail: string,
   snapshotPath: string[],
   sendSnapshotName: string,
 ) {
@@ -162,6 +167,7 @@ async function sendMessageToJudgeOrLegalAdvisorJourney(
   await sendAndReplyToMessages.sendAndReplyToMessages2page.selectJudgeOrLegalAdviser(
     isJudge,
     judgeOrLegalAdviserName,
+    judgeOrLegalAdviserEmail,
   );
   await sendAndReplyToMessages.sendAndReplyToMessages2page.clickContinue();
 
