@@ -67,10 +67,9 @@ export class AllocatedJudge1Page extends EventPage {
   readonly judgeNameInput: Locator = this.page.locator("#judgeNameAndEmail");
   readonly legalAdviserDropdown: Locator =
     this.page.locator("#legalAdviserList");
-  readonly judgeNameDropdownOption: Locator = this.page.locator(
-    "mat-option",
-    { hasText: "Ms Elizabeth Williams" },
-  );
+  readonly judgeNameDropdownOption: Locator = this.page.locator("mat-option", {
+    hasText: "Ms Elizabeth Williams",
+  });
   readonly magistratesJudgeRadio: Locator = this.page.locator(
     "#tierOfJudiciary-magistrates",
   );

@@ -28,6 +28,7 @@ const UserRoles = {
   caseManager: "caseManager",
   nocSolicitor: "nocSolicitor",
   legalAdvisor: "legalAdvisor",
+  barrister: "barrister",
   localAuthority: "localAuthority",
   superuser: "superuser",
 } as const;
@@ -64,7 +65,8 @@ export type c100SolicitorEvents =
   | "Delete application"
   | "Add barrister"
   | "Remove barrister"
-  | "Withdraw application";
+  | "Withdraw application"
+  | "Edit a returned order";
 
 export type fl401SolicitorEvents =
   | "Case name"
@@ -84,7 +86,8 @@ export type fl401SolicitorEvents =
   | "Statement of Truth and submit"
   | "Delete application"
   | "Add barrister"
-  | "Remove barrister";
+  | "Remove barrister"
+  | "Edit a returned order";
 
 export type WACaseWorkerActions =
   | "Allocated judge"
