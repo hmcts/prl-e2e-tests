@@ -3,7 +3,7 @@ import {
   AllegationsOfHarmEventPage,
   RespondentNamePrefix,
 } from "./allegationsOfHarmEventPage.po.js";
-import { AbuseType, SoughtHelp } from "./abuseTypes.js";
+import { AbuseType, SoughtHelp } from "../../../../../common/types.js";
 
 export interface DomesticAbuseBehaviour extends SoughtHelp {
   typeOfAbuse: AbuseType;

@@ -3,7 +3,7 @@ import {
   AllegationsOfHarmEventPage,
   RespondentNamePrefix,
 } from "./allegationsOfHarmEventPage.po.js";
-import { AbuseType } from "./abuseTypes.js";
+import { AbuseType } from "../../../../../common/types.js";
 
 export class ChildAbuseBehavioursPage extends AllegationsOfHarmEventPage {
   private readonly labels: string[] = [

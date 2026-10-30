@@ -1,10 +1,13 @@
 import { test } from "../../../fixtures.ts";
-import { RespondentTask, TaskStatus } from "../../../../common/types.ts";
+import {
+  AbuseType,
+  RespondentTask,
+  TaskStatus,
+} from "../../../../common/types.ts";
 import {
   NocClientName,
   NoticeOfChangeJourney,
 } from "../../../../journeys/manageCases/caseProgression/noticeOfChange/noticeOfChangeJourney.ts";
-import { AbuseType } from "../../../../pageObjects/pages/exui/respondentResponse/allegationsOfHarm/abuseTypes.ts";
 import { PassportHolder } from "../../../../pageObjects/pages/exui/respondentResponse/allegationsOfHarm/childAbduction.po.ts";
 import { AllegationsOfHarmParams } from "../../../../pageObjects/pages/exui/respondentResponse/allegationsOfHarm/allegationsOfHarm1.po.ts";
 
