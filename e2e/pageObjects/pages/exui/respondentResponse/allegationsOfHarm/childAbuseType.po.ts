@@ -95,26 +95,29 @@ export class ChildAbuseTypePage extends AllegationsOfHarmEventPage {
 
   async fillInFields(details: ChildAbuseDetails): Promise<void> {
     const children: string[] = details.childrenAtRisk ?? [];
-    await this.allChildrenAtRisk
-      .getByRole("radio", {
+    await this.checkUntilChecked(
+      this.allChildrenAtRisk.getByRole("radio", {
         name: children.length ? "No" : "Yes",
         exact: true,
-      })
-      .check();
+      }),
+    );
     // the children list is dynamic (ids are child UUIDs), so children are ticked by name
     for (const child of children) {
-      await this.whichChildrenAtRisk
-        .getByRole("checkbox", { name: child, exact: true })
-        .check();
+      await this.checkUntilChecked(
+        this.whichChildrenAtRisk.getByRole("checkbox", {
+          name: child,
+          exact: true,
+        }),
+      );
     }
     await this.description.fill(details.description);
     await this.startAndDuration.fill(details.startAndDuration);
-    await this.soughtHelp
-      .getByRole("radio", {
+    await this.checkUntilChecked(
+      this.soughtHelp.getByRole("radio", {
         name: details.soughtHelp ? "Yes" : "No",
         exact: true,
-      })
-      .check();
+      }),
+    );
     if (details.soughtHelp && details.whoFrom) {
       await this.whoFrom.fill(details.whoFrom);
     }

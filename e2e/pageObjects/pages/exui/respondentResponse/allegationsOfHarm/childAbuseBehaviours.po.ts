@@ -43,9 +43,9 @@ export class ChildAbuseBehavioursPage extends AllegationsOfHarmEventPage {
   /** Ticks each type of abuse; each one adds its own details page (A5-A9). */
   async fillInFields(types: AbuseType[]): Promise<void> {
     for (const type of types) {
-      await this.typesOfAbuse
-        .getByRole("checkbox", { name: type, exact: true })
-        .check();
+      await this.checkUntilChecked(
+        this.typesOfAbuse.getByRole("checkbox", { name: type, exact: true }),
+      );
     }
   }
 }

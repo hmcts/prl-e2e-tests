@@ -121,9 +121,12 @@ export class ChildAbductionPage extends AllegationsOfHarmEventPage {
     if (passports) {
       await this.check(this.multiplePassports, passports.hasMoreThanOne);
       for (const holder of passports.heldBy) {
-        await this.passportHolders
-          .getByRole("checkbox", { name: holder, exact: true })
-          .check();
+        await this.checkUntilChecked(
+          this.passportHolders.getByRole("checkbox", {
+            name: holder,
+            exact: true,
+          }),
+        );
       }
       if (passports.heldBy.includes(PassportHolder.other)) {
         await this.otherHolder.fill(passports.otherHolder ?? "");
@@ -132,8 +135,8 @@ export class ChildAbductionPage extends AllegationsOfHarmEventPage {
   }
 
   private async check(question: Locator, yes: boolean): Promise<void> {
-    await question
-      .getByRole("radio", { name: yes ? "Yes" : "No", exact: true })
-      .check();
+    await this.checkUntilChecked(
+      question.getByRole("radio", { name: yes ? "Yes" : "No", exact: true }),
+    );
   }
 }

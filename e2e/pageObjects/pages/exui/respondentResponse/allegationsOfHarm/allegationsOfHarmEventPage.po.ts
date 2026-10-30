@@ -48,9 +48,23 @@ export abstract class AllegationsOfHarmEventPage extends RespondentResponseEvent
   }
 
   protected async answerYesNo(legend: string, yes: boolean): Promise<void> {
-    await this.question(legend)
-      .getByRole("radio", { name: yes ? "Yes" : "No", exact: true })
-      .check();
+    await this.checkUntilChecked(
+      this.question(legend).getByRole("radio", {
+        name: yes ? "Yes" : "No",
+        exact: true,
+      }),
+    );
+  }
+
+  /**
+   * Checks a radio or checkbox. CCD redraws the form after some answers (dates in particular),
+   * which can swallow a click made at that moment, so keep checking until it sticks.
+   */
+  protected async checkUntilChecked(option: Locator): Promise<void> {
+    await expect(async () => {
+      await option.check({ timeout: 5_000 });
+      await expect(option).toBeChecked({ timeout: 1_000 });
+    }).toPass({ timeout: 30_000 });
   }
 
   /** CCD date inputs share the field id: <fieldId>-day / -month / -year. */

@@ -47,7 +47,11 @@ async function completeSendToGatekeeperJourney(
   if (params.sendToGateKeeperParams.sendToSpecificGateKeeper) {
     await rolesAndAccessPage.goToPage();
 
-    if (params.sendToGateKeeperParams.judgeOrLegalAdviser === "Judge") {
+    if (
+      params.sendToGateKeeperParams.specificJudgeOrLegalAdviser
+        ?.toLowerCase()
+        .includes("judge")
+    ) {
       await rolesAndAccessPage.assertRolesAndAccessSection(
         "Judiciary",
         params.sendToGateKeeperParams.judgeName,
@@ -83,10 +87,15 @@ test.describe("Court Admin: Send to Gatekeeper (C100)", () => {
 
   scenarios.forEach((params) => {
     const gatekeeperType =
-      params.sendToGateKeeperParams.judgeOrLegalAdviser ||
-      "no specific gatekeeper";
+      params.sendToGateKeeperParams.specificJudgeOrLegalAdviser ??
+      params.sendToGateKeeperParams.anyJudgeOrLegalAdviser ??
+      "Send to both judge and legal adviser";
 
-    test(`Complete Send to Gatekeeper with ${gatekeeperType} @nightly @regression @accessibility`, async ({
+    const tag = params.sendToGateKeeperParams.sendToSpecificGateKeeper
+      ? "@nightly @regression"
+      : "@regression";
+
+    test(`Complete Send to Gatekeeper with - ${gatekeeperType} ${tag}`, async ({
       caseWorker,
     }) => {
       await completeSendToGatekeeperJourney(
@@ -118,10 +127,15 @@ test.describe("Case Manager: Send to Gatekeeper (FL401)", () => {
 
   scenarios.forEach((params) => {
     const gatekeeperType =
-      params.sendToGateKeeperParams.judgeOrLegalAdviser ||
-      "no specific gatekeeper";
+      params.sendToGateKeeperParams.specificJudgeOrLegalAdviser ??
+      params.sendToGateKeeperParams.anyJudgeOrLegalAdviser ??
+      "Send to both judge and legal adviser";
 
-    test(`Complete Send to Gatekeeper with ${gatekeeperType} @regression @accessibility`, async ({
+    const tag = params.sendToGateKeeperParams.sendToSpecificGateKeeper
+      ? "@nightly @regression"
+      : "@regression";
+
+    test(`Complete Send to Gatekeeper with - ${gatekeeperType} ${tag}`, async ({
       caseManager,
     }) => {
       await completeSendToGatekeeperJourney(

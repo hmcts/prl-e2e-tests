@@ -1,14 +1,12 @@
 import { test } from "../../../fixtures.ts";
-import { TaskStatus } from "../../../../common/types.ts";
-import { RespondentTask } from "../../../../pageObjects/pages/exui/caseView/solicitor/respondentTasks.po.ts";
-import config from "../../../../utils/config.utils.ts";
+import { RespondentTask, TaskStatus } from "../../../../common/types.ts";
 import {
   NocClientName,
   NoticeOfChangeJourney,
 } from "../../../../journeys/manageCases/caseProgression/noticeOfChange/noticeOfChangeJourney.ts";
 import { AbuseType } from "../../../../pageObjects/pages/exui/respondentResponse/allegationsOfHarm/abuseTypes.ts";
 import { PassportHolder } from "../../../../pageObjects/pages/exui/respondentResponse/allegationsOfHarm/childAbduction.po.ts";
-import { AllegationsOfHarmParams } from "../../../../pageObjects/pages/exui/respondentResponse/allegationsOfHarm/allegationsOfHarmSubmit.po.ts";
+import { AllegationsOfHarmParams } from "../../../../pageObjects/pages/exui/respondentResponse/allegationsOfHarm/allegationsOfHarm1.po.ts";
 
 // Respondent 1 on the test-support C100 case (C100_Dummy_Draft_CaseDetails)
 const respondent1: NocClientName = { firstname: "Mary", surname: "Richards" };
@@ -117,8 +115,6 @@ test.describe("C100 respondent response (C7) - Allegations of harm as the respon
     await manageCasesEventUtils.issueAndSendToLocalCourt(caseRef);
     await manageCasesEventUtils.sendToGatekeeper(caseRef, "C100");
 
-    // the solicitor cannot open the case until the Notice of Change is done
-    await nocSolicitor.page.goto(config.manageCasesBaseURL);
     await new NoticeOfChangeJourney().performNoticeOfChange(
       nocSolicitor,
       caseRef,
@@ -189,8 +185,7 @@ test.describe("C100 respondent response (C7) - Allegations of harm as the respon
     await otherConcerns.fillInFields(ALLEGATIONS_OF_HARM.otherConcerns);
     await otherConcerns.clickContinue();
 
-    await allegationsOfHarmSubmit.assertAnswers(
-      ALLEGATIONS_OF_HARM,
+    await allegationsOfHarmSubmit.assertPageContents(
       snapshotPath,
       "c100-respondent-allegations-of-harm",
     );

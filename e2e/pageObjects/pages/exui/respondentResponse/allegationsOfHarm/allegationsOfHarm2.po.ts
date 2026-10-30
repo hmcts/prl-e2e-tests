@@ -136,12 +136,15 @@ export class AllegationsOfHarm2Page extends AllegationsOfHarmEventPage {
     fieldId: string,
     details: AohOrderDetails,
   ): Promise<void> {
-    await this.fillDate(`${fieldId}DateIssued`, details.dateIssued);
-    await this.fillDate(`${fieldId}EndDate`, details.endDate);
-    await this.page
-      .locator(`#${fieldId}Current_${details.isCurrent ? "Yes" : "No"}`)
-      .check();
+    await this.checkUntilChecked(
+      this.page.locator(
+        `#${fieldId}Current_${details.isCurrent ? "Yes" : "No"}`,
+      ),
+    );
     await this.page.locator(`#${fieldId}CourtName`).fill(details.courtName);
     await this.page.locator(`#${fieldId}CaseNumber`).fill(details.caseNumber);
+    // dates last: CCD redraws the form after a date is entered (see checkUntilChecked)
+    await this.fillDate(`${fieldId}DateIssued`, details.dateIssued);
+    await this.fillDate(`${fieldId}EndDate`, details.endDate);
   }
 }

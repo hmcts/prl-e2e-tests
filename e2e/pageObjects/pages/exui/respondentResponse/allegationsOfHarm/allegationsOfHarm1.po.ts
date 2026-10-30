@@ -3,12 +3,25 @@ import {
   AllegationsOfHarmEventPage,
   RespondentNamePrefix,
 } from "./allegationsOfHarmEventPage.po.js";
+import { AllegationsOfHarm2Params } from "./allegationsOfHarm2.po.js";
+import { DomesticAbuseBehaviour } from "./domesticAbuseBehaviours.po.js";
+import { ChildAbuseDetails } from "./childAbuseType.po.js";
+import { ChildAbductionParams } from "./childAbduction.po.js";
+import { OtherConcernsParams } from "./otherConcerns.po.js";
+
+/** Everything entered in the "Allegations of harm" event, page by page. */
+export interface AllegationsOfHarmParams {
+  allegations: AllegationsOfHarm2Params;
+  domesticAbuseBehaviours: DomesticAbuseBehaviour[];
+  childAbuse: ChildAbuseDetails[];
+  childAbduction: ChildAbductionParams;
+  otherConcerns: OtherConcernsParams;
+}
 
 // Respondent solicitor C7 response - "Allegations of harm", first page (c100ResSolAllegationsOfHarmA1).
 export class AllegationsOfHarm1Page extends AllegationsOfHarmEventPage {
   private readonly labels: string[] = [
     "You can save and return to this page at any time. Questions marked with a * need to be completed before you can send your application.",
-    "If you fill out this section you do not need to send a separate C1A form.",
   ];
   private readonly allegationsOfHarmLegend: string =
     "*Are there allegations of harm?";

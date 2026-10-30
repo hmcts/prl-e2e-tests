@@ -32,7 +32,7 @@ export class SendAndReplyToMessages2Page extends EventPage {
     .locator(Selectors.Span)
     .getByText("Select a legal adviser", {
       exact: true,
-  });
+    });
   readonly otherFormLabel = this.page
     .getByText("Other", { exact: true })
     .first();
@@ -57,10 +57,6 @@ export class SendAndReplyToMessages2Page extends EventPage {
   readonly legalAdviserNameTextBox: Locator = this.page.locator(
     "#sendMessageObject_legalAdviser",
   );
-  readonly legalAdviserTypeAHeadOption: Locator = this.page.locator(
-    ".mat-option-text",
-    { hasText: "prl legaladvisor-swansea-two" },
-  );
   readonly submittedDocumentSelectionDropdown: Locator = this.page.locator(
     "#sendMessageObject_submittedDocumentsList",
   );
@@ -69,10 +65,6 @@ export class SendAndReplyToMessages2Page extends EventPage {
   );
   readonly messageSubjectInput: Locator = this.page.locator(
     "#sendMessageObject_messageSubject",
-  );
-  readonly judgeNameDropdownOption: Locator = this.page.locator(
-    ".mat-option-text",
-    { hasText: "Ms Elizabeth Williams" },
   );
 
   constructor(page: Page) {
@@ -93,14 +85,22 @@ export class SendAndReplyToMessages2Page extends EventPage {
   async selectJudgeOrLegalAdviser(
     isJudge: boolean,
     judgeOrLegalAdviserName: string,
+    judgeOrLegalAdviserEmail: string,
   ): Promise<void> {
     await this.internalMessageRadio.check();
     await this.pageUtils.assertStrings(this.internalMessagesFormLabels);
     await expect(this.otherFormLabel).toBeVisible();
     if (isJudge) {
-      await this.selectJudge("Circuit Judge", judgeOrLegalAdviserName);
+      await this.selectJudge(
+        "Circuit Judge",
+        judgeOrLegalAdviserName,
+        judgeOrLegalAdviserEmail,
+      );
     } else {
-      await this.selectLegalAdvisor(judgeOrLegalAdviserName);
+      await this.selectLegalAdvisor(
+        judgeOrLegalAdviserName,
+        judgeOrLegalAdviserEmail,
+      );
     }
     await this.urgentMessageNoRadio.check();
     await this.reviewSubmittedDocsRadio.check();
@@ -108,22 +108,40 @@ export class SendAndReplyToMessages2Page extends EventPage {
     await this.submittedDocumentSelectionDropdown.selectOption({ index: 1 });
   }
 
-  async selectJudge(judgeTier: string, judgeName: string): Promise<void> {
+  async selectJudge(
+    judgeTier: string,
+    judgeName: string,
+    judgeEmail: string,
+  ): Promise<void> {
     await this.judiciaryRecipientRadio.check();
     await this.pageUtils.assertStrings(this.judiciaryFormLabels);
     await this.judgeTierDropdown.selectOption(judgeTier);
     await this.judgeNameInput.fill(judgeName);
     // Wait for the judge option in the dropdown to become visible using dynamic content
-    await expect(this.judgeNameDropdownOption).toBeVisible();
+    const judgeNameDropdownOption: Locator = this.page.locator("mat-option", {
+      hasText: `${judgeName} (${judgeEmail})`,
+    });
+    await expect(judgeNameDropdownOption).toBeVisible();
     // Click the option containing the judge name (dynamic value)
-    await this.judgeNameDropdownOption.click();
+    await judgeNameDropdownOption.click();
   }
 
-  async selectLegalAdvisor(legalAdvisorName: string): Promise<void> {
+  async selectLegalAdvisor(
+    legalAdvisorName: string,
+    legalAdviserEmail: string,
+  ): Promise<void> {
     await this.legalAdvisorRecipientRadio.check();
     await expect(this.selectLegalAdvisorLabelCorrect).toBeVisible();
     await this.legalAdviserNameTextBox.fill(legalAdvisorName); // TypeAhead field
-    await expect(this.legalAdviserTypeAHeadOption).toBeVisible();
-    await this.legalAdviserTypeAHeadOption.click();
+    // Wait for the judge option in the dropdown to become visible using dynamic content
+    const legalAdviserNameDropdownOption: Locator = this.page.locator(
+      "mat-option",
+      {
+        hasText: `${legalAdvisorName} (${legalAdviserEmail})`,
+      },
+    );
+    await expect(legalAdviserNameDropdownOption).toBeVisible();
+    // Click the option containing the judge name (dynamic value)
+    await legalAdviserNameDropdownOption.click();
   }
 }

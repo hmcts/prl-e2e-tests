@@ -62,19 +62,20 @@ export class DomesticAbuseBehavioursPage extends AllegationsOfHarmEventPage {
     if (!(await description.isVisible())) await this.addNewButton.click();
     await expect(description).toBeVisible();
 
-    await this.page
-      .locator(`#${id}_respTypeOfAbuse`)
-      .getByRole("radio", { name: behaviour.typeOfAbuse, exact: true })
-      .check();
+    await this.checkUntilChecked(
+      this.page
+        .locator(`#${id}_respTypeOfAbuse`)
+        .getByRole("radio", { name: behaviour.typeOfAbuse, exact: true }),
+    );
     await description.fill(behaviour.description);
     await this.page
       .locator(`#${id}_respBehavioursStartDateAndLength`)
       .fill(behaviour.startAndDuration);
-    await this.page
-      .locator(
+    await this.checkUntilChecked(
+      this.page.locator(
         `#${id}_respBehavioursApplicantSoughtHelp_${behaviour.soughtHelp ? "Yes" : "No"}`,
-      )
-      .check();
+      ),
+    );
     if (behaviour.soughtHelp && behaviour.whoFrom) {
       await this.page
         .locator(`#${id}_respBehavioursApplicantHelpSoughtWho`)
