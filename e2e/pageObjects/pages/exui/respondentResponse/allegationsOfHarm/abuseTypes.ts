@@ -7,7 +7,6 @@ export enum AbuseType {
   financial = "Financial abuse",
 }
 
-/** Help the respondent sought for a behaviour; omit "who" when they did not seek help. */
 export interface SoughtHelp {
   soughtHelp: boolean;
   whoFrom?: string;

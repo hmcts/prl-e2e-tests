@@ -11,7 +11,6 @@ export interface DomesticAbuseBehaviour extends SoughtHelp {
   startAndDuration: string;
 }
 
-// Respondent solicitor C7 response - "Allegations of harm", Domestic abuse - Behaviours (c100ResSolAllegationsOfHarmA3).
 export class DomesticAbuseBehavioursPage extends AllegationsOfHarmEventPage {
   private readonly labels: string[] = [
     "Give a short description of what happened and any relevant information so the court can decide what needs to be done.",
@@ -43,14 +42,12 @@ export class DomesticAbuseBehavioursPage extends AllegationsOfHarmEventPage {
     await expect(this.continueButton).toBeVisible();
   }
 
-  /** Fills one collection item per behaviour, adding items as needed. */
   async fillInFields(behaviours: DomesticAbuseBehaviour[]): Promise<void> {
     for (const [index, behaviour] of behaviours.entries()) {
       await this.fillBehaviour(index, behaviour);
     }
   }
 
-  // collection items repeat the same labels, so each item's fields are found by its index in the CCD field id
   private async fillBehaviour(
     index: number,
     behaviour: DomesticAbuseBehaviour,

@@ -7,13 +7,11 @@ import { AbuseType, SoughtHelp } from "./abuseTypes.js";
 
 export interface ChildAbuseDetails extends SoughtHelp {
   type: AbuseType;
-  /** Children at risk by name; omit when all the children are at risk. */
   childrenAtRisk?: string[];
   description: string;
   startAndDuration: string;
 }
 
-// Each ticked type of child abuse has its own page; the name heading changes from A7 onwards.
 const CHILD_ABUSE_PAGES: Record<
   AbuseType,
   { pageId: string; namePrefix: RespondentNamePrefix }
@@ -40,7 +38,6 @@ const CHILD_ABUSE_PAGES: Record<
   },
 };
 
-// Respondent solicitor C7 response - "Allegations of harm", Child abuse - <type> (c100ResSolAllegationsOfHarmA5-A9).
 export class ChildAbuseTypePage extends AllegationsOfHarmEventPage {
   private readonly labels: string[] = [
     // "Give short description" (no "a") is the service's own wording on these pages

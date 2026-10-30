@@ -9,13 +9,11 @@ export interface AohDate {
   year: string;
 }
 
-/** The respondent name heading: pages A1-A6 say "Respondent name:", later pages "Active respondent name:". */
 export enum RespondentNamePrefix {
   respondent = "Respondent name:",
   activeRespondent = "Active respondent name:",
 }
 
-/** Shared helpers for the respondent solicitor C7 "Allegations of harm" pages (c100ResSolAllegationsOfHarmA*). */
 export abstract class AllegationsOfHarmEventPage extends RespondentResponseEventPage {
   protected readonly pageUtils: PageUtils = new PageUtils(this.page);
 
@@ -23,7 +21,6 @@ export abstract class AllegationsOfHarmEventPage extends RespondentResponseEvent
     super(page, "Allegations of harm");
   }
 
-  /** Asserts the URL, the event headings and the respondent name heading. */
   protected async assertCommonContents(
     pageId: string,
     respondentName: string,
@@ -42,7 +39,6 @@ export abstract class AllegationsOfHarmEventPage extends RespondentResponseEvent
     ).toBeVisible();
   }
 
-  /** A Yes/No question, found by its legend. */
   protected question(legend: string): Locator {
     return this.page.getByRole("group", { name: legend, exact: true });
   }
@@ -56,10 +52,6 @@ export abstract class AllegationsOfHarmEventPage extends RespondentResponseEvent
     );
   }
 
-  /**
-   * Checks a radio or checkbox. CCD redraws the form after some answers (dates in particular),
-   * which can swallow a click made at that moment, so keep checking until it sticks.
-   */
   protected async checkUntilChecked(option: Locator): Promise<void> {
     await expect(async () => {
       await option.check({ timeout: 5_000 });
@@ -67,7 +59,6 @@ export abstract class AllegationsOfHarmEventPage extends RespondentResponseEvent
     }).toPass({ timeout: 30_000 });
   }
 
-  /** CCD date inputs share the field id: <fieldId>-day / -month / -year. */
   protected async fillDate(fieldId: string, date: AohDate): Promise<void> {
     await this.page.locator(`#${fieldId}-day`).fill(date.day);
     await this.page.locator(`#${fieldId}-month`).fill(date.month);

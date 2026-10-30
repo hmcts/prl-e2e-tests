@@ -11,7 +11,6 @@ export interface OtherConcernsParams {
   agreeOtherContact: boolean;
 }
 
-// Respondent solicitor C7 response - "Allegations of harm", Other concerns and Child contact (c100ResSolAllegationsOfHarmA11).
 export class OtherConcernsPage extends AllegationsOfHarmEventPage {
   private readonly otherConcernsHeading: Locator = this.page.getByRole(
     "heading",

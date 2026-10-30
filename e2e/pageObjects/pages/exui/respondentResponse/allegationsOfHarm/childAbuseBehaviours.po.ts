@@ -5,7 +5,6 @@ import {
 } from "./allegationsOfHarmEventPage.po.js";
 import { AbuseType } from "./abuseTypes.js";
 
-// Respondent solicitor C7 response - "Allegations of harm", Child abuse - Behaviours (c100ResSolAllegationsOfHarmA4).
 export class ChildAbuseBehavioursPage extends AllegationsOfHarmEventPage {
   private readonly labels: string[] = [
     "Give a short description of what happened and any relevant information so the court can decide what needs to be done.",
@@ -40,7 +39,6 @@ export class ChildAbuseBehavioursPage extends AllegationsOfHarmEventPage {
     await expect(this.continueButton).toBeVisible();
   }
 
-  /** Ticks each type of abuse; each one adds its own details page (A5-A9). */
   async fillInFields(types: AbuseType[]): Promise<void> {
     for (const type of types) {
       await this.checkUntilChecked(

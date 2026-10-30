@@ -20,7 +20,6 @@ const snapshotPath: string[] = [
 
 const COURT = "Birmingham Civil and Family Justice Centre";
 
-// fixed dates far in the future so the answers (and the snapshot) never change
 const ALLEGATIONS_OF_HARM: AllegationsOfHarmParams = {
   allegations: {
     domesticAbuse: true,

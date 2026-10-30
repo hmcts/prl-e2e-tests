@@ -13,23 +13,18 @@ export enum PassportHolder {
 export interface ChildPassports {
   hasMoreThanOne: boolean;
   heldBy: PassportHolder[];
-  /** Who "Other" is; only used when heldBy includes Other. */
   otherHolder?: string;
 }
 
 export interface ChildAbductionParams {
   reasons: string;
-  /** Details of previous threats or abductions; omit for "No". */
   previousThreatsDetails?: string;
   childrenLocationNow: string;
   passportOfficeNotified: boolean;
-  /** Details of police or agency involvement; omit for "No". */
   policeInvolvementDetails?: string;
-  /** Passport details; omit when none of the children have a passport. */
   passports?: ChildPassports;
 }
 
-// Respondent solicitor C7 response - "Allegations of harm", Child abduction (c100ResSolAllegationsOfHarmA10).
 export class ChildAbductionPage extends AllegationsOfHarmEventPage {
   private readonly sectionHeading: Locator = this.page.getByRole("heading", {
     level: 2,
@@ -47,7 +42,6 @@ export class ChildAbductionPage extends AllegationsOfHarmEventPage {
     "textbox",
     { name: "Where is/are the child(ren) now?", exact: true },
   );
-  // "notifed" is the service's own wording
   private readonly passportOfficeNotified: Locator = this.question(
     "Has the passport office been notifed?",
   );
@@ -67,7 +61,6 @@ export class ChildAbductionPage extends AllegationsOfHarmEventPage {
     name: "If other, specify",
     exact: true,
   });
-  // both are labelled "Give details", so they are found by id
   private readonly previousThreatsDetails: Locator = this.page.locator(
     "#respPreviousAbductionThreatsDetails",
   );
