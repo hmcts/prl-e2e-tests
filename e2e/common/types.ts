@@ -520,3 +520,11 @@ export const RespondentTask = {
 
 export type RespondentTaskName =
   (typeof RespondentTask)[keyof typeof RespondentTask];
+
+export type Party =
+  | "APPLICANT"
+  | "RESPONDENT"
+  | "CAFCASS"
+  | "CAFCASS_CYMRU"
+  | "LOCAL_AUTHORITY"
+  | "COURT";

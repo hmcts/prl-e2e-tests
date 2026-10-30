@@ -2,10 +2,12 @@ import {
   LOCAL_COURTS,
   LocalCourtInfo,
   OrderTypes,
+  Party,
   solicitorCACaseAPIEvent,
   solicitorCaseCreateType,
   solicitorDACaseAPIEvent,
   UserCredentials,
+  YesNo,
 } from "../common/types.ts";
 import { CommonCaseEventUtils } from "./commonCaseEvent.utils.ts";
 import {
@@ -29,8 +31,20 @@ import {
   c100Events,
   fl401Events,
 } from "../testData/api/solicitorIndividualEventsData.ts";
+import { Document } from "../testData/api/manageDocumentsRequestData.js";
 
 type OrderCreationUsers = "caseWorker" | "judge";
+
+/**
+ * Document upload event parameters.
+ */
+interface DocumentUploadOptions {
+  caseType: solicitorCaseCreateType;
+  party: Party;
+  document: Document;
+  isConfidential: YesNo;
+  isRestricted: YesNo;
+}
 
 /**
  * Send to gatekeeper event parameters.
@@ -843,6 +857,61 @@ export class ManageCaseEventUtils {
         email: process.env.COURT_ADMIN_STOKE_USERNAME as string,
         password: process.env.COURT_ADMIN_STOKE_PASSWORD as string,
       },
+    });
+  }
+
+  /**
+   * Complete manage documents event for a case via API request.
+   *
+   * @param caseRef the case reference.
+   * @param options the document upload options.
+   * @param userCredentials the user information (email and password) of the user submitting the request. Defaults to solicitor user credentials.
+   */
+  async uploadDocument(
+    caseRef: string,
+    options: DocumentUploadOptions,
+    userCredentials: UserCredentials = {
+      email: process.env.CASEWORKER_USERNAME as string,
+      password: process.env.CASEWORKER_PASSWORD as string,
+    },
+  ): Promise<void> {
+    await this.commonCaseEventsUtils.completeEvent({
+      caseRef: caseRef,
+      eventId: "manageDocumentsNew",
+      eventData: {
+        data: {
+          caseTypeOfApplication: options.caseType,
+          manageDocumentsRestrictedFlag: null,
+          manageDocumentsTriggeredBy: null,
+          isC8DocumentPresent: "Yes",
+          manageDocuments: [
+            {
+              value: {
+                documentParty: options.party,
+                documentCategories: {
+                  value: {
+                    code: options.document.documentCode,
+                    label: options.document.documentLabel,
+                  },
+                },
+                isConfidential: options.isConfidential,
+                isRestricted: options.isRestricted,
+                restrictedDetails: null,
+                documentDetails: null,
+                documentRelatedToCaseCheckbox: ["RELATED_TO_CASE"],
+                document: {
+                  document_url: `http://dm-store-${process.env.MANAGE_CASES_TEST_ENV}.service.core-compute-${process.env.MANAGE_CASES_TEST_ENV}.internal/documents/${options.document.docStoreId}`,
+                  document_binary_url: `http://dm-store-${process.env.MANAGE_CASES_TEST_ENV}.service.core-compute-${process.env.MANAGE_CASES_TEST_ENV}.internal/documents/${options.document.docStoreId}/binary`,
+                  document_filename: options.document.fileName,
+                },
+                documentRestrictCheckbox: [],
+              },
+            },
+          ],
+          manageDocUploadedCategory: [],
+        },
+      },
+      userCredentials: userCredentials,
     });
   }
 }
