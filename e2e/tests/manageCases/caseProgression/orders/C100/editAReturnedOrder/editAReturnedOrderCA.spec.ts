@@ -12,7 +12,7 @@ import {
 import { JudgePagesGroup } from "../../../../../../pageObjects/roleBasedGroupedPages/judgePages.ts";
 
 export interface ChildArrangementsEditAReturnedOrderParams {
-  caseType: solicitorCaseCreateType,
+  caseType: solicitorCaseCreateType;
   orderType: OrderTypes;
   editReturnedOrder3Params: EditReturnedOrder3Params;
   snapshotName: string;

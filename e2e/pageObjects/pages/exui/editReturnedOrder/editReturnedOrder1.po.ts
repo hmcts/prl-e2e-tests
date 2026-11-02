@@ -20,8 +20,6 @@ export class EditReturnedOrder1Page extends EventPage {
   }
 
   async selectOrder(): Promise<void> {
-    await this.page
-      .locator("#rejectedOrdersDynamicList")
-      .selectOption({ index: 1 });
+    await this.orderDropdownList.selectOption({ index: 1 });
   }
 }

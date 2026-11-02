@@ -80,74 +80,74 @@ export async function editAndApproveOrder(
 
   await draftedOrders.draftOrdersPage.goToPage();
 
-if (caseType === "C100") {
-  await draftedOrders.draftOrdersPage.assertDraftOrders([
-    {
-      typeOfOrder: data.orderType as OrderTypes,
-      englishDocument: `${data.orderType
+  if (caseType === "C100") {
+    await draftedOrders.draftOrdersPage.assertDraftOrders([
+      {
+        typeOfOrder: data.orderType as OrderTypes,
+        englishDocument: `${data.orderType
+          .replace(/[(),]/g, "")
+          .split(" ")
+          .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+          .join("_")}_draft.pdf`,
+        otherDetails: {
+          orderMadeBy: "Test Judge Name",
+          orderCreatedBy:
+            process.env.MANAGE_CASES_TEST_ENV === "demo"
+              ? "PRL DEMO ORG1 Solicitor 2"
+              : "AAT Solicitor",
+          status: data.status,
+        },
+        childrenList: [
+          "Joe Doe (Child 1)",
+          "Simon Anderson (Child 2)",
+          "Lilly Anderson (Child 3)",
+          "Charlotte Saxon (Child 4)",
+          "Selena Lees (Child 5)",
+        ],
+        isOrderAboutAllTheChildren: true,
+      },
+    ]);
+    await draftedOrders.draftOrdersPage.assertDraftOrderDocument(
+      data.snapshotPath,
+      caseRef,
+      `${data.orderType
         .replace(/[(),]/g, "")
         .split(" ")
         .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
         .join("_")}_draft.pdf`,
-      otherDetails: {
-        orderMadeBy: "Test Judge Name",
-        orderCreatedBy:
-          process.env.MANAGE_CASES_TEST_ENV === "demo"
-            ? "PRL DEMO ORG1 Solicitor 2"
-            : "AAT Solicitor",
-        status: data.status,
+      data.snapshotName,
+    );
+  } else {
+    await draftedOrders.draftOrdersPage.assertDraftOrders([
+      {
+        typeOfOrder: data.orderType as OrderTypes,
+        englishDocument: `${data.orderType
+          .replace(/[(),]/g, "")
+          .replace(/-/g, "_")
+          .replace(/\s+/g, "_")
+          .toLowerCase()}_draft.pdf`,
+        otherDetails: {
+          orderMadeBy: "Test Judge Name",
+          orderCreatedBy:
+            process.env.MANAGE_CASES_TEST_ENV === "demo"
+              ? "PRL DEMO ORG1 Solicitor 2"
+              : "AAT Solicitor",
+          status: data.status,
+        },
+        isOrderAboutChildren: false,
       },
-      childrenList: [
-        "Joe Doe (Child 1)",
-        "Simon Anderson (Child 2)",
-        "Lilly Anderson (Child 3)",
-        "Charlotte Saxon (Child 4)",
-        "Selena Lees (Child 5)",
-      ],
-      isOrderAboutAllTheChildren: true,
-    },
-  ]);
-  await draftedOrders.draftOrdersPage.assertDraftOrderDocument(
-    data.snapshotPath,
-    caseRef,
-    `${data.orderType
-      .replace(/[(),]/g, "")
-      .split(" ")
-      .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
-      .join("_")}_draft.pdf`,
-    data.snapshotName,
-  );
-    } else {
-  await draftedOrders.draftOrdersPage.assertDraftOrders([
-    {
-      typeOfOrder: data.orderType as OrderTypes,
-      englishDocument: `${data.orderType
+    ]);
+    await draftedOrders.draftOrdersPage.assertDraftOrderDocument(
+      data.snapshotPath,
+      caseRef,
+      `${data.orderType
         .replace(/[(),]/g, "")
         .replace(/-/g, "_")
         .replace(/\s+/g, "_")
         .toLowerCase()}_draft.pdf`,
-      otherDetails: {
-        orderMadeBy: "Test Judge Name",
-        orderCreatedBy:
-          process.env.MANAGE_CASES_TEST_ENV === "demo"
-            ? "PRL DEMO ORG1 Solicitor 2"
-            : "AAT Solicitor",
-        status: data.status,
-      },
-      isOrderAboutChildren: false,
-    },
-  ]);
-  await draftedOrders.draftOrdersPage.assertDraftOrderDocument(
-    data.snapshotPath,
-    caseRef,
-    `${data.orderType
-      .replace(/[(),]/g, "")
-      .replace(/-/g, "_")
-      .replace(/\s+/g, "_")
-      .toLowerCase()}_draft.pdf`,
-    data.snapshotName,
-  );
-  };
+      data.snapshotName,
+    );
+  }
 
   if (data.isUrgent) {
     await navigationUtils.goToCase(
