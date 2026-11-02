@@ -1,9 +1,11 @@
-import { ChildArrangementsEditAReturnedOrderParams } from "../tests/manageCases/caseProgression/editAReturnedOrder/editAReturnedOrder.spec.ts";
+import { ChildArrangementsEditAReturnedOrderParams } from "../tests/manageCases/caseProgression/orders/C100/editAReturnedOrder/editAReturnedOrderCA.spec.ts";
+import { DomesticAbuseEditAReturnedOrderParams } from "../tests/manageCases/caseProgression/orders/FL401/editAReturnedOrder/editAReturnedOrderDA.spec.ts";
 
 export const ChildArrangementsEditAReturnedOrderScenarios: ChildArrangementsEditAReturnedOrderParams[] =
   [
     {
       orderType: "Parental responsibility order (C45A)",
+      caseType: "C100",
       editReturnedOrder3Params: {
         isOrderByConsent: false,
         wasOrderApprovedAtAHearing: true,
@@ -26,5 +28,68 @@ export const ChildArrangementsEditAReturnedOrderScenarios: ChildArrangementsEdit
       },
       snapshotName: "child-arrangements-edit-a-returned-order",
       snapshotsPath: ["caseProgression", "orders", "editAReturnedOrder"],
+    },
+  ];
+
+export const DomesticAbuseEditAReturnedOrderScenarios: DomesticAbuseEditAReturnedOrderParams[] =
+  [
+    {
+      name: "No to all",
+      caseType: "FL401",
+      isUrgent: false,
+      orderType: "Non-molestation order (FL404A)",
+      isDraftAnOrder: true,
+      isUploadAnOrder: false,
+      draftAnOrder5Params: {
+        orderType: "Non-molestation order (FL404A)",
+        isOrderByConsent: false,
+        wasOrderApprovedAtAHearing: false,
+        hearing: undefined,
+        judgeOrMagistratesTitle: undefined,
+        judgeFullName: undefined,
+        justicesLegalAdviserFullName: undefined,
+        dateOrderMade: undefined,
+        isOrderAboutTheChildren: false,
+        allChildrenInOrder: undefined,
+        recitalsAndPreamble: undefined,
+        directions: undefined,
+      },
+      draftAnOrder6Params: {
+        doesOrderMentionProperty: false,
+        propertyAddress: undefined,
+        respondentMustNotDoOptions: undefined,
+        mustNotContactApplicantFurtherDetails: undefined,
+        mustNotEnterPropertyFurtherDetails: undefined,
+        mustNotContactChildrenFurtherDetails: undefined,
+        schoolName: undefined,
+        mustNotGoToSchoolFurtherDetails: undefined,
+        orderLength: "No fixed end date",
+        specificDateAndTime: undefined,
+        costsOfApplication: undefined,
+        withNotice: false,
+      },
+      manageOrder5Params: {
+        orderType: "Non-molestation order (FL404A)",
+          isOrderByConsent: false,
+          wasOrderApprovedAtAHearing: false,
+          hearing: undefined, // No hearings available is a valid hearing
+          judgeOrMagistratesTitle: undefined,
+          judgeFullName: undefined,
+          justicesLegalAdviserFullName: undefined,
+          dateOrderMade: undefined, // this is autofilled to today's date
+          isOrderAboutTheChildren: undefined,
+          isOrderAboutAllTheChildren: false,
+          allChildrenInOrder: undefined,
+        recitalsAndPreamble: undefined,
+        directions: undefined,
+        includePenalNotice: undefined,
+        penalNotice: undefined,
+      },
+      editReturnedOrder12Params: {
+        hasJudgeProvidedHearingDetails: false,
+        hearingDetails: undefined,
+      },
+      snapshotName: "draft-order-non-molestation-no-to-all",
+      snapshotsPath: ["caseProgression", "orders", "draftNonMolestationOrder"],
     },
   ];

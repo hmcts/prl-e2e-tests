@@ -3,6 +3,7 @@ import { OrderTypes } from "../common/types.ts";
 import { JudgePagesGroup } from "../pageObjects/roleBasedGroupedPages/judgePages.ts";
 import { CaseWorkerPagesGroup } from "../pageObjects/roleBasedGroupedPages/caseWorkerPages.ts";
 import { NavigationUtils } from "./navigation.utils.ts";
+import { solicitorCaseCreateType } from "../common/types.ts";
 
 export type EditAndApproveOrderData = {
   judeOrderAction: string;
@@ -10,6 +11,7 @@ export type EditAndApproveOrderData = {
   serveApplication: boolean;
   status: string;
   isUrgent: boolean;
+  caseType: solicitorCaseCreateType;
   snapshotName: string;
   snapshotPath: string[];
 };
@@ -20,6 +22,7 @@ export async function editAndApproveOrder(
   caseWorker: CaseWorkerPagesGroup,
   data: EditAndApproveOrderData,
   navigationUtils: NavigationUtils,
+  caseType: solicitorCaseCreateType,
 ): Promise<void> {
   const { tasksPage, summaryPage, editAndApproveAnOrders, draftedOrders } =
     judge;
@@ -77,6 +80,7 @@ export async function editAndApproveOrder(
 
   await draftedOrders.draftOrdersPage.goToPage();
 
+if (caseType === "C100") {
   await draftedOrders.draftOrdersPage.assertDraftOrders([
     {
       typeOfOrder: data.orderType as OrderTypes,
@@ -103,7 +107,6 @@ export async function editAndApproveOrder(
       isOrderAboutAllTheChildren: true,
     },
   ]);
-
   await draftedOrders.draftOrdersPage.assertDraftOrderDocument(
     data.snapshotPath,
     caseRef,
@@ -114,6 +117,37 @@ export async function editAndApproveOrder(
       .join("_")}_draft.pdf`,
     data.snapshotName,
   );
+    } else {
+  await draftedOrders.draftOrdersPage.assertDraftOrders([
+    {
+      typeOfOrder: data.orderType as OrderTypes,
+      englishDocument: `${data.orderType
+        .replace(/[(),]/g, "")
+        .replace(/-/g, "_")
+        .replace(/\s+/g, "_")
+        .toLowerCase()}_draft.pdf`,
+      otherDetails: {
+        orderMadeBy: "Test Judge Name",
+        orderCreatedBy:
+          process.env.MANAGE_CASES_TEST_ENV === "demo"
+            ? "PRL DEMO ORG1 Solicitor 2"
+            : "AAT Solicitor",
+        status: data.status,
+      },
+      isOrderAboutChildren: false,
+    },
+  ]);
+  await draftedOrders.draftOrdersPage.assertDraftOrderDocument(
+    data.snapshotPath,
+    caseRef,
+    `${data.orderType
+      .replace(/[(),]/g, "")
+      .replace(/-/g, "_")
+      .replace(/\s+/g, "_")
+      .toLowerCase()}_draft.pdf`,
+    data.snapshotName,
+  );
+  };
 
   if (data.isUrgent) {
     await navigationUtils.goToCase(

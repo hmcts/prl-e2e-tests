@@ -56,7 +56,9 @@ import { C100InternationalElement1Page } from "../pages/exui/createCase/internat
 import { EditReturnedOrder1Page } from "../pages/exui/editReturnedOrder/editReturnedOrder1.po.ts";
 import { EditReturnedOrder2Page } from "../pages/exui/editReturnedOrder/editReturnedOrder2.po.ts";
 import { EditReturnedOrder3Page } from "../pages/exui/editReturnedOrder/editReturnedOrder3.po.ts";
+import { EditReturnedOrder5Page } from "../pages/exui/editReturnedOrder/editReturnedOrder5.po.ts";
 import { EditReturnedOrder7Page } from "../pages/exui/editReturnedOrder/editReturnedOrder7.po.ts";
+import { EditReturnedOrder12Page } from "../pages/exui/editReturnedOrder/editReturnedOrder12.po.ts";
 import { EditReturnedOrder13Page } from "../pages/exui/editReturnedOrder/editReturnedOrder13.po.ts";
 import { EditReturnedOrderSubmitPage } from "../pages/exui/editReturnedOrder/editReturnedOrderSubmit.po.ts";
 import { EditReturnedOrderConfirmPage } from "../pages/exui/editReturnedOrder/editReturnedOrderConfirm.po.ts";
@@ -203,7 +205,9 @@ export class SolicitorPagesGroup {
       editReturnedOrder1Page: new EditReturnedOrder1Page(this.page),
       editReturnedOrder2Page: new EditReturnedOrder2Page(this.page),
       editReturnedOrder3Page: new EditReturnedOrder3Page(this.page),
+      editReturnedOrder5Page: new EditReturnedOrder5Page(this.page),
       editReturnedOrder7Page: new EditReturnedOrder7Page(this.page),
+      editReturnedOrder12Page: new EditReturnedOrder12Page(this.page),
       editReturnedOrder13Page: new EditReturnedOrder13Page(this.page),
       editReturnedOrderSubmitPage: new EditReturnedOrderSubmitPage(this.page),
       editReturnedOrderConfirmPage: new EditReturnedOrderConfirmPage(this.page),
