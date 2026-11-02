@@ -11,6 +11,14 @@ import { AttendingTheCourtSubmitPage } from "../pages/exui/respondentResponse/at
 import { Miam1Page } from "../pages/exui/respondentResponse/miam/miam1.po.ts";
 import { Miam2Page } from "../pages/exui/respondentResponse/miam/miam2.po.ts";
 import { MiamSubmitPage } from "../pages/exui/respondentResponse/miam/miamSubmit.po.ts";
+import { AllegationsOfHarm1Page } from "../pages/exui/respondentResponse/allegationsOfHarm/allegationsOfHarm1.po.ts";
+import { AllegationsOfHarm2Page } from "../pages/exui/respondentResponse/allegationsOfHarm/allegationsOfHarm2.po.ts";
+import { DomesticAbuseBehavioursPage } from "../pages/exui/respondentResponse/allegationsOfHarm/domesticAbuseBehaviours.po.ts";
+import { ChildAbuseBehavioursPage } from "../pages/exui/respondentResponse/allegationsOfHarm/childAbuseBehaviours.po.ts";
+import { ChildAbuseTypePage } from "../pages/exui/respondentResponse/allegationsOfHarm/childAbuseType.po.ts";
+import { ChildAbductionPage } from "../pages/exui/respondentResponse/allegationsOfHarm/childAbduction.po.ts";
+import { OtherConcernsPage } from "../pages/exui/respondentResponse/allegationsOfHarm/otherConcerns.po.ts";
+import { AllegationsOfHarmSubmitPage } from "../pages/exui/respondentResponse/allegationsOfHarm/allegationsOfHarmSubmit.po.ts";
 import { SummaryPage } from "../pages/exui/caseView/summary.po.ts";
 import { NoticeOfChange1Page } from "../pages/exui/noticeOfChange/noticeOfChange1.po.ts";
 import { NoticeOfChange2Page } from "../pages/exui/noticeOfChange/noticeOfChange2.po.ts";
@@ -80,6 +88,14 @@ export class NocSolicitorPagesGroup {
       miam1: new Miam1Page(this.page),
       miam2: new Miam2Page(this.page),
       miamSubmit: new MiamSubmitPage(this.page),
+      allegationsOfHarm1: new AllegationsOfHarm1Page(this.page),
+      allegationsOfHarm2: new AllegationsOfHarm2Page(this.page),
+      domesticAbuseBehaviours: new DomesticAbuseBehavioursPage(this.page),
+      childAbuseBehaviours: new ChildAbuseBehavioursPage(this.page),
+      childAbuseType: new ChildAbuseTypePage(this.page),
+      childAbduction: new ChildAbductionPage(this.page),
+      otherConcerns: new OtherConcernsPage(this.page),
+      allegationsOfHarmSubmit: new AllegationsOfHarmSubmitPage(this.page),
     };
   }
 }

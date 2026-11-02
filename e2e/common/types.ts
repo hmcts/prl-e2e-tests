@@ -520,3 +520,18 @@ export const RespondentTask = {
 
 export type RespondentTaskName =
   (typeof RespondentTask)[keyof typeof RespondentTask];
+
+/** Types of abuse, as labelled on the respondent solicitor "Allegations of harm" pages. */
+export enum AbuseType {
+  physical = "Physical abuse",
+  psychological = "Psychological abuse",
+  sexual = "Sexual abuse",
+  emotional = "Emotional abuse",
+  financial = "Financial abuse",
+}
+
+/** Help the respondent sought for a behaviour; omit "whoFrom" when they did not seek help. */
+export interface SoughtHelp {
+  soughtHelp: boolean;
+  whoFrom?: string;
+}
