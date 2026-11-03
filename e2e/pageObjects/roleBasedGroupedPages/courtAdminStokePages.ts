@@ -31,6 +31,7 @@ import { RenameDocuments1Page } from "../pages/exui/renameDocuments/renameDocume
 import { RenameDocuments2Page } from "../pages/exui/renameDocuments/renameDocuments2.po.js";
 import { RenameDocumentsSubmitPage } from "../pages/exui/renameDocuments/renameDocumentsSubmit.po.js";
 import { CaseFileViewPage } from "../pages/exui/caseView/caseFileView.po.js";
+import { CaseDocumentsPage } from "../pages/exui/caseView/caseDocuments.po.js";
 
 export class CourtAdminStokePagesGroup {
   constructor(public readonly page: Page) {}
@@ -41,6 +42,10 @@ export class CourtAdminStokePagesGroup {
 
   get summaryPage() {
     return new SummaryPage(this.page);
+  }
+
+  get caseDocumentsPage() {
+    return new CaseDocumentsPage(this.page);
   }
 
   get caseFileViewPage() {

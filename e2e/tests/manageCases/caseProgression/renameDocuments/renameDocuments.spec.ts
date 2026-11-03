@@ -23,8 +23,12 @@ caseTypes.forEach((caseType) => {
     }): Promise<void> => {
       const expectedDocumentName = "Test_Document_New_Name";
 
-      const { summaryPage, caseFileViewPage, renameDocuments } =
-        courtAdminStoke;
+      const {
+        summaryPage,
+        caseFileViewPage,
+        caseDocumentsPage,
+        renameDocuments,
+      } = courtAdminStoke;
 
       await summaryPage.chooseEventFromDropdown("Rename documents");
       await renameDocuments.renameDocuments1Page.assertPageContents();
@@ -53,6 +57,12 @@ caseTypes.forEach((caseType) => {
         caseData.caseRef,
         "Rename documents",
       );
+
+      // checking the application documents CCD regenerated as a result
+      await caseDocumentsPage.goToPage();
+      await caseDocumentsPage.assertFinalDocuments([
+        expectedDocumentName + ".pdf",
+      ]);
 
       //validate document in Case File View Tab
       await caseFileViewPage.goToPage();
