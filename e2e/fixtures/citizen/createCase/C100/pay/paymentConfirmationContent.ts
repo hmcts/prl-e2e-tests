@@ -6,9 +6,8 @@ export enum PaymentConfirmationContent {
   tableHeader4 = "Billing address",
   tableHeader5 = "Confirmation email",
   tableData1 = "●●●●●●●●●●●●1111",
-  tableData2 = "10/26",
-  tableData3 = "MR EXAMPLE EXAMPLE",
-  tableData4 = "APARTMENT 10, BLOCK A TY NANT, 185, HIGH STREET, SWANSEA, SA1 1AD, United Kingdom",
-  tableData5 = "example@example.com",
+  tableData2 = "MR EXAMPLE EXAMPLE",
+  tableData3 = "APARTMENT 10, BLOCK A TY NANT, 185, HIGH STREET, SWANSEA, SA1 1AD, United Kingdom",
+  tableData4 = "example@example.com",
   confirmationButton = "Confirm payment",
 }
