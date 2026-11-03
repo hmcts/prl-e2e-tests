@@ -40,8 +40,7 @@ export const DomesticAbuseEditAReturnedOrderScenarios: DomesticAbuseEditAReturne
       orderType: "Non-molestation order (FL404A)",
       isDraftAnOrder: true,
       isUploadAnOrder: false,
-      draftAnOrder5Params: {
-        orderType: "Non-molestation order (FL404A)",
+      editReturnedOrder3Params: {
         isOrderByConsent: false,
         wasOrderApprovedAtAHearing: false,
         hearing: undefined,
@@ -54,7 +53,7 @@ export const DomesticAbuseEditAReturnedOrderScenarios: DomesticAbuseEditAReturne
         recitalsAndPreamble: undefined,
         directions: undefined,
       },
-      draftAnOrder6Params: {
+      editReturnedOrder5Params: {
         doesOrderMentionProperty: false,
         propertyAddress: undefined,
         respondentMustNotDoOptions: undefined,

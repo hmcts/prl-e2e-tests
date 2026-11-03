@@ -1,12 +1,12 @@
-import { EventPage } from "../eventPage.po.js";
+import { EventPage } from "../../eventPage.po.ts";
 import { expect, Locator, Page } from "@playwright/test";
-import { Selectors } from "../../../../common/selectors.js";
-import { OrderTypes } from "../../../../common/types.js";
+import { Selectors } from "../../../../../common/selectors.ts";
+import { OrderTypes } from "../../../../../common/types.ts";
 import {
   HearingDetailsParams,
   OrderHearingDetailsComponent,
-} from "../../../components/exui/orders/orderHearingDetails.component.js";
-import { PageUtils } from "../../../../utils/page.utils.js";
+} from "../../../../components/exui/orders/orderHearingDetails.component.ts";
+import { PageUtils } from "../../../../../utils/page.utils.ts";
 
 export interface EditReturnedOrder12Params {
   hasJudgeProvidedHearingDetails: boolean;

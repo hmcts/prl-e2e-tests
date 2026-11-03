@@ -6,8 +6,8 @@ import { NavigationUtils } from "./navigation.utils.ts";
 import { solicitorCaseCreateType } from "../common/types.ts";
 
 export type EditAndApproveOrderData = {
-  judeOrderAction: string;
-  orderType: string;
+  judgeOrderAction: string;
+  orderType: OrderTypes;
   serveApplication: boolean;
   status: string;
   isUrgent: boolean;
@@ -22,7 +22,6 @@ export async function editAndApproveOrder(
   caseWorker: CaseWorkerPagesGroup,
   data: EditAndApproveOrderData,
   navigationUtils: NavigationUtils,
-  caseType: solicitorCaseCreateType,
 ): Promise<void> {
   const { tasksPage, summaryPage, editAndApproveAnOrders, draftedOrders } =
     judge;
@@ -38,11 +37,11 @@ export async function editAndApproveOrder(
   );
   await editAndApproveAnOrders.editAndApproveAnOrder2Page.verifyAccessibility();
   await editAndApproveAnOrders.editAndApproveAnOrder2Page.selectOrderCheckOptions(
-    data.judeOrderAction,
+    data.judgeOrderAction,
   );
   await editAndApproveAnOrders.editAndApproveAnOrder2Page.clickContinue();
 
-  if (data.judeOrderAction === "Give admin further directions then serve") {
+  if (data.judgeOrderAction === "Give admin further directions then serve") {
     await editAndApproveAnOrders.editAndApproveAnOrder21Page.assertPageContents(
       data.orderType as OrderTypes,
     );
@@ -68,7 +67,7 @@ export async function editAndApproveOrder(
   await editAndApproveAnOrders.editAndApproveAnOrderSubmitPage.clickSubmit();
 
   await editAndApproveAnOrders.editAndApproveAnOrderConfirmPage.assertPageContents(
-    data.judeOrderAction,
+    data.judgeOrderAction,
   );
   await editAndApproveAnOrders.editAndApproveAnOrderConfirmPage.verifyAccessibility();
   await editAndApproveAnOrders.editAndApproveAnOrderConfirmPage.clickCloseAndReturnToCaseDetails();
@@ -80,7 +79,7 @@ export async function editAndApproveOrder(
 
   await draftedOrders.draftOrdersPage.goToPage();
 
-  if (caseType === "C100") {
+  if (data.caseType === "C100") {
     await draftedOrders.draftOrdersPage.assertDraftOrders([
       {
         typeOfOrder: data.orderType as OrderTypes,

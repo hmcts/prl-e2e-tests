@@ -7,9 +7,9 @@ import {
   editAndApproveOrder,
   type EditAndApproveOrderData,
 } from "../../../../../../utils/editAndApproveOrder.utils.ts";
-import { DraftAnOrder5Params } from "../../../../../../pageObjects/pages/exui/orders/draftOrders/draftAnOrder5.po.ts";
-import { DraftAnOrder6Params } from "../../../../../../pageObjects/pages/exui/orders/draftOrders/draftAnOrder6.po.ts";
-import { EditReturnedOrder12Params } from "../../../../../../pageObjects/pages/exui/editReturnedOrder/editReturnedOrder12.po.ts";
+import { EditReturnedOrder3Params } from "../../../../../../pageObjects/pages/exui/orders/editReturnedOrder/editReturnedOrder3.po.ts";
+import { EditReturnedOrder5Params } from "../../../../../../pageObjects/pages/exui/orders/editReturnedOrder/editReturnedOrder5.po.ts";
+import { EditReturnedOrder12Params } from "../../../../../../pageObjects/pages/exui/orders/editReturnedOrder/editReturnedOrder12.po.ts";
 import { JudgePagesGroup } from "../../../../../../pageObjects/roleBasedGroupedPages/judgePages.ts";
 import { solicitorCaseCreateType } from "../../../../../../common/types.ts";
 
@@ -21,8 +21,8 @@ export interface DomesticAbuseEditAReturnedOrderParams {
   isDraftAnOrder: boolean;
   isUploadAnOrder: boolean;
   editReturnedOrder12Params: EditReturnedOrder12Params;
-  draftAnOrder5Params: DraftAnOrder5Params;
-  draftAnOrder6Params: DraftAnOrder6Params;
+  editReturnedOrder3Params: EditReturnedOrder3Params;
+  editReturnedOrder5Params: EditReturnedOrder5Params;
   snapshotName: string;
   snapshotsPath: string[];
 }
@@ -45,23 +45,16 @@ test.describe("'Edit a returned order' flow for DA cases.", () => {
 
   DomesticAbuseEditAReturnedOrderScenarios.forEach(
     (editAReturnedOrderParams: DomesticAbuseEditAReturnedOrderParams) => {
-      test(`Solicitor 'Edit a returned order' flow for a DA case. @regression @accessibility @nightly @test`, async ({
+      test(`Solicitor 'Edit a returned order' flow for a DA case. @regression @nightly`, async ({
         caseWorker,
         navigationUtils,
         manageCasesEventUtils,
         solicitor,
         browser,
       }): Promise<void> => {
-        const { page } = solicitor;
-        await navigationUtils.goToCase(
-          page,
-          config.manageCasesBaseURLCase,
-          caseRef,
-          "summary",
-        );
         await manageCasesEventUtils.createSolicitorDraftOrder(
           caseRef,
-          "Non-molestation order (FL404A)",
+          editAReturnedOrderParams.orderType,
         );
 
         // edit and approve the order, asking an update
@@ -80,11 +73,11 @@ test.describe("'Edit a returned order' flow for DA cases.", () => {
         const judgePages = new JudgePagesGroup(judgeSession);
 
         const editAndApproveData: EditAndApproveOrderData = {
-          judeOrderAction: "Ask the legal representative to make changes",
-          orderType: "Non-molestation order (FL404A)",
+          judgeOrderAction: "Ask the legal representative to make changes",
+          orderType: editAReturnedOrderParams.orderType,
           serveApplication: true,
           isUrgent: false,
-          caseType: "FL401",
+          caseType: editAReturnedOrderParams.caseType,
           status: "Rejected by Judge",
           snapshotName:
             "FL404A-judge-review-approve-order-askLegalRep-Changes-ReturnOrder-flow",
@@ -96,11 +89,10 @@ test.describe("'Edit a returned order' flow for DA cases.", () => {
           caseWorker,
           editAndApproveData,
           navigationUtils,
-          editAReturnedOrderParams.caseType,
         );
 
         // starting 'Edit a returned order' event
-        const { editAReturnedOrderEvent, summaryPage } = solicitor;
+        const { editAReturnedOrderEvent, summaryPage, page } = solicitor;
         await navigationUtils.goToCase(
           page,
           config.manageCasesBaseURLCase,
@@ -122,20 +114,20 @@ test.describe("'Edit a returned order' flow for DA cases.", () => {
         await editAReturnedOrderEvent.editReturnedOrder2Page.clickContinue();
 
         await editAReturnedOrderEvent.editReturnedOrder3Page.assertPageContents(
-          "FL401",
+          editAReturnedOrderParams.caseType,
           editAReturnedOrderParams.orderType,
         );
         await editAReturnedOrderEvent.editReturnedOrder3Page.verifyAccessibility();
         await editAReturnedOrderEvent.editReturnedOrder3Page.fillInFields(
-          "FL401",
-          editAReturnedOrderParams.draftAnOrder5Params,
+          editAReturnedOrderParams.caseType,
+          editAReturnedOrderParams.editReturnedOrder3Params,
         );
         await editAReturnedOrderEvent.editReturnedOrder3Page.clickContinue();
         await editAReturnedOrderEvent.editReturnedOrder5Page.assertPageContents(
           editAReturnedOrderParams.orderType,
         );
         await editAReturnedOrderEvent.editReturnedOrder5Page.fillInFields(
-          editAReturnedOrderParams.draftAnOrder6Params,
+          editAReturnedOrderParams.editReturnedOrder5Params,
         );
         await editAReturnedOrderEvent.editReturnedOrder5Page.clickContinue();
 

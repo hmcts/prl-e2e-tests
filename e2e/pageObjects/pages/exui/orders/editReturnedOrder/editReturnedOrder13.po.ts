@@ -1,8 +1,8 @@
-import { EventPage } from "../eventPage.po.js";
+import { EventPage } from "../../eventPage.po.ts";
 import { expect, Locator, Page } from "@playwright/test";
-import { OrderTypes } from "../../../../common/types.js";
-import { NavigationUtils } from "../../../../utils/navigation.utils.js";
-import { PreviewOrdersComponent } from "../../../components/exui/orders/previewOrders.component.ts";
+import { OrderTypes } from "../../../../../common/types.ts";
+import { NavigationUtils } from "../../../../../utils/navigation.utils.ts";
+import { PreviewOrdersComponent } from "../../../../components/exui/orders/previewOrders.component.ts";
 
 export class EditReturnedOrder13Page extends EventPage {
   private readonly previewOrderComponent: PreviewOrdersComponent =

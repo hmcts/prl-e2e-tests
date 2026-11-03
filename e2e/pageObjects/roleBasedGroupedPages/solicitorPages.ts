@@ -53,15 +53,15 @@ import { Fl401CaseNamePage } from "../pages/exui/createCase/fl401CaseName.po.ts"
 import { CreateCaseSubmitPage } from "../pages/exui/createCase/createCaseSubmit.po.ts";
 import { C100InternationalElementSubmitPage } from "../pages/exui/createCase/internationalElement/c100InternationalElementSubmit.po.js";
 import { C100InternationalElement1Page } from "../pages/exui/createCase/internationalElement/c100InternationalElement1.po.js";
-import { EditReturnedOrder1Page } from "../pages/exui/editReturnedOrder/editReturnedOrder1.po.ts";
-import { EditReturnedOrder2Page } from "../pages/exui/editReturnedOrder/editReturnedOrder2.po.ts";
-import { EditReturnedOrder3Page } from "../pages/exui/editReturnedOrder/editReturnedOrder3.po.ts";
-import { EditReturnedOrder5Page } from "../pages/exui/editReturnedOrder/editReturnedOrder5.po.ts";
-import { EditReturnedOrder7Page } from "../pages/exui/editReturnedOrder/editReturnedOrder7.po.ts";
-import { EditReturnedOrder12Page } from "../pages/exui/editReturnedOrder/editReturnedOrder12.po.ts";
-import { EditReturnedOrder13Page } from "../pages/exui/editReturnedOrder/editReturnedOrder13.po.ts";
-import { EditReturnedOrderSubmitPage } from "../pages/exui/editReturnedOrder/editReturnedOrderSubmit.po.ts";
-import { EditReturnedOrderConfirmPage } from "../pages/exui/editReturnedOrder/editReturnedOrderConfirm.po.ts";
+import { EditReturnedOrder1Page } from "../pages/exui/orders/editReturnedOrder/editReturnedOrder1.po.ts";
+import { EditReturnedOrder2Page } from "../pages/exui/orders/editReturnedOrder/editReturnedOrder2.po.ts";
+import { EditReturnedOrder3Page } from "../pages/exui/orders/editReturnedOrder/editReturnedOrder3.po.ts";
+import { EditReturnedOrder5Page } from "../pages/exui/orders/editReturnedOrder/editReturnedOrder5.po.ts";
+import { EditReturnedOrder7Page } from "../pages/exui/orders/editReturnedOrder/editReturnedOrder7.po.ts";
+import { EditReturnedOrder12Page } from "../pages/exui/orders/editReturnedOrder/editReturnedOrder12.po.ts";
+import { EditReturnedOrder13Page } from "../pages/exui/orders/editReturnedOrder/editReturnedOrder13.po.ts";
+import { EditReturnedOrderSubmitPage } from "../pages/exui/orders/editReturnedOrder/editReturnedOrderSubmit.po.ts";
+import { EditReturnedOrderConfirmPage } from "../pages/exui/orders/editReturnedOrder/editReturnedOrderConfirm.po.ts";
 
 export class SolicitorPagesGroup {
   constructor(public readonly page: Page) {}

@@ -1,6 +1,6 @@
-import { EventPage } from "../eventPage.po.js";
+import { EventPage } from "../../eventPage.po.ts";
 import { expect, Locator, Page } from "@playwright/test";
-import { Selectors } from "../../../../common/selectors.ts";
+import { Selectors } from "../../../../../common/selectors.ts";
 
 export class EditReturnedOrderConfirmPage extends EventPage {
   private readonly h1: Locator = this.page.locator(Selectors.h1, {

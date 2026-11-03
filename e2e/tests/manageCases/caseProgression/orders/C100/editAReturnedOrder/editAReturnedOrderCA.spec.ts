@@ -1,7 +1,7 @@
 import config from "../../../../../../utils/config.utils.ts";
 import { test, expect } from "../../../../../fixtures.ts";
 import { Page } from "@playwright/test";
-import { EditReturnedOrder3Params } from "../../../../../../pageObjects/pages/exui/editReturnedOrder/editReturnedOrder3.po.ts";
+import { EditReturnedOrder3Params } from "../../../../../../pageObjects/pages/exui/orders/editReturnedOrder/editReturnedOrder3.po.ts";
 import { ChildArrangementsEditAReturnedOrderScenarios } from "../../../../../../testData/ui/editAReturnedOrder.ts";
 import { OrderTypes } from "../../../../../../common/types.ts";
 import { solicitorCaseCreateType } from "../../../../../../common/types.ts";
@@ -37,23 +37,16 @@ test.describe("'Edit a returned order' flow for CA cases.", () => {
 
   ChildArrangementsEditAReturnedOrderScenarios.forEach(
     (editAReturnedOrderParams: ChildArrangementsEditAReturnedOrderParams) => {
-      test(`Solicitor 'Edit a returned order' flow for a CA case. @regression @accessibility @nightly @test`, async ({
+      test(`Solicitor 'Edit a returned order' flow for a CA case. @regression @nightly`, async ({
         caseWorker,
         navigationUtils,
         manageCasesEventUtils,
         solicitor,
         browser,
       }): Promise<void> => {
-        const { page } = solicitor;
-        await navigationUtils.goToCase(
-          page,
-          config.manageCasesBaseURLCase,
-          caseRef,
-          "summary",
-        );
         await manageCasesEventUtils.createSolicitorDraftOrder(
           caseRef,
-          "Parental responsibility order (C45A)",
+          editAReturnedOrderParams.orderType,
         );
 
         // edit and approve the order, asking an update
@@ -72,10 +65,10 @@ test.describe("'Edit a returned order' flow for CA cases.", () => {
         const judgePages = new JudgePagesGroup(judgeSession);
 
         const editAndApproveData: EditAndApproveOrderData = {
-          judeOrderAction: "Ask the legal representative to make changes",
-          orderType: "Parental responsibility order (C45A)",
+          judgeOrderAction: "Ask the legal representative to make changes",
+          orderType: editAReturnedOrderParams.orderType,
           serveApplication: true,
-          caseType: "C100",
+          caseType: editAReturnedOrderParams.caseType,
           status: "Rejected by Judge",
           isUrgent: false,
           snapshotName:
@@ -88,11 +81,10 @@ test.describe("'Edit a returned order' flow for CA cases.", () => {
           caseWorker,
           editAndApproveData,
           navigationUtils,
-          editAReturnedOrderParams.caseType,
         );
 
         // starting 'Edit a returned order' event
-        const { editAReturnedOrderEvent, summaryPage } = solicitor;
+        const { editAReturnedOrderEvent, summaryPage, page } = solicitor;
         await navigationUtils.goToCase(
           page,
           config.manageCasesBaseURLCase,
@@ -114,12 +106,12 @@ test.describe("'Edit a returned order' flow for CA cases.", () => {
         await editAReturnedOrderEvent.editReturnedOrder2Page.clickContinue();
 
         await editAReturnedOrderEvent.editReturnedOrder3Page.assertPageContents(
-          "C100",
+          editAReturnedOrderParams.caseType,
           editAReturnedOrderParams.orderType,
         );
         await editAReturnedOrderEvent.editReturnedOrder3Page.verifyAccessibility();
         await editAReturnedOrderEvent.editReturnedOrder3Page.fillInFields(
-          "C100",
+          editAReturnedOrderParams.caseType,
           editAReturnedOrderParams.editReturnedOrder3Params,
         );
         await editAReturnedOrderEvent.editReturnedOrder3Page.clickContinue();

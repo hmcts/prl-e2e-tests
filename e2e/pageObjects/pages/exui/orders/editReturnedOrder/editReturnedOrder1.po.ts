@@ -1,4 +1,4 @@
-import { EventPage } from "../eventPage.po.js";
+import { EventPage } from "../../eventPage.po.ts";
 import { expect, Locator, Page } from "@playwright/test";
 
 export class EditReturnedOrder1Page extends EventPage {
