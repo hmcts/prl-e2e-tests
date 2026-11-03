@@ -58,7 +58,7 @@ caseTypes.forEach((caseType) => {
         "Rename documents",
       );
 
-      // checking the application documents CCD regenerated as a result
+      // checking the Case Documents tab
       await caseDocumentsPage.goToPage();
       await caseDocumentsPage.assertFinalDocuments([
         expectedDocumentName + ".pdf",
