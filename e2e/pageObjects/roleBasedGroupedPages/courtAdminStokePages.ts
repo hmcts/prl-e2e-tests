@@ -27,6 +27,10 @@ import { ReturnApplication1Page } from "../pages/exui/returnApplication/returnAp
 import { ReturnApplication2Page } from "../pages/exui/returnApplication/returnApplication2.po.js";
 import { ReturnApplicationSubmitPage } from "../pages/exui/returnApplication/returnApplicationSubmit.po.js";
 import { HistoryPage } from "../pages/exui/caseView/history.po.js";
+import { RenameDocuments1Page } from "../pages/exui/renameDocuments/renameDocuments1.po.js";
+import { RenameDocuments2Page } from "../pages/exui/renameDocuments/renameDocuments2.po.js";
+import { RenameDocumentsSubmitPage } from "../pages/exui/renameDocuments/renameDocumentsSubmit.po.js";
+import { CaseFileViewPage } from "../pages/exui/caseView/caseFileView.po.js";
 
 export class CourtAdminStokePagesGroup {
   constructor(public readonly page: Page) {}
@@ -37,6 +41,10 @@ export class CourtAdminStokePagesGroup {
 
   get summaryPage() {
     return new SummaryPage(this.page);
+  }
+
+  get caseFileViewPage() {
+    return new CaseFileViewPage(this.page);
   }
 
   get partiesPage() {
@@ -121,6 +129,14 @@ export class CourtAdminStokePagesGroup {
       page1: new ReturnApplication1Page(this.page),
       page2: new ReturnApplication2Page(this.page),
       submitPage: new ReturnApplicationSubmitPage(this.page),
+    };
+  }
+
+  get renameDocuments() {
+    return {
+      renameDocuments1Page: new RenameDocuments1Page(this.page),
+      renameDocuments2Page: new RenameDocuments2Page(this.page),
+      submitPage: new RenameDocumentsSubmitPage(this.page),
     };
   }
 }

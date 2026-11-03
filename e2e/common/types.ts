@@ -98,7 +98,8 @@ export type WACaseWorkerActions =
   | "Return application"
   | "Add barrister"
   | "Remove barrister"
-  | "Review RA Request";
+  | "Review RA Request"
+  | "Rename documents";
 
 export type WACaseManagerActions = "Confidentiality check";
 
@@ -107,7 +108,8 @@ export type fl401CaseWorkerActions =
   | "Send and reply to messages"
   | "Service of documents"
   | "Transfer to another court"
-  | "Remove draft order";
+  | "Remove draft order"
+  | "CaseWorkerActions";
 
 export type fl401SubmittedSolicitorEvents =
   | "Create/upload draft order"
