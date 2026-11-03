@@ -9,7 +9,6 @@ import {
 } from "../../../../../../utils/editAndApproveOrder.utils.ts";
 import { DraftAnOrder5Params } from "../../../../../../pageObjects/pages/exui/orders/draftOrders/draftAnOrder5.po.ts";
 import { DraftAnOrder6Params } from "../../../../../../pageObjects/pages/exui/orders/draftOrders/draftAnOrder6.po.ts";
-import { ManageOrder5Params } from "../../../../../../pageObjects/pages/exui/editReturnedOrder/editReturnedOrder5.po.ts";
 import { EditReturnedOrder12Params } from "../../../../../../pageObjects/pages/exui/editReturnedOrder/editReturnedOrder12.po.ts";
 import { JudgePagesGroup } from "../../../../../../pageObjects/roleBasedGroupedPages/judgePages.ts";
 import { solicitorCaseCreateType } from "../../../../../../common/types.ts";
@@ -22,7 +21,6 @@ export interface DomesticAbuseEditAReturnedOrderParams {
   isDraftAnOrder: boolean;
   isUploadAnOrder: boolean;
   editReturnedOrder12Params: EditReturnedOrder12Params;
-  manageOrder5Params: ManageOrder5Params;
   draftAnOrder5Params: DraftAnOrder5Params;
   draftAnOrder6Params: DraftAnOrder6Params;
   snapshotName: string;
@@ -134,14 +132,10 @@ test.describe("'Edit a returned order' flow for DA cases.", () => {
         );
         await editAReturnedOrderEvent.editReturnedOrder3Page.clickContinue();
         await editAReturnedOrderEvent.editReturnedOrder5Page.assertPageContents(
-          editAReturnedOrderParams.isUploadAnOrder,
-          "FL401",
           editAReturnedOrderParams.orderType,
         );
         await editAReturnedOrderEvent.editReturnedOrder5Page.fillInFields(
-          editAReturnedOrderParams.isUploadAnOrder,
-          "FL401",
-          editAReturnedOrderParams.manageOrder5Params,
+          editAReturnedOrderParams.draftAnOrder6Params,
         );
         await editAReturnedOrderEvent.editReturnedOrder5Page.clickContinue();
 

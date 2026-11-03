@@ -68,23 +68,6 @@ export const DomesticAbuseEditAReturnedOrderScenarios: DomesticAbuseEditAReturne
         costsOfApplication: undefined,
         withNotice: false,
       },
-      manageOrder5Params: {
-        orderType: "Non-molestation order (FL404A)",
-        isOrderByConsent: false,
-        wasOrderApprovedAtAHearing: false,
-        hearing: undefined, // No hearings available is a valid hearing
-        judgeOrMagistratesTitle: undefined,
-        judgeFullName: undefined,
-        justicesLegalAdviserFullName: undefined,
-        dateOrderMade: undefined, // this is autofilled to today's date
-        isOrderAboutTheChildren: undefined,
-        isOrderAboutAllTheChildren: false,
-        allChildrenInOrder: undefined,
-        recitalsAndPreamble: undefined,
-        directions: undefined,
-        includePenalNotice: undefined,
-        penalNotice: undefined,
-      },
       editReturnedOrder12Params: {
         hasJudgeProvidedHearingDetails: false,
         hearingDetails: undefined,
