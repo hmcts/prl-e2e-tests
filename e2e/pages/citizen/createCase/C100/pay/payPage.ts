@@ -152,7 +152,8 @@ export class PayPage {
   private static async fillInFields(page: Page): Promise<void> {
     await page.fill(`${inputIds.card_no}`, PayContent.mockCardNumber);
     await page.fill(`${inputIds.expiry_month}`, PayContent.mockExpMonth);
-    await page.fill(`${inputIds.expiry_year}`, PayContent.mockExpYear);
+    const futureYear: string = String(new Date().getFullYear() + 2).slice(-2);
+    await page.fill(`${inputIds.expiry_year}`, futureYear);
     await page.fill(`${inputIds.cardholder_name}`, PayContent.mockCardName);
     await page.fill(`${inputIds.cvc}`, PayContent.mockCVC);
     await page.fill(
