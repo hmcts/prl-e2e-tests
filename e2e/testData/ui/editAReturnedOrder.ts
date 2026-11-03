@@ -1,5 +1,5 @@
-import { ChildArrangementsEditAReturnedOrderParams } from "../tests/manageCases/caseProgression/orders/C100/editAReturnedOrder/editAReturnedOrderCA.spec.ts";
-import { DomesticAbuseEditAReturnedOrderParams } from "../tests/manageCases/caseProgression/orders/FL401/editAReturnedOrder/editAReturnedOrderDA.spec.ts";
+import { ChildArrangementsEditAReturnedOrderParams } from "../../tests/manageCases/caseProgression/orders/C100/editAReturnedOrder/editAReturnedOrderCA.spec.ts";
+import { DomesticAbuseEditAReturnedOrderParams } from "../../tests/manageCases/caseProgression/orders/FL401/editAReturnedOrder/editAReturnedOrderDA.spec.ts";
 
 export const ChildArrangementsEditAReturnedOrderScenarios: ChildArrangementsEditAReturnedOrderParams[] =
   [
@@ -89,7 +89,7 @@ export const DomesticAbuseEditAReturnedOrderScenarios: DomesticAbuseEditAReturne
         hasJudgeProvidedHearingDetails: false,
         hearingDetails: undefined,
       },
-      snapshotName: "draft-order-non-molestation-no-to-all",
-      snapshotsPath: ["caseProgression", "orders", "draftNonMolestationOrder"],
+      snapshotName: "domestic-abuse-edit-a-returned-order",
+      snapshotsPath: ["caseProgression", "orders", "editAReturnedOrder"],
     },
   ];

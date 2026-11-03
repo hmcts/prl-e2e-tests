@@ -2,7 +2,7 @@ import config from "../../../../../../utils/config.utils.ts";
 import { test, expect } from "../../../../../fixtures.ts";
 import { Page } from "@playwright/test";
 import { EditReturnedOrder3Params } from "../../../../../../pageObjects/pages/exui/editReturnedOrder/editReturnedOrder3.po.ts";
-import { ChildArrangementsEditAReturnedOrderScenarios } from "../../../../../../testData/editAReturnedOrder.ts";
+import { ChildArrangementsEditAReturnedOrderScenarios } from "../../../../../../testData/ui/editAReturnedOrder.ts";
 import { OrderTypes } from "../../../../../../common/types.ts";
 import { solicitorCaseCreateType } from "../../../../../../common/types.ts";
 import {
@@ -78,7 +78,7 @@ test.describe("'Edit a returned order' flow for CA cases.", () => {
           caseType: "C100",
           status: "Rejected by Judge",
           isUrgent: false,
-          snapshotName: "C45A-judge-review-approve-order-askLegalRep-Changes",
+          snapshotName: "C45A-judge-review-approve-order-askLegalRep-Changes-ReturnOrder-flow",
           snapshotPath: ["caseProgression", "orders", "editAndApproveAnOrders"],
         };
         await editAndApproveOrder(

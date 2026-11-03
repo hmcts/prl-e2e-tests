@@ -1,7 +1,7 @@
 import config from "../../../../../../utils/config.utils.ts";
 import { test, expect } from "../../../../../fixtures.ts";
 import { Page } from "@playwright/test";
-import { DomesticAbuseEditAReturnedOrderScenarios } from "../../../../../../testData/editAReturnedOrder.ts";
+import { DomesticAbuseEditAReturnedOrderScenarios } from "../../../../../../testData/ui/editAReturnedOrder.ts";
 import { OrderTypes } from "../../../../../../common/types.ts";
 import {
   editAndApproveOrder,
@@ -88,7 +88,7 @@ test.describe("'Edit a returned order' flow for DA cases.", () => {
           isUrgent: false,
           caseType: "FL401",
           status: "Rejected by Judge",
-          snapshotName: "FL404A-judge-review-approve-order-askLegalRep-Changes",
+          snapshotName: "FL404A-judge-review-approve-order-askLegalRep-Changes-ReturnOrder-flow",
           snapshotPath: ["caseProgression", "orders", "editAndApproveAnOrders"],
         };
         await editAndApproveOrder(
