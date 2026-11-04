@@ -75,6 +75,7 @@ import { AdminAddLocalAuthoritySubmitPage } from "../pages/exui/addLocalAuthorit
 import { AdminAddLocalAuthorityConfirmPage } from "../pages/exui/addLocalAuthority/adminAddLocalAuthorityConfirm.po.ts";
 import { AdminEditAndApproveAnOrder1Page } from "../pages/exui/orders/adminEditAndApproveAnOrders/adminEditAndApproveAnOrder1.po.js";
 import { AdminEditAndApproveAnOrder4Page } from "../pages/exui/orders/adminEditAndApproveAnOrders/adminEditAndApproveAnOrder4.po.js";
+import { AdminEditAndApproveAnOrder5Page } from "../pages/exui/orders/adminEditAndApproveAnOrders/adminEditAndApproveAnOrder5.po.js";
 import { AdminEditAndApproveAnOrder21Page } from "../pages/exui/orders/adminEditAndApproveAnOrders/adminEditAndApproveAnOrder21.po.js";
 import { AdminEditAndApproveAnOrder23Page } from "../pages/exui/orders/adminEditAndApproveAnOrders/adminEditAndApproveAnOrder23.po.js";
 import { AdminEditAndApproveAnOrder22Page } from "../pages/exui/orders/adminEditAndApproveAnOrders/adminEditAndApproveAnOrder22.po.js";
@@ -312,6 +313,9 @@ export class CaseWorkerPagesGroup {
         this.page,
       ),
       adminEditAndApproveAnOrder4Page: new AdminEditAndApproveAnOrder4Page(
+        this.page,
+      ),
+      adminEditAndApproveAnOrder5Page: new AdminEditAndApproveAnOrder5Page(
         this.page,
       ),
       adminEditAndApproveAnOrder21Page: new AdminEditAndApproveAnOrder21Page(

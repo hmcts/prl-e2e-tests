@@ -71,4 +71,31 @@ export class CheckYourAnswersPage extends EventPage {
     }
     await expect(this.previousButton).toBeVisible();
   }
+
+  async assertPartiesAndRepresentation(value: string): Promise<void> {
+    const row = this.page.locator(".form-table tr").filter({
+      hasText: "Parties and representation",
+    });
+    await expect(row).toContainText(value);
+    await expect(row.getByRole("link", { name: /^Change/ })).toBeVisible();
+  }
+
+  async changePartiesAndRepresentation(
+    currentValue: string,
+    updatedValue: string,
+  ): Promise<void> {
+    await this.page
+      .locator(".form-table tr")
+      .filter({ hasText: "Parties and representation" })
+      .getByRole("link", { name: /^Change/ })
+      .click();
+    const parties = this.page.getByRole("textbox", {
+      name: "Parties and representation (Optional)",
+    });
+    await expect(parties).toHaveValue(currentValue);
+    await parties.fill(updatedValue);
+    await this.clickContinue();
+    await expect(this.headingH2).toBeVisible();
+    await this.assertPartiesAndRepresentation(updatedValue);
+  }
 }
