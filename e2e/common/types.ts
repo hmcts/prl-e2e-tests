@@ -101,7 +101,8 @@ export type WACaseWorkerActions =
   | "Return application"
   | "Add barrister"
   | "Remove barrister"
-  | "Review RA Request";
+  | "Review RA Request"
+  | "Rename documents";
 
 export type WACaseManagerActions = "Confidentiality check";
 
