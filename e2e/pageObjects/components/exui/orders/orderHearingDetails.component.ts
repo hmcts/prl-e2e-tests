@@ -273,9 +273,7 @@ export class OrderHearingDetailsComponent {
       await this.page
         .getByRole("combobox", { name: "Hearing judge (Optional)" })
         .fill(hearingJudge);
-      await this.page
-        .locator("mat-option", { hasText: hearingJudge })
-        .click();
+      await this.page.locator("mat-option", { hasText: hearingJudge }).click();
     }
     if (hearingListedWithALinkedCase) {
       await this.page
