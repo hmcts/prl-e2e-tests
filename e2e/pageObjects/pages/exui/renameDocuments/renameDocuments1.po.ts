@@ -16,6 +16,10 @@ export class RenameDocuments1Page extends EventPage {
     },
   );
 
+  private readonly docDropdown: Locator = this.page.locator(
+    "#renameDocumentsList",
+  );
+
   constructor(page: Page) {
     super(page, "Rename documents");
   }
@@ -28,7 +32,21 @@ export class RenameDocuments1Page extends EventPage {
     await expect(this.continueButton).toBeVisible();
   }
 
-  async selectDocument() {
-    await this.page.locator("#renameDocumentsList").selectOption({ index: 1 });
+  async selectDocument(documentName: string) {
+    const option = this.docDropdown
+      .locator("option")
+      .filter({ hasText: documentName });
+
+    await expect(option).toHaveCount(1);
+
+    const value = await option.getAttribute("value");
+
+    if (!value) {
+      throw new Error(
+        `Unable to find '${documentName}' in Rename documents dropdown`,
+      );
+    }
+
+    await this.docDropdown.selectOption(value);
   }
 }

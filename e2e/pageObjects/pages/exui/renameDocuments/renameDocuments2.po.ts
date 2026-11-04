@@ -41,19 +41,4 @@ export class RenameDocuments2Page extends EventPage {
   async fillNewDocumentName(expectedDocumentName: string) {
     await this.page.locator("#newNameForDocument").fill(expectedDocumentName);
   }
-
-  async getSelectedDocumentPath(): Promise<string[]> {
-    const documentSelectedField = this.page.locator("dl.case-field").filter({
-      has: this.page.getByText("Document selected :", { exact: true }),
-    });
-
-    const pathText = await documentSelectedField
-      .locator(".case-field__value")
-      .innerText();
-
-    return pathText
-      .split("->")
-      .map((value) => value.trim())
-      .slice(0, -1);
-  }
 }

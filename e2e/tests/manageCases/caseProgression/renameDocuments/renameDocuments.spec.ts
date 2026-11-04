@@ -1,11 +1,35 @@
 import { test } from "../../../fixtures.ts";
-import { caseTypes } from "../../../../common/types.js";
+import {
+  caseTypes,
+  solicitorCaseCreateType,
+} from "../../../../common/types.js";
 import { BasicCaseData } from "../../../../utils/manageCaseEvent.utils.js";
 import Config from "../../../../utils/config.utils.js";
+
+interface RenameDocumentTestData {
+  documentToSelect: string;
+  cfvPath: string[];
+}
+
+const renameDocumentTestData: Record<
+  solicitorCaseCreateType,
+  RenameDocumentTestData
+> = {
+  C100: {
+    documentToSelect: "C1A_DocumentDraft.pdf",
+    cfvPath: ["Applications", "Applicant documents", "Applicant C1A application"],
+  },
+  FL401: {
+    documentToSelect: "FL401FinalDocument.pdf",
+    cfvPath: ["Applications", "Applicant documents", "Applicant application"],
+  },
+};
 
 caseTypes.forEach((caseType) => {
   test.describe("Rename documents for cases", () => {
     let caseData: BasicCaseData;
+
+    const testData = renameDocumentTestData[caseType];
 
     test.beforeEach(
       async ({ courtAdminStoke, manageCasesEventUtils, navigationUtils }) => {
@@ -21,7 +45,8 @@ caseTypes.forEach((caseType) => {
     test(`Rename Documents for ${caseType} case @nightly @regression`, async ({
       courtAdminStoke,
     }): Promise<void> => {
-      const expectedDocumentName = "Test_Document_New_Name";
+      const newDocumentName = "Test_Document_New_Name";
+      const expectedDocumentName = `${newDocumentName}.pdf`;
 
       const {
         summaryPage,
@@ -33,17 +58,16 @@ caseTypes.forEach((caseType) => {
       await summaryPage.chooseEventFromDropdown("Rename documents");
       await renameDocuments.renameDocuments1Page.assertPageContents();
       await renameDocuments.renameDocuments1Page.verifyAccessibility();
-      await renameDocuments.renameDocuments1Page.selectDocument();
+      await renameDocuments.renameDocuments1Page.selectDocument(
+        testData.documentToSelect,
+      );
       await renameDocuments.renameDocuments1Page.clickContinue();
 
       await renameDocuments.renameDocuments2Page.assertPageContents();
       await renameDocuments.renameDocuments2Page.verifyAccessibility();
       await renameDocuments.renameDocuments2Page.fillNewDocumentName(
-        expectedDocumentName,
+        newDocumentName,
       );
-      // Capture the existing CFV folder path
-      const folderPath: string[] =
-        await renameDocuments.renameDocuments2Page.getSelectedDocumentPath();
       await renameDocuments.renameDocuments2Page.clickContinue();
 
       await renameDocuments.submitPage.assertPageContents(
@@ -60,15 +84,13 @@ caseTypes.forEach((caseType) => {
 
       // checking the Case Documents tab
       await caseDocumentsPage.goToPage();
-      await caseDocumentsPage.assertFinalDocuments([
-        expectedDocumentName + ".pdf",
-      ]);
+      await caseDocumentsPage.assertFinalDocuments([expectedDocumentName]);
 
       //validate document in Case File View Tab
       await caseFileViewPage.goToPage();
       await caseFileViewPage.validateDocumentExistsInCFV(
-        folderPath,
-        expectedDocumentName + ".pdf",
+        testData.cfvPath,
+        expectedDocumentName,
       );
     });
   });

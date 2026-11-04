@@ -108,8 +108,7 @@ export type fl401CaseWorkerActions =
   | "Send and reply to messages"
   | "Service of documents"
   | "Transfer to another court"
-  | "Remove draft order"
-  | "CaseWorkerActions";
+  | "Remove draft order";
 
 export type fl401SubmittedSolicitorEvents =
   | "Create/upload draft order"
