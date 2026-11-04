@@ -117,30 +117,38 @@ export class EditReturnedOrder5Page extends EventPage {
         .getByRole("textbox", { name: "Add the address of the property" })
         .fill(propertyAddress);
     }
-    switch (respondentMustNotDoOptions) {
-      case "must not telephone, text, email or otherwise contact or attempt to contact the applicant":
-        await this.page
-          .locator("#fl404CustomFields_fl404bAddMoreDetailsTelephone")
-          .fill(mustNotContactApplicantFurtherDetails);
-        break;
-      case "must not go to, enter or attempt to enter the property":
-        await this.page
-          .locator("#fl404CustomFields_fl404bAddMoreDetailsProperty")
-          .fill(mustNotEnterPropertyFurtherDetails);
-        break;
-      case "must not telephone, text, email or otherwise contact or attempt to contact the relevant children":
-        await this.page
-          .locator("#fl404CustomFields_fl404bAddMoreDetailsPhoneChild")
-          .fill(mustNotContactChildrenFurtherDetails);
-        break;
-      case "must not go to, enter or attempt to enter the school":
-        await this.page
-          .getByRole("textbox", { name: "Add school name" })
-          .fill(schoolName);
-        await this.page
-          .locator("#fl404CustomFields_fl404bAddMoreDetailsSchool")
-          .fill(mustNotGoToSchoolFurtherDetails);
-        break;
+    if (respondentMustNotDoOptions) {
+      for (const option of respondentMustNotDoOptions) {
+        await this.page.getByRole("checkbox", { name: option }).check();
+
+        switch (option) {
+          case "must not telephone, text, email or otherwise contact or attempt to contact the applicant":
+            await this.page
+              .locator("#fl404CustomFields_fl404bAddMoreDetailsTelephone")
+              .fill(mustNotContactApplicantFurtherDetails);
+            break;
+          case "must not go to, enter or attempt to enter the property":
+            await this.page
+              .locator("#fl404CustomFields_fl404bAddMoreDetailsProperty")
+              .fill(mustNotEnterPropertyFurtherDetails);
+            break;
+          case "must not telephone, text, email or otherwise contact or attempt to contact the relevant children":
+            await this.page
+              .locator("#fl404CustomFields_fl404bAddMoreDetailsPhoneChild")
+              .fill(mustNotContactChildrenFurtherDetails);
+            break;
+          case "must not go to, enter or attempt to enter the school":
+            await this.page
+              .getByRole("textbox", { name: "Add school name" })
+              .fill(schoolName);
+            await this.page
+              .locator("#fl404CustomFields_fl404bAddMoreDetailsSchool")
+              .fill(mustNotGoToSchoolFurtherDetails);
+            break;
+          default:
+            throw new Error(`Unexpected respondentMustNoDo option: ${option}`);
+        }
+      }
     }
     await this.page.getByRole("radio", { name: orderLength }).check();
     if (specificDateAndTime) {
