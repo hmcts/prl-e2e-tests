@@ -12,6 +12,7 @@ import { ManageOrder5Params } from "../../../../../../../pageObjects/pages/exui/
 import { ManageOrder10Params } from "../../../../../../../pageObjects/pages/exui/orders/manageOrders/manageOrder10.po.ts";
 import { ManageOrder19Params } from "../../../../../../../pageObjects/pages/exui/orders/manageOrders/manageOrder19.po.ts";
 import { ManageOrder24Params } from "../../../../../../../pageObjects/pages/exui/orders/manageOrders/manageOrder24.po.ts";
+import { defaultPartiesAndRepresentation } from "../../../../../../../pageObjects/components/exui/orders/orderDetails.component.js";
 
 export interface ChildArrangementsCreateOrderParams {
   name: string;
@@ -136,6 +137,10 @@ test.describe("Manage Orders - Create a Child arrangements, specific issue or pr
         await manageOrders.manageOrder31Page.selectIsUrgent(false);
         await manageOrders.manageOrder31Page.clickContinue();
 
+        await manageOrders.manageOrderSubmitPage.assertPartiesAndRepresentation(
+          manageOrderParams.manageOrder5Params.partiesAndRepresentation ??
+            defaultPartiesAndRepresentation,
+        );
         await manageOrders.manageOrderSubmitPage.assertPageContents(
           manageOrderParams.snapshotsPath,
           manageOrderParams.snapshotName,

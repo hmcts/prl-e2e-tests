@@ -31,6 +31,15 @@ export class EditAndApproveAnOrder2Page extends EventPage {
   private readonly askTheLegalLabel: Locator = this.page.locator(
     "#whatToDoWithOrderSolicitor-askLegalRepToMakeChanges",
   );
+  private readonly courtAdminSendToAdminLabel: Locator = this.page.locator(
+    "#whatToDoWithOrderCourtAdmin-sendToAdminToServe",
+  );
+  private readonly courtAdminGiveAdminDirLabel: Locator = this.page.locator(
+    "#whatToDoWithOrderCourtAdmin-giveAdminFurtherDirectionsAndServe",
+  );
+  private readonly courtAdminEditOrderLabel: Locator = this.page.locator(
+    "#whatToDoWithOrderCourtAdmin-editTheOrderAndServe",
+  );
   private readonly giveInstructionsFormLabel: Locator = this.page.locator(
     Selectors.GovukFormLabel,
     {
@@ -44,7 +53,10 @@ export class EditAndApproveAnOrder2Page extends EventPage {
     super(page, "Edit and approve a draft order");
   }
 
-  async assertPageContents(orderType: OrderTypes): Promise<void> {
+  async assertPageContents(
+    orderType: OrderTypes,
+    createdBy: "solicitor" | "courtAdmin" = "solicitor",
+  ): Promise<void> {
     await this.assertPageHeadings();
     await expect(
       this.page.getByRole("button", {
@@ -66,11 +78,22 @@ export class EditAndApproveAnOrder2Page extends EventPage {
     ).toBeVisible();
     await expect(this.heading2).toBeVisible();
     await expect(this.heading3).toBeVisible();
-    await expect(this.orderLabel).toBeVisible();
-    await expect(this.sendToAdminLabel).toBeVisible();
-    await expect(this.giveAdminDirLabel).toBeVisible();
-    await expect(this.editAndGiveAdminLabel).toBeVisible();
-    await expect(this.askTheLegalLabel).toBeVisible();
+    if (createdBy === "courtAdmin") {
+      await expect(
+        this.page.locator("#whatToDoWithOrderCourtAdmin", {
+          hasText: "What do you want to do with this order?",
+        }),
+      ).toBeVisible();
+      await expect(this.courtAdminSendToAdminLabel).toBeVisible();
+      await expect(this.courtAdminGiveAdminDirLabel).toBeVisible();
+      await expect(this.courtAdminEditOrderLabel).toBeVisible();
+    } else {
+      await expect(this.orderLabel).toBeVisible();
+      await expect(this.sendToAdminLabel).toBeVisible();
+      await expect(this.giveAdminDirLabel).toBeVisible();
+      await expect(this.editAndGiveAdminLabel).toBeVisible();
+      await expect(this.askTheLegalLabel).toBeVisible();
+    }
     await expect(this.continueButton).toBeVisible();
     await expect(this.previousButton).toBeVisible();
   }
