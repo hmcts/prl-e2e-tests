@@ -7,6 +7,7 @@ import { CommonStaticText } from "../../../common/commonStaticText.js";
 type CyaSubmitButton =
   | CommonStaticText.submit
   | CommonStaticText.saveAndContinue
+  | CommonStaticText.closeAndReturnToCaseDetails
   | "Delete"
   | "Mark case as restricted";
 
