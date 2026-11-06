@@ -14,6 +14,9 @@ export interface ManageOrder6Params {
 }
 
 export class ManageOrder6Page extends EventPage {
+  readonly hintTextRTF1: Locator = this.page.getByText("These rich text boxes follow the structure of Standard Orders.");
+  readonly hintTextRTF2: Locator = this.page.getByText("You can enter and format text directly in the boxes below or cut and paste from Outlook or Word. If you cut and paste, the text must be formatted properly first.");
+  readonly hintTextRTF3: Locator = this.page.getByText("You must structure numbered lists and sub-paragraphs in the correct sequence, which is Number – Letter – Roman Numeral. Any other order will not format properly.");
   readonly recitalsOrPreamblesLabel: Locator = this.page.getByRole("textbox", {
     name: "Add recitals or preamble (Optional)",
   });
@@ -69,6 +72,9 @@ export class ManageOrder6Page extends EventPage {
     ).toBeVisible();
     await expect(this.familyManHeading).toBeVisible();
     await expect(this.caseNumberHeading).toBeVisible();
+    await expect(this.hintTextRTF1).toBeVisible();
+    await expect(this.hintTextRTF2).toBeVisible();
+    await expect(this.hintTextRTF3).toBeVisible();
     if (!isUploadAnOrder) {
       await expect(this.page.getByText(orderType).first()).toBeVisible();
     }

@@ -40,6 +40,7 @@ test.describe("Manage Orders - Create Occupation Order (FL404) order tests", () 
         config.manageCasesBaseURLCase,
         caseRef,
       );
+      console.log(caseRef);
     },
   );
 
