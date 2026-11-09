@@ -6,7 +6,7 @@ import { DraftAnOrder6Page } from "../../../../../../pageObjects/pages/exui/orde
 
 const orderType = "Non-molestation order (FL404A)" as OrderTypes;
 const editOrderAction = "Edit the order myself and send to admin to serve";
-const enteredParties = "Test parties and representation";
+const enteredParties = "Test Parties and representation";
 const amendedParties = "Updated parties and representation";
 const servedParties = "Admin updated parties and representation";
 
@@ -74,7 +74,8 @@ test.describe("Parties and representation on edit and approve and edit and serve
     );
     await judgeOrderDetails.clickContinue();
 
-    await expectPreviewAndContinue(judge.page);
+    await continueOptionalHearing(judge.page);
+    await previewOrderAndContinue(judge.page);
 
     await editAndApproveAnOrders.editAndApproveAnOrder21Page.assertPageContents(
       orderType,
@@ -94,6 +95,39 @@ test.describe("Parties and representation on edit and approve and edit and serve
     );
     await editAndApproveAnOrders.editAndApproveAnOrderSubmitPage.changePartiesAndRepresentation(
       enteredParties,
+      amendedParties,
+    );
+
+    await manageOrders.manageOrder6Page.assertPageContents(
+      false,
+      orderType,
+      "Edit and approve a draft order",
+    );
+    await manageOrders.manageOrder6Page.clickContinue();
+
+    await judgeOrderDetails.assertPageContents(
+      orderType,
+      "Edit and approve a draft order",
+    );
+    await judgeOrderDetails.clickContinue();
+
+    await continueOptionalHearing(judge.page);
+    await previewOrderAndContinue(judge.page);
+
+    await editAndApproveAnOrders.editAndApproveAnOrder21Page.assertPageContents(
+      orderType,
+    );
+    await editAndApproveAnOrders.editAndApproveAnOrder21Page.fillInFields(true);
+    await editAndApproveAnOrders.editAndApproveAnOrder21Page.clickContinue();
+
+    await editAndApproveAnOrders.editAndApproveAnOrder22Page.assertPageContents();
+    await editAndApproveAnOrders.editAndApproveAnOrder22Page.selectIsUrgent(
+      false,
+    );
+    await editAndApproveAnOrders.editAndApproveAnOrder22Page.clickContinue();
+
+    await editAndApproveAnOrders.editAndApproveAnOrderSubmitPage.assertPageContents();
+    await editAndApproveAnOrders.editAndApproveAnOrderSubmitPage.assertPartiesAndRepresentation(
       amendedParties,
     );
     await editAndApproveAnOrders.editAndApproveAnOrderSubmitPage.clickSubmit();
@@ -138,6 +172,12 @@ test.describe("Parties and representation on edit and approve and edit and serve
     );
     await adminEditAndApproveAnOrders.adminEditAndApproveAnOrder4Page.clickContinue();
 
+    await expect(
+      caseWorker.page.getByRole("textbox", {
+        name: "Parties and representation (Optional)",
+      }),
+    ).toBeVisible({ timeout: 120_000 });
+
     await adminEditAndApproveAnOrders.adminEditAndApproveAnOrder5Page.assertPageContents(
       "FL401",
       orderType,
@@ -165,7 +205,8 @@ test.describe("Parties and representation on edit and approve and edit and serve
     );
     await adminOrderDetails.clickContinue();
 
-    await expectPreviewAndContinue(caseWorker.page);
+    await continueOptionalHearing(caseWorker.page);
+    await previewOrderAndContinue(caseWorker.page);
 
     await adminEditAndApproveAnOrders.adminEditAndApproveAnOrder21Page.assertPageContents(
       "FL401",
@@ -195,9 +236,12 @@ test.describe("Parties and representation on edit and approve and edit and serve
     );
     await adminEditAndApproveAnOrders.adminEditAndApproveAnOrder23Page.clickContinue();
 
-    await adminEditAndApproveAnOrders.adminEditAndApproveAnOrderSubmitPage.assertPageContents();
     await adminEditAndApproveAnOrders.adminEditAndApproveAnOrderSubmitPage.assertPartiesAndRepresentation(
       servedParties,
+    );
+    await adminEditAndApproveAnOrders.adminEditAndApproveAnOrderSubmitPage.assertPageContents(
+      ["caseProgression", "orders", "serveApprovedOrders"],
+      "FL404A-admin-edit-and-serve-parties",
     );
     await adminEditAndApproveAnOrders.adminEditAndApproveAnOrderSubmitPage.clickSubmit();
     await adminSummary.alertBanner.assertEventAlert(
@@ -207,7 +251,14 @@ test.describe("Parties and representation on edit and approve and edit and serve
   });
 });
 
-async function expectPreviewAndContinue(page: Page): Promise<void> {
+async function continueOptionalHearing(page: Page): Promise<void> {
+  await expect(
+    page.getByRole("heading", { name: "Creating a hearing is optional" }),
+  ).toBeVisible();
+  await page.getByRole("button", { name: "Continue" }).click();
+}
+
+async function previewOrderAndContinue(page: Page): Promise<void> {
   await expect(
     page.getByRole("heading", { name: "Preview the order" }),
   ).toBeVisible();

@@ -95,7 +95,5 @@ export class CheckYourAnswersPage extends EventPage {
     await expect(parties).toHaveValue(currentValue);
     await parties.fill(updatedValue);
     await this.clickContinue();
-    await expect(this.headingH2).toBeVisible();
-    await this.assertPartiesAndRepresentation(updatedValue);
   }
 }

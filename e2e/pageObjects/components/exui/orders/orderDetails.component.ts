@@ -33,7 +33,7 @@ export interface Order5Params {
 }
 
 export const defaultPartiesAndRepresentation =
-  "Test parties and representation";
+  "Test Parties and representation";
 
 export class OrderDetailsComponent {
   private readonly consentLabel: Locator = this.page.getByText(
@@ -89,7 +89,7 @@ export class OrderDetailsComponent {
   );
   private readonly partiesAndRepresentationHintText: Locator =
     this.page.getByText(
-      "Add the names of all the parties in the case, with a brief description of their role in proceedings and details of their representation",
+      "Add the names of all the parties in the case with a brief description of their role in proceedings and details of their representation",
     );
 
   //ManageOrders specific labels
