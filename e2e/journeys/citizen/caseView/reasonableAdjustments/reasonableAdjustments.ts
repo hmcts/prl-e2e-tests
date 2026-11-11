@@ -56,7 +56,6 @@ export class ReasonableAdjustments {
       caseNumber,
       "Tasks",
     );
-    console.log("Caseworker URL:", caseWorker.page.url());
     await tasksPage.assignTaskToMeAndTriggerNextSteps(
       "Review support request",
       "Create Case Flag",
