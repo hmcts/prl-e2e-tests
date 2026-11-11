@@ -4,6 +4,9 @@ import { LanguageRequirementsAndSpecialArrangementsPage } from "../../../../page
 import { LanguageRequirementsAndSpecialArrangementsReviewPage } from "../../../../pages/citizen/caseView/reasonableAdjustments/languageRequirementsAndSpecialArrangementsReviewPage.ts";
 import { ConfirmationPage } from "../../../../pages/citizen/caseView/reasonableAdjustments/confirmationPage.ts";
 import { CitizenC100CaseUtils } from "../../../../utils/citizenC100Case.utils.ts";
+import { CaseWorkerPagesGroup } from "../../../../pageObjects/roleBasedGroupedPages/caseWorkerPages.ts";
+import { Helpers } from "../../../../common/helpers.ts";
+import Config from "../../../../utils/config.utils.ts";
 
 interface reasonableAdjustmentsParams {
   page: Page;
@@ -12,6 +15,7 @@ interface reasonableAdjustmentsParams {
   isApplicant: boolean;
   citizenC100CaseUtils: CitizenC100CaseUtils;
   caseRef: string;
+  caseWorker: CaseWorkerPagesGroup;
 }
 
 enum UniqueSelectors {
@@ -23,6 +27,8 @@ export class ReasonableAdjustments {
     page,
     accessibilityTest,
     isApplicant,
+    caseWorker,
+    caseRef,
   }: reasonableAdjustmentsParams): Promise<void> {
     await page
       .locator(UniqueSelectors.supportYouNeedDuringYourCaseSelector)
@@ -40,5 +46,21 @@ export class ReasonableAdjustments {
     await ConfirmationPage.confirmationPage(page, accessibilityTest);
     // There won't be a 'Requested' status flag anymore after the confirmation screen.
     // Now it will raise a WA task in EXUI called 'Review support request' where the caseworker can create a case flag from it.
+    // Asserting the WA task 'Review support request' below.
+    const { tasksPage } = caseWorker;
+    const caseNumber = caseRef;
+
+    await Helpers.goToCase(
+      caseWorker.page,
+      Config.manageCasesBaseURLCase,
+      caseNumber,
+      "Tasks",
+    );
+    console.log("Caseworker URL:", caseWorker.page.url());
+    await tasksPage.assignTaskToMeAndTriggerNextSteps(
+      "Review support request",
+      "Create Case Flag",
+      "caseWorker",
+    );
   }
 }

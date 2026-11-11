@@ -17,7 +17,11 @@ const renameDocumentTestData: Record<
 > = {
   C100: {
     documentToSelect: "C1A_DocumentDraft.pdf",
-    cfvPath: ["Applications", "Applicant documents", "Applicant C1A application"],
+    cfvPath: [
+      "Applications",
+      "Applicant documents",
+      "Applicant C1A application",
+    ],
   },
   FL401: {
     documentToSelect: "FL401FinalDocument.pdf",
