@@ -27,6 +27,7 @@ test.describe("Applicant reasonable adjustments tests", (): void => {
   test("Applicant reasonable adjustments - no reasonable adjustments. @regression @accessibility @nightly", async ({
     page,
     citizenC100CaseUtils,
+    caseWorker,
   }): Promise<void> => {
     await ReasonableAdjustments.reasonableAdjustments({
       page: page,
@@ -35,12 +36,14 @@ test.describe("Applicant reasonable adjustments tests", (): void => {
       isApplicant: true,
       citizenC100CaseUtils: citizenC100CaseUtils,
       caseRef: caseRef,
+      caseWorker,
     });
   });
 
   test("Applicant reasonable adjustments - add reasonable adjustment. @regression", async ({
     page,
     citizenC100CaseUtils,
+    caseWorker,
   }): Promise<void> => {
     await ReasonableAdjustments.reasonableAdjustments({
       page: page,
@@ -49,6 +52,7 @@ test.describe("Applicant reasonable adjustments tests", (): void => {
       isApplicant: true,
       citizenC100CaseUtils: citizenC100CaseUtils,
       caseRef: caseRef,
+      caseWorker,
     });
   });
 });
