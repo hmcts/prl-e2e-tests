@@ -42,7 +42,6 @@ test.describe("Manage Orders - Create a Child arrangements, specific issue or pr
         config.manageCasesBaseURLCase,
         caseRef,
       );
-      console.log(caseRef);
     },
   );
 

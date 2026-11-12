@@ -15,14 +15,14 @@ export interface ManageOrder6Params {
 
 export class ManageOrder6Page extends EventPage {
   readonly hintTextRTF1: Locator = this.page.getByText("These rich text boxes follow the structure of Standard Orders.");
-  readonly hintTextRTF2: Locator = this.page.getByText("You can enter and format text directly in the boxes below or cut and paste from Outlook or Word. If you cut and paste, the text must be formatted properly first.");
-  readonly hintTextRTF3: Locator = this.page.getByText("You must structure numbered lists and sub-paragraphs in the correct sequence, which is Number – Letter – Roman Numeral. Any other order will not format properly.");
+  readonly hintTextRTF2: Locator = this.page.getByText("You can type directly into the text boxes or cut and paste from Outlook or Word. If you use numbered lists or sub-paragraphs, they must be in the following sequence:");
+  readonly hintTextRTF3: Locator = this.page.getByText("Number – Letter – Roman Numeral.");
   readonly recitalsOrPreamblesLabel: Locator = this.page.getByRole("textbox", {
     name: "Add recitals or preamble (Optional)",
   });
   readonly directionsLabel: Locator = this.page.getByRole("textbox", {
     name: "Add directions (Optional)",
-  });
+  }); 
   readonly recitalsOrPreambleRtfLabel: Locator = this.page.locator(
     "#recitalsOrPreambleRtf_label",
   );
