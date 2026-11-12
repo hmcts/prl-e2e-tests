@@ -14,12 +14,15 @@ export interface ManageOrder6Params {
 }
 
 export class ManageOrder6Page extends EventPage {
+  readonly hintTextRTF1: Locator = this.page.getByText("These rich text boxes follow the structure of Standard Orders.");
+  readonly hintTextRTF2: Locator = this.page.getByText("You can type directly into the text boxes or cut and paste from Outlook or Word. If you use numbered lists or sub-paragraphs, they must be in the following sequence:");
+  readonly hintTextRTF3: Locator = this.page.getByText("Number – Letter – Roman Numeral.");
   readonly recitalsOrPreamblesLabel: Locator = this.page.getByRole("textbox", {
     name: "Add recitals or preamble (Optional)",
   });
   readonly directionsLabel: Locator = this.page.getByRole("textbox", {
     name: "Add directions (Optional)",
-  });
+  }); 
   readonly recitalsOrPreambleRtfLabel: Locator = this.page.locator(
     "#recitalsOrPreambleRtf_label",
   );
@@ -69,6 +72,9 @@ export class ManageOrder6Page extends EventPage {
     ).toBeVisible();
     await expect(this.familyManHeading).toBeVisible();
     await expect(this.caseNumberHeading).toBeVisible();
+    await expect(this.hintTextRTF1).toBeVisible();
+    await expect(this.hintTextRTF2).toBeVisible();
+    await expect(this.hintTextRTF3).toBeVisible();
     if (!isUploadAnOrder) {
       await expect(this.page.getByText(orderType).first()).toBeVisible();
     }
