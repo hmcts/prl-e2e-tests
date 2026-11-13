@@ -29,7 +29,11 @@ export interface Order5Params {
   allChildrenInOrder?: string[];
   recitalsAndPreamble?: string;
   directions?: string;
+  partiesAndRepresentation?: string;
 }
+
+export const defaultPartiesAndRepresentation =
+  "Test Parties and representation";
 
 export class OrderDetailsComponent {
   private readonly consentLabel: Locator = this.page.getByText(
@@ -77,11 +81,15 @@ export class OrderDetailsComponent {
   private readonly whichHearingWasOrderApprovedLabel: Locator =
     this.page.getByText("At which hearing was the order approved?");
   private readonly partiesAndRepresentation: Locator = this.page.getByText(
-    "Parties and representation",
+    "Parties and representation (Optional)",
+    { exact: true },
+  );
+  private readonly partiesAndRepresentationInput: Locator = this.page.locator(
+    "#partiesAndRepresentation",
   );
   private readonly partiesAndRepresentationHintText: Locator =
     this.page.getByText(
-      "Add the names of all the parties in the case, with a brief description of their role in proceedings and details of their representation",
+      "Add the names of all the parties in the case with a brief description of their role in proceedings and details of their representation",
     );
 
   //ManageOrders specific labels
@@ -123,12 +131,10 @@ export class OrderDetailsComponent {
       );
       await expect(this.orderMadeByParagraph).toBeVisible();
       if (orderJourneyType === "manageOrder") {
-        if (
-          orderType ===
-          "Child arrangements, specific issue or prohibited steps order (C43)"
-        ) {
+        if (this.hasPartiesAndRepresentation(orderType)) {
           await expect(this.partiesAndRepresentation).toBeVisible();
           await expect(this.partiesAndRepresentationHintText).toBeVisible();
+          await expect(this.partiesAndRepresentationInput).toBeVisible();
         }
       } else {
         await expect(this.recitalsOrPreamblesLabel).toBeVisible();
@@ -168,6 +174,13 @@ export class OrderDetailsComponent {
     } else {
       await expect(this.orderAboutChildrenLabel).toBeVisible();
     }
+    if (
+      !createOrder &&
+      orderJourneyType === "manageOrder" &&
+      this.hasPartiesAndRepresentation(orderType)
+    ) {
+      await expect(this.partiesAndRepresentationInput).toBeHidden();
+    }
   }
 
   async fillInFields(
@@ -188,6 +201,7 @@ export class OrderDetailsComponent {
       directions,
       allChildrenInOrder,
       hearing,
+      partiesAndRepresentation,
     }: Order5Params,
   ): Promise<void> {
     if (createOrder) {
@@ -196,13 +210,10 @@ export class OrderDetailsComponent {
         .getByLabel(isOrderByConsent ? "Yes" : "No")
         .check();
       if (orderJourneyType === "manageOrder") {
-        if (
-          orderType ===
-          "Child arrangements, specific issue or prohibited steps order (C43)"
-        ) {
-          await this.page
-            .locator("#partiesAndRepresentation")
-            .fill("Test parties and representation");
+        if (this.hasPartiesAndRepresentation(orderType)) {
+          await this.fillPartiesAndRepresentation(
+            partiesAndRepresentation ?? defaultPartiesAndRepresentation,
+          );
         }
       } else {
         if (recitalsAndPreamble) {
@@ -328,5 +339,25 @@ export class OrderDetailsComponent {
         }
       }
     }
+  }
+
+  async assertPartiesAndRepresentationValue(value: string): Promise<void> {
+    await expect(this.partiesAndRepresentation).toBeVisible();
+    await expect(this.partiesAndRepresentationHintText).toBeVisible();
+    await expect(this.partiesAndRepresentationInput).toHaveValue(value);
+  }
+
+  async fillPartiesAndRepresentation(value: string): Promise<void> {
+    await this.partiesAndRepresentationInput.fill(value);
+  }
+
+  private hasPartiesAndRepresentation(orderType: OrderTypes): boolean {
+    return (
+      orderType ===
+        "Child arrangements, specific issue or prohibited steps order (C43)" ||
+      orderType === "Blank order or directions (C21)" ||
+      orderType === "Occupation order (FL404)" ||
+      orderType === "Non-molestation order (FL404A)"
+    );
   }
 }
