@@ -75,10 +75,12 @@ export class ManageCaseEventUtils {
    * Creates and submits an FL401 or C100 testing support solicitor case via API requests.
    *
    * @param caseType the type of case either C100 or Fl401.
+   * @param localCourtInfo the court info of the court the case it to be issued to for an FL401 case.
    * @returns the case reference and case name of the created testing support Solicitor case.
    */
   public async submitTSSolicitorCase(
     caseType: solicitorCaseCreateType,
+    localCourtInfo: LocalCourtInfo = LOCAL_COURTS.swansea,
   ): Promise<BasicCaseData> {
     const userCredentials: UserCredentials = {
       email: process.env.SOLICITOR_USERNAME,
@@ -162,9 +164,8 @@ export class ManageCaseEventUtils {
             },
             submitCountyCourtSelection: {
               value: {
-                code: "234946:",
-                label:
-                  "Swansea Civil Justice Centre - Quay West, Quay Parade - SA1 1SP",
+                code: localCourtInfo.code,
+                label: localCourtInfo.label,
               },
             },
           },
