@@ -4,7 +4,9 @@ WORKDIR /prl-e2e-tests/
 
 COPY package.json ./
 
-RUN corepack enable
+RUN npm uninstall -g yarn \
+    && npm install -g corepack \
+    && corepack enable
 RUN yarn install
 RUN yarn playwright install
 
