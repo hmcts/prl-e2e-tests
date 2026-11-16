@@ -341,12 +341,6 @@ export class OrderDetailsComponent {
     }
   }
 
-  async assertPartiesAndRepresentationValue(value: string): Promise<void> {
-    await expect(this.partiesAndRepresentation).toBeVisible();
-    await expect(this.partiesAndRepresentationHintText).toBeVisible();
-    await expect(this.partiesAndRepresentationInput).toHaveValue(value);
-  }
-
   async fillPartiesAndRepresentation(value: string): Promise<void> {
     await this.partiesAndRepresentationInput.fill(value);
   }

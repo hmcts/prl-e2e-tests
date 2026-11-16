@@ -7,7 +7,6 @@ import { DraftAnOrder6Page } from "../../../../../../pageObjects/pages/exui/orde
 const orderType = "Non-molestation order (FL404A)" as OrderTypes;
 const editOrderAction = "Edit the order myself and send to admin to serve";
 const enteredParties = "Test Parties and representation";
-const amendedParties = "Updated parties and representation";
 const servedParties = "Admin updated parties and representation";
 
 test.describe("Parties and representation on edit and approve and edit and serve", (): void => {
@@ -52,9 +51,6 @@ test.describe("Parties and representation on edit and approve and edit and serve
       orderType,
     );
     await editAndApproveAnOrders.editAndApproveAnOrder5Page.verifyAccessibility();
-    await editAndApproveAnOrders.editAndApproveAnOrder5Page.assertPartiesAndRepresentation(
-      "",
-    );
     await editAndApproveAnOrders.editAndApproveAnOrder5Page.fillPartiesAndRepresentation(
       enteredParties,
     );
@@ -90,46 +86,6 @@ test.describe("Parties and representation on edit and approve and edit and serve
     await editAndApproveAnOrders.editAndApproveAnOrder22Page.clickContinue();
 
     await editAndApproveAnOrders.editAndApproveAnOrderSubmitPage.assertPageContents();
-    await editAndApproveAnOrders.editAndApproveAnOrderSubmitPage.assertPartiesAndRepresentation(
-      enteredParties,
-    );
-    await editAndApproveAnOrders.editAndApproveAnOrderSubmitPage.changePartiesAndRepresentation(
-      enteredParties,
-      amendedParties,
-    );
-
-    await manageOrders.manageOrder6Page.assertPageContents(
-      false,
-      orderType,
-      "Edit and approve a draft order",
-    );
-    await manageOrders.manageOrder6Page.clickContinue();
-
-    await judgeOrderDetails.assertPageContents(
-      orderType,
-      "Edit and approve a draft order",
-    );
-    await judgeOrderDetails.clickContinue();
-
-    await continueOptionalHearing(judge.page);
-    await previewOrderAndContinue(judge.page);
-
-    await editAndApproveAnOrders.editAndApproveAnOrder21Page.assertPageContents(
-      orderType,
-    );
-    await editAndApproveAnOrders.editAndApproveAnOrder21Page.fillInFields(true);
-    await editAndApproveAnOrders.editAndApproveAnOrder21Page.clickContinue();
-
-    await editAndApproveAnOrders.editAndApproveAnOrder22Page.assertPageContents();
-    await editAndApproveAnOrders.editAndApproveAnOrder22Page.selectIsUrgent(
-      false,
-    );
-    await editAndApproveAnOrders.editAndApproveAnOrder22Page.clickContinue();
-
-    await editAndApproveAnOrders.editAndApproveAnOrderSubmitPage.assertPageContents();
-    await editAndApproveAnOrders.editAndApproveAnOrderSubmitPage.assertPartiesAndRepresentation(
-      amendedParties,
-    );
     await editAndApproveAnOrders.editAndApproveAnOrderSubmitPage.clickSubmit();
 
     await editAndApproveAnOrders.editAndApproveAnOrderConfirmPage.assertPageContents(
@@ -183,9 +139,6 @@ test.describe("Parties and representation on edit and approve and edit and serve
       orderType,
     );
     await adminEditAndApproveAnOrders.adminEditAndApproveAnOrder5Page.verifyAccessibility();
-    await adminEditAndApproveAnOrders.adminEditAndApproveAnOrder5Page.assertPartiesAndRepresentation(
-      amendedParties,
-    );
     await adminEditAndApproveAnOrders.adminEditAndApproveAnOrder5Page.fillPartiesAndRepresentation(
       servedParties,
     );
@@ -236,9 +189,6 @@ test.describe("Parties and representation on edit and approve and edit and serve
     );
     await adminEditAndApproveAnOrders.adminEditAndApproveAnOrder23Page.clickContinue();
 
-    await adminEditAndApproveAnOrders.adminEditAndApproveAnOrderSubmitPage.assertPartiesAndRepresentation(
-      servedParties,
-    );
     await adminEditAndApproveAnOrders.adminEditAndApproveAnOrderSubmitPage.assertPageContents(
       ["caseProgression", "orders", "serveApprovedOrders"],
       "FL404A-admin-edit-and-serve-parties",

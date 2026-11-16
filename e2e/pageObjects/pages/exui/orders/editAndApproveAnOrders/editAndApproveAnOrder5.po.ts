@@ -29,10 +29,6 @@ export class EditAndApproveAnOrder5Page extends EventPage {
     await expect(this.previousButton).toBeVisible();
   }
 
-  async assertPartiesAndRepresentation(value: string): Promise<void> {
-    await this.orderDetailsComponent.assertPartiesAndRepresentationValue(value);
-  }
-
   async fillPartiesAndRepresentation(value: string): Promise<void> {
     await this.orderDetailsComponent.fillPartiesAndRepresentation(value);
   }

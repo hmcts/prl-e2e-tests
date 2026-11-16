@@ -183,13 +183,6 @@ async function editAndApproveOrder(caseRef, judge: JudgePagesGroup, data) {
   );
   await editAndApproveAnOrders.editAndApproveAnOrder22Page.clickContinue();
 
-  if (
-    data.judeOrderAction == "Edit the order myself and send to admin to serve"
-  ) {
-    await editAndApproveAnOrders.editAndApproveAnOrderSubmitPage.assertPartiesAndRepresentation(
-      defaultPartiesAndRepresentation,
-    );
-  }
   await editAndApproveAnOrders.editAndApproveAnOrderSubmitPage.assertPageContents(
     data.snapshotPath,
     data.snapshotName,

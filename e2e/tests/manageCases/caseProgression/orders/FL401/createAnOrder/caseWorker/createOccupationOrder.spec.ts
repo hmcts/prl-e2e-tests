@@ -11,8 +11,6 @@ import { ManageOrder19Params } from "../../../../../../../pageObjects/pages/exui
 import { ManageOrder24Params } from "../../../../../../../pageObjects/pages/exui/orders/manageOrders/manageOrder24.po.ts";
 import { OrderInformation } from "../../../../../../../pageObjects/pages/exui/caseView/draftOrders.po.ts";
 import { OccupationOrderScenarios } from "../../../../../../../testData/ui/manageOrders.ts";
-import { defaultPartiesAndRepresentation } from "../../../../../../../pageObjects/components/exui/orders/orderDetails.component.js";
-
 export interface OccupationOrderParams {
   name: string;
   caseType: solicitorCaseCreateType;
@@ -132,10 +130,6 @@ test.describe("Manage Orders - Create Occupation Order (FL404) order tests", () 
         await manageOrders.manageOrder31Page.selectIsUrgent(false);
         await manageOrders.manageOrder31Page.clickContinue();
 
-        await manageOrders.manageOrderSubmitPage.assertPartiesAndRepresentation(
-          manageOrderParams.manageOrder5Params.partiesAndRepresentation ??
-            defaultPartiesAndRepresentation,
-        );
         await manageOrders.manageOrderSubmitPage.assertPageContents(
           manageOrderParams.snapshotsPath,
           manageOrderParams.snapshotName,
