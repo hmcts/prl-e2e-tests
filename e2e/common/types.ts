@@ -479,7 +479,7 @@ export type AnyOtherOrderTypes = "Other";
 
 export const AnyOtherOrderTypesArray: AnyOtherOrderTypes[] = ["Other"];
 
-type CourtKey = "aberystwyth" | "swansea";
+type CourtKey = "aberystwyth" | "swansea" | "chelmsford" | "nottingham" | "aldershot" | "prestatyn" | "blackwood" | "medway";
 
 export const LOCAL_COURTS: Record<CourtKey, LocalCourtInfo> = {
   aberystwyth: {
@@ -489,6 +489,30 @@ export const LOCAL_COURTS: Record<CourtKey, LocalCourtInfo> = {
   swansea: {
     code: "234946:",
     label: "Swansea Civil Justice Centre - Quay West, Quay Parade - SA1 1SP",
+  },
+  chelmsford: {
+    code: "816875:",
+    label: "Chelmsford County and Family Court - Priory Place - CM2 0PP"
+  },
+  nottingham: {
+    code: "424213:",
+    label: "Nottingham County Court and Family Court (and Crown) - Canal Street - NG1 7EJ"
+  },
+  aldershot: {
+    code: "450049:",
+    label: "Aldershot Justice Centre - Civic Centre, Wellington Avenue - GU11 1NY"
+  },
+  prestatyn: {
+    code: "379656:",
+    label: "Prestatyn Justice Centre - The Court House, Victoria Road - LL19 7TE"
+  },
+  blackwood: {
+    code: "304576:",
+    label: "Blackwood Civil and Family Court - Hall Street, Gwent - NP12 1NY"
+  },
+  medway: {
+    code: "369145:",
+    label: "Medway County Court and Family Court - HMCTS Main Entrance, Gun Wharf, Dock Road, Chatham - ME4 4AR"
   },
 };
 

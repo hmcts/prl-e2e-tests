@@ -115,8 +115,8 @@ export function buildSOAEventData(citizenSOACaseInfo: CitizenApplicationInfo) {
       specialArrangementsLetter: {
         document_url:
           process.env.MANAGE_CASES_TEST_ENV === "demo"
-            ? "http://dm-store-demo.service.core-compute-demo.internal/documents/da240bb3-848a-4ab9-8eeb-938e195e922d"
-            : "http://dm-store-aat.service.core-compute-aat.internal/documents/418714f8-ab5b-455a-9341-de9352fd753e",
+            ? "http://dm-store-demo.service.core-compute-demo.internal/documents/3f316210-3a0b-4158-845b-34fa8e7c0de1"
+            : "http://dm-store-aat.service.core-compute-aat.internal/documents/3f316210-3a0b-4158-845b-34fa8e7c0de1",
         document_binary_url:
           process.env.MANAGE_CASES_TEST_ENV === "demo"
             ? "http://dm-store-demo.service.core-compute-demo.internal/documents/da240bb3-848a-4ab9-8eeb-938e195e922d/binary"
