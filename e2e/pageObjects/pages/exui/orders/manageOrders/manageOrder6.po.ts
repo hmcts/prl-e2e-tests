@@ -72,13 +72,13 @@ export class ManageOrder6Page extends EventPage {
     ).toBeVisible();
     await expect(this.familyManHeading).toBeVisible();
     await expect(this.caseNumberHeading).toBeVisible();
-    await expect(this.hintTextRTF1).toBeVisible();
-    await expect(this.hintTextRTF2).toBeVisible();
-    await expect(this.hintTextRTF3).toBeVisible();
     if (!isUploadAnOrder) {
       await expect(this.page.getByText(orderType).first()).toBeVisible();
     }
     if (this.usesRtf(orderType)) {
+      await expect(this.hintTextRTF1).toBeVisible();
+      await expect(this.hintTextRTF2).toBeVisible();
+      await expect(this.hintTextRTF3).toBeVisible();
       await expect(this.rtfLabel).toBeVisible();
       await expect(this.recitalsOrPreambleRtfLabel).toBeVisible();
       await expect(this.orderDirectionsRtfLabel).toBeVisible();
