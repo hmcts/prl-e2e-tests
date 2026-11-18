@@ -66,8 +66,19 @@ export class DraftAnOrder6Page extends EventPage {
     super(page, "Create/upload draft order");
   }
 
-  async assertPageContents(orderType: OrderTypes): Promise<void> {
-    await this.assertPageHeadings();
+  async assertPageContents(
+    orderType: OrderTypes,
+    headingText: string = this.headingText,
+  ): Promise<void> {
+    await expect(
+      this.page.getByRole("heading", {
+        name: headingText,
+        exact: true,
+        level: 1,
+      }),
+    ).toBeVisible();
+    await expect(this.familyManHeading).toBeVisible();
+    await expect(this.caseNumberHeading).toBeVisible();
     await expect(this.page.getByText(orderType)).toBeVisible();
     await expect(this.doesOrderMentionPropertyLabel).toBeVisible();
     await this.pageUtils.assertStrings(
