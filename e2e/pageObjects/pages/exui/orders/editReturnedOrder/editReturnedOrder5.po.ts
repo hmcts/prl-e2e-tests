@@ -37,14 +37,21 @@ export class EditReturnedOrder5Page extends EventPage {
       name: "The respondent must not do the following:",
     });
   private readonly selectAnyThatApplyLabel: Locator = this.page.getByText(
-    "Select all that apply", { exact: true }
+    "Select all that apply",
+    { exact: true },
   );
   private readonly mustNotDoOptionContactTheApplicantDefaultText: Locator =
-    this.page.getByText("[The respondent must not] contact or try to contact or communicate with the applicant in any way or by any means except that (i) you can contact the applicant through solicitors and/or through an agreed third party to make child contact arrangements (ii) you can contact the applicant directly by [means of communication] to make arrangements about the child/ren. (delete whichever of (i) and (ii) do not apply)");
+    this.page.getByText(
+      "[The respondent must not] contact or try to contact or communicate with the applicant in any way or by any means except that (i) you can contact the applicant through solicitors and/or through an agreed third party to make child contact arrangements (ii) you can contact the applicant directly by [means of communication] to make arrangements about the child/ren. (delete whichever of (i) and (ii) do not apply)",
+    );
   private readonly mustNotDoOptionApplicantsStreetAddressDefaultText: Locator =
-    this.page.getByText("Go to or travel on [road name] but (i) you can enter [road name] to facilitate contact arrangements for the child/ren which must be agreed in writing or ordered by the court (ii) but otherwise you cannot park your vehicle or leave your bicycle/motorbike or scooter in [road name]. (delete as appropriate)");
+    this.page.getByText(
+      "Go to or travel on [road name] but (i) you can enter [road name] to facilitate contact arrangements for the child/ren which must be agreed in writing or ordered by the court (ii) but otherwise you cannot park your vehicle or leave your bicycle/motorbike or scooter in [road name]. (delete as appropriate)",
+    );
   private readonly mustNotDoOptionSendingDocumentsToApplicantSolicitorDefaultText: Locator =
-    this.page.getByText("If the applicant does not have solicitors, this order does not prevent you from sending documents in respect of these or any other proceedings directly to them. If the applicant has solicitors, you should send any documents to the solicitors. This order shall remain in force until 16:00 on [date].");
+    this.page.getByText(
+      "If the applicant does not have solicitors, this order does not prevent you from sending documents in respect of these or any other proceedings directly to them. If the applicant has solicitors, you should send any documents to the solicitors. This order shall remain in force until 16:00 on [date].",
+    );
   private readonly addNewButton: Locator = this.page.getByRole("button", {
     name: "Add new",
   });
@@ -122,29 +129,36 @@ export class EditReturnedOrder5Page extends EventPage {
     if (respondentMustNotDoOptions) {
       for (const option of respondentMustNotDoOptions) {
         await this.page.getByRole("checkbox", { name: option }).check();
-        if (
-          option === "Contact the applicant"
-        ) {
-          await expect(this.mustNotDoOptionContactTheApplicantDefaultText).toBeVisible();
+        if (option === "Contact the applicant") {
+          await expect(
+            this.mustNotDoOptionContactTheApplicantDefaultText,
+          ).toBeVisible();
           await this.page
-            .locator("#fl404CustomFields_fl404bRespondentNotToContactApplicantText")
+            .locator(
+              "#fl404CustomFields_fl404bRespondentNotToContactApplicantText",
+            )
             .fill(mustNotDoOptionContactTheApplicant);
         }
-        if (
-          option === "Go to the applicant’s street address"
-        ) {
-          await expect(this.mustNotDoOptionApplicantsStreetAddressDefaultText).toBeVisible();
+        if (option === "Go to the applicant’s street address") {
+          await expect(
+            this.mustNotDoOptionApplicantsStreetAddressDefaultText,
+          ).toBeVisible();
           await this.page
-            .locator("#fl404CustomFields_fl404bRespondentNotToStreetAddressText")
+            .locator(
+              "#fl404CustomFields_fl404bRespondentNotToStreetAddressText",
+            )
             .fill(mustNotDoOptionApplicantsStreetAddress);
         }
         if (
-          option ===
-          "Sending documents to the applicant or their solicitor"
+          option === "Sending documents to the applicant or their solicitor"
         ) {
-          await expect(this.mustNotDoOptionSendingDocumentsToApplicantSolicitorDefaultText).toBeVisible();
+          await expect(
+            this.mustNotDoOptionSendingDocumentsToApplicantSolicitorDefaultText,
+          ).toBeVisible();
           await this.page
-            .locator("#fl404CustomFields_fl404bRespondentNotToSendDocumentsText")
+            .locator(
+              "#fl404CustomFields_fl404bRespondentNotToSendDocumentsText",
+            )
             .fill(mustNotDoOptionSendingDocumentsToApplicantSolicitor);
         }
       }
