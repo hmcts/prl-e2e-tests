@@ -327,29 +327,27 @@ export const OrderTypesArray: OrderTypes[] = [
 ];
 
 export type NonMolestationRespondentMustNotDoOptions =
-  | "use or threaten violence against the applicant, and must not instruct, encourage or in any way suggest that any other person should do so"
-  | "must not intimidate, harass or pester the applicant, and must not instruct, encourage or in any way suggest that any other person should do so"
-  | "must not telephone, text, email or otherwise contact or attempt to contact the applicant"
-  | "must not damage, attempt to damage or threaten to damage any property owned by or in the possession or control of the applicant, and must not instruct, encourage or in any way suggest that any other person should do so"
-  | "must not damage, attempt to damage or threaten to damage the property or contents of the property, and must not instruct, encourage or in any way suggest that any other person should do so"
-  | "must not go to, enter or attempt to enter the property"
-  | "must not use or threaten violence against the relevant children, and must not instruct, encourage or in any way suggest that any other person should do so"
-  | "must not intimidate, harass or pester the relevant children, and must not instruct, encourage or in any way suggest that any other person should do so"
-  | "must not telephone, text, email or otherwise contact or attempt to contact the relevant children"
-  | "must not go to, enter or attempt to enter the school";
+  | "Contact the applicant"
+  | "Go to or enter any place where the applicant lives or is staying or visiting or working."
+  | "Go to the applicant’s street address"
+  | "Contact or communicate with the child/ren in any way or by any means except for any contact or communication which the court has ordered or has been agreed in advance between the parties in writing."
+  | "Track where the applicant is or what the applicant is doing and/or the child/ren by any means including but not limited to electronic devices or apps."
+  | "Damage, interfere with or dispose of, in any way any property belonging to the applicant or jointly owned by you and the applicant unless a court order allows you to dispose of any such property."
+  | "Post or threaten to post about the applicant and/or the child/ren and/or these proceedings on the internet or social media."
+  | "Disclose or threaten to disclose private sexual images or films of the applicant to any third party or organisation."
+  | "Sending documents to the applicant or their solicitor";
 
 export const NonMolestationRespondentMustNotDoOptionsArray: NonMolestationRespondentMustNotDoOptions[] =
   [
-    "use or threaten violence against the applicant, and must not instruct, encourage or in any way suggest that any other person should do so",
-    "must not intimidate, harass or pester the applicant, and must not instruct, encourage or in any way suggest that any other person should do so",
-    "must not telephone, text, email or otherwise contact or attempt to contact the applicant",
-    "must not damage, attempt to damage or threaten to damage any property owned by or in the possession or control of the applicant, and must not instruct, encourage or in any way suggest that any other person should do so",
-    "must not damage, attempt to damage or threaten to damage the property or contents of the property, and must not instruct, encourage or in any way suggest that any other person should do so",
-    "must not go to, enter or attempt to enter the property",
-    "must not use or threaten violence against the relevant children, and must not instruct, encourage or in any way suggest that any other person should do so",
-    "must not intimidate, harass or pester the relevant children, and must not instruct, encourage or in any way suggest that any other person should do so",
-    "must not telephone, text, email or otherwise contact or attempt to contact the relevant children",
-    "must not go to, enter or attempt to enter the school",
+    "Contact the applicant",
+    "Go to or enter any place where the applicant lives or is staying or visiting or working.",
+    "Go to the applicant’s street address",
+    "Contact or communicate with the child/ren in any way or by any means except for any contact or communication which the court has ordered or has been agreed in advance between the parties in writing.",
+    "Track where the applicant is or what the applicant is doing and/or the child/ren by any means including but not limited to electronic devices or apps.",
+    "Damage, interfere with or dispose of, in any way any property belonging to the applicant or jointly owned by you and the applicant unless a court order allows you to dispose of any such property.",
+    "Post or threaten to post about the applicant and/or the child/ren and/or these proceedings on the internet or social media.",
+    "Disclose or threaten to disclose private sexual images or films of the applicant to any third party or organisation.",
+    "Sending documents to the applicant or their solicitor",
   ];
 export type ChildArrangementOrderTypes =
   | "Directions on Issue"
