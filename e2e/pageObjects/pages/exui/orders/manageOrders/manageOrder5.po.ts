@@ -27,6 +27,7 @@ export interface ManageOrder5Params {
   allChildrenInOrder?: string[];
   recitalsAndPreamble?: string;
   directions?: string;
+  partiesAndRepresentation?: string;
   includePenalNotice?: boolean;
   penalNotice?: string;
 }

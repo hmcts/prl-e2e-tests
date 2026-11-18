@@ -11,7 +11,6 @@ import { ManageOrder19Params } from "../../../../../../../pageObjects/pages/exui
 import { ManageOrder24Params } from "../../../../../../../pageObjects/pages/exui/orders/manageOrders/manageOrder24.po.ts";
 import { OrderInformation } from "../../../../../../../pageObjects/pages/exui/caseView/draftOrders.po.ts";
 import { OccupationOrderScenarios } from "../../../../../../../testData/ui/manageOrders.ts";
-
 export interface OccupationOrderParams {
   name: string;
   caseType: solicitorCaseCreateType;
