@@ -25,7 +25,7 @@ export interface NonMolestationDraftOrderParams {
   orderInformation: OrderInformation[];
 }
 
-test.describe("Draft a non molestation order tests", (): void => {
+test.describe("Draft a non molestation order(FL404A) tests", (): void => {
   let caseRef: string;
 
   test.beforeEach(

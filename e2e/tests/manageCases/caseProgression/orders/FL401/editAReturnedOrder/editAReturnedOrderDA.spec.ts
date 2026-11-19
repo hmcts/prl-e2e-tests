@@ -80,7 +80,7 @@ test.describe("'Edit a returned order' flow for DA cases.", () => {
           caseType: editAReturnedOrderParams.caseType,
           status: "Rejected by Judge",
           snapshotName:
-            "FL404A-judge-review-approve-order-askLegalRep-Changes-ReturnOrder-flow",
+            "A-judge-review-approve-order-askLegalRep-Changes-ReturnOrder-flow",
           snapshotPath: ["caseProgression", "orders", "editAndApproveAnOrders"],
         };
         await editAndApproveOrder(
