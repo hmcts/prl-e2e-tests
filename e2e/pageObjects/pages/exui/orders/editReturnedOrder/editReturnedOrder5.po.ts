@@ -37,9 +37,9 @@ export class EditReturnedOrder5Page extends EventPage {
       name: "The respondent must not do the following:",
     });
   private readonly selectAnyThatApplyLabel: Locator = this.page.getByText(
-    "Select all that apply",
+    "Select all that apply (Optional)",
     { exact: true },
-  );
+  ).first();
   private readonly mustNotDoOptionContactTheApplicantDefaultText: Locator =
     this.page.getByText(
       "[The respondent must not] contact or try to contact or communicate with the applicant in any way or by any means except that (i) you can contact the applicant through solicitors and/or through an agreed third party to make child contact arrangements (ii) you can contact the applicant directly by [means of communication] to make arrangements about the child/ren. (delete whichever of (i) and (ii) do not apply)",
@@ -50,7 +50,7 @@ export class EditReturnedOrder5Page extends EventPage {
     );
   private readonly mustNotDoOptionSendingDocumentsToApplicantSolicitorDefaultText: Locator =
     this.page.getByText(
-      "If the applicant does not have solicitors, this order does not prevent you from sending documents in respect of these or any other proceedings directly to them. If the applicant has solicitors, you should send any documents to the solicitors. This order shall remain in force until 16:00 on [date].",
+      "If the applicant does not have solicitors, this order does not prevent you from sending documents in respect of these or any other proceedings directly to them. If the applicant has solicitors, you should send any documents to the solicitors.",
     );
   private readonly addNewButton: Locator = this.page.getByRole("button", {
     name: "Add new",
