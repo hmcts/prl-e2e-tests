@@ -64,8 +64,7 @@ export class OccupationOrderManageOrders12Page extends EventPage {
     exact: true,
   });
   private readonly applyFormLabel = this.page
-    .getByText("Select all that apply (Optional)", { exact: true })
-    .first();
+    .getByText("Select all that apply (Optional)", { exact: true });
   private readonly uniqueFormLabels: string[] = [
     "is entitled to occupy the address as their home",
     "has home rights in the address",
@@ -130,7 +129,7 @@ export class OccupationOrderManageOrders12Page extends EventPage {
     await expect(this.postcodeInputLabel).toBeVisible();
     await expect(this.strong1).toBeVisible();
     await expect(this.strong2).toBeVisible();
-    await expect(this.applyFormLabel).toBeVisible();
+    await expect(this.applyFormLabel).toHaveCount(3);
     await this.pageUtils.assertStrings(this.uniqueFormLabels);
     await expect(this.continueButton).toBeVisible();
     await expect(this.previousButton).toBeVisible();
