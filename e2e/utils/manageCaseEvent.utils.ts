@@ -31,7 +31,7 @@ import {
   c100Events,
   fl401Events,
 } from "../testData/api/solicitorIndividualEventsData.ts";
-import { Document } from "../testData/api/manageDocumentsRequestData.js";
+import { Document } from "../testData/api/manageDocumentsRequestData.ts";
 
 type OrderCreationUsers = "caseWorker" | "judge";
 
@@ -854,7 +854,7 @@ export class ManageCaseEventUtils {
    *
    * @param caseRef the case reference.
    * @param options the document upload options.
-   * @param userCredentials the user information (email and password) of the user submitting the request. Defaults to solicitor user credentials.
+   * @param userCredentials the user information (email and password) of the user submitting the request. Defaults to caseworker user credentials.
    */
   async uploadDocument(
     caseRef: string,

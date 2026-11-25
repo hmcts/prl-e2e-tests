@@ -2,11 +2,14 @@ import { test } from "../../../fixtures.ts";
 import config from "../../../../utils/config.utils.ts";
 import {
   OrderTypes,
+  Party,
   solicitorCaseCreateType,
 } from "../../../../common/types.ts";
-import { basename } from "path";
-import { CaseWorkerPagesGroup } from "../../../../pageObjects/roleBasedGroupedPages/caseWorkerPages.ts";
 import { ExuiMediaViewerPage } from "../../../../pageObjects/pages/exui/exuiMediaViewer.po.ts";
+import {
+  DOCUMENTS,
+  Document,
+} from "../../../../testData/api/manageDocumentsRequestData.ts";
 
 interface CreateABundleTestData {
   caseType: solicitorCaseCreateType;
@@ -29,67 +32,32 @@ const testData: CreateABundleTestData[] = [
 ];
 
 const includedDocuments: {
-  documentParty: string;
-  documentCategory: string;
-  filePath: string;
+  party: Party;
+  document: Document;
 }[] = [
   {
-    documentParty: "Applicant",
-    documentCategory: "Applicant application",
-    filePath: config.testPdfFileCR1,
+    party: "APPLICANT",
+    document: DOCUMENTS.applicantApplication,
   },
   {
-    documentParty: "Applicant",
-    documentCategory: "Medical reports",
-    filePath: config.testPdfFileGuardianReport,
+    party: "APPLICANT",
+    document: DOCUMENTS.medicalReport,
   },
   {
-    documentParty: "Respondent",
-    documentCategory: "Other witness statements",
-    filePath: config.testPdfFilePositionStatement,
+    party: "RESPONDENT",
+    document: DOCUMENTS.otherWitnessStatement,
   },
 ];
 
 const confidentialDocument: {
-  documentParty: string;
-  documentCategory: string;
-  filePath: string;
+  party: Party;
+  document: Document;
 } = {
-  documentParty: "Respondent",
-  documentCategory: "Other witness statements",
-  filePath: config.testPdfFileMIAMCertificate,
+  party: "RESPONDENT",
+  document: DOCUMENTS.confidentialWitnessStatement,
 };
 
-const confidentialDocumentFileName: string = `Confidential_${basename(confidentialDocument.filePath)}`;
-
-async function uploadDocumentWithoutChecks(
-  caseWorker: CaseWorkerPagesGroup,
-  documentParty: string,
-  documentCategory: string,
-  isConfidential: boolean,
-  filePath: string,
-): Promise<void> {
-  const { summaryPage, manageDocuments } = caseWorker;
-  const {
-    manageDocumentsNew1Page,
-    manageDocumentsNewSubmitPage,
-    manageDocumentsNewConfirmPage,
-  } = manageDocuments;
-
-  await summaryPage.chooseEventFromDropdown("Manage documents");
-  await manageDocumentsNew1Page.heading2.waitFor();
-  await manageDocumentsNew1Page.fillDocumentSlot({
-    index: 0,
-    documentParty,
-    documentCategory,
-    confidentialDocument: isConfidential,
-    restrictDocument: false,
-    filePath,
-  });
-  await manageDocumentsNew1Page.clickContinue();
-  await manageDocumentsNewSubmitPage.clickSaveAndContinue();
-  await manageDocumentsNewConfirmPage.clickCloseAndReturnToCaseDetails();
-}
+const confidentialDocumentFileName: string = `Confidential_${confidentialDocument.document.fileName}`;
 
 testData.forEach((data) => {
   test.describe(data.describeTitle, () => {
@@ -130,26 +98,27 @@ testData.forEach((data) => {
 
     test(`Complete Task - Create a Bundle - ${data.orderType} with accessibility test. @nightly @regression @accessibility`, async ({
       caseWorker,
+      manageCasesEventUtils,
     }): Promise<void> => {
       const { summaryPage, createABundle, bundlesPage } = caseWorker;
 
       for (const document of includedDocuments) {
-        await uploadDocumentWithoutChecks(
-          caseWorker,
-          document.documentParty,
-          document.documentCategory,
-          false,
-          document.filePath,
-        );
+        await manageCasesEventUtils.uploadDocument(caseRef, {
+          caseType: data.caseType,
+          party: document.party,
+          document: document.document,
+          isConfidential: "No",
+          isRestricted: "No",
+        });
       }
 
-      await uploadDocumentWithoutChecks(
-        caseWorker,
-        confidentialDocument.documentParty,
-        confidentialDocument.documentCategory,
-        true,
-        confidentialDocument.filePath,
-      );
+      await manageCasesEventUtils.uploadDocument(caseRef, {
+        caseType: data.caseType,
+        party: confidentialDocument.party,
+        document: confidentialDocument.document,
+        isConfidential: "Yes",
+        isRestricted: "No",
+      });
 
       await summaryPage.chooseEventFromDropdown("Create a bundle");
 
@@ -172,7 +141,7 @@ testData.forEach((data) => {
       await mediaViewer.waitForLoad();
       await mediaViewer.toolbar.pageDownBtn.click();
       for (const document of includedDocuments) {
-        await mediaViewer.verifyTextPresent(basename(document.filePath));
+        await mediaViewer.verifyTextPresent(document.document.fileName);
       }
       await mediaViewer.verifyTextNotPresent(confidentialDocumentFileName);
       await pdfPage.close();
