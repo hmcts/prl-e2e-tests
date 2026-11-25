@@ -1,4 +1,4 @@
-import { Page } from "@playwright/test";
+import { expect, Page } from "@playwright/test";
 import { AxeUtils } from "@hmcts/playwright-common";
 import { Helpers } from "../../../../../common/helpers.ts";
 import { Selectors } from "../../../../../common/selectors.ts";
@@ -30,6 +30,13 @@ export class PaymentConfirmationPage {
         `${Selectors.GovukHeadingXL}:text-is("${PaymentConfirmationContent.pageTitle}")`,
       )
       .waitFor();
+
+    // check expiry year is correct
+    const futureYear: string = String(new Date().getFullYear() + 2).slice(-2);
+    await expect(
+      page.locator(Selectors.td, { hasText: futureYear }),
+    ).toBeVisible();
+
     await Promise.all([
       Helpers.checkGroup(
         page,
@@ -40,7 +47,7 @@ export class PaymentConfirmationPage {
       ),
       Helpers.checkGroup(
         page,
-        5,
+        4,
         PaymentConfirmationContent,
         "tableData",
         Selectors.td,

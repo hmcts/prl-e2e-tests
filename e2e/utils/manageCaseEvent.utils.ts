@@ -53,7 +53,9 @@ interface SendToGatekeeperParams {
   /** If the case should be sent to a specific gatekeeper user */
   isSpecificGatekeeper: boolean;
   /** If should the event should be sent to a judge. If false then send to a legal adviser */
-  isJudge?: boolean;
+  isSpecificJudge?: boolean;
+  isAnyJudge?: boolean;
+  isAnyLegalAdviser?: boolean;
 }
 
 /**
@@ -87,10 +89,12 @@ export class ManageCaseEventUtils {
    * Creates and submits an FL401 or C100 testing support solicitor case via API requests.
    *
    * @param caseType the type of case either C100 or Fl401.
+   * @param localCourtInfo the court info of the court the case it to be issued to for an FL401 case.
    * @returns the case reference and case name of the created testing support Solicitor case.
    */
   public async submitTSSolicitorCase(
     caseType: solicitorCaseCreateType,
+    localCourtInfo: LocalCourtInfo = LOCAL_COURTS.swansea,
   ): Promise<BasicCaseData> {
     const userCredentials: UserCredentials = {
       email: process.env.SOLICITOR_USERNAME,
@@ -174,9 +178,8 @@ export class ManageCaseEventUtils {
             },
             submitCountyCourtSelection: {
               value: {
-                code: "234946:",
-                label:
-                  "Swansea Civil Justice Centre - Quay West, Quay Parade - SA1 1SP",
+                code: localCourtInfo.code,
+                label: localCourtInfo.label,
               },
             },
           },
@@ -357,52 +360,61 @@ export class ManageCaseEventUtils {
   async sendToGatekeeper(
     caseRef: string,
     caseType: solicitorCaseCreateType,
-    sendToGatekeeperParams: SendToGatekeeperParams = {
+    sendToGatekeeperParams: Partial<SendToGatekeeperParams> = {
       isSpecificGatekeeper: false,
-      isJudge: false,
+      isSpecificJudge: false,
+      isAnyJudge: false,
+      isAnyLegalAdviser: false,
     },
   ): Promise<void> {
     let eventData;
     if (sendToGatekeeperParams.isSpecificGatekeeper) {
-      if (sendToGatekeeperParams.isJudge) {
-        const judgeUserDetails =
-          await this.commonCaseEventsUtils.getUserDetails(
-            process.env.JUDGE_USERNAME,
-          );
+      const userDetails = await this.commonCaseEventsUtils.getUserDetails(
+        sendToGatekeeperParams.isSpecificJudge
+          ? process.env.JUDGE_USERNAME
+          : process.env.LEGALADVISOR_USERNAME,
+      );
 
-        eventData = {
-          data: {
-            isJudgeOrLegalAdviserGatekeeping: "judge",
-            isSpecificGateKeeperNeeded: "Yes",
-            judgeName: {
-              idamId: judgeUserDetails.id as string,
-              personalCode: "4923961", // this is the same for the static judge across AAT and DEMO
-            },
-          },
-        };
-      } else {
-        // TODO: fix - for some reason the legal adviser request succeeds but the role doesn't get added correctly
-        const laUserDetails = await this.commonCaseEventsUtils.getUserDetails(
-          process.env.LEGALADVISOR_USERNAME,
-        );
-
-        eventData = {
-          data: {
-            isJudgeOrLegalAdviserGatekeeping: "legalAdviser",
-            isSpecificGateKeeperNeeded: "Yes",
-            legalAdviserList: {
-              value: {
-                code: `${laUserDetails.surname}(${laUserDetails.email})`,
-                label: `${laUserDetails.surname}(${laUserDetails.email})`,
+      eventData = sendToGatekeeperParams.isSpecificJudge
+        ? {
+            data: {
+              whoToSendTheCaseToForGatekeeping: "SEND_TO_A_SPECIFIC_JUDGE",
+              judgeName: {
+                idamId: userDetails.id as string,
+                personalCode: "4923961",
               },
             },
-          },
-        };
-      }
+          }
+        : {
+            data: {
+              whoToSendTheCaseToForGatekeeping:
+                "SEND_TO_A_SPECIFIC_LEGAL_ADVISER",
+              legalAdviser: {
+                idamId: userDetails.id as string,
+              },
+            },
+          };
     } else {
+      const judgeOrLegalAdviserForGatekeeping = [
+        ...(sendToGatekeeperParams.isAnyJudge ? ["SEND_TO_A_JUDGE"] : []),
+        ...(sendToGatekeeperParams.isAnyLegalAdviser
+          ? ["SEND_TO_A_LEGAL_ADVISER"]
+          : []),
+      ];
+
+      // if neither option is provided, send to both.
+      if (judgeOrLegalAdviserForGatekeeping.length === 0) {
+        judgeOrLegalAdviserForGatekeeping.push(
+          "SEND_TO_A_JUDGE",
+          "SEND_TO_A_LEGAL_ADVISER",
+        );
+      }
+
       eventData = {
         data: {
-          isSpecificGateKeeperNeeded: "No",
+          whoToSendTheCaseToForGatekeeping:
+            "SEND_TO_ANY_JUDGE_OR_LEGAL_ADVISER",
+          judgeOrLegalAdviserForGatekeeping,
         },
       };
     }

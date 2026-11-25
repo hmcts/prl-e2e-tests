@@ -34,7 +34,7 @@ export class RequestSupportLanguageInterpreterPage extends Base {
 
   async selectLanguage(language: string): Promise<void> {
     await this.languageInput.fill(language);
-    const languageOption: Locator = this.page.locator(".mat-option-text", {
+    const languageOption: Locator = this.page.locator("mat-option", {
       hasText: language,
     });
     await expect(languageOption).toBeVisible();

@@ -534,9 +534,9 @@ export const ParentalResponsibilityOrderActionData: ManageOrdersRequestData = {
         process.env.MANAGE_CASES_TEST_ENV === "demo"
           ? {
               document_url:
-                "http://dm-store-demo.service.core-compute-demo.internal/documents/d9ee0fa9-23fc-4ce7-80e9-1f1716fa1550",
+                "http://dm-store-demo.service.core-compute-demo.internal/documents/65303679-894b-4717-be3f-da03c70348b7",
               document_binary_url:
-                "http://dm-store-demo.service.core-compute-demo.internal/documents/d9ee0fa9-23fc-4ce7-80e9-1f1716fa1550/binary",
+                "http://dm-store-demo.service.core-compute-demo.internal/documents/65303679-894b-4717-be3f-da03c70348b7/binary",
               document_filename:
                 "Welsh_Parental_Responsibility_Order_C45A_draft.pdf",
             }
@@ -552,9 +552,9 @@ export const ParentalResponsibilityOrderActionData: ManageOrdersRequestData = {
         process.env.MANAGE_CASES_TEST_ENV === "demo"
           ? {
               document_url:
-                "http://dm-store-demo.service.core-compute-demo.internal/documents/206b1f5f-1034-4a4c-ac6f-d3862814b36b",
+                "http://dm-store-demo.service.core-compute-demo.internal/documents/43006f0b-867f-45c9-bd73-8ec96cc08b83",
               document_binary_url:
-                "http://dm-store-demo.service.core-compute-demo.internal/documents/206b1f5f-1034-4a4c-ac6f-d3862814b36b/binary",
+                "http://dm-store-demo.service.core-compute-demo.internal/documents/43006f0b-867f-45c9-bd73-8ec96cc08b83/binary",
               document_filename: "Parental_Responsibility_Order_C45A_draft.pdf",
             }
           : {

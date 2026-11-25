@@ -33,7 +33,6 @@ export enum PayContent {
   errorMessage8 = "Enter a valid postcode",
   mockCardNumber = "4444333322221111",
   mockExpMonth = "10",
-  mockExpYear = "26",
   mockCardName = "MR EXAMPLE EXAMPLE",
   mockCVC = "000",
   exampleAddressLine1 = "APARTMENT 10",

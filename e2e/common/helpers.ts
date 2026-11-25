@@ -60,16 +60,16 @@ export class Helpers {
     page: Page,
     event: c100SolicitorEvents | fl401SolicitorEvents,
   ): Promise<void> {
-    const eventSelector = `${Selectors.markdown} > ${Selectors.div} > ${Selectors.p} > ${Selectors.a}:has-text("${event}")`;
-    await page.waitForSelector(`.mat-tab-label-content:text-is("Tasks")`);
-    await page.locator(eventSelector).waitFor();
+    await page.getByRole("tab", { name: "Tasks" }).waitFor();
+    await page.getByRole("link", { name: event }).waitFor();
 
     /*
     Tried waiting for the last page response and last page asset to load and dropdown selection behaviour was still flaky
     frustratingly waiting for a timeout seems like the most "consistent" approach - to be re-evaluated in the future
     */
     await page.waitForTimeout(5000);
-    await page.click(eventSelector);
+
+    await page.getByRole("link", { name: event }).click();
   }
 
   public static async checkVisibleAndPresent(

@@ -15,11 +15,9 @@ export interface DraftAnOrder6Params {
   doesOrderMentionProperty: boolean;
   propertyAddress?: string;
   respondentMustNotDoOptions?: NonMolestationRespondentMustNotDoOptions[];
-  mustNotContactApplicantFurtherDetails?: string;
-  mustNotEnterPropertyFurtherDetails?: string;
-  mustNotContactChildrenFurtherDetails?: string;
-  schoolName?: string;
-  mustNotGoToSchoolFurtherDetails?: string;
+  mustNotDoOptionContactTheApplicant?: string;
+  mustNotDoOptionApplicantsStreetAddress?: string;
+  mustNotDoOptionSendingDocumentsToApplicantSolicitor?: string;
   orderLength: OrderLengthOptions;
   specificDateAndTime?: string;
   costsOfApplication?: string;
@@ -39,8 +37,21 @@ export class DraftAnOrder6Page extends EventPage {
       name: "The respondent must not do the following:",
     });
   private readonly selectAnyThatApplyLabel: Locator = this.page.getByText(
-    "Select any that apply (Optional)",
-  );
+    "Select all that apply (Optional)",
+    { exact: true },
+  ).first();
+  private readonly mustNotDoOptionContactTheApplicantDefaultText: Locator =
+    this.page.getByText(
+      "[The respondent must not] contact or try to contact or communicate with the applicant in any way or by any means except that (i) you can contact the applicant through solicitors and/or through an agreed third party to make child contact arrangements (ii) you can contact the applicant directly by [means of communication] to make arrangements about the child/ren. (delete whichever of (i) and (ii) do not apply)",
+    );
+  private readonly mustNotDoOptionApplicantsStreetAddressDefaultText: Locator =
+    this.page.getByText(
+      "Go to or travel on [road name] but (i) you can enter [road name] to facilitate contact arrangements for the child/ren which must be agreed in writing or ordered by the court (ii) but otherwise you cannot park your vehicle or leave your bicycle/motorbike or scooter in [road name]. (delete as appropriate)",
+    );
+  private readonly mustNotDoOptionSendingDocumentsToApplicantSolicitorDefaultText: Locator =
+    this.page.getByText(
+      "If the applicant does not have solicitors, this order does not prevent you from sending documents in respect of these or any other proceedings directly to them. If the applicant has solicitors, you should send any documents to the solicitors.",
+    );
   private readonly addNewButton: Locator = this.page.getByRole("button", {
     name: "Add new",
   });
@@ -66,8 +77,19 @@ export class DraftAnOrder6Page extends EventPage {
     super(page, "Create/upload draft order");
   }
 
-  async assertPageContents(orderType: OrderTypes): Promise<void> {
-    await this.assertPageHeadings();
+  async assertPageContents(
+    orderType: OrderTypes,
+    headingText: string = this.headingText,
+  ): Promise<void> {
+    await expect(
+      this.page.getByRole("heading", {
+        name: headingText,
+        exact: true,
+        level: 1,
+      }),
+    ).toBeVisible();
+    await expect(this.familyManHeading).toBeVisible();
+    await expect(this.caseNumberHeading).toBeVisible();
     await expect(this.page.getByText(orderType)).toBeVisible();
     await expect(this.doesOrderMentionPropertyLabel).toBeVisible();
     await this.pageUtils.assertStrings(
@@ -95,11 +117,9 @@ export class DraftAnOrder6Page extends EventPage {
     doesOrderMentionProperty,
     propertyAddress,
     respondentMustNotDoOptions,
-    mustNotContactApplicantFurtherDetails,
-    mustNotEnterPropertyFurtherDetails,
-    mustNotContactChildrenFurtherDetails,
-    schoolName,
-    mustNotGoToSchoolFurtherDetails,
+    mustNotDoOptionContactTheApplicant,
+    mustNotDoOptionApplicantsStreetAddress,
+    mustNotDoOptionSendingDocumentsToApplicantSolicitor,
     orderLength,
     specificDateAndTime,
     costsOfApplication,
@@ -120,36 +140,37 @@ export class DraftAnOrder6Page extends EventPage {
     if (respondentMustNotDoOptions) {
       for (const option of respondentMustNotDoOptions) {
         await this.page.getByRole("checkbox", { name: option }).check();
-        if (
-          option ===
-          "must not telephone, text, email or otherwise contact or attempt to contact the applicant"
-        ) {
+        if (option === "Contact the applicant") {
+          await expect(
+            this.mustNotDoOptionContactTheApplicantDefaultText,
+          ).toBeVisible();
           await this.page
-            .locator("#fl404CustomFields_fl404bAddMoreDetailsTelephone")
-            .fill(mustNotContactApplicantFurtherDetails);
+            .locator(
+              "#fl404CustomFields_fl404bRespondentNotToContactApplicantText",
+            )
+            .fill(mustNotDoOptionContactTheApplicant);
+        }
+        if (option === "Go to the applicant’s street address") {
+          await expect(
+            this.mustNotDoOptionApplicantsStreetAddressDefaultText,
+          ).toBeVisible();
+          await this.page
+            .locator(
+              "#fl404CustomFields_fl404bRespondentNotToStreetAddressText",
+            )
+            .fill(mustNotDoOptionApplicantsStreetAddress);
         }
         if (
-          option === "must not go to, enter or attempt to enter the property"
+          option === "Sending documents to the applicant or their solicitor"
         ) {
+          await expect(
+            this.mustNotDoOptionSendingDocumentsToApplicantSolicitorDefaultText,
+          ).toBeVisible();
           await this.page
-            .locator("#fl404CustomFields_fl404bAddMoreDetailsProperty")
-            .fill(mustNotEnterPropertyFurtherDetails);
-        }
-        if (
-          option ===
-          "must not telephone, text, email or otherwise contact or attempt to contact the relevant children"
-        ) {
-          await this.page
-            .locator("#fl404CustomFields_fl404bAddMoreDetailsPhoneChild")
-            .fill(mustNotContactChildrenFurtherDetails);
-        }
-        if (option === "must not go to, enter or attempt to enter the school") {
-          await this.page
-            .getByRole("textbox", { name: "Add school name" })
-            .fill(schoolName);
-          await this.page
-            .locator("#fl404CustomFields_fl404bAddMoreDetailsSchool")
-            .fill(mustNotGoToSchoolFurtherDetails);
+            .locator(
+              "#fl404CustomFields_fl404bRespondentNotToSendDocumentsText",
+            )
+            .fill(mustNotDoOptionSendingDocumentsToApplicantSolicitor);
         }
       }
     }

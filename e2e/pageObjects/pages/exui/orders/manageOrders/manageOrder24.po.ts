@@ -54,7 +54,7 @@ export class ManageOrder24Page extends EventPage {
         .getByRole("combobox", { name: "Name of judge" })
         .fill(judgeName);
       // Wait for the judge option in the dropdown to become visible using dynamic content
-      const judgeNameDropdownOption = this.page.locator(".mat-option-text", {
+      const judgeNameDropdownOption = this.page.locator("mat-option", {
         hasText: judgeName,
       });
       await expect(judgeNameDropdownOption).toBeVisible();
