@@ -30,7 +30,11 @@ export const ChildArrangementsCreateOrderScenarios: ChildArrangementsCreateOrder
         judgeOrMagistratesTitle: "His Honour Judge",
         judgeFullName: "Test judge name",
         justicesLegalAdviserFullName: undefined,
-        dateOrderMade: undefined,
+        dateOrderMade: {
+          day: "24",
+          month: "11",
+          year: "2026"
+        },
         isOrderAboutAllTheChildren: false,
         allChildrenInOrder: [
           "Joe Doe",
@@ -115,7 +119,11 @@ export const ChildArrangementsCreateOrderScenarios: ChildArrangementsCreateOrder
         judgeOrMagistratesTitle: "His Honour Judge",
         judgeFullName: "Test judge name",
         justicesLegalAdviserFullName: "Test legal adviser",
-        dateOrderMade: undefined, // already pre-populated
+        dateOrderMade: {
+          day: "24",
+          month: "11",
+          year: "2026"
+        },
         isOrderAboutAllTheChildren: true,
         allChildrenInOrder: undefined,
         recitalsAndPreamble: "Test recitals",
