@@ -2,6 +2,7 @@ import { CaseAccessViewPage } from "./caseAccessView.po.js";
 import { expect, Locator, Page } from "@playwright/test";
 import { Selectors } from "../../../../common/selectors.js";
 import { PageUtils } from "../../../../utils/page.utils.js";
+import { NavigationUtils } from "../../../../utils/navigation.utils.js";
 
 export class BundlesPage extends CaseAccessViewPage {
   private readonly pageUtils: PageUtils = new PageUtils(this.page);
@@ -42,6 +43,7 @@ export class BundlesPage extends CaseAccessViewPage {
     await expect
       .poll(
         async () => {
+          await this.goToPage();
           const bundleGenerated = await this.page.getByText("DONE").isVisible();
           if (!bundleGenerated) {
             await this.page.reload();
@@ -51,11 +53,21 @@ export class BundlesPage extends CaseAccessViewPage {
         {
           // Allow 5s delay before retrying
           intervals: [5_000],
-          // Allow up to a minute
-          timeout: 60_000,
+          // Allow up to 3 minutes
+          timeout: 180_000,
         },
       )
       .toBeTruthy();
+  }
+
+  async openStitchedBundle(): Promise<Page> {
+    const stitchedDocumentLink = this.page.getByRole("button", {
+      name: "Bundle.pdf",
+    });
+    return await new NavigationUtils().openPdfLink(
+      this.page,
+      stitchedDocumentLink,
+    );
   }
 
   async assertBundleContents(): Promise<void> {

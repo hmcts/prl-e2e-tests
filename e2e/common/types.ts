@@ -559,6 +559,14 @@ export const RespondentTask = {
 export type RespondentTaskName =
   (typeof RespondentTask)[keyof typeof RespondentTask];
 
+export type Party =
+  | "APPLICANT"
+  | "RESPONDENT"
+  | "CAFCASS"
+  | "CAFCASS_CYMRU"
+  | "LOCAL_AUTHORITY"
+  | "COURT";
+
 /** Types of abuse, as labelled on the respondent solicitor "Allegations of harm" pages. */
 export enum AbuseType {
   physical = "Physical abuse",

@@ -2,14 +2,19 @@ import { test } from "../../../fixtures.ts";
 import config from "../../../../utils/config.utils.ts";
 import {
   OrderTypes,
+  Party,
   solicitorCaseCreateType,
 } from "../../../../common/types.ts";
+import { ExuiMediaViewerPage } from "../../../../pageObjects/pages/exui/exuiMediaViewer.po.ts";
+import {
+  DOCUMENTS,
+  Document,
+} from "../../../../testData/api/manageDocumentsRequestData.ts";
 
 interface CreateABundleTestData {
   caseType: solicitorCaseCreateType;
   describeTitle: string;
   orderType: OrderTypes;
-  issueToLocalCourt: boolean;
 }
 
 const testData: CreateABundleTestData[] = [
@@ -18,18 +23,45 @@ const testData: CreateABundleTestData[] = [
     describeTitle: "Create a Bundle - C100 Case Type",
     orderType:
       "Child arrangements, specific issue or prohibited steps order (C43)",
-    issueToLocalCourt: true,
   },
   {
     caseType: "FL401",
     describeTitle: "Create a Bundle - FL401 Case Type",
     orderType: "Power of arrest (FL406)",
-    issueToLocalCourt: false,
   },
 ];
 
+const includedDocuments: {
+  party: Party;
+  document: Document;
+}[] = [
+  {
+    party: "APPLICANT",
+    document: DOCUMENTS.applicantApplication,
+  },
+  {
+    party: "APPLICANT",
+    document: DOCUMENTS.medicalReport,
+  },
+  {
+    party: "RESPONDENT",
+    document: DOCUMENTS.otherWitnessStatement,
+  },
+];
+
+const confidentialDocument: {
+  party: Party;
+  document: Document;
+} = {
+  party: "RESPONDENT",
+  document: DOCUMENTS.confidentialWitnessStatement,
+};
+
+const confidentialDocumentFileName: string = `Confidential_${confidentialDocument.document.fileName}`;
+
 testData.forEach((data) => {
   test.describe(data.describeTitle, () => {
+    test.describe.configure({ timeout: 900_000 });
     let caseRef: string = "";
 
     test.beforeEach(
@@ -38,7 +70,7 @@ testData.forEach((data) => {
           await manageCasesEventUtils.submitTSSolicitorCase(data.caseType)
         ).caseRef;
 
-        if (data.issueToLocalCourt) {
+        if (data.caseType === "C100") {
           await manageCasesEventUtils.issueAndSendToLocalCourt(caseRef);
         }
 
@@ -66,8 +98,27 @@ testData.forEach((data) => {
 
     test(`Complete Task - Create a Bundle - ${data.orderType} with accessibility test. @nightly @regression @accessibility`, async ({
       caseWorker,
+      manageCasesEventUtils,
     }): Promise<void> => {
       const { summaryPage, createABundle, bundlesPage } = caseWorker;
+
+      for (const document of includedDocuments) {
+        await manageCasesEventUtils.uploadDocument(caseRef, {
+          caseType: data.caseType,
+          party: document.party,
+          document: document.document,
+          isConfidential: "No",
+          isRestricted: "No",
+        });
+      }
+
+      await manageCasesEventUtils.uploadDocument(caseRef, {
+        caseType: data.caseType,
+        party: confidentialDocument.party,
+        document: confidentialDocument.document,
+        isConfidential: "Yes",
+        isRestricted: "No",
+      });
 
       await summaryPage.chooseEventFromDropdown("Create a bundle");
 
@@ -84,6 +135,16 @@ testData.forEach((data) => {
       await bundlesPage.goToPage();
       await bundlesPage.waitForBundleStitched();
       await bundlesPage.assertBundleContents();
+
+      const pdfPage = await bundlesPage.openStitchedBundle();
+      const mediaViewer = new ExuiMediaViewerPage(pdfPage);
+      await mediaViewer.waitForLoad();
+      await mediaViewer.toolbar.pageDownBtn.click();
+      for (const document of includedDocuments) {
+        await mediaViewer.verifyTextPresent(document.document.fileName);
+      }
+      await mediaViewer.verifyTextNotPresent(confidentialDocumentFileName);
+      await pdfPage.close();
     });
   });
 });

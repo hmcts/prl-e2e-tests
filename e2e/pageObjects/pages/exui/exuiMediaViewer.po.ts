@@ -42,6 +42,18 @@ export class ExuiMediaViewerPage {
     return parseInt(text.replace("/", ""));
   }
 
+  public async verifyTextPresent(text: string): Promise<void> {
+    await expect(
+      this.page.getByText(text).filter({ visible: true }).first(),
+    ).toBeVisible();
+  }
+
+  public async verifyTextNotPresent(text: string): Promise<void> {
+    await expect(
+      this.page.getByText(text).filter({ visible: true }),
+    ).toHaveCount(0);
+  }
+
   public async runVisualTestOnAllPages(
     page: Page,
     screenShotPath: string[],
