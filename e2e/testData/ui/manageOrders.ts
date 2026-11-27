@@ -28,9 +28,13 @@ export const ChildArrangementsCreateOrderScenarios: ChildArrangementsCreateOrder
         wasOrderApprovedAtAHearing: false,
         hearing: undefined,
         judgeOrMagistratesTitle: "His Honour Judge",
-        judgeFullName: "Test name",
+        judgeFullName: "Test judge name",
         justicesLegalAdviserFullName: undefined,
-        dateOrderMade: undefined,
+        dateOrderMade: {
+          day: "24",
+          month: "11",
+          year: "2026"
+        },
         isOrderAboutAllTheChildren: false,
         allChildrenInOrder: [
           "Joe Doe",
@@ -81,7 +85,7 @@ export const ChildArrangementsCreateOrderScenarios: ChildArrangementsCreateOrder
           englishDocument:
             "ChildArrangements_Specific_Prohibited_Steps_C43_Draft.pdf",
           otherDetails: {
-            orderMadeBy: "Test name",
+            orderMadeBy: "Test judge name",
             orderCreatedBy:
               process.env.MANAGE_CASES_TEST_ENV === "demo"
                 ? demoHcaDisplayName
@@ -113,9 +117,13 @@ export const ChildArrangementsCreateOrderScenarios: ChildArrangementsCreateOrder
         wasOrderApprovedAtAHearing: true,
         hearing: "No hearings available",
         judgeOrMagistratesTitle: "His Honour Judge",
-        judgeFullName: "Test name",
+        judgeFullName: "Test judge name",
         justicesLegalAdviserFullName: "Test legal adviser",
-        dateOrderMade: undefined, // already pre-populated
+        dateOrderMade: {
+          day: "24",
+          month: "11",
+          year: "2026"
+        },
         isOrderAboutAllTheChildren: true,
         allChildrenInOrder: undefined,
         recitalsAndPreamble: "Test recitals",
@@ -162,7 +170,7 @@ export const ChildArrangementsCreateOrderScenarios: ChildArrangementsCreateOrder
           englishDocument:
             "ChildArrangements_Specific_Prohibited_Steps_C43_Draft.pdf",
           otherDetails: {
-            orderMadeBy: "Test name",
+            orderMadeBy: "Test judge name",
             orderCreatedBy:
               process.env.MANAGE_CASES_TEST_ENV === "demo"
                 ? demoHcaDisplayName
