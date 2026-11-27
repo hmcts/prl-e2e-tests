@@ -28,7 +28,7 @@ export const ChildArrangementsCreateOrderScenarios: ChildArrangementsCreateOrder
         wasOrderApprovedAtAHearing: false,
         hearing: undefined,
         judgeOrMagistratesTitle: "His Honour Judge",
-        judgeFullName: "Test judge name",
+        judgeFullName: "Test name",
         justicesLegalAdviserFullName: undefined,
         dateOrderMade: undefined,
         isOrderAboutAllTheChildren: false,
@@ -81,7 +81,7 @@ export const ChildArrangementsCreateOrderScenarios: ChildArrangementsCreateOrder
           englishDocument:
             "ChildArrangements_Specific_Prohibited_Steps_C43_Draft.pdf",
           otherDetails: {
-            orderMadeBy: "Test judge name",
+            orderMadeBy: "Test name",
             orderCreatedBy:
               process.env.MANAGE_CASES_TEST_ENV === "demo"
                 ? demoHcaDisplayName
@@ -113,7 +113,7 @@ export const ChildArrangementsCreateOrderScenarios: ChildArrangementsCreateOrder
         wasOrderApprovedAtAHearing: true,
         hearing: "No hearings available",
         judgeOrMagistratesTitle: "His Honour Judge",
-        judgeFullName: "Test judge name",
+        judgeFullName: "Test name",
         justicesLegalAdviserFullName: "Test legal adviser",
         dateOrderMade: undefined, // already pre-populated
         isOrderAboutAllTheChildren: true,
@@ -162,7 +162,7 @@ export const ChildArrangementsCreateOrderScenarios: ChildArrangementsCreateOrder
           englishDocument:
             "ChildArrangements_Specific_Prohibited_Steps_C43_Draft.pdf",
           otherDetails: {
-            orderMadeBy: "Test judge name",
+            orderMadeBy: "Test name",
             orderCreatedBy:
               process.env.MANAGE_CASES_TEST_ENV === "demo"
                 ? demoHcaDisplayName
